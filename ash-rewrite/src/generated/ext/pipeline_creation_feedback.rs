@@ -2,36 +2,37 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_pipeline_creation_feedback.html) · Extension `VK_EXT_pipeline_creation_feedback`
 #![doc(alias = "VK_EXT_pipeline_creation_feedback")]
+use crate::vk;
+use core::ffi::CStr;
 ///Provided by [VK_EXT_pipeline_creation_feedback](crate::ext::pipeline_creation_feedback)
-impl crate::vk::StructureType {
+impl vk::StructureType {
     pub const PIPELINE_CREATION_FEEDBACK_CREATE_INFO_EXT: Self = Self::PIPELINE_CREATION_FEEDBACK_CREATE_INFO;
 }
-///Provided by [VK_EXT_pipeline_creation_feedback](crate::ext::pipeline_creation_feedback)
-impl crate::vk::PipelineCreationFeedbackFlags {
-    pub const VALID_EXT: Self = Self(
-        crate::vk::PipelineCreationFeedbackFlagBits::VALID_EXT.0,
-    );
+///Provided by [Vulkan 1.3](crate::vk1_3)
+impl vk::PipelineCreationFeedbackFlags {
+    pub const VALID_EXT: Self = Self(vk::PipelineCreationFeedbackFlagBits::VALID_EXT.0);
     pub const APPLICATION_PIPELINE_CACHE_HIT_EXT: Self = Self(
-        crate::vk::PipelineCreationFeedbackFlagBits::APPLICATION_PIPELINE_CACHE_HIT_EXT.0,
+        vk::PipelineCreationFeedbackFlagBits::APPLICATION_PIPELINE_CACHE_HIT_EXT.0,
     );
     pub const BASE_PIPELINE_ACCELERATION_EXT: Self = Self(
-        crate::vk::PipelineCreationFeedbackFlagBits::BASE_PIPELINE_ACCELERATION_EXT.0,
+        vk::PipelineCreationFeedbackFlagBits::BASE_PIPELINE_ACCELERATION_EXT.0,
     );
 }
-///Provided by [VK_EXT_pipeline_creation_feedback](crate::ext::pipeline_creation_feedback)
-impl crate::vk::PipelineCreationFeedbackFlagBits {
+///Provided by [Vulkan 1.3](crate::vk1_3)
+impl vk::PipelineCreationFeedbackFlagBits {
     pub const VALID_EXT: Self = Self::VALID;
     pub const APPLICATION_PIPELINE_CACHE_HIT_EXT: Self = Self::APPLICATION_PIPELINE_CACHE_HIT;
     pub const BASE_PIPELINE_ACCELERATION_EXT: Self = Self::BASE_PIPELINE_ACCELERATION;
 }
 pub const SPEC_VERSION: u32 = 1;
-pub const NAME: &core::ffi::CStr = c"VK_EXT_pipeline_creation_feedback";
+pub const NAME: &CStr = c"VK_EXT_pipeline_creation_feedback";
 pub(crate) mod items {
-    pub type PipelineCreationFeedbackEXT = crate::vk::PipelineCreationFeedback;
-    pub type PipelineCreationFeedbackCreateInfoEXT<'a> = crate::vk::PipelineCreationFeedbackCreateInfo<
+    use crate::vk;
+    pub type PipelineCreationFeedbackEXT = vk::PipelineCreationFeedback;
+    pub type PipelineCreationFeedbackCreateInfoEXT<'a> = vk::PipelineCreationFeedbackCreateInfo<
         'a,
     >;
-    pub type PipelineCreationFeedbackFlagBitsEXT = crate::vk::PipelineCreationFeedbackFlagBits;
-    pub type PipelineCreationFeedbackFlagsEXT = crate::vk::PipelineCreationFeedbackFlags;
+    pub type PipelineCreationFeedbackFlagBitsEXT = vk::PipelineCreationFeedbackFlagBits;
+    pub type PipelineCreationFeedbackFlagsEXT = vk::PipelineCreationFeedbackFlags;
 }
 pub use items::*;

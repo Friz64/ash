@@ -2,25 +2,26 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_external_fence.html) · Extension `VK_KHR_external_fence`
 #![doc(alias = "VK_KHR_external_fence")]
+use crate::vk;
+use core::ffi::CStr;
 ///Provided by [VK_KHR_external_fence](crate::khr::external_fence)
-impl crate::vk::StructureType {
+impl vk::StructureType {
     pub const EXPORT_FENCE_CREATE_INFO_KHR: Self = Self::EXPORT_FENCE_CREATE_INFO;
 }
-///Provided by [VK_KHR_external_fence](crate::khr::external_fence)
-impl crate::vk::FenceImportFlags {
-    pub const TEMPORARY_KHR: Self = Self(
-        crate::vk::FenceImportFlagBits::TEMPORARY_KHR.0,
-    );
+///Provided by [Vulkan 1.1](crate::vk1_1)
+impl vk::FenceImportFlags {
+    pub const TEMPORARY_KHR: Self = Self(vk::FenceImportFlagBits::TEMPORARY_KHR.0);
 }
-///Provided by [VK_KHR_external_fence](crate::khr::external_fence)
-impl crate::vk::FenceImportFlagBits {
+///Provided by [Vulkan 1.1](crate::vk1_1)
+impl vk::FenceImportFlagBits {
     pub const TEMPORARY_KHR: Self = Self::TEMPORARY;
 }
 pub const SPEC_VERSION: u32 = 1;
-pub const NAME: &core::ffi::CStr = c"VK_KHR_external_fence";
+pub const NAME: &CStr = c"VK_KHR_external_fence";
 pub(crate) mod items {
-    pub type ExportFenceCreateInfoKHR<'a> = crate::vk::ExportFenceCreateInfo<'a>;
-    pub type FenceImportFlagBitsKHR = crate::vk::FenceImportFlagBits;
-    pub type FenceImportFlagsKHR = crate::vk::FenceImportFlags;
+    use crate::vk;
+    pub type ExportFenceCreateInfoKHR<'a> = vk::ExportFenceCreateInfo<'a>;
+    pub type FenceImportFlagBitsKHR = vk::FenceImportFlagBits;
+    pub type FenceImportFlagsKHR = vk::FenceImportFlags;
 }
 pub use items::*;

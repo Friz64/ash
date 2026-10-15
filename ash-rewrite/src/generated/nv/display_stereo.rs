@@ -2,8 +2,10 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_NV_display_stereo.html) · Extension `VK_NV_display_stereo`
 #![doc(alias = "VK_NV_display_stereo")]
+use crate::vk;
+use core::ffi::CStr;
 ///Provided by [VK_NV_display_stereo](crate::nv::display_stereo)
-impl crate::vk::StructureType {
+impl vk::StructureType {
     pub const DISPLAY_SURFACE_STEREO_CREATE_INFO_NV: Self = Self(1000551000);
     pub const DISPLAY_MODE_STEREO_PROPERTIES_NV: Self = Self(1000551001);
 }
@@ -15,23 +17,25 @@ impl DisplaySurfaceStereoTypeNV {
     pub const INBAND_DISPLAYPORT: Self = Self(3);
 }
 pub const SPEC_VERSION: u32 = 1;
-pub const NAME: &core::ffi::CStr = c"VK_NV_display_stereo";
+pub const NAME: &CStr = c"VK_NV_display_stereo";
 pub(crate) mod items {
+    use core::marker::PhantomData;
+    use crate::vk;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct DisplaySurfaceStereoCreateInfoNV<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *const core::ffi::c_void,
-        pub stereo_type: crate::vk::DisplaySurfaceStereoTypeNV,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub stereo_type: vk::DisplaySurfaceStereoTypeNV,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for DisplaySurfaceStereoCreateInfoNV<'_> {}
     unsafe impl Sync for DisplaySurfaceStereoCreateInfoNV<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for DisplaySurfaceStereoCreateInfoNV<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::DISPLAY_SURFACE_STEREO_CREATE_INFO_NV;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::DISPLAY_SURFACE_STEREO_CREATE_INFO_NV;
     }
-    unsafe impl<'a> crate::Extends<crate::vk::DisplaySurfaceCreateInfoKHR<'_>>
+    unsafe impl<'a> crate::Extends<vk::DisplaySurfaceCreateInfoKHR<'_>>
     for DisplaySurfaceStereoCreateInfoNV<'a> {}
     impl<'a> Default for DisplaySurfaceStereoCreateInfoNV<'a> {
         fn default() -> Self {
@@ -39,14 +43,14 @@ pub(crate) mod items {
                 s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
                 p_next: Default::default(),
                 stereo_type: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
     impl<'a> DisplaySurfaceStereoCreateInfoNV<'a> {
         pub fn stereo_type(
             mut self,
-            stereo_type: crate::vk::DisplaySurfaceStereoTypeNV,
+            stereo_type: vk::DisplaySurfaceStereoTypeNV,
         ) -> Self {
             self.stereo_type = stereo_type;
             self
@@ -56,17 +60,17 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct DisplayModeStereoPropertiesNV<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
-        pub hdmi3_d_supported: crate::vk::Bool32,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub hdmi3_d_supported: vk::Bool32,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for DisplayModeStereoPropertiesNV<'_> {}
     unsafe impl Sync for DisplayModeStereoPropertiesNV<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for DisplayModeStereoPropertiesNV<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::DISPLAY_MODE_STEREO_PROPERTIES_NV;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::DISPLAY_MODE_STEREO_PROPERTIES_NV;
     }
-    unsafe impl<'a> crate::Extends<crate::vk::DisplayModeProperties2KHR<'_>>
+    unsafe impl<'a> crate::Extends<vk::DisplayModeProperties2KHR<'_>>
     for DisplayModeStereoPropertiesNV<'a> {}
     impl<'a> Default for DisplayModeStereoPropertiesNV<'a> {
         fn default() -> Self {
@@ -74,7 +78,7 @@ pub(crate) mod items {
                 s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
                 p_next: Default::default(),
                 hdmi3_d_supported: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }

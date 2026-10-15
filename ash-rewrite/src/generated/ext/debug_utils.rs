@@ -2,8 +2,12 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_debug_utils.html) · Extension `VK_EXT_debug_utils`
 #![doc(alias = "VK_EXT_debug_utils")]
+use crate::vk;
+use core::ffi::CStr;
+use crate::VkResult;
+use core::ffi::c_void;
 ///Provided by [VK_EXT_debug_utils](crate::ext::debug_utils)
-impl crate::vk::StructureType {
+impl vk::StructureType {
     pub const DEBUG_UTILS_OBJECT_NAME_INFO_EXT: Self = Self(1000128000);
     pub const DEBUG_UTILS_OBJECT_TAG_INFO_EXT: Self = Self(1000128001);
     pub const DEBUG_UTILS_LABEL_EXT: Self = Self(1000128002);
@@ -11,7 +15,7 @@ impl crate::vk::StructureType {
     pub const DEBUG_UTILS_MESSENGER_CREATE_INFO_EXT: Self = Self(1000128004);
 }
 ///Provided by [VK_EXT_debug_utils](crate::ext::debug_utils)
-impl crate::vk::ObjectType {
+impl vk::ObjectType {
     pub const DEBUG_UTILS_MESSENGER_EXT: Self = Self(1000128000);
 }
 ///Provided by [VK_EXT_debug_utils](crate::ext::debug_utils)
@@ -40,34 +44,32 @@ impl DebugUtilsMessageTypeFlagBitsEXT {
     pub const VALIDATION: Self = Self(1 << 1);
     pub const PERFORMANCE: Self = Self(1 << 2);
 }
+pub const SPEC_VERSION: u32 = 2;
+pub const NAME: &CStr = c"VK_EXT_debug_utils";
 #[derive(Clone)]
 pub struct DeviceFn {
-    pub set_debug_utils_object_name: crate::vk::PFN_vkSetDebugUtilsObjectNameEXT,
-    pub set_debug_utils_object_tag: crate::vk::PFN_vkSetDebugUtilsObjectTagEXT,
-    pub queue_begin_debug_utils_label: crate::vk::PFN_vkQueueBeginDebugUtilsLabelEXT,
-    pub queue_end_debug_utils_label: crate::vk::PFN_vkQueueEndDebugUtilsLabelEXT,
-    pub queue_insert_debug_utils_label: crate::vk::PFN_vkQueueInsertDebugUtilsLabelEXT,
-    pub cmd_begin_debug_utils_label: crate::vk::PFN_vkCmdBeginDebugUtilsLabelEXT,
-    pub cmd_end_debug_utils_label: crate::vk::PFN_vkCmdEndDebugUtilsLabelEXT,
-    pub cmd_insert_debug_utils_label: crate::vk::PFN_vkCmdInsertDebugUtilsLabelEXT,
+    pub set_debug_utils_object_name: vk::PFN_vkSetDebugUtilsObjectNameEXT,
+    pub set_debug_utils_object_tag: vk::PFN_vkSetDebugUtilsObjectTagEXT,
+    pub queue_begin_debug_utils_label: vk::PFN_vkQueueBeginDebugUtilsLabelEXT,
+    pub queue_end_debug_utils_label: vk::PFN_vkQueueEndDebugUtilsLabelEXT,
+    pub queue_insert_debug_utils_label: vk::PFN_vkQueueInsertDebugUtilsLabelEXT,
+    pub cmd_begin_debug_utils_label: vk::PFN_vkCmdBeginDebugUtilsLabelEXT,
+    pub cmd_end_debug_utils_label: vk::PFN_vkCmdEndDebugUtilsLabelEXT,
+    pub cmd_insert_debug_utils_label: vk::PFN_vkCmdInsertDebugUtilsLabelEXT,
 }
 unsafe impl Send for DeviceFn {}
 unsafe impl Sync for DeviceFn {}
 impl DeviceFn {
-    pub fn load<F: FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void>(
-        mut f: F,
-    ) -> Self {
+    pub fn load<F: FnMut(&CStr) -> *const c_void>(mut f: F) -> Self {
         Self::load_erased(&mut f)
     }
-    fn load_erased(
-        _f: &mut dyn FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void,
-    ) -> Self {
+    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const c_void) -> Self {
         Self {
             set_debug_utils_object_name: unsafe {
                 unsafe extern "system" fn set_debug_utils_object_name(
-                    _: crate::vk::Device,
-                    _: *const crate::vk::DebugUtilsObjectNameInfoEXT<'_>,
-                ) -> crate::vk::Result {
+                    _: vk::Device,
+                    _: *const vk::DebugUtilsObjectNameInfoEXT<'_>,
+                ) -> vk::Result {
                     panic!("unable to load vkSetDebugUtilsObjectNameEXT")
                 }
                 let val = _f(c"vkSetDebugUtilsObjectNameEXT");
@@ -79,9 +81,9 @@ impl DeviceFn {
             },
             set_debug_utils_object_tag: unsafe {
                 unsafe extern "system" fn set_debug_utils_object_tag(
-                    _: crate::vk::Device,
-                    _: *const crate::vk::DebugUtilsObjectTagInfoEXT<'_>,
-                ) -> crate::vk::Result {
+                    _: vk::Device,
+                    _: *const vk::DebugUtilsObjectTagInfoEXT<'_>,
+                ) -> vk::Result {
                     panic!("unable to load vkSetDebugUtilsObjectTagEXT")
                 }
                 let val = _f(c"vkSetDebugUtilsObjectTagEXT");
@@ -93,8 +95,8 @@ impl DeviceFn {
             },
             queue_begin_debug_utils_label: unsafe {
                 unsafe extern "system" fn queue_begin_debug_utils_label(
-                    _: crate::vk::Queue,
-                    _: *const crate::vk::DebugUtilsLabelEXT<'_>,
+                    _: vk::Queue,
+                    _: *const vk::DebugUtilsLabelEXT<'_>,
                 ) {
                     panic!("unable to load vkQueueBeginDebugUtilsLabelEXT")
                 }
@@ -106,9 +108,7 @@ impl DeviceFn {
                 }
             },
             queue_end_debug_utils_label: unsafe {
-                unsafe extern "system" fn queue_end_debug_utils_label(
-                    _: crate::vk::Queue,
-                ) {
+                unsafe extern "system" fn queue_end_debug_utils_label(_: vk::Queue) {
                     panic!("unable to load vkQueueEndDebugUtilsLabelEXT")
                 }
                 let val = _f(c"vkQueueEndDebugUtilsLabelEXT");
@@ -120,8 +120,8 @@ impl DeviceFn {
             },
             queue_insert_debug_utils_label: unsafe {
                 unsafe extern "system" fn queue_insert_debug_utils_label(
-                    _: crate::vk::Queue,
-                    _: *const crate::vk::DebugUtilsLabelEXT<'_>,
+                    _: vk::Queue,
+                    _: *const vk::DebugUtilsLabelEXT<'_>,
                 ) {
                     panic!("unable to load vkQueueInsertDebugUtilsLabelEXT")
                 }
@@ -134,8 +134,8 @@ impl DeviceFn {
             },
             cmd_begin_debug_utils_label: unsafe {
                 unsafe extern "system" fn cmd_begin_debug_utils_label(
-                    _: crate::vk::CommandBuffer,
-                    _: *const crate::vk::DebugUtilsLabelEXT<'_>,
+                    _: vk::CommandBuffer,
+                    _: *const vk::DebugUtilsLabelEXT<'_>,
                 ) {
                     panic!("unable to load vkCmdBeginDebugUtilsLabelEXT")
                 }
@@ -148,7 +148,7 @@ impl DeviceFn {
             },
             cmd_end_debug_utils_label: unsafe {
                 unsafe extern "system" fn cmd_end_debug_utils_label(
-                    _: crate::vk::CommandBuffer,
+                    _: vk::CommandBuffer,
                 ) {
                     panic!("unable to load vkCmdEndDebugUtilsLabelEXT")
                 }
@@ -161,8 +161,8 @@ impl DeviceFn {
             },
             cmd_insert_debug_utils_label: unsafe {
                 unsafe extern "system" fn cmd_insert_debug_utils_label(
-                    _: crate::vk::CommandBuffer,
-                    _: *const crate::vk::DebugUtilsLabelEXT<'_>,
+                    _: vk::CommandBuffer,
+                    _: *const vk::DebugUtilsLabelEXT<'_>,
                 ) {
                     panic!("unable to load vkCmdInsertDebugUtilsLabelEXT")
                 }
@@ -201,38 +201,38 @@ impl Device {
     #[inline]
     pub unsafe fn set_debug_utils_object_name(
         &self,
-        name_info: &crate::vk::DebugUtilsObjectNameInfoEXT<'_>,
-    ) -> crate::VkResult<()> {
+        name_info: &vk::DebugUtilsObjectNameInfoEXT<'_>,
+    ) -> VkResult<()> {
         (self.fp.set_debug_utils_object_name)(self.handle, name_info).result()
     }
     ///vkSetDebugUtilsObjectTagEXT
     #[inline]
     pub unsafe fn set_debug_utils_object_tag(
         &self,
-        tag_info: &crate::vk::DebugUtilsObjectTagInfoEXT<'_>,
-    ) -> crate::VkResult<()> {
+        tag_info: &vk::DebugUtilsObjectTagInfoEXT<'_>,
+    ) -> VkResult<()> {
         (self.fp.set_debug_utils_object_tag)(self.handle, tag_info).result()
     }
     ///vkQueueBeginDebugUtilsLabelEXT
     #[inline]
     pub unsafe fn queue_begin_debug_utils_label(
         &self,
-        queue: crate::vk::Queue,
-        label_info: &crate::vk::DebugUtilsLabelEXT<'_>,
+        queue: vk::Queue,
+        label_info: &vk::DebugUtilsLabelEXT<'_>,
     ) {
         (self.fp.queue_begin_debug_utils_label)(queue, label_info)
     }
     ///vkQueueEndDebugUtilsLabelEXT
     #[inline]
-    pub unsafe fn queue_end_debug_utils_label(&self, queue: crate::vk::Queue) {
+    pub unsafe fn queue_end_debug_utils_label(&self, queue: vk::Queue) {
         (self.fp.queue_end_debug_utils_label)(queue)
     }
     ///vkQueueInsertDebugUtilsLabelEXT
     #[inline]
     pub unsafe fn queue_insert_debug_utils_label(
         &self,
-        queue: crate::vk::Queue,
-        label_info: &crate::vk::DebugUtilsLabelEXT<'_>,
+        queue: vk::Queue,
+        label_info: &vk::DebugUtilsLabelEXT<'_>,
     ) {
         (self.fp.queue_insert_debug_utils_label)(queue, label_info)
     }
@@ -240,54 +240,47 @@ impl Device {
     #[inline]
     pub unsafe fn cmd_begin_debug_utils_label(
         &self,
-        command_buffer: crate::vk::CommandBuffer,
-        label_info: &crate::vk::DebugUtilsLabelEXT<'_>,
+        command_buffer: vk::CommandBuffer,
+        label_info: &vk::DebugUtilsLabelEXT<'_>,
     ) {
         (self.fp.cmd_begin_debug_utils_label)(command_buffer, label_info)
     }
     ///vkCmdEndDebugUtilsLabelEXT
     #[inline]
-    pub unsafe fn cmd_end_debug_utils_label(
-        &self,
-        command_buffer: crate::vk::CommandBuffer,
-    ) {
+    pub unsafe fn cmd_end_debug_utils_label(&self, command_buffer: vk::CommandBuffer) {
         (self.fp.cmd_end_debug_utils_label)(command_buffer)
     }
     ///vkCmdInsertDebugUtilsLabelEXT
     #[inline]
     pub unsafe fn cmd_insert_debug_utils_label(
         &self,
-        command_buffer: crate::vk::CommandBuffer,
-        label_info: &crate::vk::DebugUtilsLabelEXT<'_>,
+        command_buffer: vk::CommandBuffer,
+        label_info: &vk::DebugUtilsLabelEXT<'_>,
     ) {
         (self.fp.cmd_insert_debug_utils_label)(command_buffer, label_info)
     }
 }
 #[derive(Clone)]
 pub struct InstanceFn {
-    pub create_debug_utils_messenger: crate::vk::PFN_vkCreateDebugUtilsMessengerEXT,
-    pub destroy_debug_utils_messenger: crate::vk::PFN_vkDestroyDebugUtilsMessengerEXT,
-    pub submit_debug_utils_message: crate::vk::PFN_vkSubmitDebugUtilsMessageEXT,
+    pub create_debug_utils_messenger: vk::PFN_vkCreateDebugUtilsMessengerEXT,
+    pub destroy_debug_utils_messenger: vk::PFN_vkDestroyDebugUtilsMessengerEXT,
+    pub submit_debug_utils_message: vk::PFN_vkSubmitDebugUtilsMessageEXT,
 }
 unsafe impl Send for InstanceFn {}
 unsafe impl Sync for InstanceFn {}
 impl InstanceFn {
-    pub fn load<F: FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void>(
-        mut f: F,
-    ) -> Self {
+    pub fn load<F: FnMut(&CStr) -> *const c_void>(mut f: F) -> Self {
         Self::load_erased(&mut f)
     }
-    fn load_erased(
-        _f: &mut dyn FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void,
-    ) -> Self {
+    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const c_void) -> Self {
         Self {
             create_debug_utils_messenger: unsafe {
                 unsafe extern "system" fn create_debug_utils_messenger(
-                    _: crate::vk::Instance,
-                    _: *const crate::vk::DebugUtilsMessengerCreateInfoEXT<'_>,
-                    _: *const crate::vk::AllocationCallbacks<'_>,
-                    _: *mut crate::vk::DebugUtilsMessengerEXT,
-                ) -> crate::vk::Result {
+                    _: vk::Instance,
+                    _: *const vk::DebugUtilsMessengerCreateInfoEXT<'_>,
+                    _: *const vk::AllocationCallbacks<'_>,
+                    _: *mut vk::DebugUtilsMessengerEXT,
+                ) -> vk::Result {
                     panic!("unable to load vkCreateDebugUtilsMessengerEXT")
                 }
                 let val = _f(c"vkCreateDebugUtilsMessengerEXT");
@@ -299,9 +292,9 @@ impl InstanceFn {
             },
             destroy_debug_utils_messenger: unsafe {
                 unsafe extern "system" fn destroy_debug_utils_messenger(
-                    _: crate::vk::Instance,
-                    _: crate::vk::DebugUtilsMessengerEXT,
-                    _: *const crate::vk::AllocationCallbacks<'_>,
+                    _: vk::Instance,
+                    _: vk::DebugUtilsMessengerEXT,
+                    _: *const vk::AllocationCallbacks<'_>,
                 ) {
                     panic!("unable to load vkDestroyDebugUtilsMessengerEXT")
                 }
@@ -314,10 +307,10 @@ impl InstanceFn {
             },
             submit_debug_utils_message: unsafe {
                 unsafe extern "system" fn submit_debug_utils_message(
-                    _: crate::vk::Instance,
-                    _: crate::vk::DebugUtilsMessageSeverityFlagBitsEXT,
-                    _: crate::vk::DebugUtilsMessageTypeFlagsEXT,
-                    _: *const crate::vk::DebugUtilsMessengerCallbackDataEXT<'_>,
+                    _: vk::Instance,
+                    _: vk::DebugUtilsMessageSeverityFlagBitsEXT,
+                    _: vk::DebugUtilsMessageTypeFlagsEXT,
+                    _: *const vk::DebugUtilsMessengerCallbackDataEXT<'_>,
                 ) {
                     panic!("unable to load vkSubmitDebugUtilsMessageEXT")
                 }
@@ -356,9 +349,9 @@ impl Instance {
     #[inline]
     pub unsafe fn create_debug_utils_messenger(
         &self,
-        create_info: &crate::vk::DebugUtilsMessengerCreateInfoEXT<'_>,
-        allocator: Option<&crate::vk::AllocationCallbacks<'_>>,
-    ) -> crate::VkResult<crate::vk::DebugUtilsMessengerEXT> {
+        create_info: &vk::DebugUtilsMessengerCreateInfoEXT<'_>,
+        allocator: Option<&vk::AllocationCallbacks<'_>>,
+    ) -> VkResult<vk::DebugUtilsMessengerEXT> {
         let mut messenger = core::mem::MaybeUninit::uninit();
         (self
             .fp
@@ -377,8 +370,8 @@ impl Instance {
     #[inline]
     pub unsafe fn destroy_debug_utils_messenger(
         &self,
-        messenger: crate::vk::DebugUtilsMessengerEXT,
-        allocator: Option<&crate::vk::AllocationCallbacks<'_>>,
+        messenger: vk::DebugUtilsMessengerEXT,
+        allocator: Option<&vk::AllocationCallbacks<'_>>,
     ) {
         (self
             .fp
@@ -395,9 +388,9 @@ impl Instance {
     #[inline]
     pub unsafe fn submit_debug_utils_message(
         &self,
-        message_severity: crate::vk::DebugUtilsMessageSeverityFlagBitsEXT,
-        message_types: crate::vk::DebugUtilsMessageTypeFlagsEXT,
-        callback_data: &crate::vk::DebugUtilsMessengerCallbackDataEXT<'_>,
+        message_severity: vk::DebugUtilsMessageSeverityFlagBitsEXT,
+        message_types: vk::DebugUtilsMessageTypeFlagsEXT,
+        callback_data: &vk::DebugUtilsMessengerCallbackDataEXT<'_>,
     ) {
         (self
             .fp
@@ -409,30 +402,35 @@ impl Instance {
         )
     }
 }
-pub const SPEC_VERSION: u32 = 2;
-pub const NAME: &core::ffi::CStr = c"VK_EXT_debug_utils";
 pub(crate) mod items {
+    use core::marker::PhantomData;
+    use crate::vk;
+    use core::ffi::CStr;
+    use crate::Handle;
+    use core::fmt;
+    #[cfg(feature = "debug")]
+    use core::fmt as fmtdebug;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct DebugUtilsObjectNameInfoEXT<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *const core::ffi::c_void,
-        pub object_type: crate::vk::ObjectType,
+        pub object_type: vk::ObjectType,
         pub object_handle: u64,
         pub p_object_name: *const core::ffi::c_char,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for DebugUtilsObjectNameInfoEXT<'_> {}
     unsafe impl Sync for DebugUtilsObjectNameInfoEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for DebugUtilsObjectNameInfoEXT<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::DEBUG_UTILS_OBJECT_NAME_INFO_EXT;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::DEBUG_UTILS_OBJECT_NAME_INFO_EXT;
     }
-    unsafe impl<'a> crate::Extends<crate::vk::PipelineShaderStageCreateInfo<'_>>
+    unsafe impl<'a> crate::Extends<vk::PipelineShaderStageCreateInfo<'_>>
     for DebugUtilsObjectNameInfoEXT<'a> {}
-    unsafe impl<'a> crate::Extends<crate::vk::ResourceDescriptorInfoEXT<'_>>
+    unsafe impl<'a> crate::Extends<vk::ResourceDescriptorInfoEXT<'_>>
     for DebugUtilsObjectNameInfoEXT<'a> {}
-    unsafe impl<'a> crate::Extends<crate::vk::SamplerCreateInfo<'_>>
+    unsafe impl<'a> crate::Extends<vk::SamplerCreateInfo<'_>>
     for DebugUtilsObjectNameInfoEXT<'a> {}
     impl<'a> Default for DebugUtilsObjectNameInfoEXT<'a> {
         fn default() -> Self {
@@ -442,12 +440,12 @@ pub(crate) mod items {
                 object_type: Default::default(),
                 object_handle: Default::default(),
                 p_object_name: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
     impl<'a> DebugUtilsObjectNameInfoEXT<'a> {
-        pub fn object_type(mut self, object_type: crate::vk::ObjectType) -> Self {
+        pub fn object_type(mut self, object_type: vk::ObjectType) -> Self {
             self.object_type = object_type;
             self
         }
@@ -455,15 +453,15 @@ pub(crate) mod items {
             self.object_handle = object_handle;
             self
         }
-        pub fn object_name(mut self, object_name: &'a core::ffi::CStr) -> Self {
+        pub fn object_name(mut self, object_name: &'a CStr) -> Self {
             self.p_object_name = object_name.as_ptr();
             self
         }
-        pub unsafe fn object_name_as_c_str(&self) -> Option<&core::ffi::CStr> {
+        pub unsafe fn object_name_as_c_str(&self) -> Option<&CStr> {
             if self.p_object_name.is_null() {
                 None
             } else {
-                Some(unsafe { core::ffi::CStr::from_ptr(self.p_object_name) })
+                Some(unsafe { CStr::from_ptr(self.p_object_name) })
             }
         }
     }
@@ -471,19 +469,19 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct DebugUtilsObjectTagInfoEXT<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *const core::ffi::c_void,
-        pub object_type: crate::vk::ObjectType,
+        pub object_type: vk::ObjectType,
         pub object_handle: u64,
         pub tag_name: u64,
         pub tag_size: usize,
         pub p_tag: *const core::ffi::c_void,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for DebugUtilsObjectTagInfoEXT<'_> {}
     unsafe impl Sync for DebugUtilsObjectTagInfoEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for DebugUtilsObjectTagInfoEXT<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::DEBUG_UTILS_OBJECT_TAG_INFO_EXT;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::DEBUG_UTILS_OBJECT_TAG_INFO_EXT;
     }
     impl<'a> Default for DebugUtilsObjectTagInfoEXT<'a> {
         fn default() -> Self {
@@ -495,12 +493,12 @@ pub(crate) mod items {
                 tag_name: Default::default(),
                 tag_size: Default::default(),
                 p_tag: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
     impl<'a> DebugUtilsObjectTagInfoEXT<'a> {
-        pub fn object_type(mut self, object_type: crate::vk::ObjectType) -> Self {
+        pub fn object_type(mut self, object_type: vk::ObjectType) -> Self {
             self.object_type = object_type;
             self
         }
@@ -522,16 +520,16 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct DebugUtilsLabelEXT<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *const core::ffi::c_void,
         pub p_label_name: *const core::ffi::c_char,
         pub color: [core::ffi::c_float; 4 as _],
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for DebugUtilsLabelEXT<'_> {}
     unsafe impl Sync for DebugUtilsLabelEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for DebugUtilsLabelEXT<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::DEBUG_UTILS_LABEL_EXT;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::DEBUG_UTILS_LABEL_EXT;
     }
     impl<'a> Default for DebugUtilsLabelEXT<'a> {
         fn default() -> Self {
@@ -540,20 +538,20 @@ pub(crate) mod items {
                 p_next: Default::default(),
                 p_label_name: Default::default(),
                 color: unsafe { core::mem::zeroed() },
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
     impl<'a> DebugUtilsLabelEXT<'a> {
-        pub fn label_name(mut self, label_name: &'a core::ffi::CStr) -> Self {
+        pub fn label_name(mut self, label_name: &'a CStr) -> Self {
             self.p_label_name = label_name.as_ptr();
             self
         }
-        pub unsafe fn label_name_as_c_str(&self) -> Option<&core::ffi::CStr> {
+        pub unsafe fn label_name_as_c_str(&self) -> Option<&CStr> {
             if self.p_label_name.is_null() {
                 None
             } else {
-                Some(unsafe { core::ffi::CStr::from_ptr(self.p_label_name) })
+                Some(unsafe { CStr::from_ptr(self.p_label_name) })
             }
         }
         pub fn color(mut self, color: [core::ffi::c_float; 4 as _]) -> Self {
@@ -565,21 +563,21 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct DebugUtilsMessengerCreateInfoEXT<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *const core::ffi::c_void,
-        pub flags: crate::vk::DebugUtilsMessengerCreateFlagsEXT,
-        pub message_severity: crate::vk::DebugUtilsMessageSeverityFlagsEXT,
-        pub message_type: crate::vk::DebugUtilsMessageTypeFlagsEXT,
-        pub pfn_user_callback: crate::vk::PFN_vkDebugUtilsMessengerCallbackEXT,
+        pub flags: vk::DebugUtilsMessengerCreateFlagsEXT,
+        pub message_severity: vk::DebugUtilsMessageSeverityFlagsEXT,
+        pub message_type: vk::DebugUtilsMessageTypeFlagsEXT,
+        pub pfn_user_callback: vk::PFN_vkDebugUtilsMessengerCallbackEXT,
         pub p_user_data: *mut core::ffi::c_void,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for DebugUtilsMessengerCreateInfoEXT<'_> {}
     unsafe impl Sync for DebugUtilsMessengerCreateInfoEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for DebugUtilsMessengerCreateInfoEXT<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::DEBUG_UTILS_MESSENGER_CREATE_INFO_EXT;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::DEBUG_UTILS_MESSENGER_CREATE_INFO_EXT;
     }
-    unsafe impl<'a> crate::Extends<crate::vk::InstanceCreateInfo<'_>>
+    unsafe impl<'a> crate::Extends<vk::InstanceCreateInfo<'_>>
     for DebugUtilsMessengerCreateInfoEXT<'a> {}
     impl<'a> Default for DebugUtilsMessengerCreateInfoEXT<'a> {
         fn default() -> Self {
@@ -591,35 +589,32 @@ pub(crate) mod items {
                 message_type: Default::default(),
                 pfn_user_callback: Default::default(),
                 p_user_data: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
     impl<'a> DebugUtilsMessengerCreateInfoEXT<'a> {
-        pub fn flags(
-            mut self,
-            flags: crate::vk::DebugUtilsMessengerCreateFlagsEXT,
-        ) -> Self {
+        pub fn flags(mut self, flags: vk::DebugUtilsMessengerCreateFlagsEXT) -> Self {
             self.flags = flags;
             self
         }
         pub fn message_severity(
             mut self,
-            message_severity: crate::vk::DebugUtilsMessageSeverityFlagsEXT,
+            message_severity: vk::DebugUtilsMessageSeverityFlagsEXT,
         ) -> Self {
             self.message_severity = message_severity;
             self
         }
         pub fn message_type(
             mut self,
-            message_type: crate::vk::DebugUtilsMessageTypeFlagsEXT,
+            message_type: vk::DebugUtilsMessageTypeFlagsEXT,
         ) -> Self {
             self.message_type = message_type;
             self
         }
         pub fn pfn_user_callback(
             mut self,
-            pfn_user_callback: crate::vk::PFN_vkDebugUtilsMessengerCallbackEXT,
+            pfn_user_callback: vk::PFN_vkDebugUtilsMessengerCallbackEXT,
         ) -> Self {
             self.pfn_user_callback = pfn_user_callback;
             self
@@ -633,25 +628,25 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct DebugUtilsMessengerCallbackDataEXT<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *const core::ffi::c_void,
-        pub flags: crate::vk::DebugUtilsMessengerCallbackDataFlagsEXT,
+        pub flags: vk::DebugUtilsMessengerCallbackDataFlagsEXT,
         pub p_message_id_name: *const core::ffi::c_char,
         pub message_id_number: i32,
         pub p_message: *const core::ffi::c_char,
         pub queue_label_count: u32,
-        pub p_queue_labels: *const crate::vk::DebugUtilsLabelEXT<'a>,
+        pub p_queue_labels: *const vk::DebugUtilsLabelEXT<'a>,
         pub cmd_buf_label_count: u32,
-        pub p_cmd_buf_labels: *const crate::vk::DebugUtilsLabelEXT<'a>,
+        pub p_cmd_buf_labels: *const vk::DebugUtilsLabelEXT<'a>,
         pub object_count: u32,
-        pub p_objects: *const crate::vk::DebugUtilsObjectNameInfoEXT<'a>,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub p_objects: *const vk::DebugUtilsObjectNameInfoEXT<'a>,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for DebugUtilsMessengerCallbackDataEXT<'_> {}
     unsafe impl Sync for DebugUtilsMessengerCallbackDataEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for DebugUtilsMessengerCallbackDataEXT<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::DEBUG_UTILS_MESSENGER_CALLBACK_DATA_EXT;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::DEBUG_UTILS_MESSENGER_CALLBACK_DATA_EXT;
     }
     impl<'a> Default for DebugUtilsMessengerCallbackDataEXT<'a> {
         fn default() -> Self {
@@ -668,47 +663,47 @@ pub(crate) mod items {
                 p_cmd_buf_labels: Default::default(),
                 object_count: Default::default(),
                 p_objects: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
     impl<'a> DebugUtilsMessengerCallbackDataEXT<'a> {
         pub fn flags(
             mut self,
-            flags: crate::vk::DebugUtilsMessengerCallbackDataFlagsEXT,
+            flags: vk::DebugUtilsMessengerCallbackDataFlagsEXT,
         ) -> Self {
             self.flags = flags;
             self
         }
-        pub fn message_id_name(mut self, message_id_name: &'a core::ffi::CStr) -> Self {
+        pub fn message_id_name(mut self, message_id_name: &'a CStr) -> Self {
             self.p_message_id_name = message_id_name.as_ptr();
             self
         }
-        pub unsafe fn message_id_name_as_c_str(&self) -> Option<&core::ffi::CStr> {
+        pub unsafe fn message_id_name_as_c_str(&self) -> Option<&CStr> {
             if self.p_message_id_name.is_null() {
                 None
             } else {
-                Some(unsafe { core::ffi::CStr::from_ptr(self.p_message_id_name) })
+                Some(unsafe { CStr::from_ptr(self.p_message_id_name) })
             }
         }
         pub fn message_id_number(mut self, message_id_number: i32) -> Self {
             self.message_id_number = message_id_number;
             self
         }
-        pub fn message(mut self, message: &'a core::ffi::CStr) -> Self {
+        pub fn message(mut self, message: &'a CStr) -> Self {
             self.p_message = message.as_ptr();
             self
         }
-        pub unsafe fn message_as_c_str(&self) -> Option<&core::ffi::CStr> {
+        pub unsafe fn message_as_c_str(&self) -> Option<&CStr> {
             if self.p_message.is_null() {
                 None
             } else {
-                Some(unsafe { core::ffi::CStr::from_ptr(self.p_message) })
+                Some(unsafe { CStr::from_ptr(self.p_message) })
             }
         }
         pub fn queue_labels(
             mut self,
-            queue_labels: &'a [crate::vk::DebugUtilsLabelEXT<'a>],
+            queue_labels: &'a [vk::DebugUtilsLabelEXT<'a>],
         ) -> Self {
             self.queue_label_count = queue_labels.len() as _;
             self.p_queue_labels = queue_labels.as_ptr();
@@ -716,7 +711,7 @@ pub(crate) mod items {
         }
         pub fn cmd_buf_labels(
             mut self,
-            cmd_buf_labels: &'a [crate::vk::DebugUtilsLabelEXT<'a>],
+            cmd_buf_labels: &'a [vk::DebugUtilsLabelEXT<'a>],
         ) -> Self {
             self.cmd_buf_label_count = cmd_buf_labels.len() as _;
             self.p_cmd_buf_labels = cmd_buf_labels.as_ptr();
@@ -724,7 +719,7 @@ pub(crate) mod items {
         }
         pub fn objects(
             mut self,
-            objects: &'a [crate::vk::DebugUtilsObjectNameInfoEXT<'a>],
+            objects: &'a [vk::DebugUtilsObjectNameInfoEXT<'a>],
         ) -> Self {
             self.object_count = objects.len() as _;
             self.p_objects = objects.as_ptr();
@@ -1072,8 +1067,8 @@ pub(crate) mod items {
     #[repr(transparent)]
     #[derive(Eq, PartialEq, Ord, PartialOrd, Clone, Copy, Hash, Default)]
     pub struct DebugUtilsMessengerEXT(u64);
-    impl crate::Handle for DebugUtilsMessengerEXT {
-        const TYPE: crate::vk::ObjectType = crate::vk::ObjectType::DEBUG_UTILS_MESSENGER_EXT;
+    impl Handle for DebugUtilsMessengerEXT {
+        const TYPE: vk::ObjectType = vk::ObjectType::DEBUG_UTILS_MESSENGER_EXT;
         fn as_raw(self) -> u64 {
             self.0
         }
@@ -1086,70 +1081,71 @@ pub(crate) mod items {
             Self(0)
         }
     }
-    impl core::fmt::Pointer for DebugUtilsMessengerEXT {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+    impl fmt::Pointer for DebugUtilsMessengerEXT {
+        fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
             write!(f, "0x{:x}", self.0)
         }
     }
-    impl core::fmt::Debug for DebugUtilsMessengerEXT {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+    #[cfg(feature = "debug")]
+    impl fmtdebug::Debug for DebugUtilsMessengerEXT {
+        fn fmt(&self, f: &mut fmtdebug::Formatter) -> fmtdebug::Result {
             write!(f, "0x{:x}", self.0)
         }
     }
     pub type PFN_vkDebugUtilsMessengerCallbackEXT = Option<
         unsafe extern "system" fn(
-            message_severity: crate::vk::DebugUtilsMessageSeverityFlagBitsEXT,
-            message_types: crate::vk::DebugUtilsMessageTypeFlagsEXT,
-            p_callback_data: *const crate::vk::DebugUtilsMessengerCallbackDataEXT<'_>,
+            message_severity: vk::DebugUtilsMessageSeverityFlagBitsEXT,
+            message_types: vk::DebugUtilsMessageTypeFlagsEXT,
+            p_callback_data: *const vk::DebugUtilsMessengerCallbackDataEXT<'_>,
             p_user_data: *mut core::ffi::c_void,
-        ) -> crate::vk::Bool32,
+        ) -> vk::Bool32,
     >;
     pub type PFN_vkSetDebugUtilsObjectNameEXT = unsafe extern "system" fn(
-        device: crate::vk::Device,
-        p_name_info: *const crate::vk::DebugUtilsObjectNameInfoEXT<'_>,
-    ) -> crate::vk::Result;
+        device: vk::Device,
+        p_name_info: *const vk::DebugUtilsObjectNameInfoEXT<'_>,
+    ) -> vk::Result;
     pub type PFN_vkSetDebugUtilsObjectTagEXT = unsafe extern "system" fn(
-        device: crate::vk::Device,
-        p_tag_info: *const crate::vk::DebugUtilsObjectTagInfoEXT<'_>,
-    ) -> crate::vk::Result;
+        device: vk::Device,
+        p_tag_info: *const vk::DebugUtilsObjectTagInfoEXT<'_>,
+    ) -> vk::Result;
     pub type PFN_vkQueueBeginDebugUtilsLabelEXT = unsafe extern "system" fn(
-        queue: crate::vk::Queue,
-        p_label_info: *const crate::vk::DebugUtilsLabelEXT<'_>,
+        queue: vk::Queue,
+        p_label_info: *const vk::DebugUtilsLabelEXT<'_>,
     );
     pub type PFN_vkQueueEndDebugUtilsLabelEXT = unsafe extern "system" fn(
-        queue: crate::vk::Queue,
+        queue: vk::Queue,
     );
     pub type PFN_vkQueueInsertDebugUtilsLabelEXT = unsafe extern "system" fn(
-        queue: crate::vk::Queue,
-        p_label_info: *const crate::vk::DebugUtilsLabelEXT<'_>,
+        queue: vk::Queue,
+        p_label_info: *const vk::DebugUtilsLabelEXT<'_>,
     );
     pub type PFN_vkCmdBeginDebugUtilsLabelEXT = unsafe extern "system" fn(
-        command_buffer: crate::vk::CommandBuffer,
-        p_label_info: *const crate::vk::DebugUtilsLabelEXT<'_>,
+        command_buffer: vk::CommandBuffer,
+        p_label_info: *const vk::DebugUtilsLabelEXT<'_>,
     );
     pub type PFN_vkCmdEndDebugUtilsLabelEXT = unsafe extern "system" fn(
-        command_buffer: crate::vk::CommandBuffer,
+        command_buffer: vk::CommandBuffer,
     );
     pub type PFN_vkCmdInsertDebugUtilsLabelEXT = unsafe extern "system" fn(
-        command_buffer: crate::vk::CommandBuffer,
-        p_label_info: *const crate::vk::DebugUtilsLabelEXT<'_>,
+        command_buffer: vk::CommandBuffer,
+        p_label_info: *const vk::DebugUtilsLabelEXT<'_>,
     );
     pub type PFN_vkCreateDebugUtilsMessengerEXT = unsafe extern "system" fn(
-        instance: crate::vk::Instance,
-        p_create_info: *const crate::vk::DebugUtilsMessengerCreateInfoEXT<'_>,
-        p_allocator: *const crate::vk::AllocationCallbacks<'_>,
-        p_messenger: *mut crate::vk::DebugUtilsMessengerEXT,
-    ) -> crate::vk::Result;
+        instance: vk::Instance,
+        p_create_info: *const vk::DebugUtilsMessengerCreateInfoEXT<'_>,
+        p_allocator: *const vk::AllocationCallbacks<'_>,
+        p_messenger: *mut vk::DebugUtilsMessengerEXT,
+    ) -> vk::Result;
     pub type PFN_vkDestroyDebugUtilsMessengerEXT = unsafe extern "system" fn(
-        instance: crate::vk::Instance,
-        messenger: crate::vk::DebugUtilsMessengerEXT,
-        p_allocator: *const crate::vk::AllocationCallbacks<'_>,
+        instance: vk::Instance,
+        messenger: vk::DebugUtilsMessengerEXT,
+        p_allocator: *const vk::AllocationCallbacks<'_>,
     );
     pub type PFN_vkSubmitDebugUtilsMessageEXT = unsafe extern "system" fn(
-        instance: crate::vk::Instance,
-        message_severity: crate::vk::DebugUtilsMessageSeverityFlagBitsEXT,
-        message_types: crate::vk::DebugUtilsMessageTypeFlagsEXT,
-        p_callback_data: *const crate::vk::DebugUtilsMessengerCallbackDataEXT<'_>,
+        instance: vk::Instance,
+        message_severity: vk::DebugUtilsMessageSeverityFlagBitsEXT,
+        message_types: vk::DebugUtilsMessageTypeFlagsEXT,
+        p_callback_data: *const vk::DebugUtilsMessengerCallbackDataEXT<'_>,
     );
 }
 pub use items::*;

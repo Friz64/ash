@@ -2,89 +2,90 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_transform_feedback.html) · Extension `VK_EXT_transform_feedback`
 #![doc(alias = "VK_EXT_transform_feedback")]
+use crate::vk;
+use core::ffi::CStr;
+use core::ffi::c_void;
 ///Provided by [VK_EXT_transform_feedback](crate::ext::transform_feedback)
-impl crate::vk::QueryType {
+impl vk::QueryType {
     pub const TRANSFORM_FEEDBACK_STREAM_EXT: Self = Self(1000028004);
 }
 ///Provided by [VK_EXT_transform_feedback](crate::ext::transform_feedback)
-impl crate::vk::StructureType {
+impl vk::StructureType {
     pub const PHYSICAL_DEVICE_TRANSFORM_FEEDBACK_FEATURES_EXT: Self = Self(1000028000);
     pub const PHYSICAL_DEVICE_TRANSFORM_FEEDBACK_PROPERTIES_EXT: Self = Self(1000028001);
     pub const PIPELINE_RASTERIZATION_STATE_STREAM_CREATE_INFO_EXT: Self = Self(
         1000028002,
     );
 }
-///Provided by [VK_EXT_transform_feedback](crate::ext::transform_feedback)
-impl crate::vk::AccessFlags {
+///Provided by [Vulkan 1.0](crate::vk1_0)
+impl vk::AccessFlags {
     pub const TRANSFORM_FEEDBACK_WRITE_EXT: Self = Self(
-        crate::vk::AccessFlagBits::TRANSFORM_FEEDBACK_WRITE_EXT.0,
+        vk::AccessFlagBits::TRANSFORM_FEEDBACK_WRITE_EXT.0,
     );
     pub const TRANSFORM_FEEDBACK_COUNTER_READ_EXT: Self = Self(
-        crate::vk::AccessFlagBits::TRANSFORM_FEEDBACK_COUNTER_READ_EXT.0,
+        vk::AccessFlagBits::TRANSFORM_FEEDBACK_COUNTER_READ_EXT.0,
     );
     pub const TRANSFORM_FEEDBACK_COUNTER_WRITE_EXT: Self = Self(
-        crate::vk::AccessFlagBits::TRANSFORM_FEEDBACK_COUNTER_WRITE_EXT.0,
+        vk::AccessFlagBits::TRANSFORM_FEEDBACK_COUNTER_WRITE_EXT.0,
     );
 }
-///Provided by [VK_EXT_transform_feedback](crate::ext::transform_feedback)
-impl crate::vk::AccessFlagBits {
+///Provided by [Vulkan 1.0](crate::vk1_0)
+impl vk::AccessFlagBits {
     pub const TRANSFORM_FEEDBACK_WRITE_EXT: Self = Self(1 << 25);
     pub const TRANSFORM_FEEDBACK_COUNTER_READ_EXT: Self = Self(1 << 26);
     pub const TRANSFORM_FEEDBACK_COUNTER_WRITE_EXT: Self = Self(1 << 27);
 }
-///Provided by [VK_EXT_transform_feedback](crate::ext::transform_feedback)
-impl crate::vk::BufferUsageFlags {
+///Provided by [Vulkan 1.0](crate::vk1_0)
+impl vk::BufferUsageFlags {
     pub const TRANSFORM_FEEDBACK_BUFFER_EXT: Self = Self(
-        crate::vk::BufferUsageFlagBits::TRANSFORM_FEEDBACK_BUFFER_EXT.0,
+        vk::BufferUsageFlagBits::TRANSFORM_FEEDBACK_BUFFER_EXT.0,
     );
     pub const TRANSFORM_FEEDBACK_COUNTER_BUFFER_EXT: Self = Self(
-        crate::vk::BufferUsageFlagBits::TRANSFORM_FEEDBACK_COUNTER_BUFFER_EXT.0,
+        vk::BufferUsageFlagBits::TRANSFORM_FEEDBACK_COUNTER_BUFFER_EXT.0,
     );
 }
-///Provided by [VK_EXT_transform_feedback](crate::ext::transform_feedback)
-impl crate::vk::BufferUsageFlagBits {
+///Provided by [Vulkan 1.0](crate::vk1_0)
+impl vk::BufferUsageFlagBits {
     pub const TRANSFORM_FEEDBACK_BUFFER_EXT: Self = Self(1 << 11);
     pub const TRANSFORM_FEEDBACK_COUNTER_BUFFER_EXT: Self = Self(1 << 12);
 }
-///Provided by [VK_EXT_transform_feedback](crate::ext::transform_feedback)
-impl crate::vk::PipelineStageFlags {
+///Provided by [Vulkan 1.0](crate::vk1_0)
+impl vk::PipelineStageFlags {
     pub const TRANSFORM_FEEDBACK_EXT: Self = Self(
-        crate::vk::PipelineStageFlagBits::TRANSFORM_FEEDBACK_EXT.0,
+        vk::PipelineStageFlagBits::TRANSFORM_FEEDBACK_EXT.0,
     );
 }
-///Provided by [VK_EXT_transform_feedback](crate::ext::transform_feedback)
-impl crate::vk::PipelineStageFlagBits {
+///Provided by [Vulkan 1.0](crate::vk1_0)
+impl vk::PipelineStageFlagBits {
     pub const TRANSFORM_FEEDBACK_EXT: Self = Self(1 << 24);
 }
+pub const SPEC_VERSION: u32 = 1;
+pub const NAME: &CStr = c"VK_EXT_transform_feedback";
 #[derive(Clone)]
 pub struct DeviceFn {
-    pub cmd_bind_transform_feedback_buffers: crate::vk::PFN_vkCmdBindTransformFeedbackBuffersEXT,
-    pub cmd_begin_transform_feedback: crate::vk::PFN_vkCmdBeginTransformFeedbackEXT,
-    pub cmd_end_transform_feedback: crate::vk::PFN_vkCmdEndTransformFeedbackEXT,
-    pub cmd_begin_query_indexed: crate::vk::PFN_vkCmdBeginQueryIndexedEXT,
-    pub cmd_end_query_indexed: crate::vk::PFN_vkCmdEndQueryIndexedEXT,
-    pub cmd_draw_indirect_byte_count: crate::vk::PFN_vkCmdDrawIndirectByteCountEXT,
+    pub cmd_bind_transform_feedback_buffers: vk::PFN_vkCmdBindTransformFeedbackBuffersEXT,
+    pub cmd_begin_transform_feedback: vk::PFN_vkCmdBeginTransformFeedbackEXT,
+    pub cmd_end_transform_feedback: vk::PFN_vkCmdEndTransformFeedbackEXT,
+    pub cmd_begin_query_indexed: vk::PFN_vkCmdBeginQueryIndexedEXT,
+    pub cmd_end_query_indexed: vk::PFN_vkCmdEndQueryIndexedEXT,
+    pub cmd_draw_indirect_byte_count: vk::PFN_vkCmdDrawIndirectByteCountEXT,
 }
 unsafe impl Send for DeviceFn {}
 unsafe impl Sync for DeviceFn {}
 impl DeviceFn {
-    pub fn load<F: FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void>(
-        mut f: F,
-    ) -> Self {
+    pub fn load<F: FnMut(&CStr) -> *const c_void>(mut f: F) -> Self {
         Self::load_erased(&mut f)
     }
-    fn load_erased(
-        _f: &mut dyn FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void,
-    ) -> Self {
+    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const c_void) -> Self {
         Self {
             cmd_bind_transform_feedback_buffers: unsafe {
                 unsafe extern "system" fn cmd_bind_transform_feedback_buffers(
-                    _: crate::vk::CommandBuffer,
+                    _: vk::CommandBuffer,
                     _: u32,
                     _: u32,
-                    _: *const crate::vk::Buffer,
-                    _: *const crate::vk::DeviceSize,
-                    _: *const crate::vk::DeviceSize,
+                    _: *const vk::Buffer,
+                    _: *const vk::DeviceSize,
+                    _: *const vk::DeviceSize,
                 ) {
                     panic!("unable to load vkCmdBindTransformFeedbackBuffersEXT")
                 }
@@ -97,11 +98,11 @@ impl DeviceFn {
             },
             cmd_begin_transform_feedback: unsafe {
                 unsafe extern "system" fn cmd_begin_transform_feedback(
-                    _: crate::vk::CommandBuffer,
+                    _: vk::CommandBuffer,
                     _: u32,
                     _: u32,
-                    _: *const crate::vk::Buffer,
-                    _: *const crate::vk::DeviceSize,
+                    _: *const vk::Buffer,
+                    _: *const vk::DeviceSize,
                 ) {
                     panic!("unable to load vkCmdBeginTransformFeedbackEXT")
                 }
@@ -114,11 +115,11 @@ impl DeviceFn {
             },
             cmd_end_transform_feedback: unsafe {
                 unsafe extern "system" fn cmd_end_transform_feedback(
-                    _: crate::vk::CommandBuffer,
+                    _: vk::CommandBuffer,
                     _: u32,
                     _: u32,
-                    _: *const crate::vk::Buffer,
-                    _: *const crate::vk::DeviceSize,
+                    _: *const vk::Buffer,
+                    _: *const vk::DeviceSize,
                 ) {
                     panic!("unable to load vkCmdEndTransformFeedbackEXT")
                 }
@@ -131,10 +132,10 @@ impl DeviceFn {
             },
             cmd_begin_query_indexed: unsafe {
                 unsafe extern "system" fn cmd_begin_query_indexed(
-                    _: crate::vk::CommandBuffer,
-                    _: crate::vk::QueryPool,
+                    _: vk::CommandBuffer,
+                    _: vk::QueryPool,
                     _: u32,
-                    _: crate::vk::QueryControlFlags,
+                    _: vk::QueryControlFlags,
                     _: u32,
                 ) {
                     panic!("unable to load vkCmdBeginQueryIndexedEXT")
@@ -148,8 +149,8 @@ impl DeviceFn {
             },
             cmd_end_query_indexed: unsafe {
                 unsafe extern "system" fn cmd_end_query_indexed(
-                    _: crate::vk::CommandBuffer,
-                    _: crate::vk::QueryPool,
+                    _: vk::CommandBuffer,
+                    _: vk::QueryPool,
                     _: u32,
                     _: u32,
                 ) {
@@ -164,11 +165,11 @@ impl DeviceFn {
             },
             cmd_draw_indirect_byte_count: unsafe {
                 unsafe extern "system" fn cmd_draw_indirect_byte_count(
-                    _: crate::vk::CommandBuffer,
+                    _: vk::CommandBuffer,
                     _: u32,
                     _: u32,
-                    _: crate::vk::Buffer,
-                    _: crate::vk::DeviceSize,
+                    _: vk::Buffer,
+                    _: vk::DeviceSize,
                     _: u32,
                     _: u32,
                 ) {
@@ -209,11 +210,11 @@ impl Device {
     #[inline]
     pub unsafe fn cmd_bind_transform_feedback_buffers(
         &self,
-        command_buffer: crate::vk::CommandBuffer,
+        command_buffer: vk::CommandBuffer,
         first_binding: u32,
-        buffers: &[crate::vk::Buffer],
-        offsets: &[crate::vk::DeviceSize],
-        sizes: &[crate::vk::DeviceSize],
+        buffers: &[vk::Buffer],
+        offsets: &[vk::DeviceSize],
+        sizes: &[vk::DeviceSize],
     ) {
         assert_eq!(offsets.len(), sizes.len());
         assert_eq!(buffers.len(), offsets.len());
@@ -232,10 +233,10 @@ impl Device {
     #[inline]
     pub unsafe fn cmd_begin_transform_feedback(
         &self,
-        command_buffer: crate::vk::CommandBuffer,
+        command_buffer: vk::CommandBuffer,
         first_counter_buffer: u32,
-        counter_buffers: &[crate::vk::Buffer],
-        counter_buffer_offsets: &[crate::vk::DeviceSize],
+        counter_buffers: &[vk::Buffer],
+        counter_buffer_offsets: &[vk::DeviceSize],
     ) {
         assert_eq!(counter_buffers.len(), counter_buffer_offsets.len());
         (self
@@ -252,10 +253,10 @@ impl Device {
     #[inline]
     pub unsafe fn cmd_end_transform_feedback(
         &self,
-        command_buffer: crate::vk::CommandBuffer,
+        command_buffer: vk::CommandBuffer,
         first_counter_buffer: u32,
-        counter_buffers: &[crate::vk::Buffer],
-        counter_buffer_offsets: &[crate::vk::DeviceSize],
+        counter_buffers: &[vk::Buffer],
+        counter_buffer_offsets: &[vk::DeviceSize],
     ) {
         assert_eq!(counter_buffers.len(), counter_buffer_offsets.len());
         (self
@@ -272,10 +273,10 @@ impl Device {
     #[inline]
     pub unsafe fn cmd_begin_query_indexed(
         &self,
-        command_buffer: crate::vk::CommandBuffer,
-        query_pool: crate::vk::QueryPool,
+        command_buffer: vk::CommandBuffer,
+        query_pool: vk::QueryPool,
         query: u32,
-        flags: crate::vk::QueryControlFlags,
+        flags: vk::QueryControlFlags,
         index: u32,
     ) {
         (self
@@ -286,8 +287,8 @@ impl Device {
     #[inline]
     pub unsafe fn cmd_end_query_indexed(
         &self,
-        command_buffer: crate::vk::CommandBuffer,
-        query_pool: crate::vk::QueryPool,
+        command_buffer: vk::CommandBuffer,
+        query_pool: vk::QueryPool,
         query: u32,
         index: u32,
     ) {
@@ -297,11 +298,11 @@ impl Device {
     #[inline]
     pub unsafe fn cmd_draw_indirect_byte_count(
         &self,
-        command_buffer: crate::vk::CommandBuffer,
+        command_buffer: vk::CommandBuffer,
         instance_count: u32,
         first_instance: u32,
-        counter_buffer: crate::vk::Buffer,
-        counter_buffer_offset: crate::vk::DeviceSize,
+        counter_buffer: vk::Buffer,
+        counter_buffer_offset: vk::DeviceSize,
         counter_offset: u32,
         vertex_stride: u32,
     ) {
@@ -318,28 +319,28 @@ impl Device {
         )
     }
 }
-pub const SPEC_VERSION: u32 = 1;
-pub const NAME: &core::ffi::CStr = c"VK_EXT_transform_feedback";
 pub(crate) mod items {
+    use core::marker::PhantomData;
+    use crate::vk;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceTransformFeedbackFeaturesEXT<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
-        pub transform_feedback: crate::vk::Bool32,
-        pub geometry_streams: crate::vk::Bool32,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub transform_feedback: vk::Bool32,
+        pub geometry_streams: vk::Bool32,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for PhysicalDeviceTransformFeedbackFeaturesEXT<'_> {}
     unsafe impl Sync for PhysicalDeviceTransformFeedbackFeaturesEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceTransformFeedbackFeaturesEXT<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_TRANSFORM_FEEDBACK_FEATURES_EXT;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PHYSICAL_DEVICE_TRANSFORM_FEEDBACK_FEATURES_EXT;
     }
-    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+    unsafe impl<'a> crate::Extends<vk::PhysicalDeviceFeatures2<'_>>
     for PhysicalDeviceTransformFeedbackFeaturesEXT<'a> {}
-    unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+    unsafe impl<'a> crate::Extends<vk::DeviceCreateInfo<'_>>
     for PhysicalDeviceTransformFeedbackFeaturesEXT<'a> {}
     impl<'a> Default for PhysicalDeviceTransformFeedbackFeaturesEXT<'a> {
         fn default() -> Self {
@@ -348,7 +349,7 @@ pub(crate) mod items {
                 p_next: Default::default(),
                 transform_feedback: Default::default(),
                 geometry_streams: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
@@ -366,27 +367,27 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceTransformFeedbackPropertiesEXT<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
         pub max_transform_feedback_streams: u32,
         pub max_transform_feedback_buffers: u32,
-        pub max_transform_feedback_buffer_size: crate::vk::DeviceSize,
+        pub max_transform_feedback_buffer_size: vk::DeviceSize,
         pub max_transform_feedback_stream_data_size: u32,
         pub max_transform_feedback_buffer_data_size: u32,
         pub max_transform_feedback_buffer_data_stride: u32,
-        pub transform_feedback_queries: crate::vk::Bool32,
-        pub transform_feedback_streams_lines_triangles: crate::vk::Bool32,
-        pub transform_feedback_rasterization_stream_select: crate::vk::Bool32,
-        pub transform_feedback_draw: crate::vk::Bool32,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub transform_feedback_queries: vk::Bool32,
+        pub transform_feedback_streams_lines_triangles: vk::Bool32,
+        pub transform_feedback_rasterization_stream_select: vk::Bool32,
+        pub transform_feedback_draw: vk::Bool32,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for PhysicalDeviceTransformFeedbackPropertiesEXT<'_> {}
     unsafe impl Sync for PhysicalDeviceTransformFeedbackPropertiesEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceTransformFeedbackPropertiesEXT<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_TRANSFORM_FEEDBACK_PROPERTIES_EXT;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PHYSICAL_DEVICE_TRANSFORM_FEEDBACK_PROPERTIES_EXT;
     }
-    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceProperties2<'_>>
+    unsafe impl<'a> crate::Extends<vk::PhysicalDeviceProperties2<'_>>
     for PhysicalDeviceTransformFeedbackPropertiesEXT<'a> {}
     impl<'a> Default for PhysicalDeviceTransformFeedbackPropertiesEXT<'a> {
         fn default() -> Self {
@@ -403,7 +404,7 @@ pub(crate) mod items {
                 transform_feedback_streams_lines_triangles: Default::default(),
                 transform_feedback_rasterization_stream_select: Default::default(),
                 transform_feedback_draw: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
@@ -424,7 +425,7 @@ pub(crate) mod items {
         }
         pub fn max_transform_feedback_buffer_size(
             mut self,
-            max_transform_feedback_buffer_size: crate::vk::DeviceSize,
+            max_transform_feedback_buffer_size: vk::DeviceSize,
         ) -> Self {
             self.max_transform_feedback_buffer_size = max_transform_feedback_buffer_size;
             self
@@ -482,19 +483,19 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct PipelineRasterizationStateStreamCreateInfoEXT<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *const core::ffi::c_void,
-        pub flags: crate::vk::PipelineRasterizationStateStreamCreateFlagsEXT,
+        pub flags: vk::PipelineRasterizationStateStreamCreateFlagsEXT,
         pub rasterization_stream: u32,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for PipelineRasterizationStateStreamCreateInfoEXT<'_> {}
     unsafe impl Sync for PipelineRasterizationStateStreamCreateInfoEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PipelineRasterizationStateStreamCreateInfoEXT<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PIPELINE_RASTERIZATION_STATE_STREAM_CREATE_INFO_EXT;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PIPELINE_RASTERIZATION_STATE_STREAM_CREATE_INFO_EXT;
     }
-    unsafe impl<'a> crate::Extends<crate::vk::PipelineRasterizationStateCreateInfo<'_>>
+    unsafe impl<'a> crate::Extends<vk::PipelineRasterizationStateCreateInfo<'_>>
     for PipelineRasterizationStateStreamCreateInfoEXT<'a> {}
     impl<'a> Default for PipelineRasterizationStateStreamCreateInfoEXT<'a> {
         fn default() -> Self {
@@ -503,14 +504,14 @@ pub(crate) mod items {
                 p_next: Default::default(),
                 flags: Default::default(),
                 rasterization_stream: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
     impl<'a> PipelineRasterizationStateStreamCreateInfoEXT<'a> {
         pub fn flags(
             mut self,
-            flags: crate::vk::PipelineRasterizationStateStreamCreateFlagsEXT,
+            flags: vk::PipelineRasterizationStateStreamCreateFlagsEXT,
         ) -> Self {
             self.flags = flags;
             self
@@ -589,46 +590,46 @@ pub(crate) mod items {
         }
     }
     pub type PFN_vkCmdBindTransformFeedbackBuffersEXT = unsafe extern "system" fn(
-        command_buffer: crate::vk::CommandBuffer,
+        command_buffer: vk::CommandBuffer,
         first_binding: u32,
         binding_count: u32,
-        p_buffers: *const crate::vk::Buffer,
-        p_offsets: *const crate::vk::DeviceSize,
-        p_sizes: *const crate::vk::DeviceSize,
+        p_buffers: *const vk::Buffer,
+        p_offsets: *const vk::DeviceSize,
+        p_sizes: *const vk::DeviceSize,
     );
     pub type PFN_vkCmdBeginTransformFeedbackEXT = unsafe extern "system" fn(
-        command_buffer: crate::vk::CommandBuffer,
+        command_buffer: vk::CommandBuffer,
         first_counter_buffer: u32,
         counter_buffer_count: u32,
-        p_counter_buffers: *const crate::vk::Buffer,
-        p_counter_buffer_offsets: *const crate::vk::DeviceSize,
+        p_counter_buffers: *const vk::Buffer,
+        p_counter_buffer_offsets: *const vk::DeviceSize,
     );
     pub type PFN_vkCmdEndTransformFeedbackEXT = unsafe extern "system" fn(
-        command_buffer: crate::vk::CommandBuffer,
+        command_buffer: vk::CommandBuffer,
         first_counter_buffer: u32,
         counter_buffer_count: u32,
-        p_counter_buffers: *const crate::vk::Buffer,
-        p_counter_buffer_offsets: *const crate::vk::DeviceSize,
+        p_counter_buffers: *const vk::Buffer,
+        p_counter_buffer_offsets: *const vk::DeviceSize,
     );
     pub type PFN_vkCmdBeginQueryIndexedEXT = unsafe extern "system" fn(
-        command_buffer: crate::vk::CommandBuffer,
-        query_pool: crate::vk::QueryPool,
+        command_buffer: vk::CommandBuffer,
+        query_pool: vk::QueryPool,
         query: u32,
-        flags: crate::vk::QueryControlFlags,
+        flags: vk::QueryControlFlags,
         index: u32,
     );
     pub type PFN_vkCmdEndQueryIndexedEXT = unsafe extern "system" fn(
-        command_buffer: crate::vk::CommandBuffer,
-        query_pool: crate::vk::QueryPool,
+        command_buffer: vk::CommandBuffer,
+        query_pool: vk::QueryPool,
         query: u32,
         index: u32,
     );
     pub type PFN_vkCmdDrawIndirectByteCountEXT = unsafe extern "system" fn(
-        command_buffer: crate::vk::CommandBuffer,
+        command_buffer: vk::CommandBuffer,
         instance_count: u32,
         first_instance: u32,
-        counter_buffer: crate::vk::Buffer,
-        counter_buffer_offset: crate::vk::DeviceSize,
+        counter_buffer: vk::Buffer,
+        counter_buffer_offset: vk::DeviceSize,
         counter_offset: u32,
         vertex_stride: u32,
     );

@@ -2,8 +2,10 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_AMD_memory_overallocation_behavior.html) · Extension `VK_AMD_memory_overallocation_behavior`
 #![doc(alias = "VK_AMD_memory_overallocation_behavior")]
+use crate::vk;
+use core::ffi::CStr;
 ///Provided by [VK_AMD_memory_overallocation_behavior](crate::amd::memory_overallocation_behavior)
-impl crate::vk::StructureType {
+impl vk::StructureType {
     pub const DEVICE_MEMORY_OVERALLOCATION_CREATE_INFO_AMD: Self = Self(1000189000);
 }
 ///Provided by [VK_AMD_memory_overallocation_behavior](crate::amd::memory_overallocation_behavior)
@@ -13,24 +15,26 @@ impl MemoryOverallocationBehaviorAMD {
     pub const DISALLOWED: Self = Self(2);
 }
 pub const SPEC_VERSION: u32 = 1;
-pub const NAME: &core::ffi::CStr = c"VK_AMD_memory_overallocation_behavior";
+pub const NAME: &CStr = c"VK_AMD_memory_overallocation_behavior";
 pub(crate) mod items {
+    use core::marker::PhantomData;
+    use crate::vk;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct DeviceMemoryOverallocationCreateInfoAMD<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *const core::ffi::c_void,
-        pub overallocation_behavior: crate::vk::MemoryOverallocationBehaviorAMD,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub overallocation_behavior: vk::MemoryOverallocationBehaviorAMD,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for DeviceMemoryOverallocationCreateInfoAMD<'_> {}
     unsafe impl Sync for DeviceMemoryOverallocationCreateInfoAMD<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for DeviceMemoryOverallocationCreateInfoAMD<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::DEVICE_MEMORY_OVERALLOCATION_CREATE_INFO_AMD;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::DEVICE_MEMORY_OVERALLOCATION_CREATE_INFO_AMD;
     }
-    unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+    unsafe impl<'a> crate::Extends<vk::DeviceCreateInfo<'_>>
     for DeviceMemoryOverallocationCreateInfoAMD<'a> {}
     impl<'a> Default for DeviceMemoryOverallocationCreateInfoAMD<'a> {
         fn default() -> Self {
@@ -38,14 +42,14 @@ pub(crate) mod items {
                 s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
                 p_next: Default::default(),
                 overallocation_behavior: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
     impl<'a> DeviceMemoryOverallocationCreateInfoAMD<'a> {
         pub fn overallocation_behavior(
             mut self,
-            overallocation_behavior: crate::vk::MemoryOverallocationBehaviorAMD,
+            overallocation_behavior: vk::MemoryOverallocationBehaviorAMD,
         ) -> Self {
             self.overallocation_behavior = overallocation_behavior;
             self

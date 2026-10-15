@@ -2,36 +2,40 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_NV_push_constant_bank.html) · Extension `VK_NV_push_constant_bank`
 #![doc(alias = "VK_NV_push_constant_bank")]
+use crate::vk;
+use core::ffi::CStr;
 ///Provided by [VK_NV_push_constant_bank](crate::nv::push_constant_bank)
-impl crate::vk::StructureType {
+impl vk::StructureType {
     pub const PUSH_CONSTANT_BANK_INFO_NV: Self = Self(1000580000);
     pub const PHYSICAL_DEVICE_PUSH_CONSTANT_BANK_FEATURES_NV: Self = Self(1000580001);
     pub const PHYSICAL_DEVICE_PUSH_CONSTANT_BANK_PROPERTIES_NV: Self = Self(1000580002);
 }
 pub const SPEC_VERSION: u32 = 1;
-pub const NAME: &core::ffi::CStr = c"VK_NV_push_constant_bank";
+pub const NAME: &CStr = c"VK_NV_push_constant_bank";
 pub(crate) mod items {
+    use core::marker::PhantomData;
+    use crate::vk;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct PushConstantBankInfoNV<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *const core::ffi::c_void,
         pub bank: u32,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for PushConstantBankInfoNV<'_> {}
     unsafe impl Sync for PushConstantBankInfoNV<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for PushConstantBankInfoNV<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PUSH_CONSTANT_BANK_INFO_NV;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PUSH_CONSTANT_BANK_INFO_NV;
     }
-    unsafe impl<'a> crate::Extends<crate::vk::DescriptorSetAndBindingMappingEXT<'_>>
+    unsafe impl<'a> crate::Extends<vk::DescriptorSetAndBindingMappingEXT<'_>>
     for PushConstantBankInfoNV<'a> {}
-    unsafe impl<'a> crate::Extends<crate::vk::PushDataInfoEXT<'_>>
+    unsafe impl<'a> crate::Extends<vk::PushDataInfoEXT<'_>>
     for PushConstantBankInfoNV<'a> {}
-    unsafe impl<'a> crate::Extends<crate::vk::PushConstantsInfo<'_>>
+    unsafe impl<'a> crate::Extends<vk::PushConstantsInfo<'_>>
     for PushConstantBankInfoNV<'a> {}
-    unsafe impl<'a> crate::Extends<crate::vk::IndirectCommandsLayoutTokenEXT<'_>>
+    unsafe impl<'a> crate::Extends<vk::IndirectCommandsLayoutTokenEXT<'_>>
     for PushConstantBankInfoNV<'a> {}
     impl<'a> Default for PushConstantBankInfoNV<'a> {
         fn default() -> Self {
@@ -39,7 +43,7 @@ pub(crate) mod items {
                 s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
                 p_next: Default::default(),
                 bank: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
@@ -53,20 +57,20 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct PhysicalDevicePushConstantBankFeaturesNV<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
-        pub push_constant_bank: crate::vk::Bool32,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub push_constant_bank: vk::Bool32,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for PhysicalDevicePushConstantBankFeaturesNV<'_> {}
     unsafe impl Sync for PhysicalDevicePushConstantBankFeaturesNV<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDevicePushConstantBankFeaturesNV<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_PUSH_CONSTANT_BANK_FEATURES_NV;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PHYSICAL_DEVICE_PUSH_CONSTANT_BANK_FEATURES_NV;
     }
-    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+    unsafe impl<'a> crate::Extends<vk::PhysicalDeviceFeatures2<'_>>
     for PhysicalDevicePushConstantBankFeaturesNV<'a> {}
-    unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+    unsafe impl<'a> crate::Extends<vk::DeviceCreateInfo<'_>>
     for PhysicalDevicePushConstantBankFeaturesNV<'a> {}
     impl<'a> Default for PhysicalDevicePushConstantBankFeaturesNV<'a> {
         fn default() -> Self {
@@ -74,7 +78,7 @@ pub(crate) mod items {
                 s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
                 p_next: Default::default(),
                 push_constant_bank: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
@@ -88,21 +92,21 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct PhysicalDevicePushConstantBankPropertiesNV<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
         pub max_graphics_push_constant_banks: u32,
         pub max_compute_push_constant_banks: u32,
         pub max_graphics_push_data_banks: u32,
         pub max_compute_push_data_banks: u32,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for PhysicalDevicePushConstantBankPropertiesNV<'_> {}
     unsafe impl Sync for PhysicalDevicePushConstantBankPropertiesNV<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDevicePushConstantBankPropertiesNV<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_PUSH_CONSTANT_BANK_PROPERTIES_NV;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PHYSICAL_DEVICE_PUSH_CONSTANT_BANK_PROPERTIES_NV;
     }
-    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceProperties2<'_>>
+    unsafe impl<'a> crate::Extends<vk::PhysicalDeviceProperties2<'_>>
     for PhysicalDevicePushConstantBankPropertiesNV<'a> {}
     impl<'a> Default for PhysicalDevicePushConstantBankPropertiesNV<'a> {
         fn default() -> Self {
@@ -113,7 +117,7 @@ pub(crate) mod items {
                 max_compute_push_constant_banks: Default::default(),
                 max_graphics_push_data_banks: Default::default(),
                 max_compute_push_data_banks: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }

@@ -2,8 +2,10 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_AMD_rasterization_order.html) · Extension `VK_AMD_rasterization_order`
 #![doc(alias = "VK_AMD_rasterization_order")]
+use crate::vk;
+use core::ffi::CStr;
 ///Provided by [VK_AMD_rasterization_order](crate::amd::rasterization_order)
-impl crate::vk::StructureType {
+impl vk::StructureType {
     pub const PIPELINE_RASTERIZATION_STATE_RASTERIZATION_ORDER_AMD: Self = Self(
         1000018000,
     );
@@ -14,24 +16,26 @@ impl RasterizationOrderAMD {
     pub const RELAXED: Self = Self(1);
 }
 pub const SPEC_VERSION: u32 = 1;
-pub const NAME: &core::ffi::CStr = c"VK_AMD_rasterization_order";
+pub const NAME: &CStr = c"VK_AMD_rasterization_order";
 pub(crate) mod items {
+    use core::marker::PhantomData;
+    use crate::vk;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct PipelineRasterizationStateRasterizationOrderAMD<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *const core::ffi::c_void,
-        pub rasterization_order: crate::vk::RasterizationOrderAMD,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub rasterization_order: vk::RasterizationOrderAMD,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for PipelineRasterizationStateRasterizationOrderAMD<'_> {}
     unsafe impl Sync for PipelineRasterizationStateRasterizationOrderAMD<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PipelineRasterizationStateRasterizationOrderAMD<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PIPELINE_RASTERIZATION_STATE_RASTERIZATION_ORDER_AMD;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PIPELINE_RASTERIZATION_STATE_RASTERIZATION_ORDER_AMD;
     }
-    unsafe impl<'a> crate::Extends<crate::vk::PipelineRasterizationStateCreateInfo<'_>>
+    unsafe impl<'a> crate::Extends<vk::PipelineRasterizationStateCreateInfo<'_>>
     for PipelineRasterizationStateRasterizationOrderAMD<'a> {}
     impl<'a> Default for PipelineRasterizationStateRasterizationOrderAMD<'a> {
         fn default() -> Self {
@@ -39,14 +43,14 @@ pub(crate) mod items {
                 s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
                 p_next: Default::default(),
                 rasterization_order: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
     impl<'a> PipelineRasterizationStateRasterizationOrderAMD<'a> {
         pub fn rasterization_order(
             mut self,
-            rasterization_order: crate::vk::RasterizationOrderAMD,
+            rasterization_order: vk::RasterizationOrderAMD,
         ) -> Self {
             self.rasterization_order = rasterization_order;
             self

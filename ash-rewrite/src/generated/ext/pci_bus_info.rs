@@ -2,32 +2,36 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_pci_bus_info.html) · Extension `VK_EXT_pci_bus_info`
 #![doc(alias = "VK_EXT_pci_bus_info")]
+use crate::vk;
+use core::ffi::CStr;
 ///Provided by [VK_EXT_pci_bus_info](crate::ext::pci_bus_info)
-impl crate::vk::StructureType {
+impl vk::StructureType {
     pub const PHYSICAL_DEVICE_PCI_BUS_INFO_PROPERTIES_EXT: Self = Self(1000212000);
 }
 pub const SPEC_VERSION: u32 = 2;
-pub const NAME: &core::ffi::CStr = c"VK_EXT_pci_bus_info";
+pub const NAME: &CStr = c"VK_EXT_pci_bus_info";
 pub(crate) mod items {
+    use core::marker::PhantomData;
+    use crate::vk;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct PhysicalDevicePCIBusInfoPropertiesEXT<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
         pub pci_domain: u32,
         pub pci_bus: u32,
         pub pci_device: u32,
         pub pci_function: u32,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for PhysicalDevicePCIBusInfoPropertiesEXT<'_> {}
     unsafe impl Sync for PhysicalDevicePCIBusInfoPropertiesEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDevicePCIBusInfoPropertiesEXT<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_PCI_BUS_INFO_PROPERTIES_EXT;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PHYSICAL_DEVICE_PCI_BUS_INFO_PROPERTIES_EXT;
     }
-    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceProperties2<'_>>
+    unsafe impl<'a> crate::Extends<vk::PhysicalDeviceProperties2<'_>>
     for PhysicalDevicePCIBusInfoPropertiesEXT<'a> {}
     impl<'a> Default for PhysicalDevicePCIBusInfoPropertiesEXT<'a> {
         fn default() -> Self {
@@ -38,7 +42,7 @@ pub(crate) mod items {
                 pci_bus: Default::default(),
                 pci_device: Default::default(),
                 pci_function: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }

@@ -2,9 +2,13 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //!Items provided by `vulkan_video_codec_vp9std_decode`
 #![doc(alias = "vulkan_video_codec_vp9std_decode")]
-pub const SPEC_VERSION: u32 = crate::vk::STD_VULKAN_VIDEO_CODEC_VP9_DECODE_API_VERSION_1_0_0;
-pub const NAME: &core::ffi::CStr = c"VK_STD_vulkan_video_codec_vp9_decode";
+use crate::vk;
+use core::ffi::CStr;
+pub const SPEC_VERSION: u32 = vk::STD_VULKAN_VIDEO_CODEC_VP9_DECODE_API_VERSION_1_0_0;
+pub const NAME: &CStr = c"VK_STD_vulkan_video_codec_vp9_decode";
 pub(crate) mod items {
+    use core::marker::PhantomData;
+    use crate::vk;
     #[repr(C)]
     #[derive(Clone, Copy, Default)]
     pub struct DecodeVP9PictureInfoFlags {
@@ -112,14 +116,14 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct DecodeVP9PictureInfo<'a> {
-        pub flags: crate::vk::DecodeVP9PictureInfoFlags,
-        pub profile: crate::vk::VP9Profile,
-        pub frame_type: crate::vk::VP9FrameType,
+        pub flags: vk::DecodeVP9PictureInfoFlags,
+        pub profile: vk::VP9Profile,
+        pub frame_type: vk::VP9FrameType,
         pub frame_context_idx: u8,
         pub reset_frame_context: u8,
         pub refresh_frame_flags: u8,
         pub ref_frame_sign_bias_mask: u8,
-        pub interpolation_filter: crate::vk::VP9InterpolationFilter,
+        pub interpolation_filter: vk::VP9InterpolationFilter,
         pub base_q_idx: u8,
         pub delta_q_y_dc: i8,
         pub delta_q_uv_dc: i8,
@@ -127,10 +131,10 @@ pub(crate) mod items {
         pub tile_cols_log2: u8,
         pub tile_rows_log2: u8,
         pub reserved1: [u16; 3 as _],
-        pub p_color_config: *const crate::vk::VP9ColorConfig,
-        pub p_loop_filter: *const crate::vk::VP9LoopFilter,
-        pub p_segmentation: *const crate::vk::VP9Segmentation,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub p_color_config: *const vk::VP9ColorConfig,
+        pub p_loop_filter: *const vk::VP9LoopFilter,
+        pub p_segmentation: *const vk::VP9Segmentation,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for DecodeVP9PictureInfo<'_> {}
     unsafe impl Sync for DecodeVP9PictureInfo<'_> {}
@@ -155,20 +159,20 @@ pub(crate) mod items {
                 p_color_config: Default::default(),
                 p_loop_filter: Default::default(),
                 p_segmentation: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
     impl<'a> DecodeVP9PictureInfo<'a> {
-        pub fn flags(mut self, flags: crate::vk::DecodeVP9PictureInfoFlags) -> Self {
+        pub fn flags(mut self, flags: vk::DecodeVP9PictureInfoFlags) -> Self {
             self.flags = flags;
             self
         }
-        pub fn profile(mut self, profile: crate::vk::VP9Profile) -> Self {
+        pub fn profile(mut self, profile: vk::VP9Profile) -> Self {
             self.profile = profile;
             self
         }
-        pub fn frame_type(mut self, frame_type: crate::vk::VP9FrameType) -> Self {
+        pub fn frame_type(mut self, frame_type: vk::VP9FrameType) -> Self {
             self.frame_type = frame_type;
             self
         }
@@ -190,7 +194,7 @@ pub(crate) mod items {
         }
         pub fn interpolation_filter(
             mut self,
-            interpolation_filter: crate::vk::VP9InterpolationFilter,
+            interpolation_filter: vk::VP9InterpolationFilter,
         ) -> Self {
             self.interpolation_filter = interpolation_filter;
             self
@@ -223,26 +227,20 @@ pub(crate) mod items {
             self.reserved1 = reserved1;
             self
         }
-        pub fn color_config(
-            mut self,
-            color_config: &'a crate::vk::VP9ColorConfig,
-        ) -> Self {
+        pub fn color_config(mut self, color_config: &'a vk::VP9ColorConfig) -> Self {
             self.p_color_config = color_config;
             self
         }
-        pub fn loop_filter(mut self, loop_filter: &'a crate::vk::VP9LoopFilter) -> Self {
+        pub fn loop_filter(mut self, loop_filter: &'a vk::VP9LoopFilter) -> Self {
             self.p_loop_filter = loop_filter;
             self
         }
-        pub fn segmentation(
-            mut self,
-            segmentation: &'a crate::vk::VP9Segmentation,
-        ) -> Self {
+        pub fn segmentation(mut self, segmentation: &'a vk::VP9Segmentation) -> Self {
             self.p_segmentation = segmentation;
             self
         }
     }
-    pub const STD_VULKAN_VIDEO_CODEC_VP9_DECODE_API_VERSION_1_0_0: u32 = crate::vk::make_video_std_version(
+    pub const STD_VULKAN_VIDEO_CODEC_VP9_DECODE_API_VERSION_1_0_0: u32 = vk::make_video_std_version(
         1,
         0,
         0,

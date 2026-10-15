@@ -2,8 +2,12 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_present_timing.html) · Extension `VK_EXT_present_timing`
 #![doc(alias = "VK_EXT_present_timing")]
+use crate::vk;
+use core::ffi::CStr;
+use crate::VkResult;
+use core::ffi::c_void;
 ///Provided by [VK_EXT_present_timing](crate::ext::present_timing)
-impl crate::vk::StructureType {
+impl vk::StructureType {
     pub const PHYSICAL_DEVICE_PRESENT_TIMING_FEATURES_EXT: Self = Self(1000208000);
     pub const SWAPCHAIN_TIMING_PROPERTIES_EXT: Self = Self(1000208001);
     pub const SWAPCHAIN_TIME_DOMAIN_PROPERTIES_EXT: Self = Self(1000208002);
@@ -16,22 +20,22 @@ impl crate::vk::StructureType {
     pub const SWAPCHAIN_CALIBRATED_TIMESTAMP_INFO_EXT: Self = Self(1000208009);
 }
 ///Provided by [VK_EXT_present_timing](crate::ext::present_timing)
-impl crate::vk::Result {
+impl vk::Result {
     pub const ERROR_PRESENT_TIMING_QUEUE_FULL_EXT: Self = Self(-1000208000);
 }
 ///Provided by [VK_EXT_present_timing](crate::ext::present_timing)
-impl crate::vk::TimeDomainKHR {
+impl vk::TimeDomainKHR {
     pub const PRESENT_STAGE_LOCAL_EXT: Self = Self(1000208000);
     pub const SWAPCHAIN_LOCAL_EXT: Self = Self(1000208001);
 }
-///Provided by [VK_EXT_present_timing](crate::ext::present_timing)
-impl crate::vk::SwapchainCreateFlagsKHR {
+///Provided by [VK_KHR_swapchain](crate::khr::swapchain)
+impl vk::SwapchainCreateFlagsKHR {
     pub const PRESENT_TIMING_EXT: Self = Self(
-        crate::vk::SwapchainCreateFlagBitsKHR::PRESENT_TIMING_EXT.0,
+        vk::SwapchainCreateFlagBitsKHR::PRESENT_TIMING_EXT.0,
     );
 }
-///Provided by [VK_EXT_present_timing](crate::ext::present_timing)
-impl crate::vk::SwapchainCreateFlagBitsKHR {
+///Provided by [VK_KHR_swapchain](crate::khr::swapchain)
+impl vk::SwapchainCreateFlagBitsKHR {
     pub const PRESENT_TIMING_EXT: Self = Self(1 << 9);
 }
 ///Provided by [VK_EXT_present_timing](crate::ext::present_timing)
@@ -82,31 +86,29 @@ impl PresentTimingInfoFlagBitsEXT {
     pub const PRESENT_AT_RELATIVE_TIME: Self = Self(1 << 0);
     pub const PRESENT_AT_NEAREST_REFRESH_CYCLE: Self = Self(1 << 1);
 }
+pub const SPEC_VERSION: u32 = 3;
+pub const NAME: &CStr = c"VK_EXT_present_timing";
 #[derive(Clone)]
 pub struct DeviceFn {
-    pub set_swapchain_present_timing_queue_size: crate::vk::PFN_vkSetSwapchainPresentTimingQueueSizeEXT,
-    pub get_swapchain_timing_properties: crate::vk::PFN_vkGetSwapchainTimingPropertiesEXT,
-    pub get_swapchain_time_domain_properties: crate::vk::PFN_vkGetSwapchainTimeDomainPropertiesEXT,
-    pub get_past_presentation_timing: crate::vk::PFN_vkGetPastPresentationTimingEXT,
+    pub set_swapchain_present_timing_queue_size: vk::PFN_vkSetSwapchainPresentTimingQueueSizeEXT,
+    pub get_swapchain_timing_properties: vk::PFN_vkGetSwapchainTimingPropertiesEXT,
+    pub get_swapchain_time_domain_properties: vk::PFN_vkGetSwapchainTimeDomainPropertiesEXT,
+    pub get_past_presentation_timing: vk::PFN_vkGetPastPresentationTimingEXT,
 }
 unsafe impl Send for DeviceFn {}
 unsafe impl Sync for DeviceFn {}
 impl DeviceFn {
-    pub fn load<F: FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void>(
-        mut f: F,
-    ) -> Self {
+    pub fn load<F: FnMut(&CStr) -> *const c_void>(mut f: F) -> Self {
         Self::load_erased(&mut f)
     }
-    fn load_erased(
-        _f: &mut dyn FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void,
-    ) -> Self {
+    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const c_void) -> Self {
         Self {
             set_swapchain_present_timing_queue_size: unsafe {
                 unsafe extern "system" fn set_swapchain_present_timing_queue_size(
-                    _: crate::vk::Device,
-                    _: crate::vk::SwapchainKHR,
+                    _: vk::Device,
+                    _: vk::SwapchainKHR,
                     _: u32,
-                ) -> crate::vk::Result {
+                ) -> vk::Result {
                     panic!("unable to load vkSetSwapchainPresentTimingQueueSizeEXT")
                 }
                 let val = _f(c"vkSetSwapchainPresentTimingQueueSizeEXT");
@@ -118,11 +120,11 @@ impl DeviceFn {
             },
             get_swapchain_timing_properties: unsafe {
                 unsafe extern "system" fn get_swapchain_timing_properties(
-                    _: crate::vk::Device,
-                    _: crate::vk::SwapchainKHR,
-                    _: *mut crate::vk::SwapchainTimingPropertiesEXT<'_>,
+                    _: vk::Device,
+                    _: vk::SwapchainKHR,
+                    _: *mut vk::SwapchainTimingPropertiesEXT<'_>,
                     _: *mut u64,
-                ) -> crate::vk::Result {
+                ) -> vk::Result {
                     panic!("unable to load vkGetSwapchainTimingPropertiesEXT")
                 }
                 let val = _f(c"vkGetSwapchainTimingPropertiesEXT");
@@ -134,11 +136,11 @@ impl DeviceFn {
             },
             get_swapchain_time_domain_properties: unsafe {
                 unsafe extern "system" fn get_swapchain_time_domain_properties(
-                    _: crate::vk::Device,
-                    _: crate::vk::SwapchainKHR,
-                    _: *mut crate::vk::SwapchainTimeDomainPropertiesEXT<'_>,
+                    _: vk::Device,
+                    _: vk::SwapchainKHR,
+                    _: *mut vk::SwapchainTimeDomainPropertiesEXT<'_>,
                     _: *mut u64,
-                ) -> crate::vk::Result {
+                ) -> vk::Result {
                     panic!("unable to load vkGetSwapchainTimeDomainPropertiesEXT")
                 }
                 let val = _f(c"vkGetSwapchainTimeDomainPropertiesEXT");
@@ -150,10 +152,10 @@ impl DeviceFn {
             },
             get_past_presentation_timing: unsafe {
                 unsafe extern "system" fn get_past_presentation_timing(
-                    _: crate::vk::Device,
-                    _: *const crate::vk::PastPresentationTimingInfoEXT<'_>,
-                    _: *mut crate::vk::PastPresentationTimingPropertiesEXT<'_>,
-                ) -> crate::vk::Result {
+                    _: vk::Device,
+                    _: *const vk::PastPresentationTimingInfoEXT<'_>,
+                    _: *mut vk::PastPresentationTimingPropertiesEXT<'_>,
+                ) -> vk::Result {
                     panic!("unable to load vkGetPastPresentationTimingEXT")
                 }
                 let val = _f(c"vkGetPastPresentationTimingEXT");
@@ -191,9 +193,9 @@ impl Device {
     #[inline]
     pub unsafe fn set_swapchain_present_timing_queue_size(
         &self,
-        swapchain: crate::vk::SwapchainKHR,
+        swapchain: vk::SwapchainKHR,
         size: u32,
-    ) -> crate::VkResult<()> {
+    ) -> VkResult<()> {
         (self.fp.set_swapchain_present_timing_queue_size)(self.handle, swapchain, size)
             .result()
     }
@@ -201,10 +203,10 @@ impl Device {
     #[inline]
     pub unsafe fn get_swapchain_timing_properties(
         &self,
-        swapchain: crate::vk::SwapchainKHR,
-        swapchain_timing_properties: &mut crate::vk::SwapchainTimingPropertiesEXT<'_>,
+        swapchain: vk::SwapchainKHR,
+        swapchain_timing_properties: &mut vk::SwapchainTimingPropertiesEXT<'_>,
         swapchain_timing_properties_counter: &mut u64,
-    ) -> crate::VkResult<()> {
+    ) -> VkResult<()> {
         (self
             .fp
             .get_swapchain_timing_properties)(
@@ -219,12 +221,10 @@ impl Device {
     #[inline]
     pub unsafe fn get_swapchain_time_domain_properties(
         &self,
-        swapchain: crate::vk::SwapchainKHR,
-        swapchain_time_domain_properties: &mut crate::vk::SwapchainTimeDomainPropertiesEXT<
-            '_,
-        >,
+        swapchain: vk::SwapchainKHR,
+        swapchain_time_domain_properties: &mut vk::SwapchainTimeDomainPropertiesEXT<'_>,
         time_domains_counter: &mut u64,
-    ) -> crate::VkResult<()> {
+    ) -> VkResult<()> {
         (self
             .fp
             .get_swapchain_time_domain_properties)(
@@ -239,8 +239,8 @@ impl Device {
     #[inline]
     pub unsafe fn get_past_presentation_timing(
         &self,
-        past_presentation_timing_info: &crate::vk::PastPresentationTimingInfoEXT<'_>,
-    ) -> crate::VkResult<crate::vk::PastPresentationTimingPropertiesEXT<'_>> {
+        past_presentation_timing_info: &vk::PastPresentationTimingInfoEXT<'_>,
+    ) -> VkResult<vk::PastPresentationTimingPropertiesEXT<'_>> {
         let mut past_presentation_timing_properties = core::mem::MaybeUninit::uninit();
         (self
             .fp
@@ -252,29 +252,29 @@ impl Device {
             .assume_init_on_success(past_presentation_timing_properties)
     }
 }
-pub const SPEC_VERSION: u32 = 3;
-pub const NAME: &core::ffi::CStr = c"VK_EXT_present_timing";
 pub(crate) mod items {
+    use core::marker::PhantomData;
+    use crate::vk;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct PhysicalDevicePresentTimingFeaturesEXT<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
-        pub present_timing: crate::vk::Bool32,
-        pub present_at_absolute_time: crate::vk::Bool32,
-        pub present_at_relative_time: crate::vk::Bool32,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub present_timing: vk::Bool32,
+        pub present_at_absolute_time: vk::Bool32,
+        pub present_at_relative_time: vk::Bool32,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for PhysicalDevicePresentTimingFeaturesEXT<'_> {}
     unsafe impl Sync for PhysicalDevicePresentTimingFeaturesEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDevicePresentTimingFeaturesEXT<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_PRESENT_TIMING_FEATURES_EXT;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PHYSICAL_DEVICE_PRESENT_TIMING_FEATURES_EXT;
     }
-    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+    unsafe impl<'a> crate::Extends<vk::PhysicalDeviceFeatures2<'_>>
     for PhysicalDevicePresentTimingFeaturesEXT<'a> {}
-    unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+    unsafe impl<'a> crate::Extends<vk::DeviceCreateInfo<'_>>
     for PhysicalDevicePresentTimingFeaturesEXT<'a> {}
     impl<'a> Default for PhysicalDevicePresentTimingFeaturesEXT<'a> {
         fn default() -> Self {
@@ -284,7 +284,7 @@ pub(crate) mod items {
                 present_timing: Default::default(),
                 present_at_absolute_time: Default::default(),
                 present_at_relative_time: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
@@ -312,21 +312,21 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct PresentTimingSurfaceCapabilitiesEXT<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
-        pub present_timing_supported: crate::vk::Bool32,
-        pub present_at_absolute_time_supported: crate::vk::Bool32,
-        pub present_at_relative_time_supported: crate::vk::Bool32,
-        pub present_stage_queries: crate::vk::PresentStageFlagsEXT,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub present_timing_supported: vk::Bool32,
+        pub present_at_absolute_time_supported: vk::Bool32,
+        pub present_at_relative_time_supported: vk::Bool32,
+        pub present_stage_queries: vk::PresentStageFlagsEXT,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for PresentTimingSurfaceCapabilitiesEXT<'_> {}
     unsafe impl Sync for PresentTimingSurfaceCapabilitiesEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PresentTimingSurfaceCapabilitiesEXT<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PRESENT_TIMING_SURFACE_CAPABILITIES_EXT;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PRESENT_TIMING_SURFACE_CAPABILITIES_EXT;
     }
-    unsafe impl<'a> crate::Extends<crate::vk::SurfaceCapabilities2KHR<'_>>
+    unsafe impl<'a> crate::Extends<vk::SurfaceCapabilities2KHR<'_>>
     for PresentTimingSurfaceCapabilitiesEXT<'a> {}
     impl<'a> Default for PresentTimingSurfaceCapabilitiesEXT<'a> {
         fn default() -> Self {
@@ -337,7 +337,7 @@ pub(crate) mod items {
                 present_at_absolute_time_supported: Default::default(),
                 present_at_relative_time_supported: Default::default(),
                 present_stage_queries: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
@@ -367,7 +367,7 @@ pub(crate) mod items {
         }
         pub fn present_stage_queries(
             mut self,
-            present_stage_queries: crate::vk::PresentStageFlagsEXT,
+            present_stage_queries: vk::PresentStageFlagsEXT,
         ) -> Self {
             self.present_stage_queries = present_stage_queries;
             self
@@ -377,16 +377,16 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct SwapchainTimingPropertiesEXT<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
         pub refresh_duration: u64,
         pub refresh_interval: u64,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for SwapchainTimingPropertiesEXT<'_> {}
     unsafe impl Sync for SwapchainTimingPropertiesEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for SwapchainTimingPropertiesEXT<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::SWAPCHAIN_TIMING_PROPERTIES_EXT;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::SWAPCHAIN_TIMING_PROPERTIES_EXT;
     }
     impl<'a> Default for SwapchainTimingPropertiesEXT<'a> {
         fn default() -> Self {
@@ -395,7 +395,7 @@ pub(crate) mod items {
                 p_next: Default::default(),
                 refresh_duration: Default::default(),
                 refresh_interval: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
@@ -413,17 +413,17 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct SwapchainTimeDomainPropertiesEXT<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
         pub time_domain_count: u32,
-        pub p_time_domains: *mut crate::vk::TimeDomainKHR,
+        pub p_time_domains: *mut vk::TimeDomainKHR,
         pub p_time_domain_ids: *mut u64,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for SwapchainTimeDomainPropertiesEXT<'_> {}
     unsafe impl Sync for SwapchainTimeDomainPropertiesEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for SwapchainTimeDomainPropertiesEXT<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::SWAPCHAIN_TIME_DOMAIN_PROPERTIES_EXT;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::SWAPCHAIN_TIME_DOMAIN_PROPERTIES_EXT;
     }
     impl<'a> Default for SwapchainTimeDomainPropertiesEXT<'a> {
         fn default() -> Self {
@@ -433,14 +433,14 @@ pub(crate) mod items {
                 time_domain_count: Default::default(),
                 p_time_domains: Default::default(),
                 p_time_domain_ids: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
     impl<'a> SwapchainTimeDomainPropertiesEXT<'a> {
         pub fn time_domains(
             mut self,
-            time_domains: &'a mut [crate::vk::TimeDomainKHR],
+            time_domains: &'a mut [vk::TimeDomainKHR],
         ) -> Self {
             self.time_domain_count = time_domains.len() as _;
             self.p_time_domains = time_domains.as_mut_ptr();
@@ -456,13 +456,13 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy, Default)]
     pub struct PresentStageTimeEXT {
-        pub stage: crate::vk::PresentStageFlagsEXT,
+        pub stage: vk::PresentStageFlagsEXT,
         pub time: u64,
     }
     unsafe impl Send for PresentStageTimeEXT {}
     unsafe impl Sync for PresentStageTimeEXT {}
     impl PresentStageTimeEXT {
-        pub fn stage(mut self, stage: crate::vk::PresentStageFlagsEXT) -> Self {
+        pub fn stage(mut self, stage: vk::PresentStageFlagsEXT) -> Self {
             self.stage = stage;
             self
         }
@@ -475,16 +475,16 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct PastPresentationTimingInfoEXT<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *const core::ffi::c_void,
-        pub flags: crate::vk::PastPresentationTimingFlagsEXT,
-        pub swapchain: crate::vk::SwapchainKHR,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub flags: vk::PastPresentationTimingFlagsEXT,
+        pub swapchain: vk::SwapchainKHR,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for PastPresentationTimingInfoEXT<'_> {}
     unsafe impl Sync for PastPresentationTimingInfoEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for PastPresentationTimingInfoEXT<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PAST_PRESENTATION_TIMING_INFO_EXT;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PAST_PRESENTATION_TIMING_INFO_EXT;
     }
     impl<'a> Default for PastPresentationTimingInfoEXT<'a> {
         fn default() -> Self {
@@ -493,19 +493,16 @@ pub(crate) mod items {
                 p_next: Default::default(),
                 flags: Default::default(),
                 swapchain: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
     impl<'a> PastPresentationTimingInfoEXT<'a> {
-        pub fn flags(
-            mut self,
-            flags: crate::vk::PastPresentationTimingFlagsEXT,
-        ) -> Self {
+        pub fn flags(mut self, flags: vk::PastPresentationTimingFlagsEXT) -> Self {
             self.flags = flags;
             self
         }
-        pub fn swapchain(mut self, swapchain: crate::vk::SwapchainKHR) -> Self {
+        pub fn swapchain(mut self, swapchain: vk::SwapchainKHR) -> Self {
             self.swapchain = swapchain;
             self
         }
@@ -514,19 +511,19 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct PastPresentationTimingPropertiesEXT<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
         pub timing_properties_counter: u64,
         pub time_domains_counter: u64,
         pub presentation_timing_count: u32,
-        pub p_presentation_timings: *mut crate::vk::PastPresentationTimingEXT<'a>,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub p_presentation_timings: *mut vk::PastPresentationTimingEXT<'a>,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for PastPresentationTimingPropertiesEXT<'_> {}
     unsafe impl Sync for PastPresentationTimingPropertiesEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PastPresentationTimingPropertiesEXT<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PAST_PRESENTATION_TIMING_PROPERTIES_EXT;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PAST_PRESENTATION_TIMING_PROPERTIES_EXT;
     }
     impl<'a> Default for PastPresentationTimingPropertiesEXT<'a> {
         fn default() -> Self {
@@ -537,7 +534,7 @@ pub(crate) mod items {
                 time_domains_counter: Default::default(),
                 presentation_timing_count: Default::default(),
                 p_presentation_timings: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
@@ -555,7 +552,7 @@ pub(crate) mod items {
         }
         pub fn presentation_timings(
             mut self,
-            presentation_timings: &'a mut [crate::vk::PastPresentationTimingEXT<'a>],
+            presentation_timings: &'a mut [vk::PastPresentationTimingEXT<'a>],
         ) -> Self {
             self.presentation_timing_count = presentation_timings.len() as _;
             self.p_presentation_timings = presentation_timings.as_mut_ptr();
@@ -566,21 +563,21 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct PastPresentationTimingEXT<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
         pub present_id: u64,
         pub target_time: u64,
         pub present_stage_count: u32,
-        pub p_present_stages: *mut crate::vk::PresentStageTimeEXT,
-        pub time_domain: crate::vk::TimeDomainKHR,
+        pub p_present_stages: *mut vk::PresentStageTimeEXT,
+        pub time_domain: vk::TimeDomainKHR,
         pub time_domain_id: u64,
-        pub report_complete: crate::vk::Bool32,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub report_complete: vk::Bool32,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for PastPresentationTimingEXT<'_> {}
     unsafe impl Sync for PastPresentationTimingEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for PastPresentationTimingEXT<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PAST_PRESENTATION_TIMING_EXT;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PAST_PRESENTATION_TIMING_EXT;
     }
     impl<'a> Default for PastPresentationTimingEXT<'a> {
         fn default() -> Self {
@@ -594,7 +591,7 @@ pub(crate) mod items {
                 time_domain: Default::default(),
                 time_domain_id: Default::default(),
                 report_complete: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
@@ -609,13 +606,13 @@ pub(crate) mod items {
         }
         pub fn present_stages(
             mut self,
-            present_stages: &'a mut [crate::vk::PresentStageTimeEXT],
+            present_stages: &'a mut [vk::PresentStageTimeEXT],
         ) -> Self {
             self.present_stage_count = present_stages.len() as _;
             self.p_present_stages = present_stages.as_mut_ptr();
             self
         }
-        pub fn time_domain(mut self, time_domain: crate::vk::TimeDomainKHR) -> Self {
+        pub fn time_domain(mut self, time_domain: vk::TimeDomainKHR) -> Self {
             self.time_domain = time_domain;
             self
         }
@@ -632,18 +629,18 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct PresentTimingsInfoEXT<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *const core::ffi::c_void,
         pub swapchain_count: u32,
-        pub p_timing_infos: *const crate::vk::PresentTimingInfoEXT<'a>,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub p_timing_infos: *const vk::PresentTimingInfoEXT<'a>,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for PresentTimingsInfoEXT<'_> {}
     unsafe impl Sync for PresentTimingsInfoEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for PresentTimingsInfoEXT<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PRESENT_TIMINGS_INFO_EXT;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PRESENT_TIMINGS_INFO_EXT;
     }
-    unsafe impl<'a> crate::Extends<crate::vk::PresentInfoKHR<'_>>
+    unsafe impl<'a> crate::Extends<vk::PresentInfoKHR<'_>>
     for PresentTimingsInfoEXT<'a> {}
     impl<'a> Default for PresentTimingsInfoEXT<'a> {
         fn default() -> Self {
@@ -652,14 +649,14 @@ pub(crate) mod items {
                 p_next: Default::default(),
                 swapchain_count: Default::default(),
                 p_timing_infos: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
     impl<'a> PresentTimingsInfoEXT<'a> {
         pub fn timing_infos(
             mut self,
-            timing_infos: &'a [crate::vk::PresentTimingInfoEXT<'a>],
+            timing_infos: &'a [vk::PresentTimingInfoEXT<'a>],
         ) -> Self {
             self.swapchain_count = timing_infos.len() as _;
             self.p_timing_infos = timing_infos.as_ptr();
@@ -670,19 +667,19 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct PresentTimingInfoEXT<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *const core::ffi::c_void,
-        pub flags: crate::vk::PresentTimingInfoFlagsEXT,
+        pub flags: vk::PresentTimingInfoFlagsEXT,
         pub target_time: u64,
         pub time_domain_id: u64,
-        pub present_stage_queries: crate::vk::PresentStageFlagsEXT,
-        pub target_time_domain_present_stage: crate::vk::PresentStageFlagsEXT,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub present_stage_queries: vk::PresentStageFlagsEXT,
+        pub target_time_domain_present_stage: vk::PresentStageFlagsEXT,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for PresentTimingInfoEXT<'_> {}
     unsafe impl Sync for PresentTimingInfoEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for PresentTimingInfoEXT<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PRESENT_TIMING_INFO_EXT;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PRESENT_TIMING_INFO_EXT;
     }
     impl<'a> Default for PresentTimingInfoEXT<'a> {
         fn default() -> Self {
@@ -694,12 +691,12 @@ pub(crate) mod items {
                 time_domain_id: Default::default(),
                 present_stage_queries: Default::default(),
                 target_time_domain_present_stage: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
     impl<'a> PresentTimingInfoEXT<'a> {
-        pub fn flags(mut self, flags: crate::vk::PresentTimingInfoFlagsEXT) -> Self {
+        pub fn flags(mut self, flags: vk::PresentTimingInfoFlagsEXT) -> Self {
             self.flags = flags;
             self
         }
@@ -713,14 +710,14 @@ pub(crate) mod items {
         }
         pub fn present_stage_queries(
             mut self,
-            present_stage_queries: crate::vk::PresentStageFlagsEXT,
+            present_stage_queries: vk::PresentStageFlagsEXT,
         ) -> Self {
             self.present_stage_queries = present_stage_queries;
             self
         }
         pub fn target_time_domain_present_stage(
             mut self,
-            target_time_domain_present_stage: crate::vk::PresentStageFlagsEXT,
+            target_time_domain_present_stage: vk::PresentStageFlagsEXT,
         ) -> Self {
             self.target_time_domain_present_stage = target_time_domain_present_stage;
             self
@@ -730,20 +727,20 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct SwapchainCalibratedTimestampInfoEXT<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *const core::ffi::c_void,
-        pub swapchain: crate::vk::SwapchainKHR,
-        pub present_stage: crate::vk::PresentStageFlagsEXT,
+        pub swapchain: vk::SwapchainKHR,
+        pub present_stage: vk::PresentStageFlagsEXT,
         pub time_domain_id: u64,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for SwapchainCalibratedTimestampInfoEXT<'_> {}
     unsafe impl Sync for SwapchainCalibratedTimestampInfoEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for SwapchainCalibratedTimestampInfoEXT<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::SWAPCHAIN_CALIBRATED_TIMESTAMP_INFO_EXT;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::SWAPCHAIN_CALIBRATED_TIMESTAMP_INFO_EXT;
     }
-    unsafe impl<'a> crate::Extends<crate::vk::CalibratedTimestampInfoKHR<'_>>
+    unsafe impl<'a> crate::Extends<vk::CalibratedTimestampInfoKHR<'_>>
     for SwapchainCalibratedTimestampInfoEXT<'a> {}
     impl<'a> Default for SwapchainCalibratedTimestampInfoEXT<'a> {
         fn default() -> Self {
@@ -753,19 +750,16 @@ pub(crate) mod items {
                 swapchain: Default::default(),
                 present_stage: Default::default(),
                 time_domain_id: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
     impl<'a> SwapchainCalibratedTimestampInfoEXT<'a> {
-        pub fn swapchain(mut self, swapchain: crate::vk::SwapchainKHR) -> Self {
+        pub fn swapchain(mut self, swapchain: vk::SwapchainKHR) -> Self {
             self.swapchain = swapchain;
             self
         }
-        pub fn present_stage(
-            mut self,
-            present_stage: crate::vk::PresentStageFlagsEXT,
-        ) -> Self {
+        pub fn present_stage(mut self, present_stage: vk::PresentStageFlagsEXT) -> Self {
             self.present_stage = present_stage;
             self
         }
@@ -1077,32 +1071,30 @@ pub(crate) mod items {
         }
     }
     pub type PFN_vkSetSwapchainPresentTimingQueueSizeEXT = unsafe extern "system" fn(
-        device: crate::vk::Device,
-        swapchain: crate::vk::SwapchainKHR,
+        device: vk::Device,
+        swapchain: vk::SwapchainKHR,
         size: u32,
-    ) -> crate::vk::Result;
+    ) -> vk::Result;
     pub type PFN_vkGetSwapchainTimingPropertiesEXT = unsafe extern "system" fn(
-        device: crate::vk::Device,
-        swapchain: crate::vk::SwapchainKHR,
-        p_swapchain_timing_properties: *mut crate::vk::SwapchainTimingPropertiesEXT<'_>,
+        device: vk::Device,
+        swapchain: vk::SwapchainKHR,
+        p_swapchain_timing_properties: *mut vk::SwapchainTimingPropertiesEXT<'_>,
         p_swapchain_timing_properties_counter: *mut u64,
-    ) -> crate::vk::Result;
+    ) -> vk::Result;
     pub type PFN_vkGetSwapchainTimeDomainPropertiesEXT = unsafe extern "system" fn(
-        device: crate::vk::Device,
-        swapchain: crate::vk::SwapchainKHR,
-        p_swapchain_time_domain_properties: *mut crate::vk::SwapchainTimeDomainPropertiesEXT<
+        device: vk::Device,
+        swapchain: vk::SwapchainKHR,
+        p_swapchain_time_domain_properties: *mut vk::SwapchainTimeDomainPropertiesEXT<
             '_,
         >,
         p_time_domains_counter: *mut u64,
-    ) -> crate::vk::Result;
+    ) -> vk::Result;
     pub type PFN_vkGetPastPresentationTimingEXT = unsafe extern "system" fn(
-        device: crate::vk::Device,
-        p_past_presentation_timing_info: *const crate::vk::PastPresentationTimingInfoEXT<
+        device: vk::Device,
+        p_past_presentation_timing_info: *const vk::PastPresentationTimingInfoEXT<'_>,
+        p_past_presentation_timing_properties: *mut vk::PastPresentationTimingPropertiesEXT<
             '_,
         >,
-        p_past_presentation_timing_properties: *mut crate::vk::PastPresentationTimingPropertiesEXT<
-            '_,
-        >,
-    ) -> crate::vk::Result;
+    ) -> vk::Result;
 }
 pub use items::*;

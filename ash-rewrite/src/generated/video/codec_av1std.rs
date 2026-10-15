@@ -148,6 +148,8 @@ impl AV1ChromaSamplePosition {
     pub const INVALID: Self = Self(0x7FFFFFFF);
 }
 pub(crate) mod items {
+    use crate::vk;
+    use core::marker::PhantomData;
     #[repr(C)]
     #[derive(Clone, Copy, Default)]
     pub struct AV1ColorConfigFlags {
@@ -215,20 +217,20 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy, Default)]
     pub struct AV1ColorConfig {
-        pub flags: crate::vk::AV1ColorConfigFlags,
+        pub flags: vk::AV1ColorConfigFlags,
         pub bit_depth: u8,
         pub subsampling_x: u8,
         pub subsampling_y: u8,
         pub reserved1: u8,
-        pub color_primaries: crate::vk::AV1ColorPrimaries,
-        pub transfer_characteristics: crate::vk::AV1TransferCharacteristics,
-        pub matrix_coefficients: crate::vk::AV1MatrixCoefficients,
-        pub chroma_sample_position: crate::vk::AV1ChromaSamplePosition,
+        pub color_primaries: vk::AV1ColorPrimaries,
+        pub transfer_characteristics: vk::AV1TransferCharacteristics,
+        pub matrix_coefficients: vk::AV1MatrixCoefficients,
+        pub chroma_sample_position: vk::AV1ChromaSamplePosition,
     }
     unsafe impl Send for AV1ColorConfig {}
     unsafe impl Sync for AV1ColorConfig {}
     impl AV1ColorConfig {
-        pub fn flags(mut self, flags: crate::vk::AV1ColorConfigFlags) -> Self {
+        pub fn flags(mut self, flags: vk::AV1ColorConfigFlags) -> Self {
             self.flags = flags;
             self
         }
@@ -250,28 +252,28 @@ pub(crate) mod items {
         }
         pub fn color_primaries(
             mut self,
-            color_primaries: crate::vk::AV1ColorPrimaries,
+            color_primaries: vk::AV1ColorPrimaries,
         ) -> Self {
             self.color_primaries = color_primaries;
             self
         }
         pub fn transfer_characteristics(
             mut self,
-            transfer_characteristics: crate::vk::AV1TransferCharacteristics,
+            transfer_characteristics: vk::AV1TransferCharacteristics,
         ) -> Self {
             self.transfer_characteristics = transfer_characteristics;
             self
         }
         pub fn matrix_coefficients(
             mut self,
-            matrix_coefficients: crate::vk::AV1MatrixCoefficients,
+            matrix_coefficients: vk::AV1MatrixCoefficients,
         ) -> Self {
             self.matrix_coefficients = matrix_coefficients;
             self
         }
         pub fn chroma_sample_position(
             mut self,
-            chroma_sample_position: crate::vk::AV1ChromaSamplePosition,
+            chroma_sample_position: vk::AV1ChromaSamplePosition,
         ) -> Self {
             self.chroma_sample_position = chroma_sample_position;
             self
@@ -307,7 +309,7 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy, Default)]
     pub struct AV1TimingInfo {
-        pub flags: crate::vk::AV1TimingInfoFlags,
+        pub flags: vk::AV1TimingInfoFlags,
         pub num_units_in_display_tick: u32,
         pub time_scale: u32,
         pub num_ticks_per_picture_minus_1: u32,
@@ -315,7 +317,7 @@ pub(crate) mod items {
     unsafe impl Send for AV1TimingInfo {}
     unsafe impl Sync for AV1TimingInfo {}
     impl AV1TimingInfo {
-        pub fn flags(mut self, flags: crate::vk::AV1TimingInfoFlags) -> Self {
+        pub fn flags(mut self, flags: vk::AV1TimingInfoFlags) -> Self {
             self.flags = flags;
             self
         }
@@ -587,8 +589,8 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct AV1SequenceHeader<'a> {
-        pub flags: crate::vk::AV1SequenceHeaderFlags,
-        pub seq_profile: crate::vk::AV1Profile,
+        pub flags: vk::AV1SequenceHeaderFlags,
+        pub seq_profile: vk::AV1Profile,
         pub frame_width_bits_minus_1: u8,
         pub frame_height_bits_minus_1: u8,
         pub max_frame_width_minus_1: u16,
@@ -599,9 +601,9 @@ pub(crate) mod items {
         pub seq_force_integer_mv: u8,
         pub seq_force_screen_content_tools: u8,
         pub reserved1: [u8; 5 as _],
-        pub p_color_config: *const crate::vk::AV1ColorConfig,
-        pub p_timing_info: *const crate::vk::AV1TimingInfo,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub p_color_config: *const vk::AV1ColorConfig,
+        pub p_timing_info: *const vk::AV1TimingInfo,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for AV1SequenceHeader<'_> {}
     unsafe impl Sync for AV1SequenceHeader<'_> {}
@@ -622,16 +624,16 @@ pub(crate) mod items {
                 reserved1: unsafe { core::mem::zeroed() },
                 p_color_config: Default::default(),
                 p_timing_info: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
     impl<'a> AV1SequenceHeader<'a> {
-        pub fn flags(mut self, flags: crate::vk::AV1SequenceHeaderFlags) -> Self {
+        pub fn flags(mut self, flags: vk::AV1SequenceHeaderFlags) -> Self {
             self.flags = flags;
             self
         }
-        pub fn seq_profile(mut self, seq_profile: crate::vk::AV1Profile) -> Self {
+        pub fn seq_profile(mut self, seq_profile: vk::AV1Profile) -> Self {
             self.seq_profile = seq_profile;
             self
         }
@@ -690,14 +692,11 @@ pub(crate) mod items {
             self.reserved1 = reserved1;
             self
         }
-        pub fn color_config(
-            mut self,
-            color_config: &'a crate::vk::AV1ColorConfig,
-        ) -> Self {
+        pub fn color_config(mut self, color_config: &'a vk::AV1ColorConfig) -> Self {
             self.p_color_config = color_config;
             self
         }
-        pub fn timing_info(mut self, timing_info: &'a crate::vk::AV1TimingInfo) -> Self {
+        pub fn timing_info(mut self, timing_info: &'a vk::AV1TimingInfo) -> Self {
             self.p_timing_info = timing_info;
             self
         }
@@ -751,13 +750,13 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct AV1LoopFilter {
-        pub flags: crate::vk::AV1LoopFilterFlags,
-        pub loop_filter_level: [u8; crate::vk::AV1_MAX_LOOP_FILTER_STRENGTHS as _],
+        pub flags: vk::AV1LoopFilterFlags,
+        pub loop_filter_level: [u8; vk::AV1_MAX_LOOP_FILTER_STRENGTHS as _],
         pub loop_filter_sharpness: u8,
         pub update_ref_delta: u8,
-        pub loop_filter_ref_deltas: [i8; crate::vk::AV1_TOTAL_REFS_PER_FRAME as _],
+        pub loop_filter_ref_deltas: [i8; vk::AV1_TOTAL_REFS_PER_FRAME as _],
         pub update_mode_delta: u8,
-        pub loop_filter_mode_deltas: [i8; crate::vk::AV1_LOOP_FILTER_ADJUSTMENTS as _],
+        pub loop_filter_mode_deltas: [i8; vk::AV1_LOOP_FILTER_ADJUSTMENTS as _],
     }
     unsafe impl Send for AV1LoopFilter {}
     unsafe impl Sync for AV1LoopFilter {}
@@ -775,13 +774,13 @@ pub(crate) mod items {
         }
     }
     impl AV1LoopFilter {
-        pub fn flags(mut self, flags: crate::vk::AV1LoopFilterFlags) -> Self {
+        pub fn flags(mut self, flags: vk::AV1LoopFilterFlags) -> Self {
             self.flags = flags;
             self
         }
         pub fn loop_filter_level(
             mut self,
-            loop_filter_level: [u8; crate::vk::AV1_MAX_LOOP_FILTER_STRENGTHS as _],
+            loop_filter_level: [u8; vk::AV1_MAX_LOOP_FILTER_STRENGTHS as _],
         ) -> Self {
             self.loop_filter_level = loop_filter_level;
             self
@@ -796,7 +795,7 @@ pub(crate) mod items {
         }
         pub fn loop_filter_ref_deltas(
             mut self,
-            loop_filter_ref_deltas: [i8; crate::vk::AV1_TOTAL_REFS_PER_FRAME as _],
+            loop_filter_ref_deltas: [i8; vk::AV1_TOTAL_REFS_PER_FRAME as _],
         ) -> Self {
             self.loop_filter_ref_deltas = loop_filter_ref_deltas;
             self
@@ -807,7 +806,7 @@ pub(crate) mod items {
         }
         pub fn loop_filter_mode_deltas(
             mut self,
-            loop_filter_mode_deltas: [i8; crate::vk::AV1_LOOP_FILTER_ADJUSTMENTS as _],
+            loop_filter_mode_deltas: [i8; vk::AV1_LOOP_FILTER_ADJUSTMENTS as _],
         ) -> Self {
             self.loop_filter_mode_deltas = loop_filter_mode_deltas;
             self
@@ -853,7 +852,7 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy, Default)]
     pub struct AV1Quantization {
-        pub flags: crate::vk::AV1QuantizationFlags,
+        pub flags: vk::AV1QuantizationFlags,
         pub base_q_idx: u8,
         pub delta_qy_dc: i8,
         pub delta_qu_dc: i8,
@@ -867,7 +866,7 @@ pub(crate) mod items {
     unsafe impl Send for AV1Quantization {}
     unsafe impl Sync for AV1Quantization {}
     impl AV1Quantization {
-        pub fn flags(mut self, flags: crate::vk::AV1QuantizationFlags) -> Self {
+        pub fn flags(mut self, flags: vk::AV1QuantizationFlags) -> Self {
             self.flags = flags;
             self
         }
@@ -912,9 +911,8 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct AV1Segmentation {
-        pub feature_enabled: [u8; crate::vk::AV1_MAX_SEGMENTS as _],
-        pub feature_data: [[i16; crate::vk::AV1_SEG_LVL_MAX
-            as _]; crate::vk::AV1_MAX_SEGMENTS as _],
+        pub feature_enabled: [u8; vk::AV1_MAX_SEGMENTS as _],
+        pub feature_data: [[i16; vk::AV1_SEG_LVL_MAX as _]; vk::AV1_MAX_SEGMENTS as _],
     }
     unsafe impl Send for AV1Segmentation {}
     unsafe impl Sync for AV1Segmentation {}
@@ -929,15 +927,14 @@ pub(crate) mod items {
     impl AV1Segmentation {
         pub fn feature_enabled(
             mut self,
-            feature_enabled: [u8; crate::vk::AV1_MAX_SEGMENTS as _],
+            feature_enabled: [u8; vk::AV1_MAX_SEGMENTS as _],
         ) -> Self {
             self.feature_enabled = feature_enabled;
             self
         }
         pub fn feature_data(
             mut self,
-            feature_data: [[i16; crate::vk::AV1_SEG_LVL_MAX
-                as _]; crate::vk::AV1_MAX_SEGMENTS as _],
+            feature_data: [[i16; vk::AV1_SEG_LVL_MAX as _]; vk::AV1_MAX_SEGMENTS as _],
         ) -> Self {
             self.feature_data = feature_data;
             self
@@ -979,7 +976,7 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct AV1TileInfo<'a> {
-        pub flags: crate::vk::AV1TileInfoFlags,
+        pub flags: vk::AV1TileInfoFlags,
         pub tile_cols: u8,
         pub tile_rows: u8,
         pub context_update_tile_id: u16,
@@ -989,7 +986,7 @@ pub(crate) mod items {
         pub p_mi_row_starts: *const u16,
         pub p_width_in_sbs_minus1: *const u16,
         pub p_height_in_sbs_minus1: *const u16,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for AV1TileInfo<'_> {}
     unsafe impl Sync for AV1TileInfo<'_> {}
@@ -1006,12 +1003,12 @@ pub(crate) mod items {
                 p_mi_row_starts: Default::default(),
                 p_width_in_sbs_minus1: Default::default(),
                 p_height_in_sbs_minus1: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
     impl<'a> AV1TileInfo<'a> {
-        pub fn flags(mut self, flags: crate::vk::AV1TileInfoFlags) -> Self {
+        pub fn flags(mut self, flags: vk::AV1TileInfoFlags) -> Self {
             self.flags = flags;
             self
         }
@@ -1054,10 +1051,10 @@ pub(crate) mod items {
     pub struct AV1CDEF {
         pub cdef_damping_minus_3: u8,
         pub cdef_bits: u8,
-        pub cdef_y_pri_strength: [u8; crate::vk::AV1_MAX_CDEF_FILTER_STRENGTHS as _],
-        pub cdef_y_sec_strength: [u8; crate::vk::AV1_MAX_CDEF_FILTER_STRENGTHS as _],
-        pub cdef_uv_pri_strength: [u8; crate::vk::AV1_MAX_CDEF_FILTER_STRENGTHS as _],
-        pub cdef_uv_sec_strength: [u8; crate::vk::AV1_MAX_CDEF_FILTER_STRENGTHS as _],
+        pub cdef_y_pri_strength: [u8; vk::AV1_MAX_CDEF_FILTER_STRENGTHS as _],
+        pub cdef_y_sec_strength: [u8; vk::AV1_MAX_CDEF_FILTER_STRENGTHS as _],
+        pub cdef_uv_pri_strength: [u8; vk::AV1_MAX_CDEF_FILTER_STRENGTHS as _],
+        pub cdef_uv_sec_strength: [u8; vk::AV1_MAX_CDEF_FILTER_STRENGTHS as _],
     }
     unsafe impl Send for AV1CDEF {}
     unsafe impl Sync for AV1CDEF {}
@@ -1084,28 +1081,28 @@ pub(crate) mod items {
         }
         pub fn cdef_y_pri_strength(
             mut self,
-            cdef_y_pri_strength: [u8; crate::vk::AV1_MAX_CDEF_FILTER_STRENGTHS as _],
+            cdef_y_pri_strength: [u8; vk::AV1_MAX_CDEF_FILTER_STRENGTHS as _],
         ) -> Self {
             self.cdef_y_pri_strength = cdef_y_pri_strength;
             self
         }
         pub fn cdef_y_sec_strength(
             mut self,
-            cdef_y_sec_strength: [u8; crate::vk::AV1_MAX_CDEF_FILTER_STRENGTHS as _],
+            cdef_y_sec_strength: [u8; vk::AV1_MAX_CDEF_FILTER_STRENGTHS as _],
         ) -> Self {
             self.cdef_y_sec_strength = cdef_y_sec_strength;
             self
         }
         pub fn cdef_uv_pri_strength(
             mut self,
-            cdef_uv_pri_strength: [u8; crate::vk::AV1_MAX_CDEF_FILTER_STRENGTHS as _],
+            cdef_uv_pri_strength: [u8; vk::AV1_MAX_CDEF_FILTER_STRENGTHS as _],
         ) -> Self {
             self.cdef_uv_pri_strength = cdef_uv_pri_strength;
             self
         }
         pub fn cdef_uv_sec_strength(
             mut self,
-            cdef_uv_sec_strength: [u8; crate::vk::AV1_MAX_CDEF_FILTER_STRENGTHS as _],
+            cdef_uv_sec_strength: [u8; vk::AV1_MAX_CDEF_FILTER_STRENGTHS as _],
         ) -> Self {
             self.cdef_uv_sec_strength = cdef_uv_sec_strength;
             self
@@ -1115,9 +1112,9 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct AV1LoopRestoration {
-        pub frame_restoration_type: [crate::vk::AV1FrameRestorationType; crate::vk::AV1_MAX_NUM_PLANES
+        pub frame_restoration_type: [vk::AV1FrameRestorationType; vk::AV1_MAX_NUM_PLANES
             as _],
-        pub loop_restoration_size: [u16; crate::vk::AV1_MAX_NUM_PLANES as _],
+        pub loop_restoration_size: [u16; vk::AV1_MAX_NUM_PLANES as _],
     }
     unsafe impl Send for AV1LoopRestoration {}
     unsafe impl Sync for AV1LoopRestoration {}
@@ -1132,7 +1129,7 @@ pub(crate) mod items {
     impl AV1LoopRestoration {
         pub fn frame_restoration_type(
             mut self,
-            frame_restoration_type: [crate::vk::AV1FrameRestorationType; crate::vk::AV1_MAX_NUM_PLANES
+            frame_restoration_type: [vk::AV1FrameRestorationType; vk::AV1_MAX_NUM_PLANES
                 as _],
         ) -> Self {
             self.frame_restoration_type = frame_restoration_type;
@@ -1140,7 +1137,7 @@ pub(crate) mod items {
         }
         pub fn loop_restoration_size(
             mut self,
-            loop_restoration_size: [u16; crate::vk::AV1_MAX_NUM_PLANES as _],
+            loop_restoration_size: [u16; vk::AV1_MAX_NUM_PLANES as _],
         ) -> Self {
             self.loop_restoration_size = loop_restoration_size;
             self
@@ -1150,9 +1147,9 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct AV1GlobalMotion {
-        pub gm_type: [u8; crate::vk::AV1_NUM_REF_FRAMES as _],
-        pub gm_params: [[i32; crate::vk::AV1_GLOBAL_MOTION_PARAMS
-            as _]; crate::vk::AV1_NUM_REF_FRAMES as _],
+        pub gm_type: [u8; vk::AV1_NUM_REF_FRAMES as _],
+        pub gm_params: [[i32; vk::AV1_GLOBAL_MOTION_PARAMS
+            as _]; vk::AV1_NUM_REF_FRAMES as _],
     }
     unsafe impl Send for AV1GlobalMotion {}
     unsafe impl Sync for AV1GlobalMotion {}
@@ -1165,17 +1162,14 @@ pub(crate) mod items {
         }
     }
     impl AV1GlobalMotion {
-        pub fn gm_type(
-            mut self,
-            gm_type: [u8; crate::vk::AV1_NUM_REF_FRAMES as _],
-        ) -> Self {
+        pub fn gm_type(mut self, gm_type: [u8; vk::AV1_NUM_REF_FRAMES as _]) -> Self {
             self.gm_type = gm_type;
             self
         }
         pub fn gm_params(
             mut self,
-            gm_params: [[i32; crate::vk::AV1_GLOBAL_MOTION_PARAMS
-                as _]; crate::vk::AV1_NUM_REF_FRAMES as _],
+            gm_params: [[i32; vk::AV1_GLOBAL_MOTION_PARAMS
+                as _]; vk::AV1_NUM_REF_FRAMES as _],
         ) -> Self {
             self.gm_params = gm_params;
             self
@@ -1247,7 +1241,7 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct AV1FilmGrain {
-        pub flags: crate::vk::AV1FilmGrainFlags,
+        pub flags: vk::AV1FilmGrainFlags,
         pub grain_scaling_minus_8: u8,
         pub ar_coeff_lag: u8,
         pub ar_coeff_shift_minus_6: u8,
@@ -1255,17 +1249,17 @@ pub(crate) mod items {
         pub grain_seed: u16,
         pub film_grain_params_ref_idx: u8,
         pub num_y_points: u8,
-        pub point_y_value: [u8; crate::vk::AV1_MAX_NUM_Y_POINTS as _],
-        pub point_y_scaling: [u8; crate::vk::AV1_MAX_NUM_Y_POINTS as _],
+        pub point_y_value: [u8; vk::AV1_MAX_NUM_Y_POINTS as _],
+        pub point_y_scaling: [u8; vk::AV1_MAX_NUM_Y_POINTS as _],
         pub num_cb_points: u8,
-        pub point_cb_value: [u8; crate::vk::AV1_MAX_NUM_CB_POINTS as _],
-        pub point_cb_scaling: [u8; crate::vk::AV1_MAX_NUM_CB_POINTS as _],
+        pub point_cb_value: [u8; vk::AV1_MAX_NUM_CB_POINTS as _],
+        pub point_cb_scaling: [u8; vk::AV1_MAX_NUM_CB_POINTS as _],
         pub num_cr_points: u8,
-        pub point_cr_value: [u8; crate::vk::AV1_MAX_NUM_CR_POINTS as _],
-        pub point_cr_scaling: [u8; crate::vk::AV1_MAX_NUM_CR_POINTS as _],
-        pub ar_coeffs_y_plus_128: [i8; crate::vk::AV1_MAX_NUM_POS_LUMA as _],
-        pub ar_coeffs_cb_plus_128: [i8; crate::vk::AV1_MAX_NUM_POS_CHROMA as _],
-        pub ar_coeffs_cr_plus_128: [i8; crate::vk::AV1_MAX_NUM_POS_CHROMA as _],
+        pub point_cr_value: [u8; vk::AV1_MAX_NUM_CR_POINTS as _],
+        pub point_cr_scaling: [u8; vk::AV1_MAX_NUM_CR_POINTS as _],
+        pub ar_coeffs_y_plus_128: [i8; vk::AV1_MAX_NUM_POS_LUMA as _],
+        pub ar_coeffs_cb_plus_128: [i8; vk::AV1_MAX_NUM_POS_CHROMA as _],
+        pub ar_coeffs_cr_plus_128: [i8; vk::AV1_MAX_NUM_POS_CHROMA as _],
         pub cb_mult: u8,
         pub cb_luma_mult: u8,
         pub cb_offset: u16,
@@ -1307,7 +1301,7 @@ pub(crate) mod items {
         }
     }
     impl AV1FilmGrain {
-        pub fn flags(mut self, flags: crate::vk::AV1FilmGrainFlags) -> Self {
+        pub fn flags(mut self, flags: vk::AV1FilmGrainFlags) -> Self {
             self.flags = flags;
             self
         }
@@ -1344,14 +1338,14 @@ pub(crate) mod items {
         }
         pub fn point_y_value(
             mut self,
-            point_y_value: [u8; crate::vk::AV1_MAX_NUM_Y_POINTS as _],
+            point_y_value: [u8; vk::AV1_MAX_NUM_Y_POINTS as _],
         ) -> Self {
             self.point_y_value = point_y_value;
             self
         }
         pub fn point_y_scaling(
             mut self,
-            point_y_scaling: [u8; crate::vk::AV1_MAX_NUM_Y_POINTS as _],
+            point_y_scaling: [u8; vk::AV1_MAX_NUM_Y_POINTS as _],
         ) -> Self {
             self.point_y_scaling = point_y_scaling;
             self
@@ -1362,14 +1356,14 @@ pub(crate) mod items {
         }
         pub fn point_cb_value(
             mut self,
-            point_cb_value: [u8; crate::vk::AV1_MAX_NUM_CB_POINTS as _],
+            point_cb_value: [u8; vk::AV1_MAX_NUM_CB_POINTS as _],
         ) -> Self {
             self.point_cb_value = point_cb_value;
             self
         }
         pub fn point_cb_scaling(
             mut self,
-            point_cb_scaling: [u8; crate::vk::AV1_MAX_NUM_CB_POINTS as _],
+            point_cb_scaling: [u8; vk::AV1_MAX_NUM_CB_POINTS as _],
         ) -> Self {
             self.point_cb_scaling = point_cb_scaling;
             self
@@ -1380,35 +1374,35 @@ pub(crate) mod items {
         }
         pub fn point_cr_value(
             mut self,
-            point_cr_value: [u8; crate::vk::AV1_MAX_NUM_CR_POINTS as _],
+            point_cr_value: [u8; vk::AV1_MAX_NUM_CR_POINTS as _],
         ) -> Self {
             self.point_cr_value = point_cr_value;
             self
         }
         pub fn point_cr_scaling(
             mut self,
-            point_cr_scaling: [u8; crate::vk::AV1_MAX_NUM_CR_POINTS as _],
+            point_cr_scaling: [u8; vk::AV1_MAX_NUM_CR_POINTS as _],
         ) -> Self {
             self.point_cr_scaling = point_cr_scaling;
             self
         }
         pub fn ar_coeffs_y_plus_128(
             mut self,
-            ar_coeffs_y_plus_128: [i8; crate::vk::AV1_MAX_NUM_POS_LUMA as _],
+            ar_coeffs_y_plus_128: [i8; vk::AV1_MAX_NUM_POS_LUMA as _],
         ) -> Self {
             self.ar_coeffs_y_plus_128 = ar_coeffs_y_plus_128;
             self
         }
         pub fn ar_coeffs_cb_plus_128(
             mut self,
-            ar_coeffs_cb_plus_128: [i8; crate::vk::AV1_MAX_NUM_POS_CHROMA as _],
+            ar_coeffs_cb_plus_128: [i8; vk::AV1_MAX_NUM_POS_CHROMA as _],
         ) -> Self {
             self.ar_coeffs_cb_plus_128 = ar_coeffs_cb_plus_128;
             self
         }
         pub fn ar_coeffs_cr_plus_128(
             mut self,
-            ar_coeffs_cr_plus_128: [i8; crate::vk::AV1_MAX_NUM_POS_CHROMA as _],
+            ar_coeffs_cr_plus_128: [i8; vk::AV1_MAX_NUM_POS_CHROMA as _],
         ) -> Self {
             self.ar_coeffs_cr_plus_128 = ar_coeffs_cr_plus_128;
             self

@@ -2,74 +2,78 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_maintenance11.html) · Extension `VK_KHR_maintenance11`
 #![doc(alias = "VK_KHR_maintenance11")]
+use crate::vk;
+use core::ffi::CStr;
 ///Provided by [VK_KHR_maintenance11](crate::khr::maintenance11)
-impl crate::vk::StructureType {
+impl vk::StructureType {
     pub const PHYSICAL_DEVICE_MAINTENANCE_11_FEATURES_KHR: Self = Self(1000657000);
     pub const QUEUE_FAMILY_OPTIMAL_IMAGE_TRANSFER_GRANULARITY_PROPERTIES_KHR: Self = Self(
         1000657001,
     );
 }
-///Provided by [VK_KHR_maintenance11](crate::khr::maintenance11)
-impl crate::vk::PipelineLayoutCreateFlags {
+///Provided by [Vulkan 1.0](crate::vk1_0)
+impl vk::PipelineLayoutCreateFlags {
     pub const NO_TASK_SHADER_KHR: Self = Self(
-        crate::vk::PipelineLayoutCreateFlagBits::NO_TASK_SHADER_KHR.0,
+        vk::PipelineLayoutCreateFlagBits::NO_TASK_SHADER_KHR.0,
     );
 }
-///Provided by [VK_KHR_maintenance11](crate::khr::maintenance11)
-impl crate::vk::PipelineLayoutCreateFlagBits {
+///Provided by [Vulkan 1.0](crate::vk1_0)
+impl vk::PipelineLayoutCreateFlagBits {
     pub const NO_TASK_SHADER_KHR: Self = Self(1 << 2);
 }
-///Provided by [VK_KHR_maintenance11](crate::khr::maintenance11)
-impl crate::vk::ImageCreateFlags {
+///Provided by [Vulkan 1.0](crate::vk1_0)
+impl vk::ImageCreateFlags {
     pub const ALIAS_SINGLE_LAYER_DESCRIPTOR_KHR: Self = Self(
-        crate::vk::ImageCreateFlagBits::ALIAS_SINGLE_LAYER_DESCRIPTOR_KHR.0,
+        vk::ImageCreateFlagBits::ALIAS_SINGLE_LAYER_DESCRIPTOR_KHR.0,
     );
 }
-///Provided by [VK_KHR_maintenance11](crate::khr::maintenance11)
-impl crate::vk::ImageCreateFlagBits {
+///Provided by [Vulkan 1.0](crate::vk1_0)
+impl vk::ImageCreateFlagBits {
     pub const ALIAS_SINGLE_LAYER_DESCRIPTOR_KHR: Self = Self(1 << 22);
 }
-///Provided by [VK_KHR_maintenance11](crate::khr::maintenance11)
-impl crate::vk::ImageCreateFlags2KHR {
+///Provided by [VK_KHR_extended_flags](crate::khr::extended_flags)
+impl vk::ImageCreateFlags2KHR {
     pub const ALIAS_SINGLE_LAYER_DESCRIPTOR: Self = Self(
-        crate::vk::ImageCreateFlagBits2KHR::ALIAS_SINGLE_LAYER_DESCRIPTOR.0,
+        vk::ImageCreateFlagBits2KHR::ALIAS_SINGLE_LAYER_DESCRIPTOR.0,
     );
 }
-///Provided by [VK_KHR_maintenance11](crate::khr::maintenance11)
-impl crate::vk::ImageCreateFlagBits2KHR {
+///Provided by [VK_KHR_extended_flags](crate::khr::extended_flags)
+impl vk::ImageCreateFlagBits2KHR {
     pub const ALIAS_SINGLE_LAYER_DESCRIPTOR: Self = Self(1 << 22);
 }
-///Provided by [VK_KHR_maintenance11](crate::khr::maintenance11)
-impl crate::vk::ShaderCreateFlagsEXT {
+///Provided by [VK_EXT_shader_object](crate::ext::shader_object)
+impl vk::ShaderCreateFlagsEXT {
     pub const INDEPENDENT_SETS_KHR: Self = Self(
-        crate::vk::ShaderCreateFlagBitsEXT::INDEPENDENT_SETS_KHR.0,
+        vk::ShaderCreateFlagBitsEXT::INDEPENDENT_SETS_KHR.0,
     );
 }
-///Provided by [VK_KHR_maintenance11](crate::khr::maintenance11)
-impl crate::vk::ShaderCreateFlagBitsEXT {
+///Provided by [VK_EXT_shader_object](crate::ext::shader_object)
+impl vk::ShaderCreateFlagBitsEXT {
     pub const INDEPENDENT_SETS_KHR: Self = Self(1 << 18);
 }
 pub const SPEC_VERSION: u32 = 1;
-pub const NAME: &core::ffi::CStr = c"VK_KHR_maintenance11";
+pub const NAME: &CStr = c"VK_KHR_maintenance11";
 pub(crate) mod items {
+    use core::marker::PhantomData;
+    use crate::vk;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceMaintenance11FeaturesKHR<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
-        pub maintenance11: crate::vk::Bool32,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub maintenance11: vk::Bool32,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for PhysicalDeviceMaintenance11FeaturesKHR<'_> {}
     unsafe impl Sync for PhysicalDeviceMaintenance11FeaturesKHR<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceMaintenance11FeaturesKHR<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_MAINTENANCE_11_FEATURES_KHR;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PHYSICAL_DEVICE_MAINTENANCE_11_FEATURES_KHR;
     }
-    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+    unsafe impl<'a> crate::Extends<vk::PhysicalDeviceFeatures2<'_>>
     for PhysicalDeviceMaintenance11FeaturesKHR<'a> {}
-    unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+    unsafe impl<'a> crate::Extends<vk::DeviceCreateInfo<'_>>
     for PhysicalDeviceMaintenance11FeaturesKHR<'a> {}
     impl<'a> Default for PhysicalDeviceMaintenance11FeaturesKHR<'a> {
         fn default() -> Self {
@@ -77,7 +81,7 @@ pub(crate) mod items {
                 s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
                 p_next: Default::default(),
                 maintenance11: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
@@ -91,18 +95,18 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct QueueFamilyOptimalImageTransferGranularityPropertiesKHR<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
-        pub optimal_image_transfer_granularity: crate::vk::Extent3D,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub optimal_image_transfer_granularity: vk::Extent3D,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for QueueFamilyOptimalImageTransferGranularityPropertiesKHR<'_> {}
     unsafe impl Sync for QueueFamilyOptimalImageTransferGranularityPropertiesKHR<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for QueueFamilyOptimalImageTransferGranularityPropertiesKHR<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::QUEUE_FAMILY_OPTIMAL_IMAGE_TRANSFER_GRANULARITY_PROPERTIES_KHR;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::QUEUE_FAMILY_OPTIMAL_IMAGE_TRANSFER_GRANULARITY_PROPERTIES_KHR;
     }
-    unsafe impl<'a> crate::Extends<crate::vk::QueueFamilyProperties2<'_>>
+    unsafe impl<'a> crate::Extends<vk::QueueFamilyProperties2<'_>>
     for QueueFamilyOptimalImageTransferGranularityPropertiesKHR<'a> {}
     impl<'a> Default for QueueFamilyOptimalImageTransferGranularityPropertiesKHR<'a> {
         fn default() -> Self {
@@ -110,14 +114,14 @@ pub(crate) mod items {
                 s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
                 p_next: Default::default(),
                 optimal_image_transfer_granularity: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
     impl<'a> QueueFamilyOptimalImageTransferGranularityPropertiesKHR<'a> {
         pub fn optimal_image_transfer_granularity(
             mut self,
-            optimal_image_transfer_granularity: crate::vk::Extent3D,
+            optimal_image_transfer_granularity: vk::Extent3D,
         ) -> Self {
             self.optimal_image_transfer_granularity = optimal_image_transfer_granularity;
             self

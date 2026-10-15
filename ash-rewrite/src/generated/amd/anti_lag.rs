@@ -2,8 +2,11 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_AMD_anti_lag.html) · Extension `VK_AMD_anti_lag`
 #![doc(alias = "VK_AMD_anti_lag")]
+use crate::vk;
+use core::ffi::CStr;
+use core::ffi::c_void;
 ///Provided by [VK_AMD_anti_lag](crate::amd::anti_lag)
-impl crate::vk::StructureType {
+impl vk::StructureType {
     pub const PHYSICAL_DEVICE_ANTI_LAG_FEATURES_AMD: Self = Self(1000476000);
     pub const ANTI_LAG_DATA_AMD: Self = Self(1000476001);
     pub const ANTI_LAG_PRESENTATION_INFO_AMD: Self = Self(1000476002);
@@ -19,26 +22,24 @@ impl AntiLagStageAMD {
     pub const INPUT: Self = Self(0);
     pub const PRESENT: Self = Self(1);
 }
+pub const SPEC_VERSION: u32 = 1;
+pub const NAME: &CStr = c"VK_AMD_anti_lag";
 #[derive(Clone)]
 pub struct DeviceFn {
-    pub anti_lag_update: crate::vk::PFN_vkAntiLagUpdateAMD,
+    pub anti_lag_update: vk::PFN_vkAntiLagUpdateAMD,
 }
 unsafe impl Send for DeviceFn {}
 unsafe impl Sync for DeviceFn {}
 impl DeviceFn {
-    pub fn load<F: FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void>(
-        mut f: F,
-    ) -> Self {
+    pub fn load<F: FnMut(&CStr) -> *const c_void>(mut f: F) -> Self {
         Self::load_erased(&mut f)
     }
-    fn load_erased(
-        _f: &mut dyn FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void,
-    ) -> Self {
+    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const c_void) -> Self {
         Self {
             anti_lag_update: unsafe {
                 unsafe extern "system" fn anti_lag_update(
-                    _: crate::vk::Device,
-                    _: *const crate::vk::AntiLagDataAMD<'_>,
+                    _: vk::Device,
+                    _: *const vk::AntiLagDataAMD<'_>,
                 ) {
                     panic!("unable to load vkAntiLagUpdateAMD")
                 }
@@ -71,30 +72,30 @@ impl Device {
     }
     ///vkAntiLagUpdateAMD
     #[inline]
-    pub unsafe fn anti_lag_update(&self, data: &crate::vk::AntiLagDataAMD<'_>) {
+    pub unsafe fn anti_lag_update(&self, data: &vk::AntiLagDataAMD<'_>) {
         (self.fp.anti_lag_update)(self.handle, data)
     }
 }
-pub const SPEC_VERSION: u32 = 1;
-pub const NAME: &core::ffi::CStr = c"VK_AMD_anti_lag";
 pub(crate) mod items {
+    use core::marker::PhantomData;
+    use crate::vk;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceAntiLagFeaturesAMD<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
-        pub anti_lag: crate::vk::Bool32,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub anti_lag: vk::Bool32,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for PhysicalDeviceAntiLagFeaturesAMD<'_> {}
     unsafe impl Sync for PhysicalDeviceAntiLagFeaturesAMD<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for PhysicalDeviceAntiLagFeaturesAMD<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_ANTI_LAG_FEATURES_AMD;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PHYSICAL_DEVICE_ANTI_LAG_FEATURES_AMD;
     }
-    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+    unsafe impl<'a> crate::Extends<vk::PhysicalDeviceFeatures2<'_>>
     for PhysicalDeviceAntiLagFeaturesAMD<'a> {}
-    unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+    unsafe impl<'a> crate::Extends<vk::DeviceCreateInfo<'_>>
     for PhysicalDeviceAntiLagFeaturesAMD<'a> {}
     impl<'a> Default for PhysicalDeviceAntiLagFeaturesAMD<'a> {
         fn default() -> Self {
@@ -102,7 +103,7 @@ pub(crate) mod items {
                 s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
                 p_next: Default::default(),
                 anti_lag: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
@@ -116,17 +117,17 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct AntiLagDataAMD<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *const core::ffi::c_void,
-        pub mode: crate::vk::AntiLagModeAMD,
+        pub mode: vk::AntiLagModeAMD,
         pub max_fps: u32,
-        pub p_presentation_info: *const crate::vk::AntiLagPresentationInfoAMD<'a>,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub p_presentation_info: *const vk::AntiLagPresentationInfoAMD<'a>,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for AntiLagDataAMD<'_> {}
     unsafe impl Sync for AntiLagDataAMD<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for AntiLagDataAMD<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::ANTI_LAG_DATA_AMD;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::ANTI_LAG_DATA_AMD;
     }
     impl<'a> Default for AntiLagDataAMD<'a> {
         fn default() -> Self {
@@ -136,12 +137,12 @@ pub(crate) mod items {
                 mode: Default::default(),
                 max_fps: Default::default(),
                 p_presentation_info: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
     impl<'a> AntiLagDataAMD<'a> {
-        pub fn mode(mut self, mode: crate::vk::AntiLagModeAMD) -> Self {
+        pub fn mode(mut self, mode: vk::AntiLagModeAMD) -> Self {
             self.mode = mode;
             self
         }
@@ -151,7 +152,7 @@ pub(crate) mod items {
         }
         pub fn presentation_info(
             mut self,
-            presentation_info: &'a crate::vk::AntiLagPresentationInfoAMD<'a>,
+            presentation_info: &'a vk::AntiLagPresentationInfoAMD<'a>,
         ) -> Self {
             self.p_presentation_info = presentation_info;
             self
@@ -161,16 +162,16 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct AntiLagPresentationInfoAMD<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
-        pub stage: crate::vk::AntiLagStageAMD,
+        pub stage: vk::AntiLagStageAMD,
         pub frame_index: u64,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for AntiLagPresentationInfoAMD<'_> {}
     unsafe impl Sync for AntiLagPresentationInfoAMD<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for AntiLagPresentationInfoAMD<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::ANTI_LAG_PRESENTATION_INFO_AMD;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::ANTI_LAG_PRESENTATION_INFO_AMD;
     }
     impl<'a> Default for AntiLagPresentationInfoAMD<'a> {
         fn default() -> Self {
@@ -179,12 +180,12 @@ pub(crate) mod items {
                 p_next: Default::default(),
                 stage: Default::default(),
                 frame_index: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
     impl<'a> AntiLagPresentationInfoAMD<'a> {
-        pub fn stage(mut self, stage: crate::vk::AntiLagStageAMD) -> Self {
+        pub fn stage(mut self, stage: vk::AntiLagStageAMD) -> Self {
             self.stage = stage;
             self
         }
@@ -249,8 +250,8 @@ pub(crate) mod items {
         }
     }
     pub type PFN_vkAntiLagUpdateAMD = unsafe extern "system" fn(
-        device: crate::vk::Device,
-        p_data: *const crate::vk::AntiLagDataAMD<'_>,
+        device: vk::Device,
+        p_data: *const vk::AntiLagDataAMD<'_>,
     );
 }
 pub use items::*;

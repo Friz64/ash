@@ -2,68 +2,69 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_external_fence_capabilities.html) · Extension `VK_KHR_external_fence_capabilities`
 #![doc(alias = "VK_KHR_external_fence_capabilities")]
+use crate::vk;
+use core::ffi::CStr;
+use core::ffi::c_void;
 ///Provided by [VK_KHR_external_fence_capabilities](crate::khr::external_fence_capabilities)
-impl crate::vk::StructureType {
+impl vk::StructureType {
     pub const PHYSICAL_DEVICE_EXTERNAL_FENCE_INFO_KHR: Self = Self::PHYSICAL_DEVICE_EXTERNAL_FENCE_INFO;
     pub const EXTERNAL_FENCE_PROPERTIES_KHR: Self = Self::EXTERNAL_FENCE_PROPERTIES;
 }
-///Provided by [VK_KHR_external_fence_capabilities](crate::khr::external_fence_capabilities)
-impl crate::vk::ExternalFenceHandleTypeFlags {
+///Provided by [Vulkan 1.1](crate::vk1_1)
+impl vk::ExternalFenceHandleTypeFlags {
     pub const OPAQUE_FD_KHR: Self = Self(
-        crate::vk::ExternalFenceHandleTypeFlagBits::OPAQUE_FD_KHR.0,
+        vk::ExternalFenceHandleTypeFlagBits::OPAQUE_FD_KHR.0,
     );
     pub const OPAQUE_WIN32_KHR: Self = Self(
-        crate::vk::ExternalFenceHandleTypeFlagBits::OPAQUE_WIN32_KHR.0,
+        vk::ExternalFenceHandleTypeFlagBits::OPAQUE_WIN32_KHR.0,
     );
     pub const OPAQUE_WIN32_KMT_KHR: Self = Self(
-        crate::vk::ExternalFenceHandleTypeFlagBits::OPAQUE_WIN32_KMT_KHR.0,
+        vk::ExternalFenceHandleTypeFlagBits::OPAQUE_WIN32_KMT_KHR.0,
     );
     pub const SYNC_FD_KHR: Self = Self(
-        crate::vk::ExternalFenceHandleTypeFlagBits::SYNC_FD_KHR.0,
+        vk::ExternalFenceHandleTypeFlagBits::SYNC_FD_KHR.0,
     );
 }
-///Provided by [VK_KHR_external_fence_capabilities](crate::khr::external_fence_capabilities)
-impl crate::vk::ExternalFenceHandleTypeFlagBits {
+///Provided by [Vulkan 1.1](crate::vk1_1)
+impl vk::ExternalFenceHandleTypeFlagBits {
     pub const OPAQUE_FD_KHR: Self = Self::OPAQUE_FD;
     pub const OPAQUE_WIN32_KHR: Self = Self::OPAQUE_WIN32;
     pub const OPAQUE_WIN32_KMT_KHR: Self = Self::OPAQUE_WIN32_KMT;
     pub const SYNC_FD_KHR: Self = Self::SYNC_FD;
 }
-///Provided by [VK_KHR_external_fence_capabilities](crate::khr::external_fence_capabilities)
-impl crate::vk::ExternalFenceFeatureFlags {
+///Provided by [Vulkan 1.1](crate::vk1_1)
+impl vk::ExternalFenceFeatureFlags {
     pub const EXPORTABLE_KHR: Self = Self(
-        crate::vk::ExternalFenceFeatureFlagBits::EXPORTABLE_KHR.0,
+        vk::ExternalFenceFeatureFlagBits::EXPORTABLE_KHR.0,
     );
     pub const IMPORTABLE_KHR: Self = Self(
-        crate::vk::ExternalFenceFeatureFlagBits::IMPORTABLE_KHR.0,
+        vk::ExternalFenceFeatureFlagBits::IMPORTABLE_KHR.0,
     );
 }
-///Provided by [VK_KHR_external_fence_capabilities](crate::khr::external_fence_capabilities)
-impl crate::vk::ExternalFenceFeatureFlagBits {
+///Provided by [Vulkan 1.1](crate::vk1_1)
+impl vk::ExternalFenceFeatureFlagBits {
     pub const EXPORTABLE_KHR: Self = Self::EXPORTABLE;
     pub const IMPORTABLE_KHR: Self = Self::IMPORTABLE;
 }
+pub const SPEC_VERSION: u32 = 1;
+pub const NAME: &CStr = c"VK_KHR_external_fence_capabilities";
 #[derive(Clone)]
 pub struct InstanceFn {
-    pub get_physical_device_external_fence_properties: crate::vk::PFN_vkGetPhysicalDeviceExternalFencePropertiesKHR,
+    pub get_physical_device_external_fence_properties: vk::PFN_vkGetPhysicalDeviceExternalFencePropertiesKHR,
 }
 unsafe impl Send for InstanceFn {}
 unsafe impl Sync for InstanceFn {}
 impl InstanceFn {
-    pub fn load<F: FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void>(
-        mut f: F,
-    ) -> Self {
+    pub fn load<F: FnMut(&CStr) -> *const c_void>(mut f: F) -> Self {
         Self::load_erased(&mut f)
     }
-    fn load_erased(
-        _f: &mut dyn FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void,
-    ) -> Self {
+    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const c_void) -> Self {
         Self {
             get_physical_device_external_fence_properties: unsafe {
                 unsafe extern "system" fn get_physical_device_external_fence_properties(
-                    _: crate::vk::PhysicalDevice,
-                    _: *const crate::vk::PhysicalDeviceExternalFenceInfo<'_>,
-                    _: *mut crate::vk::ExternalFenceProperties<'_>,
+                    _: vk::PhysicalDevice,
+                    _: *const vk::PhysicalDeviceExternalFenceInfo<'_>,
+                    _: *mut vk::ExternalFenceProperties<'_>,
                 ) {
                     panic!(
                         "unable to load vkGetPhysicalDeviceExternalFencePropertiesKHR"
@@ -104,9 +105,9 @@ impl Instance {
     #[inline]
     pub unsafe fn get_physical_device_external_fence_properties(
         &self,
-        physical_device: crate::vk::PhysicalDevice,
-        external_fence_info: &crate::vk::PhysicalDeviceExternalFenceInfo<'_>,
-    ) -> crate::vk::ExternalFenceProperties<'_> {
+        physical_device: vk::PhysicalDevice,
+        external_fence_info: &vk::PhysicalDeviceExternalFenceInfo<'_>,
+    ) -> vk::ExternalFenceProperties<'_> {
         let mut external_fence_properties = core::mem::MaybeUninit::uninit();
         (self
             .fp
@@ -118,17 +119,16 @@ impl Instance {
         external_fence_properties.assume_init()
     }
 }
-pub const SPEC_VERSION: u32 = 1;
-pub const NAME: &core::ffi::CStr = c"VK_KHR_external_fence_capabilities";
 pub(crate) mod items {
-    pub type PhysicalDeviceExternalFenceInfoKHR<'a> = crate::vk::PhysicalDeviceExternalFenceInfo<
+    use crate::vk;
+    pub type PhysicalDeviceExternalFenceInfoKHR<'a> = vk::PhysicalDeviceExternalFenceInfo<
         'a,
     >;
-    pub type ExternalFencePropertiesKHR<'a> = crate::vk::ExternalFenceProperties<'a>;
-    pub type ExternalFenceHandleTypeFlagBitsKHR = crate::vk::ExternalFenceHandleTypeFlagBits;
-    pub type ExternalFenceFeatureFlagBitsKHR = crate::vk::ExternalFenceFeatureFlagBits;
-    pub type ExternalFenceHandleTypeFlagsKHR = crate::vk::ExternalFenceHandleTypeFlags;
-    pub type ExternalFenceFeatureFlagsKHR = crate::vk::ExternalFenceFeatureFlags;
-    pub type PFN_vkGetPhysicalDeviceExternalFencePropertiesKHR = crate::vk::PFN_vkGetPhysicalDeviceExternalFenceProperties;
+    pub type ExternalFencePropertiesKHR<'a> = vk::ExternalFenceProperties<'a>;
+    pub type ExternalFenceHandleTypeFlagBitsKHR = vk::ExternalFenceHandleTypeFlagBits;
+    pub type ExternalFenceFeatureFlagBitsKHR = vk::ExternalFenceFeatureFlagBits;
+    pub type ExternalFenceHandleTypeFlagsKHR = vk::ExternalFenceHandleTypeFlags;
+    pub type ExternalFenceFeatureFlagsKHR = vk::ExternalFenceFeatureFlags;
+    pub type PFN_vkGetPhysicalDeviceExternalFencePropertiesKHR = vk::PFN_vkGetPhysicalDeviceExternalFenceProperties;
 }
 pub use items::*;

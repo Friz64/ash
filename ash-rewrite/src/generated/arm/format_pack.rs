@@ -2,8 +2,10 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_ARM_format_pack.html) · Extension `VK_ARM_format_pack`
 #![doc(alias = "VK_ARM_format_pack")]
+use crate::vk;
+use core::ffi::CStr;
 ///Provided by [VK_ARM_format_pack](crate::arm::format_pack)
-impl crate::vk::Format {
+impl vk::Format {
     pub const R10X6_UINT_PACK16_ARM: Self = Self(1000609000);
     pub const R10X6G10X6_UINT_2PACK16_ARM: Self = Self(1000609001);
     pub const R10X6G10X6B10X6A10X6_UINT_4PACK16_ARM: Self = Self(1000609002);
@@ -20,30 +22,32 @@ impl crate::vk::Format {
     pub const G14X2_B14X2R14X2_2PLANE_422_UNORM_3PACK16_ARM: Self = Self(1000609013);
 }
 ///Provided by [VK_ARM_format_pack](crate::arm::format_pack)
-impl crate::vk::StructureType {
+impl vk::StructureType {
     pub const PHYSICAL_DEVICE_FORMAT_PACK_FEATURES_ARM: Self = Self(1000609000);
 }
 pub const SPEC_VERSION: u32 = 1;
-pub const NAME: &core::ffi::CStr = c"VK_ARM_format_pack";
+pub const NAME: &CStr = c"VK_ARM_format_pack";
 pub(crate) mod items {
+    use core::marker::PhantomData;
+    use crate::vk;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceFormatPackFeaturesARM<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
-        pub format_pack: crate::vk::Bool32,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub format_pack: vk::Bool32,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for PhysicalDeviceFormatPackFeaturesARM<'_> {}
     unsafe impl Sync for PhysicalDeviceFormatPackFeaturesARM<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceFormatPackFeaturesARM<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_FORMAT_PACK_FEATURES_ARM;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PHYSICAL_DEVICE_FORMAT_PACK_FEATURES_ARM;
     }
-    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+    unsafe impl<'a> crate::Extends<vk::PhysicalDeviceFeatures2<'_>>
     for PhysicalDeviceFormatPackFeaturesARM<'a> {}
-    unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+    unsafe impl<'a> crate::Extends<vk::DeviceCreateInfo<'_>>
     for PhysicalDeviceFormatPackFeaturesARM<'a> {}
     impl<'a> Default for PhysicalDeviceFormatPackFeaturesARM<'a> {
         fn default() -> Self {
@@ -51,7 +55,7 @@ pub(crate) mod items {
                 s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
                 p_next: Default::default(),
                 format_pack: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }

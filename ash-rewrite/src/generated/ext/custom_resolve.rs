@@ -2,68 +2,69 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_custom_resolve.html) · Extension `VK_EXT_custom_resolve`
 #![doc(alias = "VK_EXT_custom_resolve")]
+use crate::vk;
+use core::ffi::CStr;
+use core::ffi::c_void;
 ///Provided by [VK_EXT_custom_resolve](crate::ext::custom_resolve)
-impl crate::vk::StructureType {
+impl vk::StructureType {
     pub const PHYSICAL_DEVICE_CUSTOM_RESOLVE_FEATURES_EXT: Self = Self(1000628000);
     pub const BEGIN_CUSTOM_RESOLVE_INFO_EXT: Self = Self(1000628001);
     pub const CUSTOM_RESOLVE_CREATE_INFO_EXT: Self = Self(1000628002);
 }
-///Provided by [VK_EXT_custom_resolve](crate::ext::custom_resolve)
-impl crate::vk::SubpassDescriptionFlags {
+///Provided by [Vulkan 1.0](crate::vk1_0)
+impl vk::SubpassDescriptionFlags {
     pub const FRAGMENT_REGION_EXT: Self = Self(
-        crate::vk::SubpassDescriptionFlagBits::FRAGMENT_REGION_EXT.0,
+        vk::SubpassDescriptionFlagBits::FRAGMENT_REGION_EXT.0,
     );
     pub const CUSTOM_RESOLVE_EXT: Self = Self(
-        crate::vk::SubpassDescriptionFlagBits::CUSTOM_RESOLVE_EXT.0,
+        vk::SubpassDescriptionFlagBits::CUSTOM_RESOLVE_EXT.0,
     );
 }
-///Provided by [VK_EXT_custom_resolve](crate::ext::custom_resolve)
-impl crate::vk::SubpassDescriptionFlagBits {
+///Provided by [Vulkan 1.0](crate::vk1_0)
+impl vk::SubpassDescriptionFlagBits {
     pub const FRAGMENT_REGION_EXT: Self = Self(1 << 2);
     pub const CUSTOM_RESOLVE_EXT: Self = Self(1 << 3);
 }
-///Provided by [VK_EXT_custom_resolve](crate::ext::custom_resolve)
-impl crate::vk::RenderingFlags {
+///Provided by [Vulkan 1.3](crate::vk1_3)
+impl vk::RenderingFlags {
     pub const FRAGMENT_REGION_EXT: Self = Self(
-        crate::vk::RenderingFlagBits::FRAGMENT_REGION_EXT.0,
+        vk::RenderingFlagBits::FRAGMENT_REGION_EXT.0,
     );
     pub const CUSTOM_RESOLVE_EXT: Self = Self(
-        crate::vk::RenderingFlagBits::CUSTOM_RESOLVE_EXT.0,
+        vk::RenderingFlagBits::CUSTOM_RESOLVE_EXT.0,
     );
 }
-///Provided by [VK_EXT_custom_resolve](crate::ext::custom_resolve)
-impl crate::vk::RenderingFlagBits {
+///Provided by [Vulkan 1.3](crate::vk1_3)
+impl vk::RenderingFlagBits {
     pub const FRAGMENT_REGION_EXT: Self = Self(1 << 6);
     pub const CUSTOM_RESOLVE_EXT: Self = Self(1 << 7);
 }
-///Provided by [VK_EXT_custom_resolve](crate::ext::custom_resolve)
-impl crate::vk::ResolveModeFlags {
-    pub const CUSTOM_EXT: Self = Self(crate::vk::ResolveModeFlagBits::CUSTOM_EXT.0);
+///Provided by [Vulkan 1.2](crate::vk1_2)
+impl vk::ResolveModeFlags {
+    pub const CUSTOM_EXT: Self = Self(vk::ResolveModeFlagBits::CUSTOM_EXT.0);
 }
-///Provided by [VK_EXT_custom_resolve](crate::ext::custom_resolve)
-impl crate::vk::ResolveModeFlagBits {
+///Provided by [Vulkan 1.2](crate::vk1_2)
+impl vk::ResolveModeFlagBits {
     pub const CUSTOM_EXT: Self = Self(1 << 5);
 }
+pub const SPEC_VERSION: u32 = 1;
+pub const NAME: &CStr = c"VK_EXT_custom_resolve";
 #[derive(Clone)]
 pub struct DeviceFn {
-    pub cmd_begin_custom_resolve: crate::vk::PFN_vkCmdBeginCustomResolveEXT,
+    pub cmd_begin_custom_resolve: vk::PFN_vkCmdBeginCustomResolveEXT,
 }
 unsafe impl Send for DeviceFn {}
 unsafe impl Sync for DeviceFn {}
 impl DeviceFn {
-    pub fn load<F: FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void>(
-        mut f: F,
-    ) -> Self {
+    pub fn load<F: FnMut(&CStr) -> *const c_void>(mut f: F) -> Self {
         Self::load_erased(&mut f)
     }
-    fn load_erased(
-        _f: &mut dyn FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void,
-    ) -> Self {
+    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const c_void) -> Self {
         Self {
             cmd_begin_custom_resolve: unsafe {
                 unsafe extern "system" fn cmd_begin_custom_resolve(
-                    _: crate::vk::CommandBuffer,
-                    _: *const crate::vk::BeginCustomResolveInfoEXT<'_>,
+                    _: vk::CommandBuffer,
+                    _: *const vk::BeginCustomResolveInfoEXT<'_>,
                 ) {
                     panic!("unable to load vkCmdBeginCustomResolveEXT")
                 }
@@ -102,8 +103,8 @@ impl Device {
     #[inline]
     pub unsafe fn cmd_begin_custom_resolve(
         &self,
-        command_buffer: crate::vk::CommandBuffer,
-        begin_custom_resolve_info: Option<&crate::vk::BeginCustomResolveInfoEXT<'_>>,
+        command_buffer: vk::CommandBuffer,
+        begin_custom_resolve_info: Option<&vk::BeginCustomResolveInfoEXT<'_>>,
     ) {
         (self
             .fp
@@ -116,28 +117,28 @@ impl Device {
         )
     }
 }
-pub const SPEC_VERSION: u32 = 1;
-pub const NAME: &core::ffi::CStr = c"VK_EXT_custom_resolve";
 pub(crate) mod items {
+    use core::marker::PhantomData;
+    use crate::vk;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct BeginCustomResolveInfoEXT<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for BeginCustomResolveInfoEXT<'_> {}
     unsafe impl Sync for BeginCustomResolveInfoEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for BeginCustomResolveInfoEXT<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::BEGIN_CUSTOM_RESOLVE_INFO_EXT;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::BEGIN_CUSTOM_RESOLVE_INFO_EXT;
     }
     impl<'a> Default for BeginCustomResolveInfoEXT<'a> {
         fn default() -> Self {
             Self {
                 s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
                 p_next: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
@@ -146,20 +147,20 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceCustomResolveFeaturesEXT<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
-        pub custom_resolve: crate::vk::Bool32,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub custom_resolve: vk::Bool32,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for PhysicalDeviceCustomResolveFeaturesEXT<'_> {}
     unsafe impl Sync for PhysicalDeviceCustomResolveFeaturesEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceCustomResolveFeaturesEXT<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_CUSTOM_RESOLVE_FEATURES_EXT;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PHYSICAL_DEVICE_CUSTOM_RESOLVE_FEATURES_EXT;
     }
-    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+    unsafe impl<'a> crate::Extends<vk::PhysicalDeviceFeatures2<'_>>
     for PhysicalDeviceCustomResolveFeaturesEXT<'a> {}
-    unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+    unsafe impl<'a> crate::Extends<vk::DeviceCreateInfo<'_>>
     for PhysicalDeviceCustomResolveFeaturesEXT<'a> {}
     impl<'a> Default for PhysicalDeviceCustomResolveFeaturesEXT<'a> {
         fn default() -> Self {
@@ -167,7 +168,7 @@ pub(crate) mod items {
                 s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
                 p_next: Default::default(),
                 custom_resolve: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
@@ -181,25 +182,25 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct CustomResolveCreateInfoEXT<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *const core::ffi::c_void,
-        pub custom_resolve: crate::vk::Bool32,
+        pub custom_resolve: vk::Bool32,
         pub color_attachment_count: u32,
-        pub p_color_attachment_formats: *const crate::vk::Format,
-        pub depth_attachment_format: crate::vk::Format,
-        pub stencil_attachment_format: crate::vk::Format,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub p_color_attachment_formats: *const vk::Format,
+        pub depth_attachment_format: vk::Format,
+        pub stencil_attachment_format: vk::Format,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for CustomResolveCreateInfoEXT<'_> {}
     unsafe impl Sync for CustomResolveCreateInfoEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for CustomResolveCreateInfoEXT<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::CUSTOM_RESOLVE_CREATE_INFO_EXT;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::CUSTOM_RESOLVE_CREATE_INFO_EXT;
     }
-    unsafe impl<'a> crate::Extends<crate::vk::GraphicsPipelineCreateInfo<'_>>
+    unsafe impl<'a> crate::Extends<vk::GraphicsPipelineCreateInfo<'_>>
     for CustomResolveCreateInfoEXT<'a> {}
-    unsafe impl<'a> crate::Extends<crate::vk::CommandBufferInheritanceInfo<'_>>
+    unsafe impl<'a> crate::Extends<vk::CommandBufferInheritanceInfo<'_>>
     for CustomResolveCreateInfoEXT<'a> {}
-    unsafe impl<'a> crate::Extends<crate::vk::ShaderCreateInfoEXT<'_>>
+    unsafe impl<'a> crate::Extends<vk::ShaderCreateInfoEXT<'_>>
     for CustomResolveCreateInfoEXT<'a> {}
     impl<'a> Default for CustomResolveCreateInfoEXT<'a> {
         fn default() -> Self {
@@ -211,7 +212,7 @@ pub(crate) mod items {
                 p_color_attachment_formats: Default::default(),
                 depth_attachment_format: Default::default(),
                 stencil_attachment_format: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
@@ -222,7 +223,7 @@ pub(crate) mod items {
         }
         pub fn color_attachment_formats(
             mut self,
-            color_attachment_formats: &'a [crate::vk::Format],
+            color_attachment_formats: &'a [vk::Format],
         ) -> Self {
             self.color_attachment_count = color_attachment_formats.len() as _;
             self.p_color_attachment_formats = color_attachment_formats.as_ptr();
@@ -230,22 +231,22 @@ pub(crate) mod items {
         }
         pub fn depth_attachment_format(
             mut self,
-            depth_attachment_format: crate::vk::Format,
+            depth_attachment_format: vk::Format,
         ) -> Self {
             self.depth_attachment_format = depth_attachment_format;
             self
         }
         pub fn stencil_attachment_format(
             mut self,
-            stencil_attachment_format: crate::vk::Format,
+            stencil_attachment_format: vk::Format,
         ) -> Self {
             self.stencil_attachment_format = stencil_attachment_format;
             self
         }
     }
     pub type PFN_vkCmdBeginCustomResolveEXT = unsafe extern "system" fn(
-        command_buffer: crate::vk::CommandBuffer,
-        p_begin_custom_resolve_info: *const crate::vk::BeginCustomResolveInfoEXT<'_>,
+        command_buffer: vk::CommandBuffer,
+        p_begin_custom_resolve_info: *const vk::BeginCustomResolveInfoEXT<'_>,
     );
 }
 pub use items::*;

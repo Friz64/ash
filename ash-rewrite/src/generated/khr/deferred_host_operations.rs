@@ -2,43 +2,45 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_deferred_host_operations.html) · Extension `VK_KHR_deferred_host_operations`
 #![doc(alias = "VK_KHR_deferred_host_operations")]
+use crate::vk;
+use core::ffi::CStr;
+use crate::VkResult;
+use core::ffi::c_void;
 ///Provided by [VK_KHR_deferred_host_operations](crate::khr::deferred_host_operations)
-impl crate::vk::Result {
+impl vk::Result {
     pub const THREAD_IDLE_KHR: Self = Self(1000268000);
     pub const THREAD_DONE_KHR: Self = Self(1000268001);
     pub const OPERATION_DEFERRED_KHR: Self = Self(1000268002);
     pub const OPERATION_NOT_DEFERRED_KHR: Self = Self(1000268003);
 }
 ///Provided by [VK_KHR_deferred_host_operations](crate::khr::deferred_host_operations)
-impl crate::vk::ObjectType {
+impl vk::ObjectType {
     pub const DEFERRED_OPERATION_KHR: Self = Self(1000268000);
 }
+pub const SPEC_VERSION: u32 = 4;
+pub const NAME: &CStr = c"VK_KHR_deferred_host_operations";
 #[derive(Clone)]
 pub struct DeviceFn {
-    pub create_deferred_operation: crate::vk::PFN_vkCreateDeferredOperationKHR,
-    pub destroy_deferred_operation: crate::vk::PFN_vkDestroyDeferredOperationKHR,
-    pub get_deferred_operation_max_concurrency: crate::vk::PFN_vkGetDeferredOperationMaxConcurrencyKHR,
-    pub get_deferred_operation_result: crate::vk::PFN_vkGetDeferredOperationResultKHR,
-    pub deferred_operation_join: crate::vk::PFN_vkDeferredOperationJoinKHR,
+    pub create_deferred_operation: vk::PFN_vkCreateDeferredOperationKHR,
+    pub destroy_deferred_operation: vk::PFN_vkDestroyDeferredOperationKHR,
+    pub get_deferred_operation_max_concurrency: vk::PFN_vkGetDeferredOperationMaxConcurrencyKHR,
+    pub get_deferred_operation_result: vk::PFN_vkGetDeferredOperationResultKHR,
+    pub deferred_operation_join: vk::PFN_vkDeferredOperationJoinKHR,
 }
 unsafe impl Send for DeviceFn {}
 unsafe impl Sync for DeviceFn {}
 impl DeviceFn {
-    pub fn load<F: FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void>(
-        mut f: F,
-    ) -> Self {
+    pub fn load<F: FnMut(&CStr) -> *const c_void>(mut f: F) -> Self {
         Self::load_erased(&mut f)
     }
-    fn load_erased(
-        _f: &mut dyn FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void,
-    ) -> Self {
+    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const c_void) -> Self {
         Self {
             create_deferred_operation: unsafe {
                 unsafe extern "system" fn create_deferred_operation(
-                    _: crate::vk::Device,
-                    _: *const crate::vk::AllocationCallbacks<'_>,
-                    _: *mut crate::vk::DeferredOperationKHR,
-                ) -> crate::vk::Result {
+                    _: vk::Device,
+                    _: *const vk::AllocationCallbacks<'_>,
+                    _: *mut vk::DeferredOperationKHR,
+                ) -> vk::Result {
                     panic!("unable to load vkCreateDeferredOperationKHR")
                 }
                 let val = _f(c"vkCreateDeferredOperationKHR");
@@ -50,9 +52,9 @@ impl DeviceFn {
             },
             destroy_deferred_operation: unsafe {
                 unsafe extern "system" fn destroy_deferred_operation(
-                    _: crate::vk::Device,
-                    _: crate::vk::DeferredOperationKHR,
-                    _: *const crate::vk::AllocationCallbacks<'_>,
+                    _: vk::Device,
+                    _: vk::DeferredOperationKHR,
+                    _: *const vk::AllocationCallbacks<'_>,
                 ) {
                     panic!("unable to load vkDestroyDeferredOperationKHR")
                 }
@@ -65,8 +67,8 @@ impl DeviceFn {
             },
             get_deferred_operation_max_concurrency: unsafe {
                 unsafe extern "system" fn get_deferred_operation_max_concurrency(
-                    _: crate::vk::Device,
-                    _: crate::vk::DeferredOperationKHR,
+                    _: vk::Device,
+                    _: vk::DeferredOperationKHR,
                 ) -> u32 {
                     panic!("unable to load vkGetDeferredOperationMaxConcurrencyKHR")
                 }
@@ -79,9 +81,9 @@ impl DeviceFn {
             },
             get_deferred_operation_result: unsafe {
                 unsafe extern "system" fn get_deferred_operation_result(
-                    _: crate::vk::Device,
-                    _: crate::vk::DeferredOperationKHR,
-                ) -> crate::vk::Result {
+                    _: vk::Device,
+                    _: vk::DeferredOperationKHR,
+                ) -> vk::Result {
                     panic!("unable to load vkGetDeferredOperationResultKHR")
                 }
                 let val = _f(c"vkGetDeferredOperationResultKHR");
@@ -93,9 +95,9 @@ impl DeviceFn {
             },
             deferred_operation_join: unsafe {
                 unsafe extern "system" fn deferred_operation_join(
-                    _: crate::vk::Device,
-                    _: crate::vk::DeferredOperationKHR,
-                ) -> crate::vk::Result {
+                    _: vk::Device,
+                    _: vk::DeferredOperationKHR,
+                ) -> vk::Result {
                     panic!("unable to load vkDeferredOperationJoinKHR")
                 }
                 let val = _f(c"vkDeferredOperationJoinKHR");
@@ -133,8 +135,8 @@ impl Device {
     #[inline]
     pub unsafe fn create_deferred_operation(
         &self,
-        allocator: Option<&crate::vk::AllocationCallbacks<'_>>,
-    ) -> crate::VkResult<crate::vk::DeferredOperationKHR> {
+        allocator: Option<&vk::AllocationCallbacks<'_>>,
+    ) -> VkResult<vk::DeferredOperationKHR> {
         let mut deferred_operation = core::mem::MaybeUninit::uninit();
         (self
             .fp
@@ -152,8 +154,8 @@ impl Device {
     #[inline]
     pub unsafe fn destroy_deferred_operation(
         &self,
-        operation: crate::vk::DeferredOperationKHR,
-        allocator: Option<&crate::vk::AllocationCallbacks<'_>>,
+        operation: vk::DeferredOperationKHR,
+        allocator: Option<&vk::AllocationCallbacks<'_>>,
     ) {
         (self
             .fp
@@ -170,7 +172,7 @@ impl Device {
     #[inline]
     pub unsafe fn get_deferred_operation_max_concurrency(
         &self,
-        operation: crate::vk::DeferredOperationKHR,
+        operation: vk::DeferredOperationKHR,
     ) -> u32 {
         (self.fp.get_deferred_operation_max_concurrency)(self.handle, operation)
     }
@@ -178,27 +180,30 @@ impl Device {
     #[inline]
     pub unsafe fn get_deferred_operation_result(
         &self,
-        operation: crate::vk::DeferredOperationKHR,
-    ) -> crate::VkResult<()> {
+        operation: vk::DeferredOperationKHR,
+    ) -> VkResult<()> {
         (self.fp.get_deferred_operation_result)(self.handle, operation).result()
     }
     ///vkDeferredOperationJoinKHR
     #[inline]
     pub unsafe fn deferred_operation_join(
         &self,
-        operation: crate::vk::DeferredOperationKHR,
-    ) -> crate::VkResult<()> {
+        operation: vk::DeferredOperationKHR,
+    ) -> VkResult<()> {
         (self.fp.deferred_operation_join)(self.handle, operation).result()
     }
 }
-pub const SPEC_VERSION: u32 = 4;
-pub const NAME: &core::ffi::CStr = c"VK_KHR_deferred_host_operations";
 pub(crate) mod items {
+    use crate::vk;
+    use crate::Handle;
+    use core::fmt;
+    #[cfg(feature = "debug")]
+    use core::fmt as fmtdebug;
     #[repr(transparent)]
     #[derive(Eq, PartialEq, Ord, PartialOrd, Clone, Copy, Hash, Default)]
     pub struct DeferredOperationKHR(u64);
-    impl crate::Handle for DeferredOperationKHR {
-        const TYPE: crate::vk::ObjectType = crate::vk::ObjectType::DEFERRED_OPERATION_KHR;
+    impl Handle for DeferredOperationKHR {
+        const TYPE: vk::ObjectType = vk::ObjectType::DEFERRED_OPERATION_KHR;
         fn as_raw(self) -> u64 {
             self.0
         }
@@ -211,37 +216,38 @@ pub(crate) mod items {
             Self(0)
         }
     }
-    impl core::fmt::Pointer for DeferredOperationKHR {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+    impl fmt::Pointer for DeferredOperationKHR {
+        fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
             write!(f, "0x{:x}", self.0)
         }
     }
-    impl core::fmt::Debug for DeferredOperationKHR {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+    #[cfg(feature = "debug")]
+    impl fmtdebug::Debug for DeferredOperationKHR {
+        fn fmt(&self, f: &mut fmtdebug::Formatter) -> fmtdebug::Result {
             write!(f, "0x{:x}", self.0)
         }
     }
     pub type PFN_vkCreateDeferredOperationKHR = unsafe extern "system" fn(
-        device: crate::vk::Device,
-        p_allocator: *const crate::vk::AllocationCallbacks<'_>,
-        p_deferred_operation: *mut crate::vk::DeferredOperationKHR,
-    ) -> crate::vk::Result;
+        device: vk::Device,
+        p_allocator: *const vk::AllocationCallbacks<'_>,
+        p_deferred_operation: *mut vk::DeferredOperationKHR,
+    ) -> vk::Result;
     pub type PFN_vkDestroyDeferredOperationKHR = unsafe extern "system" fn(
-        device: crate::vk::Device,
-        operation: crate::vk::DeferredOperationKHR,
-        p_allocator: *const crate::vk::AllocationCallbacks<'_>,
+        device: vk::Device,
+        operation: vk::DeferredOperationKHR,
+        p_allocator: *const vk::AllocationCallbacks<'_>,
     );
     pub type PFN_vkGetDeferredOperationMaxConcurrencyKHR = unsafe extern "system" fn(
-        device: crate::vk::Device,
-        operation: crate::vk::DeferredOperationKHR,
+        device: vk::Device,
+        operation: vk::DeferredOperationKHR,
     ) -> u32;
     pub type PFN_vkGetDeferredOperationResultKHR = unsafe extern "system" fn(
-        device: crate::vk::Device,
-        operation: crate::vk::DeferredOperationKHR,
-    ) -> crate::vk::Result;
+        device: vk::Device,
+        operation: vk::DeferredOperationKHR,
+    ) -> vk::Result;
     pub type PFN_vkDeferredOperationJoinKHR = unsafe extern "system" fn(
-        device: crate::vk::Device,
-        operation: crate::vk::DeferredOperationKHR,
-    ) -> crate::vk::Result;
+        device: vk::Device,
+        operation: vk::DeferredOperationKHR,
+    ) -> vk::Result;
 }
 pub use items::*;

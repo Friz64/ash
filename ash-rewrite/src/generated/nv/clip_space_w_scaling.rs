@@ -2,36 +2,37 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_NV_clip_space_w_scaling.html) · Extension `VK_NV_clip_space_w_scaling`
 #![doc(alias = "VK_NV_clip_space_w_scaling")]
+use crate::vk;
+use core::ffi::CStr;
+use core::ffi::c_void;
 ///Provided by [VK_NV_clip_space_w_scaling](crate::nv::clip_space_w_scaling)
-impl crate::vk::StructureType {
+impl vk::StructureType {
     pub const PIPELINE_VIEWPORT_W_SCALING_STATE_CREATE_INFO_NV: Self = Self(1000087000);
 }
 ///Provided by [VK_NV_clip_space_w_scaling](crate::nv::clip_space_w_scaling)
-impl crate::vk::DynamicState {
+impl vk::DynamicState {
     pub const VIEWPORT_W_SCALING_NV: Self = Self(1000087000);
 }
+pub const SPEC_VERSION: u32 = 1;
+pub const NAME: &CStr = c"VK_NV_clip_space_w_scaling";
 #[derive(Clone)]
 pub struct DeviceFn {
-    pub cmd_set_viewport_w_scaling: crate::vk::PFN_vkCmdSetViewportWScalingNV,
+    pub cmd_set_viewport_w_scaling: vk::PFN_vkCmdSetViewportWScalingNV,
 }
 unsafe impl Send for DeviceFn {}
 unsafe impl Sync for DeviceFn {}
 impl DeviceFn {
-    pub fn load<F: FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void>(
-        mut f: F,
-    ) -> Self {
+    pub fn load<F: FnMut(&CStr) -> *const c_void>(mut f: F) -> Self {
         Self::load_erased(&mut f)
     }
-    fn load_erased(
-        _f: &mut dyn FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void,
-    ) -> Self {
+    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const c_void) -> Self {
         Self {
             cmd_set_viewport_w_scaling: unsafe {
                 unsafe extern "system" fn cmd_set_viewport_w_scaling(
-                    _: crate::vk::CommandBuffer,
+                    _: vk::CommandBuffer,
                     _: u32,
                     _: u32,
-                    _: *const crate::vk::ViewportWScalingNV,
+                    _: *const vk::ViewportWScalingNV,
                 ) {
                     panic!("unable to load vkCmdSetViewportWScalingNV")
                 }
@@ -70,9 +71,9 @@ impl Device {
     #[inline]
     pub unsafe fn cmd_set_viewport_w_scaling(
         &self,
-        command_buffer: crate::vk::CommandBuffer,
+        command_buffer: vk::CommandBuffer,
         first_viewport: u32,
-        viewport_w_scalings: &[crate::vk::ViewportWScalingNV],
+        viewport_w_scalings: &[vk::ViewportWScalingNV],
     ) {
         (self
             .fp
@@ -84,9 +85,9 @@ impl Device {
         )
     }
 }
-pub const SPEC_VERSION: u32 = 1;
-pub const NAME: &core::ffi::CStr = c"VK_NV_clip_space_w_scaling";
 pub(crate) mod items {
+    use core::marker::PhantomData;
+    use crate::vk;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy, Default)]
@@ -110,20 +111,20 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct PipelineViewportWScalingStateCreateInfoNV<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *const core::ffi::c_void,
-        pub viewport_w_scaling_enable: crate::vk::Bool32,
+        pub viewport_w_scaling_enable: vk::Bool32,
         pub viewport_count: u32,
-        pub p_viewport_w_scalings: *const crate::vk::ViewportWScalingNV,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub p_viewport_w_scalings: *const vk::ViewportWScalingNV,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for PipelineViewportWScalingStateCreateInfoNV<'_> {}
     unsafe impl Sync for PipelineViewportWScalingStateCreateInfoNV<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PipelineViewportWScalingStateCreateInfoNV<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PIPELINE_VIEWPORT_W_SCALING_STATE_CREATE_INFO_NV;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PIPELINE_VIEWPORT_W_SCALING_STATE_CREATE_INFO_NV;
     }
-    unsafe impl<'a> crate::Extends<crate::vk::PipelineViewportStateCreateInfo<'_>>
+    unsafe impl<'a> crate::Extends<vk::PipelineViewportStateCreateInfo<'_>>
     for PipelineViewportWScalingStateCreateInfoNV<'a> {}
     impl<'a> Default for PipelineViewportWScalingStateCreateInfoNV<'a> {
         fn default() -> Self {
@@ -133,7 +134,7 @@ pub(crate) mod items {
                 viewport_w_scaling_enable: Default::default(),
                 viewport_count: Default::default(),
                 p_viewport_w_scalings: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
@@ -147,7 +148,7 @@ pub(crate) mod items {
         }
         pub fn viewport_w_scalings(
             mut self,
-            viewport_w_scalings: &'a [crate::vk::ViewportWScalingNV],
+            viewport_w_scalings: &'a [vk::ViewportWScalingNV],
         ) -> Self {
             self.viewport_count = viewport_w_scalings.len() as _;
             self.p_viewport_w_scalings = viewport_w_scalings.as_ptr();
@@ -155,10 +156,10 @@ pub(crate) mod items {
         }
     }
     pub type PFN_vkCmdSetViewportWScalingNV = unsafe extern "system" fn(
-        command_buffer: crate::vk::CommandBuffer,
+        command_buffer: vk::CommandBuffer,
         first_viewport: u32,
         viewport_count: u32,
-        p_viewport_w_scalings: *const crate::vk::ViewportWScalingNV,
+        p_viewport_w_scalings: *const vk::ViewportWScalingNV,
     );
 }
 pub use items::*;

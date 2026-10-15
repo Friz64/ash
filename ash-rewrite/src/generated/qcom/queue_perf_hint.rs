@@ -2,8 +2,12 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_QCOM_queue_perf_hint.html) · Extension `VK_QCOM_queue_perf_hint`
 #![doc(alias = "VK_QCOM_queue_perf_hint")]
+use crate::vk;
+use core::ffi::CStr;
+use crate::VkResult;
+use core::ffi::c_void;
 ///Provided by [VK_QCOM_queue_perf_hint](crate::qcom::queue_perf_hint)
-impl crate::vk::StructureType {
+impl vk::StructureType {
     pub const PERF_HINT_INFO_QCOM: Self = Self(1000302000);
     pub const PHYSICAL_DEVICE_QUEUE_PERF_HINT_FEATURES_QCOM: Self = Self(1000302001);
     pub const PHYSICAL_DEVICE_QUEUE_PERF_HINT_PROPERTIES_QCOM: Self = Self(1000302002);
@@ -15,27 +19,25 @@ impl PerfHintTypeQCOM {
     pub const FREQUENCY_MAX: Self = Self(2);
     pub const FREQUENCY_SCALED: Self = Self(3);
 }
+pub const SPEC_VERSION: u32 = 1;
+pub const NAME: &CStr = c"VK_QCOM_queue_perf_hint";
 #[derive(Clone)]
 pub struct DeviceFn {
-    pub queue_set_perf_hint: crate::vk::PFN_vkQueueSetPerfHintQCOM,
+    pub queue_set_perf_hint: vk::PFN_vkQueueSetPerfHintQCOM,
 }
 unsafe impl Send for DeviceFn {}
 unsafe impl Sync for DeviceFn {}
 impl DeviceFn {
-    pub fn load<F: FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void>(
-        mut f: F,
-    ) -> Self {
+    pub fn load<F: FnMut(&CStr) -> *const c_void>(mut f: F) -> Self {
         Self::load_erased(&mut f)
     }
-    fn load_erased(
-        _f: &mut dyn FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void,
-    ) -> Self {
+    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const c_void) -> Self {
         Self {
             queue_set_perf_hint: unsafe {
                 unsafe extern "system" fn queue_set_perf_hint(
-                    _: crate::vk::Queue,
-                    _: *const crate::vk::PerfHintInfoQCOM<'_>,
-                ) -> crate::vk::Result {
+                    _: vk::Queue,
+                    _: *const vk::PerfHintInfoQCOM<'_>,
+                ) -> vk::Result {
                     panic!("unable to load vkQueueSetPerfHintQCOM")
                 }
                 let val = _f(c"vkQueueSetPerfHintQCOM");
@@ -73,29 +75,29 @@ impl Device {
     #[inline]
     pub unsafe fn queue_set_perf_hint(
         &self,
-        queue: crate::vk::Queue,
-        perf_hint_info: &crate::vk::PerfHintInfoQCOM<'_>,
-    ) -> crate::VkResult<()> {
+        queue: vk::Queue,
+        perf_hint_info: &vk::PerfHintInfoQCOM<'_>,
+    ) -> VkResult<()> {
         (self.fp.queue_set_perf_hint)(queue, perf_hint_info).result()
     }
 }
-pub const SPEC_VERSION: u32 = 1;
-pub const NAME: &core::ffi::CStr = c"VK_QCOM_queue_perf_hint";
 pub(crate) mod items {
+    use core::marker::PhantomData;
+    use crate::vk;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct PerfHintInfoQCOM<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
-        pub ty: crate::vk::PerfHintTypeQCOM,
+        pub ty: vk::PerfHintTypeQCOM,
         pub scale: u32,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for PerfHintInfoQCOM<'_> {}
     unsafe impl Sync for PerfHintInfoQCOM<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for PerfHintInfoQCOM<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PERF_HINT_INFO_QCOM;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PERF_HINT_INFO_QCOM;
     }
     impl<'a> Default for PerfHintInfoQCOM<'a> {
         fn default() -> Self {
@@ -104,12 +106,12 @@ pub(crate) mod items {
                 p_next: Default::default(),
                 ty: Default::default(),
                 scale: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
     impl<'a> PerfHintInfoQCOM<'a> {
-        pub fn ty(mut self, ty: crate::vk::PerfHintTypeQCOM) -> Self {
+        pub fn ty(mut self, ty: vk::PerfHintTypeQCOM) -> Self {
             self.ty = ty;
             self
         }
@@ -122,20 +124,20 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceQueuePerfHintFeaturesQCOM<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
-        pub queue_perf_hint: crate::vk::Bool32,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub queue_perf_hint: vk::Bool32,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for PhysicalDeviceQueuePerfHintFeaturesQCOM<'_> {}
     unsafe impl Sync for PhysicalDeviceQueuePerfHintFeaturesQCOM<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceQueuePerfHintFeaturesQCOM<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_QUEUE_PERF_HINT_FEATURES_QCOM;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PHYSICAL_DEVICE_QUEUE_PERF_HINT_FEATURES_QCOM;
     }
-    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+    unsafe impl<'a> crate::Extends<vk::PhysicalDeviceFeatures2<'_>>
     for PhysicalDeviceQueuePerfHintFeaturesQCOM<'a> {}
-    unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+    unsafe impl<'a> crate::Extends<vk::DeviceCreateInfo<'_>>
     for PhysicalDeviceQueuePerfHintFeaturesQCOM<'a> {}
     impl<'a> Default for PhysicalDeviceQueuePerfHintFeaturesQCOM<'a> {
         fn default() -> Self {
@@ -143,7 +145,7 @@ pub(crate) mod items {
                 s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
                 p_next: Default::default(),
                 queue_perf_hint: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
@@ -157,18 +159,18 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceQueuePerfHintPropertiesQCOM<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
-        pub supported_queues: crate::vk::QueueFlags,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub supported_queues: vk::QueueFlags,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for PhysicalDeviceQueuePerfHintPropertiesQCOM<'_> {}
     unsafe impl Sync for PhysicalDeviceQueuePerfHintPropertiesQCOM<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceQueuePerfHintPropertiesQCOM<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_QUEUE_PERF_HINT_PROPERTIES_QCOM;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PHYSICAL_DEVICE_QUEUE_PERF_HINT_PROPERTIES_QCOM;
     }
-    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceProperties2<'_>>
+    unsafe impl<'a> crate::Extends<vk::PhysicalDeviceProperties2<'_>>
     for PhysicalDeviceQueuePerfHintPropertiesQCOM<'a> {}
     impl<'a> Default for PhysicalDeviceQueuePerfHintPropertiesQCOM<'a> {
         fn default() -> Self {
@@ -176,15 +178,12 @@ pub(crate) mod items {
                 s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
                 p_next: Default::default(),
                 supported_queues: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
     impl<'a> PhysicalDeviceQueuePerfHintPropertiesQCOM<'a> {
-        pub fn supported_queues(
-            mut self,
-            supported_queues: crate::vk::QueueFlags,
-        ) -> Self {
+        pub fn supported_queues(mut self, supported_queues: vk::QueueFlags) -> Self {
             self.supported_queues = supported_queues;
             self
         }
@@ -219,8 +218,8 @@ pub(crate) mod items {
         }
     }
     pub type PFN_vkQueueSetPerfHintQCOM = unsafe extern "system" fn(
-        queue: crate::vk::Queue,
-        p_perf_hint_info: *const crate::vk::PerfHintInfoQCOM<'_>,
-    ) -> crate::vk::Result;
+        queue: vk::Queue,
+        p_perf_hint_info: *const vk::PerfHintInfoQCOM<'_>,
+    ) -> vk::Result;
 }
 pub use items::*;

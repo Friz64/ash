@@ -2,8 +2,12 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_device_group.html) · Extension `VK_KHR_device_group`
 #![doc(alias = "VK_KHR_device_group")]
+use crate::vk;
+use core::ffi::CStr;
+use crate::VkResult;
+use core::ffi::c_void;
 ///Provided by [VK_KHR_device_group](crate::khr::device_group)
-impl crate::vk::StructureType {
+impl vk::StructureType {
     pub const MEMORY_ALLOCATE_FLAGS_INFO_KHR: Self = Self::MEMORY_ALLOCATE_FLAGS_INFO;
     pub const DEVICE_GROUP_RENDER_PASS_BEGIN_INFO_KHR: Self = Self::DEVICE_GROUP_RENDER_PASS_BEGIN_INFO;
     pub const DEVICE_GROUP_COMMAND_BUFFER_BEGIN_INFO_KHR: Self = Self::DEVICE_GROUP_COMMAND_BUFFER_BEGIN_INFO;
@@ -12,98 +16,90 @@ impl crate::vk::StructureType {
     pub const BIND_BUFFER_MEMORY_DEVICE_GROUP_INFO_KHR: Self = Self::BIND_BUFFER_MEMORY_DEVICE_GROUP_INFO;
     pub const BIND_IMAGE_MEMORY_DEVICE_GROUP_INFO_KHR: Self = Self::BIND_IMAGE_MEMORY_DEVICE_GROUP_INFO;
 }
-///Provided by [VK_KHR_device_group](crate::khr::device_group)
-impl crate::vk::ImageCreateFlags {
+///Provided by [Vulkan 1.0](crate::vk1_0)
+impl vk::ImageCreateFlags {
     pub const SPLIT_INSTANCE_BIND_REGIONS_KHR: Self = Self(
-        crate::vk::ImageCreateFlagBits::SPLIT_INSTANCE_BIND_REGIONS_KHR.0,
+        vk::ImageCreateFlagBits::SPLIT_INSTANCE_BIND_REGIONS_KHR.0,
     );
 }
-///Provided by [VK_KHR_device_group](crate::khr::device_group)
-impl crate::vk::ImageCreateFlagBits {
+///Provided by [Vulkan 1.0](crate::vk1_0)
+impl vk::ImageCreateFlagBits {
     pub const SPLIT_INSTANCE_BIND_REGIONS_KHR: Self = Self::SPLIT_INSTANCE_BIND_REGIONS;
 }
-///Provided by [VK_KHR_device_group](crate::khr::device_group)
-impl crate::vk::PipelineCreateFlags {
+///Provided by [Vulkan 1.0](crate::vk1_0)
+impl vk::PipelineCreateFlags {
     pub const VIEW_INDEX_FROM_DEVICE_INDEX_KHR: Self = Self(
-        crate::vk::PipelineCreateFlagBits::VIEW_INDEX_FROM_DEVICE_INDEX_KHR.0,
+        vk::PipelineCreateFlagBits::VIEW_INDEX_FROM_DEVICE_INDEX_KHR.0,
     );
     pub const DISPATCH_BASE_KHR: Self = Self(
-        crate::vk::PipelineCreateFlagBits::DISPATCH_BASE_KHR.0,
+        vk::PipelineCreateFlagBits::DISPATCH_BASE_KHR.0,
     );
 }
-///Provided by [VK_KHR_device_group](crate::khr::device_group)
-impl crate::vk::PipelineCreateFlagBits {
+///Provided by [Vulkan 1.0](crate::vk1_0)
+impl vk::PipelineCreateFlagBits {
     pub const VIEW_INDEX_FROM_DEVICE_INDEX_KHR: Self = Self::VIEW_INDEX_FROM_DEVICE_INDEX;
     pub const DISPATCH_BASE_KHR: Self = Self::DISPATCH_BASE;
 }
-///Provided by [VK_KHR_device_group](crate::khr::device_group)
-impl crate::vk::DependencyFlags {
-    pub const DEVICE_GROUP_KHR: Self = Self(
-        crate::vk::DependencyFlagBits::DEVICE_GROUP_KHR.0,
-    );
+///Provided by [Vulkan 1.0](crate::vk1_0)
+impl vk::DependencyFlags {
+    pub const DEVICE_GROUP_KHR: Self = Self(vk::DependencyFlagBits::DEVICE_GROUP_KHR.0);
 }
-///Provided by [VK_KHR_device_group](crate::khr::device_group)
-impl crate::vk::DependencyFlagBits {
+///Provided by [Vulkan 1.0](crate::vk1_0)
+impl vk::DependencyFlagBits {
     pub const DEVICE_GROUP_KHR: Self = Self::DEVICE_GROUP;
 }
-///Provided by [VK_KHR_device_group](crate::khr::device_group)
-impl crate::vk::PeerMemoryFeatureFlags {
-    pub const COPY_SRC_KHR: Self = Self(
-        crate::vk::PeerMemoryFeatureFlagBits::COPY_SRC_KHR.0,
-    );
-    pub const COPY_DST_KHR: Self = Self(
-        crate::vk::PeerMemoryFeatureFlagBits::COPY_DST_KHR.0,
-    );
+///Provided by [Vulkan 1.1](crate::vk1_1)
+impl vk::PeerMemoryFeatureFlags {
+    pub const COPY_SRC_KHR: Self = Self(vk::PeerMemoryFeatureFlagBits::COPY_SRC_KHR.0);
+    pub const COPY_DST_KHR: Self = Self(vk::PeerMemoryFeatureFlagBits::COPY_DST_KHR.0);
     pub const GENERIC_SRC_KHR: Self = Self(
-        crate::vk::PeerMemoryFeatureFlagBits::GENERIC_SRC_KHR.0,
+        vk::PeerMemoryFeatureFlagBits::GENERIC_SRC_KHR.0,
     );
     pub const GENERIC_DST_KHR: Self = Self(
-        crate::vk::PeerMemoryFeatureFlagBits::GENERIC_DST_KHR.0,
+        vk::PeerMemoryFeatureFlagBits::GENERIC_DST_KHR.0,
     );
 }
-///Provided by [VK_KHR_device_group](crate::khr::device_group)
-impl crate::vk::PeerMemoryFeatureFlagBits {
+///Provided by [Vulkan 1.1](crate::vk1_1)
+impl vk::PeerMemoryFeatureFlagBits {
     pub const COPY_SRC_KHR: Self = Self::COPY_SRC;
     pub const COPY_DST_KHR: Self = Self::COPY_DST;
     pub const GENERIC_SRC_KHR: Self = Self::GENERIC_SRC;
     pub const GENERIC_DST_KHR: Self = Self::GENERIC_DST;
 }
-///Provided by [VK_KHR_device_group](crate::khr::device_group)
-impl crate::vk::MemoryAllocateFlags {
+///Provided by [Vulkan 1.1](crate::vk1_1)
+impl vk::MemoryAllocateFlags {
     pub const DEVICE_MASK_KHR: Self = Self(
-        crate::vk::MemoryAllocateFlagBits::DEVICE_MASK_KHR.0,
+        vk::MemoryAllocateFlagBits::DEVICE_MASK_KHR.0,
     );
 }
-///Provided by [VK_KHR_device_group](crate::khr::device_group)
-impl crate::vk::MemoryAllocateFlagBits {
+///Provided by [Vulkan 1.1](crate::vk1_1)
+impl vk::MemoryAllocateFlagBits {
     pub const DEVICE_MASK_KHR: Self = Self::DEVICE_MASK;
 }
+pub const SPEC_VERSION: u32 = 4;
+pub const NAME: &CStr = c"VK_KHR_device_group";
 #[derive(Clone)]
 pub struct DeviceFn {
-    pub get_device_group_present_capabilities: crate::vk::PFN_vkGetDeviceGroupPresentCapabilitiesKHR,
-    pub get_device_group_surface_present_modes: crate::vk::PFN_vkGetDeviceGroupSurfacePresentModesKHR,
-    pub acquire_next_image2: crate::vk::PFN_vkAcquireNextImage2KHR,
-    pub get_device_group_peer_memory_features: crate::vk::PFN_vkGetDeviceGroupPeerMemoryFeaturesKHR,
-    pub cmd_set_device_mask: crate::vk::PFN_vkCmdSetDeviceMaskKHR,
-    pub cmd_dispatch_base: crate::vk::PFN_vkCmdDispatchBaseKHR,
+    pub get_device_group_present_capabilities: vk::PFN_vkGetDeviceGroupPresentCapabilitiesKHR,
+    pub get_device_group_surface_present_modes: vk::PFN_vkGetDeviceGroupSurfacePresentModesKHR,
+    pub acquire_next_image2: vk::PFN_vkAcquireNextImage2KHR,
+    pub get_device_group_peer_memory_features: vk::PFN_vkGetDeviceGroupPeerMemoryFeaturesKHR,
+    pub cmd_set_device_mask: vk::PFN_vkCmdSetDeviceMaskKHR,
+    pub cmd_dispatch_base: vk::PFN_vkCmdDispatchBaseKHR,
 }
 unsafe impl Send for DeviceFn {}
 unsafe impl Sync for DeviceFn {}
 impl DeviceFn {
-    pub fn load<F: FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void>(
-        mut f: F,
-    ) -> Self {
+    pub fn load<F: FnMut(&CStr) -> *const c_void>(mut f: F) -> Self {
         Self::load_erased(&mut f)
     }
-    fn load_erased(
-        _f: &mut dyn FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void,
-    ) -> Self {
+    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const c_void) -> Self {
         Self {
             get_device_group_present_capabilities: unsafe {
                 unsafe extern "system" fn get_device_group_present_capabilities(
-                    _: crate::vk::Device,
-                    _: *mut crate::vk::DeviceGroupPresentCapabilitiesKHR<'_>,
-                ) -> crate::vk::Result {
+                    _: vk::Device,
+                    _: *mut vk::DeviceGroupPresentCapabilitiesKHR<'_>,
+                ) -> vk::Result {
                     panic!("unable to load vkGetDeviceGroupPresentCapabilitiesKHR")
                 }
                 let val = _f(c"vkGetDeviceGroupPresentCapabilitiesKHR");
@@ -115,10 +111,10 @@ impl DeviceFn {
             },
             get_device_group_surface_present_modes: unsafe {
                 unsafe extern "system" fn get_device_group_surface_present_modes(
-                    _: crate::vk::Device,
-                    _: crate::vk::SurfaceKHR,
-                    _: *mut crate::vk::DeviceGroupPresentModeFlagsKHR,
-                ) -> crate::vk::Result {
+                    _: vk::Device,
+                    _: vk::SurfaceKHR,
+                    _: *mut vk::DeviceGroupPresentModeFlagsKHR,
+                ) -> vk::Result {
                     panic!("unable to load vkGetDeviceGroupSurfacePresentModesKHR")
                 }
                 let val = _f(c"vkGetDeviceGroupSurfacePresentModesKHR");
@@ -130,10 +126,10 @@ impl DeviceFn {
             },
             acquire_next_image2: unsafe {
                 unsafe extern "system" fn acquire_next_image2(
-                    _: crate::vk::Device,
-                    _: *const crate::vk::AcquireNextImageInfoKHR<'_>,
+                    _: vk::Device,
+                    _: *const vk::AcquireNextImageInfoKHR<'_>,
                     _: *mut u32,
-                ) -> crate::vk::Result {
+                ) -> vk::Result {
                     panic!("unable to load vkAcquireNextImage2KHR")
                 }
                 let val = _f(c"vkAcquireNextImage2KHR");
@@ -145,11 +141,11 @@ impl DeviceFn {
             },
             get_device_group_peer_memory_features: unsafe {
                 unsafe extern "system" fn get_device_group_peer_memory_features(
-                    _: crate::vk::Device,
+                    _: vk::Device,
                     _: u32,
                     _: u32,
                     _: u32,
-                    _: *mut crate::vk::PeerMemoryFeatureFlags,
+                    _: *mut vk::PeerMemoryFeatureFlags,
                 ) {
                     panic!("unable to load vkGetDeviceGroupPeerMemoryFeaturesKHR")
                 }
@@ -162,7 +158,7 @@ impl DeviceFn {
             },
             cmd_set_device_mask: unsafe {
                 unsafe extern "system" fn cmd_set_device_mask(
-                    _: crate::vk::CommandBuffer,
+                    _: vk::CommandBuffer,
                     _: u32,
                 ) {
                     panic!("unable to load vkCmdSetDeviceMaskKHR")
@@ -176,7 +172,7 @@ impl DeviceFn {
             },
             cmd_dispatch_base: unsafe {
                 unsafe extern "system" fn cmd_dispatch_base(
-                    _: crate::vk::CommandBuffer,
+                    _: vk::CommandBuffer,
                     _: u32,
                     _: u32,
                     _: u32,
@@ -221,7 +217,7 @@ impl Device {
     #[inline]
     pub unsafe fn get_device_group_present_capabilities(
         &self,
-    ) -> crate::VkResult<crate::vk::DeviceGroupPresentCapabilitiesKHR<'_>> {
+    ) -> VkResult<vk::DeviceGroupPresentCapabilitiesKHR<'_>> {
         let mut device_group_present_capabilities = core::mem::MaybeUninit::uninit();
         (self
             .fp
@@ -235,8 +231,8 @@ impl Device {
     #[inline]
     pub unsafe fn get_device_group_surface_present_modes(
         &self,
-        surface: crate::vk::SurfaceKHR,
-    ) -> crate::VkResult<crate::vk::DeviceGroupPresentModeFlagsKHR> {
+        surface: vk::SurfaceKHR,
+    ) -> VkResult<vk::DeviceGroupPresentModeFlagsKHR> {
         let mut modes = core::mem::MaybeUninit::uninit();
         (self
             .fp
@@ -251,8 +247,8 @@ impl Device {
     #[inline]
     pub unsafe fn acquire_next_image2(
         &self,
-        acquire_info: &crate::vk::AcquireNextImageInfoKHR<'_>,
-    ) -> crate::VkResult<u32> {
+        acquire_info: &vk::AcquireNextImageInfoKHR<'_>,
+    ) -> VkResult<u32> {
         let mut image_index = core::mem::MaybeUninit::uninit();
         (self
             .fp
@@ -266,7 +262,7 @@ impl Device {
         heap_index: u32,
         local_device_index: u32,
         remote_device_index: u32,
-    ) -> crate::vk::PeerMemoryFeatureFlags {
+    ) -> vk::PeerMemoryFeatureFlags {
         let mut peer_memory_features = core::mem::MaybeUninit::uninit();
         (self
             .fp
@@ -283,7 +279,7 @@ impl Device {
     #[inline]
     pub unsafe fn cmd_set_device_mask(
         &self,
-        command_buffer: crate::vk::CommandBuffer,
+        command_buffer: vk::CommandBuffer,
         device_mask: u32,
     ) {
         (self.fp.cmd_set_device_mask)(command_buffer, device_mask)
@@ -292,7 +288,7 @@ impl Device {
     #[inline]
     pub unsafe fn cmd_dispatch_base(
         &self,
-        command_buffer: crate::vk::CommandBuffer,
+        command_buffer: vk::CommandBuffer,
         base_group_x: u32,
         base_group_y: u32,
         base_group_z: u32,
@@ -315,27 +311,23 @@ impl Device {
 }
 #[derive(Clone)]
 pub struct InstanceFn {
-    pub get_physical_device_present_rectangles: crate::vk::PFN_vkGetPhysicalDevicePresentRectanglesKHR,
+    pub get_physical_device_present_rectangles: vk::PFN_vkGetPhysicalDevicePresentRectanglesKHR,
 }
 unsafe impl Send for InstanceFn {}
 unsafe impl Sync for InstanceFn {}
 impl InstanceFn {
-    pub fn load<F: FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void>(
-        mut f: F,
-    ) -> Self {
+    pub fn load<F: FnMut(&CStr) -> *const c_void>(mut f: F) -> Self {
         Self::load_erased(&mut f)
     }
-    fn load_erased(
-        _f: &mut dyn FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void,
-    ) -> Self {
+    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const c_void) -> Self {
         Self {
             get_physical_device_present_rectangles: unsafe {
                 unsafe extern "system" fn get_physical_device_present_rectangles(
-                    _: crate::vk::PhysicalDevice,
-                    _: crate::vk::SurfaceKHR,
+                    _: vk::PhysicalDevice,
+                    _: vk::SurfaceKHR,
                     _: *mut u32,
-                    _: *mut crate::vk::Rect2D,
-                ) -> crate::vk::Result {
+                    _: *mut vk::Rect2D,
+                ) -> vk::Result {
                     panic!("unable to load vkGetPhysicalDevicePresentRectanglesKHR")
                 }
                 let val = _f(c"vkGetPhysicalDevicePresentRectanglesKHR");
@@ -373,9 +365,9 @@ impl Instance {
     #[inline]
     pub unsafe fn get_physical_device_present_rectangles(
         &self,
-        physical_device: crate::vk::PhysicalDevice,
-        surface: crate::vk::SurfaceKHR,
-    ) -> crate::VkResult<Vec<crate::vk::Rect2D>> {
+        physical_device: vk::PhysicalDevice,
+        surface: vk::SurfaceKHR,
+    ) -> crate::VkResult<Vec<vk::Rect2D>> {
         crate::read_into_uninitialized_vector(|rect_count, rects| (self
             .fp
             .get_physical_device_present_rectangles)(
@@ -386,30 +378,29 @@ impl Instance {
         ))
     }
 }
-pub const SPEC_VERSION: u32 = 4;
-pub const NAME: &core::ffi::CStr = c"VK_KHR_device_group";
 pub(crate) mod items {
-    pub type MemoryAllocateFlagsInfoKHR<'a> = crate::vk::MemoryAllocateFlagsInfo<'a>;
-    pub type BindBufferMemoryDeviceGroupInfoKHR<'a> = crate::vk::BindBufferMemoryDeviceGroupInfo<
+    use crate::vk;
+    pub type MemoryAllocateFlagsInfoKHR<'a> = vk::MemoryAllocateFlagsInfo<'a>;
+    pub type BindBufferMemoryDeviceGroupInfoKHR<'a> = vk::BindBufferMemoryDeviceGroupInfo<
         'a,
     >;
-    pub type BindImageMemoryDeviceGroupInfoKHR<'a> = crate::vk::BindImageMemoryDeviceGroupInfo<
+    pub type BindImageMemoryDeviceGroupInfoKHR<'a> = vk::BindImageMemoryDeviceGroupInfo<
         'a,
     >;
-    pub type DeviceGroupRenderPassBeginInfoKHR<'a> = crate::vk::DeviceGroupRenderPassBeginInfo<
+    pub type DeviceGroupRenderPassBeginInfoKHR<'a> = vk::DeviceGroupRenderPassBeginInfo<
         'a,
     >;
-    pub type DeviceGroupCommandBufferBeginInfoKHR<'a> = crate::vk::DeviceGroupCommandBufferBeginInfo<
+    pub type DeviceGroupCommandBufferBeginInfoKHR<'a> = vk::DeviceGroupCommandBufferBeginInfo<
         'a,
     >;
-    pub type DeviceGroupSubmitInfoKHR<'a> = crate::vk::DeviceGroupSubmitInfo<'a>;
-    pub type DeviceGroupBindSparseInfoKHR<'a> = crate::vk::DeviceGroupBindSparseInfo<'a>;
-    pub type PeerMemoryFeatureFlagBitsKHR = crate::vk::PeerMemoryFeatureFlagBits;
-    pub type MemoryAllocateFlagBitsKHR = crate::vk::MemoryAllocateFlagBits;
-    pub type PeerMemoryFeatureFlagsKHR = crate::vk::PeerMemoryFeatureFlags;
-    pub type MemoryAllocateFlagsKHR = crate::vk::MemoryAllocateFlags;
-    pub type PFN_vkGetDeviceGroupPeerMemoryFeaturesKHR = crate::vk::PFN_vkGetDeviceGroupPeerMemoryFeatures;
-    pub type PFN_vkCmdSetDeviceMaskKHR = crate::vk::PFN_vkCmdSetDeviceMask;
-    pub type PFN_vkCmdDispatchBaseKHR = crate::vk::PFN_vkCmdDispatchBase;
+    pub type DeviceGroupSubmitInfoKHR<'a> = vk::DeviceGroupSubmitInfo<'a>;
+    pub type DeviceGroupBindSparseInfoKHR<'a> = vk::DeviceGroupBindSparseInfo<'a>;
+    pub type PeerMemoryFeatureFlagBitsKHR = vk::PeerMemoryFeatureFlagBits;
+    pub type MemoryAllocateFlagBitsKHR = vk::MemoryAllocateFlagBits;
+    pub type PeerMemoryFeatureFlagsKHR = vk::PeerMemoryFeatureFlags;
+    pub type MemoryAllocateFlagsKHR = vk::MemoryAllocateFlags;
+    pub type PFN_vkGetDeviceGroupPeerMemoryFeaturesKHR = vk::PFN_vkGetDeviceGroupPeerMemoryFeatures;
+    pub type PFN_vkCmdSetDeviceMaskKHR = vk::PFN_vkCmdSetDeviceMask;
+    pub type PFN_vkCmdDispatchBaseKHR = vk::PFN_vkCmdDispatchBase;
 }
 pub use items::*;

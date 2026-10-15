@@ -2,8 +2,10 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_validation_flags.html) · Extension `VK_EXT_validation_flags`
 #![doc(alias = "VK_EXT_validation_flags")]
+use crate::vk;
+use core::ffi::CStr;
 ///Provided by [VK_EXT_validation_flags](crate::ext::validation_flags)
-impl crate::vk::StructureType {
+impl vk::StructureType {
     pub const VALIDATION_FLAGS_EXT: Self = Self(1000061000);
 }
 ///Provided by [VK_EXT_validation_flags](crate::ext::validation_flags)
@@ -12,24 +14,26 @@ impl ValidationCheckEXT {
     pub const SHADERS: Self = Self(1);
 }
 pub const SPEC_VERSION: u32 = 3;
-pub const NAME: &core::ffi::CStr = c"VK_EXT_validation_flags";
+pub const NAME: &CStr = c"VK_EXT_validation_flags";
 pub(crate) mod items {
+    use core::marker::PhantomData;
+    use crate::vk;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct ValidationFlagsEXT<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *const core::ffi::c_void,
         pub disabled_validation_check_count: u32,
-        pub p_disabled_validation_checks: *const crate::vk::ValidationCheckEXT,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub p_disabled_validation_checks: *const vk::ValidationCheckEXT,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for ValidationFlagsEXT<'_> {}
     unsafe impl Sync for ValidationFlagsEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for ValidationFlagsEXT<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::VALIDATION_FLAGS_EXT;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::VALIDATION_FLAGS_EXT;
     }
-    unsafe impl<'a> crate::Extends<crate::vk::InstanceCreateInfo<'_>>
+    unsafe impl<'a> crate::Extends<vk::InstanceCreateInfo<'_>>
     for ValidationFlagsEXT<'a> {}
     impl<'a> Default for ValidationFlagsEXT<'a> {
         fn default() -> Self {
@@ -38,14 +42,14 @@ pub(crate) mod items {
                 p_next: Default::default(),
                 disabled_validation_check_count: Default::default(),
                 p_disabled_validation_checks: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
     impl<'a> ValidationFlagsEXT<'a> {
         pub fn disabled_validation_checks(
             mut self,
-            disabled_validation_checks: &'a [crate::vk::ValidationCheckEXT],
+            disabled_validation_checks: &'a [vk::ValidationCheckEXT],
         ) -> Self {
             self.disabled_validation_check_count = disabled_validation_checks.len() as _;
             self.p_disabled_validation_checks = disabled_validation_checks.as_ptr();

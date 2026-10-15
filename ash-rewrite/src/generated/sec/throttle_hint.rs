@@ -2,8 +2,10 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_SEC_throttle_hint.html) · Extension `VK_SEC_throttle_hint`
 #![doc(alias = "VK_SEC_throttle_hint")]
+use crate::vk;
+use core::ffi::CStr;
 ///Provided by [VK_SEC_throttle_hint](crate::sec::throttle_hint)
-impl crate::vk::StructureType {
+impl vk::StructureType {
     pub const PHYSICAL_DEVICE_THROTTLE_HINT_FEATURES_SEC: Self = Self(1000674000);
     pub const THROTTLE_HINT_SUBMIT_INFO_SEC: Self = Self(1000674001);
 }
@@ -14,26 +16,28 @@ impl ThrottleHintTypeSEC {
     pub const HIGH: Self = Self(2);
 }
 pub const SPEC_VERSION: u32 = 1;
-pub const NAME: &core::ffi::CStr = c"VK_SEC_throttle_hint";
+pub const NAME: &CStr = c"VK_SEC_throttle_hint";
 pub(crate) mod items {
+    use core::marker::PhantomData;
+    use crate::vk;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceThrottleHintFeaturesSEC<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
-        pub throttle_hint: crate::vk::Bool32,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub throttle_hint: vk::Bool32,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for PhysicalDeviceThrottleHintFeaturesSEC<'_> {}
     unsafe impl Sync for PhysicalDeviceThrottleHintFeaturesSEC<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceThrottleHintFeaturesSEC<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_THROTTLE_HINT_FEATURES_SEC;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PHYSICAL_DEVICE_THROTTLE_HINT_FEATURES_SEC;
     }
-    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+    unsafe impl<'a> crate::Extends<vk::PhysicalDeviceFeatures2<'_>>
     for PhysicalDeviceThrottleHintFeaturesSEC<'a> {}
-    unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+    unsafe impl<'a> crate::Extends<vk::DeviceCreateInfo<'_>>
     for PhysicalDeviceThrottleHintFeaturesSEC<'a> {}
     impl<'a> Default for PhysicalDeviceThrottleHintFeaturesSEC<'a> {
         fn default() -> Self {
@@ -41,7 +45,7 @@ pub(crate) mod items {
                 s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
                 p_next: Default::default(),
                 throttle_hint: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
@@ -55,17 +59,17 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct ThrottleHintSubmitInfoSEC<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *const core::ffi::c_void,
-        pub throttle_hint: crate::vk::ThrottleHintTypeSEC,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub throttle_hint: vk::ThrottleHintTypeSEC,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for ThrottleHintSubmitInfoSEC<'_> {}
     unsafe impl Sync for ThrottleHintSubmitInfoSEC<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for ThrottleHintSubmitInfoSEC<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::THROTTLE_HINT_SUBMIT_INFO_SEC;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::THROTTLE_HINT_SUBMIT_INFO_SEC;
     }
-    unsafe impl<'a> crate::Extends<crate::vk::SubmitInfo<'_>>
+    unsafe impl<'a> crate::Extends<vk::SubmitInfo<'_>>
     for ThrottleHintSubmitInfoSEC<'a> {}
     impl<'a> Default for ThrottleHintSubmitInfoSEC<'a> {
         fn default() -> Self {
@@ -73,15 +77,12 @@ pub(crate) mod items {
                 s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
                 p_next: Default::default(),
                 throttle_hint: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
     impl<'a> ThrottleHintSubmitInfoSEC<'a> {
-        pub fn throttle_hint(
-            mut self,
-            throttle_hint: crate::vk::ThrottleHintTypeSEC,
-        ) -> Self {
+        pub fn throttle_hint(mut self, throttle_hint: vk::ThrottleHintTypeSEC) -> Self {
             self.throttle_hint = throttle_hint;
             self
         }

@@ -2,9 +2,13 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //!Items provided by `vulkan_video_codec_h265std_encode`
 #![doc(alias = "vulkan_video_codec_h265std_encode")]
-pub const SPEC_VERSION: u32 = crate::vk::STD_VULKAN_VIDEO_CODEC_H265_ENCODE_API_VERSION_1_0_0;
-pub const NAME: &core::ffi::CStr = c"VK_STD_vulkan_video_codec_h265_encode";
+use crate::vk;
+use core::ffi::CStr;
+pub const SPEC_VERSION: u32 = vk::STD_VULKAN_VIDEO_CODEC_H265_ENCODE_API_VERSION_1_0_0;
+pub const NAME: &CStr = c"VK_STD_vulkan_video_codec_h265_encode";
 pub(crate) mod items {
+    use crate::vk;
+    use core::marker::PhantomData;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy, Default)]
@@ -38,21 +42,21 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct EncodeH265WeightTable {
-        pub flags: crate::vk::EncodeH265WeightTableFlags,
+        pub flags: vk::EncodeH265WeightTableFlags,
         pub luma_log2_weight_denom: u8,
         pub delta_chroma_log2_weight_denom: i8,
-        pub delta_luma_weight_l0: [i8; crate::vk::H265_MAX_NUM_LIST_REF as _],
-        pub luma_offset_l0: [i8; crate::vk::H265_MAX_NUM_LIST_REF as _],
-        pub delta_chroma_weight_l0: [[i8; crate::vk::H265_MAX_CHROMA_PLANES
-            as _]; crate::vk::H265_MAX_NUM_LIST_REF as _],
-        pub delta_chroma_offset_l0: [[i8; crate::vk::H265_MAX_CHROMA_PLANES
-            as _]; crate::vk::H265_MAX_NUM_LIST_REF as _],
-        pub delta_luma_weight_l1: [i8; crate::vk::H265_MAX_NUM_LIST_REF as _],
-        pub luma_offset_l1: [i8; crate::vk::H265_MAX_NUM_LIST_REF as _],
-        pub delta_chroma_weight_l1: [[i8; crate::vk::H265_MAX_CHROMA_PLANES
-            as _]; crate::vk::H265_MAX_NUM_LIST_REF as _],
-        pub delta_chroma_offset_l1: [[i8; crate::vk::H265_MAX_CHROMA_PLANES
-            as _]; crate::vk::H265_MAX_NUM_LIST_REF as _],
+        pub delta_luma_weight_l0: [i8; vk::H265_MAX_NUM_LIST_REF as _],
+        pub luma_offset_l0: [i8; vk::H265_MAX_NUM_LIST_REF as _],
+        pub delta_chroma_weight_l0: [[i8; vk::H265_MAX_CHROMA_PLANES
+            as _]; vk::H265_MAX_NUM_LIST_REF as _],
+        pub delta_chroma_offset_l0: [[i8; vk::H265_MAX_CHROMA_PLANES
+            as _]; vk::H265_MAX_NUM_LIST_REF as _],
+        pub delta_luma_weight_l1: [i8; vk::H265_MAX_NUM_LIST_REF as _],
+        pub luma_offset_l1: [i8; vk::H265_MAX_NUM_LIST_REF as _],
+        pub delta_chroma_weight_l1: [[i8; vk::H265_MAX_CHROMA_PLANES
+            as _]; vk::H265_MAX_NUM_LIST_REF as _],
+        pub delta_chroma_offset_l1: [[i8; vk::H265_MAX_CHROMA_PLANES
+            as _]; vk::H265_MAX_NUM_LIST_REF as _],
     }
     unsafe impl Send for EncodeH265WeightTable {}
     unsafe impl Sync for EncodeH265WeightTable {}
@@ -74,7 +78,7 @@ pub(crate) mod items {
         }
     }
     impl EncodeH265WeightTable {
-        pub fn flags(mut self, flags: crate::vk::EncodeH265WeightTableFlags) -> Self {
+        pub fn flags(mut self, flags: vk::EncodeH265WeightTableFlags) -> Self {
             self.flags = flags;
             self
         }
@@ -91,60 +95,60 @@ pub(crate) mod items {
         }
         pub fn delta_luma_weight_l0(
             mut self,
-            delta_luma_weight_l0: [i8; crate::vk::H265_MAX_NUM_LIST_REF as _],
+            delta_luma_weight_l0: [i8; vk::H265_MAX_NUM_LIST_REF as _],
         ) -> Self {
             self.delta_luma_weight_l0 = delta_luma_weight_l0;
             self
         }
         pub fn luma_offset_l0(
             mut self,
-            luma_offset_l0: [i8; crate::vk::H265_MAX_NUM_LIST_REF as _],
+            luma_offset_l0: [i8; vk::H265_MAX_NUM_LIST_REF as _],
         ) -> Self {
             self.luma_offset_l0 = luma_offset_l0;
             self
         }
         pub fn delta_chroma_weight_l0(
             mut self,
-            delta_chroma_weight_l0: [[i8; crate::vk::H265_MAX_CHROMA_PLANES
-                as _]; crate::vk::H265_MAX_NUM_LIST_REF as _],
+            delta_chroma_weight_l0: [[i8; vk::H265_MAX_CHROMA_PLANES
+                as _]; vk::H265_MAX_NUM_LIST_REF as _],
         ) -> Self {
             self.delta_chroma_weight_l0 = delta_chroma_weight_l0;
             self
         }
         pub fn delta_chroma_offset_l0(
             mut self,
-            delta_chroma_offset_l0: [[i8; crate::vk::H265_MAX_CHROMA_PLANES
-                as _]; crate::vk::H265_MAX_NUM_LIST_REF as _],
+            delta_chroma_offset_l0: [[i8; vk::H265_MAX_CHROMA_PLANES
+                as _]; vk::H265_MAX_NUM_LIST_REF as _],
         ) -> Self {
             self.delta_chroma_offset_l0 = delta_chroma_offset_l0;
             self
         }
         pub fn delta_luma_weight_l1(
             mut self,
-            delta_luma_weight_l1: [i8; crate::vk::H265_MAX_NUM_LIST_REF as _],
+            delta_luma_weight_l1: [i8; vk::H265_MAX_NUM_LIST_REF as _],
         ) -> Self {
             self.delta_luma_weight_l1 = delta_luma_weight_l1;
             self
         }
         pub fn luma_offset_l1(
             mut self,
-            luma_offset_l1: [i8; crate::vk::H265_MAX_NUM_LIST_REF as _],
+            luma_offset_l1: [i8; vk::H265_MAX_NUM_LIST_REF as _],
         ) -> Self {
             self.luma_offset_l1 = luma_offset_l1;
             self
         }
         pub fn delta_chroma_weight_l1(
             mut self,
-            delta_chroma_weight_l1: [[i8; crate::vk::H265_MAX_CHROMA_PLANES
-                as _]; crate::vk::H265_MAX_NUM_LIST_REF as _],
+            delta_chroma_weight_l1: [[i8; vk::H265_MAX_CHROMA_PLANES
+                as _]; vk::H265_MAX_NUM_LIST_REF as _],
         ) -> Self {
             self.delta_chroma_weight_l1 = delta_chroma_weight_l1;
             self
         }
         pub fn delta_chroma_offset_l1(
             mut self,
-            delta_chroma_offset_l1: [[i8; crate::vk::H265_MAX_CHROMA_PLANES
-                as _]; crate::vk::H265_MAX_NUM_LIST_REF as _],
+            delta_chroma_offset_l1: [[i8; vk::H265_MAX_CHROMA_PLANES
+                as _]; vk::H265_MAX_NUM_LIST_REF as _],
         ) -> Self {
             self.delta_chroma_offset_l1 = delta_chroma_offset_l1;
             self
@@ -156,11 +160,11 @@ pub(crate) mod items {
     pub struct EncodeH265LongTermRefPics {
         pub num_long_term_sps: u8,
         pub num_long_term_pics: u8,
-        pub lt_idx_sps: [u8; crate::vk::H265_MAX_LONG_TERM_REF_PICS_SPS as _],
-        pub poc_lsb_lt: [u8; crate::vk::H265_MAX_LONG_TERM_PICS as _],
+        pub lt_idx_sps: [u8; vk::H265_MAX_LONG_TERM_REF_PICS_SPS as _],
+        pub poc_lsb_lt: [u8; vk::H265_MAX_LONG_TERM_PICS as _],
         pub used_by_curr_pic_lt_flag: u16,
-        pub delta_poc_msb_present_flag: [u8; crate::vk::H265_MAX_DELTA_POC as _],
-        pub delta_poc_msb_cycle_lt: [u8; crate::vk::H265_MAX_DELTA_POC as _],
+        pub delta_poc_msb_present_flag: [u8; vk::H265_MAX_DELTA_POC as _],
+        pub delta_poc_msb_cycle_lt: [u8; vk::H265_MAX_DELTA_POC as _],
     }
     unsafe impl Send for EncodeH265LongTermRefPics {}
     unsafe impl Sync for EncodeH265LongTermRefPics {}
@@ -188,14 +192,14 @@ pub(crate) mod items {
         }
         pub fn lt_idx_sps(
             mut self,
-            lt_idx_sps: [u8; crate::vk::H265_MAX_LONG_TERM_REF_PICS_SPS as _],
+            lt_idx_sps: [u8; vk::H265_MAX_LONG_TERM_REF_PICS_SPS as _],
         ) -> Self {
             self.lt_idx_sps = lt_idx_sps;
             self
         }
         pub fn poc_lsb_lt(
             mut self,
-            poc_lsb_lt: [u8; crate::vk::H265_MAX_LONG_TERM_PICS as _],
+            poc_lsb_lt: [u8; vk::H265_MAX_LONG_TERM_PICS as _],
         ) -> Self {
             self.poc_lsb_lt = poc_lsb_lt;
             self
@@ -209,14 +213,14 @@ pub(crate) mod items {
         }
         pub fn delta_poc_msb_present_flag(
             mut self,
-            delta_poc_msb_present_flag: [u8; crate::vk::H265_MAX_DELTA_POC as _],
+            delta_poc_msb_present_flag: [u8; vk::H265_MAX_DELTA_POC as _],
         ) -> Self {
             self.delta_poc_msb_present_flag = delta_poc_msb_present_flag;
             self
         }
         pub fn delta_poc_msb_cycle_lt(
             mut self,
-            delta_poc_msb_cycle_lt: [u8; crate::vk::H265_MAX_DELTA_POC as _],
+            delta_poc_msb_cycle_lt: [u8; vk::H265_MAX_DELTA_POC as _],
         ) -> Self {
             self.delta_poc_msb_cycle_lt = delta_poc_msb_cycle_lt;
             self
@@ -410,8 +414,8 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy, Default)]
     pub struct EncodeH265SliceSegmentHeader<'a> {
-        pub flags: crate::vk::EncodeH265SliceSegmentHeaderFlags,
-        pub slice_type: crate::vk::H265SliceType,
+        pub flags: vk::EncodeH265SliceSegmentHeaderFlags,
+        pub slice_type: vk::H265SliceType,
         pub slice_segment_address: u32,
         pub collocated_ref_idx: u8,
         pub max_num_merge_cand: u8,
@@ -424,20 +428,17 @@ pub(crate) mod items {
         pub slice_act_cr_qp_offset: i8,
         pub slice_qp_delta: i8,
         pub reserved1: u16,
-        pub p_weight_table: *const crate::vk::EncodeH265WeightTable,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub p_weight_table: *const vk::EncodeH265WeightTable,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for EncodeH265SliceSegmentHeader<'_> {}
     unsafe impl Sync for EncodeH265SliceSegmentHeader<'_> {}
     impl<'a> EncodeH265SliceSegmentHeader<'a> {
-        pub fn flags(
-            mut self,
-            flags: crate::vk::EncodeH265SliceSegmentHeaderFlags,
-        ) -> Self {
+        pub fn flags(mut self, flags: vk::EncodeH265SliceSegmentHeaderFlags) -> Self {
             self.flags = flags;
             self
         }
-        pub fn slice_type(mut self, slice_type: crate::vk::H265SliceType) -> Self {
+        pub fn slice_type(mut self, slice_type: vk::H265SliceType) -> Self {
             self.slice_type = slice_type;
             self
         }
@@ -491,7 +492,7 @@ pub(crate) mod items {
         }
         pub fn weight_table(
             mut self,
-            weight_table: &'a crate::vk::EncodeH265WeightTable,
+            weight_table: &'a vk::EncodeH265WeightTable,
         ) -> Self {
             self.p_weight_table = weight_table;
             self
@@ -550,13 +551,13 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct EncodeH265ReferenceListsInfo {
-        pub flags: crate::vk::EncodeH265ReferenceListsInfoFlags,
+        pub flags: vk::EncodeH265ReferenceListsInfoFlags,
         pub num_ref_idx_l0_active_minus1: u8,
         pub num_ref_idx_l1_active_minus1: u8,
-        pub ref_pic_list0: [u8; crate::vk::H265_MAX_NUM_LIST_REF as _],
-        pub ref_pic_list1: [u8; crate::vk::H265_MAX_NUM_LIST_REF as _],
-        pub list_entry_l0: [u8; crate::vk::H265_MAX_NUM_LIST_REF as _],
-        pub list_entry_l1: [u8; crate::vk::H265_MAX_NUM_LIST_REF as _],
+        pub ref_pic_list0: [u8; vk::H265_MAX_NUM_LIST_REF as _],
+        pub ref_pic_list1: [u8; vk::H265_MAX_NUM_LIST_REF as _],
+        pub list_entry_l0: [u8; vk::H265_MAX_NUM_LIST_REF as _],
+        pub list_entry_l1: [u8; vk::H265_MAX_NUM_LIST_REF as _],
     }
     unsafe impl Send for EncodeH265ReferenceListsInfo {}
     unsafe impl Sync for EncodeH265ReferenceListsInfo {}
@@ -574,10 +575,7 @@ pub(crate) mod items {
         }
     }
     impl EncodeH265ReferenceListsInfo {
-        pub fn flags(
-            mut self,
-            flags: crate::vk::EncodeH265ReferenceListsInfoFlags,
-        ) -> Self {
+        pub fn flags(mut self, flags: vk::EncodeH265ReferenceListsInfoFlags) -> Self {
             self.flags = flags;
             self
         }
@@ -597,28 +595,28 @@ pub(crate) mod items {
         }
         pub fn ref_pic_list0(
             mut self,
-            ref_pic_list0: [u8; crate::vk::H265_MAX_NUM_LIST_REF as _],
+            ref_pic_list0: [u8; vk::H265_MAX_NUM_LIST_REF as _],
         ) -> Self {
             self.ref_pic_list0 = ref_pic_list0;
             self
         }
         pub fn ref_pic_list1(
             mut self,
-            ref_pic_list1: [u8; crate::vk::H265_MAX_NUM_LIST_REF as _],
+            ref_pic_list1: [u8; vk::H265_MAX_NUM_LIST_REF as _],
         ) -> Self {
             self.ref_pic_list1 = ref_pic_list1;
             self
         }
         pub fn list_entry_l0(
             mut self,
-            list_entry_l0: [u8; crate::vk::H265_MAX_NUM_LIST_REF as _],
+            list_entry_l0: [u8; vk::H265_MAX_NUM_LIST_REF as _],
         ) -> Self {
             self.list_entry_l0 = list_entry_l0;
             self
         }
         pub fn list_entry_l1(
             mut self,
-            list_entry_l1: [u8; crate::vk::H265_MAX_NUM_LIST_REF as _],
+            list_entry_l1: [u8; vk::H265_MAX_NUM_LIST_REF as _],
         ) -> Self {
             self.list_entry_l1 = list_entry_l1;
             self
@@ -762,8 +760,8 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct EncodeH265PictureInfo<'a> {
-        pub flags: crate::vk::EncodeH265PictureInfoFlags,
-        pub pic_type: crate::vk::H265PictureType,
+        pub flags: vk::EncodeH265PictureInfoFlags,
+        pub pic_type: vk::H265PictureType,
         pub sps_video_parameter_set_id: u8,
         pub pps_seq_parameter_set_id: u8,
         pub pps_pic_parameter_set_id: u8,
@@ -771,10 +769,10 @@ pub(crate) mod items {
         pub pic_order_cnt_val: i32,
         pub temporal_id: u8,
         pub reserved1: [u8; 7 as _],
-        pub p_ref_lists: *const crate::vk::EncodeH265ReferenceListsInfo,
-        pub p_short_term_ref_pic_set: *const crate::vk::H265ShortTermRefPicSet,
-        pub p_long_term_ref_pics: *const crate::vk::EncodeH265LongTermRefPics,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub p_ref_lists: *const vk::EncodeH265ReferenceListsInfo,
+        pub p_short_term_ref_pic_set: *const vk::H265ShortTermRefPicSet,
+        pub p_long_term_ref_pics: *const vk::EncodeH265LongTermRefPics,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for EncodeH265PictureInfo<'_> {}
     unsafe impl Sync for EncodeH265PictureInfo<'_> {}
@@ -793,16 +791,16 @@ pub(crate) mod items {
                 p_ref_lists: Default::default(),
                 p_short_term_ref_pic_set: Default::default(),
                 p_long_term_ref_pics: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
     impl<'a> EncodeH265PictureInfo<'a> {
-        pub fn flags(mut self, flags: crate::vk::EncodeH265PictureInfoFlags) -> Self {
+        pub fn flags(mut self, flags: vk::EncodeH265PictureInfoFlags) -> Self {
             self.flags = flags;
             self
         }
-        pub fn pic_type(mut self, pic_type: crate::vk::H265PictureType) -> Self {
+        pub fn pic_type(mut self, pic_type: vk::H265PictureType) -> Self {
             self.pic_type = pic_type;
             self
         }
@@ -842,21 +840,21 @@ pub(crate) mod items {
         }
         pub fn ref_lists(
             mut self,
-            ref_lists: &'a crate::vk::EncodeH265ReferenceListsInfo,
+            ref_lists: &'a vk::EncodeH265ReferenceListsInfo,
         ) -> Self {
             self.p_ref_lists = ref_lists;
             self
         }
         pub fn short_term_ref_pic_set(
             mut self,
-            short_term_ref_pic_set: &'a crate::vk::H265ShortTermRefPicSet,
+            short_term_ref_pic_set: &'a vk::H265ShortTermRefPicSet,
         ) -> Self {
             self.p_short_term_ref_pic_set = short_term_ref_pic_set;
             self
         }
         pub fn long_term_ref_pics(
             mut self,
-            long_term_ref_pics: &'a crate::vk::EncodeH265LongTermRefPics,
+            long_term_ref_pics: &'a vk::EncodeH265LongTermRefPics,
         ) -> Self {
             self.p_long_term_ref_pics = long_term_ref_pics;
             self
@@ -908,19 +906,19 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy, Default)]
     pub struct EncodeH265ReferenceInfo {
-        pub flags: crate::vk::EncodeH265ReferenceInfoFlags,
-        pub pic_type: crate::vk::H265PictureType,
+        pub flags: vk::EncodeH265ReferenceInfoFlags,
+        pub pic_type: vk::H265PictureType,
         pub pic_order_cnt_val: i32,
         pub temporal_id: u8,
     }
     unsafe impl Send for EncodeH265ReferenceInfo {}
     unsafe impl Sync for EncodeH265ReferenceInfo {}
     impl EncodeH265ReferenceInfo {
-        pub fn flags(mut self, flags: crate::vk::EncodeH265ReferenceInfoFlags) -> Self {
+        pub fn flags(mut self, flags: vk::EncodeH265ReferenceInfoFlags) -> Self {
             self.flags = flags;
             self
         }
-        pub fn pic_type(mut self, pic_type: crate::vk::H265PictureType) -> Self {
+        pub fn pic_type(mut self, pic_type: vk::H265PictureType) -> Self {
             self.pic_type = pic_type;
             self
         }
@@ -933,7 +931,7 @@ pub(crate) mod items {
             self
         }
     }
-    pub const STD_VULKAN_VIDEO_CODEC_H265_ENCODE_API_VERSION_1_0_0: u32 = crate::vk::make_video_std_version(
+    pub const STD_VULKAN_VIDEO_CODEC_H265_ENCODE_API_VERSION_1_0_0: u32 = vk::make_video_std_version(
         1,
         0,
         0,

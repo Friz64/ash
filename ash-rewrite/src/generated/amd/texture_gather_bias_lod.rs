@@ -2,29 +2,33 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_AMD_texture_gather_bias_lod.html) · Extension `VK_AMD_texture_gather_bias_lod`
 #![doc(alias = "VK_AMD_texture_gather_bias_lod")]
+use crate::vk;
+use core::ffi::CStr;
 ///Provided by [VK_AMD_texture_gather_bias_lod](crate::amd::texture_gather_bias_lod)
-impl crate::vk::StructureType {
+impl vk::StructureType {
     pub const TEXTURE_LOD_GATHER_FORMAT_PROPERTIES_AMD: Self = Self(1000041000);
 }
 pub const SPEC_VERSION: u32 = 1;
-pub const NAME: &core::ffi::CStr = c"VK_AMD_texture_gather_bias_lod";
+pub const NAME: &CStr = c"VK_AMD_texture_gather_bias_lod";
 pub(crate) mod items {
+    use core::marker::PhantomData;
+    use crate::vk;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct TextureLODGatherFormatPropertiesAMD<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
-        pub supports_texture_gather_lod_bias_amd: crate::vk::Bool32,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub supports_texture_gather_lod_bias_amd: vk::Bool32,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for TextureLODGatherFormatPropertiesAMD<'_> {}
     unsafe impl Sync for TextureLODGatherFormatPropertiesAMD<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for TextureLODGatherFormatPropertiesAMD<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::TEXTURE_LOD_GATHER_FORMAT_PROPERTIES_AMD;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::TEXTURE_LOD_GATHER_FORMAT_PROPERTIES_AMD;
     }
-    unsafe impl<'a> crate::Extends<crate::vk::ImageFormatProperties2<'_>>
+    unsafe impl<'a> crate::Extends<vk::ImageFormatProperties2<'_>>
     for TextureLODGatherFormatPropertiesAMD<'a> {}
     impl<'a> Default for TextureLODGatherFormatPropertiesAMD<'a> {
         fn default() -> Self {
@@ -32,7 +36,7 @@ pub(crate) mod items {
                 s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
                 p_next: Default::default(),
                 supports_texture_gather_lod_bias_amd: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }

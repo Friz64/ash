@@ -2,8 +2,12 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_device_fault.html) · Extension `VK_KHR_device_fault`
 #![doc(alias = "VK_KHR_device_fault")]
+use crate::vk;
+use core::ffi::CStr;
+use crate::VkResult;
+use core::ffi::c_void;
 ///Provided by [VK_KHR_device_fault](crate::khr::device_fault)
-impl crate::vk::StructureType {
+impl vk::StructureType {
     pub const PHYSICAL_DEVICE_FAULT_FEATURES_KHR: Self = Self(1000573000);
     pub const PHYSICAL_DEVICE_FAULT_PROPERTIES_KHR: Self = Self(1000573001);
     pub const DEVICE_FAULT_INFO_KHR: Self = Self(1000573002);
@@ -49,30 +53,28 @@ impl DeviceFaultFlagBitsKHR {
     pub const FLAG_WATCHDOG_TIMEOUT: Self = Self(1 << 4);
     pub const FLAG_OVERFLOW: Self = Self(1 << 5);
 }
+pub const SPEC_VERSION: u32 = 1;
+pub const NAME: &CStr = c"VK_KHR_device_fault";
 #[derive(Clone)]
 pub struct DeviceFn {
-    pub get_device_fault_reports: crate::vk::PFN_vkGetDeviceFaultReportsKHR,
-    pub get_device_fault_debug_info: crate::vk::PFN_vkGetDeviceFaultDebugInfoKHR,
+    pub get_device_fault_reports: vk::PFN_vkGetDeviceFaultReportsKHR,
+    pub get_device_fault_debug_info: vk::PFN_vkGetDeviceFaultDebugInfoKHR,
 }
 unsafe impl Send for DeviceFn {}
 unsafe impl Sync for DeviceFn {}
 impl DeviceFn {
-    pub fn load<F: FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void>(
-        mut f: F,
-    ) -> Self {
+    pub fn load<F: FnMut(&CStr) -> *const c_void>(mut f: F) -> Self {
         Self::load_erased(&mut f)
     }
-    fn load_erased(
-        _f: &mut dyn FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void,
-    ) -> Self {
+    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const c_void) -> Self {
         Self {
             get_device_fault_reports: unsafe {
                 unsafe extern "system" fn get_device_fault_reports(
-                    _: crate::vk::Device,
+                    _: vk::Device,
                     _: u64,
                     _: *mut u32,
-                    _: *mut crate::vk::DeviceFaultInfoKHR<'_>,
-                ) -> crate::vk::Result {
+                    _: *mut vk::DeviceFaultInfoKHR<'_>,
+                ) -> vk::Result {
                     panic!("unable to load vkGetDeviceFaultReportsKHR")
                 }
                 let val = _f(c"vkGetDeviceFaultReportsKHR");
@@ -84,9 +86,9 @@ impl DeviceFn {
             },
             get_device_fault_debug_info: unsafe {
                 unsafe extern "system" fn get_device_fault_debug_info(
-                    _: crate::vk::Device,
-                    _: *mut crate::vk::DeviceFaultDebugInfoKHR<'_>,
-                ) -> crate::vk::Result {
+                    _: vk::Device,
+                    _: *mut vk::DeviceFaultDebugInfoKHR<'_>,
+                ) -> vk::Result {
                     panic!("unable to load vkGetDeviceFaultDebugInfoKHR")
                 }
                 let val = _f(c"vkGetDeviceFaultDebugInfoKHR");
@@ -122,10 +124,7 @@ impl Device {
     }
     ///vkGetDeviceFaultReportsKHR
     #[inline]
-    pub unsafe fn get_device_fault_reports_len(
-        &self,
-        timeout: u64,
-    ) -> crate::VkResult<usize> {
+    pub unsafe fn get_device_fault_reports_len(&self, timeout: u64) -> VkResult<usize> {
         let mut fault_counts = core::mem::MaybeUninit::uninit();
         (self
             .fp
@@ -143,7 +142,7 @@ impl Device {
     pub unsafe fn get_device_fault_reports(
         &self,
         timeout: u64,
-        fault_info: &mut [crate::vk::DeviceFaultInfoKHR<'_>],
+        fault_info: &mut [vk::DeviceFaultInfoKHR<'_>],
     ) -> crate::VkResult<()> {
         let mut fault_counts = fault_info.len() as _;
         (self
@@ -162,44 +161,40 @@ impl Device {
     #[inline]
     pub unsafe fn get_device_fault_debug_info(
         &self,
-    ) -> crate::VkResult<crate::vk::DeviceFaultDebugInfoKHR<'_>> {
+    ) -> VkResult<vk::DeviceFaultDebugInfoKHR<'_>> {
         let mut debug_info = core::mem::MaybeUninit::uninit();
         (self.fp.get_device_fault_debug_info)(self.handle, debug_info.as_mut_ptr())
             .assume_init_on_success(debug_info)
     }
 }
-pub const SPEC_VERSION: u32 = 1;
-pub const NAME: &core::ffi::CStr = c"VK_KHR_device_fault";
 pub(crate) mod items {
+    use crate::vk;
+    use core::ffi::CStr;
+    use core::ffi;
+    use core::marker::PhantomData;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy, Default)]
     pub struct DeviceFaultAddressInfoKHR {
-        pub address_type: crate::vk::DeviceFaultAddressTypeKHR,
-        pub reported_address: crate::vk::DeviceAddress,
-        pub address_precision: crate::vk::DeviceSize,
+        pub address_type: vk::DeviceFaultAddressTypeKHR,
+        pub reported_address: vk::DeviceAddress,
+        pub address_precision: vk::DeviceSize,
     }
     unsafe impl Send for DeviceFaultAddressInfoKHR {}
     unsafe impl Sync for DeviceFaultAddressInfoKHR {}
     impl DeviceFaultAddressInfoKHR {
         pub fn address_type(
             mut self,
-            address_type: crate::vk::DeviceFaultAddressTypeKHR,
+            address_type: vk::DeviceFaultAddressTypeKHR,
         ) -> Self {
             self.address_type = address_type;
             self
         }
-        pub fn reported_address(
-            mut self,
-            reported_address: crate::vk::DeviceAddress,
-        ) -> Self {
+        pub fn reported_address(mut self, reported_address: vk::DeviceAddress) -> Self {
             self.reported_address = reported_address;
             self
         }
-        pub fn address_precision(
-            mut self,
-            address_precision: crate::vk::DeviceSize,
-        ) -> Self {
+        pub fn address_precision(mut self, address_precision: vk::DeviceSize) -> Self {
             self.address_precision = address_precision;
             self
         }
@@ -207,7 +202,7 @@ pub(crate) mod items {
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct DeviceFaultVendorInfoKHR {
-        pub description: [core::ffi::c_char; crate::vk::MAX_DESCRIPTION_SIZE as _],
+        pub description: [core::ffi::c_char; vk::MAX_DESCRIPTION_SIZE as _],
         pub vendor_fault_code: u64,
         pub vendor_fault_data: u64,
     }
@@ -235,14 +230,14 @@ pub(crate) mod items {
     impl DeviceFaultVendorInfoKHR {
         pub fn description(
             mut self,
-            description: &core::ffi::CStr,
+            description: &CStr,
         ) -> core::result::Result<Self, crate::CStrTooLargeForStaticArray> {
             crate::write_c_str_slice_with_nul(&mut self.description, description)
                 .map(|_| self)
         }
         pub fn description_as_c_str(
             &self,
-        ) -> core::result::Result<&core::ffi::CStr, core::ffi::FromBytesUntilNulError> {
+        ) -> core::result::Result<&CStr, ffi::FromBytesUntilNulError> {
             crate::wrap_c_str_slice_until_nul(&self.description)
         }
         pub fn vendor_fault_code(mut self, vendor_fault_code: u64) -> Self {
@@ -257,20 +252,20 @@ pub(crate) mod items {
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct DeviceFaultInfoKHR<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
-        pub flags: crate::vk::DeviceFaultFlagsKHR,
+        pub flags: vk::DeviceFaultFlagsKHR,
         pub group_id: u64,
-        pub description: [core::ffi::c_char; crate::vk::MAX_DESCRIPTION_SIZE as _],
-        pub fault_address_info: crate::vk::DeviceFaultAddressInfoKHR,
-        pub instruction_address_info: crate::vk::DeviceFaultAddressInfoKHR,
-        pub vendor_info: crate::vk::DeviceFaultVendorInfoKHR,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub description: [core::ffi::c_char; vk::MAX_DESCRIPTION_SIZE as _],
+        pub fault_address_info: vk::DeviceFaultAddressInfoKHR,
+        pub instruction_address_info: vk::DeviceFaultAddressInfoKHR,
+        pub vendor_info: vk::DeviceFaultVendorInfoKHR,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for DeviceFaultInfoKHR<'_> {}
     unsafe impl Sync for DeviceFaultInfoKHR<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for DeviceFaultInfoKHR<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::DEVICE_FAULT_INFO_KHR;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::DEVICE_FAULT_INFO_KHR;
     }
     impl<'a> Default for DeviceFaultInfoKHR<'a> {
         fn default() -> Self {
@@ -283,7 +278,7 @@ pub(crate) mod items {
                 fault_address_info: Default::default(),
                 instruction_address_info: Default::default(),
                 vendor_info: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
@@ -303,7 +298,7 @@ pub(crate) mod items {
         }
     }
     impl<'a> DeviceFaultInfoKHR<'a> {
-        pub fn flags(mut self, flags: crate::vk::DeviceFaultFlagsKHR) -> Self {
+        pub fn flags(mut self, flags: vk::DeviceFaultFlagsKHR) -> Self {
             self.flags = flags;
             self
         }
@@ -313,34 +308,31 @@ pub(crate) mod items {
         }
         pub fn description(
             mut self,
-            description: &core::ffi::CStr,
+            description: &CStr,
         ) -> core::result::Result<Self, crate::CStrTooLargeForStaticArray> {
             crate::write_c_str_slice_with_nul(&mut self.description, description)
                 .map(|_| self)
         }
         pub fn description_as_c_str(
             &self,
-        ) -> core::result::Result<&core::ffi::CStr, core::ffi::FromBytesUntilNulError> {
+        ) -> core::result::Result<&CStr, ffi::FromBytesUntilNulError> {
             crate::wrap_c_str_slice_until_nul(&self.description)
         }
         pub fn fault_address_info(
             mut self,
-            fault_address_info: crate::vk::DeviceFaultAddressInfoKHR,
+            fault_address_info: vk::DeviceFaultAddressInfoKHR,
         ) -> Self {
             self.fault_address_info = fault_address_info;
             self
         }
         pub fn instruction_address_info(
             mut self,
-            instruction_address_info: crate::vk::DeviceFaultAddressInfoKHR,
+            instruction_address_info: vk::DeviceFaultAddressInfoKHR,
         ) -> Self {
             self.instruction_address_info = instruction_address_info;
             self
         }
-        pub fn vendor_info(
-            mut self,
-            vendor_info: crate::vk::DeviceFaultVendorInfoKHR,
-        ) -> Self {
+        pub fn vendor_info(mut self, vendor_info: vk::DeviceFaultVendorInfoKHR) -> Self {
             self.vendor_info = vendor_info;
             self
         }
@@ -349,16 +341,16 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct DeviceFaultDebugInfoKHR<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
         pub vendor_binary_size: u32,
         pub p_vendor_binary_data: *mut core::ffi::c_void,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for DeviceFaultDebugInfoKHR<'_> {}
     unsafe impl Sync for DeviceFaultDebugInfoKHR<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for DeviceFaultDebugInfoKHR<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::DEVICE_FAULT_DEBUG_INFO_KHR;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::DEVICE_FAULT_DEBUG_INFO_KHR;
     }
     impl<'a> Default for DeviceFaultDebugInfoKHR<'a> {
         fn default() -> Self {
@@ -367,7 +359,7 @@ pub(crate) mod items {
                 p_next: Default::default(),
                 vendor_binary_size: Default::default(),
                 p_vendor_binary_data: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
@@ -383,11 +375,11 @@ pub(crate) mod items {
     #[derive(Clone, Copy)]
     pub struct DeviceFaultVendorBinaryHeaderVersionOneKHR {
         pub header_size: u32,
-        pub header_version: crate::vk::DeviceFaultVendorBinaryHeaderVersionKHR,
+        pub header_version: vk::DeviceFaultVendorBinaryHeaderVersionKHR,
         pub vendor_id: u32,
         pub device_id: u32,
         pub driver_version: u32,
-        pub pipeline_cache_uuid: [u8; crate::vk::UUID_SIZE as _],
+        pub pipeline_cache_uuid: [u8; vk::UUID_SIZE as _],
         pub application_name_offset: u32,
         pub application_version: u32,
         pub engine_name_offset: u32,
@@ -420,7 +412,7 @@ pub(crate) mod items {
         }
         pub fn header_version(
             mut self,
-            header_version: crate::vk::DeviceFaultVendorBinaryHeaderVersionKHR,
+            header_version: vk::DeviceFaultVendorBinaryHeaderVersionKHR,
         ) -> Self {
             self.header_version = header_version;
             self
@@ -439,7 +431,7 @@ pub(crate) mod items {
         }
         pub fn pipeline_cache_uuid(
             mut self,
-            pipeline_cache_uuid: [u8; crate::vk::UUID_SIZE as _],
+            pipeline_cache_uuid: [u8; vk::UUID_SIZE as _],
         ) -> Self {
             self.pipeline_cache_uuid = pipeline_cache_uuid;
             self
@@ -469,22 +461,22 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceFaultFeaturesKHR<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
-        pub device_fault: crate::vk::Bool32,
-        pub device_fault_vendor_binary: crate::vk::Bool32,
-        pub device_fault_report_masked: crate::vk::Bool32,
-        pub device_fault_device_lost_on_masked: crate::vk::Bool32,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub device_fault: vk::Bool32,
+        pub device_fault_vendor_binary: vk::Bool32,
+        pub device_fault_report_masked: vk::Bool32,
+        pub device_fault_device_lost_on_masked: vk::Bool32,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for PhysicalDeviceFaultFeaturesKHR<'_> {}
     unsafe impl Sync for PhysicalDeviceFaultFeaturesKHR<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for PhysicalDeviceFaultFeaturesKHR<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_FAULT_FEATURES_KHR;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PHYSICAL_DEVICE_FAULT_FEATURES_KHR;
     }
-    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+    unsafe impl<'a> crate::Extends<vk::PhysicalDeviceFeatures2<'_>>
     for PhysicalDeviceFaultFeaturesKHR<'a> {}
-    unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+    unsafe impl<'a> crate::Extends<vk::DeviceCreateInfo<'_>>
     for PhysicalDeviceFaultFeaturesKHR<'a> {}
     impl<'a> Default for PhysicalDeviceFaultFeaturesKHR<'a> {
         fn default() -> Self {
@@ -495,7 +487,7 @@ pub(crate) mod items {
                 device_fault_vendor_binary: Default::default(),
                 device_fault_report_masked: Default::default(),
                 device_fault_device_lost_on_masked: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
@@ -531,17 +523,17 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceFaultPropertiesKHR<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
         pub max_device_fault_count: u32,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for PhysicalDeviceFaultPropertiesKHR<'_> {}
     unsafe impl Sync for PhysicalDeviceFaultPropertiesKHR<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for PhysicalDeviceFaultPropertiesKHR<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_FAULT_PROPERTIES_KHR;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PHYSICAL_DEVICE_FAULT_PROPERTIES_KHR;
     }
-    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceProperties2<'_>>
+    unsafe impl<'a> crate::Extends<vk::PhysicalDeviceProperties2<'_>>
     for PhysicalDeviceFaultPropertiesKHR<'a> {}
     impl<'a> Default for PhysicalDeviceFaultPropertiesKHR<'a> {
         fn default() -> Self {
@@ -549,7 +541,7 @@ pub(crate) mod items {
                 s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
                 p_next: Default::default(),
                 max_device_fault_count: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
@@ -721,14 +713,14 @@ pub(crate) mod items {
         }
     }
     pub type PFN_vkGetDeviceFaultReportsKHR = unsafe extern "system" fn(
-        device: crate::vk::Device,
+        device: vk::Device,
         timeout: u64,
         p_fault_counts: *mut u32,
-        p_fault_info: *mut crate::vk::DeviceFaultInfoKHR<'_>,
-    ) -> crate::vk::Result;
+        p_fault_info: *mut vk::DeviceFaultInfoKHR<'_>,
+    ) -> vk::Result;
     pub type PFN_vkGetDeviceFaultDebugInfoKHR = unsafe extern "system" fn(
-        device: crate::vk::Device,
-        p_debug_info: *mut crate::vk::DeviceFaultDebugInfoKHR<'_>,
-    ) -> crate::vk::Result;
+        device: vk::Device,
+        p_debug_info: *mut vk::DeviceFaultDebugInfoKHR<'_>,
+    ) -> vk::Result;
 }
 pub use items::*;

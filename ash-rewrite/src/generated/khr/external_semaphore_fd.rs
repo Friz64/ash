@@ -2,34 +2,36 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_external_semaphore_fd.html) · Extension `VK_KHR_external_semaphore_fd`
 #![doc(alias = "VK_KHR_external_semaphore_fd")]
+use crate::vk;
+use core::ffi::CStr;
+use crate::VkResult;
+use core::ffi::c_void;
 ///Provided by [VK_KHR_external_semaphore_fd](crate::khr::external_semaphore_fd)
-impl crate::vk::StructureType {
+impl vk::StructureType {
     pub const IMPORT_SEMAPHORE_FD_INFO_KHR: Self = Self(1000079000);
     pub const SEMAPHORE_GET_FD_INFO_KHR: Self = Self(1000079001);
 }
+pub const SPEC_VERSION: u32 = 1;
+pub const NAME: &CStr = c"VK_KHR_external_semaphore_fd";
 #[derive(Clone)]
 pub struct DeviceFn {
-    pub get_semaphore_fd: crate::vk::PFN_vkGetSemaphoreFdKHR,
-    pub import_semaphore_fd: crate::vk::PFN_vkImportSemaphoreFdKHR,
+    pub get_semaphore_fd: vk::PFN_vkGetSemaphoreFdKHR,
+    pub import_semaphore_fd: vk::PFN_vkImportSemaphoreFdKHR,
 }
 unsafe impl Send for DeviceFn {}
 unsafe impl Sync for DeviceFn {}
 impl DeviceFn {
-    pub fn load<F: FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void>(
-        mut f: F,
-    ) -> Self {
+    pub fn load<F: FnMut(&CStr) -> *const c_void>(mut f: F) -> Self {
         Self::load_erased(&mut f)
     }
-    fn load_erased(
-        _f: &mut dyn FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void,
-    ) -> Self {
+    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const c_void) -> Self {
         Self {
             get_semaphore_fd: unsafe {
                 unsafe extern "system" fn get_semaphore_fd(
-                    _: crate::vk::Device,
-                    _: *const crate::vk::SemaphoreGetFdInfoKHR<'_>,
+                    _: vk::Device,
+                    _: *const vk::SemaphoreGetFdInfoKHR<'_>,
                     _: *mut core::ffi::c_int,
-                ) -> crate::vk::Result {
+                ) -> vk::Result {
                     panic!("unable to load vkGetSemaphoreFdKHR")
                 }
                 let val = _f(c"vkGetSemaphoreFdKHR");
@@ -41,9 +43,9 @@ impl DeviceFn {
             },
             import_semaphore_fd: unsafe {
                 unsafe extern "system" fn import_semaphore_fd(
-                    _: crate::vk::Device,
-                    _: *const crate::vk::ImportSemaphoreFdInfoKHR<'_>,
-                ) -> crate::vk::Result {
+                    _: vk::Device,
+                    _: *const vk::ImportSemaphoreFdInfoKHR<'_>,
+                ) -> vk::Result {
                     panic!("unable to load vkImportSemaphoreFdKHR")
                 }
                 let val = _f(c"vkImportSemaphoreFdKHR");
@@ -81,8 +83,8 @@ impl Device {
     #[inline]
     pub unsafe fn get_semaphore_fd(
         &self,
-        get_fd_info: &crate::vk::SemaphoreGetFdInfoKHR<'_>,
-    ) -> crate::VkResult<core::ffi::c_int> {
+        get_fd_info: &vk::SemaphoreGetFdInfoKHR<'_>,
+    ) -> VkResult<core::ffi::c_int> {
         let mut fd = core::mem::MaybeUninit::uninit();
         (self.fp.get_semaphore_fd)(self.handle, get_fd_info, fd.as_mut_ptr())
             .assume_init_on_success(fd)
@@ -91,30 +93,30 @@ impl Device {
     #[inline]
     pub unsafe fn import_semaphore_fd(
         &self,
-        import_semaphore_fd_info: &crate::vk::ImportSemaphoreFdInfoKHR<'_>,
-    ) -> crate::VkResult<()> {
+        import_semaphore_fd_info: &vk::ImportSemaphoreFdInfoKHR<'_>,
+    ) -> VkResult<()> {
         (self.fp.import_semaphore_fd)(self.handle, import_semaphore_fd_info).result()
     }
 }
-pub const SPEC_VERSION: u32 = 1;
-pub const NAME: &core::ffi::CStr = c"VK_KHR_external_semaphore_fd";
 pub(crate) mod items {
+    use core::marker::PhantomData;
+    use crate::vk;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct ImportSemaphoreFdInfoKHR<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *const core::ffi::c_void,
-        pub semaphore: crate::vk::Semaphore,
-        pub flags: crate::vk::SemaphoreImportFlags,
-        pub handle_type: crate::vk::ExternalSemaphoreHandleTypeFlagBits,
+        pub semaphore: vk::Semaphore,
+        pub flags: vk::SemaphoreImportFlags,
+        pub handle_type: vk::ExternalSemaphoreHandleTypeFlagBits,
         pub fd: core::ffi::c_int,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for ImportSemaphoreFdInfoKHR<'_> {}
     unsafe impl Sync for ImportSemaphoreFdInfoKHR<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for ImportSemaphoreFdInfoKHR<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::IMPORT_SEMAPHORE_FD_INFO_KHR;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::IMPORT_SEMAPHORE_FD_INFO_KHR;
     }
     impl<'a> Default for ImportSemaphoreFdInfoKHR<'a> {
         fn default() -> Self {
@@ -125,22 +127,22 @@ pub(crate) mod items {
                 flags: Default::default(),
                 handle_type: Default::default(),
                 fd: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
     impl<'a> ImportSemaphoreFdInfoKHR<'a> {
-        pub fn semaphore(mut self, semaphore: crate::vk::Semaphore) -> Self {
+        pub fn semaphore(mut self, semaphore: vk::Semaphore) -> Self {
             self.semaphore = semaphore;
             self
         }
-        pub fn flags(mut self, flags: crate::vk::SemaphoreImportFlags) -> Self {
+        pub fn flags(mut self, flags: vk::SemaphoreImportFlags) -> Self {
             self.flags = flags;
             self
         }
         pub fn handle_type(
             mut self,
-            handle_type: crate::vk::ExternalSemaphoreHandleTypeFlagBits,
+            handle_type: vk::ExternalSemaphoreHandleTypeFlagBits,
         ) -> Self {
             self.handle_type = handle_type;
             self
@@ -154,16 +156,16 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct SemaphoreGetFdInfoKHR<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *const core::ffi::c_void,
-        pub semaphore: crate::vk::Semaphore,
-        pub handle_type: crate::vk::ExternalSemaphoreHandleTypeFlagBits,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub semaphore: vk::Semaphore,
+        pub handle_type: vk::ExternalSemaphoreHandleTypeFlagBits,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for SemaphoreGetFdInfoKHR<'_> {}
     unsafe impl Sync for SemaphoreGetFdInfoKHR<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for SemaphoreGetFdInfoKHR<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::SEMAPHORE_GET_FD_INFO_KHR;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::SEMAPHORE_GET_FD_INFO_KHR;
     }
     impl<'a> Default for SemaphoreGetFdInfoKHR<'a> {
         fn default() -> Self {
@@ -172,31 +174,31 @@ pub(crate) mod items {
                 p_next: Default::default(),
                 semaphore: Default::default(),
                 handle_type: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
     impl<'a> SemaphoreGetFdInfoKHR<'a> {
-        pub fn semaphore(mut self, semaphore: crate::vk::Semaphore) -> Self {
+        pub fn semaphore(mut self, semaphore: vk::Semaphore) -> Self {
             self.semaphore = semaphore;
             self
         }
         pub fn handle_type(
             mut self,
-            handle_type: crate::vk::ExternalSemaphoreHandleTypeFlagBits,
+            handle_type: vk::ExternalSemaphoreHandleTypeFlagBits,
         ) -> Self {
             self.handle_type = handle_type;
             self
         }
     }
     pub type PFN_vkGetSemaphoreFdKHR = unsafe extern "system" fn(
-        device: crate::vk::Device,
-        p_get_fd_info: *const crate::vk::SemaphoreGetFdInfoKHR<'_>,
+        device: vk::Device,
+        p_get_fd_info: *const vk::SemaphoreGetFdInfoKHR<'_>,
         p_fd: *mut core::ffi::c_int,
-    ) -> crate::vk::Result;
+    ) -> vk::Result;
     pub type PFN_vkImportSemaphoreFdKHR = unsafe extern "system" fn(
-        device: crate::vk::Device,
-        p_import_semaphore_fd_info: *const crate::vk::ImportSemaphoreFdInfoKHR<'_>,
-    ) -> crate::vk::Result;
+        device: vk::Device,
+        p_import_semaphore_fd_info: *const vk::ImportSemaphoreFdInfoKHR<'_>,
+    ) -> vk::Result;
 }
 pub use items::*;

@@ -2,31 +2,35 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_ARM_shader_core_properties.html) · Extension `VK_ARM_shader_core_properties`
 #![doc(alias = "VK_ARM_shader_core_properties")]
+use crate::vk;
+use core::ffi::CStr;
 ///Provided by [VK_ARM_shader_core_properties](crate::arm::shader_core_properties)
-impl crate::vk::StructureType {
+impl vk::StructureType {
     pub const PHYSICAL_DEVICE_SHADER_CORE_PROPERTIES_ARM: Self = Self(1000415000);
 }
 pub const SPEC_VERSION: u32 = 1;
-pub const NAME: &core::ffi::CStr = c"VK_ARM_shader_core_properties";
+pub const NAME: &CStr = c"VK_ARM_shader_core_properties";
 pub(crate) mod items {
+    use core::marker::PhantomData;
+    use crate::vk;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceShaderCorePropertiesARM<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
         pub pixel_rate: u32,
         pub texel_rate: u32,
         pub fma_rate: u32,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for PhysicalDeviceShaderCorePropertiesARM<'_> {}
     unsafe impl Sync for PhysicalDeviceShaderCorePropertiesARM<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceShaderCorePropertiesARM<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_SHADER_CORE_PROPERTIES_ARM;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PHYSICAL_DEVICE_SHADER_CORE_PROPERTIES_ARM;
     }
-    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceProperties2<'_>>
+    unsafe impl<'a> crate::Extends<vk::PhysicalDeviceProperties2<'_>>
     for PhysicalDeviceShaderCorePropertiesARM<'a> {}
     impl<'a> Default for PhysicalDeviceShaderCorePropertiesARM<'a> {
         fn default() -> Self {
@@ -36,7 +40,7 @@ pub(crate) mod items {
                 pixel_rate: Default::default(),
                 texel_rate: Default::default(),
                 fma_rate: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }

@@ -2,43 +2,44 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_extended_dynamic_state2.html) · Extension `VK_EXT_extended_dynamic_state2`
 #![doc(alias = "VK_EXT_extended_dynamic_state2")]
+use crate::vk;
+use core::ffi::CStr;
+use core::ffi::c_void;
 ///Provided by [VK_EXT_extended_dynamic_state2](crate::ext::extended_dynamic_state2)
-impl crate::vk::StructureType {
+impl vk::StructureType {
     pub const PHYSICAL_DEVICE_EXTENDED_DYNAMIC_STATE_2_FEATURES_EXT: Self = Self(
         1000377000,
     );
 }
 ///Provided by [VK_EXT_extended_dynamic_state2](crate::ext::extended_dynamic_state2)
-impl crate::vk::DynamicState {
+impl vk::DynamicState {
     pub const PATCH_CONTROL_POINTS_EXT: Self = Self(1000377000);
     pub const RASTERIZER_DISCARD_ENABLE_EXT: Self = Self::RASTERIZER_DISCARD_ENABLE;
     pub const DEPTH_BIAS_ENABLE_EXT: Self = Self::DEPTH_BIAS_ENABLE;
     pub const LOGIC_OP_EXT: Self = Self(1000377003);
     pub const PRIMITIVE_RESTART_ENABLE_EXT: Self = Self::PRIMITIVE_RESTART_ENABLE;
 }
+pub const SPEC_VERSION: u32 = 1;
+pub const NAME: &CStr = c"VK_EXT_extended_dynamic_state2";
 #[derive(Clone)]
 pub struct DeviceFn {
-    pub cmd_set_patch_control_points: crate::vk::PFN_vkCmdSetPatchControlPointsEXT,
-    pub cmd_set_logic_op: crate::vk::PFN_vkCmdSetLogicOpEXT,
-    pub cmd_set_rasterizer_discard_enable: crate::vk::PFN_vkCmdSetRasterizerDiscardEnableEXT,
-    pub cmd_set_depth_bias_enable: crate::vk::PFN_vkCmdSetDepthBiasEnableEXT,
-    pub cmd_set_primitive_restart_enable: crate::vk::PFN_vkCmdSetPrimitiveRestartEnableEXT,
+    pub cmd_set_patch_control_points: vk::PFN_vkCmdSetPatchControlPointsEXT,
+    pub cmd_set_logic_op: vk::PFN_vkCmdSetLogicOpEXT,
+    pub cmd_set_rasterizer_discard_enable: vk::PFN_vkCmdSetRasterizerDiscardEnableEXT,
+    pub cmd_set_depth_bias_enable: vk::PFN_vkCmdSetDepthBiasEnableEXT,
+    pub cmd_set_primitive_restart_enable: vk::PFN_vkCmdSetPrimitiveRestartEnableEXT,
 }
 unsafe impl Send for DeviceFn {}
 unsafe impl Sync for DeviceFn {}
 impl DeviceFn {
-    pub fn load<F: FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void>(
-        mut f: F,
-    ) -> Self {
+    pub fn load<F: FnMut(&CStr) -> *const c_void>(mut f: F) -> Self {
         Self::load_erased(&mut f)
     }
-    fn load_erased(
-        _f: &mut dyn FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void,
-    ) -> Self {
+    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const c_void) -> Self {
         Self {
             cmd_set_patch_control_points: unsafe {
                 unsafe extern "system" fn cmd_set_patch_control_points(
-                    _: crate::vk::CommandBuffer,
+                    _: vk::CommandBuffer,
                     _: u32,
                 ) {
                     panic!("unable to load vkCmdSetPatchControlPointsEXT")
@@ -52,8 +53,8 @@ impl DeviceFn {
             },
             cmd_set_logic_op: unsafe {
                 unsafe extern "system" fn cmd_set_logic_op(
-                    _: crate::vk::CommandBuffer,
-                    _: crate::vk::LogicOp,
+                    _: vk::CommandBuffer,
+                    _: vk::LogicOp,
                 ) {
                     panic!("unable to load vkCmdSetLogicOpEXT")
                 }
@@ -66,8 +67,8 @@ impl DeviceFn {
             },
             cmd_set_rasterizer_discard_enable: unsafe {
                 unsafe extern "system" fn cmd_set_rasterizer_discard_enable(
-                    _: crate::vk::CommandBuffer,
-                    _: crate::vk::Bool32,
+                    _: vk::CommandBuffer,
+                    _: vk::Bool32,
                 ) {
                     panic!("unable to load vkCmdSetRasterizerDiscardEnableEXT")
                 }
@@ -80,8 +81,8 @@ impl DeviceFn {
             },
             cmd_set_depth_bias_enable: unsafe {
                 unsafe extern "system" fn cmd_set_depth_bias_enable(
-                    _: crate::vk::CommandBuffer,
-                    _: crate::vk::Bool32,
+                    _: vk::CommandBuffer,
+                    _: vk::Bool32,
                 ) {
                     panic!("unable to load vkCmdSetDepthBiasEnableEXT")
                 }
@@ -94,8 +95,8 @@ impl DeviceFn {
             },
             cmd_set_primitive_restart_enable: unsafe {
                 unsafe extern "system" fn cmd_set_primitive_restart_enable(
-                    _: crate::vk::CommandBuffer,
-                    _: crate::vk::Bool32,
+                    _: vk::CommandBuffer,
+                    _: vk::Bool32,
                 ) {
                     panic!("unable to load vkCmdSetPrimitiveRestartEnableEXT")
                 }
@@ -134,7 +135,7 @@ impl Device {
     #[inline]
     pub unsafe fn cmd_set_patch_control_points(
         &self,
-        command_buffer: crate::vk::CommandBuffer,
+        command_buffer: vk::CommandBuffer,
         patch_control_points: u32,
     ) {
         (self.fp.cmd_set_patch_control_points)(command_buffer, patch_control_points)
@@ -143,8 +144,8 @@ impl Device {
     #[inline]
     pub unsafe fn cmd_set_logic_op(
         &self,
-        command_buffer: crate::vk::CommandBuffer,
-        logic_op: crate::vk::LogicOp,
+        command_buffer: vk::CommandBuffer,
+        logic_op: vk::LogicOp,
     ) {
         (self.fp.cmd_set_logic_op)(command_buffer, logic_op)
     }
@@ -152,8 +153,8 @@ impl Device {
     #[inline]
     pub unsafe fn cmd_set_rasterizer_discard_enable(
         &self,
-        command_buffer: crate::vk::CommandBuffer,
-        rasterizer_discard_enable: crate::vk::Bool32,
+        command_buffer: vk::CommandBuffer,
+        rasterizer_discard_enable: vk::Bool32,
     ) {
         (self
             .fp
@@ -166,8 +167,8 @@ impl Device {
     #[inline]
     pub unsafe fn cmd_set_depth_bias_enable(
         &self,
-        command_buffer: crate::vk::CommandBuffer,
-        depth_bias_enable: crate::vk::Bool32,
+        command_buffer: vk::CommandBuffer,
+        depth_bias_enable: vk::Bool32,
     ) {
         (self.fp.cmd_set_depth_bias_enable)(command_buffer, depth_bias_enable)
     }
@@ -175,37 +176,37 @@ impl Device {
     #[inline]
     pub unsafe fn cmd_set_primitive_restart_enable(
         &self,
-        command_buffer: crate::vk::CommandBuffer,
-        primitive_restart_enable: crate::vk::Bool32,
+        command_buffer: vk::CommandBuffer,
+        primitive_restart_enable: vk::Bool32,
     ) {
         (self
             .fp
             .cmd_set_primitive_restart_enable)(command_buffer, primitive_restart_enable)
     }
 }
-pub const SPEC_VERSION: u32 = 1;
-pub const NAME: &core::ffi::CStr = c"VK_EXT_extended_dynamic_state2";
 pub(crate) mod items {
+    use core::marker::PhantomData;
+    use crate::vk;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceExtendedDynamicState2FeaturesEXT<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
-        pub extended_dynamic_state2: crate::vk::Bool32,
-        pub extended_dynamic_state2_logic_op: crate::vk::Bool32,
-        pub extended_dynamic_state2_patch_control_points: crate::vk::Bool32,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub extended_dynamic_state2: vk::Bool32,
+        pub extended_dynamic_state2_logic_op: vk::Bool32,
+        pub extended_dynamic_state2_patch_control_points: vk::Bool32,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for PhysicalDeviceExtendedDynamicState2FeaturesEXT<'_> {}
     unsafe impl Sync for PhysicalDeviceExtendedDynamicState2FeaturesEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceExtendedDynamicState2FeaturesEXT<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_EXTENDED_DYNAMIC_STATE_2_FEATURES_EXT;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PHYSICAL_DEVICE_EXTENDED_DYNAMIC_STATE_2_FEATURES_EXT;
     }
-    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+    unsafe impl<'a> crate::Extends<vk::PhysicalDeviceFeatures2<'_>>
     for PhysicalDeviceExtendedDynamicState2FeaturesEXT<'a> {}
-    unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+    unsafe impl<'a> crate::Extends<vk::DeviceCreateInfo<'_>>
     for PhysicalDeviceExtendedDynamicState2FeaturesEXT<'a> {}
     impl<'a> Default for PhysicalDeviceExtendedDynamicState2FeaturesEXT<'a> {
         fn default() -> Self {
@@ -215,7 +216,7 @@ pub(crate) mod items {
                 extended_dynamic_state2: Default::default(),
                 extended_dynamic_state2_logic_op: Default::default(),
                 extended_dynamic_state2_patch_control_points: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
@@ -242,15 +243,15 @@ pub(crate) mod items {
         }
     }
     pub type PFN_vkCmdSetPatchControlPointsEXT = unsafe extern "system" fn(
-        command_buffer: crate::vk::CommandBuffer,
+        command_buffer: vk::CommandBuffer,
         patch_control_points: u32,
     );
     pub type PFN_vkCmdSetLogicOpEXT = unsafe extern "system" fn(
-        command_buffer: crate::vk::CommandBuffer,
-        logic_op: crate::vk::LogicOp,
+        command_buffer: vk::CommandBuffer,
+        logic_op: vk::LogicOp,
     );
-    pub type PFN_vkCmdSetRasterizerDiscardEnableEXT = crate::vk::PFN_vkCmdSetRasterizerDiscardEnable;
-    pub type PFN_vkCmdSetDepthBiasEnableEXT = crate::vk::PFN_vkCmdSetDepthBiasEnable;
-    pub type PFN_vkCmdSetPrimitiveRestartEnableEXT = crate::vk::PFN_vkCmdSetPrimitiveRestartEnable;
+    pub type PFN_vkCmdSetRasterizerDiscardEnableEXT = vk::PFN_vkCmdSetRasterizerDiscardEnable;
+    pub type PFN_vkCmdSetDepthBiasEnableEXT = vk::PFN_vkCmdSetDepthBiasEnable;
+    pub type PFN_vkCmdSetPrimitiveRestartEnableEXT = vk::PFN_vkCmdSetPrimitiveRestartEnable;
 }
 pub use items::*;

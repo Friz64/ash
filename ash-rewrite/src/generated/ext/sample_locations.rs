@@ -2,8 +2,11 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_sample_locations.html) · Extension `VK_EXT_sample_locations`
 #![doc(alias = "VK_EXT_sample_locations")]
+use crate::vk;
+use core::ffi::CStr;
+use core::ffi::c_void;
 ///Provided by [VK_EXT_sample_locations](crate::ext::sample_locations)
-impl crate::vk::StructureType {
+impl vk::StructureType {
     pub const SAMPLE_LOCATIONS_INFO_EXT: Self = Self(1000143000);
     pub const RENDER_PASS_SAMPLE_LOCATIONS_BEGIN_INFO_EXT: Self = Self(1000143001);
     pub const PIPELINE_SAMPLE_LOCATIONS_STATE_CREATE_INFO_EXT: Self = Self(1000143002);
@@ -11,39 +14,37 @@ impl crate::vk::StructureType {
     pub const MULTISAMPLE_PROPERTIES_EXT: Self = Self(1000143004);
 }
 ///Provided by [VK_EXT_sample_locations](crate::ext::sample_locations)
-impl crate::vk::DynamicState {
+impl vk::DynamicState {
     pub const SAMPLE_LOCATIONS_EXT: Self = Self(1000143000);
 }
-///Provided by [VK_EXT_sample_locations](crate::ext::sample_locations)
-impl crate::vk::ImageCreateFlags {
+///Provided by [Vulkan 1.0](crate::vk1_0)
+impl vk::ImageCreateFlags {
     pub const SAMPLE_LOCATIONS_COMPATIBLE_DEPTH_EXT: Self = Self(
-        crate::vk::ImageCreateFlagBits::SAMPLE_LOCATIONS_COMPATIBLE_DEPTH_EXT.0,
+        vk::ImageCreateFlagBits::SAMPLE_LOCATIONS_COMPATIBLE_DEPTH_EXT.0,
     );
 }
-///Provided by [VK_EXT_sample_locations](crate::ext::sample_locations)
-impl crate::vk::ImageCreateFlagBits {
+///Provided by [Vulkan 1.0](crate::vk1_0)
+impl vk::ImageCreateFlagBits {
     pub const SAMPLE_LOCATIONS_COMPATIBLE_DEPTH_EXT: Self = Self(1 << 12);
 }
+pub const SPEC_VERSION: u32 = 1;
+pub const NAME: &CStr = c"VK_EXT_sample_locations";
 #[derive(Clone)]
 pub struct DeviceFn {
-    pub cmd_set_sample_locations: crate::vk::PFN_vkCmdSetSampleLocationsEXT,
+    pub cmd_set_sample_locations: vk::PFN_vkCmdSetSampleLocationsEXT,
 }
 unsafe impl Send for DeviceFn {}
 unsafe impl Sync for DeviceFn {}
 impl DeviceFn {
-    pub fn load<F: FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void>(
-        mut f: F,
-    ) -> Self {
+    pub fn load<F: FnMut(&CStr) -> *const c_void>(mut f: F) -> Self {
         Self::load_erased(&mut f)
     }
-    fn load_erased(
-        _f: &mut dyn FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void,
-    ) -> Self {
+    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const c_void) -> Self {
         Self {
             cmd_set_sample_locations: unsafe {
                 unsafe extern "system" fn cmd_set_sample_locations(
-                    _: crate::vk::CommandBuffer,
-                    _: *const crate::vk::SampleLocationsInfoEXT<'_>,
+                    _: vk::CommandBuffer,
+                    _: *const vk::SampleLocationsInfoEXT<'_>,
                 ) {
                     panic!("unable to load vkCmdSetSampleLocationsEXT")
                 }
@@ -82,33 +83,29 @@ impl Device {
     #[inline]
     pub unsafe fn cmd_set_sample_locations(
         &self,
-        command_buffer: crate::vk::CommandBuffer,
-        sample_locations_info: &crate::vk::SampleLocationsInfoEXT<'_>,
+        command_buffer: vk::CommandBuffer,
+        sample_locations_info: &vk::SampleLocationsInfoEXT<'_>,
     ) {
         (self.fp.cmd_set_sample_locations)(command_buffer, sample_locations_info)
     }
 }
 #[derive(Clone)]
 pub struct InstanceFn {
-    pub get_physical_device_multisample_properties: crate::vk::PFN_vkGetPhysicalDeviceMultisamplePropertiesEXT,
+    pub get_physical_device_multisample_properties: vk::PFN_vkGetPhysicalDeviceMultisamplePropertiesEXT,
 }
 unsafe impl Send for InstanceFn {}
 unsafe impl Sync for InstanceFn {}
 impl InstanceFn {
-    pub fn load<F: FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void>(
-        mut f: F,
-    ) -> Self {
+    pub fn load<F: FnMut(&CStr) -> *const c_void>(mut f: F) -> Self {
         Self::load_erased(&mut f)
     }
-    fn load_erased(
-        _f: &mut dyn FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void,
-    ) -> Self {
+    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const c_void) -> Self {
         Self {
             get_physical_device_multisample_properties: unsafe {
                 unsafe extern "system" fn get_physical_device_multisample_properties(
-                    _: crate::vk::PhysicalDevice,
-                    _: crate::vk::SampleCountFlagBits,
-                    _: *mut crate::vk::MultisamplePropertiesEXT<'_>,
+                    _: vk::PhysicalDevice,
+                    _: vk::SampleCountFlagBits,
+                    _: *mut vk::MultisamplePropertiesEXT<'_>,
                 ) {
                     panic!("unable to load vkGetPhysicalDeviceMultisamplePropertiesEXT")
                 }
@@ -147,9 +144,9 @@ impl Instance {
     #[inline]
     pub unsafe fn get_physical_device_multisample_properties(
         &self,
-        physical_device: crate::vk::PhysicalDevice,
-        samples: crate::vk::SampleCountFlagBits,
-    ) -> crate::vk::MultisamplePropertiesEXT<'_> {
+        physical_device: vk::PhysicalDevice,
+        samples: vk::SampleCountFlagBits,
+    ) -> vk::MultisamplePropertiesEXT<'_> {
         let mut multisample_properties = core::mem::MaybeUninit::uninit();
         (self
             .fp
@@ -161,9 +158,9 @@ impl Instance {
         multisample_properties.assume_init()
     }
 }
-pub const SPEC_VERSION: u32 = 1;
-pub const NAME: &core::ffi::CStr = c"VK_EXT_sample_locations";
 pub(crate) mod items {
+    use core::marker::PhantomData;
+    use crate::vk;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy, Default)]
@@ -187,22 +184,22 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct SampleLocationsInfoEXT<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *const core::ffi::c_void,
-        pub sample_locations_per_pixel: crate::vk::SampleCountFlagBits,
-        pub sample_location_grid_size: crate::vk::Extent2D,
+        pub sample_locations_per_pixel: vk::SampleCountFlagBits,
+        pub sample_location_grid_size: vk::Extent2D,
         pub sample_locations_count: u32,
-        pub p_sample_locations: *const crate::vk::SampleLocationEXT,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub p_sample_locations: *const vk::SampleLocationEXT,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for SampleLocationsInfoEXT<'_> {}
     unsafe impl Sync for SampleLocationsInfoEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for SampleLocationsInfoEXT<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::SAMPLE_LOCATIONS_INFO_EXT;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::SAMPLE_LOCATIONS_INFO_EXT;
     }
-    unsafe impl<'a> crate::Extends<crate::vk::ImageMemoryBarrier<'_>>
+    unsafe impl<'a> crate::Extends<vk::ImageMemoryBarrier<'_>>
     for SampleLocationsInfoEXT<'a> {}
-    unsafe impl<'a> crate::Extends<crate::vk::ImageMemoryBarrier2<'_>>
+    unsafe impl<'a> crate::Extends<vk::ImageMemoryBarrier2<'_>>
     for SampleLocationsInfoEXT<'a> {}
     impl<'a> Default for SampleLocationsInfoEXT<'a> {
         fn default() -> Self {
@@ -213,28 +210,28 @@ pub(crate) mod items {
                 sample_location_grid_size: Default::default(),
                 sample_locations_count: Default::default(),
                 p_sample_locations: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
     impl<'a> SampleLocationsInfoEXT<'a> {
         pub fn sample_locations_per_pixel(
             mut self,
-            sample_locations_per_pixel: crate::vk::SampleCountFlagBits,
+            sample_locations_per_pixel: vk::SampleCountFlagBits,
         ) -> Self {
             self.sample_locations_per_pixel = sample_locations_per_pixel;
             self
         }
         pub fn sample_location_grid_size(
             mut self,
-            sample_location_grid_size: crate::vk::Extent2D,
+            sample_location_grid_size: vk::Extent2D,
         ) -> Self {
             self.sample_location_grid_size = sample_location_grid_size;
             self
         }
         pub fn sample_locations(
             mut self,
-            sample_locations: &'a [crate::vk::SampleLocationEXT],
+            sample_locations: &'a [vk::SampleLocationEXT],
         ) -> Self {
             self.sample_locations_count = sample_locations.len() as _;
             self.p_sample_locations = sample_locations.as_ptr();
@@ -246,8 +243,8 @@ pub(crate) mod items {
     #[derive(Clone, Copy, Default)]
     pub struct AttachmentSampleLocationsEXT<'a> {
         pub attachment_index: u32,
-        pub sample_locations_info: crate::vk::SampleLocationsInfoEXT<'a>,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub sample_locations_info: vk::SampleLocationsInfoEXT<'a>,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for AttachmentSampleLocationsEXT<'_> {}
     unsafe impl Sync for AttachmentSampleLocationsEXT<'_> {}
@@ -258,7 +255,7 @@ pub(crate) mod items {
         }
         pub fn sample_locations_info(
             mut self,
-            sample_locations_info: crate::vk::SampleLocationsInfoEXT<'a>,
+            sample_locations_info: vk::SampleLocationsInfoEXT<'a>,
         ) -> Self {
             self.sample_locations_info = sample_locations_info;
             self
@@ -269,8 +266,8 @@ pub(crate) mod items {
     #[derive(Clone, Copy, Default)]
     pub struct SubpassSampleLocationsEXT<'a> {
         pub subpass_index: u32,
-        pub sample_locations_info: crate::vk::SampleLocationsInfoEXT<'a>,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub sample_locations_info: vk::SampleLocationsInfoEXT<'a>,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for SubpassSampleLocationsEXT<'_> {}
     unsafe impl Sync for SubpassSampleLocationsEXT<'_> {}
@@ -281,7 +278,7 @@ pub(crate) mod items {
         }
         pub fn sample_locations_info(
             mut self,
-            sample_locations_info: crate::vk::SampleLocationsInfoEXT<'a>,
+            sample_locations_info: vk::SampleLocationsInfoEXT<'a>,
         ) -> Self {
             self.sample_locations_info = sample_locations_info;
             self
@@ -291,25 +288,23 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct RenderPassSampleLocationsBeginInfoEXT<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *const core::ffi::c_void,
         pub attachment_initial_sample_locations_count: u32,
-        pub p_attachment_initial_sample_locations: *const crate::vk::AttachmentSampleLocationsEXT<
+        pub p_attachment_initial_sample_locations: *const vk::AttachmentSampleLocationsEXT<
             'a,
         >,
         pub post_subpass_sample_locations_count: u32,
-        pub p_post_subpass_sample_locations: *const crate::vk::SubpassSampleLocationsEXT<
-            'a,
-        >,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub p_post_subpass_sample_locations: *const vk::SubpassSampleLocationsEXT<'a>,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for RenderPassSampleLocationsBeginInfoEXT<'_> {}
     unsafe impl Sync for RenderPassSampleLocationsBeginInfoEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for RenderPassSampleLocationsBeginInfoEXT<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::RENDER_PASS_SAMPLE_LOCATIONS_BEGIN_INFO_EXT;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::RENDER_PASS_SAMPLE_LOCATIONS_BEGIN_INFO_EXT;
     }
-    unsafe impl<'a> crate::Extends<crate::vk::RenderPassBeginInfo<'_>>
+    unsafe impl<'a> crate::Extends<vk::RenderPassBeginInfo<'_>>
     for RenderPassSampleLocationsBeginInfoEXT<'a> {}
     impl<'a> Default for RenderPassSampleLocationsBeginInfoEXT<'a> {
         fn default() -> Self {
@@ -320,14 +315,14 @@ pub(crate) mod items {
                 p_attachment_initial_sample_locations: Default::default(),
                 post_subpass_sample_locations_count: Default::default(),
                 p_post_subpass_sample_locations: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
     impl<'a> RenderPassSampleLocationsBeginInfoEXT<'a> {
         pub fn attachment_initial_sample_locations(
             mut self,
-            attachment_initial_sample_locations: &'a [crate::vk::AttachmentSampleLocationsEXT<
+            attachment_initial_sample_locations: &'a [vk::AttachmentSampleLocationsEXT<
                 'a,
             >],
         ) -> Self {
@@ -339,7 +334,7 @@ pub(crate) mod items {
         }
         pub fn post_subpass_sample_locations(
             mut self,
-            post_subpass_sample_locations: &'a [crate::vk::SubpassSampleLocationsEXT<'a>],
+            post_subpass_sample_locations: &'a [vk::SubpassSampleLocationsEXT<'a>],
         ) -> Self {
             self.post_subpass_sample_locations_count = post_subpass_sample_locations
                 .len() as _;
@@ -352,19 +347,19 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct PipelineSampleLocationsStateCreateInfoEXT<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *const core::ffi::c_void,
-        pub sample_locations_enable: crate::vk::Bool32,
-        pub sample_locations_info: crate::vk::SampleLocationsInfoEXT<'a>,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub sample_locations_enable: vk::Bool32,
+        pub sample_locations_info: vk::SampleLocationsInfoEXT<'a>,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for PipelineSampleLocationsStateCreateInfoEXT<'_> {}
     unsafe impl Sync for PipelineSampleLocationsStateCreateInfoEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PipelineSampleLocationsStateCreateInfoEXT<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PIPELINE_SAMPLE_LOCATIONS_STATE_CREATE_INFO_EXT;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PIPELINE_SAMPLE_LOCATIONS_STATE_CREATE_INFO_EXT;
     }
-    unsafe impl<'a> crate::Extends<crate::vk::PipelineMultisampleStateCreateInfo<'_>>
+    unsafe impl<'a> crate::Extends<vk::PipelineMultisampleStateCreateInfo<'_>>
     for PipelineSampleLocationsStateCreateInfoEXT<'a> {}
     impl<'a> Default for PipelineSampleLocationsStateCreateInfoEXT<'a> {
         fn default() -> Self {
@@ -373,7 +368,7 @@ pub(crate) mod items {
                 p_next: Default::default(),
                 sample_locations_enable: Default::default(),
                 sample_locations_info: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
@@ -384,7 +379,7 @@ pub(crate) mod items {
         }
         pub fn sample_locations_info(
             mut self,
-            sample_locations_info: crate::vk::SampleLocationsInfoEXT<'a>,
+            sample_locations_info: vk::SampleLocationsInfoEXT<'a>,
         ) -> Self {
             self.sample_locations_info = sample_locations_info;
             self
@@ -394,22 +389,22 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceSampleLocationsPropertiesEXT<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
-        pub sample_location_sample_counts: crate::vk::SampleCountFlags,
-        pub max_sample_location_grid_size: crate::vk::Extent2D,
+        pub sample_location_sample_counts: vk::SampleCountFlags,
+        pub max_sample_location_grid_size: vk::Extent2D,
         pub sample_location_coordinate_range: [core::ffi::c_float; 2 as _],
         pub sample_location_sub_pixel_bits: u32,
-        pub variable_sample_locations: crate::vk::Bool32,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub variable_sample_locations: vk::Bool32,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for PhysicalDeviceSampleLocationsPropertiesEXT<'_> {}
     unsafe impl Sync for PhysicalDeviceSampleLocationsPropertiesEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceSampleLocationsPropertiesEXT<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_SAMPLE_LOCATIONS_PROPERTIES_EXT;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PHYSICAL_DEVICE_SAMPLE_LOCATIONS_PROPERTIES_EXT;
     }
-    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceProperties2<'_>>
+    unsafe impl<'a> crate::Extends<vk::PhysicalDeviceProperties2<'_>>
     for PhysicalDeviceSampleLocationsPropertiesEXT<'a> {}
     impl<'a> Default for PhysicalDeviceSampleLocationsPropertiesEXT<'a> {
         fn default() -> Self {
@@ -421,21 +416,21 @@ pub(crate) mod items {
                 sample_location_coordinate_range: unsafe { core::mem::zeroed() },
                 sample_location_sub_pixel_bits: Default::default(),
                 variable_sample_locations: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
     impl<'a> PhysicalDeviceSampleLocationsPropertiesEXT<'a> {
         pub fn sample_location_sample_counts(
             mut self,
-            sample_location_sample_counts: crate::vk::SampleCountFlags,
+            sample_location_sample_counts: vk::SampleCountFlags,
         ) -> Self {
             self.sample_location_sample_counts = sample_location_sample_counts;
             self
         }
         pub fn max_sample_location_grid_size(
             mut self,
-            max_sample_location_grid_size: crate::vk::Extent2D,
+            max_sample_location_grid_size: vk::Extent2D,
         ) -> Self {
             self.max_sample_location_grid_size = max_sample_location_grid_size;
             self
@@ -466,15 +461,15 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct MultisamplePropertiesEXT<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
-        pub max_sample_location_grid_size: crate::vk::Extent2D,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub max_sample_location_grid_size: vk::Extent2D,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for MultisamplePropertiesEXT<'_> {}
     unsafe impl Sync for MultisamplePropertiesEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for MultisamplePropertiesEXT<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::MULTISAMPLE_PROPERTIES_EXT;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::MULTISAMPLE_PROPERTIES_EXT;
     }
     impl<'a> Default for MultisamplePropertiesEXT<'a> {
         fn default() -> Self {
@@ -482,27 +477,27 @@ pub(crate) mod items {
                 s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
                 p_next: Default::default(),
                 max_sample_location_grid_size: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
     impl<'a> MultisamplePropertiesEXT<'a> {
         pub fn max_sample_location_grid_size(
             mut self,
-            max_sample_location_grid_size: crate::vk::Extent2D,
+            max_sample_location_grid_size: vk::Extent2D,
         ) -> Self {
             self.max_sample_location_grid_size = max_sample_location_grid_size;
             self
         }
     }
     pub type PFN_vkCmdSetSampleLocationsEXT = unsafe extern "system" fn(
-        command_buffer: crate::vk::CommandBuffer,
-        p_sample_locations_info: *const crate::vk::SampleLocationsInfoEXT<'_>,
+        command_buffer: vk::CommandBuffer,
+        p_sample_locations_info: *const vk::SampleLocationsInfoEXT<'_>,
     );
     pub type PFN_vkGetPhysicalDeviceMultisamplePropertiesEXT = unsafe extern "system" fn(
-        physical_device: crate::vk::PhysicalDevice,
-        samples: crate::vk::SampleCountFlagBits,
-        p_multisample_properties: *mut crate::vk::MultisamplePropertiesEXT<'_>,
+        physical_device: vk::PhysicalDevice,
+        samples: vk::SampleCountFlagBits,
+        p_multisample_properties: *mut vk::MultisamplePropertiesEXT<'_>,
     );
 }
 pub use items::*;

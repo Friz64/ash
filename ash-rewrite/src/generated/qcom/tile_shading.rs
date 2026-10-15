@@ -2,8 +2,11 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_QCOM_tile_shading.html) · Extension `VK_QCOM_tile_shading`
 #![doc(alias = "VK_QCOM_tile_shading")]
+use crate::vk;
+use core::ffi::CStr;
+use core::ffi::c_void;
 ///Provided by [VK_QCOM_tile_shading](crate::qcom::tile_shading)
-impl crate::vk::StructureType {
+impl vk::StructureType {
     pub const PHYSICAL_DEVICE_TILE_SHADING_FEATURES_QCOM: Self = Self(1000309000);
     pub const PHYSICAL_DEVICE_TILE_SHADING_PROPERTIES_QCOM: Self = Self(1000309001);
     pub const RENDER_PASS_TILE_SHADING_CREATE_INFO_QCOM: Self = Self(1000309002);
@@ -11,27 +14,27 @@ impl crate::vk::StructureType {
     pub const PER_TILE_END_INFO_QCOM: Self = Self(1000309004);
     pub const DISPATCH_TILE_INFO_QCOM: Self = Self(1000309005);
 }
-///Provided by [VK_QCOM_tile_shading](crate::qcom::tile_shading)
-impl crate::vk::SubpassDescriptionFlags {
+///Provided by [Vulkan 1.0](crate::vk1_0)
+impl vk::SubpassDescriptionFlags {
     pub const TILE_SHADING_APRON_QCOM: Self = Self(
-        crate::vk::SubpassDescriptionFlagBits::TILE_SHADING_APRON_QCOM.0,
+        vk::SubpassDescriptionFlagBits::TILE_SHADING_APRON_QCOM.0,
     );
 }
-///Provided by [VK_QCOM_tile_shading](crate::qcom::tile_shading)
-impl crate::vk::SubpassDescriptionFlagBits {
+///Provided by [Vulkan 1.0](crate::vk1_0)
+impl vk::SubpassDescriptionFlagBits {
     pub const TILE_SHADING_APRON_QCOM: Self = Self(1 << 8);
 }
-///Provided by [VK_QCOM_tile_shading](crate::qcom::tile_shading)
-impl crate::vk::AccessFlags2 {
+///Provided by [Vulkan 1.3](crate::vk1_3)
+impl vk::AccessFlags2 {
     pub const SHADER_TILE_ATTACHMENT_READ_QCOM: Self = Self(
-        crate::vk::AccessFlagBits2::SHADER_TILE_ATTACHMENT_READ_QCOM.0,
+        vk::AccessFlagBits2::SHADER_TILE_ATTACHMENT_READ_QCOM.0,
     );
     pub const SHADER_TILE_ATTACHMENT_WRITE_QCOM: Self = Self(
-        crate::vk::AccessFlagBits2::SHADER_TILE_ATTACHMENT_WRITE_QCOM.0,
+        vk::AccessFlagBits2::SHADER_TILE_ATTACHMENT_WRITE_QCOM.0,
     );
 }
-///Provided by [VK_QCOM_tile_shading](crate::qcom::tile_shading)
-impl crate::vk::AccessFlagBits2 {
+///Provided by [Vulkan 1.3](crate::vk1_3)
+impl vk::AccessFlagBits2 {
     pub const SHADER_TILE_ATTACHMENT_READ_QCOM: Self = Self(1 << 51);
     pub const SHADER_TILE_ATTACHMENT_WRITE_QCOM: Self = Self(1 << 52);
 }
@@ -47,28 +50,26 @@ impl TileShadingRenderPassFlagBitsQCOM {
     pub const ENABLE: Self = Self(1 << 0);
     pub const PER_TILE_EXECUTION: Self = Self(1 << 1);
 }
+pub const SPEC_VERSION: u32 = 2;
+pub const NAME: &CStr = c"VK_QCOM_tile_shading";
 #[derive(Clone)]
 pub struct DeviceFn {
-    pub cmd_dispatch_tile: crate::vk::PFN_vkCmdDispatchTileQCOM,
-    pub cmd_begin_per_tile_execution: crate::vk::PFN_vkCmdBeginPerTileExecutionQCOM,
-    pub cmd_end_per_tile_execution: crate::vk::PFN_vkCmdEndPerTileExecutionQCOM,
+    pub cmd_dispatch_tile: vk::PFN_vkCmdDispatchTileQCOM,
+    pub cmd_begin_per_tile_execution: vk::PFN_vkCmdBeginPerTileExecutionQCOM,
+    pub cmd_end_per_tile_execution: vk::PFN_vkCmdEndPerTileExecutionQCOM,
 }
 unsafe impl Send for DeviceFn {}
 unsafe impl Sync for DeviceFn {}
 impl DeviceFn {
-    pub fn load<F: FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void>(
-        mut f: F,
-    ) -> Self {
+    pub fn load<F: FnMut(&CStr) -> *const c_void>(mut f: F) -> Self {
         Self::load_erased(&mut f)
     }
-    fn load_erased(
-        _f: &mut dyn FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void,
-    ) -> Self {
+    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const c_void) -> Self {
         Self {
             cmd_dispatch_tile: unsafe {
                 unsafe extern "system" fn cmd_dispatch_tile(
-                    _: crate::vk::CommandBuffer,
-                    _: *const crate::vk::DispatchTileInfoQCOM<'_>,
+                    _: vk::CommandBuffer,
+                    _: *const vk::DispatchTileInfoQCOM<'_>,
                 ) {
                     panic!("unable to load vkCmdDispatchTileQCOM")
                 }
@@ -81,8 +82,8 @@ impl DeviceFn {
             },
             cmd_begin_per_tile_execution: unsafe {
                 unsafe extern "system" fn cmd_begin_per_tile_execution(
-                    _: crate::vk::CommandBuffer,
-                    _: *const crate::vk::PerTileBeginInfoQCOM<'_>,
+                    _: vk::CommandBuffer,
+                    _: *const vk::PerTileBeginInfoQCOM<'_>,
                 ) {
                     panic!("unable to load vkCmdBeginPerTileExecutionQCOM")
                 }
@@ -95,8 +96,8 @@ impl DeviceFn {
             },
             cmd_end_per_tile_execution: unsafe {
                 unsafe extern "system" fn cmd_end_per_tile_execution(
-                    _: crate::vk::CommandBuffer,
-                    _: *const crate::vk::PerTileEndInfoQCOM<'_>,
+                    _: vk::CommandBuffer,
+                    _: *const vk::PerTileEndInfoQCOM<'_>,
                 ) {
                     panic!("unable to load vkCmdEndPerTileExecutionQCOM")
                 }
@@ -135,8 +136,8 @@ impl Device {
     #[inline]
     pub unsafe fn cmd_dispatch_tile(
         &self,
-        command_buffer: crate::vk::CommandBuffer,
-        dispatch_tile_info: &crate::vk::DispatchTileInfoQCOM<'_>,
+        command_buffer: vk::CommandBuffer,
+        dispatch_tile_info: &vk::DispatchTileInfoQCOM<'_>,
     ) {
         (self.fp.cmd_dispatch_tile)(command_buffer, dispatch_tile_info)
     }
@@ -144,8 +145,8 @@ impl Device {
     #[inline]
     pub unsafe fn cmd_begin_per_tile_execution(
         &self,
-        command_buffer: crate::vk::CommandBuffer,
-        per_tile_begin_info: &crate::vk::PerTileBeginInfoQCOM<'_>,
+        command_buffer: vk::CommandBuffer,
+        per_tile_begin_info: &vk::PerTileBeginInfoQCOM<'_>,
     ) {
         (self.fp.cmd_begin_per_tile_execution)(command_buffer, per_tile_begin_info)
     }
@@ -153,46 +154,46 @@ impl Device {
     #[inline]
     pub unsafe fn cmd_end_per_tile_execution(
         &self,
-        command_buffer: crate::vk::CommandBuffer,
-        per_tile_end_info: &crate::vk::PerTileEndInfoQCOM<'_>,
+        command_buffer: vk::CommandBuffer,
+        per_tile_end_info: &vk::PerTileEndInfoQCOM<'_>,
     ) {
         (self.fp.cmd_end_per_tile_execution)(command_buffer, per_tile_end_info)
     }
 }
-pub const SPEC_VERSION: u32 = 2;
-pub const NAME: &core::ffi::CStr = c"VK_QCOM_tile_shading";
 pub(crate) mod items {
+    use core::marker::PhantomData;
+    use crate::vk;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceTileShadingFeaturesQCOM<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
-        pub tile_shading: crate::vk::Bool32,
-        pub tile_shading_fragment_stage: crate::vk::Bool32,
-        pub tile_shading_color_attachments: crate::vk::Bool32,
-        pub tile_shading_depth_attachments: crate::vk::Bool32,
-        pub tile_shading_stencil_attachments: crate::vk::Bool32,
-        pub tile_shading_input_attachments: crate::vk::Bool32,
-        pub tile_shading_sampled_attachments: crate::vk::Bool32,
-        pub tile_shading_per_tile_draw: crate::vk::Bool32,
-        pub tile_shading_per_tile_dispatch: crate::vk::Bool32,
-        pub tile_shading_dispatch_tile: crate::vk::Bool32,
-        pub tile_shading_apron: crate::vk::Bool32,
-        pub tile_shading_anisotropic_apron: crate::vk::Bool32,
-        pub tile_shading_atomic_ops: crate::vk::Bool32,
-        pub tile_shading_image_processing: crate::vk::Bool32,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub tile_shading: vk::Bool32,
+        pub tile_shading_fragment_stage: vk::Bool32,
+        pub tile_shading_color_attachments: vk::Bool32,
+        pub tile_shading_depth_attachments: vk::Bool32,
+        pub tile_shading_stencil_attachments: vk::Bool32,
+        pub tile_shading_input_attachments: vk::Bool32,
+        pub tile_shading_sampled_attachments: vk::Bool32,
+        pub tile_shading_per_tile_draw: vk::Bool32,
+        pub tile_shading_per_tile_dispatch: vk::Bool32,
+        pub tile_shading_dispatch_tile: vk::Bool32,
+        pub tile_shading_apron: vk::Bool32,
+        pub tile_shading_anisotropic_apron: vk::Bool32,
+        pub tile_shading_atomic_ops: vk::Bool32,
+        pub tile_shading_image_processing: vk::Bool32,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for PhysicalDeviceTileShadingFeaturesQCOM<'_> {}
     unsafe impl Sync for PhysicalDeviceTileShadingFeaturesQCOM<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceTileShadingFeaturesQCOM<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_TILE_SHADING_FEATURES_QCOM;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PHYSICAL_DEVICE_TILE_SHADING_FEATURES_QCOM;
     }
-    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+    unsafe impl<'a> crate::Extends<vk::PhysicalDeviceFeatures2<'_>>
     for PhysicalDeviceTileShadingFeaturesQCOM<'a> {}
-    unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+    unsafe impl<'a> crate::Extends<vk::DeviceCreateInfo<'_>>
     for PhysicalDeviceTileShadingFeaturesQCOM<'a> {}
     impl<'a> Default for PhysicalDeviceTileShadingFeaturesQCOM<'a> {
         fn default() -> Self {
@@ -213,7 +214,7 @@ pub(crate) mod items {
                 tile_shading_anisotropic_apron: Default::default(),
                 tile_shading_atomic_ops: Default::default(),
                 tile_shading_image_processing: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
@@ -314,21 +315,21 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceTileShadingPropertiesQCOM<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
         pub max_apron_size: u32,
-        pub prefer_non_coherent: crate::vk::Bool32,
-        pub tile_granularity: crate::vk::Extent2D,
-        pub max_tile_shading_rate: crate::vk::Extent2D,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub prefer_non_coherent: vk::Bool32,
+        pub tile_granularity: vk::Extent2D,
+        pub max_tile_shading_rate: vk::Extent2D,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for PhysicalDeviceTileShadingPropertiesQCOM<'_> {}
     unsafe impl Sync for PhysicalDeviceTileShadingPropertiesQCOM<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceTileShadingPropertiesQCOM<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_TILE_SHADING_PROPERTIES_QCOM;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PHYSICAL_DEVICE_TILE_SHADING_PROPERTIES_QCOM;
     }
-    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceProperties2<'_>>
+    unsafe impl<'a> crate::Extends<vk::PhysicalDeviceProperties2<'_>>
     for PhysicalDeviceTileShadingPropertiesQCOM<'a> {}
     impl<'a> Default for PhysicalDeviceTileShadingPropertiesQCOM<'a> {
         fn default() -> Self {
@@ -339,7 +340,7 @@ pub(crate) mod items {
                 prefer_non_coherent: Default::default(),
                 tile_granularity: Default::default(),
                 max_tile_shading_rate: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
@@ -352,16 +353,13 @@ pub(crate) mod items {
             self.prefer_non_coherent = prefer_non_coherent.into();
             self
         }
-        pub fn tile_granularity(
-            mut self,
-            tile_granularity: crate::vk::Extent2D,
-        ) -> Self {
+        pub fn tile_granularity(mut self, tile_granularity: vk::Extent2D) -> Self {
             self.tile_granularity = tile_granularity;
             self
         }
         pub fn max_tile_shading_rate(
             mut self,
-            max_tile_shading_rate: crate::vk::Extent2D,
+            max_tile_shading_rate: vk::Extent2D,
         ) -> Self {
             self.max_tile_shading_rate = max_tile_shading_rate;
             self
@@ -371,25 +369,25 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct RenderPassTileShadingCreateInfoQCOM<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *const core::ffi::c_void,
-        pub flags: crate::vk::TileShadingRenderPassFlagsQCOM,
-        pub tile_apron_size: crate::vk::Extent2D,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub flags: vk::TileShadingRenderPassFlagsQCOM,
+        pub tile_apron_size: vk::Extent2D,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for RenderPassTileShadingCreateInfoQCOM<'_> {}
     unsafe impl Sync for RenderPassTileShadingCreateInfoQCOM<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for RenderPassTileShadingCreateInfoQCOM<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::RENDER_PASS_TILE_SHADING_CREATE_INFO_QCOM;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::RENDER_PASS_TILE_SHADING_CREATE_INFO_QCOM;
     }
-    unsafe impl<'a> crate::Extends<crate::vk::RenderPassCreateInfo<'_>>
+    unsafe impl<'a> crate::Extends<vk::RenderPassCreateInfo<'_>>
     for RenderPassTileShadingCreateInfoQCOM<'a> {}
-    unsafe impl<'a> crate::Extends<crate::vk::RenderPassCreateInfo2<'_>>
+    unsafe impl<'a> crate::Extends<vk::RenderPassCreateInfo2<'_>>
     for RenderPassTileShadingCreateInfoQCOM<'a> {}
-    unsafe impl<'a> crate::Extends<crate::vk::RenderingInfo<'_>>
+    unsafe impl<'a> crate::Extends<vk::RenderingInfo<'_>>
     for RenderPassTileShadingCreateInfoQCOM<'a> {}
-    unsafe impl<'a> crate::Extends<crate::vk::CommandBufferInheritanceInfo<'_>>
+    unsafe impl<'a> crate::Extends<vk::CommandBufferInheritanceInfo<'_>>
     for RenderPassTileShadingCreateInfoQCOM<'a> {}
     impl<'a> Default for RenderPassTileShadingCreateInfoQCOM<'a> {
         fn default() -> Self {
@@ -398,19 +396,16 @@ pub(crate) mod items {
                 p_next: Default::default(),
                 flags: Default::default(),
                 tile_apron_size: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
     impl<'a> RenderPassTileShadingCreateInfoQCOM<'a> {
-        pub fn flags(
-            mut self,
-            flags: crate::vk::TileShadingRenderPassFlagsQCOM,
-        ) -> Self {
+        pub fn flags(mut self, flags: vk::TileShadingRenderPassFlagsQCOM) -> Self {
             self.flags = flags;
             self
         }
-        pub fn tile_apron_size(mut self, tile_apron_size: crate::vk::Extent2D) -> Self {
+        pub fn tile_apron_size(mut self, tile_apron_size: vk::Extent2D) -> Self {
             self.tile_apron_size = tile_apron_size;
             self
         }
@@ -419,21 +414,21 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct PerTileBeginInfoQCOM<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *const core::ffi::c_void,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for PerTileBeginInfoQCOM<'_> {}
     unsafe impl Sync for PerTileBeginInfoQCOM<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for PerTileBeginInfoQCOM<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PER_TILE_BEGIN_INFO_QCOM;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PER_TILE_BEGIN_INFO_QCOM;
     }
     impl<'a> Default for PerTileBeginInfoQCOM<'a> {
         fn default() -> Self {
             Self {
                 s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
                 p_next: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
@@ -442,21 +437,21 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct PerTileEndInfoQCOM<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *const core::ffi::c_void,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for PerTileEndInfoQCOM<'_> {}
     unsafe impl Sync for PerTileEndInfoQCOM<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for PerTileEndInfoQCOM<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PER_TILE_END_INFO_QCOM;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PER_TILE_END_INFO_QCOM;
     }
     impl<'a> Default for PerTileEndInfoQCOM<'a> {
         fn default() -> Self {
             Self {
                 s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
                 p_next: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
@@ -465,21 +460,21 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct DispatchTileInfoQCOM<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *const core::ffi::c_void,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for DispatchTileInfoQCOM<'_> {}
     unsafe impl Sync for DispatchTileInfoQCOM<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for DispatchTileInfoQCOM<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::DISPATCH_TILE_INFO_QCOM;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::DISPATCH_TILE_INFO_QCOM;
     }
     impl<'a> Default for DispatchTileInfoQCOM<'a> {
         fn default() -> Self {
             Self {
                 s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
                 p_next: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
@@ -584,16 +579,16 @@ pub(crate) mod items {
         }
     }
     pub type PFN_vkCmdDispatchTileQCOM = unsafe extern "system" fn(
-        command_buffer: crate::vk::CommandBuffer,
-        p_dispatch_tile_info: *const crate::vk::DispatchTileInfoQCOM<'_>,
+        command_buffer: vk::CommandBuffer,
+        p_dispatch_tile_info: *const vk::DispatchTileInfoQCOM<'_>,
     );
     pub type PFN_vkCmdBeginPerTileExecutionQCOM = unsafe extern "system" fn(
-        command_buffer: crate::vk::CommandBuffer,
-        p_per_tile_begin_info: *const crate::vk::PerTileBeginInfoQCOM<'_>,
+        command_buffer: vk::CommandBuffer,
+        p_per_tile_begin_info: *const vk::PerTileBeginInfoQCOM<'_>,
     );
     pub type PFN_vkCmdEndPerTileExecutionQCOM = unsafe extern "system" fn(
-        command_buffer: crate::vk::CommandBuffer,
-        p_per_tile_end_info: *const crate::vk::PerTileEndInfoQCOM<'_>,
+        command_buffer: vk::CommandBuffer,
+        p_per_tile_end_info: *const vk::PerTileEndInfoQCOM<'_>,
     );
 }
 pub use items::*;

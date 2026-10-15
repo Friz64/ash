@@ -2,24 +2,26 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_QCOM_data_graph_model.html) · Extension `VK_QCOM_data_graph_model`
 #![doc(alias = "VK_QCOM_data_graph_model")]
+use crate::vk;
+use core::ffi::CStr;
 ///Provided by [VK_QCOM_data_graph_model](crate::qcom::data_graph_model)
-impl crate::vk::PipelineCacheHeaderVersion {
+impl vk::PipelineCacheHeaderVersion {
     pub const DATA_GRAPH_QCOM: Self = Self(1000629000);
 }
 ///Provided by [VK_QCOM_data_graph_model](crate::qcom::data_graph_model)
-impl crate::vk::StructureType {
+impl vk::StructureType {
     pub const PHYSICAL_DEVICE_DATA_GRAPH_MODEL_FEATURES_QCOM: Self = Self(1000629000);
     pub const DATA_GRAPH_PIPELINE_BUILTIN_MODEL_CREATE_INFO_QCOM: Self = Self(
         1000629001,
     );
 }
 ///Provided by [VK_QCOM_data_graph_model](crate::qcom::data_graph_model)
-impl crate::vk::PhysicalDeviceDataGraphProcessingEngineTypeARM {
+impl vk::PhysicalDeviceDataGraphProcessingEngineTypeARM {
     pub const NEURAL_QCOM: Self = Self(1000629000);
     pub const COMPUTE_QCOM: Self = Self(1000629001);
 }
 ///Provided by [VK_QCOM_data_graph_model](crate::qcom::data_graph_model)
-impl crate::vk::PhysicalDeviceDataGraphOperationTypeARM {
+impl vk::PhysicalDeviceDataGraphOperationTypeARM {
     pub const NEURAL_MODEL_QCOM: Self = Self(1000629000);
     pub const BUILTIN_MODEL_QCOM: Self = Self(1000629001);
 }
@@ -28,17 +30,19 @@ impl DataGraphModelCacheTypeQCOM {
     pub const GENERIC_BINARY: Self = Self(0);
 }
 pub const SPEC_VERSION: u32 = 1;
-pub const NAME: &core::ffi::CStr = c"VK_QCOM_data_graph_model";
+pub const NAME: &CStr = c"VK_QCOM_data_graph_model";
 pub(crate) mod items {
+    use crate::vk;
+    use core::marker::PhantomData;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct PipelineCacheHeaderVersionDataGraphQCOM {
         pub header_size: u32,
-        pub header_version: crate::vk::PipelineCacheHeaderVersion,
-        pub cache_type: crate::vk::DataGraphModelCacheTypeQCOM,
+        pub header_version: vk::PipelineCacheHeaderVersion,
+        pub cache_type: vk::DataGraphModelCacheTypeQCOM,
         pub cache_version: u32,
-        pub toolchain_version: [u32; crate::vk::DATA_GRAPH_MODEL_TOOLCHAIN_VERSION_LENGTH_QCOM
+        pub toolchain_version: [u32; vk::DATA_GRAPH_MODEL_TOOLCHAIN_VERSION_LENGTH_QCOM
             as _],
     }
     unsafe impl Send for PipelineCacheHeaderVersionDataGraphQCOM {}
@@ -61,14 +65,14 @@ pub(crate) mod items {
         }
         pub fn header_version(
             mut self,
-            header_version: crate::vk::PipelineCacheHeaderVersion,
+            header_version: vk::PipelineCacheHeaderVersion,
         ) -> Self {
             self.header_version = header_version;
             self
         }
         pub fn cache_type(
             mut self,
-            cache_type: crate::vk::DataGraphModelCacheTypeQCOM,
+            cache_type: vk::DataGraphModelCacheTypeQCOM,
         ) -> Self {
             self.cache_type = cache_type;
             self
@@ -79,7 +83,7 @@ pub(crate) mod items {
         }
         pub fn toolchain_version(
             mut self,
-            toolchain_version: [u32; crate::vk::DATA_GRAPH_MODEL_TOOLCHAIN_VERSION_LENGTH_QCOM
+            toolchain_version: [u32; vk::DATA_GRAPH_MODEL_TOOLCHAIN_VERSION_LENGTH_QCOM
                 as _],
         ) -> Self {
             self.toolchain_version = toolchain_version;
@@ -90,18 +94,18 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct DataGraphPipelineBuiltinModelCreateInfoQCOM<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *const core::ffi::c_void,
-        pub p_operation: *const crate::vk::PhysicalDeviceDataGraphOperationSupportARM,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub p_operation: *const vk::PhysicalDeviceDataGraphOperationSupportARM,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for DataGraphPipelineBuiltinModelCreateInfoQCOM<'_> {}
     unsafe impl Sync for DataGraphPipelineBuiltinModelCreateInfoQCOM<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for DataGraphPipelineBuiltinModelCreateInfoQCOM<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::DATA_GRAPH_PIPELINE_BUILTIN_MODEL_CREATE_INFO_QCOM;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::DATA_GRAPH_PIPELINE_BUILTIN_MODEL_CREATE_INFO_QCOM;
     }
-    unsafe impl<'a> crate::Extends<crate::vk::DataGraphPipelineCreateInfoARM<'_>>
+    unsafe impl<'a> crate::Extends<vk::DataGraphPipelineCreateInfoARM<'_>>
     for DataGraphPipelineBuiltinModelCreateInfoQCOM<'a> {}
     impl<'a> Default for DataGraphPipelineBuiltinModelCreateInfoQCOM<'a> {
         fn default() -> Self {
@@ -109,14 +113,14 @@ pub(crate) mod items {
                 s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
                 p_next: Default::default(),
                 p_operation: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
     impl<'a> DataGraphPipelineBuiltinModelCreateInfoQCOM<'a> {
         pub fn operation(
             mut self,
-            operation: &'a crate::vk::PhysicalDeviceDataGraphOperationSupportARM,
+            operation: &'a vk::PhysicalDeviceDataGraphOperationSupportARM,
         ) -> Self {
             self.p_operation = operation;
             self
@@ -126,20 +130,20 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceDataGraphModelFeaturesQCOM<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
-        pub data_graph_model: crate::vk::Bool32,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub data_graph_model: vk::Bool32,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for PhysicalDeviceDataGraphModelFeaturesQCOM<'_> {}
     unsafe impl Sync for PhysicalDeviceDataGraphModelFeaturesQCOM<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceDataGraphModelFeaturesQCOM<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_DATA_GRAPH_MODEL_FEATURES_QCOM;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PHYSICAL_DEVICE_DATA_GRAPH_MODEL_FEATURES_QCOM;
     }
-    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+    unsafe impl<'a> crate::Extends<vk::PhysicalDeviceFeatures2<'_>>
     for PhysicalDeviceDataGraphModelFeaturesQCOM<'a> {}
-    unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+    unsafe impl<'a> crate::Extends<vk::DeviceCreateInfo<'_>>
     for PhysicalDeviceDataGraphModelFeaturesQCOM<'a> {}
     impl<'a> Default for PhysicalDeviceDataGraphModelFeaturesQCOM<'a> {
         fn default() -> Self {
@@ -147,7 +151,7 @@ pub(crate) mod items {
                 s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
                 p_next: Default::default(),
                 data_graph_model: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }

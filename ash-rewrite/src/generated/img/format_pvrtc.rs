@@ -2,8 +2,10 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_IMG_format_pvrtc.html) · Extension `VK_IMG_format_pvrtc`
 #![doc(alias = "VK_IMG_format_pvrtc")]
+use crate::vk;
+use core::ffi::CStr;
 ///Provided by [VK_IMG_format_pvrtc](crate::img::format_pvrtc)
-impl crate::vk::Format {
+impl vk::Format {
     pub const PVRTC1_2BPP_UNORM_BLOCK_IMG: Self = Self(1000054000);
     pub const PVRTC1_4BPP_UNORM_BLOCK_IMG: Self = Self(1000054001);
     pub const PVRTC2_2BPP_UNORM_BLOCK_IMG: Self = Self(1000054002);
@@ -14,4 +16,4 @@ impl crate::vk::Format {
     pub const PVRTC2_4BPP_SRGB_BLOCK_IMG: Self = Self(1000054007);
 }
 pub const SPEC_VERSION: u32 = 1;
-pub const NAME: &core::ffi::CStr = c"VK_IMG_format_pvrtc";
+pub const NAME: &CStr = c"VK_IMG_format_pvrtc";

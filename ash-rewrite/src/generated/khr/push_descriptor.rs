@@ -2,49 +2,50 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_push_descriptor.html) · Extension `VK_KHR_push_descriptor`
 #![doc(alias = "VK_KHR_push_descriptor")]
+use crate::vk;
+use core::ffi::CStr;
+use core::ffi::c_void;
 ///Provided by [VK_KHR_push_descriptor](crate::khr::push_descriptor)
-impl crate::vk::StructureType {
+impl vk::StructureType {
     pub const PHYSICAL_DEVICE_PUSH_DESCRIPTOR_PROPERTIES_KHR: Self = Self::PHYSICAL_DEVICE_PUSH_DESCRIPTOR_PROPERTIES;
 }
 ///Provided by [VK_KHR_push_descriptor](crate::khr::push_descriptor)
-impl crate::vk::DescriptorUpdateTemplateType {
+impl vk::DescriptorUpdateTemplateType {
     pub const PUSH_DESCRIPTORS_KHR: Self = Self::PUSH_DESCRIPTORS;
 }
-///Provided by [VK_KHR_push_descriptor](crate::khr::push_descriptor)
-impl crate::vk::DescriptorSetLayoutCreateFlags {
+///Provided by [Vulkan 1.0](crate::vk1_0)
+impl vk::DescriptorSetLayoutCreateFlags {
     pub const PUSH_DESCRIPTOR_KHR: Self = Self(
-        crate::vk::DescriptorSetLayoutCreateFlagBits::PUSH_DESCRIPTOR_KHR.0,
+        vk::DescriptorSetLayoutCreateFlagBits::PUSH_DESCRIPTOR_KHR.0,
     );
 }
-///Provided by [VK_KHR_push_descriptor](crate::khr::push_descriptor)
-impl crate::vk::DescriptorSetLayoutCreateFlagBits {
+///Provided by [Vulkan 1.0](crate::vk1_0)
+impl vk::DescriptorSetLayoutCreateFlagBits {
     pub const PUSH_DESCRIPTOR_KHR: Self = Self::PUSH_DESCRIPTOR;
 }
+pub const SPEC_VERSION: u32 = 2;
+pub const NAME: &CStr = c"VK_KHR_push_descriptor";
 #[derive(Clone)]
 pub struct DeviceFn {
-    pub cmd_push_descriptor_set: crate::vk::PFN_vkCmdPushDescriptorSetKHR,
-    pub cmd_push_descriptor_set_with_template: crate::vk::PFN_vkCmdPushDescriptorSetWithTemplateKHR,
+    pub cmd_push_descriptor_set: vk::PFN_vkCmdPushDescriptorSetKHR,
+    pub cmd_push_descriptor_set_with_template: vk::PFN_vkCmdPushDescriptorSetWithTemplateKHR,
 }
 unsafe impl Send for DeviceFn {}
 unsafe impl Sync for DeviceFn {}
 impl DeviceFn {
-    pub fn load<F: FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void>(
-        mut f: F,
-    ) -> Self {
+    pub fn load<F: FnMut(&CStr) -> *const c_void>(mut f: F) -> Self {
         Self::load_erased(&mut f)
     }
-    fn load_erased(
-        _f: &mut dyn FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void,
-    ) -> Self {
+    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const c_void) -> Self {
         Self {
             cmd_push_descriptor_set: unsafe {
                 unsafe extern "system" fn cmd_push_descriptor_set(
-                    _: crate::vk::CommandBuffer,
-                    _: crate::vk::PipelineBindPoint,
-                    _: crate::vk::PipelineLayout,
+                    _: vk::CommandBuffer,
+                    _: vk::PipelineBindPoint,
+                    _: vk::PipelineLayout,
                     _: u32,
                     _: u32,
-                    _: *const crate::vk::WriteDescriptorSet<'_>,
+                    _: *const vk::WriteDescriptorSet<'_>,
                 ) {
                     panic!("unable to load vkCmdPushDescriptorSetKHR")
                 }
@@ -57,9 +58,9 @@ impl DeviceFn {
             },
             cmd_push_descriptor_set_with_template: unsafe {
                 unsafe extern "system" fn cmd_push_descriptor_set_with_template(
-                    _: crate::vk::CommandBuffer,
-                    _: crate::vk::DescriptorUpdateTemplate,
-                    _: crate::vk::PipelineLayout,
+                    _: vk::CommandBuffer,
+                    _: vk::DescriptorUpdateTemplate,
+                    _: vk::PipelineLayout,
                     _: u32,
                     _: *const core::ffi::c_void,
                 ) {
@@ -100,11 +101,11 @@ impl Device {
     #[inline]
     pub unsafe fn cmd_push_descriptor_set(
         &self,
-        command_buffer: crate::vk::CommandBuffer,
-        pipeline_bind_point: crate::vk::PipelineBindPoint,
-        layout: crate::vk::PipelineLayout,
+        command_buffer: vk::CommandBuffer,
+        pipeline_bind_point: vk::PipelineBindPoint,
+        layout: vk::PipelineLayout,
         set: u32,
-        descriptor_writes: &[crate::vk::WriteDescriptorSet<'_>],
+        descriptor_writes: &[vk::WriteDescriptorSet<'_>],
     ) {
         (self
             .fp
@@ -121,9 +122,9 @@ impl Device {
     #[inline]
     pub unsafe fn cmd_push_descriptor_set_with_template(
         &self,
-        command_buffer: crate::vk::CommandBuffer,
-        descriptor_update_template: crate::vk::DescriptorUpdateTemplate,
-        layout: crate::vk::PipelineLayout,
+        command_buffer: vk::CommandBuffer,
+        descriptor_update_template: vk::DescriptorUpdateTemplate,
+        layout: vk::PipelineLayout,
         set: u32,
         data: &core::ffi::c_void,
     ) {
@@ -138,13 +139,12 @@ impl Device {
         )
     }
 }
-pub const SPEC_VERSION: u32 = 2;
-pub const NAME: &core::ffi::CStr = c"VK_KHR_push_descriptor";
 pub(crate) mod items {
-    pub type PhysicalDevicePushDescriptorPropertiesKHR<'a> = crate::vk::PhysicalDevicePushDescriptorProperties<
+    use crate::vk;
+    pub type PhysicalDevicePushDescriptorPropertiesKHR<'a> = vk::PhysicalDevicePushDescriptorProperties<
         'a,
     >;
-    pub type PFN_vkCmdPushDescriptorSetKHR = crate::vk::PFN_vkCmdPushDescriptorSet;
-    pub type PFN_vkCmdPushDescriptorSetWithTemplateKHR = crate::vk::PFN_vkCmdPushDescriptorSetWithTemplate;
+    pub type PFN_vkCmdPushDescriptorSetKHR = vk::PFN_vkCmdPushDescriptorSet;
+    pub type PFN_vkCmdPushDescriptorSetWithTemplateKHR = vk::PFN_vkCmdPushDescriptorSetWithTemplate;
 }
 pub use items::*;

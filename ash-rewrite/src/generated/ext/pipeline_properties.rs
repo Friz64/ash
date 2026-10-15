@@ -2,34 +2,36 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_pipeline_properties.html) · Extension `VK_EXT_pipeline_properties`
 #![doc(alias = "VK_EXT_pipeline_properties")]
+use crate::vk;
+use core::ffi::CStr;
+use crate::VkResult;
+use core::ffi::c_void;
 ///Provided by [VK_EXT_pipeline_properties](crate::ext::pipeline_properties)
-impl crate::vk::StructureType {
+impl vk::StructureType {
     pub const PIPELINE_PROPERTIES_IDENTIFIER_EXT: Self = Self(1000372000);
     pub const PHYSICAL_DEVICE_PIPELINE_PROPERTIES_FEATURES_EXT: Self = Self(1000372001);
     pub const PIPELINE_INFO_EXT: Self = Self::PIPELINE_INFO_KHR;
 }
+pub const SPEC_VERSION: u32 = 1;
+pub const NAME: &CStr = c"VK_EXT_pipeline_properties";
 #[derive(Clone)]
 pub struct DeviceFn {
-    pub get_pipeline_properties: crate::vk::PFN_vkGetPipelinePropertiesEXT,
+    pub get_pipeline_properties: vk::PFN_vkGetPipelinePropertiesEXT,
 }
 unsafe impl Send for DeviceFn {}
 unsafe impl Sync for DeviceFn {}
 impl DeviceFn {
-    pub fn load<F: FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void>(
-        mut f: F,
-    ) -> Self {
+    pub fn load<F: FnMut(&CStr) -> *const c_void>(mut f: F) -> Self {
         Self::load_erased(&mut f)
     }
-    fn load_erased(
-        _f: &mut dyn FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void,
-    ) -> Self {
+    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const c_void) -> Self {
         Self {
             get_pipeline_properties: unsafe {
                 unsafe extern "system" fn get_pipeline_properties(
-                    _: crate::vk::Device,
-                    _: *const crate::vk::PipelineInfoKHR<'_>,
-                    _: *mut crate::vk::BaseOutStructure<'_>,
-                ) -> crate::vk::Result {
+                    _: vk::Device,
+                    _: *const vk::PipelineInfoKHR<'_>,
+                    _: *mut vk::BaseOutStructure<'_>,
+                ) -> vk::Result {
                     panic!("unable to load vkGetPipelinePropertiesEXT")
                 }
                 let val = _f(c"vkGetPipelinePropertiesEXT");
@@ -67,8 +69,8 @@ impl Device {
     #[inline]
     pub unsafe fn get_pipeline_properties(
         &self,
-        pipeline_info: &crate::vk::PipelineInfoKHR<'_>,
-    ) -> crate::VkResult<crate::vk::BaseOutStructure<'_>> {
+        pipeline_info: &vk::PipelineInfoKHR<'_>,
+    ) -> VkResult<vk::BaseOutStructure<'_>> {
         let mut pipeline_properties = core::mem::MaybeUninit::uninit();
         (self
             .fp
@@ -80,22 +82,22 @@ impl Device {
             .assume_init_on_success(pipeline_properties)
     }
 }
-pub const SPEC_VERSION: u32 = 1;
-pub const NAME: &core::ffi::CStr = c"VK_EXT_pipeline_properties";
 pub(crate) mod items {
+    use core::marker::PhantomData;
+    use crate::vk;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct PipelinePropertiesIdentifierEXT<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
-        pub pipeline_identifier: [u8; crate::vk::UUID_SIZE as _],
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub pipeline_identifier: [u8; vk::UUID_SIZE as _],
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for PipelinePropertiesIdentifierEXT<'_> {}
     unsafe impl Sync for PipelinePropertiesIdentifierEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for PipelinePropertiesIdentifierEXT<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PIPELINE_PROPERTIES_IDENTIFIER_EXT;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PIPELINE_PROPERTIES_IDENTIFIER_EXT;
     }
     impl<'a> Default for PipelinePropertiesIdentifierEXT<'a> {
         fn default() -> Self {
@@ -103,14 +105,14 @@ pub(crate) mod items {
                 s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
                 p_next: Default::default(),
                 pipeline_identifier: unsafe { core::mem::zeroed() },
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
     impl<'a> PipelinePropertiesIdentifierEXT<'a> {
         pub fn pipeline_identifier(
             mut self,
-            pipeline_identifier: [u8; crate::vk::UUID_SIZE as _],
+            pipeline_identifier: [u8; vk::UUID_SIZE as _],
         ) -> Self {
             self.pipeline_identifier = pipeline_identifier;
             self
@@ -120,20 +122,20 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct PhysicalDevicePipelinePropertiesFeaturesEXT<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
-        pub pipeline_properties_identifier: crate::vk::Bool32,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub pipeline_properties_identifier: vk::Bool32,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for PhysicalDevicePipelinePropertiesFeaturesEXT<'_> {}
     unsafe impl Sync for PhysicalDevicePipelinePropertiesFeaturesEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDevicePipelinePropertiesFeaturesEXT<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_PIPELINE_PROPERTIES_FEATURES_EXT;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PHYSICAL_DEVICE_PIPELINE_PROPERTIES_FEATURES_EXT;
     }
-    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+    unsafe impl<'a> crate::Extends<vk::PhysicalDeviceFeatures2<'_>>
     for PhysicalDevicePipelinePropertiesFeaturesEXT<'a> {}
-    unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+    unsafe impl<'a> crate::Extends<vk::DeviceCreateInfo<'_>>
     for PhysicalDevicePipelinePropertiesFeaturesEXT<'a> {}
     impl<'a> Default for PhysicalDevicePipelinePropertiesFeaturesEXT<'a> {
         fn default() -> Self {
@@ -141,7 +143,7 @@ pub(crate) mod items {
                 s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
                 p_next: Default::default(),
                 pipeline_properties_identifier: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
@@ -154,11 +156,11 @@ pub(crate) mod items {
             self
         }
     }
-    pub type PipelineInfoEXT<'a> = crate::vk::PipelineInfoKHR<'a>;
+    pub type PipelineInfoEXT<'a> = vk::PipelineInfoKHR<'a>;
     pub type PFN_vkGetPipelinePropertiesEXT = unsafe extern "system" fn(
-        device: crate::vk::Device,
-        p_pipeline_info: *const crate::vk::PipelineInfoKHR<'_>,
-        p_pipeline_properties: *mut crate::vk::BaseOutStructure<'_>,
-    ) -> crate::vk::Result;
+        device: vk::Device,
+        p_pipeline_info: *const vk::PipelineInfoKHR<'_>,
+        p_pipeline_properties: *mut vk::BaseOutStructure<'_>,
+    ) -> vk::Result;
 }
 pub use items::*;

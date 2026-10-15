@@ -2,14 +2,17 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_extended_dynamic_state.html) · Extension `VK_EXT_extended_dynamic_state`
 #![doc(alias = "VK_EXT_extended_dynamic_state")]
+use crate::vk;
+use core::ffi::CStr;
+use core::ffi::c_void;
 ///Provided by [VK_EXT_extended_dynamic_state](crate::ext::extended_dynamic_state)
-impl crate::vk::StructureType {
+impl vk::StructureType {
     pub const PHYSICAL_DEVICE_EXTENDED_DYNAMIC_STATE_FEATURES_EXT: Self = Self(
         1000267000,
     );
 }
 ///Provided by [VK_EXT_extended_dynamic_state](crate::ext::extended_dynamic_state)
-impl crate::vk::DynamicState {
+impl vk::DynamicState {
     pub const CULL_MODE_EXT: Self = Self::CULL_MODE;
     pub const FRONT_FACE_EXT: Self = Self::FRONT_FACE;
     pub const PRIMITIVE_TOPOLOGY_EXT: Self = Self::PRIMITIVE_TOPOLOGY;
@@ -23,37 +26,35 @@ impl crate::vk::DynamicState {
     pub const STENCIL_TEST_ENABLE_EXT: Self = Self::STENCIL_TEST_ENABLE;
     pub const STENCIL_OP_EXT: Self = Self::STENCIL_OP;
 }
+pub const SPEC_VERSION: u32 = 1;
+pub const NAME: &CStr = c"VK_EXT_extended_dynamic_state";
 #[derive(Clone)]
 pub struct DeviceFn {
-    pub cmd_set_cull_mode: crate::vk::PFN_vkCmdSetCullModeEXT,
-    pub cmd_set_front_face: crate::vk::PFN_vkCmdSetFrontFaceEXT,
-    pub cmd_set_primitive_topology: crate::vk::PFN_vkCmdSetPrimitiveTopologyEXT,
-    pub cmd_set_viewport_with_count: crate::vk::PFN_vkCmdSetViewportWithCountEXT,
-    pub cmd_set_scissor_with_count: crate::vk::PFN_vkCmdSetScissorWithCountEXT,
-    pub cmd_bind_vertex_buffers2: crate::vk::PFN_vkCmdBindVertexBuffers2EXT,
-    pub cmd_set_depth_test_enable: crate::vk::PFN_vkCmdSetDepthTestEnableEXT,
-    pub cmd_set_depth_write_enable: crate::vk::PFN_vkCmdSetDepthWriteEnableEXT,
-    pub cmd_set_depth_compare_op: crate::vk::PFN_vkCmdSetDepthCompareOpEXT,
-    pub cmd_set_depth_bounds_test_enable: crate::vk::PFN_vkCmdSetDepthBoundsTestEnableEXT,
-    pub cmd_set_stencil_test_enable: crate::vk::PFN_vkCmdSetStencilTestEnableEXT,
-    pub cmd_set_stencil_op: crate::vk::PFN_vkCmdSetStencilOpEXT,
+    pub cmd_set_cull_mode: vk::PFN_vkCmdSetCullModeEXT,
+    pub cmd_set_front_face: vk::PFN_vkCmdSetFrontFaceEXT,
+    pub cmd_set_primitive_topology: vk::PFN_vkCmdSetPrimitiveTopologyEXT,
+    pub cmd_set_viewport_with_count: vk::PFN_vkCmdSetViewportWithCountEXT,
+    pub cmd_set_scissor_with_count: vk::PFN_vkCmdSetScissorWithCountEXT,
+    pub cmd_bind_vertex_buffers2: vk::PFN_vkCmdBindVertexBuffers2EXT,
+    pub cmd_set_depth_test_enable: vk::PFN_vkCmdSetDepthTestEnableEXT,
+    pub cmd_set_depth_write_enable: vk::PFN_vkCmdSetDepthWriteEnableEXT,
+    pub cmd_set_depth_compare_op: vk::PFN_vkCmdSetDepthCompareOpEXT,
+    pub cmd_set_depth_bounds_test_enable: vk::PFN_vkCmdSetDepthBoundsTestEnableEXT,
+    pub cmd_set_stencil_test_enable: vk::PFN_vkCmdSetStencilTestEnableEXT,
+    pub cmd_set_stencil_op: vk::PFN_vkCmdSetStencilOpEXT,
 }
 unsafe impl Send for DeviceFn {}
 unsafe impl Sync for DeviceFn {}
 impl DeviceFn {
-    pub fn load<F: FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void>(
-        mut f: F,
-    ) -> Self {
+    pub fn load<F: FnMut(&CStr) -> *const c_void>(mut f: F) -> Self {
         Self::load_erased(&mut f)
     }
-    fn load_erased(
-        _f: &mut dyn FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void,
-    ) -> Self {
+    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const c_void) -> Self {
         Self {
             cmd_set_cull_mode: unsafe {
                 unsafe extern "system" fn cmd_set_cull_mode(
-                    _: crate::vk::CommandBuffer,
-                    _: crate::vk::CullModeFlags,
+                    _: vk::CommandBuffer,
+                    _: vk::CullModeFlags,
                 ) {
                     panic!("unable to load vkCmdSetCullModeEXT")
                 }
@@ -66,8 +67,8 @@ impl DeviceFn {
             },
             cmd_set_front_face: unsafe {
                 unsafe extern "system" fn cmd_set_front_face(
-                    _: crate::vk::CommandBuffer,
-                    _: crate::vk::FrontFace,
+                    _: vk::CommandBuffer,
+                    _: vk::FrontFace,
                 ) {
                     panic!("unable to load vkCmdSetFrontFaceEXT")
                 }
@@ -80,8 +81,8 @@ impl DeviceFn {
             },
             cmd_set_primitive_topology: unsafe {
                 unsafe extern "system" fn cmd_set_primitive_topology(
-                    _: crate::vk::CommandBuffer,
-                    _: crate::vk::PrimitiveTopology,
+                    _: vk::CommandBuffer,
+                    _: vk::PrimitiveTopology,
                 ) {
                     panic!("unable to load vkCmdSetPrimitiveTopologyEXT")
                 }
@@ -94,9 +95,9 @@ impl DeviceFn {
             },
             cmd_set_viewport_with_count: unsafe {
                 unsafe extern "system" fn cmd_set_viewport_with_count(
-                    _: crate::vk::CommandBuffer,
+                    _: vk::CommandBuffer,
                     _: u32,
-                    _: *const crate::vk::Viewport,
+                    _: *const vk::Viewport,
                 ) {
                     panic!("unable to load vkCmdSetViewportWithCountEXT")
                 }
@@ -109,9 +110,9 @@ impl DeviceFn {
             },
             cmd_set_scissor_with_count: unsafe {
                 unsafe extern "system" fn cmd_set_scissor_with_count(
-                    _: crate::vk::CommandBuffer,
+                    _: vk::CommandBuffer,
                     _: u32,
-                    _: *const crate::vk::Rect2D,
+                    _: *const vk::Rect2D,
                 ) {
                     panic!("unable to load vkCmdSetScissorWithCountEXT")
                 }
@@ -124,13 +125,13 @@ impl DeviceFn {
             },
             cmd_bind_vertex_buffers2: unsafe {
                 unsafe extern "system" fn cmd_bind_vertex_buffers2(
-                    _: crate::vk::CommandBuffer,
+                    _: vk::CommandBuffer,
                     _: u32,
                     _: u32,
-                    _: *const crate::vk::Buffer,
-                    _: *const crate::vk::DeviceSize,
-                    _: *const crate::vk::DeviceSize,
-                    _: *const crate::vk::DeviceSize,
+                    _: *const vk::Buffer,
+                    _: *const vk::DeviceSize,
+                    _: *const vk::DeviceSize,
+                    _: *const vk::DeviceSize,
                 ) {
                     panic!("unable to load vkCmdBindVertexBuffers2EXT")
                 }
@@ -143,8 +144,8 @@ impl DeviceFn {
             },
             cmd_set_depth_test_enable: unsafe {
                 unsafe extern "system" fn cmd_set_depth_test_enable(
-                    _: crate::vk::CommandBuffer,
-                    _: crate::vk::Bool32,
+                    _: vk::CommandBuffer,
+                    _: vk::Bool32,
                 ) {
                     panic!("unable to load vkCmdSetDepthTestEnableEXT")
                 }
@@ -157,8 +158,8 @@ impl DeviceFn {
             },
             cmd_set_depth_write_enable: unsafe {
                 unsafe extern "system" fn cmd_set_depth_write_enable(
-                    _: crate::vk::CommandBuffer,
-                    _: crate::vk::Bool32,
+                    _: vk::CommandBuffer,
+                    _: vk::Bool32,
                 ) {
                     panic!("unable to load vkCmdSetDepthWriteEnableEXT")
                 }
@@ -171,8 +172,8 @@ impl DeviceFn {
             },
             cmd_set_depth_compare_op: unsafe {
                 unsafe extern "system" fn cmd_set_depth_compare_op(
-                    _: crate::vk::CommandBuffer,
-                    _: crate::vk::CompareOp,
+                    _: vk::CommandBuffer,
+                    _: vk::CompareOp,
                 ) {
                     panic!("unable to load vkCmdSetDepthCompareOpEXT")
                 }
@@ -185,8 +186,8 @@ impl DeviceFn {
             },
             cmd_set_depth_bounds_test_enable: unsafe {
                 unsafe extern "system" fn cmd_set_depth_bounds_test_enable(
-                    _: crate::vk::CommandBuffer,
-                    _: crate::vk::Bool32,
+                    _: vk::CommandBuffer,
+                    _: vk::Bool32,
                 ) {
                     panic!("unable to load vkCmdSetDepthBoundsTestEnableEXT")
                 }
@@ -199,8 +200,8 @@ impl DeviceFn {
             },
             cmd_set_stencil_test_enable: unsafe {
                 unsafe extern "system" fn cmd_set_stencil_test_enable(
-                    _: crate::vk::CommandBuffer,
-                    _: crate::vk::Bool32,
+                    _: vk::CommandBuffer,
+                    _: vk::Bool32,
                 ) {
                     panic!("unable to load vkCmdSetStencilTestEnableEXT")
                 }
@@ -213,12 +214,12 @@ impl DeviceFn {
             },
             cmd_set_stencil_op: unsafe {
                 unsafe extern "system" fn cmd_set_stencil_op(
-                    _: crate::vk::CommandBuffer,
-                    _: crate::vk::StencilFaceFlags,
-                    _: crate::vk::StencilOp,
-                    _: crate::vk::StencilOp,
-                    _: crate::vk::StencilOp,
-                    _: crate::vk::CompareOp,
+                    _: vk::CommandBuffer,
+                    _: vk::StencilFaceFlags,
+                    _: vk::StencilOp,
+                    _: vk::StencilOp,
+                    _: vk::StencilOp,
+                    _: vk::CompareOp,
                 ) {
                     panic!("unable to load vkCmdSetStencilOpEXT")
                 }
@@ -257,8 +258,8 @@ impl Device {
     #[inline]
     pub unsafe fn cmd_set_cull_mode(
         &self,
-        command_buffer: crate::vk::CommandBuffer,
-        cull_mode: crate::vk::CullModeFlags,
+        command_buffer: vk::CommandBuffer,
+        cull_mode: vk::CullModeFlags,
     ) {
         (self.fp.cmd_set_cull_mode)(command_buffer, cull_mode)
     }
@@ -266,8 +267,8 @@ impl Device {
     #[inline]
     pub unsafe fn cmd_set_front_face(
         &self,
-        command_buffer: crate::vk::CommandBuffer,
-        front_face: crate::vk::FrontFace,
+        command_buffer: vk::CommandBuffer,
+        front_face: vk::FrontFace,
     ) {
         (self.fp.cmd_set_front_face)(command_buffer, front_face)
     }
@@ -275,8 +276,8 @@ impl Device {
     #[inline]
     pub unsafe fn cmd_set_primitive_topology(
         &self,
-        command_buffer: crate::vk::CommandBuffer,
-        primitive_topology: crate::vk::PrimitiveTopology,
+        command_buffer: vk::CommandBuffer,
+        primitive_topology: vk::PrimitiveTopology,
     ) {
         (self.fp.cmd_set_primitive_topology)(command_buffer, primitive_topology)
     }
@@ -284,8 +285,8 @@ impl Device {
     #[inline]
     pub unsafe fn cmd_set_viewport_with_count(
         &self,
-        command_buffer: crate::vk::CommandBuffer,
-        viewports: &[crate::vk::Viewport],
+        command_buffer: vk::CommandBuffer,
+        viewports: &[vk::Viewport],
     ) {
         (self
             .fp
@@ -299,8 +300,8 @@ impl Device {
     #[inline]
     pub unsafe fn cmd_set_scissor_with_count(
         &self,
-        command_buffer: crate::vk::CommandBuffer,
-        scissors: &[crate::vk::Rect2D],
+        command_buffer: vk::CommandBuffer,
+        scissors: &[vk::Rect2D],
     ) {
         (self
             .fp
@@ -314,12 +315,12 @@ impl Device {
     #[inline]
     pub unsafe fn cmd_bind_vertex_buffers2(
         &self,
-        command_buffer: crate::vk::CommandBuffer,
+        command_buffer: vk::CommandBuffer,
         first_binding: u32,
-        buffers: &[crate::vk::Buffer],
-        offsets: &[crate::vk::DeviceSize],
-        sizes: &[crate::vk::DeviceSize],
-        strides: &[crate::vk::DeviceSize],
+        buffers: &[vk::Buffer],
+        offsets: &[vk::DeviceSize],
+        sizes: &[vk::DeviceSize],
+        strides: &[vk::DeviceSize],
     ) {
         assert_eq!(sizes.len(), strides.len());
         assert_eq!(offsets.len(), sizes.len());
@@ -340,8 +341,8 @@ impl Device {
     #[inline]
     pub unsafe fn cmd_set_depth_test_enable(
         &self,
-        command_buffer: crate::vk::CommandBuffer,
-        depth_test_enable: crate::vk::Bool32,
+        command_buffer: vk::CommandBuffer,
+        depth_test_enable: vk::Bool32,
     ) {
         (self.fp.cmd_set_depth_test_enable)(command_buffer, depth_test_enable)
     }
@@ -349,8 +350,8 @@ impl Device {
     #[inline]
     pub unsafe fn cmd_set_depth_write_enable(
         &self,
-        command_buffer: crate::vk::CommandBuffer,
-        depth_write_enable: crate::vk::Bool32,
+        command_buffer: vk::CommandBuffer,
+        depth_write_enable: vk::Bool32,
     ) {
         (self.fp.cmd_set_depth_write_enable)(command_buffer, depth_write_enable)
     }
@@ -358,8 +359,8 @@ impl Device {
     #[inline]
     pub unsafe fn cmd_set_depth_compare_op(
         &self,
-        command_buffer: crate::vk::CommandBuffer,
-        depth_compare_op: crate::vk::CompareOp,
+        command_buffer: vk::CommandBuffer,
+        depth_compare_op: vk::CompareOp,
     ) {
         (self.fp.cmd_set_depth_compare_op)(command_buffer, depth_compare_op)
     }
@@ -367,8 +368,8 @@ impl Device {
     #[inline]
     pub unsafe fn cmd_set_depth_bounds_test_enable(
         &self,
-        command_buffer: crate::vk::CommandBuffer,
-        depth_bounds_test_enable: crate::vk::Bool32,
+        command_buffer: vk::CommandBuffer,
+        depth_bounds_test_enable: vk::Bool32,
     ) {
         (self
             .fp
@@ -378,8 +379,8 @@ impl Device {
     #[inline]
     pub unsafe fn cmd_set_stencil_test_enable(
         &self,
-        command_buffer: crate::vk::CommandBuffer,
-        stencil_test_enable: crate::vk::Bool32,
+        command_buffer: vk::CommandBuffer,
+        stencil_test_enable: vk::Bool32,
     ) {
         (self.fp.cmd_set_stencil_test_enable)(command_buffer, stencil_test_enable)
     }
@@ -387,12 +388,12 @@ impl Device {
     #[inline]
     pub unsafe fn cmd_set_stencil_op(
         &self,
-        command_buffer: crate::vk::CommandBuffer,
-        face_mask: crate::vk::StencilFaceFlags,
-        fail_op: crate::vk::StencilOp,
-        pass_op: crate::vk::StencilOp,
-        depth_fail_op: crate::vk::StencilOp,
-        compare_op: crate::vk::CompareOp,
+        command_buffer: vk::CommandBuffer,
+        face_mask: vk::StencilFaceFlags,
+        fail_op: vk::StencilOp,
+        pass_op: vk::StencilOp,
+        depth_fail_op: vk::StencilOp,
+        compare_op: vk::CompareOp,
     ) {
         (self
             .fp
@@ -406,27 +407,27 @@ impl Device {
         )
     }
 }
-pub const SPEC_VERSION: u32 = 1;
-pub const NAME: &core::ffi::CStr = c"VK_EXT_extended_dynamic_state";
 pub(crate) mod items {
+    use core::marker::PhantomData;
+    use crate::vk;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceExtendedDynamicStateFeaturesEXT<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
-        pub extended_dynamic_state: crate::vk::Bool32,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub extended_dynamic_state: vk::Bool32,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for PhysicalDeviceExtendedDynamicStateFeaturesEXT<'_> {}
     unsafe impl Sync for PhysicalDeviceExtendedDynamicStateFeaturesEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceExtendedDynamicStateFeaturesEXT<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_EXTENDED_DYNAMIC_STATE_FEATURES_EXT;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PHYSICAL_DEVICE_EXTENDED_DYNAMIC_STATE_FEATURES_EXT;
     }
-    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+    unsafe impl<'a> crate::Extends<vk::PhysicalDeviceFeatures2<'_>>
     for PhysicalDeviceExtendedDynamicStateFeaturesEXT<'a> {}
-    unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+    unsafe impl<'a> crate::Extends<vk::DeviceCreateInfo<'_>>
     for PhysicalDeviceExtendedDynamicStateFeaturesEXT<'a> {}
     impl<'a> Default for PhysicalDeviceExtendedDynamicStateFeaturesEXT<'a> {
         fn default() -> Self {
@@ -434,7 +435,7 @@ pub(crate) mod items {
                 s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
                 p_next: Default::default(),
                 extended_dynamic_state: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
@@ -444,17 +445,17 @@ pub(crate) mod items {
             self
         }
     }
-    pub type PFN_vkCmdSetCullModeEXT = crate::vk::PFN_vkCmdSetCullMode;
-    pub type PFN_vkCmdSetFrontFaceEXT = crate::vk::PFN_vkCmdSetFrontFace;
-    pub type PFN_vkCmdSetPrimitiveTopologyEXT = crate::vk::PFN_vkCmdSetPrimitiveTopology;
-    pub type PFN_vkCmdSetViewportWithCountEXT = crate::vk::PFN_vkCmdSetViewportWithCount;
-    pub type PFN_vkCmdSetScissorWithCountEXT = crate::vk::PFN_vkCmdSetScissorWithCount;
-    pub type PFN_vkCmdBindVertexBuffers2EXT = crate::vk::PFN_vkCmdBindVertexBuffers2;
-    pub type PFN_vkCmdSetDepthTestEnableEXT = crate::vk::PFN_vkCmdSetDepthTestEnable;
-    pub type PFN_vkCmdSetDepthWriteEnableEXT = crate::vk::PFN_vkCmdSetDepthWriteEnable;
-    pub type PFN_vkCmdSetDepthCompareOpEXT = crate::vk::PFN_vkCmdSetDepthCompareOp;
-    pub type PFN_vkCmdSetDepthBoundsTestEnableEXT = crate::vk::PFN_vkCmdSetDepthBoundsTestEnable;
-    pub type PFN_vkCmdSetStencilTestEnableEXT = crate::vk::PFN_vkCmdSetStencilTestEnable;
-    pub type PFN_vkCmdSetStencilOpEXT = crate::vk::PFN_vkCmdSetStencilOp;
+    pub type PFN_vkCmdSetCullModeEXT = vk::PFN_vkCmdSetCullMode;
+    pub type PFN_vkCmdSetFrontFaceEXT = vk::PFN_vkCmdSetFrontFace;
+    pub type PFN_vkCmdSetPrimitiveTopologyEXT = vk::PFN_vkCmdSetPrimitiveTopology;
+    pub type PFN_vkCmdSetViewportWithCountEXT = vk::PFN_vkCmdSetViewportWithCount;
+    pub type PFN_vkCmdSetScissorWithCountEXT = vk::PFN_vkCmdSetScissorWithCount;
+    pub type PFN_vkCmdBindVertexBuffers2EXT = vk::PFN_vkCmdBindVertexBuffers2;
+    pub type PFN_vkCmdSetDepthTestEnableEXT = vk::PFN_vkCmdSetDepthTestEnable;
+    pub type PFN_vkCmdSetDepthWriteEnableEXT = vk::PFN_vkCmdSetDepthWriteEnable;
+    pub type PFN_vkCmdSetDepthCompareOpEXT = vk::PFN_vkCmdSetDepthCompareOp;
+    pub type PFN_vkCmdSetDepthBoundsTestEnableEXT = vk::PFN_vkCmdSetDepthBoundsTestEnable;
+    pub type PFN_vkCmdSetStencilTestEnableEXT = vk::PFN_vkCmdSetStencilTestEnable;
+    pub type PFN_vkCmdSetStencilOpEXT = vk::PFN_vkCmdSetStencilOp;
 }
 pub use items::*;

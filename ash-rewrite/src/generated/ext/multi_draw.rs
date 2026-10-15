@@ -2,33 +2,34 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_multi_draw.html) · Extension `VK_EXT_multi_draw`
 #![doc(alias = "VK_EXT_multi_draw")]
+use crate::vk;
+use core::ffi::CStr;
+use core::ffi::c_void;
 ///Provided by [VK_EXT_multi_draw](crate::ext::multi_draw)
-impl crate::vk::StructureType {
+impl vk::StructureType {
     pub const PHYSICAL_DEVICE_MULTI_DRAW_FEATURES_EXT: Self = Self(1000392000);
     pub const PHYSICAL_DEVICE_MULTI_DRAW_PROPERTIES_EXT: Self = Self(1000392001);
 }
+pub const SPEC_VERSION: u32 = 1;
+pub const NAME: &CStr = c"VK_EXT_multi_draw";
 #[derive(Clone)]
 pub struct DeviceFn {
-    pub cmd_draw_multi: crate::vk::PFN_vkCmdDrawMultiEXT,
-    pub cmd_draw_multi_indexed: crate::vk::PFN_vkCmdDrawMultiIndexedEXT,
+    pub cmd_draw_multi: vk::PFN_vkCmdDrawMultiEXT,
+    pub cmd_draw_multi_indexed: vk::PFN_vkCmdDrawMultiIndexedEXT,
 }
 unsafe impl Send for DeviceFn {}
 unsafe impl Sync for DeviceFn {}
 impl DeviceFn {
-    pub fn load<F: FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void>(
-        mut f: F,
-    ) -> Self {
+    pub fn load<F: FnMut(&CStr) -> *const c_void>(mut f: F) -> Self {
         Self::load_erased(&mut f)
     }
-    fn load_erased(
-        _f: &mut dyn FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void,
-    ) -> Self {
+    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const c_void) -> Self {
         Self {
             cmd_draw_multi: unsafe {
                 unsafe extern "system" fn cmd_draw_multi(
-                    _: crate::vk::CommandBuffer,
+                    _: vk::CommandBuffer,
                     _: u32,
-                    _: *const crate::vk::MultiDrawInfoEXT,
+                    _: *const vk::MultiDrawInfoEXT,
                     _: u32,
                     _: u32,
                     _: u32,
@@ -40,9 +41,9 @@ impl DeviceFn {
             },
             cmd_draw_multi_indexed: unsafe {
                 unsafe extern "system" fn cmd_draw_multi_indexed(
-                    _: crate::vk::CommandBuffer,
+                    _: vk::CommandBuffer,
                     _: u32,
-                    _: *const crate::vk::MultiDrawIndexedInfoEXT,
+                    _: *const vk::MultiDrawIndexedInfoEXT,
                     _: u32,
                     _: u32,
                     _: u32,
@@ -85,8 +86,8 @@ impl Device {
     #[inline]
     pub unsafe fn cmd_draw_multi(
         &self,
-        command_buffer: crate::vk::CommandBuffer,
-        vertex_info: &[crate::vk::MultiDrawInfoEXT],
+        command_buffer: vk::CommandBuffer,
+        vertex_info: &[vk::MultiDrawInfoEXT],
         instance_count: u32,
         first_instance: u32,
         stride: u32,
@@ -106,8 +107,8 @@ impl Device {
     #[inline]
     pub unsafe fn cmd_draw_multi_indexed(
         &self,
-        command_buffer: crate::vk::CommandBuffer,
-        index_info: &[crate::vk::MultiDrawIndexedInfoEXT],
+        command_buffer: vk::CommandBuffer,
+        index_info: &[vk::MultiDrawIndexedInfoEXT],
         instance_count: u32,
         first_instance: u32,
         stride: u32,
@@ -129,9 +130,9 @@ impl Device {
         )
     }
 }
-pub const SPEC_VERSION: u32 = 1;
-pub const NAME: &core::ffi::CStr = c"VK_EXT_multi_draw";
 pub(crate) mod items {
+    use core::marker::PhantomData;
+    use crate::vk;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy, Default)]
@@ -179,18 +180,18 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceMultiDrawPropertiesEXT<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
         pub max_multi_draw_count: u32,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for PhysicalDeviceMultiDrawPropertiesEXT<'_> {}
     unsafe impl Sync for PhysicalDeviceMultiDrawPropertiesEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceMultiDrawPropertiesEXT<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_MULTI_DRAW_PROPERTIES_EXT;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PHYSICAL_DEVICE_MULTI_DRAW_PROPERTIES_EXT;
     }
-    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceProperties2<'_>>
+    unsafe impl<'a> crate::Extends<vk::PhysicalDeviceProperties2<'_>>
     for PhysicalDeviceMultiDrawPropertiesEXT<'a> {}
     impl<'a> Default for PhysicalDeviceMultiDrawPropertiesEXT<'a> {
         fn default() -> Self {
@@ -198,7 +199,7 @@ pub(crate) mod items {
                 s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
                 p_next: Default::default(),
                 max_multi_draw_count: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
@@ -212,20 +213,20 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceMultiDrawFeaturesEXT<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
-        pub multi_draw: crate::vk::Bool32,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub multi_draw: vk::Bool32,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for PhysicalDeviceMultiDrawFeaturesEXT<'_> {}
     unsafe impl Sync for PhysicalDeviceMultiDrawFeaturesEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceMultiDrawFeaturesEXT<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_MULTI_DRAW_FEATURES_EXT;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PHYSICAL_DEVICE_MULTI_DRAW_FEATURES_EXT;
     }
-    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+    unsafe impl<'a> crate::Extends<vk::PhysicalDeviceFeatures2<'_>>
     for PhysicalDeviceMultiDrawFeaturesEXT<'a> {}
-    unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+    unsafe impl<'a> crate::Extends<vk::DeviceCreateInfo<'_>>
     for PhysicalDeviceMultiDrawFeaturesEXT<'a> {}
     impl<'a> Default for PhysicalDeviceMultiDrawFeaturesEXT<'a> {
         fn default() -> Self {
@@ -233,7 +234,7 @@ pub(crate) mod items {
                 s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
                 p_next: Default::default(),
                 multi_draw: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
@@ -244,17 +245,17 @@ pub(crate) mod items {
         }
     }
     pub type PFN_vkCmdDrawMultiEXT = unsafe extern "system" fn(
-        command_buffer: crate::vk::CommandBuffer,
+        command_buffer: vk::CommandBuffer,
         draw_count: u32,
-        p_vertex_info: *const crate::vk::MultiDrawInfoEXT,
+        p_vertex_info: *const vk::MultiDrawInfoEXT,
         instance_count: u32,
         first_instance: u32,
         stride: u32,
     );
     pub type PFN_vkCmdDrawMultiIndexedEXT = unsafe extern "system" fn(
-        command_buffer: crate::vk::CommandBuffer,
+        command_buffer: vk::CommandBuffer,
         draw_count: u32,
-        p_index_info: *const crate::vk::MultiDrawIndexedInfoEXT,
+        p_index_info: *const vk::MultiDrawIndexedInfoEXT,
         instance_count: u32,
         first_instance: u32,
         stride: u32,

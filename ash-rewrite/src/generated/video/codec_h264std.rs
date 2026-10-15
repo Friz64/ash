@@ -142,6 +142,8 @@ impl H264NonVclNaluType {
     pub const INVALID: Self = Self(0x7FFFFFFF);
 }
 pub(crate) mod items {
+    use crate::vk;
+    use core::marker::PhantomData;
     #[repr(C)]
     #[derive(Clone, Copy, Default)]
     pub struct H264SpsVuiFlags {
@@ -348,9 +350,9 @@ pub(crate) mod items {
         pub bit_rate_scale: u8,
         pub cpb_size_scale: u8,
         pub reserved1: u8,
-        pub bit_rate_value_minus1: [u32; crate::vk::H264_CPB_CNT_LIST_SIZE as _],
-        pub cpb_size_value_minus1: [u32; crate::vk::H264_CPB_CNT_LIST_SIZE as _],
-        pub cbr_flag: [u8; crate::vk::H264_CPB_CNT_LIST_SIZE as _],
+        pub bit_rate_value_minus1: [u32; vk::H264_CPB_CNT_LIST_SIZE as _],
+        pub cpb_size_value_minus1: [u32; vk::H264_CPB_CNT_LIST_SIZE as _],
+        pub cbr_flag: [u8; vk::H264_CPB_CNT_LIST_SIZE as _],
         pub initial_cpb_removal_delay_length_minus1: u32,
         pub cpb_removal_delay_length_minus1: u32,
         pub dpb_output_delay_length_minus1: u32,
@@ -394,21 +396,21 @@ pub(crate) mod items {
         }
         pub fn bit_rate_value_minus1(
             mut self,
-            bit_rate_value_minus1: [u32; crate::vk::H264_CPB_CNT_LIST_SIZE as _],
+            bit_rate_value_minus1: [u32; vk::H264_CPB_CNT_LIST_SIZE as _],
         ) -> Self {
             self.bit_rate_value_minus1 = bit_rate_value_minus1;
             self
         }
         pub fn cpb_size_value_minus1(
             mut self,
-            cpb_size_value_minus1: [u32; crate::vk::H264_CPB_CNT_LIST_SIZE as _],
+            cpb_size_value_minus1: [u32; vk::H264_CPB_CNT_LIST_SIZE as _],
         ) -> Self {
             self.cpb_size_value_minus1 = cpb_size_value_minus1;
             self
         }
         pub fn cbr_flag(
             mut self,
-            cbr_flag: [u8; crate::vk::H264_CPB_CNT_LIST_SIZE as _],
+            cbr_flag: [u8; vk::H264_CPB_CNT_LIST_SIZE as _],
         ) -> Self {
             self.cbr_flag = cbr_flag;
             self
@@ -443,8 +445,8 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy, Default)]
     pub struct H264SequenceParameterSetVui<'a> {
-        pub flags: crate::vk::H264SpsVuiFlags,
-        pub aspect_ratio_idc: crate::vk::H264AspectRatioIdc,
+        pub flags: vk::H264SpsVuiFlags,
+        pub aspect_ratio_idc: vk::H264AspectRatioIdc,
         pub sar_width: u16,
         pub sar_height: u16,
         pub video_format: u8,
@@ -458,19 +460,19 @@ pub(crate) mod items {
         pub chroma_sample_loc_type_top_field: u8,
         pub chroma_sample_loc_type_bottom_field: u8,
         pub reserved1: u32,
-        pub p_hrd_parameters: *const crate::vk::H264HrdParameters,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub p_hrd_parameters: *const vk::H264HrdParameters,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for H264SequenceParameterSetVui<'_> {}
     unsafe impl Sync for H264SequenceParameterSetVui<'_> {}
     impl<'a> H264SequenceParameterSetVui<'a> {
-        pub fn flags(mut self, flags: crate::vk::H264SpsVuiFlags) -> Self {
+        pub fn flags(mut self, flags: vk::H264SpsVuiFlags) -> Self {
             self.flags = flags;
             self
         }
         pub fn aspect_ratio_idc(
             mut self,
-            aspect_ratio_idc: crate::vk::H264AspectRatioIdc,
+            aspect_ratio_idc: vk::H264AspectRatioIdc,
         ) -> Self {
             self.aspect_ratio_idc = aspect_ratio_idc;
             self
@@ -535,7 +537,7 @@ pub(crate) mod items {
         }
         pub fn hrd_parameters(
             mut self,
-            hrd_parameters: &'a crate::vk::H264HrdParameters,
+            hrd_parameters: &'a vk::H264HrdParameters,
         ) -> Self {
             self.p_hrd_parameters = hrd_parameters;
             self
@@ -777,10 +779,10 @@ pub(crate) mod items {
     pub struct H264ScalingLists {
         pub scaling_list_present_mask: u16,
         pub use_default_scaling_matrix_mask: u16,
-        pub scaling_list4x4: [[u8; crate::vk::H264_SCALING_LIST_4X4_NUM_ELEMENTS
-            as _]; crate::vk::H264_SCALING_LIST_4X4_NUM_LISTS as _],
-        pub scaling_list8x8: [[u8; crate::vk::H264_SCALING_LIST_8X8_NUM_ELEMENTS
-            as _]; crate::vk::H264_SCALING_LIST_8X8_NUM_LISTS as _],
+        pub scaling_list4x4: [[u8; vk::H264_SCALING_LIST_4X4_NUM_ELEMENTS
+            as _]; vk::H264_SCALING_LIST_4X4_NUM_LISTS as _],
+        pub scaling_list8x8: [[u8; vk::H264_SCALING_LIST_8X8_NUM_ELEMENTS
+            as _]; vk::H264_SCALING_LIST_8X8_NUM_LISTS as _],
     }
     unsafe impl Send for H264ScalingLists {}
     unsafe impl Sync for H264ScalingLists {}
@@ -811,16 +813,16 @@ pub(crate) mod items {
         }
         pub fn scaling_list4x4(
             mut self,
-            scaling_list4x4: [[u8; crate::vk::H264_SCALING_LIST_4X4_NUM_ELEMENTS
-                as _]; crate::vk::H264_SCALING_LIST_4X4_NUM_LISTS as _],
+            scaling_list4x4: [[u8; vk::H264_SCALING_LIST_4X4_NUM_ELEMENTS
+                as _]; vk::H264_SCALING_LIST_4X4_NUM_LISTS as _],
         ) -> Self {
             self.scaling_list4x4 = scaling_list4x4;
             self
         }
         pub fn scaling_list8x8(
             mut self,
-            scaling_list8x8: [[u8; crate::vk::H264_SCALING_LIST_8X8_NUM_ELEMENTS
-                as _]; crate::vk::H264_SCALING_LIST_8X8_NUM_LISTS as _],
+            scaling_list8x8: [[u8; vk::H264_SCALING_LIST_8X8_NUM_ELEMENTS
+                as _]; vk::H264_SCALING_LIST_8X8_NUM_LISTS as _],
         ) -> Self {
             self.scaling_list8x8 = scaling_list8x8;
             self
@@ -830,15 +832,15 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy, Default)]
     pub struct H264SequenceParameterSet<'a> {
-        pub flags: crate::vk::H264SpsFlags,
-        pub profile_idc: crate::vk::H264ProfileIdc,
-        pub level_idc: crate::vk::H264LevelIdc,
-        pub chroma_format_idc: crate::vk::H264ChromaFormatIdc,
+        pub flags: vk::H264SpsFlags,
+        pub profile_idc: vk::H264ProfileIdc,
+        pub level_idc: vk::H264LevelIdc,
+        pub chroma_format_idc: vk::H264ChromaFormatIdc,
         pub seq_parameter_set_id: u8,
         pub bit_depth_luma_minus8: u8,
         pub bit_depth_chroma_minus8: u8,
         pub log2_max_frame_num_minus4: u8,
-        pub pic_order_cnt_type: crate::vk::H264PocType,
+        pub pic_order_cnt_type: vk::H264PocType,
         pub offset_for_non_ref_pic: i32,
         pub offset_for_top_to_bottom_field: i32,
         pub log2_max_pic_order_cnt_lsb_minus4: u8,
@@ -853,30 +855,28 @@ pub(crate) mod items {
         pub frame_crop_bottom_offset: u32,
         pub reserved2: u32,
         pub p_offset_for_ref_frame: *const i32,
-        pub p_scaling_lists: *const crate::vk::H264ScalingLists,
-        pub p_sequence_parameter_set_vui: *const crate::vk::H264SequenceParameterSetVui<
-            'a,
-        >,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub p_scaling_lists: *const vk::H264ScalingLists,
+        pub p_sequence_parameter_set_vui: *const vk::H264SequenceParameterSetVui<'a>,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for H264SequenceParameterSet<'_> {}
     unsafe impl Sync for H264SequenceParameterSet<'_> {}
     impl<'a> H264SequenceParameterSet<'a> {
-        pub fn flags(mut self, flags: crate::vk::H264SpsFlags) -> Self {
+        pub fn flags(mut self, flags: vk::H264SpsFlags) -> Self {
             self.flags = flags;
             self
         }
-        pub fn profile_idc(mut self, profile_idc: crate::vk::H264ProfileIdc) -> Self {
+        pub fn profile_idc(mut self, profile_idc: vk::H264ProfileIdc) -> Self {
             self.profile_idc = profile_idc;
             self
         }
-        pub fn level_idc(mut self, level_idc: crate::vk::H264LevelIdc) -> Self {
+        pub fn level_idc(mut self, level_idc: vk::H264LevelIdc) -> Self {
             self.level_idc = level_idc;
             self
         }
         pub fn chroma_format_idc(
             mut self,
-            chroma_format_idc: crate::vk::H264ChromaFormatIdc,
+            chroma_format_idc: vk::H264ChromaFormatIdc,
         ) -> Self {
             self.chroma_format_idc = chroma_format_idc;
             self
@@ -902,7 +902,7 @@ pub(crate) mod items {
         }
         pub fn pic_order_cnt_type(
             mut self,
-            pic_order_cnt_type: crate::vk::H264PocType,
+            pic_order_cnt_type: vk::H264PocType,
         ) -> Self {
             self.pic_order_cnt_type = pic_order_cnt_type;
             self
@@ -972,16 +972,13 @@ pub(crate) mod items {
             self.p_offset_for_ref_frame = offset_for_ref_frame.as_ptr();
             self
         }
-        pub fn scaling_lists(
-            mut self,
-            scaling_lists: &'a crate::vk::H264ScalingLists,
-        ) -> Self {
+        pub fn scaling_lists(mut self, scaling_lists: &'a vk::H264ScalingLists) -> Self {
             self.p_scaling_lists = scaling_lists;
             self
         }
         pub fn sequence_parameter_set_vui(
             mut self,
-            sequence_parameter_set_vui: &'a crate::vk::H264SequenceParameterSetVui<'a>,
+            sequence_parameter_set_vui: &'a vk::H264SequenceParameterSetVui<'a>,
         ) -> Self {
             self.p_sequence_parameter_set_vui = sequence_parameter_set_vui;
             self
@@ -1124,23 +1121,23 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy, Default)]
     pub struct H264PictureParameterSet<'a> {
-        pub flags: crate::vk::H264PpsFlags,
+        pub flags: vk::H264PpsFlags,
         pub seq_parameter_set_id: u8,
         pub pic_parameter_set_id: u8,
         pub num_ref_idx_l0_default_active_minus1: u8,
         pub num_ref_idx_l1_default_active_minus1: u8,
-        pub weighted_bipred_idc: crate::vk::H264WeightedBipredIdc,
+        pub weighted_bipred_idc: vk::H264WeightedBipredIdc,
         pub pic_init_qp_minus26: i8,
         pub pic_init_qs_minus26: i8,
         pub chroma_qp_index_offset: i8,
         pub second_chroma_qp_index_offset: i8,
-        pub p_scaling_lists: *const crate::vk::H264ScalingLists,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub p_scaling_lists: *const vk::H264ScalingLists,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for H264PictureParameterSet<'_> {}
     unsafe impl Sync for H264PictureParameterSet<'_> {}
     impl<'a> H264PictureParameterSet<'a> {
-        pub fn flags(mut self, flags: crate::vk::H264PpsFlags) -> Self {
+        pub fn flags(mut self, flags: vk::H264PpsFlags) -> Self {
             self.flags = flags;
             self
         }
@@ -1168,7 +1165,7 @@ pub(crate) mod items {
         }
         pub fn weighted_bipred_idc(
             mut self,
-            weighted_bipred_idc: crate::vk::H264WeightedBipredIdc,
+            weighted_bipred_idc: vk::H264WeightedBipredIdc,
         ) -> Self {
             self.weighted_bipred_idc = weighted_bipred_idc;
             self
@@ -1192,10 +1189,7 @@ pub(crate) mod items {
             self.second_chroma_qp_index_offset = second_chroma_qp_index_offset;
             self
         }
-        pub fn scaling_lists(
-            mut self,
-            scaling_lists: &'a crate::vk::H264ScalingLists,
-        ) -> Self {
+        pub fn scaling_lists(mut self, scaling_lists: &'a vk::H264ScalingLists) -> Self {
             self.p_scaling_lists = scaling_lists;
             self
         }

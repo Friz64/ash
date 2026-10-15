@@ -2,53 +2,55 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_NV_external_memory_rdma.html) · Extension `VK_NV_external_memory_rdma`
 #![doc(alias = "VK_NV_external_memory_rdma")]
+use crate::vk;
+use core::ffi::CStr;
+use crate::VkResult;
+use core::ffi::c_void;
 ///Provided by [VK_NV_external_memory_rdma](crate::nv::external_memory_rdma)
-impl crate::vk::StructureType {
+impl vk::StructureType {
     pub const MEMORY_GET_REMOTE_ADDRESS_INFO_NV: Self = Self(1000371000);
     pub const PHYSICAL_DEVICE_EXTERNAL_MEMORY_RDMA_FEATURES_NV: Self = Self(1000371001);
 }
-///Provided by [VK_NV_external_memory_rdma](crate::nv::external_memory_rdma)
-impl crate::vk::MemoryPropertyFlags {
+///Provided by [Vulkan 1.0](crate::vk1_0)
+impl vk::MemoryPropertyFlags {
     pub const RDMA_CAPABLE_NV: Self = Self(
-        crate::vk::MemoryPropertyFlagBits::RDMA_CAPABLE_NV.0,
+        vk::MemoryPropertyFlagBits::RDMA_CAPABLE_NV.0,
     );
 }
-///Provided by [VK_NV_external_memory_rdma](crate::nv::external_memory_rdma)
-impl crate::vk::MemoryPropertyFlagBits {
+///Provided by [Vulkan 1.0](crate::vk1_0)
+impl vk::MemoryPropertyFlagBits {
     pub const RDMA_CAPABLE_NV: Self = Self(1 << 8);
 }
-///Provided by [VK_NV_external_memory_rdma](crate::nv::external_memory_rdma)
-impl crate::vk::ExternalMemoryHandleTypeFlags {
+///Provided by [Vulkan 1.1](crate::vk1_1)
+impl vk::ExternalMemoryHandleTypeFlags {
     pub const RDMA_ADDRESS_NV: Self = Self(
-        crate::vk::ExternalMemoryHandleTypeFlagBits::RDMA_ADDRESS_NV.0,
+        vk::ExternalMemoryHandleTypeFlagBits::RDMA_ADDRESS_NV.0,
     );
 }
-///Provided by [VK_NV_external_memory_rdma](crate::nv::external_memory_rdma)
-impl crate::vk::ExternalMemoryHandleTypeFlagBits {
+///Provided by [Vulkan 1.1](crate::vk1_1)
+impl vk::ExternalMemoryHandleTypeFlagBits {
     pub const RDMA_ADDRESS_NV: Self = Self(1 << 12);
 }
+pub const SPEC_VERSION: u32 = 1;
+pub const NAME: &CStr = c"VK_NV_external_memory_rdma";
 #[derive(Clone)]
 pub struct DeviceFn {
-    pub get_memory_remote_address: crate::vk::PFN_vkGetMemoryRemoteAddressNV,
+    pub get_memory_remote_address: vk::PFN_vkGetMemoryRemoteAddressNV,
 }
 unsafe impl Send for DeviceFn {}
 unsafe impl Sync for DeviceFn {}
 impl DeviceFn {
-    pub fn load<F: FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void>(
-        mut f: F,
-    ) -> Self {
+    pub fn load<F: FnMut(&CStr) -> *const c_void>(mut f: F) -> Self {
         Self::load_erased(&mut f)
     }
-    fn load_erased(
-        _f: &mut dyn FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void,
-    ) -> Self {
+    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const c_void) -> Self {
         Self {
             get_memory_remote_address: unsafe {
                 unsafe extern "system" fn get_memory_remote_address(
-                    _: crate::vk::Device,
-                    _: *const crate::vk::MemoryGetRemoteAddressInfoNV<'_>,
-                    _: *mut crate::vk::RemoteAddressNV,
-                ) -> crate::vk::Result {
+                    _: vk::Device,
+                    _: *const vk::MemoryGetRemoteAddressInfoNV<'_>,
+                    _: *mut vk::RemoteAddressNV,
+                ) -> vk::Result {
                     panic!("unable to load vkGetMemoryRemoteAddressNV")
                 }
                 let val = _f(c"vkGetMemoryRemoteAddressNV");
@@ -86,8 +88,8 @@ impl Device {
     #[inline]
     pub unsafe fn get_memory_remote_address(
         &self,
-        memory_get_remote_address_info: &crate::vk::MemoryGetRemoteAddressInfoNV<'_>,
-    ) -> crate::VkResult<crate::vk::RemoteAddressNV> {
+        memory_get_remote_address_info: &vk::MemoryGetRemoteAddressInfoNV<'_>,
+    ) -> VkResult<vk::RemoteAddressNV> {
         let mut address = core::mem::MaybeUninit::uninit();
         (self
             .fp
@@ -99,27 +101,27 @@ impl Device {
             .assume_init_on_success(address)
     }
 }
-pub const SPEC_VERSION: u32 = 1;
-pub const NAME: &core::ffi::CStr = c"VK_NV_external_memory_rdma";
 pub(crate) mod items {
+    use core::marker::PhantomData;
+    use crate::vk;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceExternalMemoryRDMAFeaturesNV<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
-        pub external_memory_rdma: crate::vk::Bool32,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub external_memory_rdma: vk::Bool32,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for PhysicalDeviceExternalMemoryRDMAFeaturesNV<'_> {}
     unsafe impl Sync for PhysicalDeviceExternalMemoryRDMAFeaturesNV<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceExternalMemoryRDMAFeaturesNV<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_EXTERNAL_MEMORY_RDMA_FEATURES_NV;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PHYSICAL_DEVICE_EXTERNAL_MEMORY_RDMA_FEATURES_NV;
     }
-    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+    unsafe impl<'a> crate::Extends<vk::PhysicalDeviceFeatures2<'_>>
     for PhysicalDeviceExternalMemoryRDMAFeaturesNV<'a> {}
-    unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+    unsafe impl<'a> crate::Extends<vk::DeviceCreateInfo<'_>>
     for PhysicalDeviceExternalMemoryRDMAFeaturesNV<'a> {}
     impl<'a> Default for PhysicalDeviceExternalMemoryRDMAFeaturesNV<'a> {
         fn default() -> Self {
@@ -127,7 +129,7 @@ pub(crate) mod items {
                 s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
                 p_next: Default::default(),
                 external_memory_rdma: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
@@ -141,16 +143,16 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct MemoryGetRemoteAddressInfoNV<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *const core::ffi::c_void,
-        pub memory: crate::vk::DeviceMemory,
-        pub handle_type: crate::vk::ExternalMemoryHandleTypeFlagBits,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub memory: vk::DeviceMemory,
+        pub handle_type: vk::ExternalMemoryHandleTypeFlagBits,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for MemoryGetRemoteAddressInfoNV<'_> {}
     unsafe impl Sync for MemoryGetRemoteAddressInfoNV<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for MemoryGetRemoteAddressInfoNV<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::MEMORY_GET_REMOTE_ADDRESS_INFO_NV;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::MEMORY_GET_REMOTE_ADDRESS_INFO_NV;
     }
     impl<'a> Default for MemoryGetRemoteAddressInfoNV<'a> {
         fn default() -> Self {
@@ -159,18 +161,18 @@ pub(crate) mod items {
                 p_next: Default::default(),
                 memory: Default::default(),
                 handle_type: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
     impl<'a> MemoryGetRemoteAddressInfoNV<'a> {
-        pub fn memory(mut self, memory: crate::vk::DeviceMemory) -> Self {
+        pub fn memory(mut self, memory: vk::DeviceMemory) -> Self {
             self.memory = memory;
             self
         }
         pub fn handle_type(
             mut self,
-            handle_type: crate::vk::ExternalMemoryHandleTypeFlagBits,
+            handle_type: vk::ExternalMemoryHandleTypeFlagBits,
         ) -> Self {
             self.handle_type = handle_type;
             self
@@ -178,11 +180,9 @@ pub(crate) mod items {
     }
     pub type RemoteAddressNV = *mut core::ffi::c_void;
     pub type PFN_vkGetMemoryRemoteAddressNV = unsafe extern "system" fn(
-        device: crate::vk::Device,
-        p_memory_get_remote_address_info: *const crate::vk::MemoryGetRemoteAddressInfoNV<
-            '_,
-        >,
-        p_address: *mut crate::vk::RemoteAddressNV,
-    ) -> crate::vk::Result;
+        device: vk::Device,
+        p_memory_get_remote_address_info: *const vk::MemoryGetRemoteAddressInfoNV<'_>,
+        p_address: *mut vk::RemoteAddressNV,
+    ) -> vk::Result;
 }
 pub use items::*;

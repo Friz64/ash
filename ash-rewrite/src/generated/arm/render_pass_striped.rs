@@ -2,8 +2,10 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_ARM_render_pass_striped.html) · Extension `VK_ARM_render_pass_striped`
 #![doc(alias = "VK_ARM_render_pass_striped")]
+use crate::vk;
+use core::ffi::CStr;
 ///Provided by [VK_ARM_render_pass_striped](crate::arm::render_pass_striped)
-impl crate::vk::StructureType {
+impl vk::StructureType {
     pub const PHYSICAL_DEVICE_RENDER_PASS_STRIPED_FEATURES_ARM: Self = Self(1000424000);
     pub const PHYSICAL_DEVICE_RENDER_PASS_STRIPED_PROPERTIES_ARM: Self = Self(
         1000424001,
@@ -13,26 +15,28 @@ impl crate::vk::StructureType {
     pub const RENDER_PASS_STRIPE_SUBMIT_INFO_ARM: Self = Self(1000424004);
 }
 pub const SPEC_VERSION: u32 = 1;
-pub const NAME: &core::ffi::CStr = c"VK_ARM_render_pass_striped";
+pub const NAME: &CStr = c"VK_ARM_render_pass_striped";
 pub(crate) mod items {
+    use core::marker::PhantomData;
+    use crate::vk;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceRenderPassStripedFeaturesARM<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
-        pub render_pass_striped: crate::vk::Bool32,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub render_pass_striped: vk::Bool32,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for PhysicalDeviceRenderPassStripedFeaturesARM<'_> {}
     unsafe impl Sync for PhysicalDeviceRenderPassStripedFeaturesARM<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceRenderPassStripedFeaturesARM<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_RENDER_PASS_STRIPED_FEATURES_ARM;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PHYSICAL_DEVICE_RENDER_PASS_STRIPED_FEATURES_ARM;
     }
-    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+    unsafe impl<'a> crate::Extends<vk::PhysicalDeviceFeatures2<'_>>
     for PhysicalDeviceRenderPassStripedFeaturesARM<'a> {}
-    unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+    unsafe impl<'a> crate::Extends<vk::DeviceCreateInfo<'_>>
     for PhysicalDeviceRenderPassStripedFeaturesARM<'a> {}
     impl<'a> Default for PhysicalDeviceRenderPassStripedFeaturesARM<'a> {
         fn default() -> Self {
@@ -40,7 +44,7 @@ pub(crate) mod items {
                 s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
                 p_next: Default::default(),
                 render_pass_striped: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
@@ -54,19 +58,19 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceRenderPassStripedPropertiesARM<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
-        pub render_pass_stripe_granularity: crate::vk::Extent2D,
+        pub render_pass_stripe_granularity: vk::Extent2D,
         pub max_render_pass_stripes: u32,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for PhysicalDeviceRenderPassStripedPropertiesARM<'_> {}
     unsafe impl Sync for PhysicalDeviceRenderPassStripedPropertiesARM<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceRenderPassStripedPropertiesARM<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_RENDER_PASS_STRIPED_PROPERTIES_ARM;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PHYSICAL_DEVICE_RENDER_PASS_STRIPED_PROPERTIES_ARM;
     }
-    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceProperties2<'_>>
+    unsafe impl<'a> crate::Extends<vk::PhysicalDeviceProperties2<'_>>
     for PhysicalDeviceRenderPassStripedPropertiesARM<'a> {}
     impl<'a> Default for PhysicalDeviceRenderPassStripedPropertiesARM<'a> {
         fn default() -> Self {
@@ -75,14 +79,14 @@ pub(crate) mod items {
                 p_next: Default::default(),
                 render_pass_stripe_granularity: Default::default(),
                 max_render_pass_stripes: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
     impl<'a> PhysicalDeviceRenderPassStripedPropertiesARM<'a> {
         pub fn render_pass_stripe_granularity(
             mut self,
-            render_pass_stripe_granularity: crate::vk::Extent2D,
+            render_pass_stripe_granularity: vk::Extent2D,
         ) -> Self {
             self.render_pass_stripe_granularity = render_pass_stripe_granularity;
             self
@@ -96,15 +100,15 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct RenderPassStripeInfoARM<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *const core::ffi::c_void,
-        pub stripe_area: crate::vk::Rect2D,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub stripe_area: vk::Rect2D,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for RenderPassStripeInfoARM<'_> {}
     unsafe impl Sync for RenderPassStripeInfoARM<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for RenderPassStripeInfoARM<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::RENDER_PASS_STRIPE_INFO_ARM;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::RENDER_PASS_STRIPE_INFO_ARM;
     }
     impl<'a> Default for RenderPassStripeInfoARM<'a> {
         fn default() -> Self {
@@ -112,12 +116,12 @@ pub(crate) mod items {
                 s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
                 p_next: Default::default(),
                 stripe_area: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
     impl<'a> RenderPassStripeInfoARM<'a> {
-        pub fn stripe_area(mut self, stripe_area: crate::vk::Rect2D) -> Self {
+        pub fn stripe_area(mut self, stripe_area: vk::Rect2D) -> Self {
             self.stripe_area = stripe_area;
             self
         }
@@ -126,20 +130,20 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct RenderPassStripeBeginInfoARM<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *const core::ffi::c_void,
         pub stripe_info_count: u32,
-        pub p_stripe_infos: *const crate::vk::RenderPassStripeInfoARM<'a>,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub p_stripe_infos: *const vk::RenderPassStripeInfoARM<'a>,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for RenderPassStripeBeginInfoARM<'_> {}
     unsafe impl Sync for RenderPassStripeBeginInfoARM<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for RenderPassStripeBeginInfoARM<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::RENDER_PASS_STRIPE_BEGIN_INFO_ARM;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::RENDER_PASS_STRIPE_BEGIN_INFO_ARM;
     }
-    unsafe impl<'a> crate::Extends<crate::vk::RenderingInfo<'_>>
+    unsafe impl<'a> crate::Extends<vk::RenderingInfo<'_>>
     for RenderPassStripeBeginInfoARM<'a> {}
-    unsafe impl<'a> crate::Extends<crate::vk::RenderPassBeginInfo<'_>>
+    unsafe impl<'a> crate::Extends<vk::RenderPassBeginInfo<'_>>
     for RenderPassStripeBeginInfoARM<'a> {}
     impl<'a> Default for RenderPassStripeBeginInfoARM<'a> {
         fn default() -> Self {
@@ -148,14 +152,14 @@ pub(crate) mod items {
                 p_next: Default::default(),
                 stripe_info_count: Default::default(),
                 p_stripe_infos: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
     impl<'a> RenderPassStripeBeginInfoARM<'a> {
         pub fn stripe_infos(
             mut self,
-            stripe_infos: &'a [crate::vk::RenderPassStripeInfoARM<'a>],
+            stripe_infos: &'a [vk::RenderPassStripeInfoARM<'a>],
         ) -> Self {
             self.stripe_info_count = stripe_infos.len() as _;
             self.p_stripe_infos = stripe_infos.as_ptr();
@@ -166,18 +170,18 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct RenderPassStripeSubmitInfoARM<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *const core::ffi::c_void,
         pub stripe_semaphore_info_count: u32,
-        pub p_stripe_semaphore_infos: *const crate::vk::SemaphoreSubmitInfo<'a>,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub p_stripe_semaphore_infos: *const vk::SemaphoreSubmitInfo<'a>,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for RenderPassStripeSubmitInfoARM<'_> {}
     unsafe impl Sync for RenderPassStripeSubmitInfoARM<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for RenderPassStripeSubmitInfoARM<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::RENDER_PASS_STRIPE_SUBMIT_INFO_ARM;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::RENDER_PASS_STRIPE_SUBMIT_INFO_ARM;
     }
-    unsafe impl<'a> crate::Extends<crate::vk::CommandBufferSubmitInfo<'_>>
+    unsafe impl<'a> crate::Extends<vk::CommandBufferSubmitInfo<'_>>
     for RenderPassStripeSubmitInfoARM<'a> {}
     impl<'a> Default for RenderPassStripeSubmitInfoARM<'a> {
         fn default() -> Self {
@@ -186,14 +190,14 @@ pub(crate) mod items {
                 p_next: Default::default(),
                 stripe_semaphore_info_count: Default::default(),
                 p_stripe_semaphore_infos: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
     impl<'a> RenderPassStripeSubmitInfoARM<'a> {
         pub fn stripe_semaphore_infos(
             mut self,
-            stripe_semaphore_infos: &'a [crate::vk::SemaphoreSubmitInfo<'a>],
+            stripe_semaphore_infos: &'a [vk::SemaphoreSubmitInfo<'a>],
         ) -> Self {
             self.stripe_semaphore_info_count = stripe_semaphore_infos.len() as _;
             self.p_stripe_semaphore_infos = stripe_semaphore_infos.as_ptr();

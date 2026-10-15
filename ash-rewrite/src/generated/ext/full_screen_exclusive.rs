@@ -2,14 +2,18 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_full_screen_exclusive.html) · Extension `VK_EXT_full_screen_exclusive`
 #![doc(alias = "VK_EXT_full_screen_exclusive")]
+use crate::vk;
+use core::ffi::CStr;
+use crate::VkResult;
+use core::ffi::c_void;
 ///Provided by [VK_EXT_full_screen_exclusive](crate::ext::full_screen_exclusive)
-impl crate::vk::StructureType {
+impl vk::StructureType {
     pub const SURFACE_FULL_SCREEN_EXCLUSIVE_INFO_EXT: Self = Self(1000255000);
     pub const SURFACE_CAPABILITIES_FULL_SCREEN_EXCLUSIVE_EXT: Self = Self(1000255002);
     pub const SURFACE_FULL_SCREEN_EXCLUSIVE_WIN32_INFO_EXT: Self = Self(1000255001);
 }
 ///Provided by [VK_EXT_full_screen_exclusive](crate::ext::full_screen_exclusive)
-impl crate::vk::Result {
+impl vk::Result {
     pub const ERROR_FULL_SCREEN_EXCLUSIVE_MODE_LOST_EXT: Self = Self(-1000255000);
 }
 ///Provided by [VK_EXT_full_screen_exclusive](crate::ext::full_screen_exclusive)
@@ -19,29 +23,27 @@ impl FullScreenExclusiveEXT {
     pub const DISALLOWED: Self = Self(2);
     pub const APPLICATION_CONTROLLED: Self = Self(3);
 }
+pub const SPEC_VERSION: u32 = 4;
+pub const NAME: &CStr = c"VK_EXT_full_screen_exclusive";
 #[derive(Clone)]
 pub struct InstanceFn {
-    pub get_physical_device_surface_present_modes2: crate::vk::PFN_vkGetPhysicalDeviceSurfacePresentModes2EXT,
+    pub get_physical_device_surface_present_modes2: vk::PFN_vkGetPhysicalDeviceSurfacePresentModes2EXT,
 }
 unsafe impl Send for InstanceFn {}
 unsafe impl Sync for InstanceFn {}
 impl InstanceFn {
-    pub fn load<F: FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void>(
-        mut f: F,
-    ) -> Self {
+    pub fn load<F: FnMut(&CStr) -> *const c_void>(mut f: F) -> Self {
         Self::load_erased(&mut f)
     }
-    fn load_erased(
-        _f: &mut dyn FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void,
-    ) -> Self {
+    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const c_void) -> Self {
         Self {
             get_physical_device_surface_present_modes2: unsafe {
                 unsafe extern "system" fn get_physical_device_surface_present_modes2(
-                    _: crate::vk::PhysicalDevice,
-                    _: *const crate::vk::PhysicalDeviceSurfaceInfo2KHR<'_>,
+                    _: vk::PhysicalDevice,
+                    _: *const vk::PhysicalDeviceSurfaceInfo2KHR<'_>,
                     _: *mut u32,
-                    _: *mut crate::vk::PresentModeKHR,
-                ) -> crate::vk::Result {
+                    _: *mut vk::PresentModeKHR,
+                ) -> vk::Result {
                     panic!("unable to load vkGetPhysicalDeviceSurfacePresentModes2EXT")
                 }
                 let val = _f(c"vkGetPhysicalDeviceSurfacePresentModes2EXT");
@@ -79,9 +81,9 @@ impl Instance {
     #[inline]
     pub unsafe fn get_physical_device_surface_present_modes2(
         &self,
-        physical_device: crate::vk::PhysicalDevice,
-        surface_info: &crate::vk::PhysicalDeviceSurfaceInfo2KHR<'_>,
-    ) -> crate::VkResult<Vec<crate::vk::PresentModeKHR>> {
+        physical_device: vk::PhysicalDevice,
+        surface_info: &vk::PhysicalDeviceSurfaceInfo2KHR<'_>,
+    ) -> crate::VkResult<Vec<vk::PresentModeKHR>> {
         crate::read_into_uninitialized_vector(|present_mode_count, present_modes| (self
             .fp
             .get_physical_device_surface_present_modes2)(
@@ -94,28 +96,24 @@ impl Instance {
 }
 #[derive(Clone)]
 pub struct DeviceFn {
-    pub get_device_group_surface_present_modes2: crate::vk::PFN_vkGetDeviceGroupSurfacePresentModes2EXT,
-    pub acquire_full_screen_exclusive_mode: crate::vk::PFN_vkAcquireFullScreenExclusiveModeEXT,
-    pub release_full_screen_exclusive_mode: crate::vk::PFN_vkReleaseFullScreenExclusiveModeEXT,
+    pub get_device_group_surface_present_modes2: vk::PFN_vkGetDeviceGroupSurfacePresentModes2EXT,
+    pub acquire_full_screen_exclusive_mode: vk::PFN_vkAcquireFullScreenExclusiveModeEXT,
+    pub release_full_screen_exclusive_mode: vk::PFN_vkReleaseFullScreenExclusiveModeEXT,
 }
 unsafe impl Send for DeviceFn {}
 unsafe impl Sync for DeviceFn {}
 impl DeviceFn {
-    pub fn load<F: FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void>(
-        mut f: F,
-    ) -> Self {
+    pub fn load<F: FnMut(&CStr) -> *const c_void>(mut f: F) -> Self {
         Self::load_erased(&mut f)
     }
-    fn load_erased(
-        _f: &mut dyn FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void,
-    ) -> Self {
+    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const c_void) -> Self {
         Self {
             get_device_group_surface_present_modes2: unsafe {
                 unsafe extern "system" fn get_device_group_surface_present_modes2(
-                    _: crate::vk::Device,
-                    _: *const crate::vk::PhysicalDeviceSurfaceInfo2KHR<'_>,
-                    _: *mut crate::vk::DeviceGroupPresentModeFlagsKHR,
-                ) -> crate::vk::Result {
+                    _: vk::Device,
+                    _: *const vk::PhysicalDeviceSurfaceInfo2KHR<'_>,
+                    _: *mut vk::DeviceGroupPresentModeFlagsKHR,
+                ) -> vk::Result {
                     panic!("unable to load vkGetDeviceGroupSurfacePresentModes2EXT")
                 }
                 let val = _f(c"vkGetDeviceGroupSurfacePresentModes2EXT");
@@ -127,9 +125,9 @@ impl DeviceFn {
             },
             acquire_full_screen_exclusive_mode: unsafe {
                 unsafe extern "system" fn acquire_full_screen_exclusive_mode(
-                    _: crate::vk::Device,
-                    _: crate::vk::SwapchainKHR,
-                ) -> crate::vk::Result {
+                    _: vk::Device,
+                    _: vk::SwapchainKHR,
+                ) -> vk::Result {
                     panic!("unable to load vkAcquireFullScreenExclusiveModeEXT")
                 }
                 let val = _f(c"vkAcquireFullScreenExclusiveModeEXT");
@@ -141,9 +139,9 @@ impl DeviceFn {
             },
             release_full_screen_exclusive_mode: unsafe {
                 unsafe extern "system" fn release_full_screen_exclusive_mode(
-                    _: crate::vk::Device,
-                    _: crate::vk::SwapchainKHR,
-                ) -> crate::vk::Result {
+                    _: vk::Device,
+                    _: vk::SwapchainKHR,
+                ) -> vk::Result {
                     panic!("unable to load vkReleaseFullScreenExclusiveModeEXT")
                 }
                 let val = _f(c"vkReleaseFullScreenExclusiveModeEXT");
@@ -181,8 +179,8 @@ impl Device {
     #[inline]
     pub unsafe fn get_device_group_surface_present_modes2(
         &self,
-        surface_info: &crate::vk::PhysicalDeviceSurfaceInfo2KHR<'_>,
-    ) -> crate::VkResult<crate::vk::DeviceGroupPresentModeFlagsKHR> {
+        surface_info: &vk::PhysicalDeviceSurfaceInfo2KHR<'_>,
+    ) -> VkResult<vk::DeviceGroupPresentModeFlagsKHR> {
         let mut modes = core::mem::MaybeUninit::uninit();
         (self
             .fp
@@ -197,40 +195,40 @@ impl Device {
     #[inline]
     pub unsafe fn acquire_full_screen_exclusive_mode(
         &self,
-        swapchain: crate::vk::SwapchainKHR,
-    ) -> crate::VkResult<()> {
+        swapchain: vk::SwapchainKHR,
+    ) -> VkResult<()> {
         (self.fp.acquire_full_screen_exclusive_mode)(self.handle, swapchain).result()
     }
     ///vkReleaseFullScreenExclusiveModeEXT
     #[inline]
     pub unsafe fn release_full_screen_exclusive_mode(
         &self,
-        swapchain: crate::vk::SwapchainKHR,
-    ) -> crate::VkResult<()> {
+        swapchain: vk::SwapchainKHR,
+    ) -> VkResult<()> {
         (self.fp.release_full_screen_exclusive_mode)(self.handle, swapchain).result()
     }
 }
-pub const SPEC_VERSION: u32 = 4;
-pub const NAME: &core::ffi::CStr = c"VK_EXT_full_screen_exclusive";
 pub(crate) mod items {
+    use core::marker::PhantomData;
+    use crate::vk;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct SurfaceFullScreenExclusiveInfoEXT<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
-        pub full_screen_exclusive: crate::vk::FullScreenExclusiveEXT,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub full_screen_exclusive: vk::FullScreenExclusiveEXT,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for SurfaceFullScreenExclusiveInfoEXT<'_> {}
     unsafe impl Sync for SurfaceFullScreenExclusiveInfoEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for SurfaceFullScreenExclusiveInfoEXT<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::SURFACE_FULL_SCREEN_EXCLUSIVE_INFO_EXT;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::SURFACE_FULL_SCREEN_EXCLUSIVE_INFO_EXT;
     }
-    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceSurfaceInfo2KHR<'_>>
+    unsafe impl<'a> crate::Extends<vk::PhysicalDeviceSurfaceInfo2KHR<'_>>
     for SurfaceFullScreenExclusiveInfoEXT<'a> {}
-    unsafe impl<'a> crate::Extends<crate::vk::SwapchainCreateInfoKHR<'_>>
+    unsafe impl<'a> crate::Extends<vk::SwapchainCreateInfoKHR<'_>>
     for SurfaceFullScreenExclusiveInfoEXT<'a> {}
     impl<'a> Default for SurfaceFullScreenExclusiveInfoEXT<'a> {
         fn default() -> Self {
@@ -238,14 +236,14 @@ pub(crate) mod items {
                 s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
                 p_next: Default::default(),
                 full_screen_exclusive: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
     impl<'a> SurfaceFullScreenExclusiveInfoEXT<'a> {
         pub fn full_screen_exclusive(
             mut self,
-            full_screen_exclusive: crate::vk::FullScreenExclusiveEXT,
+            full_screen_exclusive: vk::FullScreenExclusiveEXT,
         ) -> Self {
             self.full_screen_exclusive = full_screen_exclusive;
             self
@@ -255,20 +253,20 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct SurfaceFullScreenExclusiveWin32InfoEXT<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *const core::ffi::c_void,
         pub hmonitor: crate::platform_types::HMONITOR,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for SurfaceFullScreenExclusiveWin32InfoEXT<'_> {}
     unsafe impl Sync for SurfaceFullScreenExclusiveWin32InfoEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for SurfaceFullScreenExclusiveWin32InfoEXT<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::SURFACE_FULL_SCREEN_EXCLUSIVE_WIN32_INFO_EXT;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::SURFACE_FULL_SCREEN_EXCLUSIVE_WIN32_INFO_EXT;
     }
-    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceSurfaceInfo2KHR<'_>>
+    unsafe impl<'a> crate::Extends<vk::PhysicalDeviceSurfaceInfo2KHR<'_>>
     for SurfaceFullScreenExclusiveWin32InfoEXT<'a> {}
-    unsafe impl<'a> crate::Extends<crate::vk::SwapchainCreateInfoKHR<'_>>
+    unsafe impl<'a> crate::Extends<vk::SwapchainCreateInfoKHR<'_>>
     for SurfaceFullScreenExclusiveWin32InfoEXT<'a> {}
     impl<'a> Default for SurfaceFullScreenExclusiveWin32InfoEXT<'a> {
         fn default() -> Self {
@@ -276,7 +274,7 @@ pub(crate) mod items {
                 s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
                 p_next: Default::default(),
                 hmonitor: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
@@ -290,18 +288,18 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct SurfaceCapabilitiesFullScreenExclusiveEXT<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
-        pub full_screen_exclusive_supported: crate::vk::Bool32,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub full_screen_exclusive_supported: vk::Bool32,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for SurfaceCapabilitiesFullScreenExclusiveEXT<'_> {}
     unsafe impl Sync for SurfaceCapabilitiesFullScreenExclusiveEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for SurfaceCapabilitiesFullScreenExclusiveEXT<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::SURFACE_CAPABILITIES_FULL_SCREEN_EXCLUSIVE_EXT;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::SURFACE_CAPABILITIES_FULL_SCREEN_EXCLUSIVE_EXT;
     }
-    unsafe impl<'a> crate::Extends<crate::vk::SurfaceCapabilities2KHR<'_>>
+    unsafe impl<'a> crate::Extends<vk::SurfaceCapabilities2KHR<'_>>
     for SurfaceCapabilitiesFullScreenExclusiveEXT<'a> {}
     impl<'a> Default for SurfaceCapabilitiesFullScreenExclusiveEXT<'a> {
         fn default() -> Self {
@@ -309,7 +307,7 @@ pub(crate) mod items {
                 s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
                 p_next: Default::default(),
                 full_screen_exclusive_supported: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
@@ -353,23 +351,23 @@ pub(crate) mod items {
         }
     }
     pub type PFN_vkGetPhysicalDeviceSurfacePresentModes2EXT = unsafe extern "system" fn(
-        physical_device: crate::vk::PhysicalDevice,
-        p_surface_info: *const crate::vk::PhysicalDeviceSurfaceInfo2KHR<'_>,
+        physical_device: vk::PhysicalDevice,
+        p_surface_info: *const vk::PhysicalDeviceSurfaceInfo2KHR<'_>,
         p_present_mode_count: *mut u32,
-        p_present_modes: *mut crate::vk::PresentModeKHR,
-    ) -> crate::vk::Result;
+        p_present_modes: *mut vk::PresentModeKHR,
+    ) -> vk::Result;
     pub type PFN_vkGetDeviceGroupSurfacePresentModes2EXT = unsafe extern "system" fn(
-        device: crate::vk::Device,
-        p_surface_info: *const crate::vk::PhysicalDeviceSurfaceInfo2KHR<'_>,
-        p_modes: *mut crate::vk::DeviceGroupPresentModeFlagsKHR,
-    ) -> crate::vk::Result;
+        device: vk::Device,
+        p_surface_info: *const vk::PhysicalDeviceSurfaceInfo2KHR<'_>,
+        p_modes: *mut vk::DeviceGroupPresentModeFlagsKHR,
+    ) -> vk::Result;
     pub type PFN_vkAcquireFullScreenExclusiveModeEXT = unsafe extern "system" fn(
-        device: crate::vk::Device,
-        swapchain: crate::vk::SwapchainKHR,
-    ) -> crate::vk::Result;
+        device: vk::Device,
+        swapchain: vk::SwapchainKHR,
+    ) -> vk::Result;
     pub type PFN_vkReleaseFullScreenExclusiveModeEXT = unsafe extern "system" fn(
-        device: crate::vk::Device,
-        swapchain: crate::vk::SwapchainKHR,
-    ) -> crate::vk::Result;
+        device: vk::Device,
+        swapchain: vk::SwapchainKHR,
+    ) -> vk::Result;
 }
 pub use items::*;

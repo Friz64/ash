@@ -2,5 +2,6 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_AMD_gpu_shader_int16.html) · Extension `VK_AMD_gpu_shader_int16`
 #![doc(alias = "VK_AMD_gpu_shader_int16")]
+use core::ffi::CStr;
 pub const SPEC_VERSION: u32 = 2;
-pub const NAME: &core::ffi::CStr = c"VK_AMD_gpu_shader_int16";
+pub const NAME: &CStr = c"VK_AMD_gpu_shader_int16";

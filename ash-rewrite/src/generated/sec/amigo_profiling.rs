@@ -2,32 +2,36 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_SEC_amigo_profiling.html) · Extension `VK_SEC_amigo_profiling`
 #![doc(alias = "VK_SEC_amigo_profiling")]
+use crate::vk;
+use core::ffi::CStr;
 ///Provided by [VK_SEC_amigo_profiling](crate::sec::amigo_profiling)
-impl crate::vk::StructureType {
+impl vk::StructureType {
     pub const PHYSICAL_DEVICE_AMIGO_PROFILING_FEATURES_SEC: Self = Self(1000485000);
     pub const AMIGO_PROFILING_SUBMIT_INFO_SEC: Self = Self(1000485001);
 }
 pub const SPEC_VERSION: u32 = 1;
-pub const NAME: &core::ffi::CStr = c"VK_SEC_amigo_profiling";
+pub const NAME: &CStr = c"VK_SEC_amigo_profiling";
 pub(crate) mod items {
+    use core::marker::PhantomData;
+    use crate::vk;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceAmigoProfilingFeaturesSEC<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
-        pub amigo_profiling: crate::vk::Bool32,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub amigo_profiling: vk::Bool32,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for PhysicalDeviceAmigoProfilingFeaturesSEC<'_> {}
     unsafe impl Sync for PhysicalDeviceAmigoProfilingFeaturesSEC<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceAmigoProfilingFeaturesSEC<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_AMIGO_PROFILING_FEATURES_SEC;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PHYSICAL_DEVICE_AMIGO_PROFILING_FEATURES_SEC;
     }
-    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+    unsafe impl<'a> crate::Extends<vk::PhysicalDeviceFeatures2<'_>>
     for PhysicalDeviceAmigoProfilingFeaturesSEC<'a> {}
-    unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+    unsafe impl<'a> crate::Extends<vk::DeviceCreateInfo<'_>>
     for PhysicalDeviceAmigoProfilingFeaturesSEC<'a> {}
     impl<'a> Default for PhysicalDeviceAmigoProfilingFeaturesSEC<'a> {
         fn default() -> Self {
@@ -35,7 +39,7 @@ pub(crate) mod items {
                 s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
                 p_next: Default::default(),
                 amigo_profiling: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
@@ -49,18 +53,18 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct AmigoProfilingSubmitInfoSEC<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *const core::ffi::c_void,
         pub first_draw_timestamp: u64,
         pub swap_buffer_timestamp: u64,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for AmigoProfilingSubmitInfoSEC<'_> {}
     unsafe impl Sync for AmigoProfilingSubmitInfoSEC<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for AmigoProfilingSubmitInfoSEC<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::AMIGO_PROFILING_SUBMIT_INFO_SEC;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::AMIGO_PROFILING_SUBMIT_INFO_SEC;
     }
-    unsafe impl<'a> crate::Extends<crate::vk::SubmitInfo<'_>>
+    unsafe impl<'a> crate::Extends<vk::SubmitInfo<'_>>
     for AmigoProfilingSubmitInfoSEC<'a> {}
     impl<'a> Default for AmigoProfilingSubmitInfoSEC<'a> {
         fn default() -> Self {
@@ -69,7 +73,7 @@ pub(crate) mod items {
                 p_next: Default::default(),
                 first_draw_timestamp: Default::default(),
                 swap_buffer_timestamp: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }

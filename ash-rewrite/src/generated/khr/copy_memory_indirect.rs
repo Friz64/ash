@@ -2,8 +2,11 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_copy_memory_indirect.html) · Extension `VK_KHR_copy_memory_indirect`
 #![doc(alias = "VK_KHR_copy_memory_indirect")]
+use crate::vk;
+use core::ffi::CStr;
+use core::ffi::c_void;
 ///Provided by [VK_KHR_copy_memory_indirect](crate::khr::copy_memory_indirect)
-impl crate::vk::StructureType {
+impl vk::StructureType {
     pub const PHYSICAL_DEVICE_COPY_MEMORY_INDIRECT_FEATURES_KHR: Self = Self(1000549000);
     pub const PHYSICAL_DEVICE_COPY_MEMORY_INDIRECT_PROPERTIES_KHR: Self = Self(
         1000426001,
@@ -11,24 +14,24 @@ impl crate::vk::StructureType {
     pub const COPY_MEMORY_INDIRECT_INFO_KHR: Self = Self(1000549002);
     pub const COPY_MEMORY_TO_IMAGE_INDIRECT_INFO_KHR: Self = Self(1000549003);
 }
-///Provided by [VK_KHR_copy_memory_indirect](crate::khr::copy_memory_indirect)
-impl crate::vk::PipelineStageFlags2 {
+///Provided by [Vulkan 1.3](crate::vk1_3)
+impl vk::PipelineStageFlags2 {
     pub const COPY_INDIRECT_KHR: Self = Self(
-        crate::vk::PipelineStageFlagBits2::COPY_INDIRECT_KHR.0,
+        vk::PipelineStageFlagBits2::COPY_INDIRECT_KHR.0,
     );
 }
-///Provided by [VK_KHR_copy_memory_indirect](crate::khr::copy_memory_indirect)
-impl crate::vk::PipelineStageFlagBits2 {
+///Provided by [Vulkan 1.3](crate::vk1_3)
+impl vk::PipelineStageFlagBits2 {
     pub const COPY_INDIRECT_KHR: Self = Self(1 << 46);
 }
-///Provided by [VK_KHR_copy_memory_indirect](crate::khr::copy_memory_indirect)
-impl crate::vk::FormatFeatureFlags2 {
+///Provided by [Vulkan 1.3](crate::vk1_3)
+impl vk::FormatFeatureFlags2 {
     pub const COPY_IMAGE_INDIRECT_DST_KHR: Self = Self(
-        crate::vk::FormatFeatureFlagBits2::COPY_IMAGE_INDIRECT_DST_KHR.0,
+        vk::FormatFeatureFlagBits2::COPY_IMAGE_INDIRECT_DST_KHR.0,
     );
 }
-///Provided by [VK_KHR_copy_memory_indirect](crate::khr::copy_memory_indirect)
-impl crate::vk::FormatFeatureFlagBits2 {
+///Provided by [Vulkan 1.3](crate::vk1_3)
+impl vk::FormatFeatureFlagBits2 {
     pub const COPY_IMAGE_INDIRECT_DST_KHR: Self = Self(1 << 59);
 }
 ///Provided by [VK_KHR_copy_memory_indirect](crate::khr::copy_memory_indirect)
@@ -43,27 +46,25 @@ impl AddressCopyFlagBitsKHR {
     pub const SPARSE: Self = Self(1 << 1);
     pub const PROTECTED: Self = Self(1 << 2);
 }
+pub const SPEC_VERSION: u32 = 1;
+pub const NAME: &CStr = c"VK_KHR_copy_memory_indirect";
 #[derive(Clone)]
 pub struct DeviceFn {
-    pub cmd_copy_memory_indirect: crate::vk::PFN_vkCmdCopyMemoryIndirectKHR,
-    pub cmd_copy_memory_to_image_indirect: crate::vk::PFN_vkCmdCopyMemoryToImageIndirectKHR,
+    pub cmd_copy_memory_indirect: vk::PFN_vkCmdCopyMemoryIndirectKHR,
+    pub cmd_copy_memory_to_image_indirect: vk::PFN_vkCmdCopyMemoryToImageIndirectKHR,
 }
 unsafe impl Send for DeviceFn {}
 unsafe impl Sync for DeviceFn {}
 impl DeviceFn {
-    pub fn load<F: FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void>(
-        mut f: F,
-    ) -> Self {
+    pub fn load<F: FnMut(&CStr) -> *const c_void>(mut f: F) -> Self {
         Self::load_erased(&mut f)
     }
-    fn load_erased(
-        _f: &mut dyn FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void,
-    ) -> Self {
+    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const c_void) -> Self {
         Self {
             cmd_copy_memory_indirect: unsafe {
                 unsafe extern "system" fn cmd_copy_memory_indirect(
-                    _: crate::vk::CommandBuffer,
-                    _: *const crate::vk::CopyMemoryIndirectInfoKHR<'_>,
+                    _: vk::CommandBuffer,
+                    _: *const vk::CopyMemoryIndirectInfoKHR<'_>,
                 ) {
                     panic!("unable to load vkCmdCopyMemoryIndirectKHR")
                 }
@@ -76,8 +77,8 @@ impl DeviceFn {
             },
             cmd_copy_memory_to_image_indirect: unsafe {
                 unsafe extern "system" fn cmd_copy_memory_to_image_indirect(
-                    _: crate::vk::CommandBuffer,
-                    _: *const crate::vk::CopyMemoryToImageIndirectInfoKHR<'_>,
+                    _: vk::CommandBuffer,
+                    _: *const vk::CopyMemoryToImageIndirectInfoKHR<'_>,
                 ) {
                     panic!("unable to load vkCmdCopyMemoryToImageIndirectKHR")
                 }
@@ -116,8 +117,8 @@ impl Device {
     #[inline]
     pub unsafe fn cmd_copy_memory_indirect(
         &self,
-        command_buffer: crate::vk::CommandBuffer,
-        copy_memory_indirect_info: &crate::vk::CopyMemoryIndirectInfoKHR<'_>,
+        command_buffer: vk::CommandBuffer,
+        copy_memory_indirect_info: &vk::CopyMemoryIndirectInfoKHR<'_>,
     ) {
         (self.fp.cmd_copy_memory_indirect)(command_buffer, copy_memory_indirect_info)
     }
@@ -125,10 +126,8 @@ impl Device {
     #[inline]
     pub unsafe fn cmd_copy_memory_to_image_indirect(
         &self,
-        command_buffer: crate::vk::CommandBuffer,
-        copy_memory_to_image_indirect_info: &crate::vk::CopyMemoryToImageIndirectInfoKHR<
-            '_,
-        >,
+        command_buffer: vk::CommandBuffer,
+        copy_memory_to_image_indirect_info: &vk::CopyMemoryToImageIndirectInfoKHR<'_>,
     ) {
         (self
             .fp
@@ -138,29 +137,29 @@ impl Device {
         )
     }
 }
-pub const SPEC_VERSION: u32 = 1;
-pub const NAME: &core::ffi::CStr = c"VK_KHR_copy_memory_indirect";
 pub(crate) mod items {
+    use crate::vk;
+    use core::marker::PhantomData;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy, Default)]
     pub struct CopyMemoryIndirectCommandKHR {
-        pub src_address: crate::vk::DeviceAddress,
-        pub dst_address: crate::vk::DeviceAddress,
-        pub size: crate::vk::DeviceSize,
+        pub src_address: vk::DeviceAddress,
+        pub dst_address: vk::DeviceAddress,
+        pub size: vk::DeviceSize,
     }
     unsafe impl Send for CopyMemoryIndirectCommandKHR {}
     unsafe impl Sync for CopyMemoryIndirectCommandKHR {}
     impl CopyMemoryIndirectCommandKHR {
-        pub fn src_address(mut self, src_address: crate::vk::DeviceAddress) -> Self {
+        pub fn src_address(mut self, src_address: vk::DeviceAddress) -> Self {
             self.src_address = src_address;
             self
         }
-        pub fn dst_address(mut self, dst_address: crate::vk::DeviceAddress) -> Self {
+        pub fn dst_address(mut self, dst_address: vk::DeviceAddress) -> Self {
             self.dst_address = dst_address;
             self
         }
-        pub fn size(mut self, size: crate::vk::DeviceSize) -> Self {
+        pub fn size(mut self, size: vk::DeviceSize) -> Self {
             self.size = size;
             self
         }
@@ -169,18 +168,18 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct CopyMemoryIndirectInfoKHR<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *const core::ffi::c_void,
-        pub src_copy_flags: crate::vk::AddressCopyFlagsKHR,
-        pub dst_copy_flags: crate::vk::AddressCopyFlagsKHR,
+        pub src_copy_flags: vk::AddressCopyFlagsKHR,
+        pub dst_copy_flags: vk::AddressCopyFlagsKHR,
         pub copy_count: u32,
-        pub copy_address_range: crate::vk::StridedDeviceAddressRangeKHR,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub copy_address_range: vk::StridedDeviceAddressRangeKHR,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for CopyMemoryIndirectInfoKHR<'_> {}
     unsafe impl Sync for CopyMemoryIndirectInfoKHR<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for CopyMemoryIndirectInfoKHR<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::COPY_MEMORY_INDIRECT_INFO_KHR;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::COPY_MEMORY_INDIRECT_INFO_KHR;
     }
     impl<'a> Default for CopyMemoryIndirectInfoKHR<'a> {
         fn default() -> Self {
@@ -191,21 +190,21 @@ pub(crate) mod items {
                 dst_copy_flags: Default::default(),
                 copy_count: Default::default(),
                 copy_address_range: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
     impl<'a> CopyMemoryIndirectInfoKHR<'a> {
         pub fn src_copy_flags(
             mut self,
-            src_copy_flags: crate::vk::AddressCopyFlagsKHR,
+            src_copy_flags: vk::AddressCopyFlagsKHR,
         ) -> Self {
             self.src_copy_flags = src_copy_flags;
             self
         }
         pub fn dst_copy_flags(
             mut self,
-            dst_copy_flags: crate::vk::AddressCopyFlagsKHR,
+            dst_copy_flags: vk::AddressCopyFlagsKHR,
         ) -> Self {
             self.dst_copy_flags = dst_copy_flags;
             self
@@ -216,7 +215,7 @@ pub(crate) mod items {
         }
         pub fn copy_address_range(
             mut self,
-            copy_address_range: crate::vk::StridedDeviceAddressRangeKHR,
+            copy_address_range: vk::StridedDeviceAddressRangeKHR,
         ) -> Self {
             self.copy_address_range = copy_address_range;
             self
@@ -226,17 +225,17 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy, Default)]
     pub struct CopyMemoryToImageIndirectCommandKHR {
-        pub src_address: crate::vk::DeviceAddress,
+        pub src_address: vk::DeviceAddress,
         pub buffer_row_length: u32,
         pub buffer_image_height: u32,
-        pub image_subresource: crate::vk::ImageSubresourceLayers,
-        pub image_offset: crate::vk::Offset3D,
-        pub image_extent: crate::vk::Extent3D,
+        pub image_subresource: vk::ImageSubresourceLayers,
+        pub image_offset: vk::Offset3D,
+        pub image_extent: vk::Extent3D,
     }
     unsafe impl Send for CopyMemoryToImageIndirectCommandKHR {}
     unsafe impl Sync for CopyMemoryToImageIndirectCommandKHR {}
     impl CopyMemoryToImageIndirectCommandKHR {
-        pub fn src_address(mut self, src_address: crate::vk::DeviceAddress) -> Self {
+        pub fn src_address(mut self, src_address: vk::DeviceAddress) -> Self {
             self.src_address = src_address;
             self
         }
@@ -250,16 +249,16 @@ pub(crate) mod items {
         }
         pub fn image_subresource(
             mut self,
-            image_subresource: crate::vk::ImageSubresourceLayers,
+            image_subresource: vk::ImageSubresourceLayers,
         ) -> Self {
             self.image_subresource = image_subresource;
             self
         }
-        pub fn image_offset(mut self, image_offset: crate::vk::Offset3D) -> Self {
+        pub fn image_offset(mut self, image_offset: vk::Offset3D) -> Self {
             self.image_offset = image_offset;
             self
         }
-        pub fn image_extent(mut self, image_extent: crate::vk::Extent3D) -> Self {
+        pub fn image_extent(mut self, image_extent: vk::Extent3D) -> Self {
             self.image_extent = image_extent;
             self
         }
@@ -268,20 +267,20 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct CopyMemoryToImageIndirectInfoKHR<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *const core::ffi::c_void,
-        pub src_copy_flags: crate::vk::AddressCopyFlagsKHR,
+        pub src_copy_flags: vk::AddressCopyFlagsKHR,
         pub copy_count: u32,
-        pub copy_address_range: crate::vk::StridedDeviceAddressRangeKHR,
-        pub dst_image: crate::vk::Image,
-        pub dst_image_layout: crate::vk::ImageLayout,
-        pub p_image_subresources: *const crate::vk::ImageSubresourceLayers,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub copy_address_range: vk::StridedDeviceAddressRangeKHR,
+        pub dst_image: vk::Image,
+        pub dst_image_layout: vk::ImageLayout,
+        pub p_image_subresources: *const vk::ImageSubresourceLayers,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for CopyMemoryToImageIndirectInfoKHR<'_> {}
     unsafe impl Sync for CopyMemoryToImageIndirectInfoKHR<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for CopyMemoryToImageIndirectInfoKHR<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::COPY_MEMORY_TO_IMAGE_INDIRECT_INFO_KHR;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::COPY_MEMORY_TO_IMAGE_INDIRECT_INFO_KHR;
     }
     impl<'a> Default for CopyMemoryToImageIndirectInfoKHR<'a> {
         fn default() -> Self {
@@ -294,39 +293,36 @@ pub(crate) mod items {
                 dst_image: Default::default(),
                 dst_image_layout: Default::default(),
                 p_image_subresources: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
     impl<'a> CopyMemoryToImageIndirectInfoKHR<'a> {
         pub fn src_copy_flags(
             mut self,
-            src_copy_flags: crate::vk::AddressCopyFlagsKHR,
+            src_copy_flags: vk::AddressCopyFlagsKHR,
         ) -> Self {
             self.src_copy_flags = src_copy_flags;
             self
         }
         pub fn copy_address_range(
             mut self,
-            copy_address_range: crate::vk::StridedDeviceAddressRangeKHR,
+            copy_address_range: vk::StridedDeviceAddressRangeKHR,
         ) -> Self {
             self.copy_address_range = copy_address_range;
             self
         }
-        pub fn dst_image(mut self, dst_image: crate::vk::Image) -> Self {
+        pub fn dst_image(mut self, dst_image: vk::Image) -> Self {
             self.dst_image = dst_image;
             self
         }
-        pub fn dst_image_layout(
-            mut self,
-            dst_image_layout: crate::vk::ImageLayout,
-        ) -> Self {
+        pub fn dst_image_layout(mut self, dst_image_layout: vk::ImageLayout) -> Self {
             self.dst_image_layout = dst_image_layout;
             self
         }
         pub fn image_subresources(
             mut self,
-            image_subresources: &'a [crate::vk::ImageSubresourceLayers],
+            image_subresources: &'a [vk::ImageSubresourceLayers],
         ) -> Self {
             self.copy_count = image_subresources.len() as _;
             self.p_image_subresources = image_subresources.as_ptr();
@@ -337,21 +333,21 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceCopyMemoryIndirectFeaturesKHR<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
-        pub indirect_memory_copy: crate::vk::Bool32,
-        pub indirect_memory_to_image_copy: crate::vk::Bool32,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub indirect_memory_copy: vk::Bool32,
+        pub indirect_memory_to_image_copy: vk::Bool32,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for PhysicalDeviceCopyMemoryIndirectFeaturesKHR<'_> {}
     unsafe impl Sync for PhysicalDeviceCopyMemoryIndirectFeaturesKHR<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceCopyMemoryIndirectFeaturesKHR<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_COPY_MEMORY_INDIRECT_FEATURES_KHR;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PHYSICAL_DEVICE_COPY_MEMORY_INDIRECT_FEATURES_KHR;
     }
-    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+    unsafe impl<'a> crate::Extends<vk::PhysicalDeviceFeatures2<'_>>
     for PhysicalDeviceCopyMemoryIndirectFeaturesKHR<'a> {}
-    unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+    unsafe impl<'a> crate::Extends<vk::DeviceCreateInfo<'_>>
     for PhysicalDeviceCopyMemoryIndirectFeaturesKHR<'a> {}
     impl<'a> Default for PhysicalDeviceCopyMemoryIndirectFeaturesKHR<'a> {
         fn default() -> Self {
@@ -360,7 +356,7 @@ pub(crate) mod items {
                 p_next: Default::default(),
                 indirect_memory_copy: Default::default(),
                 indirect_memory_to_image_copy: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
@@ -381,18 +377,18 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceCopyMemoryIndirectPropertiesKHR<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
-        pub supported_queues: crate::vk::QueueFlags,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub supported_queues: vk::QueueFlags,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for PhysicalDeviceCopyMemoryIndirectPropertiesKHR<'_> {}
     unsafe impl Sync for PhysicalDeviceCopyMemoryIndirectPropertiesKHR<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceCopyMemoryIndirectPropertiesKHR<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_COPY_MEMORY_INDIRECT_PROPERTIES_KHR;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PHYSICAL_DEVICE_COPY_MEMORY_INDIRECT_PROPERTIES_KHR;
     }
-    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceProperties2<'_>>
+    unsafe impl<'a> crate::Extends<vk::PhysicalDeviceProperties2<'_>>
     for PhysicalDeviceCopyMemoryIndirectPropertiesKHR<'a> {}
     impl<'a> Default for PhysicalDeviceCopyMemoryIndirectPropertiesKHR<'a> {
         fn default() -> Self {
@@ -400,15 +396,12 @@ pub(crate) mod items {
                 s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
                 p_next: Default::default(),
                 supported_queues: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
     impl<'a> PhysicalDeviceCopyMemoryIndirectPropertiesKHR<'a> {
-        pub fn supported_queues(
-            mut self,
-            supported_queues: crate::vk::QueueFlags,
-        ) -> Self {
+        pub fn supported_queues(mut self, supported_queues: vk::QueueFlags) -> Self {
             self.supported_queues = supported_queues;
             self
         }
@@ -514,12 +507,12 @@ pub(crate) mod items {
         }
     }
     pub type PFN_vkCmdCopyMemoryIndirectKHR = unsafe extern "system" fn(
-        command_buffer: crate::vk::CommandBuffer,
-        p_copy_memory_indirect_info: *const crate::vk::CopyMemoryIndirectInfoKHR<'_>,
+        command_buffer: vk::CommandBuffer,
+        p_copy_memory_indirect_info: *const vk::CopyMemoryIndirectInfoKHR<'_>,
     );
     pub type PFN_vkCmdCopyMemoryToImageIndirectKHR = unsafe extern "system" fn(
-        command_buffer: crate::vk::CommandBuffer,
-        p_copy_memory_to_image_indirect_info: *const crate::vk::CopyMemoryToImageIndirectInfoKHR<
+        command_buffer: vk::CommandBuffer,
+        p_copy_memory_to_image_indirect_info: *const vk::CopyMemoryToImageIndirectInfoKHR<
             '_,
         >,
     );

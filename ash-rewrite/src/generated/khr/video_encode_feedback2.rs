@@ -2,8 +2,10 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_video_encode_feedback2.html) · Extension `VK_KHR_video_encode_feedback2`
 #![doc(alias = "VK_KHR_video_encode_feedback2")]
+use crate::vk;
+use core::ffi::CStr;
 ///Provided by [VK_KHR_video_encode_feedback2](crate::khr::video_encode_feedback2)
-impl crate::vk::StructureType {
+impl vk::StructureType {
     pub const PHYSICAL_DEVICE_VIDEO_ENCODE_FEEDBACK_2_FEATURES_KHR: Self = Self(
         1000598000,
     );
@@ -12,32 +14,32 @@ impl crate::vk::StructureType {
         1000598002,
     );
 }
-///Provided by [VK_KHR_video_encode_feedback2](crate::khr::video_encode_feedback2)
-impl crate::vk::VideoEncodeFeedbackFlagsKHR {
+///Provided by [VK_KHR_video_encode_queue](crate::khr::video_encode_queue)
+impl vk::VideoEncodeFeedbackFlagsKHR {
     pub const AVERAGE_QUANTIZATION: Self = Self(
-        crate::vk::VideoEncodeFeedbackFlagBitsKHR::AVERAGE_QUANTIZATION.0,
+        vk::VideoEncodeFeedbackFlagBitsKHR::AVERAGE_QUANTIZATION.0,
     );
     pub const MIN_QUANTIZATION: Self = Self(
-        crate::vk::VideoEncodeFeedbackFlagBitsKHR::MIN_QUANTIZATION.0,
+        vk::VideoEncodeFeedbackFlagBitsKHR::MIN_QUANTIZATION.0,
     );
     pub const MAX_QUANTIZATION: Self = Self(
-        crate::vk::VideoEncodeFeedbackFlagBitsKHR::MAX_QUANTIZATION.0,
+        vk::VideoEncodeFeedbackFlagBitsKHR::MAX_QUANTIZATION.0,
     );
     pub const INTRA_PIXELS: Self = Self(
-        crate::vk::VideoEncodeFeedbackFlagBitsKHR::INTRA_PIXELS.0,
+        vk::VideoEncodeFeedbackFlagBitsKHR::INTRA_PIXELS.0,
     );
     pub const INTER_PIXELS: Self = Self(
-        crate::vk::VideoEncodeFeedbackFlagBitsKHR::INTER_PIXELS.0,
+        vk::VideoEncodeFeedbackFlagBitsKHR::INTER_PIXELS.0,
     );
     pub const SKIPPED_PIXELS: Self = Self(
-        crate::vk::VideoEncodeFeedbackFlagBitsKHR::SKIPPED_PIXELS.0,
+        vk::VideoEncodeFeedbackFlagBitsKHR::SKIPPED_PIXELS.0,
     );
     pub const PICTURE_PARTITION_COUNT: Self = Self(
-        crate::vk::VideoEncodeFeedbackFlagBitsKHR::PICTURE_PARTITION_COUNT.0,
+        vk::VideoEncodeFeedbackFlagBitsKHR::PICTURE_PARTITION_COUNT.0,
     );
 }
-///Provided by [VK_KHR_video_encode_feedback2](crate::khr::video_encode_feedback2)
-impl crate::vk::VideoEncodeFeedbackFlagBitsKHR {
+///Provided by [VK_KHR_video_encode_queue](crate::khr::video_encode_queue)
+impl vk::VideoEncodeFeedbackFlagBitsKHR {
     pub const AVERAGE_QUANTIZATION: Self = Self(1 << 3);
     pub const MIN_QUANTIZATION: Self = Self(1 << 4);
     pub const MAX_QUANTIZATION: Self = Self(1 << 5);
@@ -63,26 +65,28 @@ impl VideoEncodePerPartitionFeedbackFlagBitsKHR {
     pub const BITSTREAM_BYTES_WRITTEN: Self = Self(1 << 2);
 }
 pub const SPEC_VERSION: u32 = 1;
-pub const NAME: &core::ffi::CStr = c"VK_KHR_video_encode_feedback2";
+pub const NAME: &CStr = c"VK_KHR_video_encode_feedback2";
 pub(crate) mod items {
+    use core::marker::PhantomData;
+    use crate::vk;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceVideoEncodeFeedback2FeaturesKHR<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
-        pub video_encode_feedback2: crate::vk::Bool32,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub video_encode_feedback2: vk::Bool32,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for PhysicalDeviceVideoEncodeFeedback2FeaturesKHR<'_> {}
     unsafe impl Sync for PhysicalDeviceVideoEncodeFeedback2FeaturesKHR<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceVideoEncodeFeedback2FeaturesKHR<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_VIDEO_ENCODE_FEEDBACK_2_FEATURES_KHR;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PHYSICAL_DEVICE_VIDEO_ENCODE_FEEDBACK_2_FEATURES_KHR;
     }
-    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+    unsafe impl<'a> crate::Extends<vk::PhysicalDeviceFeatures2<'_>>
     for PhysicalDeviceVideoEncodeFeedback2FeaturesKHR<'a> {}
-    unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+    unsafe impl<'a> crate::Extends<vk::DeviceCreateInfo<'_>>
     for PhysicalDeviceVideoEncodeFeedback2FeaturesKHR<'a> {}
     impl<'a> Default for PhysicalDeviceVideoEncodeFeedback2FeaturesKHR<'a> {
         fn default() -> Self {
@@ -90,7 +94,7 @@ pub(crate) mod items {
                 s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
                 p_next: Default::default(),
                 video_encode_feedback2: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
@@ -104,19 +108,19 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct VideoEncodeFeedback2CapabilitiesKHR<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
         pub max_per_partition_feedback_entries: u32,
-        pub supported_per_partition_encode_feedback_flags: crate::vk::VideoEncodePerPartitionFeedbackFlagsKHR,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub supported_per_partition_encode_feedback_flags: vk::VideoEncodePerPartitionFeedbackFlagsKHR,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for VideoEncodeFeedback2CapabilitiesKHR<'_> {}
     unsafe impl Sync for VideoEncodeFeedback2CapabilitiesKHR<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for VideoEncodeFeedback2CapabilitiesKHR<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::VIDEO_ENCODE_FEEDBACK_2_CAPABILITIES_KHR;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::VIDEO_ENCODE_FEEDBACK_2_CAPABILITIES_KHR;
     }
-    unsafe impl<'a> crate::Extends<crate::vk::VideoCapabilitiesKHR<'_>>
+    unsafe impl<'a> crate::Extends<vk::VideoCapabilitiesKHR<'_>>
     for VideoEncodeFeedback2CapabilitiesKHR<'a> {}
     impl<'a> Default for VideoEncodeFeedback2CapabilitiesKHR<'a> {
         fn default() -> Self {
@@ -125,7 +129,7 @@ pub(crate) mod items {
                 p_next: Default::default(),
                 max_per_partition_feedback_entries: Default::default(),
                 supported_per_partition_encode_feedback_flags: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
@@ -139,7 +143,7 @@ pub(crate) mod items {
         }
         pub fn supported_per_partition_encode_feedback_flags(
             mut self,
-            supported_per_partition_encode_feedback_flags: crate::vk::VideoEncodePerPartitionFeedbackFlagsKHR,
+            supported_per_partition_encode_feedback_flags: vk::VideoEncodePerPartitionFeedbackFlagsKHR,
         ) -> Self {
             self.supported_per_partition_encode_feedback_flags = supported_per_partition_encode_feedback_flags;
             self
@@ -149,19 +153,19 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct QueryPoolVideoEncodePerPartitionFeedbackCreateInfoKHR<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *const core::ffi::c_void,
         pub max_per_partition_feedback_entries: u32,
-        pub per_partition_encode_feedback_flags: crate::vk::VideoEncodePerPartitionFeedbackFlagsKHR,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub per_partition_encode_feedback_flags: vk::VideoEncodePerPartitionFeedbackFlagsKHR,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for QueryPoolVideoEncodePerPartitionFeedbackCreateInfoKHR<'_> {}
     unsafe impl Sync for QueryPoolVideoEncodePerPartitionFeedbackCreateInfoKHR<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for QueryPoolVideoEncodePerPartitionFeedbackCreateInfoKHR<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::QUERY_POOL_VIDEO_ENCODE_PER_PARTITION_FEEDBACK_CREATE_INFO_KHR;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::QUERY_POOL_VIDEO_ENCODE_PER_PARTITION_FEEDBACK_CREATE_INFO_KHR;
     }
-    unsafe impl<'a> crate::Extends<crate::vk::QueryPoolCreateInfo<'_>>
+    unsafe impl<'a> crate::Extends<vk::QueryPoolCreateInfo<'_>>
     for QueryPoolVideoEncodePerPartitionFeedbackCreateInfoKHR<'a> {}
     impl<'a> Default for QueryPoolVideoEncodePerPartitionFeedbackCreateInfoKHR<'a> {
         fn default() -> Self {
@@ -170,7 +174,7 @@ pub(crate) mod items {
                 p_next: Default::default(),
                 max_per_partition_feedback_entries: Default::default(),
                 per_partition_encode_feedback_flags: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
@@ -184,7 +188,7 @@ pub(crate) mod items {
         }
         pub fn per_partition_encode_feedback_flags(
             mut self,
-            per_partition_encode_feedback_flags: crate::vk::VideoEncodePerPartitionFeedbackFlagsKHR,
+            per_partition_encode_feedback_flags: vk::VideoEncodePerPartitionFeedbackFlagsKHR,
         ) -> Self {
             self.per_partition_encode_feedback_flags = per_partition_encode_feedback_flags;
             self

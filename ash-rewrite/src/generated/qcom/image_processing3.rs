@@ -2,43 +2,47 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_QCOM_image_processing3.html) · Extension `VK_QCOM_image_processing3`
 #![doc(alias = "VK_QCOM_image_processing3")]
+use crate::vk;
+use core::ffi::CStr;
 ///Provided by [VK_QCOM_image_processing3](crate::qcom::image_processing3)
-impl crate::vk::StructureType {
+impl vk::StructureType {
     pub const PHYSICAL_DEVICE_IMAGE_PROCESSING_3_FEATURES_QCOM: Self = Self(1000303000);
 }
-///Provided by [VK_QCOM_image_processing3](crate::qcom::image_processing3)
-impl crate::vk::FormatFeatureFlags2 {
+///Provided by [Vulkan 1.3](crate::vk1_3)
+impl vk::FormatFeatureFlags2 {
     pub const BLOCK_MATCHING_SXD_QCOM: Self = Self(
-        crate::vk::FormatFeatureFlagBits2::BLOCK_MATCHING_SXD_QCOM.0,
+        vk::FormatFeatureFlagBits2::BLOCK_MATCHING_SXD_QCOM.0,
     );
 }
-///Provided by [VK_QCOM_image_processing3](crate::qcom::image_processing3)
-impl crate::vk::FormatFeatureFlagBits2 {
+///Provided by [Vulkan 1.3](crate::vk1_3)
+impl vk::FormatFeatureFlagBits2 {
     pub const BLOCK_MATCHING_SXD_QCOM: Self = Self(1 << 44);
 }
 pub const SPEC_VERSION: u32 = 1;
-pub const NAME: &core::ffi::CStr = c"VK_QCOM_image_processing3";
+pub const NAME: &CStr = c"VK_QCOM_image_processing3";
 pub(crate) mod items {
+    use core::marker::PhantomData;
+    use crate::vk;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceImageProcessing3FeaturesQCOM<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
-        pub image_gather_linear: crate::vk::Bool32,
-        pub image_gather_extended_modes: crate::vk::Bool32,
-        pub block_match_extended_clamp_to_edge: crate::vk::Bool32,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub image_gather_linear: vk::Bool32,
+        pub image_gather_extended_modes: vk::Bool32,
+        pub block_match_extended_clamp_to_edge: vk::Bool32,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for PhysicalDeviceImageProcessing3FeaturesQCOM<'_> {}
     unsafe impl Sync for PhysicalDeviceImageProcessing3FeaturesQCOM<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceImageProcessing3FeaturesQCOM<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_IMAGE_PROCESSING_3_FEATURES_QCOM;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PHYSICAL_DEVICE_IMAGE_PROCESSING_3_FEATURES_QCOM;
     }
-    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+    unsafe impl<'a> crate::Extends<vk::PhysicalDeviceFeatures2<'_>>
     for PhysicalDeviceImageProcessing3FeaturesQCOM<'a> {}
-    unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+    unsafe impl<'a> crate::Extends<vk::DeviceCreateInfo<'_>>
     for PhysicalDeviceImageProcessing3FeaturesQCOM<'a> {}
     impl<'a> Default for PhysicalDeviceImageProcessing3FeaturesQCOM<'a> {
         fn default() -> Self {
@@ -48,7 +52,7 @@ pub(crate) mod items {
                 image_gather_linear: Default::default(),
                 image_gather_extended_modes: Default::default(),
                 block_match_extended_clamp_to_edge: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }

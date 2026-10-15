@@ -2,13 +2,17 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_surface.html) · Extension `VK_KHR_surface`
 #![doc(alias = "VK_KHR_surface")]
+use crate::vk;
+use core::ffi::CStr;
+use crate::VkResult;
+use core::ffi::c_void;
 ///Provided by [VK_KHR_surface](crate::khr::surface)
-impl crate::vk::Result {
+impl vk::Result {
     pub const ERROR_SURFACE_LOST_KHR: Self = Self(-1000000000);
     pub const ERROR_NATIVE_WINDOW_IN_USE_KHR: Self = Self(-1000000001);
 }
 ///Provided by [VK_KHR_surface](crate::khr::surface)
-impl crate::vk::ObjectType {
+impl vk::ObjectType {
     pub const SURFACE_KHR: Self = Self(1000000000);
 }
 ///Provided by [VK_KHR_surface](crate::khr::surface)
@@ -68,31 +72,29 @@ impl SurfaceTransformFlagBitsKHR {
     pub const HORIZONTAL_MIRROR_ROTATE_270: Self = Self(1 << 7);
     pub const INHERIT: Self = Self(1 << 8);
 }
+pub const SPEC_VERSION: u32 = 25;
+pub const NAME: &CStr = c"VK_KHR_surface";
 #[derive(Clone)]
 pub struct InstanceFn {
-    pub destroy_surface: crate::vk::PFN_vkDestroySurfaceKHR,
-    pub get_physical_device_surface_support: crate::vk::PFN_vkGetPhysicalDeviceSurfaceSupportKHR,
-    pub get_physical_device_surface_capabilities: crate::vk::PFN_vkGetPhysicalDeviceSurfaceCapabilitiesKHR,
-    pub get_physical_device_surface_formats: crate::vk::PFN_vkGetPhysicalDeviceSurfaceFormatsKHR,
-    pub get_physical_device_surface_present_modes: crate::vk::PFN_vkGetPhysicalDeviceSurfacePresentModesKHR,
+    pub destroy_surface: vk::PFN_vkDestroySurfaceKHR,
+    pub get_physical_device_surface_support: vk::PFN_vkGetPhysicalDeviceSurfaceSupportKHR,
+    pub get_physical_device_surface_capabilities: vk::PFN_vkGetPhysicalDeviceSurfaceCapabilitiesKHR,
+    pub get_physical_device_surface_formats: vk::PFN_vkGetPhysicalDeviceSurfaceFormatsKHR,
+    pub get_physical_device_surface_present_modes: vk::PFN_vkGetPhysicalDeviceSurfacePresentModesKHR,
 }
 unsafe impl Send for InstanceFn {}
 unsafe impl Sync for InstanceFn {}
 impl InstanceFn {
-    pub fn load<F: FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void>(
-        mut f: F,
-    ) -> Self {
+    pub fn load<F: FnMut(&CStr) -> *const c_void>(mut f: F) -> Self {
         Self::load_erased(&mut f)
     }
-    fn load_erased(
-        _f: &mut dyn FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void,
-    ) -> Self {
+    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const c_void) -> Self {
         Self {
             destroy_surface: unsafe {
                 unsafe extern "system" fn destroy_surface(
-                    _: crate::vk::Instance,
-                    _: crate::vk::SurfaceKHR,
-                    _: *const crate::vk::AllocationCallbacks<'_>,
+                    _: vk::Instance,
+                    _: vk::SurfaceKHR,
+                    _: *const vk::AllocationCallbacks<'_>,
                 ) {
                     panic!("unable to load vkDestroySurfaceKHR")
                 }
@@ -101,11 +103,11 @@ impl InstanceFn {
             },
             get_physical_device_surface_support: unsafe {
                 unsafe extern "system" fn get_physical_device_surface_support(
-                    _: crate::vk::PhysicalDevice,
+                    _: vk::PhysicalDevice,
                     _: u32,
-                    _: crate::vk::SurfaceKHR,
-                    _: *mut crate::vk::Bool32,
-                ) -> crate::vk::Result {
+                    _: vk::SurfaceKHR,
+                    _: *mut vk::Bool32,
+                ) -> vk::Result {
                     panic!("unable to load vkGetPhysicalDeviceSurfaceSupportKHR")
                 }
                 let val = _f(c"vkGetPhysicalDeviceSurfaceSupportKHR");
@@ -117,10 +119,10 @@ impl InstanceFn {
             },
             get_physical_device_surface_capabilities: unsafe {
                 unsafe extern "system" fn get_physical_device_surface_capabilities(
-                    _: crate::vk::PhysicalDevice,
-                    _: crate::vk::SurfaceKHR,
-                    _: *mut crate::vk::SurfaceCapabilitiesKHR,
-                ) -> crate::vk::Result {
+                    _: vk::PhysicalDevice,
+                    _: vk::SurfaceKHR,
+                    _: *mut vk::SurfaceCapabilitiesKHR,
+                ) -> vk::Result {
                     panic!("unable to load vkGetPhysicalDeviceSurfaceCapabilitiesKHR")
                 }
                 let val = _f(c"vkGetPhysicalDeviceSurfaceCapabilitiesKHR");
@@ -132,11 +134,11 @@ impl InstanceFn {
             },
             get_physical_device_surface_formats: unsafe {
                 unsafe extern "system" fn get_physical_device_surface_formats(
-                    _: crate::vk::PhysicalDevice,
-                    _: crate::vk::SurfaceKHR,
+                    _: vk::PhysicalDevice,
+                    _: vk::SurfaceKHR,
                     _: *mut u32,
-                    _: *mut crate::vk::SurfaceFormatKHR,
-                ) -> crate::vk::Result {
+                    _: *mut vk::SurfaceFormatKHR,
+                ) -> vk::Result {
                     panic!("unable to load vkGetPhysicalDeviceSurfaceFormatsKHR")
                 }
                 let val = _f(c"vkGetPhysicalDeviceSurfaceFormatsKHR");
@@ -148,11 +150,11 @@ impl InstanceFn {
             },
             get_physical_device_surface_present_modes: unsafe {
                 unsafe extern "system" fn get_physical_device_surface_present_modes(
-                    _: crate::vk::PhysicalDevice,
-                    _: crate::vk::SurfaceKHR,
+                    _: vk::PhysicalDevice,
+                    _: vk::SurfaceKHR,
                     _: *mut u32,
-                    _: *mut crate::vk::PresentModeKHR,
-                ) -> crate::vk::Result {
+                    _: *mut vk::PresentModeKHR,
+                ) -> vk::Result {
                     panic!("unable to load vkGetPhysicalDeviceSurfacePresentModesKHR")
                 }
                 let val = _f(c"vkGetPhysicalDeviceSurfacePresentModesKHR");
@@ -190,8 +192,8 @@ impl Instance {
     #[inline]
     pub unsafe fn destroy_surface(
         &self,
-        surface: crate::vk::SurfaceKHR,
-        allocator: Option<&crate::vk::AllocationCallbacks<'_>>,
+        surface: vk::SurfaceKHR,
+        allocator: Option<&vk::AllocationCallbacks<'_>>,
     ) {
         (self
             .fp
@@ -208,10 +210,10 @@ impl Instance {
     #[inline]
     pub unsafe fn get_physical_device_surface_support(
         &self,
-        physical_device: crate::vk::PhysicalDevice,
+        physical_device: vk::PhysicalDevice,
         queue_family_index: u32,
-        surface: crate::vk::SurfaceKHR,
-    ) -> crate::VkResult<crate::vk::Bool32> {
+        surface: vk::SurfaceKHR,
+    ) -> VkResult<vk::Bool32> {
         let mut supported = core::mem::MaybeUninit::uninit();
         (self
             .fp
@@ -227,9 +229,9 @@ impl Instance {
     #[inline]
     pub unsafe fn get_physical_device_surface_capabilities(
         &self,
-        physical_device: crate::vk::PhysicalDevice,
-        surface: crate::vk::SurfaceKHR,
-    ) -> crate::VkResult<crate::vk::SurfaceCapabilitiesKHR> {
+        physical_device: vk::PhysicalDevice,
+        surface: vk::SurfaceKHR,
+    ) -> VkResult<vk::SurfaceCapabilitiesKHR> {
         let mut surface_capabilities = core::mem::MaybeUninit::uninit();
         (self
             .fp
@@ -244,9 +246,9 @@ impl Instance {
     #[inline]
     pub unsafe fn get_physical_device_surface_formats(
         &self,
-        physical_device: crate::vk::PhysicalDevice,
-        surface: crate::vk::SurfaceKHR,
-    ) -> crate::VkResult<Vec<crate::vk::SurfaceFormatKHR>> {
+        physical_device: vk::PhysicalDevice,
+        surface: vk::SurfaceKHR,
+    ) -> crate::VkResult<Vec<vk::SurfaceFormatKHR>> {
         crate::read_into_uninitialized_vector(|surface_format_count, surface_formats| (self
             .fp
             .get_physical_device_surface_formats)(
@@ -260,9 +262,9 @@ impl Instance {
     #[inline]
     pub unsafe fn get_physical_device_surface_present_modes(
         &self,
-        physical_device: crate::vk::PhysicalDevice,
-        surface: crate::vk::SurfaceKHR,
-    ) -> crate::VkResult<Vec<crate::vk::PresentModeKHR>> {
+        physical_device: vk::PhysicalDevice,
+        surface: vk::SurfaceKHR,
+    ) -> crate::VkResult<Vec<vk::PresentModeKHR>> {
         crate::read_into_uninitialized_vector(|present_mode_count, present_modes| (self
             .fp
             .get_physical_device_surface_present_modes)(
@@ -273,23 +275,26 @@ impl Instance {
         ))
     }
 }
-pub const SPEC_VERSION: u32 = 25;
-pub const NAME: &core::ffi::CStr = c"VK_KHR_surface";
 pub(crate) mod items {
+    use crate::vk;
+    use crate::Handle;
+    use core::fmt;
+    #[cfg(feature = "debug")]
+    use core::fmt as fmtdebug;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy, Default)]
     pub struct SurfaceCapabilitiesKHR {
         pub min_image_count: u32,
         pub max_image_count: u32,
-        pub current_extent: crate::vk::Extent2D,
-        pub min_image_extent: crate::vk::Extent2D,
-        pub max_image_extent: crate::vk::Extent2D,
+        pub current_extent: vk::Extent2D,
+        pub min_image_extent: vk::Extent2D,
+        pub max_image_extent: vk::Extent2D,
         pub max_image_array_layers: u32,
-        pub supported_transforms: crate::vk::SurfaceTransformFlagsKHR,
-        pub current_transform: crate::vk::SurfaceTransformFlagBitsKHR,
-        pub supported_composite_alpha: crate::vk::CompositeAlphaFlagsKHR,
-        pub supported_usage_flags: crate::vk::ImageUsageFlags,
+        pub supported_transforms: vk::SurfaceTransformFlagsKHR,
+        pub current_transform: vk::SurfaceTransformFlagBitsKHR,
+        pub supported_composite_alpha: vk::CompositeAlphaFlagsKHR,
+        pub supported_usage_flags: vk::ImageUsageFlags,
     }
     unsafe impl Send for SurfaceCapabilitiesKHR {}
     unsafe impl Sync for SurfaceCapabilitiesKHR {}
@@ -302,21 +307,15 @@ pub(crate) mod items {
             self.max_image_count = max_image_count;
             self
         }
-        pub fn current_extent(mut self, current_extent: crate::vk::Extent2D) -> Self {
+        pub fn current_extent(mut self, current_extent: vk::Extent2D) -> Self {
             self.current_extent = current_extent;
             self
         }
-        pub fn min_image_extent(
-            mut self,
-            min_image_extent: crate::vk::Extent2D,
-        ) -> Self {
+        pub fn min_image_extent(mut self, min_image_extent: vk::Extent2D) -> Self {
             self.min_image_extent = min_image_extent;
             self
         }
-        pub fn max_image_extent(
-            mut self,
-            max_image_extent: crate::vk::Extent2D,
-        ) -> Self {
+        pub fn max_image_extent(mut self, max_image_extent: vk::Extent2D) -> Self {
             self.max_image_extent = max_image_extent;
             self
         }
@@ -326,28 +325,28 @@ pub(crate) mod items {
         }
         pub fn supported_transforms(
             mut self,
-            supported_transforms: crate::vk::SurfaceTransformFlagsKHR,
+            supported_transforms: vk::SurfaceTransformFlagsKHR,
         ) -> Self {
             self.supported_transforms = supported_transforms;
             self
         }
         pub fn current_transform(
             mut self,
-            current_transform: crate::vk::SurfaceTransformFlagBitsKHR,
+            current_transform: vk::SurfaceTransformFlagBitsKHR,
         ) -> Self {
             self.current_transform = current_transform;
             self
         }
         pub fn supported_composite_alpha(
             mut self,
-            supported_composite_alpha: crate::vk::CompositeAlphaFlagsKHR,
+            supported_composite_alpha: vk::CompositeAlphaFlagsKHR,
         ) -> Self {
             self.supported_composite_alpha = supported_composite_alpha;
             self
         }
         pub fn supported_usage_flags(
             mut self,
-            supported_usage_flags: crate::vk::ImageUsageFlags,
+            supported_usage_flags: vk::ImageUsageFlags,
         ) -> Self {
             self.supported_usage_flags = supported_usage_flags;
             self
@@ -357,17 +356,17 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy, Default)]
     pub struct SurfaceFormatKHR {
-        pub format: crate::vk::Format,
-        pub color_space: crate::vk::ColorSpaceKHR,
+        pub format: vk::Format,
+        pub color_space: vk::ColorSpaceKHR,
     }
     unsafe impl Send for SurfaceFormatKHR {}
     unsafe impl Sync for SurfaceFormatKHR {}
     impl SurfaceFormatKHR {
-        pub fn format(mut self, format: crate::vk::Format) -> Self {
+        pub fn format(mut self, format: vk::Format) -> Self {
             self.format = format;
             self
         }
-        pub fn color_space(mut self, color_space: crate::vk::ColorSpaceKHR) -> Self {
+        pub fn color_space(mut self, color_space: vk::ColorSpaceKHR) -> Self {
             self.color_space = color_space;
             self
         }
@@ -661,8 +660,8 @@ pub(crate) mod items {
     #[repr(transparent)]
     #[derive(Eq, PartialEq, Ord, PartialOrd, Clone, Copy, Hash, Default)]
     pub struct SurfaceKHR(u64);
-    impl crate::Handle for SurfaceKHR {
-        const TYPE: crate::vk::ObjectType = crate::vk::ObjectType::SURFACE_KHR;
+    impl Handle for SurfaceKHR {
+        const TYPE: vk::ObjectType = vk::ObjectType::SURFACE_KHR;
         fn as_raw(self) -> u64 {
             self.0
         }
@@ -675,43 +674,44 @@ pub(crate) mod items {
             Self(0)
         }
     }
-    impl core::fmt::Pointer for SurfaceKHR {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+    impl fmt::Pointer for SurfaceKHR {
+        fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
             write!(f, "0x{:x}", self.0)
         }
     }
-    impl core::fmt::Debug for SurfaceKHR {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+    #[cfg(feature = "debug")]
+    impl fmtdebug::Debug for SurfaceKHR {
+        fn fmt(&self, f: &mut fmtdebug::Formatter) -> fmtdebug::Result {
             write!(f, "0x{:x}", self.0)
         }
     }
     pub type PFN_vkDestroySurfaceKHR = unsafe extern "system" fn(
-        instance: crate::vk::Instance,
-        surface: crate::vk::SurfaceKHR,
-        p_allocator: *const crate::vk::AllocationCallbacks<'_>,
+        instance: vk::Instance,
+        surface: vk::SurfaceKHR,
+        p_allocator: *const vk::AllocationCallbacks<'_>,
     );
     pub type PFN_vkGetPhysicalDeviceSurfaceSupportKHR = unsafe extern "system" fn(
-        physical_device: crate::vk::PhysicalDevice,
+        physical_device: vk::PhysicalDevice,
         queue_family_index: u32,
-        surface: crate::vk::SurfaceKHR,
-        p_supported: *mut crate::vk::Bool32,
-    ) -> crate::vk::Result;
+        surface: vk::SurfaceKHR,
+        p_supported: *mut vk::Bool32,
+    ) -> vk::Result;
     pub type PFN_vkGetPhysicalDeviceSurfaceCapabilitiesKHR = unsafe extern "system" fn(
-        physical_device: crate::vk::PhysicalDevice,
-        surface: crate::vk::SurfaceKHR,
-        p_surface_capabilities: *mut crate::vk::SurfaceCapabilitiesKHR,
-    ) -> crate::vk::Result;
+        physical_device: vk::PhysicalDevice,
+        surface: vk::SurfaceKHR,
+        p_surface_capabilities: *mut vk::SurfaceCapabilitiesKHR,
+    ) -> vk::Result;
     pub type PFN_vkGetPhysicalDeviceSurfaceFormatsKHR = unsafe extern "system" fn(
-        physical_device: crate::vk::PhysicalDevice,
-        surface: crate::vk::SurfaceKHR,
+        physical_device: vk::PhysicalDevice,
+        surface: vk::SurfaceKHR,
         p_surface_format_count: *mut u32,
-        p_surface_formats: *mut crate::vk::SurfaceFormatKHR,
-    ) -> crate::vk::Result;
+        p_surface_formats: *mut vk::SurfaceFormatKHR,
+    ) -> vk::Result;
     pub type PFN_vkGetPhysicalDeviceSurfacePresentModesKHR = unsafe extern "system" fn(
-        physical_device: crate::vk::PhysicalDevice,
-        surface: crate::vk::SurfaceKHR,
+        physical_device: vk::PhysicalDevice,
+        surface: vk::SurfaceKHR,
         p_present_mode_count: *mut u32,
-        p_present_modes: *mut crate::vk::PresentModeKHR,
-    ) -> crate::vk::Result;
+        p_present_modes: *mut vk::PresentModeKHR,
+    ) -> vk::Result;
 }
 pub use items::*;

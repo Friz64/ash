@@ -2,41 +2,45 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_QCOM_render_pass_transform.html) · Extension `VK_QCOM_render_pass_transform`
 #![doc(alias = "VK_QCOM_render_pass_transform")]
+use crate::vk;
+use core::ffi::CStr;
 ///Provided by [VK_QCOM_render_pass_transform](crate::qcom::render_pass_transform)
-impl crate::vk::StructureType {
+impl vk::StructureType {
     pub const COMMAND_BUFFER_INHERITANCE_RENDER_PASS_TRANSFORM_INFO_QCOM: Self = Self(
         1000282000,
     );
     pub const RENDER_PASS_TRANSFORM_BEGIN_INFO_QCOM: Self = Self(1000282001);
 }
-///Provided by [VK_QCOM_render_pass_transform](crate::qcom::render_pass_transform)
-impl crate::vk::RenderPassCreateFlags {
+///Provided by [Vulkan 1.0](crate::vk1_0)
+impl vk::RenderPassCreateFlags {
     pub const TRANSFORM_QCOM: Self = Self(
-        crate::vk::RenderPassCreateFlagBits::TRANSFORM_QCOM.0,
+        vk::RenderPassCreateFlagBits::TRANSFORM_QCOM.0,
     );
 }
-///Provided by [VK_QCOM_render_pass_transform](crate::qcom::render_pass_transform)
-impl crate::vk::RenderPassCreateFlagBits {
+///Provided by [Vulkan 1.0](crate::vk1_0)
+impl vk::RenderPassCreateFlagBits {
     pub const TRANSFORM_QCOM: Self = Self(1 << 1);
 }
 pub const SPEC_VERSION: u32 = 5;
-pub const NAME: &core::ffi::CStr = c"VK_QCOM_render_pass_transform";
+pub const NAME: &CStr = c"VK_QCOM_render_pass_transform";
 pub(crate) mod items {
+    use core::marker::PhantomData;
+    use crate::vk;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct RenderPassTransformBeginInfoQCOM<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *const core::ffi::c_void,
-        pub transform: crate::vk::SurfaceTransformFlagBitsKHR,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub transform: vk::SurfaceTransformFlagBitsKHR,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for RenderPassTransformBeginInfoQCOM<'_> {}
     unsafe impl Sync for RenderPassTransformBeginInfoQCOM<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for RenderPassTransformBeginInfoQCOM<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::RENDER_PASS_TRANSFORM_BEGIN_INFO_QCOM;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::RENDER_PASS_TRANSFORM_BEGIN_INFO_QCOM;
     }
-    unsafe impl<'a> crate::Extends<crate::vk::RenderPassBeginInfo<'_>>
+    unsafe impl<'a> crate::Extends<vk::RenderPassBeginInfo<'_>>
     for RenderPassTransformBeginInfoQCOM<'a> {}
     impl<'a> Default for RenderPassTransformBeginInfoQCOM<'a> {
         fn default() -> Self {
@@ -44,15 +48,12 @@ pub(crate) mod items {
                 s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
                 p_next: Default::default(),
                 transform: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
     impl<'a> RenderPassTransformBeginInfoQCOM<'a> {
-        pub fn transform(
-            mut self,
-            transform: crate::vk::SurfaceTransformFlagBitsKHR,
-        ) -> Self {
+        pub fn transform(mut self, transform: vk::SurfaceTransformFlagBitsKHR) -> Self {
             self.transform = transform;
             self
         }
@@ -61,19 +62,19 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct CommandBufferInheritanceRenderPassTransformInfoQCOM<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *const core::ffi::c_void,
-        pub transform: crate::vk::SurfaceTransformFlagBitsKHR,
-        pub render_area: crate::vk::Rect2D,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub transform: vk::SurfaceTransformFlagBitsKHR,
+        pub render_area: vk::Rect2D,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for CommandBufferInheritanceRenderPassTransformInfoQCOM<'_> {}
     unsafe impl Sync for CommandBufferInheritanceRenderPassTransformInfoQCOM<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for CommandBufferInheritanceRenderPassTransformInfoQCOM<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::COMMAND_BUFFER_INHERITANCE_RENDER_PASS_TRANSFORM_INFO_QCOM;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::COMMAND_BUFFER_INHERITANCE_RENDER_PASS_TRANSFORM_INFO_QCOM;
     }
-    unsafe impl<'a> crate::Extends<crate::vk::CommandBufferInheritanceInfo<'_>>
+    unsafe impl<'a> crate::Extends<vk::CommandBufferInheritanceInfo<'_>>
     for CommandBufferInheritanceRenderPassTransformInfoQCOM<'a> {}
     impl<'a> Default for CommandBufferInheritanceRenderPassTransformInfoQCOM<'a> {
         fn default() -> Self {
@@ -82,19 +83,16 @@ pub(crate) mod items {
                 p_next: Default::default(),
                 transform: Default::default(),
                 render_area: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
     impl<'a> CommandBufferInheritanceRenderPassTransformInfoQCOM<'a> {
-        pub fn transform(
-            mut self,
-            transform: crate::vk::SurfaceTransformFlagBitsKHR,
-        ) -> Self {
+        pub fn transform(mut self, transform: vk::SurfaceTransformFlagBitsKHR) -> Self {
             self.transform = transform;
             self
         }
-        pub fn render_area(mut self, render_area: crate::vk::Rect2D) -> Self {
+        pub fn render_area(mut self, render_area: vk::Rect2D) -> Self {
             self.render_area = render_area;
             self
         }

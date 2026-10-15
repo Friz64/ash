@@ -2,30 +2,34 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_AMD_shader_core_properties2.html) · Extension `VK_AMD_shader_core_properties2`
 #![doc(alias = "VK_AMD_shader_core_properties2")]
+use crate::vk;
+use core::ffi::CStr;
 ///Provided by [VK_AMD_shader_core_properties2](crate::amd::shader_core_properties2)
-impl crate::vk::StructureType {
+impl vk::StructureType {
     pub const PHYSICAL_DEVICE_SHADER_CORE_PROPERTIES_2_AMD: Self = Self(1000227000);
 }
 pub const SPEC_VERSION: u32 = 1;
-pub const NAME: &core::ffi::CStr = c"VK_AMD_shader_core_properties2";
+pub const NAME: &CStr = c"VK_AMD_shader_core_properties2";
 pub(crate) mod items {
+    use core::marker::PhantomData;
+    use crate::vk;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceShaderCoreProperties2AMD<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
-        pub shader_core_features: crate::vk::ShaderCorePropertiesFlagsAMD,
+        pub shader_core_features: vk::ShaderCorePropertiesFlagsAMD,
         pub active_compute_unit_count: u32,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for PhysicalDeviceShaderCoreProperties2AMD<'_> {}
     unsafe impl Sync for PhysicalDeviceShaderCoreProperties2AMD<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceShaderCoreProperties2AMD<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_SHADER_CORE_PROPERTIES_2_AMD;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PHYSICAL_DEVICE_SHADER_CORE_PROPERTIES_2_AMD;
     }
-    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceProperties2<'_>>
+    unsafe impl<'a> crate::Extends<vk::PhysicalDeviceProperties2<'_>>
     for PhysicalDeviceShaderCoreProperties2AMD<'a> {}
     impl<'a> Default for PhysicalDeviceShaderCoreProperties2AMD<'a> {
         fn default() -> Self {
@@ -34,14 +38,14 @@ pub(crate) mod items {
                 p_next: Default::default(),
                 shader_core_features: Default::default(),
                 active_compute_unit_count: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
     impl<'a> PhysicalDeviceShaderCoreProperties2AMD<'a> {
         pub fn shader_core_features(
             mut self,
-            shader_core_features: crate::vk::ShaderCorePropertiesFlagsAMD,
+            shader_core_features: vk::ShaderCorePropertiesFlagsAMD,
         ) -> Self {
             self.shader_core_features = shader_core_features;
             self

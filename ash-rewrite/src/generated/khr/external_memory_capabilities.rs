@@ -2,40 +2,43 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_external_memory_capabilities.html) · Extension `VK_KHR_external_memory_capabilities`
 #![doc(alias = "VK_KHR_external_memory_capabilities")]
+use crate::vk;
+use core::ffi::CStr;
+use core::ffi::c_void;
 ///Provided by [VK_KHR_external_memory_capabilities](crate::khr::external_memory_capabilities)
-impl crate::vk::StructureType {
+impl vk::StructureType {
     pub const PHYSICAL_DEVICE_EXTERNAL_IMAGE_FORMAT_INFO_KHR: Self = Self::PHYSICAL_DEVICE_EXTERNAL_IMAGE_FORMAT_INFO;
     pub const EXTERNAL_IMAGE_FORMAT_PROPERTIES_KHR: Self = Self::EXTERNAL_IMAGE_FORMAT_PROPERTIES;
     pub const PHYSICAL_DEVICE_EXTERNAL_BUFFER_INFO_KHR: Self = Self::PHYSICAL_DEVICE_EXTERNAL_BUFFER_INFO;
     pub const EXTERNAL_BUFFER_PROPERTIES_KHR: Self = Self::EXTERNAL_BUFFER_PROPERTIES;
     pub const PHYSICAL_DEVICE_ID_PROPERTIES_KHR: Self = Self::PHYSICAL_DEVICE_ID_PROPERTIES;
 }
-///Provided by [VK_KHR_external_memory_capabilities](crate::khr::external_memory_capabilities)
-impl crate::vk::ExternalMemoryHandleTypeFlags {
+///Provided by [Vulkan 1.1](crate::vk1_1)
+impl vk::ExternalMemoryHandleTypeFlags {
     pub const OPAQUE_FD_KHR: Self = Self(
-        crate::vk::ExternalMemoryHandleTypeFlagBits::OPAQUE_FD_KHR.0,
+        vk::ExternalMemoryHandleTypeFlagBits::OPAQUE_FD_KHR.0,
     );
     pub const OPAQUE_WIN32_KHR: Self = Self(
-        crate::vk::ExternalMemoryHandleTypeFlagBits::OPAQUE_WIN32_KHR.0,
+        vk::ExternalMemoryHandleTypeFlagBits::OPAQUE_WIN32_KHR.0,
     );
     pub const OPAQUE_WIN32_KMT_KHR: Self = Self(
-        crate::vk::ExternalMemoryHandleTypeFlagBits::OPAQUE_WIN32_KMT_KHR.0,
+        vk::ExternalMemoryHandleTypeFlagBits::OPAQUE_WIN32_KMT_KHR.0,
     );
     pub const D3D11_TEXTURE_KHR: Self = Self(
-        crate::vk::ExternalMemoryHandleTypeFlagBits::D3D11_TEXTURE_KHR.0,
+        vk::ExternalMemoryHandleTypeFlagBits::D3D11_TEXTURE_KHR.0,
     );
     pub const D3D11_TEXTURE_KMT_KHR: Self = Self(
-        crate::vk::ExternalMemoryHandleTypeFlagBits::D3D11_TEXTURE_KMT_KHR.0,
+        vk::ExternalMemoryHandleTypeFlagBits::D3D11_TEXTURE_KMT_KHR.0,
     );
     pub const D3D12_HEAP_KHR: Self = Self(
-        crate::vk::ExternalMemoryHandleTypeFlagBits::D3D12_HEAP_KHR.0,
+        vk::ExternalMemoryHandleTypeFlagBits::D3D12_HEAP_KHR.0,
     );
     pub const D3D12_RESOURCE_KHR: Self = Self(
-        crate::vk::ExternalMemoryHandleTypeFlagBits::D3D12_RESOURCE_KHR.0,
+        vk::ExternalMemoryHandleTypeFlagBits::D3D12_RESOURCE_KHR.0,
     );
 }
-///Provided by [VK_KHR_external_memory_capabilities](crate::khr::external_memory_capabilities)
-impl crate::vk::ExternalMemoryHandleTypeFlagBits {
+///Provided by [Vulkan 1.1](crate::vk1_1)
+impl vk::ExternalMemoryHandleTypeFlagBits {
     pub const OPAQUE_FD_KHR: Self = Self::OPAQUE_FD;
     pub const OPAQUE_WIN32_KHR: Self = Self::OPAQUE_WIN32;
     pub const OPAQUE_WIN32_KMT_KHR: Self = Self::OPAQUE_WIN32_KMT;
@@ -44,45 +47,43 @@ impl crate::vk::ExternalMemoryHandleTypeFlagBits {
     pub const D3D12_HEAP_KHR: Self = Self::D3D12_HEAP;
     pub const D3D12_RESOURCE_KHR: Self = Self::D3D12_RESOURCE;
 }
-///Provided by [VK_KHR_external_memory_capabilities](crate::khr::external_memory_capabilities)
-impl crate::vk::ExternalMemoryFeatureFlags {
+///Provided by [Vulkan 1.1](crate::vk1_1)
+impl vk::ExternalMemoryFeatureFlags {
     pub const DEDICATED_ONLY_KHR: Self = Self(
-        crate::vk::ExternalMemoryFeatureFlagBits::DEDICATED_ONLY_KHR.0,
+        vk::ExternalMemoryFeatureFlagBits::DEDICATED_ONLY_KHR.0,
     );
     pub const EXPORTABLE_KHR: Self = Self(
-        crate::vk::ExternalMemoryFeatureFlagBits::EXPORTABLE_KHR.0,
+        vk::ExternalMemoryFeatureFlagBits::EXPORTABLE_KHR.0,
     );
     pub const IMPORTABLE_KHR: Self = Self(
-        crate::vk::ExternalMemoryFeatureFlagBits::IMPORTABLE_KHR.0,
+        vk::ExternalMemoryFeatureFlagBits::IMPORTABLE_KHR.0,
     );
 }
-///Provided by [VK_KHR_external_memory_capabilities](crate::khr::external_memory_capabilities)
-impl crate::vk::ExternalMemoryFeatureFlagBits {
+///Provided by [Vulkan 1.1](crate::vk1_1)
+impl vk::ExternalMemoryFeatureFlagBits {
     pub const DEDICATED_ONLY_KHR: Self = Self::DEDICATED_ONLY;
     pub const EXPORTABLE_KHR: Self = Self::EXPORTABLE;
     pub const IMPORTABLE_KHR: Self = Self::IMPORTABLE;
 }
+pub const SPEC_VERSION: u32 = 1;
+pub const NAME: &CStr = c"VK_KHR_external_memory_capabilities";
 #[derive(Clone)]
 pub struct InstanceFn {
-    pub get_physical_device_external_buffer_properties: crate::vk::PFN_vkGetPhysicalDeviceExternalBufferPropertiesKHR,
+    pub get_physical_device_external_buffer_properties: vk::PFN_vkGetPhysicalDeviceExternalBufferPropertiesKHR,
 }
 unsafe impl Send for InstanceFn {}
 unsafe impl Sync for InstanceFn {}
 impl InstanceFn {
-    pub fn load<F: FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void>(
-        mut f: F,
-    ) -> Self {
+    pub fn load<F: FnMut(&CStr) -> *const c_void>(mut f: F) -> Self {
         Self::load_erased(&mut f)
     }
-    fn load_erased(
-        _f: &mut dyn FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void,
-    ) -> Self {
+    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const c_void) -> Self {
         Self {
             get_physical_device_external_buffer_properties: unsafe {
                 unsafe extern "system" fn get_physical_device_external_buffer_properties(
-                    _: crate::vk::PhysicalDevice,
-                    _: *const crate::vk::PhysicalDeviceExternalBufferInfo<'_>,
-                    _: *mut crate::vk::ExternalBufferProperties<'_>,
+                    _: vk::PhysicalDevice,
+                    _: *const vk::PhysicalDeviceExternalBufferInfo<'_>,
+                    _: *mut vk::ExternalBufferProperties<'_>,
                 ) {
                     panic!(
                         "unable to load vkGetPhysicalDeviceExternalBufferPropertiesKHR"
@@ -123,9 +124,9 @@ impl Instance {
     #[inline]
     pub unsafe fn get_physical_device_external_buffer_properties(
         &self,
-        physical_device: crate::vk::PhysicalDevice,
-        external_buffer_info: &crate::vk::PhysicalDeviceExternalBufferInfo<'_>,
-    ) -> crate::vk::ExternalBufferProperties<'_> {
+        physical_device: vk::PhysicalDevice,
+        external_buffer_info: &vk::PhysicalDeviceExternalBufferInfo<'_>,
+    ) -> vk::ExternalBufferProperties<'_> {
         let mut external_buffer_properties = core::mem::MaybeUninit::uninit();
         (self
             .fp
@@ -137,27 +138,24 @@ impl Instance {
         external_buffer_properties.assume_init()
     }
 }
-pub const SPEC_VERSION: u32 = 1;
-pub const NAME: &core::ffi::CStr = c"VK_KHR_external_memory_capabilities";
 pub(crate) mod items {
-    pub type ExternalMemoryPropertiesKHR = crate::vk::ExternalMemoryProperties;
-    pub type PhysicalDeviceExternalImageFormatInfoKHR<'a> = crate::vk::PhysicalDeviceExternalImageFormatInfo<
+    use crate::vk;
+    pub type ExternalMemoryPropertiesKHR = vk::ExternalMemoryProperties;
+    pub type PhysicalDeviceExternalImageFormatInfoKHR<'a> = vk::PhysicalDeviceExternalImageFormatInfo<
         'a,
     >;
-    pub type ExternalImageFormatPropertiesKHR<'a> = crate::vk::ExternalImageFormatProperties<
+    pub type ExternalImageFormatPropertiesKHR<'a> = vk::ExternalImageFormatProperties<
         'a,
     >;
-    pub type PhysicalDeviceExternalBufferInfoKHR<'a> = crate::vk::PhysicalDeviceExternalBufferInfo<
+    pub type PhysicalDeviceExternalBufferInfoKHR<'a> = vk::PhysicalDeviceExternalBufferInfo<
         'a,
     >;
-    pub type ExternalBufferPropertiesKHR<'a> = crate::vk::ExternalBufferProperties<'a>;
-    pub type PhysicalDeviceIDPropertiesKHR<'a> = crate::vk::PhysicalDeviceIDProperties<
-        'a,
-    >;
-    pub type ExternalMemoryHandleTypeFlagBitsKHR = crate::vk::ExternalMemoryHandleTypeFlagBits;
-    pub type ExternalMemoryFeatureFlagBitsKHR = crate::vk::ExternalMemoryFeatureFlagBits;
-    pub type ExternalMemoryHandleTypeFlagsKHR = crate::vk::ExternalMemoryHandleTypeFlags;
-    pub type ExternalMemoryFeatureFlagsKHR = crate::vk::ExternalMemoryFeatureFlags;
-    pub type PFN_vkGetPhysicalDeviceExternalBufferPropertiesKHR = crate::vk::PFN_vkGetPhysicalDeviceExternalBufferProperties;
+    pub type ExternalBufferPropertiesKHR<'a> = vk::ExternalBufferProperties<'a>;
+    pub type PhysicalDeviceIDPropertiesKHR<'a> = vk::PhysicalDeviceIDProperties<'a>;
+    pub type ExternalMemoryHandleTypeFlagBitsKHR = vk::ExternalMemoryHandleTypeFlagBits;
+    pub type ExternalMemoryFeatureFlagBitsKHR = vk::ExternalMemoryFeatureFlagBits;
+    pub type ExternalMemoryHandleTypeFlagsKHR = vk::ExternalMemoryHandleTypeFlags;
+    pub type ExternalMemoryFeatureFlagsKHR = vk::ExternalMemoryFeatureFlags;
+    pub type PFN_vkGetPhysicalDeviceExternalBufferPropertiesKHR = vk::PFN_vkGetPhysicalDeviceExternalBufferProperties;
 }
 pub use items::*;

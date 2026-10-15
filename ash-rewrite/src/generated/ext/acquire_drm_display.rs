@@ -2,31 +2,31 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_acquire_drm_display.html) · Extension `VK_EXT_acquire_drm_display`
 #![doc(alias = "VK_EXT_acquire_drm_display")]
+use core::ffi::CStr;
+use crate::vk;
+use crate::VkResult;
+use core::ffi::c_void;
 pub const SPEC_VERSION: u32 = 1;
-pub const NAME: &core::ffi::CStr = c"VK_EXT_acquire_drm_display";
+pub const NAME: &CStr = c"VK_EXT_acquire_drm_display";
 #[derive(Clone)]
 pub struct InstanceFn {
-    pub acquire_drm_display: crate::vk::PFN_vkAcquireDrmDisplayEXT,
-    pub get_drm_display: crate::vk::PFN_vkGetDrmDisplayEXT,
+    pub acquire_drm_display: vk::PFN_vkAcquireDrmDisplayEXT,
+    pub get_drm_display: vk::PFN_vkGetDrmDisplayEXT,
 }
 unsafe impl Send for InstanceFn {}
 unsafe impl Sync for InstanceFn {}
 impl InstanceFn {
-    pub fn load<F: FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void>(
-        mut f: F,
-    ) -> Self {
+    pub fn load<F: FnMut(&CStr) -> *const c_void>(mut f: F) -> Self {
         Self::load_erased(&mut f)
     }
-    fn load_erased(
-        _f: &mut dyn FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void,
-    ) -> Self {
+    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const c_void) -> Self {
         Self {
             acquire_drm_display: unsafe {
                 unsafe extern "system" fn acquire_drm_display(
-                    _: crate::vk::PhysicalDevice,
+                    _: vk::PhysicalDevice,
                     _: i32,
-                    _: crate::vk::DisplayKHR,
-                ) -> crate::vk::Result {
+                    _: vk::DisplayKHR,
+                ) -> vk::Result {
                     panic!("unable to load vkAcquireDrmDisplayEXT")
                 }
                 let val = _f(c"vkAcquireDrmDisplayEXT");
@@ -38,11 +38,11 @@ impl InstanceFn {
             },
             get_drm_display: unsafe {
                 unsafe extern "system" fn get_drm_display(
-                    _: crate::vk::PhysicalDevice,
+                    _: vk::PhysicalDevice,
                     _: i32,
                     _: u32,
-                    _: *mut crate::vk::DisplayKHR,
-                ) -> crate::vk::Result {
+                    _: *mut vk::DisplayKHR,
+                ) -> vk::Result {
                     panic!("unable to load vkGetDrmDisplayEXT")
                 }
                 let val = _f(c"vkGetDrmDisplayEXT");
@@ -76,20 +76,20 @@ impl Instance {
     #[inline]
     pub unsafe fn acquire_drm_display(
         &self,
-        physical_device: crate::vk::PhysicalDevice,
+        physical_device: vk::PhysicalDevice,
         drm_fd: i32,
-        display: crate::vk::DisplayKHR,
-    ) -> crate::VkResult<()> {
+        display: vk::DisplayKHR,
+    ) -> VkResult<()> {
         (self.fp.acquire_drm_display)(physical_device, drm_fd, display).result()
     }
     ///vkGetDrmDisplayEXT
     #[inline]
     pub unsafe fn get_drm_display(
         &self,
-        physical_device: crate::vk::PhysicalDevice,
+        physical_device: vk::PhysicalDevice,
         drm_fd: i32,
         connector_id: u32,
-    ) -> crate::VkResult<crate::vk::DisplayKHR> {
+    ) -> VkResult<vk::DisplayKHR> {
         let mut display = core::mem::MaybeUninit::uninit();
         (self
             .fp
@@ -103,16 +103,17 @@ impl Instance {
     }
 }
 pub(crate) mod items {
+    use crate::vk;
     pub type PFN_vkAcquireDrmDisplayEXT = unsafe extern "system" fn(
-        physical_device: crate::vk::PhysicalDevice,
+        physical_device: vk::PhysicalDevice,
         drm_fd: i32,
-        display: crate::vk::DisplayKHR,
-    ) -> crate::vk::Result;
+        display: vk::DisplayKHR,
+    ) -> vk::Result;
     pub type PFN_vkGetDrmDisplayEXT = unsafe extern "system" fn(
-        physical_device: crate::vk::PhysicalDevice,
+        physical_device: vk::PhysicalDevice,
         drm_fd: i32,
         connector_id: u32,
-        display: *mut crate::vk::DisplayKHR,
-    ) -> crate::vk::Result;
+        display: *mut vk::DisplayKHR,
+    ) -> vk::Result;
 }
 pub use items::*;

@@ -2,15 +2,17 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_portability_enumeration.html) · Extension `VK_KHR_portability_enumeration`
 #![doc(alias = "VK_KHR_portability_enumeration")]
-///Provided by [VK_KHR_portability_enumeration](crate::khr::portability_enumeration)
-impl crate::vk::InstanceCreateFlags {
+use crate::vk;
+use core::ffi::CStr;
+///Provided by [Vulkan 1.0](crate::vk1_0)
+impl vk::InstanceCreateFlags {
     pub const ENUMERATE_PORTABILITY_KHR: Self = Self(
-        crate::vk::InstanceCreateFlagBits::ENUMERATE_PORTABILITY_KHR.0,
+        vk::InstanceCreateFlagBits::ENUMERATE_PORTABILITY_KHR.0,
     );
 }
-///Provided by [VK_KHR_portability_enumeration](crate::khr::portability_enumeration)
-impl crate::vk::InstanceCreateFlagBits {
+///Provided by [Vulkan 1.0](crate::vk1_0)
+impl vk::InstanceCreateFlagBits {
     pub const ENUMERATE_PORTABILITY_KHR: Self = Self(1 << 0);
 }
 pub const SPEC_VERSION: u32 = 1;
-pub const NAME: &core::ffi::CStr = c"VK_KHR_portability_enumeration";
+pub const NAME: &CStr = c"VK_KHR_portability_enumeration";

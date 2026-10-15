@@ -2,37 +2,41 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_4444_formats.html) · Extension `VK_EXT_4444_formats`
 #![doc(alias = "VK_EXT_4444_formats")]
+use crate::vk;
+use core::ffi::CStr;
 ///Provided by [VK_EXT_4444_formats](crate::ext::_4444_formats)
-impl crate::vk::Format {
+impl vk::Format {
     pub const A4R4G4B4_UNORM_PACK16_EXT: Self = Self::A4R4G4B4_UNORM_PACK16;
     pub const A4B4G4R4_UNORM_PACK16_EXT: Self = Self::A4B4G4R4_UNORM_PACK16;
 }
 ///Provided by [VK_EXT_4444_formats](crate::ext::_4444_formats)
-impl crate::vk::StructureType {
+impl vk::StructureType {
     pub const PHYSICAL_DEVICE_4444_FORMATS_FEATURES_EXT: Self = Self(1000340000);
 }
 pub const SPEC_VERSION: u32 = 1;
-pub const NAME: &core::ffi::CStr = c"VK_EXT_4444_formats";
+pub const NAME: &CStr = c"VK_EXT_4444_formats";
 pub(crate) mod items {
+    use core::marker::PhantomData;
+    use crate::vk;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct PhysicalDevice4444FormatsFeaturesEXT<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
-        pub format_a4r4g4b4: crate::vk::Bool32,
-        pub format_a4b4g4r4: crate::vk::Bool32,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub format_a4r4g4b4: vk::Bool32,
+        pub format_a4b4g4r4: vk::Bool32,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for PhysicalDevice4444FormatsFeaturesEXT<'_> {}
     unsafe impl Sync for PhysicalDevice4444FormatsFeaturesEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDevice4444FormatsFeaturesEXT<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_4444_FORMATS_FEATURES_EXT;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PHYSICAL_DEVICE_4444_FORMATS_FEATURES_EXT;
     }
-    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+    unsafe impl<'a> crate::Extends<vk::PhysicalDeviceFeatures2<'_>>
     for PhysicalDevice4444FormatsFeaturesEXT<'a> {}
-    unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+    unsafe impl<'a> crate::Extends<vk::DeviceCreateInfo<'_>>
     for PhysicalDevice4444FormatsFeaturesEXT<'a> {}
     impl<'a> Default for PhysicalDevice4444FormatsFeaturesEXT<'a> {
         fn default() -> Self {
@@ -41,7 +45,7 @@ pub(crate) mod items {
                 p_next: Default::default(),
                 format_a4r4g4b4: Default::default(),
                 format_a4b4g4r4: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }

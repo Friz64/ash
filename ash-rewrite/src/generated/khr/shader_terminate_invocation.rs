@@ -2,14 +2,17 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_shader_terminate_invocation.html) · Extension `VK_KHR_shader_terminate_invocation`
 #![doc(alias = "VK_KHR_shader_terminate_invocation")]
+use crate::vk;
+use core::ffi::CStr;
 ///Provided by [VK_KHR_shader_terminate_invocation](crate::khr::shader_terminate_invocation)
-impl crate::vk::StructureType {
+impl vk::StructureType {
     pub const PHYSICAL_DEVICE_SHADER_TERMINATE_INVOCATION_FEATURES_KHR: Self = Self::PHYSICAL_DEVICE_SHADER_TERMINATE_INVOCATION_FEATURES;
 }
 pub const SPEC_VERSION: u32 = 1;
-pub const NAME: &core::ffi::CStr = c"VK_KHR_shader_terminate_invocation";
+pub const NAME: &CStr = c"VK_KHR_shader_terminate_invocation";
 pub(crate) mod items {
-    pub type PhysicalDeviceShaderTerminateInvocationFeaturesKHR<'a> = crate::vk::PhysicalDeviceShaderTerminateInvocationFeatures<
+    use crate::vk;
+    pub type PhysicalDeviceShaderTerminateInvocationFeaturesKHR<'a> = vk::PhysicalDeviceShaderTerminateInvocationFeatures<
         'a,
     >;
 }

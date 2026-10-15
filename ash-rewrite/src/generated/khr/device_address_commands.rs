@@ -2,8 +2,12 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_device_address_commands.html) · Extension `VK_KHR_device_address_commands`
 #![doc(alias = "VK_KHR_device_address_commands")]
+use crate::vk;
+use core::ffi::CStr;
+use crate::VkResult;
+use core::ffi::c_void;
 ///Provided by [VK_KHR_device_address_commands](crate::khr::device_address_commands)
-impl crate::vk::StructureType {
+impl vk::StructureType {
     pub const DEVICE_MEMORY_COPY_KHR: Self = Self(1000318000);
     pub const COPY_DEVICE_MEMORY_INFO_KHR: Self = Self(1000318001);
     pub const DEVICE_MEMORY_IMAGE_COPY_KHR: Self = Self(1000318002);
@@ -49,47 +53,45 @@ impl AddressCommandFlagBitsKHR {
     pub const TRANSFORM_FEEDBACK_BUFFER_USAGE: Self = Self(1 << 4);
     pub const UNKNOWN_TRANSFORM_FEEDBACK_BUFFER_USAGE: Self = Self(1 << 5);
 }
+pub const SPEC_VERSION: u32 = 1;
+pub const NAME: &CStr = c"VK_KHR_device_address_commands";
 #[derive(Clone)]
 pub struct DeviceFn {
-    pub cmd_copy_memory: crate::vk::PFN_vkCmdCopyMemoryKHR,
-    pub cmd_copy_memory_to_image: crate::vk::PFN_vkCmdCopyMemoryToImageKHR,
-    pub cmd_copy_image_to_memory: crate::vk::PFN_vkCmdCopyImageToMemoryKHR,
-    pub cmd_update_memory: crate::vk::PFN_vkCmdUpdateMemoryKHR,
-    pub cmd_fill_memory: crate::vk::PFN_vkCmdFillMemoryKHR,
-    pub cmd_copy_query_pool_results_to_memory: crate::vk::PFN_vkCmdCopyQueryPoolResultsToMemoryKHR,
-    pub cmd_begin_conditional_rendering2: crate::vk::PFN_vkCmdBeginConditionalRendering2EXT,
-    pub cmd_bind_transform_feedback_buffers2: crate::vk::PFN_vkCmdBindTransformFeedbackBuffers2EXT,
-    pub cmd_begin_transform_feedback2: crate::vk::PFN_vkCmdBeginTransformFeedback2EXT,
-    pub cmd_end_transform_feedback2: crate::vk::PFN_vkCmdEndTransformFeedback2EXT,
-    pub cmd_draw_indirect_byte_count2: crate::vk::PFN_vkCmdDrawIndirectByteCount2EXT,
-    pub cmd_write_marker_to_memory: crate::vk::PFN_vkCmdWriteMarkerToMemoryAMD,
-    pub cmd_bind_index_buffer3: crate::vk::PFN_vkCmdBindIndexBuffer3KHR,
-    pub cmd_bind_vertex_buffers3: crate::vk::PFN_vkCmdBindVertexBuffers3KHR,
-    pub cmd_draw_indirect2: crate::vk::PFN_vkCmdDrawIndirect2KHR,
-    pub cmd_draw_indexed_indirect2: crate::vk::PFN_vkCmdDrawIndexedIndirect2KHR,
-    pub cmd_draw_indirect_count2: crate::vk::PFN_vkCmdDrawIndirectCount2KHR,
-    pub cmd_draw_indexed_indirect_count2: crate::vk::PFN_vkCmdDrawIndexedIndirectCount2KHR,
-    pub cmd_draw_mesh_tasks_indirect2: crate::vk::PFN_vkCmdDrawMeshTasksIndirect2EXT,
-    pub cmd_draw_mesh_tasks_indirect_count2: crate::vk::PFN_vkCmdDrawMeshTasksIndirectCount2EXT,
-    pub cmd_dispatch_indirect2: crate::vk::PFN_vkCmdDispatchIndirect2KHR,
-    pub create_acceleration_structure2: crate::vk::PFN_vkCreateAccelerationStructure2KHR,
+    pub cmd_copy_memory: vk::PFN_vkCmdCopyMemoryKHR,
+    pub cmd_copy_memory_to_image: vk::PFN_vkCmdCopyMemoryToImageKHR,
+    pub cmd_copy_image_to_memory: vk::PFN_vkCmdCopyImageToMemoryKHR,
+    pub cmd_update_memory: vk::PFN_vkCmdUpdateMemoryKHR,
+    pub cmd_fill_memory: vk::PFN_vkCmdFillMemoryKHR,
+    pub cmd_copy_query_pool_results_to_memory: vk::PFN_vkCmdCopyQueryPoolResultsToMemoryKHR,
+    pub cmd_begin_conditional_rendering2: vk::PFN_vkCmdBeginConditionalRendering2EXT,
+    pub cmd_bind_transform_feedback_buffers2: vk::PFN_vkCmdBindTransformFeedbackBuffers2EXT,
+    pub cmd_begin_transform_feedback2: vk::PFN_vkCmdBeginTransformFeedback2EXT,
+    pub cmd_end_transform_feedback2: vk::PFN_vkCmdEndTransformFeedback2EXT,
+    pub cmd_draw_indirect_byte_count2: vk::PFN_vkCmdDrawIndirectByteCount2EXT,
+    pub cmd_write_marker_to_memory: vk::PFN_vkCmdWriteMarkerToMemoryAMD,
+    pub cmd_bind_index_buffer3: vk::PFN_vkCmdBindIndexBuffer3KHR,
+    pub cmd_bind_vertex_buffers3: vk::PFN_vkCmdBindVertexBuffers3KHR,
+    pub cmd_draw_indirect2: vk::PFN_vkCmdDrawIndirect2KHR,
+    pub cmd_draw_indexed_indirect2: vk::PFN_vkCmdDrawIndexedIndirect2KHR,
+    pub cmd_draw_indirect_count2: vk::PFN_vkCmdDrawIndirectCount2KHR,
+    pub cmd_draw_indexed_indirect_count2: vk::PFN_vkCmdDrawIndexedIndirectCount2KHR,
+    pub cmd_draw_mesh_tasks_indirect2: vk::PFN_vkCmdDrawMeshTasksIndirect2EXT,
+    pub cmd_draw_mesh_tasks_indirect_count2: vk::PFN_vkCmdDrawMeshTasksIndirectCount2EXT,
+    pub cmd_dispatch_indirect2: vk::PFN_vkCmdDispatchIndirect2KHR,
+    pub create_acceleration_structure2: vk::PFN_vkCreateAccelerationStructure2KHR,
 }
 unsafe impl Send for DeviceFn {}
 unsafe impl Sync for DeviceFn {}
 impl DeviceFn {
-    pub fn load<F: FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void>(
-        mut f: F,
-    ) -> Self {
+    pub fn load<F: FnMut(&CStr) -> *const c_void>(mut f: F) -> Self {
         Self::load_erased(&mut f)
     }
-    fn load_erased(
-        _f: &mut dyn FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void,
-    ) -> Self {
+    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const c_void) -> Self {
         Self {
             cmd_copy_memory: unsafe {
                 unsafe extern "system" fn cmd_copy_memory(
-                    _: crate::vk::CommandBuffer,
-                    _: *const crate::vk::CopyDeviceMemoryInfoKHR<'_>,
+                    _: vk::CommandBuffer,
+                    _: *const vk::CopyDeviceMemoryInfoKHR<'_>,
                 ) {
                     panic!("unable to load vkCmdCopyMemoryKHR")
                 }
@@ -98,8 +100,8 @@ impl DeviceFn {
             },
             cmd_copy_memory_to_image: unsafe {
                 unsafe extern "system" fn cmd_copy_memory_to_image(
-                    _: crate::vk::CommandBuffer,
-                    _: *const crate::vk::CopyDeviceMemoryImageInfoKHR<'_>,
+                    _: vk::CommandBuffer,
+                    _: *const vk::CopyDeviceMemoryImageInfoKHR<'_>,
                 ) {
                     panic!("unable to load vkCmdCopyMemoryToImageKHR")
                 }
@@ -112,8 +114,8 @@ impl DeviceFn {
             },
             cmd_copy_image_to_memory: unsafe {
                 unsafe extern "system" fn cmd_copy_image_to_memory(
-                    _: crate::vk::CommandBuffer,
-                    _: *const crate::vk::CopyDeviceMemoryImageInfoKHR<'_>,
+                    _: vk::CommandBuffer,
+                    _: *const vk::CopyDeviceMemoryImageInfoKHR<'_>,
                 ) {
                     panic!("unable to load vkCmdCopyImageToMemoryKHR")
                 }
@@ -126,10 +128,10 @@ impl DeviceFn {
             },
             cmd_update_memory: unsafe {
                 unsafe extern "system" fn cmd_update_memory(
-                    _: crate::vk::CommandBuffer,
-                    _: *const crate::vk::DeviceAddressRangeKHR,
-                    _: crate::vk::AddressCommandFlagsKHR,
-                    _: crate::vk::DeviceSize,
+                    _: vk::CommandBuffer,
+                    _: *const vk::DeviceAddressRangeKHR,
+                    _: vk::AddressCommandFlagsKHR,
+                    _: vk::DeviceSize,
                     _: *const core::ffi::c_void,
                 ) {
                     panic!("unable to load vkCmdUpdateMemoryKHR")
@@ -143,9 +145,9 @@ impl DeviceFn {
             },
             cmd_fill_memory: unsafe {
                 unsafe extern "system" fn cmd_fill_memory(
-                    _: crate::vk::CommandBuffer,
-                    _: *const crate::vk::DeviceAddressRangeKHR,
-                    _: crate::vk::AddressCommandFlagsKHR,
+                    _: vk::CommandBuffer,
+                    _: *const vk::DeviceAddressRangeKHR,
+                    _: vk::AddressCommandFlagsKHR,
                     _: u32,
                 ) {
                     panic!("unable to load vkCmdFillMemoryKHR")
@@ -155,13 +157,13 @@ impl DeviceFn {
             },
             cmd_copy_query_pool_results_to_memory: unsafe {
                 unsafe extern "system" fn cmd_copy_query_pool_results_to_memory(
-                    _: crate::vk::CommandBuffer,
-                    _: crate::vk::QueryPool,
+                    _: vk::CommandBuffer,
+                    _: vk::QueryPool,
                     _: u32,
                     _: u32,
-                    _: *const crate::vk::StridedDeviceAddressRangeKHR,
-                    _: crate::vk::AddressCommandFlagsKHR,
-                    _: crate::vk::QueryResultFlags,
+                    _: *const vk::StridedDeviceAddressRangeKHR,
+                    _: vk::AddressCommandFlagsKHR,
+                    _: vk::QueryResultFlags,
                 ) {
                     panic!("unable to load vkCmdCopyQueryPoolResultsToMemoryKHR")
                 }
@@ -174,8 +176,8 @@ impl DeviceFn {
             },
             cmd_begin_conditional_rendering2: unsafe {
                 unsafe extern "system" fn cmd_begin_conditional_rendering2(
-                    _: crate::vk::CommandBuffer,
-                    _: *const crate::vk::ConditionalRenderingBeginInfo2EXT<'_>,
+                    _: vk::CommandBuffer,
+                    _: *const vk::ConditionalRenderingBeginInfo2EXT<'_>,
                 ) {
                     panic!("unable to load vkCmdBeginConditionalRendering2EXT")
                 }
@@ -188,10 +190,10 @@ impl DeviceFn {
             },
             cmd_bind_transform_feedback_buffers2: unsafe {
                 unsafe extern "system" fn cmd_bind_transform_feedback_buffers2(
-                    _: crate::vk::CommandBuffer,
+                    _: vk::CommandBuffer,
                     _: u32,
                     _: u32,
-                    _: *const crate::vk::BindTransformFeedbackBuffer2InfoEXT<'_>,
+                    _: *const vk::BindTransformFeedbackBuffer2InfoEXT<'_>,
                 ) {
                     panic!("unable to load vkCmdBindTransformFeedbackBuffers2EXT")
                 }
@@ -204,10 +206,10 @@ impl DeviceFn {
             },
             cmd_begin_transform_feedback2: unsafe {
                 unsafe extern "system" fn cmd_begin_transform_feedback2(
-                    _: crate::vk::CommandBuffer,
+                    _: vk::CommandBuffer,
                     _: u32,
                     _: u32,
-                    _: *const crate::vk::BindTransformFeedbackBuffer2InfoEXT<'_>,
+                    _: *const vk::BindTransformFeedbackBuffer2InfoEXT<'_>,
                 ) {
                     panic!("unable to load vkCmdBeginTransformFeedback2EXT")
                 }
@@ -220,10 +222,10 @@ impl DeviceFn {
             },
             cmd_end_transform_feedback2: unsafe {
                 unsafe extern "system" fn cmd_end_transform_feedback2(
-                    _: crate::vk::CommandBuffer,
+                    _: vk::CommandBuffer,
                     _: u32,
                     _: u32,
-                    _: *const crate::vk::BindTransformFeedbackBuffer2InfoEXT<'_>,
+                    _: *const vk::BindTransformFeedbackBuffer2InfoEXT<'_>,
                 ) {
                     panic!("unable to load vkCmdEndTransformFeedback2EXT")
                 }
@@ -236,10 +238,10 @@ impl DeviceFn {
             },
             cmd_draw_indirect_byte_count2: unsafe {
                 unsafe extern "system" fn cmd_draw_indirect_byte_count2(
-                    _: crate::vk::CommandBuffer,
+                    _: vk::CommandBuffer,
                     _: u32,
                     _: u32,
-                    _: *const crate::vk::BindTransformFeedbackBuffer2InfoEXT<'_>,
+                    _: *const vk::BindTransformFeedbackBuffer2InfoEXT<'_>,
                     _: u32,
                     _: u32,
                 ) {
@@ -254,8 +256,8 @@ impl DeviceFn {
             },
             cmd_write_marker_to_memory: unsafe {
                 unsafe extern "system" fn cmd_write_marker_to_memory(
-                    _: crate::vk::CommandBuffer,
-                    _: *const crate::vk::MemoryMarkerInfoAMD<'_>,
+                    _: vk::CommandBuffer,
+                    _: *const vk::MemoryMarkerInfoAMD<'_>,
                 ) {
                     panic!("unable to load vkCmdWriteMarkerToMemoryAMD")
                 }
@@ -268,8 +270,8 @@ impl DeviceFn {
             },
             cmd_bind_index_buffer3: unsafe {
                 unsafe extern "system" fn cmd_bind_index_buffer3(
-                    _: crate::vk::CommandBuffer,
-                    _: *const crate::vk::BindIndexBuffer3InfoKHR<'_>,
+                    _: vk::CommandBuffer,
+                    _: *const vk::BindIndexBuffer3InfoKHR<'_>,
                 ) {
                     panic!("unable to load vkCmdBindIndexBuffer3KHR")
                 }
@@ -282,10 +284,10 @@ impl DeviceFn {
             },
             cmd_bind_vertex_buffers3: unsafe {
                 unsafe extern "system" fn cmd_bind_vertex_buffers3(
-                    _: crate::vk::CommandBuffer,
+                    _: vk::CommandBuffer,
                     _: u32,
                     _: u32,
-                    _: *const crate::vk::BindVertexBuffer3InfoKHR<'_>,
+                    _: *const vk::BindVertexBuffer3InfoKHR<'_>,
                 ) {
                     panic!("unable to load vkCmdBindVertexBuffers3KHR")
                 }
@@ -298,8 +300,8 @@ impl DeviceFn {
             },
             cmd_draw_indirect2: unsafe {
                 unsafe extern "system" fn cmd_draw_indirect2(
-                    _: crate::vk::CommandBuffer,
-                    _: *const crate::vk::DrawIndirect2InfoKHR<'_>,
+                    _: vk::CommandBuffer,
+                    _: *const vk::DrawIndirect2InfoKHR<'_>,
                 ) {
                     panic!("unable to load vkCmdDrawIndirect2KHR")
                 }
@@ -312,8 +314,8 @@ impl DeviceFn {
             },
             cmd_draw_indexed_indirect2: unsafe {
                 unsafe extern "system" fn cmd_draw_indexed_indirect2(
-                    _: crate::vk::CommandBuffer,
-                    _: *const crate::vk::DrawIndirect2InfoKHR<'_>,
+                    _: vk::CommandBuffer,
+                    _: *const vk::DrawIndirect2InfoKHR<'_>,
                 ) {
                     panic!("unable to load vkCmdDrawIndexedIndirect2KHR")
                 }
@@ -326,8 +328,8 @@ impl DeviceFn {
             },
             cmd_draw_indirect_count2: unsafe {
                 unsafe extern "system" fn cmd_draw_indirect_count2(
-                    _: crate::vk::CommandBuffer,
-                    _: *const crate::vk::DrawIndirectCount2InfoKHR<'_>,
+                    _: vk::CommandBuffer,
+                    _: *const vk::DrawIndirectCount2InfoKHR<'_>,
                 ) {
                     panic!("unable to load vkCmdDrawIndirectCount2KHR")
                 }
@@ -340,8 +342,8 @@ impl DeviceFn {
             },
             cmd_draw_indexed_indirect_count2: unsafe {
                 unsafe extern "system" fn cmd_draw_indexed_indirect_count2(
-                    _: crate::vk::CommandBuffer,
-                    _: *const crate::vk::DrawIndirectCount2InfoKHR<'_>,
+                    _: vk::CommandBuffer,
+                    _: *const vk::DrawIndirectCount2InfoKHR<'_>,
                 ) {
                     panic!("unable to load vkCmdDrawIndexedIndirectCount2KHR")
                 }
@@ -354,8 +356,8 @@ impl DeviceFn {
             },
             cmd_draw_mesh_tasks_indirect2: unsafe {
                 unsafe extern "system" fn cmd_draw_mesh_tasks_indirect2(
-                    _: crate::vk::CommandBuffer,
-                    _: *const crate::vk::DrawIndirect2InfoKHR<'_>,
+                    _: vk::CommandBuffer,
+                    _: *const vk::DrawIndirect2InfoKHR<'_>,
                 ) {
                     panic!("unable to load vkCmdDrawMeshTasksIndirect2EXT")
                 }
@@ -368,8 +370,8 @@ impl DeviceFn {
             },
             cmd_draw_mesh_tasks_indirect_count2: unsafe {
                 unsafe extern "system" fn cmd_draw_mesh_tasks_indirect_count2(
-                    _: crate::vk::CommandBuffer,
-                    _: *const crate::vk::DrawIndirectCount2InfoKHR<'_>,
+                    _: vk::CommandBuffer,
+                    _: *const vk::DrawIndirectCount2InfoKHR<'_>,
                 ) {
                     panic!("unable to load vkCmdDrawMeshTasksIndirectCount2EXT")
                 }
@@ -382,8 +384,8 @@ impl DeviceFn {
             },
             cmd_dispatch_indirect2: unsafe {
                 unsafe extern "system" fn cmd_dispatch_indirect2(
-                    _: crate::vk::CommandBuffer,
-                    _: *const crate::vk::DispatchIndirect2InfoKHR<'_>,
+                    _: vk::CommandBuffer,
+                    _: *const vk::DispatchIndirect2InfoKHR<'_>,
                 ) {
                     panic!("unable to load vkCmdDispatchIndirect2KHR")
                 }
@@ -396,11 +398,11 @@ impl DeviceFn {
             },
             create_acceleration_structure2: unsafe {
                 unsafe extern "system" fn create_acceleration_structure2(
-                    _: crate::vk::Device,
-                    _: *const crate::vk::AccelerationStructureCreateInfo2KHR<'_>,
-                    _: *const crate::vk::AllocationCallbacks<'_>,
-                    _: *mut crate::vk::AccelerationStructureKHR,
-                ) -> crate::vk::Result {
+                    _: vk::Device,
+                    _: *const vk::AccelerationStructureCreateInfo2KHR<'_>,
+                    _: *const vk::AllocationCallbacks<'_>,
+                    _: *mut vk::AccelerationStructureKHR,
+                ) -> vk::Result {
                     panic!("unable to load vkCreateAccelerationStructure2KHR")
                 }
                 let val = _f(c"vkCreateAccelerationStructure2KHR");
@@ -438,8 +440,8 @@ impl Device {
     #[inline]
     pub unsafe fn cmd_copy_memory(
         &self,
-        command_buffer: crate::vk::CommandBuffer,
-        copy_memory_info: Option<&crate::vk::CopyDeviceMemoryInfoKHR<'_>>,
+        command_buffer: vk::CommandBuffer,
+        copy_memory_info: Option<&vk::CopyDeviceMemoryInfoKHR<'_>>,
     ) {
         (self
             .fp
@@ -455,8 +457,8 @@ impl Device {
     #[inline]
     pub unsafe fn cmd_copy_memory_to_image(
         &self,
-        command_buffer: crate::vk::CommandBuffer,
-        copy_memory_info: Option<&crate::vk::CopyDeviceMemoryImageInfoKHR<'_>>,
+        command_buffer: vk::CommandBuffer,
+        copy_memory_info: Option<&vk::CopyDeviceMemoryImageInfoKHR<'_>>,
     ) {
         (self
             .fp
@@ -472,8 +474,8 @@ impl Device {
     #[inline]
     pub unsafe fn cmd_copy_image_to_memory(
         &self,
-        command_buffer: crate::vk::CommandBuffer,
-        copy_memory_info: Option<&crate::vk::CopyDeviceMemoryImageInfoKHR<'_>>,
+        command_buffer: vk::CommandBuffer,
+        copy_memory_info: Option<&vk::CopyDeviceMemoryImageInfoKHR<'_>>,
     ) {
         (self
             .fp
@@ -489,9 +491,9 @@ impl Device {
     #[inline]
     pub unsafe fn cmd_update_memory(
         &self,
-        command_buffer: crate::vk::CommandBuffer,
-        dst_range: &crate::vk::DeviceAddressRangeKHR,
-        dst_flags: crate::vk::AddressCommandFlagsKHR,
+        command_buffer: vk::CommandBuffer,
+        dst_range: &vk::DeviceAddressRangeKHR,
+        dst_flags: vk::AddressCommandFlagsKHR,
         data: &[u8],
     ) {
         (self
@@ -508,9 +510,9 @@ impl Device {
     #[inline]
     pub unsafe fn cmd_fill_memory(
         &self,
-        command_buffer: crate::vk::CommandBuffer,
-        dst_range: &crate::vk::DeviceAddressRangeKHR,
-        dst_flags: crate::vk::AddressCommandFlagsKHR,
+        command_buffer: vk::CommandBuffer,
+        dst_range: &vk::DeviceAddressRangeKHR,
+        dst_flags: vk::AddressCommandFlagsKHR,
         data: u32,
     ) {
         (self.fp.cmd_fill_memory)(command_buffer, dst_range, dst_flags, data)
@@ -519,13 +521,13 @@ impl Device {
     #[inline]
     pub unsafe fn cmd_copy_query_pool_results_to_memory(
         &self,
-        command_buffer: crate::vk::CommandBuffer,
-        query_pool: crate::vk::QueryPool,
+        command_buffer: vk::CommandBuffer,
+        query_pool: vk::QueryPool,
         first_query: u32,
         query_count: u32,
-        dst_range: &crate::vk::StridedDeviceAddressRangeKHR,
-        dst_flags: crate::vk::AddressCommandFlagsKHR,
-        query_result_flags: crate::vk::QueryResultFlags,
+        dst_range: &vk::StridedDeviceAddressRangeKHR,
+        dst_flags: vk::AddressCommandFlagsKHR,
+        query_result_flags: vk::QueryResultFlags,
     ) {
         (self
             .fp
@@ -543,8 +545,8 @@ impl Device {
     #[inline]
     pub unsafe fn cmd_begin_conditional_rendering2(
         &self,
-        command_buffer: crate::vk::CommandBuffer,
-        conditional_rendering_begin: &crate::vk::ConditionalRenderingBeginInfo2EXT<'_>,
+        command_buffer: vk::CommandBuffer,
+        conditional_rendering_begin: &vk::ConditionalRenderingBeginInfo2EXT<'_>,
     ) {
         (self
             .fp
@@ -557,9 +559,9 @@ impl Device {
     #[inline]
     pub unsafe fn cmd_bind_transform_feedback_buffers2(
         &self,
-        command_buffer: crate::vk::CommandBuffer,
+        command_buffer: vk::CommandBuffer,
         first_binding: u32,
-        binding_infos: &[crate::vk::BindTransformFeedbackBuffer2InfoEXT<'_>],
+        binding_infos: &[vk::BindTransformFeedbackBuffer2InfoEXT<'_>],
     ) {
         (self
             .fp
@@ -574,9 +576,9 @@ impl Device {
     #[inline]
     pub unsafe fn cmd_begin_transform_feedback2(
         &self,
-        command_buffer: crate::vk::CommandBuffer,
+        command_buffer: vk::CommandBuffer,
         first_counter_range: u32,
-        counter_infos: &[crate::vk::BindTransformFeedbackBuffer2InfoEXT<'_>],
+        counter_infos: &[vk::BindTransformFeedbackBuffer2InfoEXT<'_>],
     ) {
         (self
             .fp
@@ -591,9 +593,9 @@ impl Device {
     #[inline]
     pub unsafe fn cmd_end_transform_feedback2(
         &self,
-        command_buffer: crate::vk::CommandBuffer,
+        command_buffer: vk::CommandBuffer,
         first_counter_range: u32,
-        counter_infos: &[crate::vk::BindTransformFeedbackBuffer2InfoEXT<'_>],
+        counter_infos: &[vk::BindTransformFeedbackBuffer2InfoEXT<'_>],
     ) {
         (self
             .fp
@@ -608,10 +610,10 @@ impl Device {
     #[inline]
     pub unsafe fn cmd_draw_indirect_byte_count2(
         &self,
-        command_buffer: crate::vk::CommandBuffer,
+        command_buffer: vk::CommandBuffer,
         instance_count: u32,
         first_instance: u32,
-        counter_info: &crate::vk::BindTransformFeedbackBuffer2InfoEXT<'_>,
+        counter_info: &vk::BindTransformFeedbackBuffer2InfoEXT<'_>,
         counter_offset: u32,
         vertex_stride: u32,
     ) {
@@ -630,8 +632,8 @@ impl Device {
     #[inline]
     pub unsafe fn cmd_write_marker_to_memory(
         &self,
-        command_buffer: crate::vk::CommandBuffer,
-        info: &crate::vk::MemoryMarkerInfoAMD<'_>,
+        command_buffer: vk::CommandBuffer,
+        info: &vk::MemoryMarkerInfoAMD<'_>,
     ) {
         (self.fp.cmd_write_marker_to_memory)(command_buffer, info)
     }
@@ -639,8 +641,8 @@ impl Device {
     #[inline]
     pub unsafe fn cmd_bind_index_buffer3(
         &self,
-        command_buffer: crate::vk::CommandBuffer,
-        info: &crate::vk::BindIndexBuffer3InfoKHR<'_>,
+        command_buffer: vk::CommandBuffer,
+        info: &vk::BindIndexBuffer3InfoKHR<'_>,
     ) {
         (self.fp.cmd_bind_index_buffer3)(command_buffer, info)
     }
@@ -648,9 +650,9 @@ impl Device {
     #[inline]
     pub unsafe fn cmd_bind_vertex_buffers3(
         &self,
-        command_buffer: crate::vk::CommandBuffer,
+        command_buffer: vk::CommandBuffer,
         first_binding: u32,
-        binding_infos: &[crate::vk::BindVertexBuffer3InfoKHR<'_>],
+        binding_infos: &[vk::BindVertexBuffer3InfoKHR<'_>],
     ) {
         (self
             .fp
@@ -665,8 +667,8 @@ impl Device {
     #[inline]
     pub unsafe fn cmd_draw_indirect2(
         &self,
-        command_buffer: crate::vk::CommandBuffer,
-        info: &crate::vk::DrawIndirect2InfoKHR<'_>,
+        command_buffer: vk::CommandBuffer,
+        info: &vk::DrawIndirect2InfoKHR<'_>,
     ) {
         (self.fp.cmd_draw_indirect2)(command_buffer, info)
     }
@@ -674,8 +676,8 @@ impl Device {
     #[inline]
     pub unsafe fn cmd_draw_indexed_indirect2(
         &self,
-        command_buffer: crate::vk::CommandBuffer,
-        info: &crate::vk::DrawIndirect2InfoKHR<'_>,
+        command_buffer: vk::CommandBuffer,
+        info: &vk::DrawIndirect2InfoKHR<'_>,
     ) {
         (self.fp.cmd_draw_indexed_indirect2)(command_buffer, info)
     }
@@ -683,8 +685,8 @@ impl Device {
     #[inline]
     pub unsafe fn cmd_draw_indirect_count2(
         &self,
-        command_buffer: crate::vk::CommandBuffer,
-        info: &crate::vk::DrawIndirectCount2InfoKHR<'_>,
+        command_buffer: vk::CommandBuffer,
+        info: &vk::DrawIndirectCount2InfoKHR<'_>,
     ) {
         (self.fp.cmd_draw_indirect_count2)(command_buffer, info)
     }
@@ -692,8 +694,8 @@ impl Device {
     #[inline]
     pub unsafe fn cmd_draw_indexed_indirect_count2(
         &self,
-        command_buffer: crate::vk::CommandBuffer,
-        info: &crate::vk::DrawIndirectCount2InfoKHR<'_>,
+        command_buffer: vk::CommandBuffer,
+        info: &vk::DrawIndirectCount2InfoKHR<'_>,
     ) {
         (self.fp.cmd_draw_indexed_indirect_count2)(command_buffer, info)
     }
@@ -701,8 +703,8 @@ impl Device {
     #[inline]
     pub unsafe fn cmd_draw_mesh_tasks_indirect2(
         &self,
-        command_buffer: crate::vk::CommandBuffer,
-        info: &crate::vk::DrawIndirect2InfoKHR<'_>,
+        command_buffer: vk::CommandBuffer,
+        info: &vk::DrawIndirect2InfoKHR<'_>,
     ) {
         (self.fp.cmd_draw_mesh_tasks_indirect2)(command_buffer, info)
     }
@@ -710,8 +712,8 @@ impl Device {
     #[inline]
     pub unsafe fn cmd_draw_mesh_tasks_indirect_count2(
         &self,
-        command_buffer: crate::vk::CommandBuffer,
-        info: &crate::vk::DrawIndirectCount2InfoKHR<'_>,
+        command_buffer: vk::CommandBuffer,
+        info: &vk::DrawIndirectCount2InfoKHR<'_>,
     ) {
         (self.fp.cmd_draw_mesh_tasks_indirect_count2)(command_buffer, info)
     }
@@ -719,8 +721,8 @@ impl Device {
     #[inline]
     pub unsafe fn cmd_dispatch_indirect2(
         &self,
-        command_buffer: crate::vk::CommandBuffer,
-        info: &crate::vk::DispatchIndirect2InfoKHR<'_>,
+        command_buffer: vk::CommandBuffer,
+        info: &vk::DispatchIndirect2InfoKHR<'_>,
     ) {
         (self.fp.cmd_dispatch_indirect2)(command_buffer, info)
     }
@@ -728,9 +730,9 @@ impl Device {
     #[inline]
     pub unsafe fn create_acceleration_structure2(
         &self,
-        create_info: &crate::vk::AccelerationStructureCreateInfo2KHR<'_>,
-        allocator: Option<&crate::vk::AllocationCallbacks<'_>>,
-    ) -> crate::VkResult<crate::vk::AccelerationStructureKHR> {
+        create_info: &vk::AccelerationStructureCreateInfo2KHR<'_>,
+        allocator: Option<&vk::AllocationCallbacks<'_>>,
+    ) -> VkResult<vk::AccelerationStructureKHR> {
         let mut acceleration_structure = core::mem::MaybeUninit::uninit();
         (self
             .fp
@@ -746,29 +748,29 @@ impl Device {
             .assume_init_on_success(acceleration_structure)
     }
 }
-pub const SPEC_VERSION: u32 = 1;
-pub const NAME: &core::ffi::CStr = c"VK_KHR_device_address_commands";
 pub(crate) mod items {
+    use crate::vk;
+    use core::marker::PhantomData;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy, Default)]
     pub struct StridedDeviceAddressRangeKHR {
-        pub address: crate::vk::DeviceAddress,
-        pub size: crate::vk::DeviceSize,
-        pub stride: crate::vk::DeviceSize,
+        pub address: vk::DeviceAddress,
+        pub size: vk::DeviceSize,
+        pub stride: vk::DeviceSize,
     }
     unsafe impl Send for StridedDeviceAddressRangeKHR {}
     unsafe impl Sync for StridedDeviceAddressRangeKHR {}
     impl StridedDeviceAddressRangeKHR {
-        pub fn address(mut self, address: crate::vk::DeviceAddress) -> Self {
+        pub fn address(mut self, address: vk::DeviceAddress) -> Self {
             self.address = address;
             self
         }
-        pub fn size(mut self, size: crate::vk::DeviceSize) -> Self {
+        pub fn size(mut self, size: vk::DeviceSize) -> Self {
             self.size = size;
             self
         }
-        pub fn stride(mut self, stride: crate::vk::DeviceSize) -> Self {
+        pub fn stride(mut self, stride: vk::DeviceSize) -> Self {
             self.stride = stride;
             self
         }
@@ -777,17 +779,17 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy, Default)]
     pub struct DeviceAddressRangeKHR {
-        pub address: crate::vk::DeviceAddress,
-        pub size: crate::vk::DeviceSize,
+        pub address: vk::DeviceAddress,
+        pub size: vk::DeviceSize,
     }
     unsafe impl Send for DeviceAddressRangeKHR {}
     unsafe impl Sync for DeviceAddressRangeKHR {}
     impl DeviceAddressRangeKHR {
-        pub fn address(mut self, address: crate::vk::DeviceAddress) -> Self {
+        pub fn address(mut self, address: vk::DeviceAddress) -> Self {
             self.address = address;
             self
         }
-        pub fn size(mut self, size: crate::vk::DeviceSize) -> Self {
+        pub fn size(mut self, size: vk::DeviceSize) -> Self {
             self.size = size;
             self
         }
@@ -796,18 +798,18 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct DeviceMemoryCopyKHR<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *const core::ffi::c_void,
-        pub src_range: crate::vk::DeviceAddressRangeKHR,
-        pub src_flags: crate::vk::AddressCommandFlagsKHR,
-        pub dst_range: crate::vk::DeviceAddressRangeKHR,
-        pub dst_flags: crate::vk::AddressCommandFlagsKHR,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub src_range: vk::DeviceAddressRangeKHR,
+        pub src_flags: vk::AddressCommandFlagsKHR,
+        pub dst_range: vk::DeviceAddressRangeKHR,
+        pub dst_flags: vk::AddressCommandFlagsKHR,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for DeviceMemoryCopyKHR<'_> {}
     unsafe impl Sync for DeviceMemoryCopyKHR<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for DeviceMemoryCopyKHR<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::DEVICE_MEMORY_COPY_KHR;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::DEVICE_MEMORY_COPY_KHR;
     }
     impl<'a> Default for DeviceMemoryCopyKHR<'a> {
         fn default() -> Self {
@@ -818,30 +820,24 @@ pub(crate) mod items {
                 src_flags: Default::default(),
                 dst_range: Default::default(),
                 dst_flags: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
     impl<'a> DeviceMemoryCopyKHR<'a> {
-        pub fn src_range(mut self, src_range: crate::vk::DeviceAddressRangeKHR) -> Self {
+        pub fn src_range(mut self, src_range: vk::DeviceAddressRangeKHR) -> Self {
             self.src_range = src_range;
             self
         }
-        pub fn src_flags(
-            mut self,
-            src_flags: crate::vk::AddressCommandFlagsKHR,
-        ) -> Self {
+        pub fn src_flags(mut self, src_flags: vk::AddressCommandFlagsKHR) -> Self {
             self.src_flags = src_flags;
             self
         }
-        pub fn dst_range(mut self, dst_range: crate::vk::DeviceAddressRangeKHR) -> Self {
+        pub fn dst_range(mut self, dst_range: vk::DeviceAddressRangeKHR) -> Self {
             self.dst_range = dst_range;
             self
         }
-        pub fn dst_flags(
-            mut self,
-            dst_flags: crate::vk::AddressCommandFlagsKHR,
-        ) -> Self {
+        pub fn dst_flags(mut self, dst_flags: vk::AddressCommandFlagsKHR) -> Self {
             self.dst_flags = dst_flags;
             self
         }
@@ -850,16 +846,16 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct CopyDeviceMemoryInfoKHR<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *const core::ffi::c_void,
         pub region_count: u32,
-        pub p_regions: *const crate::vk::DeviceMemoryCopyKHR<'a>,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub p_regions: *const vk::DeviceMemoryCopyKHR<'a>,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for CopyDeviceMemoryInfoKHR<'_> {}
     unsafe impl Sync for CopyDeviceMemoryInfoKHR<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for CopyDeviceMemoryInfoKHR<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::COPY_DEVICE_MEMORY_INFO_KHR;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::COPY_DEVICE_MEMORY_INFO_KHR;
     }
     impl<'a> Default for CopyDeviceMemoryInfoKHR<'a> {
         fn default() -> Self {
@@ -868,15 +864,12 @@ pub(crate) mod items {
                 p_next: Default::default(),
                 region_count: Default::default(),
                 p_regions: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
     impl<'a> CopyDeviceMemoryInfoKHR<'a> {
-        pub fn regions(
-            mut self,
-            regions: &'a [crate::vk::DeviceMemoryCopyKHR<'a>],
-        ) -> Self {
+        pub fn regions(mut self, regions: &'a [vk::DeviceMemoryCopyKHR<'a>]) -> Self {
             self.region_count = regions.len() as _;
             self.p_regions = regions.as_ptr();
             self
@@ -886,22 +879,22 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct DeviceMemoryImageCopyKHR<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *const core::ffi::c_void,
-        pub address_range: crate::vk::DeviceAddressRangeKHR,
-        pub address_flags: crate::vk::AddressCommandFlagsKHR,
+        pub address_range: vk::DeviceAddressRangeKHR,
+        pub address_flags: vk::AddressCommandFlagsKHR,
         pub address_row_length: u32,
         pub address_image_height: u32,
-        pub image_subresource: crate::vk::ImageSubresourceLayers,
-        pub image_layout: crate::vk::ImageLayout,
-        pub image_offset: crate::vk::Offset3D,
-        pub image_extent: crate::vk::Extent3D,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub image_subresource: vk::ImageSubresourceLayers,
+        pub image_layout: vk::ImageLayout,
+        pub image_offset: vk::Offset3D,
+        pub image_extent: vk::Extent3D,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for DeviceMemoryImageCopyKHR<'_> {}
     unsafe impl Sync for DeviceMemoryImageCopyKHR<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for DeviceMemoryImageCopyKHR<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::DEVICE_MEMORY_IMAGE_COPY_KHR;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::DEVICE_MEMORY_IMAGE_COPY_KHR;
     }
     impl<'a> Default for DeviceMemoryImageCopyKHR<'a> {
         fn default() -> Self {
@@ -916,21 +909,21 @@ pub(crate) mod items {
                 image_layout: Default::default(),
                 image_offset: Default::default(),
                 image_extent: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
     impl<'a> DeviceMemoryImageCopyKHR<'a> {
         pub fn address_range(
             mut self,
-            address_range: crate::vk::DeviceAddressRangeKHR,
+            address_range: vk::DeviceAddressRangeKHR,
         ) -> Self {
             self.address_range = address_range;
             self
         }
         pub fn address_flags(
             mut self,
-            address_flags: crate::vk::AddressCommandFlagsKHR,
+            address_flags: vk::AddressCommandFlagsKHR,
         ) -> Self {
             self.address_flags = address_flags;
             self
@@ -945,20 +938,20 @@ pub(crate) mod items {
         }
         pub fn image_subresource(
             mut self,
-            image_subresource: crate::vk::ImageSubresourceLayers,
+            image_subresource: vk::ImageSubresourceLayers,
         ) -> Self {
             self.image_subresource = image_subresource;
             self
         }
-        pub fn image_layout(mut self, image_layout: crate::vk::ImageLayout) -> Self {
+        pub fn image_layout(mut self, image_layout: vk::ImageLayout) -> Self {
             self.image_layout = image_layout;
             self
         }
-        pub fn image_offset(mut self, image_offset: crate::vk::Offset3D) -> Self {
+        pub fn image_offset(mut self, image_offset: vk::Offset3D) -> Self {
             self.image_offset = image_offset;
             self
         }
-        pub fn image_extent(mut self, image_extent: crate::vk::Extent3D) -> Self {
+        pub fn image_extent(mut self, image_extent: vk::Extent3D) -> Self {
             self.image_extent = image_extent;
             self
         }
@@ -967,17 +960,17 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct CopyDeviceMemoryImageInfoKHR<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *const core::ffi::c_void,
-        pub image: crate::vk::Image,
+        pub image: vk::Image,
         pub region_count: u32,
-        pub p_regions: *const crate::vk::DeviceMemoryImageCopyKHR<'a>,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub p_regions: *const vk::DeviceMemoryImageCopyKHR<'a>,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for CopyDeviceMemoryImageInfoKHR<'_> {}
     unsafe impl Sync for CopyDeviceMemoryImageInfoKHR<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for CopyDeviceMemoryImageInfoKHR<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::COPY_DEVICE_MEMORY_IMAGE_INFO_KHR;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::COPY_DEVICE_MEMORY_IMAGE_INFO_KHR;
     }
     impl<'a> Default for CopyDeviceMemoryImageInfoKHR<'a> {
         fn default() -> Self {
@@ -987,18 +980,18 @@ pub(crate) mod items {
                 image: Default::default(),
                 region_count: Default::default(),
                 p_regions: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
     impl<'a> CopyDeviceMemoryImageInfoKHR<'a> {
-        pub fn image(mut self, image: crate::vk::Image) -> Self {
+        pub fn image(mut self, image: vk::Image) -> Self {
             self.image = image;
             self
         }
         pub fn regions(
             mut self,
-            regions: &'a [crate::vk::DeviceMemoryImageCopyKHR<'a>],
+            regions: &'a [vk::DeviceMemoryImageCopyKHR<'a>],
         ) -> Self {
             self.region_count = regions.len() as _;
             self.p_regions = regions.as_ptr();
@@ -1009,18 +1002,18 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct MemoryRangeBarriersInfoKHR<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *const core::ffi::c_void,
         pub memory_range_barrier_count: u32,
-        pub p_memory_range_barriers: *const crate::vk::MemoryRangeBarrierKHR<'a>,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub p_memory_range_barriers: *const vk::MemoryRangeBarrierKHR<'a>,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for MemoryRangeBarriersInfoKHR<'_> {}
     unsafe impl Sync for MemoryRangeBarriersInfoKHR<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for MemoryRangeBarriersInfoKHR<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::MEMORY_RANGE_BARRIERS_INFO_KHR;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::MEMORY_RANGE_BARRIERS_INFO_KHR;
     }
-    unsafe impl<'a> crate::Extends<crate::vk::DependencyInfo<'_>>
+    unsafe impl<'a> crate::Extends<vk::DependencyInfo<'_>>
     for MemoryRangeBarriersInfoKHR<'a> {}
     impl<'a> Default for MemoryRangeBarriersInfoKHR<'a> {
         fn default() -> Self {
@@ -1029,14 +1022,14 @@ pub(crate) mod items {
                 p_next: Default::default(),
                 memory_range_barrier_count: Default::default(),
                 p_memory_range_barriers: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
     impl<'a> MemoryRangeBarriersInfoKHR<'a> {
         pub fn memory_range_barriers(
             mut self,
-            memory_range_barriers: &'a [crate::vk::MemoryRangeBarrierKHR<'a>],
+            memory_range_barriers: &'a [vk::MemoryRangeBarrierKHR<'a>],
         ) -> Self {
             self.memory_range_barrier_count = memory_range_barriers.len() as _;
             self.p_memory_range_barriers = memory_range_barriers.as_ptr();
@@ -1047,22 +1040,22 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct MemoryRangeBarrierKHR<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *const core::ffi::c_void,
-        pub src_stage_mask: crate::vk::PipelineStageFlags2,
-        pub src_access_mask: crate::vk::AccessFlags2,
-        pub dst_stage_mask: crate::vk::PipelineStageFlags2,
-        pub dst_access_mask: crate::vk::AccessFlags2,
+        pub src_stage_mask: vk::PipelineStageFlags2,
+        pub src_access_mask: vk::AccessFlags2,
+        pub dst_stage_mask: vk::PipelineStageFlags2,
+        pub dst_access_mask: vk::AccessFlags2,
         pub src_queue_family_index: u32,
         pub dst_queue_family_index: u32,
-        pub address_range: crate::vk::DeviceAddressRangeKHR,
-        pub address_flags: crate::vk::AddressCommandFlagsKHR,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub address_range: vk::DeviceAddressRangeKHR,
+        pub address_flags: vk::AddressCommandFlagsKHR,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for MemoryRangeBarrierKHR<'_> {}
     unsafe impl Sync for MemoryRangeBarrierKHR<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for MemoryRangeBarrierKHR<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::MEMORY_RANGE_BARRIER_KHR;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::MEMORY_RANGE_BARRIER_KHR;
     }
     impl<'a> Default for MemoryRangeBarrierKHR<'a> {
         fn default() -> Self {
@@ -1077,36 +1070,30 @@ pub(crate) mod items {
                 dst_queue_family_index: Default::default(),
                 address_range: Default::default(),
                 address_flags: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
     impl<'a> MemoryRangeBarrierKHR<'a> {
         pub fn src_stage_mask(
             mut self,
-            src_stage_mask: crate::vk::PipelineStageFlags2,
+            src_stage_mask: vk::PipelineStageFlags2,
         ) -> Self {
             self.src_stage_mask = src_stage_mask;
             self
         }
-        pub fn src_access_mask(
-            mut self,
-            src_access_mask: crate::vk::AccessFlags2,
-        ) -> Self {
+        pub fn src_access_mask(mut self, src_access_mask: vk::AccessFlags2) -> Self {
             self.src_access_mask = src_access_mask;
             self
         }
         pub fn dst_stage_mask(
             mut self,
-            dst_stage_mask: crate::vk::PipelineStageFlags2,
+            dst_stage_mask: vk::PipelineStageFlags2,
         ) -> Self {
             self.dst_stage_mask = dst_stage_mask;
             self
         }
-        pub fn dst_access_mask(
-            mut self,
-            dst_access_mask: crate::vk::AccessFlags2,
-        ) -> Self {
+        pub fn dst_access_mask(mut self, dst_access_mask: vk::AccessFlags2) -> Self {
             self.dst_access_mask = dst_access_mask;
             self
         }
@@ -1120,14 +1107,14 @@ pub(crate) mod items {
         }
         pub fn address_range(
             mut self,
-            address_range: crate::vk::DeviceAddressRangeKHR,
+            address_range: vk::DeviceAddressRangeKHR,
         ) -> Self {
             self.address_range = address_range;
             self
         }
         pub fn address_flags(
             mut self,
-            address_flags: crate::vk::AddressCommandFlagsKHR,
+            address_flags: vk::AddressCommandFlagsKHR,
         ) -> Self {
             self.address_flags = address_flags;
             self
@@ -1137,20 +1124,20 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceDeviceAddressCommandsFeaturesKHR<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
-        pub device_address_commands: crate::vk::Bool32,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub device_address_commands: vk::Bool32,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for PhysicalDeviceDeviceAddressCommandsFeaturesKHR<'_> {}
     unsafe impl Sync for PhysicalDeviceDeviceAddressCommandsFeaturesKHR<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceDeviceAddressCommandsFeaturesKHR<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_DEVICE_ADDRESS_COMMANDS_FEATURES_KHR;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PHYSICAL_DEVICE_DEVICE_ADDRESS_COMMANDS_FEATURES_KHR;
     }
-    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+    unsafe impl<'a> crate::Extends<vk::PhysicalDeviceFeatures2<'_>>
     for PhysicalDeviceDeviceAddressCommandsFeaturesKHR<'a> {}
-    unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+    unsafe impl<'a> crate::Extends<vk::DeviceCreateInfo<'_>>
     for PhysicalDeviceDeviceAddressCommandsFeaturesKHR<'a> {}
     impl<'a> Default for PhysicalDeviceDeviceAddressCommandsFeaturesKHR<'a> {
         fn default() -> Self {
@@ -1158,7 +1145,7 @@ pub(crate) mod items {
                 s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
                 p_next: Default::default(),
                 device_address_commands: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
@@ -1172,18 +1159,18 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct ConditionalRenderingBeginInfo2EXT<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *const core::ffi::c_void,
-        pub address_range: crate::vk::DeviceAddressRangeKHR,
-        pub address_flags: crate::vk::AddressCommandFlagsKHR,
-        pub flags: crate::vk::ConditionalRenderingFlagsEXT,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub address_range: vk::DeviceAddressRangeKHR,
+        pub address_flags: vk::AddressCommandFlagsKHR,
+        pub flags: vk::ConditionalRenderingFlagsEXT,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for ConditionalRenderingBeginInfo2EXT<'_> {}
     unsafe impl Sync for ConditionalRenderingBeginInfo2EXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for ConditionalRenderingBeginInfo2EXT<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::CONDITIONAL_RENDERING_BEGIN_INFO_2_EXT;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::CONDITIONAL_RENDERING_BEGIN_INFO_2_EXT;
     }
     impl<'a> Default for ConditionalRenderingBeginInfo2EXT<'a> {
         fn default() -> Self {
@@ -1193,26 +1180,26 @@ pub(crate) mod items {
                 address_range: Default::default(),
                 address_flags: Default::default(),
                 flags: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
     impl<'a> ConditionalRenderingBeginInfo2EXT<'a> {
         pub fn address_range(
             mut self,
-            address_range: crate::vk::DeviceAddressRangeKHR,
+            address_range: vk::DeviceAddressRangeKHR,
         ) -> Self {
             self.address_range = address_range;
             self
         }
         pub fn address_flags(
             mut self,
-            address_flags: crate::vk::AddressCommandFlagsKHR,
+            address_flags: vk::AddressCommandFlagsKHR,
         ) -> Self {
             self.address_flags = address_flags;
             self
         }
-        pub fn flags(mut self, flags: crate::vk::ConditionalRenderingFlagsEXT) -> Self {
+        pub fn flags(mut self, flags: vk::ConditionalRenderingFlagsEXT) -> Self {
             self.flags = flags;
             self
         }
@@ -1221,19 +1208,19 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct AccelerationStructureCreateInfo2KHR<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *const core::ffi::c_void,
-        pub create_flags: crate::vk::AccelerationStructureCreateFlagsKHR,
-        pub address_range: crate::vk::DeviceAddressRangeKHR,
-        pub address_flags: crate::vk::AddressCommandFlagsKHR,
-        pub ty: crate::vk::AccelerationStructureTypeKHR,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub create_flags: vk::AccelerationStructureCreateFlagsKHR,
+        pub address_range: vk::DeviceAddressRangeKHR,
+        pub address_flags: vk::AddressCommandFlagsKHR,
+        pub ty: vk::AccelerationStructureTypeKHR,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for AccelerationStructureCreateInfo2KHR<'_> {}
     unsafe impl Sync for AccelerationStructureCreateInfo2KHR<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for AccelerationStructureCreateInfo2KHR<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::ACCELERATION_STRUCTURE_CREATE_INFO_2_KHR;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::ACCELERATION_STRUCTURE_CREATE_INFO_2_KHR;
     }
     impl<'a> Default for AccelerationStructureCreateInfo2KHR<'a> {
         fn default() -> Self {
@@ -1244,33 +1231,33 @@ pub(crate) mod items {
                 address_range: Default::default(),
                 address_flags: Default::default(),
                 ty: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
     impl<'a> AccelerationStructureCreateInfo2KHR<'a> {
         pub fn create_flags(
             mut self,
-            create_flags: crate::vk::AccelerationStructureCreateFlagsKHR,
+            create_flags: vk::AccelerationStructureCreateFlagsKHR,
         ) -> Self {
             self.create_flags = create_flags;
             self
         }
         pub fn address_range(
             mut self,
-            address_range: crate::vk::DeviceAddressRangeKHR,
+            address_range: vk::DeviceAddressRangeKHR,
         ) -> Self {
             self.address_range = address_range;
             self
         }
         pub fn address_flags(
             mut self,
-            address_flags: crate::vk::AddressCommandFlagsKHR,
+            address_flags: vk::AddressCommandFlagsKHR,
         ) -> Self {
             self.address_flags = address_flags;
             self
         }
-        pub fn ty(mut self, ty: crate::vk::AccelerationStructureTypeKHR) -> Self {
+        pub fn ty(mut self, ty: vk::AccelerationStructureTypeKHR) -> Self {
             self.ty = ty;
             self
         }
@@ -1279,17 +1266,17 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct BindIndexBuffer3InfoKHR<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *const core::ffi::c_void,
-        pub address_range: crate::vk::DeviceAddressRangeKHR,
-        pub address_flags: crate::vk::AddressCommandFlagsKHR,
-        pub index_type: crate::vk::IndexType,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub address_range: vk::DeviceAddressRangeKHR,
+        pub address_flags: vk::AddressCommandFlagsKHR,
+        pub index_type: vk::IndexType,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for BindIndexBuffer3InfoKHR<'_> {}
     unsafe impl Sync for BindIndexBuffer3InfoKHR<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for BindIndexBuffer3InfoKHR<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::BIND_INDEX_BUFFER_3_INFO_KHR;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::BIND_INDEX_BUFFER_3_INFO_KHR;
     }
     impl<'a> Default for BindIndexBuffer3InfoKHR<'a> {
         fn default() -> Self {
@@ -1299,26 +1286,26 @@ pub(crate) mod items {
                 address_range: Default::default(),
                 address_flags: Default::default(),
                 index_type: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
     impl<'a> BindIndexBuffer3InfoKHR<'a> {
         pub fn address_range(
             mut self,
-            address_range: crate::vk::DeviceAddressRangeKHR,
+            address_range: vk::DeviceAddressRangeKHR,
         ) -> Self {
             self.address_range = address_range;
             self
         }
         pub fn address_flags(
             mut self,
-            address_flags: crate::vk::AddressCommandFlagsKHR,
+            address_flags: vk::AddressCommandFlagsKHR,
         ) -> Self {
             self.address_flags = address_flags;
             self
         }
-        pub fn index_type(mut self, index_type: crate::vk::IndexType) -> Self {
+        pub fn index_type(mut self, index_type: vk::IndexType) -> Self {
             self.index_type = index_type;
             self
         }
@@ -1327,17 +1314,17 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct BindVertexBuffer3InfoKHR<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *const core::ffi::c_void,
-        pub set_stride: crate::vk::Bool32,
-        pub address_range: crate::vk::StridedDeviceAddressRangeKHR,
-        pub address_flags: crate::vk::AddressCommandFlagsKHR,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub set_stride: vk::Bool32,
+        pub address_range: vk::StridedDeviceAddressRangeKHR,
+        pub address_flags: vk::AddressCommandFlagsKHR,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for BindVertexBuffer3InfoKHR<'_> {}
     unsafe impl Sync for BindVertexBuffer3InfoKHR<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for BindVertexBuffer3InfoKHR<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::BIND_VERTEX_BUFFER_3_INFO_KHR;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::BIND_VERTEX_BUFFER_3_INFO_KHR;
     }
     impl<'a> Default for BindVertexBuffer3InfoKHR<'a> {
         fn default() -> Self {
@@ -1347,7 +1334,7 @@ pub(crate) mod items {
                 set_stride: Default::default(),
                 address_range: Default::default(),
                 address_flags: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
@@ -1358,14 +1345,14 @@ pub(crate) mod items {
         }
         pub fn address_range(
             mut self,
-            address_range: crate::vk::StridedDeviceAddressRangeKHR,
+            address_range: vk::StridedDeviceAddressRangeKHR,
         ) -> Self {
             self.address_range = address_range;
             self
         }
         pub fn address_flags(
             mut self,
-            address_flags: crate::vk::AddressCommandFlagsKHR,
+            address_flags: vk::AddressCommandFlagsKHR,
         ) -> Self {
             self.address_flags = address_flags;
             self
@@ -1375,17 +1362,17 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct DrawIndirect2InfoKHR<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *const core::ffi::c_void,
-        pub address_range: crate::vk::StridedDeviceAddressRangeKHR,
-        pub address_flags: crate::vk::AddressCommandFlagsKHR,
+        pub address_range: vk::StridedDeviceAddressRangeKHR,
+        pub address_flags: vk::AddressCommandFlagsKHR,
         pub draw_count: u32,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for DrawIndirect2InfoKHR<'_> {}
     unsafe impl Sync for DrawIndirect2InfoKHR<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for DrawIndirect2InfoKHR<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::DRAW_INDIRECT_2_INFO_KHR;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::DRAW_INDIRECT_2_INFO_KHR;
     }
     impl<'a> Default for DrawIndirect2InfoKHR<'a> {
         fn default() -> Self {
@@ -1395,21 +1382,21 @@ pub(crate) mod items {
                 address_range: Default::default(),
                 address_flags: Default::default(),
                 draw_count: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
     impl<'a> DrawIndirect2InfoKHR<'a> {
         pub fn address_range(
             mut self,
-            address_range: crate::vk::StridedDeviceAddressRangeKHR,
+            address_range: vk::StridedDeviceAddressRangeKHR,
         ) -> Self {
             self.address_range = address_range;
             self
         }
         pub fn address_flags(
             mut self,
-            address_flags: crate::vk::AddressCommandFlagsKHR,
+            address_flags: vk::AddressCommandFlagsKHR,
         ) -> Self {
             self.address_flags = address_flags;
             self
@@ -1423,19 +1410,19 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct DrawIndirectCount2InfoKHR<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *const core::ffi::c_void,
-        pub address_range: crate::vk::StridedDeviceAddressRangeKHR,
-        pub address_flags: crate::vk::AddressCommandFlagsKHR,
-        pub count_address_range: crate::vk::DeviceAddressRangeKHR,
-        pub count_address_flags: crate::vk::AddressCommandFlagsKHR,
+        pub address_range: vk::StridedDeviceAddressRangeKHR,
+        pub address_flags: vk::AddressCommandFlagsKHR,
+        pub count_address_range: vk::DeviceAddressRangeKHR,
+        pub count_address_flags: vk::AddressCommandFlagsKHR,
         pub max_draw_count: u32,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for DrawIndirectCount2InfoKHR<'_> {}
     unsafe impl Sync for DrawIndirectCount2InfoKHR<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for DrawIndirectCount2InfoKHR<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::DRAW_INDIRECT_COUNT_2_INFO_KHR;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::DRAW_INDIRECT_COUNT_2_INFO_KHR;
     }
     impl<'a> Default for DrawIndirectCount2InfoKHR<'a> {
         fn default() -> Self {
@@ -1447,35 +1434,35 @@ pub(crate) mod items {
                 count_address_range: Default::default(),
                 count_address_flags: Default::default(),
                 max_draw_count: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
     impl<'a> DrawIndirectCount2InfoKHR<'a> {
         pub fn address_range(
             mut self,
-            address_range: crate::vk::StridedDeviceAddressRangeKHR,
+            address_range: vk::StridedDeviceAddressRangeKHR,
         ) -> Self {
             self.address_range = address_range;
             self
         }
         pub fn address_flags(
             mut self,
-            address_flags: crate::vk::AddressCommandFlagsKHR,
+            address_flags: vk::AddressCommandFlagsKHR,
         ) -> Self {
             self.address_flags = address_flags;
             self
         }
         pub fn count_address_range(
             mut self,
-            count_address_range: crate::vk::DeviceAddressRangeKHR,
+            count_address_range: vk::DeviceAddressRangeKHR,
         ) -> Self {
             self.count_address_range = count_address_range;
             self
         }
         pub fn count_address_flags(
             mut self,
-            count_address_flags: crate::vk::AddressCommandFlagsKHR,
+            count_address_flags: vk::AddressCommandFlagsKHR,
         ) -> Self {
             self.count_address_flags = count_address_flags;
             self
@@ -1489,16 +1476,16 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct DispatchIndirect2InfoKHR<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *const core::ffi::c_void,
-        pub address_range: crate::vk::DeviceAddressRangeKHR,
-        pub address_flags: crate::vk::AddressCommandFlagsKHR,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub address_range: vk::DeviceAddressRangeKHR,
+        pub address_flags: vk::AddressCommandFlagsKHR,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for DispatchIndirect2InfoKHR<'_> {}
     unsafe impl Sync for DispatchIndirect2InfoKHR<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for DispatchIndirect2InfoKHR<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::DISPATCH_INDIRECT_2_INFO_KHR;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::DISPATCH_INDIRECT_2_INFO_KHR;
     }
     impl<'a> Default for DispatchIndirect2InfoKHR<'a> {
         fn default() -> Self {
@@ -1507,21 +1494,21 @@ pub(crate) mod items {
                 p_next: Default::default(),
                 address_range: Default::default(),
                 address_flags: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
     impl<'a> DispatchIndirect2InfoKHR<'a> {
         pub fn address_range(
             mut self,
-            address_range: crate::vk::DeviceAddressRangeKHR,
+            address_range: vk::DeviceAddressRangeKHR,
         ) -> Self {
             self.address_range = address_range;
             self
         }
         pub fn address_flags(
             mut self,
-            address_flags: crate::vk::AddressCommandFlagsKHR,
+            address_flags: vk::AddressCommandFlagsKHR,
         ) -> Self {
             self.address_flags = address_flags;
             self
@@ -1531,17 +1518,17 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct BindTransformFeedbackBuffer2InfoEXT<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *const core::ffi::c_void,
-        pub address_range: crate::vk::DeviceAddressRangeKHR,
-        pub address_flags: crate::vk::AddressCommandFlagsKHR,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub address_range: vk::DeviceAddressRangeKHR,
+        pub address_flags: vk::AddressCommandFlagsKHR,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for BindTransformFeedbackBuffer2InfoEXT<'_> {}
     unsafe impl Sync for BindTransformFeedbackBuffer2InfoEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for BindTransformFeedbackBuffer2InfoEXT<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::BIND_TRANSFORM_FEEDBACK_BUFFER_2_INFO_EXT;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::BIND_TRANSFORM_FEEDBACK_BUFFER_2_INFO_EXT;
     }
     impl<'a> Default for BindTransformFeedbackBuffer2InfoEXT<'a> {
         fn default() -> Self {
@@ -1550,21 +1537,21 @@ pub(crate) mod items {
                 p_next: Default::default(),
                 address_range: Default::default(),
                 address_flags: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
     impl<'a> BindTransformFeedbackBuffer2InfoEXT<'a> {
         pub fn address_range(
             mut self,
-            address_range: crate::vk::DeviceAddressRangeKHR,
+            address_range: vk::DeviceAddressRangeKHR,
         ) -> Self {
             self.address_range = address_range;
             self
         }
         pub fn address_flags(
             mut self,
-            address_flags: crate::vk::AddressCommandFlagsKHR,
+            address_flags: vk::AddressCommandFlagsKHR,
         ) -> Self {
             self.address_flags = address_flags;
             self
@@ -1574,18 +1561,18 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct MemoryMarkerInfoAMD<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *const core::ffi::c_void,
-        pub stage: crate::vk::PipelineStageFlags2KHR,
-        pub dst_range: crate::vk::DeviceAddressRangeKHR,
-        pub dst_flags: crate::vk::AddressCommandFlagsKHR,
+        pub stage: vk::PipelineStageFlags2KHR,
+        pub dst_range: vk::DeviceAddressRangeKHR,
+        pub dst_flags: vk::AddressCommandFlagsKHR,
         pub marker: u32,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for MemoryMarkerInfoAMD<'_> {}
     unsafe impl Sync for MemoryMarkerInfoAMD<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for MemoryMarkerInfoAMD<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::MEMORY_MARKER_INFO_AMD;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::MEMORY_MARKER_INFO_AMD;
     }
     impl<'a> Default for MemoryMarkerInfoAMD<'a> {
         fn default() -> Self {
@@ -1596,23 +1583,20 @@ pub(crate) mod items {
                 dst_range: Default::default(),
                 dst_flags: Default::default(),
                 marker: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
     impl<'a> MemoryMarkerInfoAMD<'a> {
-        pub fn stage(mut self, stage: crate::vk::PipelineStageFlags2KHR) -> Self {
+        pub fn stage(mut self, stage: vk::PipelineStageFlags2KHR) -> Self {
             self.stage = stage;
             self
         }
-        pub fn dst_range(mut self, dst_range: crate::vk::DeviceAddressRangeKHR) -> Self {
+        pub fn dst_range(mut self, dst_range: vk::DeviceAddressRangeKHR) -> Self {
             self.dst_range = dst_range;
             self
         }
-        pub fn dst_flags(
-            mut self,
-            dst_flags: crate::vk::AddressCommandFlagsKHR,
-        ) -> Self {
+        pub fn dst_flags(mut self, dst_flags: vk::AddressCommandFlagsKHR) -> Self {
             self.dst_flags = dst_flags;
             self
         }
@@ -1734,118 +1718,116 @@ pub(crate) mod items {
         }
     }
     pub type PFN_vkCmdCopyMemoryKHR = unsafe extern "system" fn(
-        command_buffer: crate::vk::CommandBuffer,
-        p_copy_memory_info: *const crate::vk::CopyDeviceMemoryInfoKHR<'_>,
+        command_buffer: vk::CommandBuffer,
+        p_copy_memory_info: *const vk::CopyDeviceMemoryInfoKHR<'_>,
     );
     pub type PFN_vkCmdCopyMemoryToImageKHR = unsafe extern "system" fn(
-        command_buffer: crate::vk::CommandBuffer,
-        p_copy_memory_info: *const crate::vk::CopyDeviceMemoryImageInfoKHR<'_>,
+        command_buffer: vk::CommandBuffer,
+        p_copy_memory_info: *const vk::CopyDeviceMemoryImageInfoKHR<'_>,
     );
     pub type PFN_vkCmdCopyImageToMemoryKHR = unsafe extern "system" fn(
-        command_buffer: crate::vk::CommandBuffer,
-        p_copy_memory_info: *const crate::vk::CopyDeviceMemoryImageInfoKHR<'_>,
+        command_buffer: vk::CommandBuffer,
+        p_copy_memory_info: *const vk::CopyDeviceMemoryImageInfoKHR<'_>,
     );
     pub type PFN_vkCmdUpdateMemoryKHR = unsafe extern "system" fn(
-        command_buffer: crate::vk::CommandBuffer,
-        p_dst_range: *const crate::vk::DeviceAddressRangeKHR,
-        dst_flags: crate::vk::AddressCommandFlagsKHR,
-        data_size: crate::vk::DeviceSize,
+        command_buffer: vk::CommandBuffer,
+        p_dst_range: *const vk::DeviceAddressRangeKHR,
+        dst_flags: vk::AddressCommandFlagsKHR,
+        data_size: vk::DeviceSize,
         p_data: *const core::ffi::c_void,
     );
     pub type PFN_vkCmdFillMemoryKHR = unsafe extern "system" fn(
-        command_buffer: crate::vk::CommandBuffer,
-        p_dst_range: *const crate::vk::DeviceAddressRangeKHR,
-        dst_flags: crate::vk::AddressCommandFlagsKHR,
+        command_buffer: vk::CommandBuffer,
+        p_dst_range: *const vk::DeviceAddressRangeKHR,
+        dst_flags: vk::AddressCommandFlagsKHR,
         data: u32,
     );
     pub type PFN_vkCmdCopyQueryPoolResultsToMemoryKHR = unsafe extern "system" fn(
-        command_buffer: crate::vk::CommandBuffer,
-        query_pool: crate::vk::QueryPool,
+        command_buffer: vk::CommandBuffer,
+        query_pool: vk::QueryPool,
         first_query: u32,
         query_count: u32,
-        p_dst_range: *const crate::vk::StridedDeviceAddressRangeKHR,
-        dst_flags: crate::vk::AddressCommandFlagsKHR,
-        query_result_flags: crate::vk::QueryResultFlags,
+        p_dst_range: *const vk::StridedDeviceAddressRangeKHR,
+        dst_flags: vk::AddressCommandFlagsKHR,
+        query_result_flags: vk::QueryResultFlags,
     );
     pub type PFN_vkCmdBeginConditionalRendering2EXT = unsafe extern "system" fn(
-        command_buffer: crate::vk::CommandBuffer,
-        p_conditional_rendering_begin: *const crate::vk::ConditionalRenderingBeginInfo2EXT<
-            '_,
-        >,
+        command_buffer: vk::CommandBuffer,
+        p_conditional_rendering_begin: *const vk::ConditionalRenderingBeginInfo2EXT<'_>,
     );
     pub type PFN_vkCmdBindTransformFeedbackBuffers2EXT = unsafe extern "system" fn(
-        command_buffer: crate::vk::CommandBuffer,
+        command_buffer: vk::CommandBuffer,
         first_binding: u32,
         binding_count: u32,
-        p_binding_infos: *const crate::vk::BindTransformFeedbackBuffer2InfoEXT<'_>,
+        p_binding_infos: *const vk::BindTransformFeedbackBuffer2InfoEXT<'_>,
     );
     pub type PFN_vkCmdBeginTransformFeedback2EXT = unsafe extern "system" fn(
-        command_buffer: crate::vk::CommandBuffer,
+        command_buffer: vk::CommandBuffer,
         first_counter_range: u32,
         counter_range_count: u32,
-        p_counter_infos: *const crate::vk::BindTransformFeedbackBuffer2InfoEXT<'_>,
+        p_counter_infos: *const vk::BindTransformFeedbackBuffer2InfoEXT<'_>,
     );
     pub type PFN_vkCmdEndTransformFeedback2EXT = unsafe extern "system" fn(
-        command_buffer: crate::vk::CommandBuffer,
+        command_buffer: vk::CommandBuffer,
         first_counter_range: u32,
         counter_range_count: u32,
-        p_counter_infos: *const crate::vk::BindTransformFeedbackBuffer2InfoEXT<'_>,
+        p_counter_infos: *const vk::BindTransformFeedbackBuffer2InfoEXT<'_>,
     );
     pub type PFN_vkCmdDrawIndirectByteCount2EXT = unsafe extern "system" fn(
-        command_buffer: crate::vk::CommandBuffer,
+        command_buffer: vk::CommandBuffer,
         instance_count: u32,
         first_instance: u32,
-        p_counter_info: *const crate::vk::BindTransformFeedbackBuffer2InfoEXT<'_>,
+        p_counter_info: *const vk::BindTransformFeedbackBuffer2InfoEXT<'_>,
         counter_offset: u32,
         vertex_stride: u32,
     );
     pub type PFN_vkCmdWriteMarkerToMemoryAMD = unsafe extern "system" fn(
-        command_buffer: crate::vk::CommandBuffer,
-        p_info: *const crate::vk::MemoryMarkerInfoAMD<'_>,
+        command_buffer: vk::CommandBuffer,
+        p_info: *const vk::MemoryMarkerInfoAMD<'_>,
     );
     pub type PFN_vkCmdBindIndexBuffer3KHR = unsafe extern "system" fn(
-        command_buffer: crate::vk::CommandBuffer,
-        p_info: *const crate::vk::BindIndexBuffer3InfoKHR<'_>,
+        command_buffer: vk::CommandBuffer,
+        p_info: *const vk::BindIndexBuffer3InfoKHR<'_>,
     );
     pub type PFN_vkCmdBindVertexBuffers3KHR = unsafe extern "system" fn(
-        command_buffer: crate::vk::CommandBuffer,
+        command_buffer: vk::CommandBuffer,
         first_binding: u32,
         binding_count: u32,
-        p_binding_infos: *const crate::vk::BindVertexBuffer3InfoKHR<'_>,
+        p_binding_infos: *const vk::BindVertexBuffer3InfoKHR<'_>,
     );
     pub type PFN_vkCmdDrawIndirect2KHR = unsafe extern "system" fn(
-        command_buffer: crate::vk::CommandBuffer,
-        p_info: *const crate::vk::DrawIndirect2InfoKHR<'_>,
+        command_buffer: vk::CommandBuffer,
+        p_info: *const vk::DrawIndirect2InfoKHR<'_>,
     );
     pub type PFN_vkCmdDrawIndexedIndirect2KHR = unsafe extern "system" fn(
-        command_buffer: crate::vk::CommandBuffer,
-        p_info: *const crate::vk::DrawIndirect2InfoKHR<'_>,
+        command_buffer: vk::CommandBuffer,
+        p_info: *const vk::DrawIndirect2InfoKHR<'_>,
     );
     pub type PFN_vkCmdDrawIndirectCount2KHR = unsafe extern "system" fn(
-        command_buffer: crate::vk::CommandBuffer,
-        p_info: *const crate::vk::DrawIndirectCount2InfoKHR<'_>,
+        command_buffer: vk::CommandBuffer,
+        p_info: *const vk::DrawIndirectCount2InfoKHR<'_>,
     );
     pub type PFN_vkCmdDrawIndexedIndirectCount2KHR = unsafe extern "system" fn(
-        command_buffer: crate::vk::CommandBuffer,
-        p_info: *const crate::vk::DrawIndirectCount2InfoKHR<'_>,
+        command_buffer: vk::CommandBuffer,
+        p_info: *const vk::DrawIndirectCount2InfoKHR<'_>,
     );
     pub type PFN_vkCmdDrawMeshTasksIndirect2EXT = unsafe extern "system" fn(
-        command_buffer: crate::vk::CommandBuffer,
-        p_info: *const crate::vk::DrawIndirect2InfoKHR<'_>,
+        command_buffer: vk::CommandBuffer,
+        p_info: *const vk::DrawIndirect2InfoKHR<'_>,
     );
     pub type PFN_vkCmdDrawMeshTasksIndirectCount2EXT = unsafe extern "system" fn(
-        command_buffer: crate::vk::CommandBuffer,
-        p_info: *const crate::vk::DrawIndirectCount2InfoKHR<'_>,
+        command_buffer: vk::CommandBuffer,
+        p_info: *const vk::DrawIndirectCount2InfoKHR<'_>,
     );
     pub type PFN_vkCmdDispatchIndirect2KHR = unsafe extern "system" fn(
-        command_buffer: crate::vk::CommandBuffer,
-        p_info: *const crate::vk::DispatchIndirect2InfoKHR<'_>,
+        command_buffer: vk::CommandBuffer,
+        p_info: *const vk::DispatchIndirect2InfoKHR<'_>,
     );
     pub type PFN_vkCreateAccelerationStructure2KHR = unsafe extern "system" fn(
-        device: crate::vk::Device,
-        p_create_info: *const crate::vk::AccelerationStructureCreateInfo2KHR<'_>,
-        p_allocator: *const crate::vk::AllocationCallbacks<'_>,
-        p_acceleration_structure: *mut crate::vk::AccelerationStructureKHR,
-    ) -> crate::vk::Result;
+        device: vk::Device,
+        p_create_info: *const vk::AccelerationStructureCreateInfo2KHR<'_>,
+        p_allocator: *const vk::AllocationCallbacks<'_>,
+        p_acceleration_structure: *mut vk::AccelerationStructureKHR,
+    ) -> vk::Result;
 }
 pub use items::*;

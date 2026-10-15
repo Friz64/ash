@@ -2,36 +2,40 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_VALVE_shader_mixed_float_dot_product.html) · Extension `VK_VALVE_shader_mixed_float_dot_product`
 #![doc(alias = "VK_VALVE_shader_mixed_float_dot_product")]
+use crate::vk;
+use core::ffi::CStr;
 ///Provided by [VK_VALVE_shader_mixed_float_dot_product](crate::valve::shader_mixed_float_dot_product)
-impl crate::vk::StructureType {
+impl vk::StructureType {
     pub const PHYSICAL_DEVICE_SHADER_MIXED_FLOAT_DOT_PRODUCT_FEATURES_VALVE: Self = Self(
         1000673000,
     );
 }
 pub const SPEC_VERSION: u32 = 1;
-pub const NAME: &core::ffi::CStr = c"VK_VALVE_shader_mixed_float_dot_product";
+pub const NAME: &CStr = c"VK_VALVE_shader_mixed_float_dot_product";
 pub(crate) mod items {
+    use core::marker::PhantomData;
+    use crate::vk;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceShaderMixedFloatDotProductFeaturesVALVE<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
-        pub shader_mixed_float_dot_product_float16_acc_float32: crate::vk::Bool32,
-        pub shader_mixed_float_dot_product_float16_acc_float16: crate::vk::Bool32,
-        pub shader_mixed_float_dot_product_b_float16_acc: crate::vk::Bool32,
-        pub shader_mixed_float_dot_product_float8_acc_float32: crate::vk::Bool32,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub shader_mixed_float_dot_product_float16_acc_float32: vk::Bool32,
+        pub shader_mixed_float_dot_product_float16_acc_float16: vk::Bool32,
+        pub shader_mixed_float_dot_product_b_float16_acc: vk::Bool32,
+        pub shader_mixed_float_dot_product_float8_acc_float32: vk::Bool32,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for PhysicalDeviceShaderMixedFloatDotProductFeaturesVALVE<'_> {}
     unsafe impl Sync for PhysicalDeviceShaderMixedFloatDotProductFeaturesVALVE<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceShaderMixedFloatDotProductFeaturesVALVE<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_SHADER_MIXED_FLOAT_DOT_PRODUCT_FEATURES_VALVE;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PHYSICAL_DEVICE_SHADER_MIXED_FLOAT_DOT_PRODUCT_FEATURES_VALVE;
     }
-    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+    unsafe impl<'a> crate::Extends<vk::PhysicalDeviceFeatures2<'_>>
     for PhysicalDeviceShaderMixedFloatDotProductFeaturesVALVE<'a> {}
-    unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+    unsafe impl<'a> crate::Extends<vk::DeviceCreateInfo<'_>>
     for PhysicalDeviceShaderMixedFloatDotProductFeaturesVALVE<'a> {}
     impl<'a> Default for PhysicalDeviceShaderMixedFloatDotProductFeaturesVALVE<'a> {
         fn default() -> Self {
@@ -42,7 +46,7 @@ pub(crate) mod items {
                 shader_mixed_float_dot_product_float16_acc_float16: Default::default(),
                 shader_mixed_float_dot_product_b_float16_acc: Default::default(),
                 shader_mixed_float_dot_product_float8_acc_float32: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }

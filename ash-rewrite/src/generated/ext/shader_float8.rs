@@ -2,37 +2,41 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_shader_float8.html) · Extension `VK_EXT_shader_float8`
 #![doc(alias = "VK_EXT_shader_float8")]
+use crate::vk;
+use core::ffi::CStr;
 ///Provided by [VK_EXT_shader_float8](crate::ext::shader_float8)
-impl crate::vk::StructureType {
+impl vk::StructureType {
     pub const PHYSICAL_DEVICE_SHADER_FLOAT8_FEATURES_EXT: Self = Self(1000567000);
 }
 ///Provided by [VK_EXT_shader_float8](crate::ext::shader_float8)
-impl crate::vk::ComponentTypeKHR {
+impl vk::ComponentTypeKHR {
     pub const FLOAT8_E4M3_EXT: Self = Self(1000491002);
     pub const FLOAT8_E5M2_EXT: Self = Self(1000491003);
 }
 pub const SPEC_VERSION: u32 = 1;
-pub const NAME: &core::ffi::CStr = c"VK_EXT_shader_float8";
+pub const NAME: &CStr = c"VK_EXT_shader_float8";
 pub(crate) mod items {
+    use core::marker::PhantomData;
+    use crate::vk;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceShaderFloat8FeaturesEXT<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
-        pub shader_float8: crate::vk::Bool32,
-        pub shader_float8_cooperative_matrix: crate::vk::Bool32,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub shader_float8: vk::Bool32,
+        pub shader_float8_cooperative_matrix: vk::Bool32,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for PhysicalDeviceShaderFloat8FeaturesEXT<'_> {}
     unsafe impl Sync for PhysicalDeviceShaderFloat8FeaturesEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceShaderFloat8FeaturesEXT<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_SHADER_FLOAT8_FEATURES_EXT;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PHYSICAL_DEVICE_SHADER_FLOAT8_FEATURES_EXT;
     }
-    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+    unsafe impl<'a> crate::Extends<vk::PhysicalDeviceFeatures2<'_>>
     for PhysicalDeviceShaderFloat8FeaturesEXT<'a> {}
-    unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+    unsafe impl<'a> crate::Extends<vk::DeviceCreateInfo<'_>>
     for PhysicalDeviceShaderFloat8FeaturesEXT<'a> {}
     impl<'a> Default for PhysicalDeviceShaderFloat8FeaturesEXT<'a> {
         fn default() -> Self {
@@ -41,7 +45,7 @@ pub(crate) mod items {
                 p_next: Default::default(),
                 shader_float8: Default::default(),
                 shader_float8_cooperative_matrix: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }

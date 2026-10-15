@@ -2,8 +2,11 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_HUAWEI_cluster_culling_shader.html) · Extension `VK_HUAWEI_cluster_culling_shader`
 #![doc(alias = "VK_HUAWEI_cluster_culling_shader")]
+use crate::vk;
+use core::ffi::CStr;
+use core::ffi::c_void;
 ///Provided by [VK_HUAWEI_cluster_culling_shader](crate::huawei::cluster_culling_shader)
-impl crate::vk::StructureType {
+impl vk::StructureType {
     pub const PHYSICAL_DEVICE_CLUSTER_CULLING_SHADER_FEATURES_HUAWEI: Self = Self(
         1000404000,
     );
@@ -14,57 +17,54 @@ impl crate::vk::StructureType {
         1000404002,
     );
 }
-///Provided by [VK_HUAWEI_cluster_culling_shader](crate::huawei::cluster_culling_shader)
-impl crate::vk::ShaderStageFlags {
+///Provided by [Vulkan 1.0](crate::vk1_0)
+impl vk::ShaderStageFlags {
     pub const CLUSTER_CULLING_HUAWEI: Self = Self(
-        crate::vk::ShaderStageFlagBits::CLUSTER_CULLING_HUAWEI.0,
+        vk::ShaderStageFlagBits::CLUSTER_CULLING_HUAWEI.0,
     );
 }
-///Provided by [VK_HUAWEI_cluster_culling_shader](crate::huawei::cluster_culling_shader)
-impl crate::vk::ShaderStageFlagBits {
+///Provided by [Vulkan 1.0](crate::vk1_0)
+impl vk::ShaderStageFlagBits {
     pub const CLUSTER_CULLING_HUAWEI: Self = Self(1 << 19);
 }
-///Provided by [VK_HUAWEI_cluster_culling_shader](crate::huawei::cluster_culling_shader)
-impl crate::vk::QueryPipelineStatisticFlags {
+///Provided by [Vulkan 1.0](crate::vk1_0)
+impl vk::QueryPipelineStatisticFlags {
     pub const CLUSTER_CULLING_SHADER_INVOCATIONS_HUAWEI: Self = Self(
-        crate::vk::QueryPipelineStatisticFlagBits::CLUSTER_CULLING_SHADER_INVOCATIONS_HUAWEI
-            .0,
+        vk::QueryPipelineStatisticFlagBits::CLUSTER_CULLING_SHADER_INVOCATIONS_HUAWEI.0,
     );
 }
-///Provided by [VK_HUAWEI_cluster_culling_shader](crate::huawei::cluster_culling_shader)
-impl crate::vk::QueryPipelineStatisticFlagBits {
+///Provided by [Vulkan 1.0](crate::vk1_0)
+impl vk::QueryPipelineStatisticFlagBits {
     pub const CLUSTER_CULLING_SHADER_INVOCATIONS_HUAWEI: Self = Self(1 << 13);
 }
-///Provided by [VK_HUAWEI_cluster_culling_shader](crate::huawei::cluster_culling_shader)
-impl crate::vk::PipelineStageFlags2 {
+///Provided by [Vulkan 1.3](crate::vk1_3)
+impl vk::PipelineStageFlags2 {
     pub const CLUSTER_CULLING_SHADER_HUAWEI: Self = Self(
-        crate::vk::PipelineStageFlagBits2::CLUSTER_CULLING_SHADER_HUAWEI.0,
+        vk::PipelineStageFlagBits2::CLUSTER_CULLING_SHADER_HUAWEI.0,
     );
 }
-///Provided by [VK_HUAWEI_cluster_culling_shader](crate::huawei::cluster_culling_shader)
-impl crate::vk::PipelineStageFlagBits2 {
+///Provided by [Vulkan 1.3](crate::vk1_3)
+impl vk::PipelineStageFlagBits2 {
     pub const CLUSTER_CULLING_SHADER_HUAWEI: Self = Self(1 << 41);
 }
+pub const SPEC_VERSION: u32 = 3;
+pub const NAME: &CStr = c"VK_HUAWEI_cluster_culling_shader";
 #[derive(Clone)]
 pub struct DeviceFn {
-    pub cmd_draw_cluster: crate::vk::PFN_vkCmdDrawClusterHUAWEI,
-    pub cmd_draw_cluster_indirect: crate::vk::PFN_vkCmdDrawClusterIndirectHUAWEI,
+    pub cmd_draw_cluster: vk::PFN_vkCmdDrawClusterHUAWEI,
+    pub cmd_draw_cluster_indirect: vk::PFN_vkCmdDrawClusterIndirectHUAWEI,
 }
 unsafe impl Send for DeviceFn {}
 unsafe impl Sync for DeviceFn {}
 impl DeviceFn {
-    pub fn load<F: FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void>(
-        mut f: F,
-    ) -> Self {
+    pub fn load<F: FnMut(&CStr) -> *const c_void>(mut f: F) -> Self {
         Self::load_erased(&mut f)
     }
-    fn load_erased(
-        _f: &mut dyn FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void,
-    ) -> Self {
+    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const c_void) -> Self {
         Self {
             cmd_draw_cluster: unsafe {
                 unsafe extern "system" fn cmd_draw_cluster(
-                    _: crate::vk::CommandBuffer,
+                    _: vk::CommandBuffer,
                     _: u32,
                     _: u32,
                     _: u32,
@@ -80,9 +80,9 @@ impl DeviceFn {
             },
             cmd_draw_cluster_indirect: unsafe {
                 unsafe extern "system" fn cmd_draw_cluster_indirect(
-                    _: crate::vk::CommandBuffer,
-                    _: crate::vk::Buffer,
-                    _: crate::vk::DeviceSize,
+                    _: vk::CommandBuffer,
+                    _: vk::Buffer,
+                    _: vk::DeviceSize,
                 ) {
                     panic!("unable to load vkCmdDrawClusterIndirectHUAWEI")
                 }
@@ -121,7 +121,7 @@ impl Device {
     #[inline]
     pub unsafe fn cmd_draw_cluster(
         &self,
-        command_buffer: crate::vk::CommandBuffer,
+        command_buffer: vk::CommandBuffer,
         group_count_x: u32,
         group_count_y: u32,
         group_count_z: u32,
@@ -139,35 +139,35 @@ impl Device {
     #[inline]
     pub unsafe fn cmd_draw_cluster_indirect(
         &self,
-        command_buffer: crate::vk::CommandBuffer,
-        buffer: crate::vk::Buffer,
-        offset: crate::vk::DeviceSize,
+        command_buffer: vk::CommandBuffer,
+        buffer: vk::Buffer,
+        offset: vk::DeviceSize,
     ) {
         (self.fp.cmd_draw_cluster_indirect)(command_buffer, buffer, offset)
     }
 }
-pub const SPEC_VERSION: u32 = 3;
-pub const NAME: &core::ffi::CStr = c"VK_HUAWEI_cluster_culling_shader";
 pub(crate) mod items {
+    use core::marker::PhantomData;
+    use crate::vk;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceClusterCullingShaderPropertiesHUAWEI<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
         pub max_work_group_count: [u32; 3 as _],
         pub max_work_group_size: [u32; 3 as _],
         pub max_output_cluster_count: u32,
-        pub indirect_buffer_offset_alignment: crate::vk::DeviceSize,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub indirect_buffer_offset_alignment: vk::DeviceSize,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for PhysicalDeviceClusterCullingShaderPropertiesHUAWEI<'_> {}
     unsafe impl Sync for PhysicalDeviceClusterCullingShaderPropertiesHUAWEI<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceClusterCullingShaderPropertiesHUAWEI<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_CLUSTER_CULLING_SHADER_PROPERTIES_HUAWEI;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PHYSICAL_DEVICE_CLUSTER_CULLING_SHADER_PROPERTIES_HUAWEI;
     }
-    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceProperties2<'_>>
+    unsafe impl<'a> crate::Extends<vk::PhysicalDeviceProperties2<'_>>
     for PhysicalDeviceClusterCullingShaderPropertiesHUAWEI<'a> {}
     impl<'a> Default for PhysicalDeviceClusterCullingShaderPropertiesHUAWEI<'a> {
         fn default() -> Self {
@@ -178,7 +178,7 @@ pub(crate) mod items {
                 max_work_group_size: unsafe { core::mem::zeroed() },
                 max_output_cluster_count: Default::default(),
                 indirect_buffer_offset_alignment: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
@@ -206,7 +206,7 @@ pub(crate) mod items {
         }
         pub fn indirect_buffer_offset_alignment(
             mut self,
-            indirect_buffer_offset_alignment: crate::vk::DeviceSize,
+            indirect_buffer_offset_alignment: vk::DeviceSize,
         ) -> Self {
             self.indirect_buffer_offset_alignment = indirect_buffer_offset_alignment;
             self
@@ -216,21 +216,21 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceClusterCullingShaderFeaturesHUAWEI<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
-        pub clusterculling_shader: crate::vk::Bool32,
-        pub multiview_cluster_culling_shader: crate::vk::Bool32,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub clusterculling_shader: vk::Bool32,
+        pub multiview_cluster_culling_shader: vk::Bool32,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for PhysicalDeviceClusterCullingShaderFeaturesHUAWEI<'_> {}
     unsafe impl Sync for PhysicalDeviceClusterCullingShaderFeaturesHUAWEI<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceClusterCullingShaderFeaturesHUAWEI<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_CLUSTER_CULLING_SHADER_FEATURES_HUAWEI;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PHYSICAL_DEVICE_CLUSTER_CULLING_SHADER_FEATURES_HUAWEI;
     }
-    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+    unsafe impl<'a> crate::Extends<vk::PhysicalDeviceFeatures2<'_>>
     for PhysicalDeviceClusterCullingShaderFeaturesHUAWEI<'a> {}
-    unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+    unsafe impl<'a> crate::Extends<vk::DeviceCreateInfo<'_>>
     for PhysicalDeviceClusterCullingShaderFeaturesHUAWEI<'a> {}
     impl<'a> Default for PhysicalDeviceClusterCullingShaderFeaturesHUAWEI<'a> {
         fn default() -> Self {
@@ -239,7 +239,7 @@ pub(crate) mod items {
                 p_next: Default::default(),
                 clusterculling_shader: Default::default(),
                 multiview_cluster_culling_shader: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
@@ -261,20 +261,20 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceClusterCullingShaderVrsFeaturesHUAWEI<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
-        pub cluster_shading_rate: crate::vk::Bool32,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub cluster_shading_rate: vk::Bool32,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for PhysicalDeviceClusterCullingShaderVrsFeaturesHUAWEI<'_> {}
     unsafe impl Sync for PhysicalDeviceClusterCullingShaderVrsFeaturesHUAWEI<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceClusterCullingShaderVrsFeaturesHUAWEI<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_CLUSTER_CULLING_SHADER_VRS_FEATURES_HUAWEI;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PHYSICAL_DEVICE_CLUSTER_CULLING_SHADER_VRS_FEATURES_HUAWEI;
     }
     unsafe impl<
         'a,
-    > crate::Extends<crate::vk::PhysicalDeviceClusterCullingShaderFeaturesHUAWEI<'_>>
+    > crate::Extends<vk::PhysicalDeviceClusterCullingShaderFeaturesHUAWEI<'_>>
     for PhysicalDeviceClusterCullingShaderVrsFeaturesHUAWEI<'a> {}
     impl<'a> Default for PhysicalDeviceClusterCullingShaderVrsFeaturesHUAWEI<'a> {
         fn default() -> Self {
@@ -282,7 +282,7 @@ pub(crate) mod items {
                 s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
                 p_next: Default::default(),
                 cluster_shading_rate: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
@@ -293,15 +293,15 @@ pub(crate) mod items {
         }
     }
     pub type PFN_vkCmdDrawClusterHUAWEI = unsafe extern "system" fn(
-        command_buffer: crate::vk::CommandBuffer,
+        command_buffer: vk::CommandBuffer,
         group_count_x: u32,
         group_count_y: u32,
         group_count_z: u32,
     );
     pub type PFN_vkCmdDrawClusterIndirectHUAWEI = unsafe extern "system" fn(
-        command_buffer: crate::vk::CommandBuffer,
-        buffer: crate::vk::Buffer,
-        offset: crate::vk::DeviceSize,
+        command_buffer: vk::CommandBuffer,
+        buffer: vk::Buffer,
+        offset: vk::DeviceSize,
     );
 }
 pub use items::*;

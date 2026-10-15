@@ -2,15 +2,17 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_swapchain_mutable_format.html) · Extension `VK_KHR_swapchain_mutable_format`
 #![doc(alias = "VK_KHR_swapchain_mutable_format")]
-///Provided by [VK_KHR_swapchain_mutable_format](crate::khr::swapchain_mutable_format)
-impl crate::vk::SwapchainCreateFlagsKHR {
+use crate::vk;
+use core::ffi::CStr;
+///Provided by [VK_KHR_swapchain](crate::khr::swapchain)
+impl vk::SwapchainCreateFlagsKHR {
     pub const MUTABLE_FORMAT: Self = Self(
-        crate::vk::SwapchainCreateFlagBitsKHR::MUTABLE_FORMAT.0,
+        vk::SwapchainCreateFlagBitsKHR::MUTABLE_FORMAT.0,
     );
 }
-///Provided by [VK_KHR_swapchain_mutable_format](crate::khr::swapchain_mutable_format)
-impl crate::vk::SwapchainCreateFlagBitsKHR {
+///Provided by [VK_KHR_swapchain](crate::khr::swapchain)
+impl vk::SwapchainCreateFlagBitsKHR {
     pub const MUTABLE_FORMAT: Self = Self(1 << 2);
 }
 pub const SPEC_VERSION: u32 = 1;
-pub const NAME: &core::ffi::CStr = c"VK_KHR_swapchain_mutable_format";
+pub const NAME: &CStr = c"VK_KHR_swapchain_mutable_format";

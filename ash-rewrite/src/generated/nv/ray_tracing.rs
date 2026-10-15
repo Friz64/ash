@@ -2,24 +2,28 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_NV_ray_tracing.html) · Extension `VK_NV_ray_tracing`
 #![doc(alias = "VK_NV_ray_tracing")]
+use crate::vk;
+use core::ffi::CStr;
+use crate::VkResult;
+use core::ffi::c_void;
 ///Provided by [VK_NV_ray_tracing](crate::nv::ray_tracing)
-impl crate::vk::DescriptorType {
+impl vk::DescriptorType {
     pub const ACCELERATION_STRUCTURE_NV: Self = Self(1000165000);
 }
 ///Provided by [VK_NV_ray_tracing](crate::nv::ray_tracing)
-impl crate::vk::QueryType {
+impl vk::QueryType {
     pub const ACCELERATION_STRUCTURE_COMPACTED_SIZE_NV: Self = Self(1000165000);
 }
 ///Provided by [VK_NV_ray_tracing](crate::nv::ray_tracing)
-impl crate::vk::PipelineBindPoint {
+impl vk::PipelineBindPoint {
     pub const RAY_TRACING_NV: Self = Self::RAY_TRACING_KHR;
 }
 ///Provided by [VK_NV_ray_tracing](crate::nv::ray_tracing)
-impl crate::vk::IndexType {
+impl vk::IndexType {
     pub const NONE_NV: Self = Self::NONE_KHR;
 }
 ///Provided by [VK_NV_ray_tracing](crate::nv::ray_tracing)
-impl crate::vk::StructureType {
+impl vk::StructureType {
     pub const RAY_TRACING_PIPELINE_CREATE_INFO_NV: Self = Self(1000165000);
     pub const ACCELERATION_STRUCTURE_CREATE_INFO_NV: Self = Self(1000165001);
     pub const GEOMETRY_NV: Self = Self(1000165003);
@@ -35,25 +39,25 @@ impl crate::vk::StructureType {
     pub const ACCELERATION_STRUCTURE_INFO_NV: Self = Self(1000165012);
 }
 ///Provided by [VK_NV_ray_tracing](crate::nv::ray_tracing)
-impl crate::vk::ObjectType {
+impl vk::ObjectType {
     pub const ACCELERATION_STRUCTURE_NV: Self = Self(1000165000);
 }
 ///Provided by [VK_NV_ray_tracing](crate::nv::ray_tracing)
-impl crate::vk::DebugReportObjectTypeEXT {
+impl vk::DebugReportObjectTypeEXT {
     pub const ACCELERATION_STRUCTURE_NV: Self = Self(1000165000);
 }
 ///Provided by [VK_NV_ray_tracing](crate::nv::ray_tracing)
-impl crate::vk::CopyAccelerationStructureModeKHR {
+impl vk::CopyAccelerationStructureModeKHR {
     pub const CLONE_NV: Self = Self::CLONE;
     pub const COMPACT_NV: Self = Self::COMPACT;
 }
 ///Provided by [VK_NV_ray_tracing](crate::nv::ray_tracing)
-impl crate::vk::AccelerationStructureTypeKHR {
+impl vk::AccelerationStructureTypeKHR {
     pub const TOP_LEVEL_NV: Self = Self::TOP_LEVEL;
     pub const BOTTOM_LEVEL_NV: Self = Self::BOTTOM_LEVEL;
 }
 ///Provided by [VK_NV_ray_tracing](crate::nv::ray_tracing)
-impl crate::vk::GeometryTypeKHR {
+impl vk::GeometryTypeKHR {
     pub const TRIANGLES_NV: Self = Self::TRIANGLES;
     pub const AABBS_NV: Self = Self::AABBS;
 }
@@ -64,50 +68,44 @@ impl AccelerationStructureMemoryRequirementsTypeNV {
     pub const UPDATE_SCRATCH: Self = Self(2);
 }
 ///Provided by [VK_NV_ray_tracing](crate::nv::ray_tracing)
-impl crate::vk::RayTracingShaderGroupTypeKHR {
+impl vk::RayTracingShaderGroupTypeKHR {
     pub const GENERAL_NV: Self = Self::GENERAL;
     pub const TRIANGLES_HIT_GROUP_NV: Self = Self::TRIANGLES_HIT_GROUP;
     pub const PROCEDURAL_HIT_GROUP_NV: Self = Self::PROCEDURAL_HIT_GROUP;
 }
-///Provided by [VK_NV_ray_tracing](crate::nv::ray_tracing)
-impl crate::vk::AccessFlags {
+///Provided by [Vulkan 1.0](crate::vk1_0)
+impl vk::AccessFlags {
     pub const ACCELERATION_STRUCTURE_READ_NV: Self = Self(
-        crate::vk::AccessFlagBits::ACCELERATION_STRUCTURE_READ_NV.0,
+        vk::AccessFlagBits::ACCELERATION_STRUCTURE_READ_NV.0,
     );
     pub const ACCELERATION_STRUCTURE_WRITE_NV: Self = Self(
-        crate::vk::AccessFlagBits::ACCELERATION_STRUCTURE_WRITE_NV.0,
+        vk::AccessFlagBits::ACCELERATION_STRUCTURE_WRITE_NV.0,
     );
 }
-///Provided by [VK_NV_ray_tracing](crate::nv::ray_tracing)
-impl crate::vk::AccessFlagBits {
+///Provided by [Vulkan 1.0](crate::vk1_0)
+impl vk::AccessFlagBits {
     pub const ACCELERATION_STRUCTURE_READ_NV: Self = Self::ACCELERATION_STRUCTURE_READ_KHR;
     pub const ACCELERATION_STRUCTURE_WRITE_NV: Self = Self::ACCELERATION_STRUCTURE_WRITE_KHR;
 }
-///Provided by [VK_NV_ray_tracing](crate::nv::ray_tracing)
-impl crate::vk::BufferUsageFlags {
-    pub const RAY_TRACING_NV: Self = Self(
-        crate::vk::BufferUsageFlagBits::RAY_TRACING_NV.0,
-    );
+///Provided by [Vulkan 1.0](crate::vk1_0)
+impl vk::BufferUsageFlags {
+    pub const RAY_TRACING_NV: Self = Self(vk::BufferUsageFlagBits::RAY_TRACING_NV.0);
 }
-///Provided by [VK_NV_ray_tracing](crate::nv::ray_tracing)
-impl crate::vk::BufferUsageFlagBits {
+///Provided by [Vulkan 1.0](crate::vk1_0)
+impl vk::BufferUsageFlagBits {
     pub const RAY_TRACING_NV: Self = Self::SHADER_BINDING_TABLE_KHR;
 }
-///Provided by [VK_NV_ray_tracing](crate::nv::ray_tracing)
-impl crate::vk::ShaderStageFlags {
-    pub const RAYGEN_NV: Self = Self(crate::vk::ShaderStageFlagBits::RAYGEN_NV.0);
-    pub const ANY_HIT_NV: Self = Self(crate::vk::ShaderStageFlagBits::ANY_HIT_NV.0);
-    pub const CLOSEST_HIT_NV: Self = Self(
-        crate::vk::ShaderStageFlagBits::CLOSEST_HIT_NV.0,
-    );
-    pub const MISS_NV: Self = Self(crate::vk::ShaderStageFlagBits::MISS_NV.0);
-    pub const INTERSECTION_NV: Self = Self(
-        crate::vk::ShaderStageFlagBits::INTERSECTION_NV.0,
-    );
-    pub const CALLABLE_NV: Self = Self(crate::vk::ShaderStageFlagBits::CALLABLE_NV.0);
+///Provided by [Vulkan 1.0](crate::vk1_0)
+impl vk::ShaderStageFlags {
+    pub const RAYGEN_NV: Self = Self(vk::ShaderStageFlagBits::RAYGEN_NV.0);
+    pub const ANY_HIT_NV: Self = Self(vk::ShaderStageFlagBits::ANY_HIT_NV.0);
+    pub const CLOSEST_HIT_NV: Self = Self(vk::ShaderStageFlagBits::CLOSEST_HIT_NV.0);
+    pub const MISS_NV: Self = Self(vk::ShaderStageFlagBits::MISS_NV.0);
+    pub const INTERSECTION_NV: Self = Self(vk::ShaderStageFlagBits::INTERSECTION_NV.0);
+    pub const CALLABLE_NV: Self = Self(vk::ShaderStageFlagBits::CALLABLE_NV.0);
 }
-///Provided by [VK_NV_ray_tracing](crate::nv::ray_tracing)
-impl crate::vk::ShaderStageFlagBits {
+///Provided by [Vulkan 1.0](crate::vk1_0)
+impl vk::ShaderStageFlagBits {
     pub const RAYGEN_NV: Self = Self::RAYGEN_KHR;
     pub const ANY_HIT_NV: Self = Self::ANY_HIT_KHR;
     pub const CLOSEST_HIT_NV: Self = Self::CLOSEST_HIT_KHR;
@@ -115,123 +113,121 @@ impl crate::vk::ShaderStageFlagBits {
     pub const INTERSECTION_NV: Self = Self::INTERSECTION_KHR;
     pub const CALLABLE_NV: Self = Self::CALLABLE_KHR;
 }
-///Provided by [VK_NV_ray_tracing](crate::nv::ray_tracing)
-impl crate::vk::PipelineCreateFlags {
+///Provided by [Vulkan 1.0](crate::vk1_0)
+impl vk::PipelineCreateFlags {
     pub const DEFER_COMPILE_NV: Self = Self(
-        crate::vk::PipelineCreateFlagBits::DEFER_COMPILE_NV.0,
+        vk::PipelineCreateFlagBits::DEFER_COMPILE_NV.0,
     );
 }
-///Provided by [VK_NV_ray_tracing](crate::nv::ray_tracing)
-impl crate::vk::PipelineCreateFlagBits {
+///Provided by [Vulkan 1.0](crate::vk1_0)
+impl vk::PipelineCreateFlagBits {
     pub const DEFER_COMPILE_NV: Self = Self(1 << 5);
 }
-///Provided by [VK_NV_ray_tracing](crate::nv::ray_tracing)
-impl crate::vk::PipelineStageFlags {
+///Provided by [Vulkan 1.0](crate::vk1_0)
+impl vk::PipelineStageFlags {
     pub const RAY_TRACING_SHADER_NV: Self = Self(
-        crate::vk::PipelineStageFlagBits::RAY_TRACING_SHADER_NV.0,
+        vk::PipelineStageFlagBits::RAY_TRACING_SHADER_NV.0,
     );
     pub const ACCELERATION_STRUCTURE_BUILD_NV: Self = Self(
-        crate::vk::PipelineStageFlagBits::ACCELERATION_STRUCTURE_BUILD_NV.0,
+        vk::PipelineStageFlagBits::ACCELERATION_STRUCTURE_BUILD_NV.0,
     );
 }
-///Provided by [VK_NV_ray_tracing](crate::nv::ray_tracing)
-impl crate::vk::PipelineStageFlagBits {
+///Provided by [Vulkan 1.0](crate::vk1_0)
+impl vk::PipelineStageFlagBits {
     pub const RAY_TRACING_SHADER_NV: Self = Self::RAY_TRACING_SHADER_KHR;
     pub const ACCELERATION_STRUCTURE_BUILD_NV: Self = Self::ACCELERATION_STRUCTURE_BUILD_KHR;
 }
-///Provided by [VK_NV_ray_tracing](crate::nv::ray_tracing)
-impl crate::vk::GeometryFlagsKHR {
-    pub const OPAQUE_NV: Self = Self(crate::vk::GeometryFlagBitsKHR::OPAQUE_NV.0);
+///Provided by [VK_KHR_acceleration_structure](crate::khr::acceleration_structure)
+impl vk::GeometryFlagsKHR {
+    pub const OPAQUE_NV: Self = Self(vk::GeometryFlagBitsKHR::OPAQUE_NV.0);
     pub const NO_DUPLICATE_ANY_HIT_INVOCATION_NV: Self = Self(
-        crate::vk::GeometryFlagBitsKHR::NO_DUPLICATE_ANY_HIT_INVOCATION_NV.0,
+        vk::GeometryFlagBitsKHR::NO_DUPLICATE_ANY_HIT_INVOCATION_NV.0,
     );
 }
-///Provided by [VK_NV_ray_tracing](crate::nv::ray_tracing)
-impl crate::vk::GeometryFlagBitsKHR {
+///Provided by [VK_KHR_acceleration_structure](crate::khr::acceleration_structure)
+impl vk::GeometryFlagBitsKHR {
     pub const OPAQUE_NV: Self = Self::OPAQUE;
     pub const NO_DUPLICATE_ANY_HIT_INVOCATION_NV: Self = Self::NO_DUPLICATE_ANY_HIT_INVOCATION;
 }
-///Provided by [VK_NV_ray_tracing](crate::nv::ray_tracing)
-impl crate::vk::GeometryInstanceFlagsKHR {
+///Provided by [VK_KHR_acceleration_structure](crate::khr::acceleration_structure)
+impl vk::GeometryInstanceFlagsKHR {
     pub const TRIANGLE_CULL_DISABLE_NV: Self = Self(
-        crate::vk::GeometryInstanceFlagBitsKHR::TRIANGLE_CULL_DISABLE_NV.0,
+        vk::GeometryInstanceFlagBitsKHR::TRIANGLE_CULL_DISABLE_NV.0,
     );
     pub const TRIANGLE_FRONT_COUNTERCLOCKWISE_NV: Self = Self(
-        crate::vk::GeometryInstanceFlagBitsKHR::TRIANGLE_FRONT_COUNTERCLOCKWISE_NV.0,
+        vk::GeometryInstanceFlagBitsKHR::TRIANGLE_FRONT_COUNTERCLOCKWISE_NV.0,
     );
     pub const FORCE_OPAQUE_NV: Self = Self(
-        crate::vk::GeometryInstanceFlagBitsKHR::FORCE_OPAQUE_NV.0,
+        vk::GeometryInstanceFlagBitsKHR::FORCE_OPAQUE_NV.0,
     );
     pub const FORCE_NO_OPAQUE_NV: Self = Self(
-        crate::vk::GeometryInstanceFlagBitsKHR::FORCE_NO_OPAQUE_NV.0,
+        vk::GeometryInstanceFlagBitsKHR::FORCE_NO_OPAQUE_NV.0,
     );
 }
-///Provided by [VK_NV_ray_tracing](crate::nv::ray_tracing)
-impl crate::vk::GeometryInstanceFlagBitsKHR {
+///Provided by [VK_KHR_acceleration_structure](crate::khr::acceleration_structure)
+impl vk::GeometryInstanceFlagBitsKHR {
     pub const TRIANGLE_CULL_DISABLE_NV: Self = Self::TRIANGLE_FACING_CULL_DISABLE;
     pub const TRIANGLE_FRONT_COUNTERCLOCKWISE_NV: Self = Self::TRIANGLE_FRONT_COUNTERCLOCKWISE;
     pub const FORCE_OPAQUE_NV: Self = Self::FORCE_OPAQUE;
     pub const FORCE_NO_OPAQUE_NV: Self = Self::FORCE_NO_OPAQUE;
 }
-///Provided by [VK_NV_ray_tracing](crate::nv::ray_tracing)
-impl crate::vk::BuildAccelerationStructureFlagsKHR {
+///Provided by [VK_KHR_acceleration_structure](crate::khr::acceleration_structure)
+impl vk::BuildAccelerationStructureFlagsKHR {
     pub const ALLOW_UPDATE_NV: Self = Self(
-        crate::vk::BuildAccelerationStructureFlagBitsKHR::ALLOW_UPDATE_NV.0,
+        vk::BuildAccelerationStructureFlagBitsKHR::ALLOW_UPDATE_NV.0,
     );
     pub const ALLOW_COMPACTION_NV: Self = Self(
-        crate::vk::BuildAccelerationStructureFlagBitsKHR::ALLOW_COMPACTION_NV.0,
+        vk::BuildAccelerationStructureFlagBitsKHR::ALLOW_COMPACTION_NV.0,
     );
     pub const PREFER_FAST_TRACE_NV: Self = Self(
-        crate::vk::BuildAccelerationStructureFlagBitsKHR::PREFER_FAST_TRACE_NV.0,
+        vk::BuildAccelerationStructureFlagBitsKHR::PREFER_FAST_TRACE_NV.0,
     );
     pub const PREFER_FAST_BUILD_NV: Self = Self(
-        crate::vk::BuildAccelerationStructureFlagBitsKHR::PREFER_FAST_BUILD_NV.0,
+        vk::BuildAccelerationStructureFlagBitsKHR::PREFER_FAST_BUILD_NV.0,
     );
     pub const LOW_MEMORY_NV: Self = Self(
-        crate::vk::BuildAccelerationStructureFlagBitsKHR::LOW_MEMORY_NV.0,
+        vk::BuildAccelerationStructureFlagBitsKHR::LOW_MEMORY_NV.0,
     );
 }
-///Provided by [VK_NV_ray_tracing](crate::nv::ray_tracing)
-impl crate::vk::BuildAccelerationStructureFlagBitsKHR {
+///Provided by [VK_KHR_acceleration_structure](crate::khr::acceleration_structure)
+impl vk::BuildAccelerationStructureFlagBitsKHR {
     pub const ALLOW_UPDATE_NV: Self = Self::ALLOW_UPDATE;
     pub const ALLOW_COMPACTION_NV: Self = Self::ALLOW_COMPACTION;
     pub const PREFER_FAST_TRACE_NV: Self = Self::PREFER_FAST_TRACE;
     pub const PREFER_FAST_BUILD_NV: Self = Self::PREFER_FAST_BUILD;
     pub const LOW_MEMORY_NV: Self = Self::LOW_MEMORY;
 }
+pub const SPEC_VERSION: u32 = 3;
+pub const NAME: &CStr = c"VK_NV_ray_tracing";
 #[derive(Clone)]
 pub struct DeviceFn {
-    pub compile_deferred: crate::vk::PFN_vkCompileDeferredNV,
-    pub create_acceleration_structure: crate::vk::PFN_vkCreateAccelerationStructureNV,
-    pub destroy_acceleration_structure: crate::vk::PFN_vkDestroyAccelerationStructureNV,
-    pub get_acceleration_structure_memory_requirements: crate::vk::PFN_vkGetAccelerationStructureMemoryRequirementsNV,
-    pub bind_acceleration_structure_memory: crate::vk::PFN_vkBindAccelerationStructureMemoryNV,
-    pub cmd_copy_acceleration_structure: crate::vk::PFN_vkCmdCopyAccelerationStructureNV,
-    pub cmd_write_acceleration_structures_properties: crate::vk::PFN_vkCmdWriteAccelerationStructuresPropertiesNV,
-    pub cmd_build_acceleration_structure: crate::vk::PFN_vkCmdBuildAccelerationStructureNV,
-    pub cmd_trace_rays: crate::vk::PFN_vkCmdTraceRaysNV,
-    pub get_acceleration_structure_handle: crate::vk::PFN_vkGetAccelerationStructureHandleNV,
-    pub create_ray_tracing_pipelines: crate::vk::PFN_vkCreateRayTracingPipelinesNV,
-    pub get_ray_tracing_shader_group_handles: crate::vk::PFN_vkGetRayTracingShaderGroupHandlesNV,
+    pub compile_deferred: vk::PFN_vkCompileDeferredNV,
+    pub create_acceleration_structure: vk::PFN_vkCreateAccelerationStructureNV,
+    pub destroy_acceleration_structure: vk::PFN_vkDestroyAccelerationStructureNV,
+    pub get_acceleration_structure_memory_requirements: vk::PFN_vkGetAccelerationStructureMemoryRequirementsNV,
+    pub bind_acceleration_structure_memory: vk::PFN_vkBindAccelerationStructureMemoryNV,
+    pub cmd_copy_acceleration_structure: vk::PFN_vkCmdCopyAccelerationStructureNV,
+    pub cmd_write_acceleration_structures_properties: vk::PFN_vkCmdWriteAccelerationStructuresPropertiesNV,
+    pub cmd_build_acceleration_structure: vk::PFN_vkCmdBuildAccelerationStructureNV,
+    pub cmd_trace_rays: vk::PFN_vkCmdTraceRaysNV,
+    pub get_acceleration_structure_handle: vk::PFN_vkGetAccelerationStructureHandleNV,
+    pub create_ray_tracing_pipelines: vk::PFN_vkCreateRayTracingPipelinesNV,
+    pub get_ray_tracing_shader_group_handles: vk::PFN_vkGetRayTracingShaderGroupHandlesNV,
 }
 unsafe impl Send for DeviceFn {}
 unsafe impl Sync for DeviceFn {}
 impl DeviceFn {
-    pub fn load<F: FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void>(
-        mut f: F,
-    ) -> Self {
+    pub fn load<F: FnMut(&CStr) -> *const c_void>(mut f: F) -> Self {
         Self::load_erased(&mut f)
     }
-    fn load_erased(
-        _f: &mut dyn FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void,
-    ) -> Self {
+    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const c_void) -> Self {
         Self {
             compile_deferred: unsafe {
                 unsafe extern "system" fn compile_deferred(
-                    _: crate::vk::Device,
-                    _: crate::vk::Pipeline,
+                    _: vk::Device,
+                    _: vk::Pipeline,
                     _: u32,
-                ) -> crate::vk::Result {
+                ) -> vk::Result {
                     panic!("unable to load vkCompileDeferredNV")
                 }
                 let val = _f(c"vkCompileDeferredNV");
@@ -243,11 +239,11 @@ impl DeviceFn {
             },
             create_acceleration_structure: unsafe {
                 unsafe extern "system" fn create_acceleration_structure(
-                    _: crate::vk::Device,
-                    _: *const crate::vk::AccelerationStructureCreateInfoNV<'_>,
-                    _: *const crate::vk::AllocationCallbacks<'_>,
-                    _: *mut crate::vk::AccelerationStructureNV,
-                ) -> crate::vk::Result {
+                    _: vk::Device,
+                    _: *const vk::AccelerationStructureCreateInfoNV<'_>,
+                    _: *const vk::AllocationCallbacks<'_>,
+                    _: *mut vk::AccelerationStructureNV,
+                ) -> vk::Result {
                     panic!("unable to load vkCreateAccelerationStructureNV")
                 }
                 let val = _f(c"vkCreateAccelerationStructureNV");
@@ -259,9 +255,9 @@ impl DeviceFn {
             },
             destroy_acceleration_structure: unsafe {
                 unsafe extern "system" fn destroy_acceleration_structure(
-                    _: crate::vk::Device,
-                    _: crate::vk::AccelerationStructureNV,
-                    _: *const crate::vk::AllocationCallbacks<'_>,
+                    _: vk::Device,
+                    _: vk::AccelerationStructureNV,
+                    _: *const vk::AllocationCallbacks<'_>,
                 ) {
                     panic!("unable to load vkDestroyAccelerationStructureNV")
                 }
@@ -274,11 +270,9 @@ impl DeviceFn {
             },
             get_acceleration_structure_memory_requirements: unsafe {
                 unsafe extern "system" fn get_acceleration_structure_memory_requirements(
-                    _: crate::vk::Device,
-                    _: *const crate::vk::AccelerationStructureMemoryRequirementsInfoNV<
-                        '_,
-                    >,
-                    _: *mut crate::vk::MemoryRequirements2<'_>,
+                    _: vk::Device,
+                    _: *const vk::AccelerationStructureMemoryRequirementsInfoNV<'_>,
+                    _: *mut vk::MemoryRequirements2<'_>,
                 ) {
                     panic!(
                         "unable to load vkGetAccelerationStructureMemoryRequirementsNV"
@@ -293,10 +287,10 @@ impl DeviceFn {
             },
             bind_acceleration_structure_memory: unsafe {
                 unsafe extern "system" fn bind_acceleration_structure_memory(
-                    _: crate::vk::Device,
+                    _: vk::Device,
                     _: u32,
-                    _: *const crate::vk::BindAccelerationStructureMemoryInfoNV<'_>,
-                ) -> crate::vk::Result {
+                    _: *const vk::BindAccelerationStructureMemoryInfoNV<'_>,
+                ) -> vk::Result {
                     panic!("unable to load vkBindAccelerationStructureMemoryNV")
                 }
                 let val = _f(c"vkBindAccelerationStructureMemoryNV");
@@ -308,10 +302,10 @@ impl DeviceFn {
             },
             cmd_copy_acceleration_structure: unsafe {
                 unsafe extern "system" fn cmd_copy_acceleration_structure(
-                    _: crate::vk::CommandBuffer,
-                    _: crate::vk::AccelerationStructureNV,
-                    _: crate::vk::AccelerationStructureNV,
-                    _: crate::vk::CopyAccelerationStructureModeKHR,
+                    _: vk::CommandBuffer,
+                    _: vk::AccelerationStructureNV,
+                    _: vk::AccelerationStructureNV,
+                    _: vk::CopyAccelerationStructureModeKHR,
                 ) {
                     panic!("unable to load vkCmdCopyAccelerationStructureNV")
                 }
@@ -324,11 +318,11 @@ impl DeviceFn {
             },
             cmd_write_acceleration_structures_properties: unsafe {
                 unsafe extern "system" fn cmd_write_acceleration_structures_properties(
-                    _: crate::vk::CommandBuffer,
+                    _: vk::CommandBuffer,
                     _: u32,
-                    _: *const crate::vk::AccelerationStructureNV,
-                    _: crate::vk::QueryType,
-                    _: crate::vk::QueryPool,
+                    _: *const vk::AccelerationStructureNV,
+                    _: vk::QueryType,
+                    _: vk::QueryPool,
                     _: u32,
                 ) {
                     panic!("unable to load vkCmdWriteAccelerationStructuresPropertiesNV")
@@ -342,15 +336,15 @@ impl DeviceFn {
             },
             cmd_build_acceleration_structure: unsafe {
                 unsafe extern "system" fn cmd_build_acceleration_structure(
-                    _: crate::vk::CommandBuffer,
-                    _: *const crate::vk::AccelerationStructureInfoNV<'_>,
-                    _: crate::vk::Buffer,
-                    _: crate::vk::DeviceSize,
-                    _: crate::vk::Bool32,
-                    _: crate::vk::AccelerationStructureNV,
-                    _: crate::vk::AccelerationStructureNV,
-                    _: crate::vk::Buffer,
-                    _: crate::vk::DeviceSize,
+                    _: vk::CommandBuffer,
+                    _: *const vk::AccelerationStructureInfoNV<'_>,
+                    _: vk::Buffer,
+                    _: vk::DeviceSize,
+                    _: vk::Bool32,
+                    _: vk::AccelerationStructureNV,
+                    _: vk::AccelerationStructureNV,
+                    _: vk::Buffer,
+                    _: vk::DeviceSize,
                 ) {
                     panic!("unable to load vkCmdBuildAccelerationStructureNV")
                 }
@@ -363,18 +357,18 @@ impl DeviceFn {
             },
             cmd_trace_rays: unsafe {
                 unsafe extern "system" fn cmd_trace_rays(
-                    _: crate::vk::CommandBuffer,
-                    _: crate::vk::Buffer,
-                    _: crate::vk::DeviceSize,
-                    _: crate::vk::Buffer,
-                    _: crate::vk::DeviceSize,
-                    _: crate::vk::DeviceSize,
-                    _: crate::vk::Buffer,
-                    _: crate::vk::DeviceSize,
-                    _: crate::vk::DeviceSize,
-                    _: crate::vk::Buffer,
-                    _: crate::vk::DeviceSize,
-                    _: crate::vk::DeviceSize,
+                    _: vk::CommandBuffer,
+                    _: vk::Buffer,
+                    _: vk::DeviceSize,
+                    _: vk::Buffer,
+                    _: vk::DeviceSize,
+                    _: vk::DeviceSize,
+                    _: vk::Buffer,
+                    _: vk::DeviceSize,
+                    _: vk::DeviceSize,
+                    _: vk::Buffer,
+                    _: vk::DeviceSize,
+                    _: vk::DeviceSize,
                     _: u32,
                     _: u32,
                     _: u32,
@@ -386,11 +380,11 @@ impl DeviceFn {
             },
             get_acceleration_structure_handle: unsafe {
                 unsafe extern "system" fn get_acceleration_structure_handle(
-                    _: crate::vk::Device,
-                    _: crate::vk::AccelerationStructureNV,
+                    _: vk::Device,
+                    _: vk::AccelerationStructureNV,
                     _: usize,
                     _: *mut core::ffi::c_void,
-                ) -> crate::vk::Result {
+                ) -> vk::Result {
                     panic!("unable to load vkGetAccelerationStructureHandleNV")
                 }
                 let val = _f(c"vkGetAccelerationStructureHandleNV");
@@ -402,13 +396,13 @@ impl DeviceFn {
             },
             create_ray_tracing_pipelines: unsafe {
                 unsafe extern "system" fn create_ray_tracing_pipelines(
-                    _: crate::vk::Device,
-                    _: crate::vk::PipelineCache,
+                    _: vk::Device,
+                    _: vk::PipelineCache,
                     _: u32,
-                    _: *const crate::vk::RayTracingPipelineCreateInfoNV<'_>,
-                    _: *const crate::vk::AllocationCallbacks<'_>,
-                    _: *mut crate::vk::Pipeline,
-                ) -> crate::vk::Result {
+                    _: *const vk::RayTracingPipelineCreateInfoNV<'_>,
+                    _: *const vk::AllocationCallbacks<'_>,
+                    _: *mut vk::Pipeline,
+                ) -> vk::Result {
                     panic!("unable to load vkCreateRayTracingPipelinesNV")
                 }
                 let val = _f(c"vkCreateRayTracingPipelinesNV");
@@ -420,13 +414,13 @@ impl DeviceFn {
             },
             get_ray_tracing_shader_group_handles: unsafe {
                 unsafe extern "system" fn get_ray_tracing_shader_group_handles(
-                    _: crate::vk::Device,
-                    _: crate::vk::Pipeline,
+                    _: vk::Device,
+                    _: vk::Pipeline,
                     _: u32,
                     _: u32,
                     _: usize,
                     _: *mut core::ffi::c_void,
-                ) -> crate::vk::Result {
+                ) -> vk::Result {
                     panic!("unable to load vkGetRayTracingShaderGroupHandlesNV")
                 }
                 let val = _f(c"vkGetRayTracingShaderGroupHandlesNV");
@@ -464,18 +458,18 @@ impl Device {
     #[inline]
     pub unsafe fn compile_deferred(
         &self,
-        pipeline: crate::vk::Pipeline,
+        pipeline: vk::Pipeline,
         shader: u32,
-    ) -> crate::VkResult<()> {
+    ) -> VkResult<()> {
         (self.fp.compile_deferred)(self.handle, pipeline, shader).result()
     }
     ///vkCreateAccelerationStructureNV
     #[inline]
     pub unsafe fn create_acceleration_structure(
         &self,
-        create_info: &crate::vk::AccelerationStructureCreateInfoNV<'_>,
-        allocator: Option<&crate::vk::AllocationCallbacks<'_>>,
-    ) -> crate::VkResult<crate::vk::AccelerationStructureNV> {
+        create_info: &vk::AccelerationStructureCreateInfoNV<'_>,
+        allocator: Option<&vk::AllocationCallbacks<'_>>,
+    ) -> VkResult<vk::AccelerationStructureNV> {
         let mut acceleration_structure = core::mem::MaybeUninit::uninit();
         (self
             .fp
@@ -494,8 +488,8 @@ impl Device {
     #[inline]
     pub unsafe fn destroy_acceleration_structure(
         &self,
-        acceleration_structure: crate::vk::AccelerationStructureNV,
-        allocator: Option<&crate::vk::AllocationCallbacks<'_>>,
+        acceleration_structure: vk::AccelerationStructureNV,
+        allocator: Option<&vk::AllocationCallbacks<'_>>,
     ) {
         (self
             .fp
@@ -512,8 +506,8 @@ impl Device {
     #[inline]
     pub unsafe fn get_acceleration_structure_memory_requirements(
         &self,
-        info: &crate::vk::AccelerationStructureMemoryRequirementsInfoNV<'_>,
-    ) -> crate::vk::MemoryRequirements2<'_> {
+        info: &vk::AccelerationStructureMemoryRequirementsInfoNV<'_>,
+    ) -> vk::MemoryRequirements2<'_> {
         let mut memory_requirements = core::mem::MaybeUninit::uninit();
         (self
             .fp
@@ -528,8 +522,8 @@ impl Device {
     #[inline]
     pub unsafe fn bind_acceleration_structure_memory(
         &self,
-        bind_infos: &[crate::vk::BindAccelerationStructureMemoryInfoNV<'_>],
-    ) -> crate::VkResult<()> {
+        bind_infos: &[vk::BindAccelerationStructureMemoryInfoNV<'_>],
+    ) -> VkResult<()> {
         (self
             .fp
             .bind_acceleration_structure_memory)(
@@ -543,10 +537,10 @@ impl Device {
     #[inline]
     pub unsafe fn cmd_copy_acceleration_structure(
         &self,
-        command_buffer: crate::vk::CommandBuffer,
-        dst: crate::vk::AccelerationStructureNV,
-        src: crate::vk::AccelerationStructureNV,
-        mode: crate::vk::CopyAccelerationStructureModeKHR,
+        command_buffer: vk::CommandBuffer,
+        dst: vk::AccelerationStructureNV,
+        src: vk::AccelerationStructureNV,
+        mode: vk::CopyAccelerationStructureModeKHR,
     ) {
         (self.fp.cmd_copy_acceleration_structure)(command_buffer, dst, src, mode)
     }
@@ -554,10 +548,10 @@ impl Device {
     #[inline]
     pub unsafe fn cmd_write_acceleration_structures_properties(
         &self,
-        command_buffer: crate::vk::CommandBuffer,
-        acceleration_structures: &[crate::vk::AccelerationStructureNV],
-        query_type: crate::vk::QueryType,
-        query_pool: crate::vk::QueryPool,
+        command_buffer: vk::CommandBuffer,
+        acceleration_structures: &[vk::AccelerationStructureNV],
+        query_type: vk::QueryType,
+        query_pool: vk::QueryPool,
         first_query: u32,
     ) {
         (self
@@ -575,15 +569,15 @@ impl Device {
     #[inline]
     pub unsafe fn cmd_build_acceleration_structure(
         &self,
-        command_buffer: crate::vk::CommandBuffer,
-        info: &crate::vk::AccelerationStructureInfoNV<'_>,
-        instance_data: crate::vk::Buffer,
-        instance_offset: crate::vk::DeviceSize,
-        update: crate::vk::Bool32,
-        dst: crate::vk::AccelerationStructureNV,
-        src: crate::vk::AccelerationStructureNV,
-        scratch: crate::vk::Buffer,
-        scratch_offset: crate::vk::DeviceSize,
+        command_buffer: vk::CommandBuffer,
+        info: &vk::AccelerationStructureInfoNV<'_>,
+        instance_data: vk::Buffer,
+        instance_offset: vk::DeviceSize,
+        update: vk::Bool32,
+        dst: vk::AccelerationStructureNV,
+        src: vk::AccelerationStructureNV,
+        scratch: vk::Buffer,
+        scratch_offset: vk::DeviceSize,
     ) {
         (self
             .fp
@@ -603,18 +597,18 @@ impl Device {
     #[inline]
     pub unsafe fn cmd_trace_rays(
         &self,
-        command_buffer: crate::vk::CommandBuffer,
-        raygen_shader_binding_table_buffer: crate::vk::Buffer,
-        raygen_shader_binding_offset: crate::vk::DeviceSize,
-        miss_shader_binding_table_buffer: crate::vk::Buffer,
-        miss_shader_binding_offset: crate::vk::DeviceSize,
-        miss_shader_binding_stride: crate::vk::DeviceSize,
-        hit_shader_binding_table_buffer: crate::vk::Buffer,
-        hit_shader_binding_offset: crate::vk::DeviceSize,
-        hit_shader_binding_stride: crate::vk::DeviceSize,
-        callable_shader_binding_table_buffer: crate::vk::Buffer,
-        callable_shader_binding_offset: crate::vk::DeviceSize,
-        callable_shader_binding_stride: crate::vk::DeviceSize,
+        command_buffer: vk::CommandBuffer,
+        raygen_shader_binding_table_buffer: vk::Buffer,
+        raygen_shader_binding_offset: vk::DeviceSize,
+        miss_shader_binding_table_buffer: vk::Buffer,
+        miss_shader_binding_offset: vk::DeviceSize,
+        miss_shader_binding_stride: vk::DeviceSize,
+        hit_shader_binding_table_buffer: vk::Buffer,
+        hit_shader_binding_offset: vk::DeviceSize,
+        hit_shader_binding_stride: vk::DeviceSize,
+        callable_shader_binding_table_buffer: vk::Buffer,
+        callable_shader_binding_offset: vk::DeviceSize,
+        callable_shader_binding_stride: vk::DeviceSize,
         width: u32,
         height: u32,
         depth: u32,
@@ -643,9 +637,9 @@ impl Device {
     #[inline]
     pub unsafe fn get_acceleration_structure_handle(
         &self,
-        acceleration_structure: crate::vk::AccelerationStructureNV,
+        acceleration_structure: vk::AccelerationStructureNV,
         data: &mut [u8],
-    ) -> crate::VkResult<()> {
+    ) -> VkResult<()> {
         (self
             .fp
             .get_acceleration_structure_handle)(
@@ -660,11 +654,11 @@ impl Device {
     #[inline]
     pub unsafe fn create_ray_tracing_pipelines(
         &self,
-        pipeline_cache: crate::vk::PipelineCache,
-        create_infos: &[crate::vk::RayTracingPipelineCreateInfoNV<'_>],
-        allocator: Option<&crate::vk::AllocationCallbacks<'_>>,
-        pipelines: &mut [crate::vk::Pipeline],
-    ) -> crate::VkResult<()> {
+        pipeline_cache: vk::PipelineCache,
+        create_infos: &[vk::RayTracingPipelineCreateInfoNV<'_>],
+        allocator: Option<&vk::AllocationCallbacks<'_>>,
+        pipelines: &mut [vk::Pipeline],
+    ) -> VkResult<()> {
         assert_eq!(create_infos.len(), pipelines.len());
         (self
             .fp
@@ -685,11 +679,11 @@ impl Device {
     #[inline]
     pub unsafe fn get_ray_tracing_shader_group_handles(
         &self,
-        pipeline: crate::vk::Pipeline,
+        pipeline: vk::Pipeline,
         first_group: u32,
         group_count: u32,
         data: &mut [u8],
-    ) -> crate::VkResult<()> {
+    ) -> VkResult<()> {
         (self
             .fp
             .get_ray_tracing_shader_group_handles)(
@@ -703,27 +697,31 @@ impl Device {
             .result()
     }
 }
-pub const SPEC_VERSION: u32 = 3;
-pub const NAME: &core::ffi::CStr = c"VK_NV_ray_tracing";
 pub(crate) mod items {
+    use core::marker::PhantomData;
+    use crate::vk;
+    use crate::Handle;
+    use core::fmt;
+    #[cfg(feature = "debug")]
+    use core::fmt as fmtdebug;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct RayTracingShaderGroupCreateInfoNV<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *const core::ffi::c_void,
-        pub ty: crate::vk::RayTracingShaderGroupTypeKHR,
+        pub ty: vk::RayTracingShaderGroupTypeKHR,
         pub general_shader: u32,
         pub closest_hit_shader: u32,
         pub any_hit_shader: u32,
         pub intersection_shader: u32,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for RayTracingShaderGroupCreateInfoNV<'_> {}
     unsafe impl Sync for RayTracingShaderGroupCreateInfoNV<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for RayTracingShaderGroupCreateInfoNV<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::RAY_TRACING_SHADER_GROUP_CREATE_INFO_NV;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::RAY_TRACING_SHADER_GROUP_CREATE_INFO_NV;
     }
     impl<'a> Default for RayTracingShaderGroupCreateInfoNV<'a> {
         fn default() -> Self {
@@ -735,12 +733,12 @@ pub(crate) mod items {
                 closest_hit_shader: Default::default(),
                 any_hit_shader: Default::default(),
                 intersection_shader: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
     impl<'a> RayTracingShaderGroupCreateInfoNV<'a> {
-        pub fn ty(mut self, ty: crate::vk::RayTracingShaderGroupTypeKHR) -> Self {
+        pub fn ty(mut self, ty: vk::RayTracingShaderGroupTypeKHR) -> Self {
             self.ty = ty;
             self
         }
@@ -765,23 +763,23 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct RayTracingPipelineCreateInfoNV<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *const core::ffi::c_void,
-        pub flags: crate::vk::PipelineCreateFlags,
+        pub flags: vk::PipelineCreateFlags,
         pub stage_count: u32,
-        pub p_stages: *const crate::vk::PipelineShaderStageCreateInfo<'a>,
+        pub p_stages: *const vk::PipelineShaderStageCreateInfo<'a>,
         pub group_count: u32,
-        pub p_groups: *const crate::vk::RayTracingShaderGroupCreateInfoNV<'a>,
+        pub p_groups: *const vk::RayTracingShaderGroupCreateInfoNV<'a>,
         pub max_recursion_depth: u32,
-        pub layout: crate::vk::PipelineLayout,
-        pub base_pipeline_handle: crate::vk::Pipeline,
+        pub layout: vk::PipelineLayout,
+        pub base_pipeline_handle: vk::Pipeline,
         pub base_pipeline_index: i32,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for RayTracingPipelineCreateInfoNV<'_> {}
     unsafe impl Sync for RayTracingPipelineCreateInfoNV<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for RayTracingPipelineCreateInfoNV<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::RAY_TRACING_PIPELINE_CREATE_INFO_NV;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::RAY_TRACING_PIPELINE_CREATE_INFO_NV;
     }
     impl<'a> Default for RayTracingPipelineCreateInfoNV<'a> {
         fn default() -> Self {
@@ -797,18 +795,18 @@ pub(crate) mod items {
                 layout: Default::default(),
                 base_pipeline_handle: Default::default(),
                 base_pipeline_index: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
     impl<'a> RayTracingPipelineCreateInfoNV<'a> {
-        pub fn flags(mut self, flags: crate::vk::PipelineCreateFlags) -> Self {
+        pub fn flags(mut self, flags: vk::PipelineCreateFlags) -> Self {
             self.flags = flags;
             self
         }
         pub fn stages(
             mut self,
-            stages: &'a [crate::vk::PipelineShaderStageCreateInfo<'a>],
+            stages: &'a [vk::PipelineShaderStageCreateInfo<'a>],
         ) -> Self {
             self.stage_count = stages.len() as _;
             self.p_stages = stages.as_ptr();
@@ -816,7 +814,7 @@ pub(crate) mod items {
         }
         pub fn groups(
             mut self,
-            groups: &'a [crate::vk::RayTracingShaderGroupCreateInfoNV<'a>],
+            groups: &'a [vk::RayTracingShaderGroupCreateInfoNV<'a>],
         ) -> Self {
             self.group_count = groups.len() as _;
             self.p_groups = groups.as_ptr();
@@ -826,13 +824,13 @@ pub(crate) mod items {
             self.max_recursion_depth = max_recursion_depth;
             self
         }
-        pub fn layout(mut self, layout: crate::vk::PipelineLayout) -> Self {
+        pub fn layout(mut self, layout: vk::PipelineLayout) -> Self {
             self.layout = layout;
             self
         }
         pub fn base_pipeline_handle(
             mut self,
-            base_pipeline_handle: crate::vk::Pipeline,
+            base_pipeline_handle: vk::Pipeline,
         ) -> Self {
             self.base_pipeline_handle = base_pipeline_handle;
             self
@@ -846,25 +844,25 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct GeometryTrianglesNV<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *const core::ffi::c_void,
-        pub vertex_data: crate::vk::Buffer,
-        pub vertex_offset: crate::vk::DeviceSize,
+        pub vertex_data: vk::Buffer,
+        pub vertex_offset: vk::DeviceSize,
         pub vertex_count: u32,
-        pub vertex_stride: crate::vk::DeviceSize,
-        pub vertex_format: crate::vk::Format,
-        pub index_data: crate::vk::Buffer,
-        pub index_offset: crate::vk::DeviceSize,
+        pub vertex_stride: vk::DeviceSize,
+        pub vertex_format: vk::Format,
+        pub index_data: vk::Buffer,
+        pub index_offset: vk::DeviceSize,
         pub index_count: u32,
-        pub index_type: crate::vk::IndexType,
-        pub transform_data: crate::vk::Buffer,
-        pub transform_offset: crate::vk::DeviceSize,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub index_type: vk::IndexType,
+        pub transform_data: vk::Buffer,
+        pub transform_offset: vk::DeviceSize,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for GeometryTrianglesNV<'_> {}
     unsafe impl Sync for GeometryTrianglesNV<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for GeometryTrianglesNV<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::GEOMETRY_TRIANGLES_NV;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::GEOMETRY_TRIANGLES_NV;
     }
     impl<'a> Default for GeometryTrianglesNV<'a> {
         fn default() -> Self {
@@ -882,16 +880,16 @@ pub(crate) mod items {
                 index_type: Default::default(),
                 transform_data: Default::default(),
                 transform_offset: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
     impl<'a> GeometryTrianglesNV<'a> {
-        pub fn vertex_data(mut self, vertex_data: crate::vk::Buffer) -> Self {
+        pub fn vertex_data(mut self, vertex_data: vk::Buffer) -> Self {
             self.vertex_data = vertex_data;
             self
         }
-        pub fn vertex_offset(mut self, vertex_offset: crate::vk::DeviceSize) -> Self {
+        pub fn vertex_offset(mut self, vertex_offset: vk::DeviceSize) -> Self {
             self.vertex_offset = vertex_offset;
             self
         }
@@ -899,19 +897,19 @@ pub(crate) mod items {
             self.vertex_count = vertex_count;
             self
         }
-        pub fn vertex_stride(mut self, vertex_stride: crate::vk::DeviceSize) -> Self {
+        pub fn vertex_stride(mut self, vertex_stride: vk::DeviceSize) -> Self {
             self.vertex_stride = vertex_stride;
             self
         }
-        pub fn vertex_format(mut self, vertex_format: crate::vk::Format) -> Self {
+        pub fn vertex_format(mut self, vertex_format: vk::Format) -> Self {
             self.vertex_format = vertex_format;
             self
         }
-        pub fn index_data(mut self, index_data: crate::vk::Buffer) -> Self {
+        pub fn index_data(mut self, index_data: vk::Buffer) -> Self {
             self.index_data = index_data;
             self
         }
-        pub fn index_offset(mut self, index_offset: crate::vk::DeviceSize) -> Self {
+        pub fn index_offset(mut self, index_offset: vk::DeviceSize) -> Self {
             self.index_offset = index_offset;
             self
         }
@@ -919,18 +917,15 @@ pub(crate) mod items {
             self.index_count = index_count;
             self
         }
-        pub fn index_type(mut self, index_type: crate::vk::IndexType) -> Self {
+        pub fn index_type(mut self, index_type: vk::IndexType) -> Self {
             self.index_type = index_type;
             self
         }
-        pub fn transform_data(mut self, transform_data: crate::vk::Buffer) -> Self {
+        pub fn transform_data(mut self, transform_data: vk::Buffer) -> Self {
             self.transform_data = transform_data;
             self
         }
-        pub fn transform_offset(
-            mut self,
-            transform_offset: crate::vk::DeviceSize,
-        ) -> Self {
+        pub fn transform_offset(mut self, transform_offset: vk::DeviceSize) -> Self {
             self.transform_offset = transform_offset;
             self
         }
@@ -939,18 +934,18 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct GeometryAABBNV<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *const core::ffi::c_void,
-        pub aabb_data: crate::vk::Buffer,
+        pub aabb_data: vk::Buffer,
         pub num_aab_bs: u32,
         pub stride: u32,
-        pub offset: crate::vk::DeviceSize,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub offset: vk::DeviceSize,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for GeometryAABBNV<'_> {}
     unsafe impl Sync for GeometryAABBNV<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for GeometryAABBNV<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::GEOMETRY_AABB_NV;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::GEOMETRY_AABB_NV;
     }
     impl<'a> Default for GeometryAABBNV<'a> {
         fn default() -> Self {
@@ -961,12 +956,12 @@ pub(crate) mod items {
                 num_aab_bs: Default::default(),
                 stride: Default::default(),
                 offset: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
     impl<'a> GeometryAABBNV<'a> {
-        pub fn aabb_data(mut self, aabb_data: crate::vk::Buffer) -> Self {
+        pub fn aabb_data(mut self, aabb_data: vk::Buffer) -> Self {
             self.aabb_data = aabb_data;
             self
         }
@@ -978,7 +973,7 @@ pub(crate) mod items {
             self.stride = stride;
             self
         }
-        pub fn offset(mut self, offset: crate::vk::DeviceSize) -> Self {
+        pub fn offset(mut self, offset: vk::DeviceSize) -> Self {
             self.offset = offset;
             self
         }
@@ -987,21 +982,18 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy, Default)]
     pub struct GeometryDataNV<'a> {
-        pub triangles: crate::vk::GeometryTrianglesNV<'a>,
-        pub aabbs: crate::vk::GeometryAABBNV<'a>,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub triangles: vk::GeometryTrianglesNV<'a>,
+        pub aabbs: vk::GeometryAABBNV<'a>,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for GeometryDataNV<'_> {}
     unsafe impl Sync for GeometryDataNV<'_> {}
     impl<'a> GeometryDataNV<'a> {
-        pub fn triangles(
-            mut self,
-            triangles: crate::vk::GeometryTrianglesNV<'a>,
-        ) -> Self {
+        pub fn triangles(mut self, triangles: vk::GeometryTrianglesNV<'a>) -> Self {
             self.triangles = triangles;
             self
         }
-        pub fn aabbs(mut self, aabbs: crate::vk::GeometryAABBNV<'a>) -> Self {
+        pub fn aabbs(mut self, aabbs: vk::GeometryAABBNV<'a>) -> Self {
             self.aabbs = aabbs;
             self
         }
@@ -1010,17 +1002,17 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct GeometryNV<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *const core::ffi::c_void,
-        pub geometry_type: crate::vk::GeometryTypeKHR,
-        pub geometry: crate::vk::GeometryDataNV<'a>,
-        pub flags: crate::vk::GeometryFlagsKHR,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub geometry_type: vk::GeometryTypeKHR,
+        pub geometry: vk::GeometryDataNV<'a>,
+        pub flags: vk::GeometryFlagsKHR,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for GeometryNV<'_> {}
     unsafe impl Sync for GeometryNV<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for GeometryNV<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::GEOMETRY_NV;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::GEOMETRY_NV;
     }
     impl<'a> Default for GeometryNV<'a> {
         fn default() -> Self {
@@ -1030,23 +1022,20 @@ pub(crate) mod items {
                 geometry_type: Default::default(),
                 geometry: Default::default(),
                 flags: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
     impl<'a> GeometryNV<'a> {
-        pub fn geometry_type(
-            mut self,
-            geometry_type: crate::vk::GeometryTypeKHR,
-        ) -> Self {
+        pub fn geometry_type(mut self, geometry_type: vk::GeometryTypeKHR) -> Self {
             self.geometry_type = geometry_type;
             self
         }
-        pub fn geometry(mut self, geometry: crate::vk::GeometryDataNV<'a>) -> Self {
+        pub fn geometry(mut self, geometry: vk::GeometryDataNV<'a>) -> Self {
             self.geometry = geometry;
             self
         }
-        pub fn flags(mut self, flags: crate::vk::GeometryFlagsKHR) -> Self {
+        pub fn flags(mut self, flags: vk::GeometryFlagsKHR) -> Self {
             self.flags = flags;
             self
         }
@@ -1055,19 +1044,19 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct AccelerationStructureInfoNV<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *const core::ffi::c_void,
-        pub ty: crate::vk::AccelerationStructureTypeNV,
-        pub flags: crate::vk::BuildAccelerationStructureFlagsKHR,
+        pub ty: vk::AccelerationStructureTypeNV,
+        pub flags: vk::BuildAccelerationStructureFlagsKHR,
         pub instance_count: u32,
         pub geometry_count: u32,
-        pub p_geometries: *const crate::vk::GeometryNV<'a>,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub p_geometries: *const vk::GeometryNV<'a>,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for AccelerationStructureInfoNV<'_> {}
     unsafe impl Sync for AccelerationStructureInfoNV<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for AccelerationStructureInfoNV<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::ACCELERATION_STRUCTURE_INFO_NV;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::ACCELERATION_STRUCTURE_INFO_NV;
     }
     impl<'a> Default for AccelerationStructureInfoNV<'a> {
         fn default() -> Self {
@@ -1079,19 +1068,16 @@ pub(crate) mod items {
                 instance_count: Default::default(),
                 geometry_count: Default::default(),
                 p_geometries: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
     impl<'a> AccelerationStructureInfoNV<'a> {
-        pub fn ty(mut self, ty: crate::vk::AccelerationStructureTypeNV) -> Self {
+        pub fn ty(mut self, ty: vk::AccelerationStructureTypeNV) -> Self {
             self.ty = ty;
             self
         }
-        pub fn flags(
-            mut self,
-            flags: crate::vk::BuildAccelerationStructureFlagsKHR,
-        ) -> Self {
+        pub fn flags(mut self, flags: vk::BuildAccelerationStructureFlagsKHR) -> Self {
             self.flags = flags;
             self
         }
@@ -1099,10 +1085,7 @@ pub(crate) mod items {
             self.instance_count = instance_count;
             self
         }
-        pub fn geometries(
-            mut self,
-            geometries: &'a [crate::vk::GeometryNV<'a>],
-        ) -> Self {
+        pub fn geometries(mut self, geometries: &'a [vk::GeometryNV<'a>]) -> Self {
             self.geometry_count = geometries.len() as _;
             self.p_geometries = geometries.as_ptr();
             self
@@ -1112,17 +1095,17 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct AccelerationStructureCreateInfoNV<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *const core::ffi::c_void,
-        pub compacted_size: crate::vk::DeviceSize,
-        pub info: crate::vk::AccelerationStructureInfoNV<'a>,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub compacted_size: vk::DeviceSize,
+        pub info: vk::AccelerationStructureInfoNV<'a>,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for AccelerationStructureCreateInfoNV<'_> {}
     unsafe impl Sync for AccelerationStructureCreateInfoNV<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for AccelerationStructureCreateInfoNV<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::ACCELERATION_STRUCTURE_CREATE_INFO_NV;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::ACCELERATION_STRUCTURE_CREATE_INFO_NV;
     }
     impl<'a> Default for AccelerationStructureCreateInfoNV<'a> {
         fn default() -> Self {
@@ -1131,16 +1114,16 @@ pub(crate) mod items {
                 p_next: Default::default(),
                 compacted_size: Default::default(),
                 info: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
     impl<'a> AccelerationStructureCreateInfoNV<'a> {
-        pub fn compacted_size(mut self, compacted_size: crate::vk::DeviceSize) -> Self {
+        pub fn compacted_size(mut self, compacted_size: vk::DeviceSize) -> Self {
             self.compacted_size = compacted_size;
             self
         }
-        pub fn info(mut self, info: crate::vk::AccelerationStructureInfoNV<'a>) -> Self {
+        pub fn info(mut self, info: vk::AccelerationStructureInfoNV<'a>) -> Self {
             self.info = info;
             self
         }
@@ -1149,20 +1132,20 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct BindAccelerationStructureMemoryInfoNV<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *const core::ffi::c_void,
-        pub acceleration_structure: crate::vk::AccelerationStructureNV,
-        pub memory: crate::vk::DeviceMemory,
-        pub memory_offset: crate::vk::DeviceSize,
+        pub acceleration_structure: vk::AccelerationStructureNV,
+        pub memory: vk::DeviceMemory,
+        pub memory_offset: vk::DeviceSize,
         pub device_index_count: u32,
         pub p_device_indices: *const u32,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for BindAccelerationStructureMemoryInfoNV<'_> {}
     unsafe impl Sync for BindAccelerationStructureMemoryInfoNV<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for BindAccelerationStructureMemoryInfoNV<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::BIND_ACCELERATION_STRUCTURE_MEMORY_INFO_NV;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::BIND_ACCELERATION_STRUCTURE_MEMORY_INFO_NV;
     }
     impl<'a> Default for BindAccelerationStructureMemoryInfoNV<'a> {
         fn default() -> Self {
@@ -1174,23 +1157,23 @@ pub(crate) mod items {
                 memory_offset: Default::default(),
                 device_index_count: Default::default(),
                 p_device_indices: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
     impl<'a> BindAccelerationStructureMemoryInfoNV<'a> {
         pub fn acceleration_structure(
             mut self,
-            acceleration_structure: crate::vk::AccelerationStructureNV,
+            acceleration_structure: vk::AccelerationStructureNV,
         ) -> Self {
             self.acceleration_structure = acceleration_structure;
             self
         }
-        pub fn memory(mut self, memory: crate::vk::DeviceMemory) -> Self {
+        pub fn memory(mut self, memory: vk::DeviceMemory) -> Self {
             self.memory = memory;
             self
         }
-        pub fn memory_offset(mut self, memory_offset: crate::vk::DeviceSize) -> Self {
+        pub fn memory_offset(mut self, memory_offset: vk::DeviceSize) -> Self {
             self.memory_offset = memory_offset;
             self
         }
@@ -1204,19 +1187,19 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct WriteDescriptorSetAccelerationStructureNV<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *const core::ffi::c_void,
         pub acceleration_structure_count: u32,
-        pub p_acceleration_structures: *const crate::vk::AccelerationStructureNV,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub p_acceleration_structures: *const vk::AccelerationStructureNV,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for WriteDescriptorSetAccelerationStructureNV<'_> {}
     unsafe impl Sync for WriteDescriptorSetAccelerationStructureNV<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for WriteDescriptorSetAccelerationStructureNV<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::WRITE_DESCRIPTOR_SET_ACCELERATION_STRUCTURE_NV;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::WRITE_DESCRIPTOR_SET_ACCELERATION_STRUCTURE_NV;
     }
-    unsafe impl<'a> crate::Extends<crate::vk::WriteDescriptorSet<'_>>
+    unsafe impl<'a> crate::Extends<vk::WriteDescriptorSet<'_>>
     for WriteDescriptorSetAccelerationStructureNV<'a> {}
     impl<'a> Default for WriteDescriptorSetAccelerationStructureNV<'a> {
         fn default() -> Self {
@@ -1225,14 +1208,14 @@ pub(crate) mod items {
                 p_next: Default::default(),
                 acceleration_structure_count: Default::default(),
                 p_acceleration_structures: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
     impl<'a> WriteDescriptorSetAccelerationStructureNV<'a> {
         pub fn acceleration_structures(
             mut self,
-            acceleration_structures: &'a [crate::vk::AccelerationStructureNV],
+            acceleration_structures: &'a [vk::AccelerationStructureNV],
         ) -> Self {
             self.acceleration_structure_count = acceleration_structures.len() as _;
             self.p_acceleration_structures = acceleration_structures.as_ptr();
@@ -1243,17 +1226,17 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct AccelerationStructureMemoryRequirementsInfoNV<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *const core::ffi::c_void,
-        pub ty: crate::vk::AccelerationStructureMemoryRequirementsTypeNV,
-        pub acceleration_structure: crate::vk::AccelerationStructureNV,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub ty: vk::AccelerationStructureMemoryRequirementsTypeNV,
+        pub acceleration_structure: vk::AccelerationStructureNV,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for AccelerationStructureMemoryRequirementsInfoNV<'_> {}
     unsafe impl Sync for AccelerationStructureMemoryRequirementsInfoNV<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for AccelerationStructureMemoryRequirementsInfoNV<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::ACCELERATION_STRUCTURE_MEMORY_REQUIREMENTS_INFO_NV;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::ACCELERATION_STRUCTURE_MEMORY_REQUIREMENTS_INFO_NV;
     }
     impl<'a> Default for AccelerationStructureMemoryRequirementsInfoNV<'a> {
         fn default() -> Self {
@@ -1262,21 +1245,21 @@ pub(crate) mod items {
                 p_next: Default::default(),
                 ty: Default::default(),
                 acceleration_structure: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
     impl<'a> AccelerationStructureMemoryRequirementsInfoNV<'a> {
         pub fn ty(
             mut self,
-            ty: crate::vk::AccelerationStructureMemoryRequirementsTypeNV,
+            ty: vk::AccelerationStructureMemoryRequirementsTypeNV,
         ) -> Self {
             self.ty = ty;
             self
         }
         pub fn acceleration_structure(
             mut self,
-            acceleration_structure: crate::vk::AccelerationStructureNV,
+            acceleration_structure: vk::AccelerationStructureNV,
         ) -> Self {
             self.acceleration_structure = acceleration_structure;
             self
@@ -1286,7 +1269,7 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceRayTracingPropertiesNV<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
         pub shader_group_handle_size: u32,
         pub max_recursion_depth: u32,
@@ -1296,15 +1279,15 @@ pub(crate) mod items {
         pub max_instance_count: u64,
         pub max_triangle_count: u64,
         pub max_descriptor_set_acceleration_structures: u32,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for PhysicalDeviceRayTracingPropertiesNV<'_> {}
     unsafe impl Sync for PhysicalDeviceRayTracingPropertiesNV<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceRayTracingPropertiesNV<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_RAY_TRACING_PROPERTIES_NV;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PHYSICAL_DEVICE_RAY_TRACING_PROPERTIES_NV;
     }
-    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceProperties2<'_>>
+    unsafe impl<'a> crate::Extends<vk::PhysicalDeviceProperties2<'_>>
     for PhysicalDeviceRayTracingPropertiesNV<'a> {}
     impl<'a> Default for PhysicalDeviceRayTracingPropertiesNV<'a> {
         fn default() -> Self {
@@ -1319,7 +1302,7 @@ pub(crate) mod items {
                 max_instance_count: Default::default(),
                 max_triangle_count: Default::default(),
                 max_descriptor_set_acceleration_structures: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
@@ -1366,9 +1349,9 @@ pub(crate) mod items {
             self
         }
     }
-    pub type AabbPositionsNV = crate::vk::AabbPositionsKHR;
-    pub type TransformMatrixNV = crate::vk::TransformMatrixKHR;
-    pub type AccelerationStructureInstanceNV = crate::vk::AccelerationStructureInstanceKHR;
+    pub type AabbPositionsNV = vk::AabbPositionsKHR;
+    pub type TransformMatrixNV = vk::TransformMatrixKHR;
+    pub type AccelerationStructureInstanceNV = vk::AccelerationStructureInstanceKHR;
     #[repr(transparent)]
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
     pub struct AccelerationStructureMemoryRequirementsTypeNV(pub(crate) i32);
@@ -1397,21 +1380,21 @@ pub(crate) mod items {
             self.0
         }
     }
-    pub type GeometryFlagBitsNV = crate::vk::GeometryFlagBitsKHR;
-    pub type GeometryInstanceFlagBitsNV = crate::vk::GeometryInstanceFlagBitsKHR;
-    pub type BuildAccelerationStructureFlagBitsNV = crate::vk::BuildAccelerationStructureFlagBitsKHR;
-    pub type CopyAccelerationStructureModeNV = crate::vk::CopyAccelerationStructureModeKHR;
-    pub type AccelerationStructureTypeNV = crate::vk::AccelerationStructureTypeKHR;
-    pub type GeometryTypeNV = crate::vk::GeometryTypeKHR;
-    pub type RayTracingShaderGroupTypeNV = crate::vk::RayTracingShaderGroupTypeKHR;
-    pub type GeometryFlagsNV = crate::vk::GeometryFlagsKHR;
-    pub type GeometryInstanceFlagsNV = crate::vk::GeometryInstanceFlagsKHR;
-    pub type BuildAccelerationStructureFlagsNV = crate::vk::BuildAccelerationStructureFlagsKHR;
+    pub type GeometryFlagBitsNV = vk::GeometryFlagBitsKHR;
+    pub type GeometryInstanceFlagBitsNV = vk::GeometryInstanceFlagBitsKHR;
+    pub type BuildAccelerationStructureFlagBitsNV = vk::BuildAccelerationStructureFlagBitsKHR;
+    pub type CopyAccelerationStructureModeNV = vk::CopyAccelerationStructureModeKHR;
+    pub type AccelerationStructureTypeNV = vk::AccelerationStructureTypeKHR;
+    pub type GeometryTypeNV = vk::GeometryTypeKHR;
+    pub type RayTracingShaderGroupTypeNV = vk::RayTracingShaderGroupTypeKHR;
+    pub type GeometryFlagsNV = vk::GeometryFlagsKHR;
+    pub type GeometryInstanceFlagsNV = vk::GeometryInstanceFlagsKHR;
+    pub type BuildAccelerationStructureFlagsNV = vk::BuildAccelerationStructureFlagsKHR;
     #[repr(transparent)]
     #[derive(Eq, PartialEq, Ord, PartialOrd, Clone, Copy, Hash, Default)]
     pub struct AccelerationStructureNV(u64);
-    impl crate::Handle for AccelerationStructureNV {
-        const TYPE: crate::vk::ObjectType = crate::vk::ObjectType::ACCELERATION_STRUCTURE_NV;
+    impl Handle for AccelerationStructureNV {
+        const TYPE: vk::ObjectType = vk::ObjectType::ACCELERATION_STRUCTURE_NV;
         fn as_raw(self) -> u64 {
             self.0
         }
@@ -1424,98 +1407,99 @@ pub(crate) mod items {
             Self(0)
         }
     }
-    impl core::fmt::Pointer for AccelerationStructureNV {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+    impl fmt::Pointer for AccelerationStructureNV {
+        fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
             write!(f, "0x{:x}", self.0)
         }
     }
-    impl core::fmt::Debug for AccelerationStructureNV {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+    #[cfg(feature = "debug")]
+    impl fmtdebug::Debug for AccelerationStructureNV {
+        fn fmt(&self, f: &mut fmtdebug::Formatter) -> fmtdebug::Result {
             write!(f, "0x{:x}", self.0)
         }
     }
     pub type PFN_vkCompileDeferredNV = unsafe extern "system" fn(
-        device: crate::vk::Device,
-        pipeline: crate::vk::Pipeline,
+        device: vk::Device,
+        pipeline: vk::Pipeline,
         shader: u32,
-    ) -> crate::vk::Result;
+    ) -> vk::Result;
     pub type PFN_vkCreateAccelerationStructureNV = unsafe extern "system" fn(
-        device: crate::vk::Device,
-        p_create_info: *const crate::vk::AccelerationStructureCreateInfoNV<'_>,
-        p_allocator: *const crate::vk::AllocationCallbacks<'_>,
-        p_acceleration_structure: *mut crate::vk::AccelerationStructureNV,
-    ) -> crate::vk::Result;
+        device: vk::Device,
+        p_create_info: *const vk::AccelerationStructureCreateInfoNV<'_>,
+        p_allocator: *const vk::AllocationCallbacks<'_>,
+        p_acceleration_structure: *mut vk::AccelerationStructureNV,
+    ) -> vk::Result;
     pub type PFN_vkDestroyAccelerationStructureNV = unsafe extern "system" fn(
-        device: crate::vk::Device,
-        acceleration_structure: crate::vk::AccelerationStructureNV,
-        p_allocator: *const crate::vk::AllocationCallbacks<'_>,
+        device: vk::Device,
+        acceleration_structure: vk::AccelerationStructureNV,
+        p_allocator: *const vk::AllocationCallbacks<'_>,
     );
     pub type PFN_vkGetAccelerationStructureMemoryRequirementsNV = unsafe extern "system" fn(
-        device: crate::vk::Device,
-        p_info: *const crate::vk::AccelerationStructureMemoryRequirementsInfoNV<'_>,
-        p_memory_requirements: *mut crate::vk::MemoryRequirements2<'_>,
+        device: vk::Device,
+        p_info: *const vk::AccelerationStructureMemoryRequirementsInfoNV<'_>,
+        p_memory_requirements: *mut vk::MemoryRequirements2<'_>,
     );
     pub type PFN_vkBindAccelerationStructureMemoryNV = unsafe extern "system" fn(
-        device: crate::vk::Device,
+        device: vk::Device,
         bind_info_count: u32,
-        p_bind_infos: *const crate::vk::BindAccelerationStructureMemoryInfoNV<'_>,
-    ) -> crate::vk::Result;
+        p_bind_infos: *const vk::BindAccelerationStructureMemoryInfoNV<'_>,
+    ) -> vk::Result;
     pub type PFN_vkCmdCopyAccelerationStructureNV = unsafe extern "system" fn(
-        command_buffer: crate::vk::CommandBuffer,
-        dst: crate::vk::AccelerationStructureNV,
-        src: crate::vk::AccelerationStructureNV,
-        mode: crate::vk::CopyAccelerationStructureModeKHR,
+        command_buffer: vk::CommandBuffer,
+        dst: vk::AccelerationStructureNV,
+        src: vk::AccelerationStructureNV,
+        mode: vk::CopyAccelerationStructureModeKHR,
     );
     pub type PFN_vkCmdWriteAccelerationStructuresPropertiesNV = unsafe extern "system" fn(
-        command_buffer: crate::vk::CommandBuffer,
+        command_buffer: vk::CommandBuffer,
         acceleration_structure_count: u32,
-        p_acceleration_structures: *const crate::vk::AccelerationStructureNV,
-        query_type: crate::vk::QueryType,
-        query_pool: crate::vk::QueryPool,
+        p_acceleration_structures: *const vk::AccelerationStructureNV,
+        query_type: vk::QueryType,
+        query_pool: vk::QueryPool,
         first_query: u32,
     );
     pub type PFN_vkCmdBuildAccelerationStructureNV = unsafe extern "system" fn(
-        command_buffer: crate::vk::CommandBuffer,
-        p_info: *const crate::vk::AccelerationStructureInfoNV<'_>,
-        instance_data: crate::vk::Buffer,
-        instance_offset: crate::vk::DeviceSize,
-        update: crate::vk::Bool32,
-        dst: crate::vk::AccelerationStructureNV,
-        src: crate::vk::AccelerationStructureNV,
-        scratch: crate::vk::Buffer,
-        scratch_offset: crate::vk::DeviceSize,
+        command_buffer: vk::CommandBuffer,
+        p_info: *const vk::AccelerationStructureInfoNV<'_>,
+        instance_data: vk::Buffer,
+        instance_offset: vk::DeviceSize,
+        update: vk::Bool32,
+        dst: vk::AccelerationStructureNV,
+        src: vk::AccelerationStructureNV,
+        scratch: vk::Buffer,
+        scratch_offset: vk::DeviceSize,
     );
     pub type PFN_vkCmdTraceRaysNV = unsafe extern "system" fn(
-        command_buffer: crate::vk::CommandBuffer,
-        raygen_shader_binding_table_buffer: crate::vk::Buffer,
-        raygen_shader_binding_offset: crate::vk::DeviceSize,
-        miss_shader_binding_table_buffer: crate::vk::Buffer,
-        miss_shader_binding_offset: crate::vk::DeviceSize,
-        miss_shader_binding_stride: crate::vk::DeviceSize,
-        hit_shader_binding_table_buffer: crate::vk::Buffer,
-        hit_shader_binding_offset: crate::vk::DeviceSize,
-        hit_shader_binding_stride: crate::vk::DeviceSize,
-        callable_shader_binding_table_buffer: crate::vk::Buffer,
-        callable_shader_binding_offset: crate::vk::DeviceSize,
-        callable_shader_binding_stride: crate::vk::DeviceSize,
+        command_buffer: vk::CommandBuffer,
+        raygen_shader_binding_table_buffer: vk::Buffer,
+        raygen_shader_binding_offset: vk::DeviceSize,
+        miss_shader_binding_table_buffer: vk::Buffer,
+        miss_shader_binding_offset: vk::DeviceSize,
+        miss_shader_binding_stride: vk::DeviceSize,
+        hit_shader_binding_table_buffer: vk::Buffer,
+        hit_shader_binding_offset: vk::DeviceSize,
+        hit_shader_binding_stride: vk::DeviceSize,
+        callable_shader_binding_table_buffer: vk::Buffer,
+        callable_shader_binding_offset: vk::DeviceSize,
+        callable_shader_binding_stride: vk::DeviceSize,
         width: u32,
         height: u32,
         depth: u32,
     );
     pub type PFN_vkGetAccelerationStructureHandleNV = unsafe extern "system" fn(
-        device: crate::vk::Device,
-        acceleration_structure: crate::vk::AccelerationStructureNV,
+        device: vk::Device,
+        acceleration_structure: vk::AccelerationStructureNV,
         data_size: usize,
         p_data: *mut core::ffi::c_void,
-    ) -> crate::vk::Result;
+    ) -> vk::Result;
     pub type PFN_vkCreateRayTracingPipelinesNV = unsafe extern "system" fn(
-        device: crate::vk::Device,
-        pipeline_cache: crate::vk::PipelineCache,
+        device: vk::Device,
+        pipeline_cache: vk::PipelineCache,
         create_info_count: u32,
-        p_create_infos: *const crate::vk::RayTracingPipelineCreateInfoNV<'_>,
-        p_allocator: *const crate::vk::AllocationCallbacks<'_>,
-        p_pipelines: *mut crate::vk::Pipeline,
-    ) -> crate::vk::Result;
-    pub type PFN_vkGetRayTracingShaderGroupHandlesNV = crate::vk::PFN_vkGetRayTracingShaderGroupHandlesKHR;
+        p_create_infos: *const vk::RayTracingPipelineCreateInfoNV<'_>,
+        p_allocator: *const vk::AllocationCallbacks<'_>,
+        p_pipelines: *mut vk::Pipeline,
+    ) -> vk::Result;
+    pub type PFN_vkGetRayTracingShaderGroupHandlesNV = vk::PFN_vkGetRayTracingShaderGroupHandlesKHR;
 }
 pub use items::*;

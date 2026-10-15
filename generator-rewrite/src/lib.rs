@@ -3,7 +3,10 @@ pub mod loader;
 mod output;
 mod rules;
 
-use crate::{output::CodeMap, rules::BuilderRules};
+use crate::{
+    output::{CodeMap, Import, OutputContext},
+    rules::BuilderRules,
+};
 use analysis::{
     Analysis, AnalysisResult,
     item::RequiredBy,
@@ -113,7 +116,9 @@ impl Context<'_> {
         let type_item = &self.items.types[&name];
         type_item.required_by(self.items)
     }
+}
 
+impl OutputContext<'_, '_> {
     fn constant_token_from_prefix_stripped(&self, prefix_stripped: &str) -> Ident {
         if let Some(without_extension) = prefix_stripped.strip_suffix("EXTENSION_NAME") {
             syn::parse_str(&format!("{without_extension}NAME")).unwrap()
@@ -123,14 +128,14 @@ impl Context<'_> {
     }
 
     fn constant_token(&self, name: ConstantName) -> Ident {
-        let constant_item = &self.items.constants[&name];
+        let constant_item = &self.ctx().items.constants[&name];
         self.constant_token_from_prefix_stripped(
             name.prefix_stripped(constant_item.required_by.library),
         )
     }
 }
 
-impl RustTokens for Context<'_> {
+impl RustTokens for OutputContext<'_, '_> {
     fn variable_token(&self, name: VariableName) -> Ident {
         let snek = name.original().to_snek_case();
         crate::escape_ident(&snek)
@@ -142,10 +147,14 @@ impl RustTokens for Context<'_> {
         qualified: bool,
         lifetime: Option<&Lifetime>,
     ) -> TokenStream {
-        let required_by = self.type_required_by(name);
+        let required_by = self.ctx().type_required_by(name);
         let ident: Ident = syn::parse_str(name.prefix_stripped(required_by.library)).unwrap();
-        let path = qualified.then(|| quote! { crate::vk:: });
-        let lifetime_tokens = self.type_has_lifetime(name).then(|| {
+        let path = qualified.then(|| {
+            self.insert_import(Import::CrateVk);
+            quote! { vk:: }
+        });
+
+        let lifetime_tokens = self.ctx().type_has_lifetime(name).then(|| {
             let placeholder_lifetime = Lifetime::placeholder();
             let lifetime = lifetime.unwrap_or(&placeholder_lifetime);
             quote! { <#lifetime> }
@@ -156,19 +165,31 @@ impl RustTokens for Context<'_> {
 
     fn func_pointer_tokens(&self, name: FuncPointerName, qualified: bool) -> TokenStream {
         let ident: Ident = syn::parse_str(name.original()).unwrap();
-        let path = qualified.then(|| quote! { crate::vk:: });
+        let path = qualified.then(|| {
+            self.insert_import(Import::CrateVk);
+            quote! { vk:: }
+        });
+
         quote! { #path #ident }
     }
 
     fn command_tokens(&self, name: CommandName, qualified: bool) -> TokenStream {
         let ident: Ident = syn::parse_str(&format!("PFN_{}", name.original())).unwrap();
-        let path = qualified.then(|| quote! { crate::vk:: });
+        let path = qualified.then(|| {
+            self.insert_import(Import::CrateVk);
+            quote! { vk:: }
+        });
+
         quote! { #path #ident }
     }
 
     fn constant_tokens(&self, name: ConstantName, qualified: bool) -> TokenStream {
         let ident = self.constant_token(name);
-        let path = qualified.then(|| quote! { crate::vk:: });
+        let path = qualified.then(|| {
+            self.insert_import(Import::CrateVk);
+            quote! { vk:: }
+        });
+
         quote! { #path #ident }
     }
 
@@ -219,13 +240,17 @@ impl RustTokens for Context<'_> {
     }
 
     fn cmacro_tokens(&self, name: CMacroName, qualified: bool) -> TokenStream {
-        let ident: Ident = if self.items.cmacros[&name].has_args() {
+        let ident: Ident = if self.ctx().items.cmacros[&name].has_args() {
             syn::parse_str(name.prefix_stripped()).unwrap()
         } else {
             syn::parse_str(&name.prefix_stripped().to_ascii_lowercase()).unwrap()
         };
 
-        let path = qualified.then(|| quote! { crate::vk:: });
+        let path = qualified.then(|| {
+            self.insert_import(Import::CrateVk);
+            quote! { vk:: }
+        });
+
         quote! { #path #ident }
     }
 

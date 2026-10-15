@@ -2,8 +2,10 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_MESA_image_alignment_control.html) · Extension `VK_MESA_image_alignment_control`
 #![doc(alias = "VK_MESA_image_alignment_control")]
+use crate::vk;
+use core::ffi::CStr;
 ///Provided by [VK_MESA_image_alignment_control](crate::mesa::image_alignment_control)
-impl crate::vk::StructureType {
+impl vk::StructureType {
     pub const PHYSICAL_DEVICE_IMAGE_ALIGNMENT_CONTROL_FEATURES_MESA: Self = Self(
         1000575000,
     );
@@ -13,26 +15,28 @@ impl crate::vk::StructureType {
     pub const IMAGE_ALIGNMENT_CONTROL_CREATE_INFO_MESA: Self = Self(1000575002);
 }
 pub const SPEC_VERSION: u32 = 1;
-pub const NAME: &core::ffi::CStr = c"VK_MESA_image_alignment_control";
+pub const NAME: &CStr = c"VK_MESA_image_alignment_control";
 pub(crate) mod items {
+    use core::marker::PhantomData;
+    use crate::vk;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceImageAlignmentControlFeaturesMESA<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
-        pub image_alignment_control: crate::vk::Bool32,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub image_alignment_control: vk::Bool32,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for PhysicalDeviceImageAlignmentControlFeaturesMESA<'_> {}
     unsafe impl Sync for PhysicalDeviceImageAlignmentControlFeaturesMESA<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceImageAlignmentControlFeaturesMESA<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_IMAGE_ALIGNMENT_CONTROL_FEATURES_MESA;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PHYSICAL_DEVICE_IMAGE_ALIGNMENT_CONTROL_FEATURES_MESA;
     }
-    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+    unsafe impl<'a> crate::Extends<vk::PhysicalDeviceFeatures2<'_>>
     for PhysicalDeviceImageAlignmentControlFeaturesMESA<'a> {}
-    unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+    unsafe impl<'a> crate::Extends<vk::DeviceCreateInfo<'_>>
     for PhysicalDeviceImageAlignmentControlFeaturesMESA<'a> {}
     impl<'a> Default for PhysicalDeviceImageAlignmentControlFeaturesMESA<'a> {
         fn default() -> Self {
@@ -40,7 +44,7 @@ pub(crate) mod items {
                 s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
                 p_next: Default::default(),
                 image_alignment_control: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
@@ -54,18 +58,18 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceImageAlignmentControlPropertiesMESA<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
         pub supported_image_alignment_mask: u32,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for PhysicalDeviceImageAlignmentControlPropertiesMESA<'_> {}
     unsafe impl Sync for PhysicalDeviceImageAlignmentControlPropertiesMESA<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceImageAlignmentControlPropertiesMESA<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_IMAGE_ALIGNMENT_CONTROL_PROPERTIES_MESA;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PHYSICAL_DEVICE_IMAGE_ALIGNMENT_CONTROL_PROPERTIES_MESA;
     }
-    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceProperties2<'_>>
+    unsafe impl<'a> crate::Extends<vk::PhysicalDeviceProperties2<'_>>
     for PhysicalDeviceImageAlignmentControlPropertiesMESA<'a> {}
     impl<'a> Default for PhysicalDeviceImageAlignmentControlPropertiesMESA<'a> {
         fn default() -> Self {
@@ -73,7 +77,7 @@ pub(crate) mod items {
                 s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
                 p_next: Default::default(),
                 supported_image_alignment_mask: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
@@ -90,18 +94,18 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct ImageAlignmentControlCreateInfoMESA<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *const core::ffi::c_void,
         pub maximum_requested_alignment: u32,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for ImageAlignmentControlCreateInfoMESA<'_> {}
     unsafe impl Sync for ImageAlignmentControlCreateInfoMESA<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for ImageAlignmentControlCreateInfoMESA<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::IMAGE_ALIGNMENT_CONTROL_CREATE_INFO_MESA;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::IMAGE_ALIGNMENT_CONTROL_CREATE_INFO_MESA;
     }
-    unsafe impl<'a> crate::Extends<crate::vk::ImageCreateInfo<'_>>
+    unsafe impl<'a> crate::Extends<vk::ImageCreateInfo<'_>>
     for ImageAlignmentControlCreateInfoMESA<'a> {}
     impl<'a> Default for ImageAlignmentControlCreateInfoMESA<'a> {
         fn default() -> Self {
@@ -109,7 +113,7 @@ pub(crate) mod items {
                 s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
                 p_next: Default::default(),
                 maximum_requested_alignment: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }

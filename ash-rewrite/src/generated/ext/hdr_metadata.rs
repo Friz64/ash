@@ -2,32 +2,33 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_hdr_metadata.html) · Extension `VK_EXT_hdr_metadata`
 #![doc(alias = "VK_EXT_hdr_metadata")]
+use crate::vk;
+use core::ffi::CStr;
+use core::ffi::c_void;
 ///Provided by [VK_EXT_hdr_metadata](crate::ext::hdr_metadata)
-impl crate::vk::StructureType {
+impl vk::StructureType {
     pub const HDR_METADATA_EXT: Self = Self(1000105000);
 }
+pub const SPEC_VERSION: u32 = 3;
+pub const NAME: &CStr = c"VK_EXT_hdr_metadata";
 #[derive(Clone)]
 pub struct DeviceFn {
-    pub set_hdr_metadata: crate::vk::PFN_vkSetHdrMetadataEXT,
+    pub set_hdr_metadata: vk::PFN_vkSetHdrMetadataEXT,
 }
 unsafe impl Send for DeviceFn {}
 unsafe impl Sync for DeviceFn {}
 impl DeviceFn {
-    pub fn load<F: FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void>(
-        mut f: F,
-    ) -> Self {
+    pub fn load<F: FnMut(&CStr) -> *const c_void>(mut f: F) -> Self {
         Self::load_erased(&mut f)
     }
-    fn load_erased(
-        _f: &mut dyn FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void,
-    ) -> Self {
+    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const c_void) -> Self {
         Self {
             set_hdr_metadata: unsafe {
                 unsafe extern "system" fn set_hdr_metadata(
-                    _: crate::vk::Device,
+                    _: vk::Device,
                     _: u32,
-                    _: *const crate::vk::SwapchainKHR,
-                    _: *const crate::vk::HdrMetadataEXT<'_>,
+                    _: *const vk::SwapchainKHR,
+                    _: *const vk::HdrMetadataEXT<'_>,
                 ) {
                     panic!("unable to load vkSetHdrMetadataEXT")
                 }
@@ -66,8 +67,8 @@ impl Device {
     #[inline]
     pub unsafe fn set_hdr_metadata(
         &self,
-        swapchains: &[crate::vk::SwapchainKHR],
-        metadata: &[crate::vk::HdrMetadataEXT<'_>],
+        swapchains: &[vk::SwapchainKHR],
+        metadata: &[vk::HdrMetadataEXT<'_>],
     ) {
         assert_eq!(swapchains.len(), metadata.len());
         (self
@@ -80,9 +81,9 @@ impl Device {
         )
     }
 }
-pub const SPEC_VERSION: u32 = 3;
-pub const NAME: &core::ffi::CStr = c"VK_EXT_hdr_metadata";
 pub(crate) mod items {
+    use core::marker::PhantomData;
+    use crate::vk;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy, Default)]
@@ -106,22 +107,22 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct HdrMetadataEXT<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *const core::ffi::c_void,
-        pub display_primary_red: crate::vk::XYColorEXT,
-        pub display_primary_green: crate::vk::XYColorEXT,
-        pub display_primary_blue: crate::vk::XYColorEXT,
-        pub white_point: crate::vk::XYColorEXT,
+        pub display_primary_red: vk::XYColorEXT,
+        pub display_primary_green: vk::XYColorEXT,
+        pub display_primary_blue: vk::XYColorEXT,
+        pub white_point: vk::XYColorEXT,
         pub max_luminance: core::ffi::c_float,
         pub min_luminance: core::ffi::c_float,
         pub max_content_light_level: core::ffi::c_float,
         pub max_frame_average_light_level: core::ffi::c_float,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for HdrMetadataEXT<'_> {}
     unsafe impl Sync for HdrMetadataEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for HdrMetadataEXT<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::HDR_METADATA_EXT;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::HDR_METADATA_EXT;
     }
     impl<'a> Default for HdrMetadataEXT<'a> {
         fn default() -> Self {
@@ -136,33 +137,33 @@ pub(crate) mod items {
                 min_luminance: Default::default(),
                 max_content_light_level: Default::default(),
                 max_frame_average_light_level: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
     impl<'a> HdrMetadataEXT<'a> {
         pub fn display_primary_red(
             mut self,
-            display_primary_red: crate::vk::XYColorEXT,
+            display_primary_red: vk::XYColorEXT,
         ) -> Self {
             self.display_primary_red = display_primary_red;
             self
         }
         pub fn display_primary_green(
             mut self,
-            display_primary_green: crate::vk::XYColorEXT,
+            display_primary_green: vk::XYColorEXT,
         ) -> Self {
             self.display_primary_green = display_primary_green;
             self
         }
         pub fn display_primary_blue(
             mut self,
-            display_primary_blue: crate::vk::XYColorEXT,
+            display_primary_blue: vk::XYColorEXT,
         ) -> Self {
             self.display_primary_blue = display_primary_blue;
             self
         }
-        pub fn white_point(mut self, white_point: crate::vk::XYColorEXT) -> Self {
+        pub fn white_point(mut self, white_point: vk::XYColorEXT) -> Self {
             self.white_point = white_point;
             self
         }
@@ -190,10 +191,10 @@ pub(crate) mod items {
         }
     }
     pub type PFN_vkSetHdrMetadataEXT = unsafe extern "system" fn(
-        device: crate::vk::Device,
+        device: vk::Device,
         swapchain_count: u32,
-        p_swapchains: *const crate::vk::SwapchainKHR,
-        p_metadata: *const crate::vk::HdrMetadataEXT<'_>,
+        p_swapchains: *const vk::SwapchainKHR,
+        p_metadata: *const vk::HdrMetadataEXT<'_>,
     );
 }
 pub use items::*;

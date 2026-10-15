@@ -2,12 +2,16 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_image_drm_format_modifier.html) · Extension `VK_EXT_image_drm_format_modifier`
 #![doc(alias = "VK_EXT_image_drm_format_modifier")]
+use crate::vk;
+use core::ffi::CStr;
+use crate::VkResult;
+use core::ffi::c_void;
 ///Provided by [VK_EXT_image_drm_format_modifier](crate::ext::image_drm_format_modifier)
-impl crate::vk::ImageTiling {
+impl vk::ImageTiling {
     pub const DRM_FORMAT_MODIFIER_EXT: Self = Self(1000158000);
 }
 ///Provided by [VK_EXT_image_drm_format_modifier](crate::ext::image_drm_format_modifier)
-impl crate::vk::StructureType {
+impl vk::StructureType {
     pub const DRM_FORMAT_MODIFIER_PROPERTIES_LIST_EXT: Self = Self(1000158000);
     pub const PHYSICAL_DEVICE_IMAGE_DRM_FORMAT_MODIFIER_INFO_EXT: Self = Self(
         1000158002,
@@ -20,55 +24,53 @@ impl crate::vk::StructureType {
     pub const DRM_FORMAT_MODIFIER_PROPERTIES_LIST_2_EXT: Self = Self(1000158006);
 }
 ///Provided by [VK_EXT_image_drm_format_modifier](crate::ext::image_drm_format_modifier)
-impl crate::vk::Result {
+impl vk::Result {
     pub const ERROR_INVALID_DRM_FORMAT_MODIFIER_PLANE_LAYOUT_EXT: Self = Self(
         -1000158000,
     );
 }
-///Provided by [VK_EXT_image_drm_format_modifier](crate::ext::image_drm_format_modifier)
-impl crate::vk::ImageAspectFlags {
+///Provided by [Vulkan 1.0](crate::vk1_0)
+impl vk::ImageAspectFlags {
     pub const MEMORY_PLANE_0_EXT: Self = Self(
-        crate::vk::ImageAspectFlagBits::MEMORY_PLANE_0_EXT.0,
+        vk::ImageAspectFlagBits::MEMORY_PLANE_0_EXT.0,
     );
     pub const MEMORY_PLANE_1_EXT: Self = Self(
-        crate::vk::ImageAspectFlagBits::MEMORY_PLANE_1_EXT.0,
+        vk::ImageAspectFlagBits::MEMORY_PLANE_1_EXT.0,
     );
     pub const MEMORY_PLANE_2_EXT: Self = Self(
-        crate::vk::ImageAspectFlagBits::MEMORY_PLANE_2_EXT.0,
+        vk::ImageAspectFlagBits::MEMORY_PLANE_2_EXT.0,
     );
     pub const MEMORY_PLANE_3_EXT: Self = Self(
-        crate::vk::ImageAspectFlagBits::MEMORY_PLANE_3_EXT.0,
+        vk::ImageAspectFlagBits::MEMORY_PLANE_3_EXT.0,
     );
 }
-///Provided by [VK_EXT_image_drm_format_modifier](crate::ext::image_drm_format_modifier)
-impl crate::vk::ImageAspectFlagBits {
+///Provided by [Vulkan 1.0](crate::vk1_0)
+impl vk::ImageAspectFlagBits {
     pub const MEMORY_PLANE_0_EXT: Self = Self(1 << 7);
     pub const MEMORY_PLANE_1_EXT: Self = Self(1 << 8);
     pub const MEMORY_PLANE_2_EXT: Self = Self(1 << 9);
     pub const MEMORY_PLANE_3_EXT: Self = Self(1 << 10);
 }
+pub const SPEC_VERSION: u32 = 2;
+pub const NAME: &CStr = c"VK_EXT_image_drm_format_modifier";
 #[derive(Clone)]
 pub struct DeviceFn {
-    pub get_image_drm_format_modifier_properties: crate::vk::PFN_vkGetImageDrmFormatModifierPropertiesEXT,
+    pub get_image_drm_format_modifier_properties: vk::PFN_vkGetImageDrmFormatModifierPropertiesEXT,
 }
 unsafe impl Send for DeviceFn {}
 unsafe impl Sync for DeviceFn {}
 impl DeviceFn {
-    pub fn load<F: FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void>(
-        mut f: F,
-    ) -> Self {
+    pub fn load<F: FnMut(&CStr) -> *const c_void>(mut f: F) -> Self {
         Self::load_erased(&mut f)
     }
-    fn load_erased(
-        _f: &mut dyn FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void,
-    ) -> Self {
+    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const c_void) -> Self {
         Self {
             get_image_drm_format_modifier_properties: unsafe {
                 unsafe extern "system" fn get_image_drm_format_modifier_properties(
-                    _: crate::vk::Device,
-                    _: crate::vk::Image,
-                    _: *mut crate::vk::ImageDrmFormatModifierPropertiesEXT<'_>,
-                ) -> crate::vk::Result {
+                    _: vk::Device,
+                    _: vk::Image,
+                    _: *mut vk::ImageDrmFormatModifierPropertiesEXT<'_>,
+                ) -> vk::Result {
                     panic!("unable to load vkGetImageDrmFormatModifierPropertiesEXT")
                 }
                 let val = _f(c"vkGetImageDrmFormatModifierPropertiesEXT");
@@ -106,8 +108,8 @@ impl Device {
     #[inline]
     pub unsafe fn get_image_drm_format_modifier_properties(
         &self,
-        image: crate::vk::Image,
-    ) -> crate::VkResult<crate::vk::ImageDrmFormatModifierPropertiesEXT<'_>> {
+        image: vk::Image,
+    ) -> VkResult<vk::ImageDrmFormatModifierPropertiesEXT<'_>> {
         let mut properties = core::mem::MaybeUninit::uninit();
         (self
             .fp
@@ -119,26 +121,26 @@ impl Device {
             .assume_init_on_success(properties)
     }
 }
-pub const SPEC_VERSION: u32 = 2;
-pub const NAME: &core::ffi::CStr = c"VK_EXT_image_drm_format_modifier";
 pub(crate) mod items {
+    use core::marker::PhantomData;
+    use crate::vk;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct DrmFormatModifierPropertiesListEXT<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
         pub drm_format_modifier_count: u32,
-        pub p_drm_format_modifier_properties: *mut crate::vk::DrmFormatModifierPropertiesEXT,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub p_drm_format_modifier_properties: *mut vk::DrmFormatModifierPropertiesEXT,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for DrmFormatModifierPropertiesListEXT<'_> {}
     unsafe impl Sync for DrmFormatModifierPropertiesListEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for DrmFormatModifierPropertiesListEXT<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::DRM_FORMAT_MODIFIER_PROPERTIES_LIST_EXT;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::DRM_FORMAT_MODIFIER_PROPERTIES_LIST_EXT;
     }
-    unsafe impl<'a> crate::Extends<crate::vk::FormatProperties2<'_>>
+    unsafe impl<'a> crate::Extends<vk::FormatProperties2<'_>>
     for DrmFormatModifierPropertiesListEXT<'a> {}
     impl<'a> Default for DrmFormatModifierPropertiesListEXT<'a> {
         fn default() -> Self {
@@ -147,14 +149,14 @@ pub(crate) mod items {
                 p_next: Default::default(),
                 drm_format_modifier_count: Default::default(),
                 p_drm_format_modifier_properties: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
     impl<'a> DrmFormatModifierPropertiesListEXT<'a> {
         pub fn drm_format_modifier_properties(
             mut self,
-            drm_format_modifier_properties: &'a mut [crate::vk::DrmFormatModifierPropertiesEXT],
+            drm_format_modifier_properties: &'a mut [vk::DrmFormatModifierPropertiesEXT],
         ) -> Self {
             self.drm_format_modifier_count = drm_format_modifier_properties.len() as _;
             self.p_drm_format_modifier_properties = drm_format_modifier_properties
@@ -168,7 +170,7 @@ pub(crate) mod items {
     pub struct DrmFormatModifierPropertiesEXT {
         pub drm_format_modifier: u64,
         pub drm_format_modifier_plane_count: u32,
-        pub drm_format_modifier_tiling_features: crate::vk::FormatFeatureFlags,
+        pub drm_format_modifier_tiling_features: vk::FormatFeatureFlags,
     }
     unsafe impl Send for DrmFormatModifierPropertiesEXT {}
     unsafe impl Sync for DrmFormatModifierPropertiesEXT {}
@@ -186,7 +188,7 @@ pub(crate) mod items {
         }
         pub fn drm_format_modifier_tiling_features(
             mut self,
-            drm_format_modifier_tiling_features: crate::vk::FormatFeatureFlags,
+            drm_format_modifier_tiling_features: vk::FormatFeatureFlags,
         ) -> Self {
             self.drm_format_modifier_tiling_features = drm_format_modifier_tiling_features;
             self
@@ -196,21 +198,21 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceImageDrmFormatModifierInfoEXT<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *const core::ffi::c_void,
         pub drm_format_modifier: u64,
-        pub sharing_mode: crate::vk::SharingMode,
+        pub sharing_mode: vk::SharingMode,
         pub queue_family_index_count: u32,
         pub p_queue_family_indices: *const u32,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for PhysicalDeviceImageDrmFormatModifierInfoEXT<'_> {}
     unsafe impl Sync for PhysicalDeviceImageDrmFormatModifierInfoEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceImageDrmFormatModifierInfoEXT<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_IMAGE_DRM_FORMAT_MODIFIER_INFO_EXT;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PHYSICAL_DEVICE_IMAGE_DRM_FORMAT_MODIFIER_INFO_EXT;
     }
-    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceImageFormatInfo2<'_>>
+    unsafe impl<'a> crate::Extends<vk::PhysicalDeviceImageFormatInfo2<'_>>
     for PhysicalDeviceImageDrmFormatModifierInfoEXT<'a> {}
     impl<'a> Default for PhysicalDeviceImageDrmFormatModifierInfoEXT<'a> {
         fn default() -> Self {
@@ -221,7 +223,7 @@ pub(crate) mod items {
                 sharing_mode: Default::default(),
                 queue_family_index_count: Default::default(),
                 p_queue_family_indices: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
@@ -230,7 +232,7 @@ pub(crate) mod items {
             self.drm_format_modifier = drm_format_modifier;
             self
         }
-        pub fn sharing_mode(mut self, sharing_mode: crate::vk::SharingMode) -> Self {
+        pub fn sharing_mode(mut self, sharing_mode: vk::SharingMode) -> Self {
             self.sharing_mode = sharing_mode;
             self
         }
@@ -244,19 +246,19 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct ImageDrmFormatModifierListCreateInfoEXT<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *const core::ffi::c_void,
         pub drm_format_modifier_count: u32,
         pub p_drm_format_modifiers: *const u64,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for ImageDrmFormatModifierListCreateInfoEXT<'_> {}
     unsafe impl Sync for ImageDrmFormatModifierListCreateInfoEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for ImageDrmFormatModifierListCreateInfoEXT<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::IMAGE_DRM_FORMAT_MODIFIER_LIST_CREATE_INFO_EXT;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::IMAGE_DRM_FORMAT_MODIFIER_LIST_CREATE_INFO_EXT;
     }
-    unsafe impl<'a> crate::Extends<crate::vk::ImageCreateInfo<'_>>
+    unsafe impl<'a> crate::Extends<vk::ImageCreateInfo<'_>>
     for ImageDrmFormatModifierListCreateInfoEXT<'a> {}
     impl<'a> Default for ImageDrmFormatModifierListCreateInfoEXT<'a> {
         fn default() -> Self {
@@ -265,7 +267,7 @@ pub(crate) mod items {
                 p_next: Default::default(),
                 drm_format_modifier_count: Default::default(),
                 p_drm_format_modifiers: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
@@ -280,20 +282,20 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct ImageDrmFormatModifierExplicitCreateInfoEXT<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *const core::ffi::c_void,
         pub drm_format_modifier: u64,
         pub drm_format_modifier_plane_count: u32,
-        pub p_plane_layouts: *const crate::vk::SubresourceLayout,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub p_plane_layouts: *const vk::SubresourceLayout,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for ImageDrmFormatModifierExplicitCreateInfoEXT<'_> {}
     unsafe impl Sync for ImageDrmFormatModifierExplicitCreateInfoEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for ImageDrmFormatModifierExplicitCreateInfoEXT<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::IMAGE_DRM_FORMAT_MODIFIER_EXPLICIT_CREATE_INFO_EXT;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::IMAGE_DRM_FORMAT_MODIFIER_EXPLICIT_CREATE_INFO_EXT;
     }
-    unsafe impl<'a> crate::Extends<crate::vk::ImageCreateInfo<'_>>
+    unsafe impl<'a> crate::Extends<vk::ImageCreateInfo<'_>>
     for ImageDrmFormatModifierExplicitCreateInfoEXT<'a> {}
     impl<'a> Default for ImageDrmFormatModifierExplicitCreateInfoEXT<'a> {
         fn default() -> Self {
@@ -303,7 +305,7 @@ pub(crate) mod items {
                 drm_format_modifier: Default::default(),
                 drm_format_modifier_plane_count: Default::default(),
                 p_plane_layouts: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
@@ -314,7 +316,7 @@ pub(crate) mod items {
         }
         pub fn plane_layouts(
             mut self,
-            plane_layouts: &'a [crate::vk::SubresourceLayout],
+            plane_layouts: &'a [vk::SubresourceLayout],
         ) -> Self {
             self.drm_format_modifier_plane_count = plane_layouts.len() as _;
             self.p_plane_layouts = plane_layouts.as_ptr();
@@ -325,16 +327,16 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct ImageDrmFormatModifierPropertiesEXT<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
         pub drm_format_modifier: u64,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for ImageDrmFormatModifierPropertiesEXT<'_> {}
     unsafe impl Sync for ImageDrmFormatModifierPropertiesEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for ImageDrmFormatModifierPropertiesEXT<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::IMAGE_DRM_FORMAT_MODIFIER_PROPERTIES_EXT;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::IMAGE_DRM_FORMAT_MODIFIER_PROPERTIES_EXT;
     }
     impl<'a> Default for ImageDrmFormatModifierPropertiesEXT<'a> {
         fn default() -> Self {
@@ -342,7 +344,7 @@ pub(crate) mod items {
                 s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
                 p_next: Default::default(),
                 drm_format_modifier: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
@@ -356,19 +358,19 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct DrmFormatModifierPropertiesList2EXT<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
         pub drm_format_modifier_count: u32,
-        pub p_drm_format_modifier_properties: *mut crate::vk::DrmFormatModifierProperties2EXT,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub p_drm_format_modifier_properties: *mut vk::DrmFormatModifierProperties2EXT,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for DrmFormatModifierPropertiesList2EXT<'_> {}
     unsafe impl Sync for DrmFormatModifierPropertiesList2EXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for DrmFormatModifierPropertiesList2EXT<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::DRM_FORMAT_MODIFIER_PROPERTIES_LIST_2_EXT;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::DRM_FORMAT_MODIFIER_PROPERTIES_LIST_2_EXT;
     }
-    unsafe impl<'a> crate::Extends<crate::vk::FormatProperties2<'_>>
+    unsafe impl<'a> crate::Extends<vk::FormatProperties2<'_>>
     for DrmFormatModifierPropertiesList2EXT<'a> {}
     impl<'a> Default for DrmFormatModifierPropertiesList2EXT<'a> {
         fn default() -> Self {
@@ -377,14 +379,14 @@ pub(crate) mod items {
                 p_next: Default::default(),
                 drm_format_modifier_count: Default::default(),
                 p_drm_format_modifier_properties: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
     impl<'a> DrmFormatModifierPropertiesList2EXT<'a> {
         pub fn drm_format_modifier_properties(
             mut self,
-            drm_format_modifier_properties: &'a mut [crate::vk::DrmFormatModifierProperties2EXT],
+            drm_format_modifier_properties: &'a mut [vk::DrmFormatModifierProperties2EXT],
         ) -> Self {
             self.drm_format_modifier_count = drm_format_modifier_properties.len() as _;
             self.p_drm_format_modifier_properties = drm_format_modifier_properties
@@ -398,7 +400,7 @@ pub(crate) mod items {
     pub struct DrmFormatModifierProperties2EXT {
         pub drm_format_modifier: u64,
         pub drm_format_modifier_plane_count: u32,
-        pub drm_format_modifier_tiling_features: crate::vk::FormatFeatureFlags2,
+        pub drm_format_modifier_tiling_features: vk::FormatFeatureFlags2,
     }
     unsafe impl Send for DrmFormatModifierProperties2EXT {}
     unsafe impl Sync for DrmFormatModifierProperties2EXT {}
@@ -416,16 +418,16 @@ pub(crate) mod items {
         }
         pub fn drm_format_modifier_tiling_features(
             mut self,
-            drm_format_modifier_tiling_features: crate::vk::FormatFeatureFlags2,
+            drm_format_modifier_tiling_features: vk::FormatFeatureFlags2,
         ) -> Self {
             self.drm_format_modifier_tiling_features = drm_format_modifier_tiling_features;
             self
         }
     }
     pub type PFN_vkGetImageDrmFormatModifierPropertiesEXT = unsafe extern "system" fn(
-        device: crate::vk::Device,
-        image: crate::vk::Image,
-        p_properties: *mut crate::vk::ImageDrmFormatModifierPropertiesEXT<'_>,
-    ) -> crate::vk::Result;
+        device: vk::Device,
+        image: vk::Image,
+        p_properties: *mut vk::ImageDrmFormatModifierPropertiesEXT<'_>,
+    ) -> vk::Result;
 }
 pub use items::*;

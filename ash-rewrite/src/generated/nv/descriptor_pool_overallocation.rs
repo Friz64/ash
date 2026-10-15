@@ -2,47 +2,51 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_NV_descriptor_pool_overallocation.html) · Extension `VK_NV_descriptor_pool_overallocation`
 #![doc(alias = "VK_NV_descriptor_pool_overallocation")]
+use crate::vk;
+use core::ffi::CStr;
 ///Provided by [VK_NV_descriptor_pool_overallocation](crate::nv::descriptor_pool_overallocation)
-impl crate::vk::StructureType {
+impl vk::StructureType {
     pub const PHYSICAL_DEVICE_DESCRIPTOR_POOL_OVERALLOCATION_FEATURES_NV: Self = Self(
         1000546000,
     );
 }
-///Provided by [VK_NV_descriptor_pool_overallocation](crate::nv::descriptor_pool_overallocation)
-impl crate::vk::DescriptorPoolCreateFlags {
+///Provided by [Vulkan 1.0](crate::vk1_0)
+impl vk::DescriptorPoolCreateFlags {
     pub const ALLOW_OVERALLOCATION_SETS_NV: Self = Self(
-        crate::vk::DescriptorPoolCreateFlagBits::ALLOW_OVERALLOCATION_SETS_NV.0,
+        vk::DescriptorPoolCreateFlagBits::ALLOW_OVERALLOCATION_SETS_NV.0,
     );
     pub const ALLOW_OVERALLOCATION_POOLS_NV: Self = Self(
-        crate::vk::DescriptorPoolCreateFlagBits::ALLOW_OVERALLOCATION_POOLS_NV.0,
+        vk::DescriptorPoolCreateFlagBits::ALLOW_OVERALLOCATION_POOLS_NV.0,
     );
 }
-///Provided by [VK_NV_descriptor_pool_overallocation](crate::nv::descriptor_pool_overallocation)
-impl crate::vk::DescriptorPoolCreateFlagBits {
+///Provided by [Vulkan 1.0](crate::vk1_0)
+impl vk::DescriptorPoolCreateFlagBits {
     pub const ALLOW_OVERALLOCATION_SETS_NV: Self = Self(1 << 3);
     pub const ALLOW_OVERALLOCATION_POOLS_NV: Self = Self(1 << 4);
 }
 pub const SPEC_VERSION: u32 = 1;
-pub const NAME: &core::ffi::CStr = c"VK_NV_descriptor_pool_overallocation";
+pub const NAME: &CStr = c"VK_NV_descriptor_pool_overallocation";
 pub(crate) mod items {
+    use core::marker::PhantomData;
+    use crate::vk;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceDescriptorPoolOverallocationFeaturesNV<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
-        pub descriptor_pool_overallocation: crate::vk::Bool32,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub descriptor_pool_overallocation: vk::Bool32,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for PhysicalDeviceDescriptorPoolOverallocationFeaturesNV<'_> {}
     unsafe impl Sync for PhysicalDeviceDescriptorPoolOverallocationFeaturesNV<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceDescriptorPoolOverallocationFeaturesNV<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_DESCRIPTOR_POOL_OVERALLOCATION_FEATURES_NV;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PHYSICAL_DEVICE_DESCRIPTOR_POOL_OVERALLOCATION_FEATURES_NV;
     }
-    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+    unsafe impl<'a> crate::Extends<vk::PhysicalDeviceFeatures2<'_>>
     for PhysicalDeviceDescriptorPoolOverallocationFeaturesNV<'a> {}
-    unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+    unsafe impl<'a> crate::Extends<vk::DeviceCreateInfo<'_>>
     for PhysicalDeviceDescriptorPoolOverallocationFeaturesNV<'a> {}
     impl<'a> Default for PhysicalDeviceDescriptorPoolOverallocationFeaturesNV<'a> {
         fn default() -> Self {
@@ -50,7 +54,7 @@ pub(crate) mod items {
                 s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
                 p_next: Default::default(),
                 descriptor_pool_overallocation: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }

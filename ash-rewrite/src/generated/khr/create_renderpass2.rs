@@ -2,8 +2,12 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_create_renderpass2.html) · Extension `VK_KHR_create_renderpass2`
 #![doc(alias = "VK_KHR_create_renderpass2")]
+use crate::vk;
+use core::ffi::CStr;
+use crate::VkResult;
+use core::ffi::c_void;
 ///Provided by [VK_KHR_create_renderpass2](crate::khr::create_renderpass2)
-impl crate::vk::StructureType {
+impl vk::StructureType {
     pub const ATTACHMENT_DESCRIPTION_2_KHR: Self = Self::ATTACHMENT_DESCRIPTION_2;
     pub const ATTACHMENT_REFERENCE_2_KHR: Self = Self::ATTACHMENT_REFERENCE_2;
     pub const SUBPASS_DESCRIPTION_2_KHR: Self = Self::SUBPASS_DESCRIPTION_2;
@@ -12,32 +16,30 @@ impl crate::vk::StructureType {
     pub const SUBPASS_BEGIN_INFO_KHR: Self = Self::SUBPASS_BEGIN_INFO;
     pub const SUBPASS_END_INFO_KHR: Self = Self::SUBPASS_END_INFO;
 }
+pub const SPEC_VERSION: u32 = 1;
+pub const NAME: &CStr = c"VK_KHR_create_renderpass2";
 #[derive(Clone)]
 pub struct DeviceFn {
-    pub create_render_pass2: crate::vk::PFN_vkCreateRenderPass2KHR,
-    pub cmd_begin_render_pass2: crate::vk::PFN_vkCmdBeginRenderPass2KHR,
-    pub cmd_next_subpass2: crate::vk::PFN_vkCmdNextSubpass2KHR,
-    pub cmd_end_render_pass2: crate::vk::PFN_vkCmdEndRenderPass2KHR,
+    pub create_render_pass2: vk::PFN_vkCreateRenderPass2KHR,
+    pub cmd_begin_render_pass2: vk::PFN_vkCmdBeginRenderPass2KHR,
+    pub cmd_next_subpass2: vk::PFN_vkCmdNextSubpass2KHR,
+    pub cmd_end_render_pass2: vk::PFN_vkCmdEndRenderPass2KHR,
 }
 unsafe impl Send for DeviceFn {}
 unsafe impl Sync for DeviceFn {}
 impl DeviceFn {
-    pub fn load<F: FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void>(
-        mut f: F,
-    ) -> Self {
+    pub fn load<F: FnMut(&CStr) -> *const c_void>(mut f: F) -> Self {
         Self::load_erased(&mut f)
     }
-    fn load_erased(
-        _f: &mut dyn FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void,
-    ) -> Self {
+    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const c_void) -> Self {
         Self {
             create_render_pass2: unsafe {
                 unsafe extern "system" fn create_render_pass2(
-                    _: crate::vk::Device,
-                    _: *const crate::vk::RenderPassCreateInfo2<'_>,
-                    _: *const crate::vk::AllocationCallbacks<'_>,
-                    _: *mut crate::vk::RenderPass,
-                ) -> crate::vk::Result {
+                    _: vk::Device,
+                    _: *const vk::RenderPassCreateInfo2<'_>,
+                    _: *const vk::AllocationCallbacks<'_>,
+                    _: *mut vk::RenderPass,
+                ) -> vk::Result {
                     panic!("unable to load vkCreateRenderPass2KHR")
                 }
                 let val = _f(c"vkCreateRenderPass2KHR");
@@ -49,9 +51,9 @@ impl DeviceFn {
             },
             cmd_begin_render_pass2: unsafe {
                 unsafe extern "system" fn cmd_begin_render_pass2(
-                    _: crate::vk::CommandBuffer,
-                    _: *const crate::vk::RenderPassBeginInfo<'_>,
-                    _: *const crate::vk::SubpassBeginInfo<'_>,
+                    _: vk::CommandBuffer,
+                    _: *const vk::RenderPassBeginInfo<'_>,
+                    _: *const vk::SubpassBeginInfo<'_>,
                 ) {
                     panic!("unable to load vkCmdBeginRenderPass2KHR")
                 }
@@ -64,9 +66,9 @@ impl DeviceFn {
             },
             cmd_next_subpass2: unsafe {
                 unsafe extern "system" fn cmd_next_subpass2(
-                    _: crate::vk::CommandBuffer,
-                    _: *const crate::vk::SubpassBeginInfo<'_>,
-                    _: *const crate::vk::SubpassEndInfo<'_>,
+                    _: vk::CommandBuffer,
+                    _: *const vk::SubpassBeginInfo<'_>,
+                    _: *const vk::SubpassEndInfo<'_>,
                 ) {
                     panic!("unable to load vkCmdNextSubpass2KHR")
                 }
@@ -79,8 +81,8 @@ impl DeviceFn {
             },
             cmd_end_render_pass2: unsafe {
                 unsafe extern "system" fn cmd_end_render_pass2(
-                    _: crate::vk::CommandBuffer,
-                    _: *const crate::vk::SubpassEndInfo<'_>,
+                    _: vk::CommandBuffer,
+                    _: *const vk::SubpassEndInfo<'_>,
                 ) {
                     panic!("unable to load vkCmdEndRenderPass2KHR")
                 }
@@ -119,9 +121,9 @@ impl Device {
     #[inline]
     pub unsafe fn create_render_pass2(
         &self,
-        create_info: &crate::vk::RenderPassCreateInfo2<'_>,
-        allocator: Option<&crate::vk::AllocationCallbacks<'_>>,
-    ) -> crate::VkResult<crate::vk::RenderPass> {
+        create_info: &vk::RenderPassCreateInfo2<'_>,
+        allocator: Option<&vk::AllocationCallbacks<'_>>,
+    ) -> VkResult<vk::RenderPass> {
         let mut render_pass = core::mem::MaybeUninit::uninit();
         (self
             .fp
@@ -140,9 +142,9 @@ impl Device {
     #[inline]
     pub unsafe fn cmd_begin_render_pass2(
         &self,
-        command_buffer: crate::vk::CommandBuffer,
-        render_pass_begin: &crate::vk::RenderPassBeginInfo<'_>,
-        subpass_begin_info: &crate::vk::SubpassBeginInfo<'_>,
+        command_buffer: vk::CommandBuffer,
+        render_pass_begin: &vk::RenderPassBeginInfo<'_>,
+        subpass_begin_info: &vk::SubpassBeginInfo<'_>,
     ) {
         (self
             .fp
@@ -156,9 +158,9 @@ impl Device {
     #[inline]
     pub unsafe fn cmd_next_subpass2(
         &self,
-        command_buffer: crate::vk::CommandBuffer,
-        subpass_begin_info: &crate::vk::SubpassBeginInfo<'_>,
-        subpass_end_info: &crate::vk::SubpassEndInfo<'_>,
+        command_buffer: vk::CommandBuffer,
+        subpass_begin_info: &vk::SubpassBeginInfo<'_>,
+        subpass_end_info: &vk::SubpassEndInfo<'_>,
     ) {
         (self.fp.cmd_next_subpass2)(command_buffer, subpass_begin_info, subpass_end_info)
     }
@@ -166,25 +168,24 @@ impl Device {
     #[inline]
     pub unsafe fn cmd_end_render_pass2(
         &self,
-        command_buffer: crate::vk::CommandBuffer,
-        subpass_end_info: &crate::vk::SubpassEndInfo<'_>,
+        command_buffer: vk::CommandBuffer,
+        subpass_end_info: &vk::SubpassEndInfo<'_>,
     ) {
         (self.fp.cmd_end_render_pass2)(command_buffer, subpass_end_info)
     }
 }
-pub const SPEC_VERSION: u32 = 1;
-pub const NAME: &core::ffi::CStr = c"VK_KHR_create_renderpass2";
 pub(crate) mod items {
-    pub type AttachmentDescription2KHR<'a> = crate::vk::AttachmentDescription2<'a>;
-    pub type AttachmentReference2KHR<'a> = crate::vk::AttachmentReference2<'a>;
-    pub type SubpassDescription2KHR<'a> = crate::vk::SubpassDescription2<'a>;
-    pub type SubpassDependency2KHR<'a> = crate::vk::SubpassDependency2<'a>;
-    pub type RenderPassCreateInfo2KHR<'a> = crate::vk::RenderPassCreateInfo2<'a>;
-    pub type SubpassBeginInfoKHR<'a> = crate::vk::SubpassBeginInfo<'a>;
-    pub type SubpassEndInfoKHR<'a> = crate::vk::SubpassEndInfo<'a>;
-    pub type PFN_vkCreateRenderPass2KHR = crate::vk::PFN_vkCreateRenderPass2;
-    pub type PFN_vkCmdBeginRenderPass2KHR = crate::vk::PFN_vkCmdBeginRenderPass2;
-    pub type PFN_vkCmdNextSubpass2KHR = crate::vk::PFN_vkCmdNextSubpass2;
-    pub type PFN_vkCmdEndRenderPass2KHR = crate::vk::PFN_vkCmdEndRenderPass2;
+    use crate::vk;
+    pub type AttachmentDescription2KHR<'a> = vk::AttachmentDescription2<'a>;
+    pub type AttachmentReference2KHR<'a> = vk::AttachmentReference2<'a>;
+    pub type SubpassDescription2KHR<'a> = vk::SubpassDescription2<'a>;
+    pub type SubpassDependency2KHR<'a> = vk::SubpassDependency2<'a>;
+    pub type RenderPassCreateInfo2KHR<'a> = vk::RenderPassCreateInfo2<'a>;
+    pub type SubpassBeginInfoKHR<'a> = vk::SubpassBeginInfo<'a>;
+    pub type SubpassEndInfoKHR<'a> = vk::SubpassEndInfo<'a>;
+    pub type PFN_vkCreateRenderPass2KHR = vk::PFN_vkCreateRenderPass2;
+    pub type PFN_vkCmdBeginRenderPass2KHR = vk::PFN_vkCmdBeginRenderPass2;
+    pub type PFN_vkCmdNextSubpass2KHR = vk::PFN_vkCmdNextSubpass2;
+    pub type PFN_vkCmdEndRenderPass2KHR = vk::PFN_vkCmdEndRenderPass2;
 }
 pub use items::*;

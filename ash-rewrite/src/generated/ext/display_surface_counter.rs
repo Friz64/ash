@@ -2,8 +2,12 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_display_surface_counter.html) · Extension `VK_EXT_display_surface_counter`
 #![doc(alias = "VK_EXT_display_surface_counter")]
+use crate::vk;
+use core::ffi::CStr;
+use crate::VkResult;
+use core::ffi::c_void;
 ///Provided by [VK_EXT_display_surface_counter](crate::ext::display_surface_counter)
-impl crate::vk::StructureType {
+impl vk::StructureType {
     pub const SURFACE_CAPABILITIES_2_EXT: Self = Self(1000090000);
 }
 ///Provided by [VK_EXT_display_surface_counter](crate::ext::display_surface_counter)
@@ -14,28 +18,26 @@ impl SurfaceCounterFlagsEXT {
 impl SurfaceCounterFlagBitsEXT {
     pub const VBLANK: Self = Self(1 << 0);
 }
+pub const SPEC_VERSION: u32 = 1;
+pub const NAME: &CStr = c"VK_EXT_display_surface_counter";
 #[derive(Clone)]
 pub struct InstanceFn {
-    pub get_physical_device_surface_capabilities2: crate::vk::PFN_vkGetPhysicalDeviceSurfaceCapabilities2EXT,
+    pub get_physical_device_surface_capabilities2: vk::PFN_vkGetPhysicalDeviceSurfaceCapabilities2EXT,
 }
 unsafe impl Send for InstanceFn {}
 unsafe impl Sync for InstanceFn {}
 impl InstanceFn {
-    pub fn load<F: FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void>(
-        mut f: F,
-    ) -> Self {
+    pub fn load<F: FnMut(&CStr) -> *const c_void>(mut f: F) -> Self {
         Self::load_erased(&mut f)
     }
-    fn load_erased(
-        _f: &mut dyn FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void,
-    ) -> Self {
+    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const c_void) -> Self {
         Self {
             get_physical_device_surface_capabilities2: unsafe {
                 unsafe extern "system" fn get_physical_device_surface_capabilities2(
-                    _: crate::vk::PhysicalDevice,
-                    _: crate::vk::SurfaceKHR,
-                    _: *mut crate::vk::SurfaceCapabilities2EXT<'_>,
-                ) -> crate::vk::Result {
+                    _: vk::PhysicalDevice,
+                    _: vk::SurfaceKHR,
+                    _: *mut vk::SurfaceCapabilities2EXT<'_>,
+                ) -> vk::Result {
                     panic!("unable to load vkGetPhysicalDeviceSurfaceCapabilities2EXT")
                 }
                 let val = _f(c"vkGetPhysicalDeviceSurfaceCapabilities2EXT");
@@ -73,9 +75,9 @@ impl Instance {
     #[inline]
     pub unsafe fn get_physical_device_surface_capabilities2(
         &self,
-        physical_device: crate::vk::PhysicalDevice,
-        surface: crate::vk::SurfaceKHR,
-    ) -> crate::VkResult<crate::vk::SurfaceCapabilities2EXT<'_>> {
+        physical_device: vk::PhysicalDevice,
+        surface: vk::SurfaceKHR,
+    ) -> VkResult<vk::SurfaceCapabilities2EXT<'_>> {
         let mut surface_capabilities = core::mem::MaybeUninit::uninit();
         (self
             .fp
@@ -87,32 +89,32 @@ impl Instance {
             .assume_init_on_success(surface_capabilities)
     }
 }
-pub const SPEC_VERSION: u32 = 1;
-pub const NAME: &core::ffi::CStr = c"VK_EXT_display_surface_counter";
 pub(crate) mod items {
+    use core::marker::PhantomData;
+    use crate::vk;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct SurfaceCapabilities2EXT<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
         pub min_image_count: u32,
         pub max_image_count: u32,
-        pub current_extent: crate::vk::Extent2D,
-        pub min_image_extent: crate::vk::Extent2D,
-        pub max_image_extent: crate::vk::Extent2D,
+        pub current_extent: vk::Extent2D,
+        pub min_image_extent: vk::Extent2D,
+        pub max_image_extent: vk::Extent2D,
         pub max_image_array_layers: u32,
-        pub supported_transforms: crate::vk::SurfaceTransformFlagsKHR,
-        pub current_transform: crate::vk::SurfaceTransformFlagBitsKHR,
-        pub supported_composite_alpha: crate::vk::CompositeAlphaFlagsKHR,
-        pub supported_usage_flags: crate::vk::ImageUsageFlags,
-        pub supported_surface_counters: crate::vk::SurfaceCounterFlagsEXT,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub supported_transforms: vk::SurfaceTransformFlagsKHR,
+        pub current_transform: vk::SurfaceTransformFlagBitsKHR,
+        pub supported_composite_alpha: vk::CompositeAlphaFlagsKHR,
+        pub supported_usage_flags: vk::ImageUsageFlags,
+        pub supported_surface_counters: vk::SurfaceCounterFlagsEXT,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for SurfaceCapabilities2EXT<'_> {}
     unsafe impl Sync for SurfaceCapabilities2EXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for SurfaceCapabilities2EXT<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::SURFACE_CAPABILITIES_2_EXT;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::SURFACE_CAPABILITIES_2_EXT;
     }
     impl<'a> Default for SurfaceCapabilities2EXT<'a> {
         fn default() -> Self {
@@ -130,7 +132,7 @@ pub(crate) mod items {
                 supported_composite_alpha: Default::default(),
                 supported_usage_flags: Default::default(),
                 supported_surface_counters: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
@@ -143,21 +145,15 @@ pub(crate) mod items {
             self.max_image_count = max_image_count;
             self
         }
-        pub fn current_extent(mut self, current_extent: crate::vk::Extent2D) -> Self {
+        pub fn current_extent(mut self, current_extent: vk::Extent2D) -> Self {
             self.current_extent = current_extent;
             self
         }
-        pub fn min_image_extent(
-            mut self,
-            min_image_extent: crate::vk::Extent2D,
-        ) -> Self {
+        pub fn min_image_extent(mut self, min_image_extent: vk::Extent2D) -> Self {
             self.min_image_extent = min_image_extent;
             self
         }
-        pub fn max_image_extent(
-            mut self,
-            max_image_extent: crate::vk::Extent2D,
-        ) -> Self {
+        pub fn max_image_extent(mut self, max_image_extent: vk::Extent2D) -> Self {
             self.max_image_extent = max_image_extent;
             self
         }
@@ -167,35 +163,35 @@ pub(crate) mod items {
         }
         pub fn supported_transforms(
             mut self,
-            supported_transforms: crate::vk::SurfaceTransformFlagsKHR,
+            supported_transforms: vk::SurfaceTransformFlagsKHR,
         ) -> Self {
             self.supported_transforms = supported_transforms;
             self
         }
         pub fn current_transform(
             mut self,
-            current_transform: crate::vk::SurfaceTransformFlagBitsKHR,
+            current_transform: vk::SurfaceTransformFlagBitsKHR,
         ) -> Self {
             self.current_transform = current_transform;
             self
         }
         pub fn supported_composite_alpha(
             mut self,
-            supported_composite_alpha: crate::vk::CompositeAlphaFlagsKHR,
+            supported_composite_alpha: vk::CompositeAlphaFlagsKHR,
         ) -> Self {
             self.supported_composite_alpha = supported_composite_alpha;
             self
         }
         pub fn supported_usage_flags(
             mut self,
-            supported_usage_flags: crate::vk::ImageUsageFlags,
+            supported_usage_flags: vk::ImageUsageFlags,
         ) -> Self {
             self.supported_usage_flags = supported_usage_flags;
             self
         }
         pub fn supported_surface_counters(
             mut self,
-            supported_surface_counters: crate::vk::SurfaceCounterFlagsEXT,
+            supported_surface_counters: vk::SurfaceCounterFlagsEXT,
         ) -> Self {
             self.supported_surface_counters = supported_surface_counters;
             self
@@ -294,9 +290,9 @@ pub(crate) mod items {
         }
     }
     pub type PFN_vkGetPhysicalDeviceSurfaceCapabilities2EXT = unsafe extern "system" fn(
-        physical_device: crate::vk::PhysicalDevice,
-        surface: crate::vk::SurfaceKHR,
-        p_surface_capabilities: *mut crate::vk::SurfaceCapabilities2EXT<'_>,
-    ) -> crate::vk::Result;
+        physical_device: vk::PhysicalDevice,
+        surface: vk::SurfaceKHR,
+        p_surface_capabilities: *mut vk::SurfaceCapabilities2EXT<'_>,
+    ) -> vk::Result;
 }
 pub use items::*;

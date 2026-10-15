@@ -2,43 +2,47 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_NV_private_data_base_handle.html) · Extension `VK_NV_private_data_base_handle`
 #![doc(alias = "VK_NV_private_data_base_handle")]
+use crate::vk;
+use core::ffi::CStr;
 ///Provided by [VK_NV_private_data_base_handle](crate::nv::private_data_base_handle)
-impl crate::vk::StructureType {
+impl vk::StructureType {
     pub const PHYSICAL_DEVICE_PRIVATE_DATA_BASE_HANDLE_FEATURES_NV: Self = Self(
         1000707000,
     );
 }
-///Provided by [VK_NV_private_data_base_handle](crate::nv::private_data_base_handle)
-impl crate::vk::PrivateDataSlotCreateFlags {
+///Provided by [Vulkan 1.3](crate::vk1_3)
+impl vk::PrivateDataSlotCreateFlags {
     pub const BASE_OBJECT_HANDLE_NV: Self = Self(
-        crate::vk::PrivateDataSlotCreateFlagBits::BASE_OBJECT_HANDLE_NV.0,
+        vk::PrivateDataSlotCreateFlagBits::BASE_OBJECT_HANDLE_NV.0,
     );
 }
-///Provided by [VK_NV_private_data_base_handle](crate::nv::private_data_base_handle)
-impl crate::vk::PrivateDataSlotCreateFlagBits {
+///Provided by [Vulkan 1.3](crate::vk1_3)
+impl vk::PrivateDataSlotCreateFlagBits {
     pub const BASE_OBJECT_HANDLE_NV: Self = Self(1 << 0);
 }
 pub const SPEC_VERSION: u32 = 1;
-pub const NAME: &core::ffi::CStr = c"VK_NV_private_data_base_handle";
+pub const NAME: &CStr = c"VK_NV_private_data_base_handle";
 pub(crate) mod items {
+    use core::marker::PhantomData;
+    use crate::vk;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct PhysicalDevicePrivateDataBaseHandleFeaturesNV<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
-        pub private_data_base_handle: crate::vk::Bool32,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub private_data_base_handle: vk::Bool32,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for PhysicalDevicePrivateDataBaseHandleFeaturesNV<'_> {}
     unsafe impl Sync for PhysicalDevicePrivateDataBaseHandleFeaturesNV<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDevicePrivateDataBaseHandleFeaturesNV<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_PRIVATE_DATA_BASE_HANDLE_FEATURES_NV;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PHYSICAL_DEVICE_PRIVATE_DATA_BASE_HANDLE_FEATURES_NV;
     }
-    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+    unsafe impl<'a> crate::Extends<vk::PhysicalDeviceFeatures2<'_>>
     for PhysicalDevicePrivateDataBaseHandleFeaturesNV<'a> {}
-    unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+    unsafe impl<'a> crate::Extends<vk::DeviceCreateInfo<'_>>
     for PhysicalDevicePrivateDataBaseHandleFeaturesNV<'a> {}
     impl<'a> Default for PhysicalDevicePrivateDataBaseHandleFeaturesNV<'a> {
         fn default() -> Self {
@@ -46,7 +50,7 @@ pub(crate) mod items {
                 s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
                 p_next: Default::default(),
                 private_data_base_handle: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }

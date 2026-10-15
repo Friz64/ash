@@ -2,12 +2,15 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_NV_shading_rate_image.html) · Extension `VK_NV_shading_rate_image`
 #![doc(alias = "VK_NV_shading_rate_image")]
+use crate::vk;
+use core::ffi::CStr;
+use core::ffi::c_void;
 ///Provided by [VK_NV_shading_rate_image](crate::nv::shading_rate_image)
-impl crate::vk::ImageLayout {
+impl vk::ImageLayout {
     pub const SHADING_RATE_OPTIMAL_NV: Self = Self::FRAGMENT_SHADING_RATE_ATTACHMENT_OPTIMAL_KHR;
 }
 ///Provided by [VK_NV_shading_rate_image](crate::nv::shading_rate_image)
-impl crate::vk::StructureType {
+impl vk::StructureType {
     pub const PIPELINE_VIEWPORT_SHADING_RATE_IMAGE_STATE_CREATE_INFO_NV: Self = Self(
         1000164000,
     );
@@ -18,7 +21,7 @@ impl crate::vk::StructureType {
     );
 }
 ///Provided by [VK_NV_shading_rate_image](crate::nv::shading_rate_image)
-impl crate::vk::DynamicState {
+impl vk::DynamicState {
     pub const VIEWPORT_SHADING_RATE_PALETTE_NV: Self = Self(1000164004);
     pub const VIEWPORT_COARSE_SAMPLE_ORDER_NV: Self = Self(1000164006);
 }
@@ -44,59 +47,57 @@ impl CoarseSampleOrderTypeNV {
     pub const PIXEL_MAJOR: Self = Self(2);
     pub const SAMPLE_MAJOR: Self = Self(3);
 }
-///Provided by [VK_NV_shading_rate_image](crate::nv::shading_rate_image)
-impl crate::vk::AccessFlags {
+///Provided by [Vulkan 1.0](crate::vk1_0)
+impl vk::AccessFlags {
     pub const SHADING_RATE_IMAGE_READ_NV: Self = Self(
-        crate::vk::AccessFlagBits::SHADING_RATE_IMAGE_READ_NV.0,
+        vk::AccessFlagBits::SHADING_RATE_IMAGE_READ_NV.0,
     );
 }
-///Provided by [VK_NV_shading_rate_image](crate::nv::shading_rate_image)
-impl crate::vk::AccessFlagBits {
+///Provided by [Vulkan 1.0](crate::vk1_0)
+impl vk::AccessFlagBits {
     pub const SHADING_RATE_IMAGE_READ_NV: Self = Self::FRAGMENT_SHADING_RATE_ATTACHMENT_READ_KHR;
 }
-///Provided by [VK_NV_shading_rate_image](crate::nv::shading_rate_image)
-impl crate::vk::ImageUsageFlags {
+///Provided by [Vulkan 1.0](crate::vk1_0)
+impl vk::ImageUsageFlags {
     pub const SHADING_RATE_IMAGE_NV: Self = Self(
-        crate::vk::ImageUsageFlagBits::SHADING_RATE_IMAGE_NV.0,
+        vk::ImageUsageFlagBits::SHADING_RATE_IMAGE_NV.0,
     );
 }
-///Provided by [VK_NV_shading_rate_image](crate::nv::shading_rate_image)
-impl crate::vk::ImageUsageFlagBits {
+///Provided by [Vulkan 1.0](crate::vk1_0)
+impl vk::ImageUsageFlagBits {
     pub const SHADING_RATE_IMAGE_NV: Self = Self::FRAGMENT_SHADING_RATE_ATTACHMENT_KHR;
 }
-///Provided by [VK_NV_shading_rate_image](crate::nv::shading_rate_image)
-impl crate::vk::PipelineStageFlags {
+///Provided by [Vulkan 1.0](crate::vk1_0)
+impl vk::PipelineStageFlags {
     pub const SHADING_RATE_IMAGE_NV: Self = Self(
-        crate::vk::PipelineStageFlagBits::SHADING_RATE_IMAGE_NV.0,
+        vk::PipelineStageFlagBits::SHADING_RATE_IMAGE_NV.0,
     );
 }
-///Provided by [VK_NV_shading_rate_image](crate::nv::shading_rate_image)
-impl crate::vk::PipelineStageFlagBits {
+///Provided by [Vulkan 1.0](crate::vk1_0)
+impl vk::PipelineStageFlagBits {
     pub const SHADING_RATE_IMAGE_NV: Self = Self::FRAGMENT_SHADING_RATE_ATTACHMENT_KHR;
 }
+pub const SPEC_VERSION: u32 = 3;
+pub const NAME: &CStr = c"VK_NV_shading_rate_image";
 #[derive(Clone)]
 pub struct DeviceFn {
-    pub cmd_bind_shading_rate_image: crate::vk::PFN_vkCmdBindShadingRateImageNV,
-    pub cmd_set_viewport_shading_rate_palette: crate::vk::PFN_vkCmdSetViewportShadingRatePaletteNV,
-    pub cmd_set_coarse_sample_order: crate::vk::PFN_vkCmdSetCoarseSampleOrderNV,
+    pub cmd_bind_shading_rate_image: vk::PFN_vkCmdBindShadingRateImageNV,
+    pub cmd_set_viewport_shading_rate_palette: vk::PFN_vkCmdSetViewportShadingRatePaletteNV,
+    pub cmd_set_coarse_sample_order: vk::PFN_vkCmdSetCoarseSampleOrderNV,
 }
 unsafe impl Send for DeviceFn {}
 unsafe impl Sync for DeviceFn {}
 impl DeviceFn {
-    pub fn load<F: FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void>(
-        mut f: F,
-    ) -> Self {
+    pub fn load<F: FnMut(&CStr) -> *const c_void>(mut f: F) -> Self {
         Self::load_erased(&mut f)
     }
-    fn load_erased(
-        _f: &mut dyn FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void,
-    ) -> Self {
+    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const c_void) -> Self {
         Self {
             cmd_bind_shading_rate_image: unsafe {
                 unsafe extern "system" fn cmd_bind_shading_rate_image(
-                    _: crate::vk::CommandBuffer,
-                    _: crate::vk::ImageView,
-                    _: crate::vk::ImageLayout,
+                    _: vk::CommandBuffer,
+                    _: vk::ImageView,
+                    _: vk::ImageLayout,
                 ) {
                     panic!("unable to load vkCmdBindShadingRateImageNV")
                 }
@@ -109,10 +110,10 @@ impl DeviceFn {
             },
             cmd_set_viewport_shading_rate_palette: unsafe {
                 unsafe extern "system" fn cmd_set_viewport_shading_rate_palette(
-                    _: crate::vk::CommandBuffer,
+                    _: vk::CommandBuffer,
                     _: u32,
                     _: u32,
-                    _: *const crate::vk::ShadingRatePaletteNV<'_>,
+                    _: *const vk::ShadingRatePaletteNV<'_>,
                 ) {
                     panic!("unable to load vkCmdSetViewportShadingRatePaletteNV")
                 }
@@ -125,10 +126,10 @@ impl DeviceFn {
             },
             cmd_set_coarse_sample_order: unsafe {
                 unsafe extern "system" fn cmd_set_coarse_sample_order(
-                    _: crate::vk::CommandBuffer,
-                    _: crate::vk::CoarseSampleOrderTypeNV,
+                    _: vk::CommandBuffer,
+                    _: vk::CoarseSampleOrderTypeNV,
                     _: u32,
-                    _: *const crate::vk::CoarseSampleOrderCustomNV<'_>,
+                    _: *const vk::CoarseSampleOrderCustomNV<'_>,
                 ) {
                     panic!("unable to load vkCmdSetCoarseSampleOrderNV")
                 }
@@ -167,9 +168,9 @@ impl Device {
     #[inline]
     pub unsafe fn cmd_bind_shading_rate_image(
         &self,
-        command_buffer: crate::vk::CommandBuffer,
-        image_view: crate::vk::ImageView,
-        image_layout: crate::vk::ImageLayout,
+        command_buffer: vk::CommandBuffer,
+        image_view: vk::ImageView,
+        image_layout: vk::ImageLayout,
     ) {
         (self.fp.cmd_bind_shading_rate_image)(command_buffer, image_view, image_layout)
     }
@@ -177,9 +178,9 @@ impl Device {
     #[inline]
     pub unsafe fn cmd_set_viewport_shading_rate_palette(
         &self,
-        command_buffer: crate::vk::CommandBuffer,
+        command_buffer: vk::CommandBuffer,
         first_viewport: u32,
-        shading_rate_palettes: &[crate::vk::ShadingRatePaletteNV<'_>],
+        shading_rate_palettes: &[vk::ShadingRatePaletteNV<'_>],
     ) {
         (self
             .fp
@@ -194,9 +195,9 @@ impl Device {
     #[inline]
     pub unsafe fn cmd_set_coarse_sample_order(
         &self,
-        command_buffer: crate::vk::CommandBuffer,
-        sample_order_type: crate::vk::CoarseSampleOrderTypeNV,
-        custom_sample_orders: &[crate::vk::CoarseSampleOrderCustomNV<'_>],
+        command_buffer: vk::CommandBuffer,
+        sample_order_type: vk::CoarseSampleOrderTypeNV,
+        custom_sample_orders: &[vk::CoarseSampleOrderCustomNV<'_>],
     ) {
         (self
             .fp
@@ -208,23 +209,23 @@ impl Device {
         )
     }
 }
-pub const SPEC_VERSION: u32 = 3;
-pub const NAME: &core::ffi::CStr = c"VK_NV_shading_rate_image";
 pub(crate) mod items {
+    use core::marker::PhantomData;
+    use crate::vk;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy, Default)]
     pub struct ShadingRatePaletteNV<'a> {
         pub shading_rate_palette_entry_count: u32,
-        pub p_shading_rate_palette_entries: *const crate::vk::ShadingRatePaletteEntryNV,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub p_shading_rate_palette_entries: *const vk::ShadingRatePaletteEntryNV,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for ShadingRatePaletteNV<'_> {}
     unsafe impl Sync for ShadingRatePaletteNV<'_> {}
     impl<'a> ShadingRatePaletteNV<'a> {
         pub fn shading_rate_palette_entries(
             mut self,
-            shading_rate_palette_entries: &'a [crate::vk::ShadingRatePaletteEntryNV],
+            shading_rate_palette_entries: &'a [vk::ShadingRatePaletteEntryNV],
         ) -> Self {
             self.shading_rate_palette_entry_count = shading_rate_palette_entries.len()
                 as _;
@@ -236,20 +237,20 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct PipelineViewportShadingRateImageStateCreateInfoNV<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *const core::ffi::c_void,
-        pub shading_rate_image_enable: crate::vk::Bool32,
+        pub shading_rate_image_enable: vk::Bool32,
         pub viewport_count: u32,
-        pub p_shading_rate_palettes: *const crate::vk::ShadingRatePaletteNV<'a>,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub p_shading_rate_palettes: *const vk::ShadingRatePaletteNV<'a>,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for PipelineViewportShadingRateImageStateCreateInfoNV<'_> {}
     unsafe impl Sync for PipelineViewportShadingRateImageStateCreateInfoNV<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PipelineViewportShadingRateImageStateCreateInfoNV<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PIPELINE_VIEWPORT_SHADING_RATE_IMAGE_STATE_CREATE_INFO_NV;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PIPELINE_VIEWPORT_SHADING_RATE_IMAGE_STATE_CREATE_INFO_NV;
     }
-    unsafe impl<'a> crate::Extends<crate::vk::PipelineViewportStateCreateInfo<'_>>
+    unsafe impl<'a> crate::Extends<vk::PipelineViewportStateCreateInfo<'_>>
     for PipelineViewportShadingRateImageStateCreateInfoNV<'a> {}
     impl<'a> Default for PipelineViewportShadingRateImageStateCreateInfoNV<'a> {
         fn default() -> Self {
@@ -259,7 +260,7 @@ pub(crate) mod items {
                 shading_rate_image_enable: Default::default(),
                 viewport_count: Default::default(),
                 p_shading_rate_palettes: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
@@ -273,7 +274,7 @@ pub(crate) mod items {
         }
         pub fn shading_rate_palettes(
             mut self,
-            shading_rate_palettes: &'a [crate::vk::ShadingRatePaletteNV<'a>],
+            shading_rate_palettes: &'a [vk::ShadingRatePaletteNV<'a>],
         ) -> Self {
             self.viewport_count = shading_rate_palettes.len() as _;
             self.p_shading_rate_palettes = shading_rate_palettes.as_ptr();
@@ -284,21 +285,21 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceShadingRateImageFeaturesNV<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
-        pub shading_rate_image: crate::vk::Bool32,
-        pub shading_rate_coarse_sample_order: crate::vk::Bool32,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub shading_rate_image: vk::Bool32,
+        pub shading_rate_coarse_sample_order: vk::Bool32,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for PhysicalDeviceShadingRateImageFeaturesNV<'_> {}
     unsafe impl Sync for PhysicalDeviceShadingRateImageFeaturesNV<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceShadingRateImageFeaturesNV<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_SHADING_RATE_IMAGE_FEATURES_NV;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PHYSICAL_DEVICE_SHADING_RATE_IMAGE_FEATURES_NV;
     }
-    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+    unsafe impl<'a> crate::Extends<vk::PhysicalDeviceFeatures2<'_>>
     for PhysicalDeviceShadingRateImageFeaturesNV<'a> {}
-    unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+    unsafe impl<'a> crate::Extends<vk::DeviceCreateInfo<'_>>
     for PhysicalDeviceShadingRateImageFeaturesNV<'a> {}
     impl<'a> Default for PhysicalDeviceShadingRateImageFeaturesNV<'a> {
         fn default() -> Self {
@@ -307,7 +308,7 @@ pub(crate) mod items {
                 p_next: Default::default(),
                 shading_rate_image: Default::default(),
                 shading_rate_coarse_sample_order: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
@@ -329,20 +330,20 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceShadingRateImagePropertiesNV<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
-        pub shading_rate_texel_size: crate::vk::Extent2D,
+        pub shading_rate_texel_size: vk::Extent2D,
         pub shading_rate_palette_size: u32,
         pub shading_rate_max_coarse_samples: u32,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for PhysicalDeviceShadingRateImagePropertiesNV<'_> {}
     unsafe impl Sync for PhysicalDeviceShadingRateImagePropertiesNV<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceShadingRateImagePropertiesNV<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_SHADING_RATE_IMAGE_PROPERTIES_NV;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PHYSICAL_DEVICE_SHADING_RATE_IMAGE_PROPERTIES_NV;
     }
-    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceProperties2<'_>>
+    unsafe impl<'a> crate::Extends<vk::PhysicalDeviceProperties2<'_>>
     for PhysicalDeviceShadingRateImagePropertiesNV<'a> {}
     impl<'a> Default for PhysicalDeviceShadingRateImagePropertiesNV<'a> {
         fn default() -> Self {
@@ -352,14 +353,14 @@ pub(crate) mod items {
                 shading_rate_texel_size: Default::default(),
                 shading_rate_palette_size: Default::default(),
                 shading_rate_max_coarse_samples: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
     impl<'a> PhysicalDeviceShadingRateImagePropertiesNV<'a> {
         pub fn shading_rate_texel_size(
             mut self,
-            shading_rate_texel_size: crate::vk::Extent2D,
+            shading_rate_texel_size: vk::Extent2D,
         ) -> Self {
             self.shading_rate_texel_size = shading_rate_texel_size;
             self
@@ -407,18 +408,18 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy, Default)]
     pub struct CoarseSampleOrderCustomNV<'a> {
-        pub shading_rate: crate::vk::ShadingRatePaletteEntryNV,
+        pub shading_rate: vk::ShadingRatePaletteEntryNV,
         pub sample_count: u32,
         pub sample_location_count: u32,
-        pub p_sample_locations: *const crate::vk::CoarseSampleLocationNV,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub p_sample_locations: *const vk::CoarseSampleLocationNV,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for CoarseSampleOrderCustomNV<'_> {}
     unsafe impl Sync for CoarseSampleOrderCustomNV<'_> {}
     impl<'a> CoarseSampleOrderCustomNV<'a> {
         pub fn shading_rate(
             mut self,
-            shading_rate: crate::vk::ShadingRatePaletteEntryNV,
+            shading_rate: vk::ShadingRatePaletteEntryNV,
         ) -> Self {
             self.shading_rate = shading_rate;
             self
@@ -429,7 +430,7 @@ pub(crate) mod items {
         }
         pub fn sample_locations(
             mut self,
-            sample_locations: &'a [crate::vk::CoarseSampleLocationNV],
+            sample_locations: &'a [vk::CoarseSampleLocationNV],
         ) -> Self {
             self.sample_location_count = sample_locations.len() as _;
             self.p_sample_locations = sample_locations.as_ptr();
@@ -440,20 +441,20 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct PipelineViewportCoarseSampleOrderStateCreateInfoNV<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *const core::ffi::c_void,
-        pub sample_order_type: crate::vk::CoarseSampleOrderTypeNV,
+        pub sample_order_type: vk::CoarseSampleOrderTypeNV,
         pub custom_sample_order_count: u32,
-        pub p_custom_sample_orders: *const crate::vk::CoarseSampleOrderCustomNV<'a>,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub p_custom_sample_orders: *const vk::CoarseSampleOrderCustomNV<'a>,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for PipelineViewportCoarseSampleOrderStateCreateInfoNV<'_> {}
     unsafe impl Sync for PipelineViewportCoarseSampleOrderStateCreateInfoNV<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PipelineViewportCoarseSampleOrderStateCreateInfoNV<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PIPELINE_VIEWPORT_COARSE_SAMPLE_ORDER_STATE_CREATE_INFO_NV;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PIPELINE_VIEWPORT_COARSE_SAMPLE_ORDER_STATE_CREATE_INFO_NV;
     }
-    unsafe impl<'a> crate::Extends<crate::vk::PipelineViewportStateCreateInfo<'_>>
+    unsafe impl<'a> crate::Extends<vk::PipelineViewportStateCreateInfo<'_>>
     for PipelineViewportCoarseSampleOrderStateCreateInfoNV<'a> {}
     impl<'a> Default for PipelineViewportCoarseSampleOrderStateCreateInfoNV<'a> {
         fn default() -> Self {
@@ -463,21 +464,21 @@ pub(crate) mod items {
                 sample_order_type: Default::default(),
                 custom_sample_order_count: Default::default(),
                 p_custom_sample_orders: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
     impl<'a> PipelineViewportCoarseSampleOrderStateCreateInfoNV<'a> {
         pub fn sample_order_type(
             mut self,
-            sample_order_type: crate::vk::CoarseSampleOrderTypeNV,
+            sample_order_type: vk::CoarseSampleOrderTypeNV,
         ) -> Self {
             self.sample_order_type = sample_order_type;
             self
         }
         pub fn custom_sample_orders(
             mut self,
-            custom_sample_orders: &'a [crate::vk::CoarseSampleOrderCustomNV<'a>],
+            custom_sample_orders: &'a [vk::CoarseSampleOrderCustomNV<'a>],
         ) -> Self {
             self.custom_sample_order_count = custom_sample_orders.len() as _;
             self.p_custom_sample_orders = custom_sample_orders.as_ptr();
@@ -571,21 +572,21 @@ pub(crate) mod items {
         }
     }
     pub type PFN_vkCmdBindShadingRateImageNV = unsafe extern "system" fn(
-        command_buffer: crate::vk::CommandBuffer,
-        image_view: crate::vk::ImageView,
-        image_layout: crate::vk::ImageLayout,
+        command_buffer: vk::CommandBuffer,
+        image_view: vk::ImageView,
+        image_layout: vk::ImageLayout,
     );
     pub type PFN_vkCmdSetViewportShadingRatePaletteNV = unsafe extern "system" fn(
-        command_buffer: crate::vk::CommandBuffer,
+        command_buffer: vk::CommandBuffer,
         first_viewport: u32,
         viewport_count: u32,
-        p_shading_rate_palettes: *const crate::vk::ShadingRatePaletteNV<'_>,
+        p_shading_rate_palettes: *const vk::ShadingRatePaletteNV<'_>,
     );
     pub type PFN_vkCmdSetCoarseSampleOrderNV = unsafe extern "system" fn(
-        command_buffer: crate::vk::CommandBuffer,
-        sample_order_type: crate::vk::CoarseSampleOrderTypeNV,
+        command_buffer: vk::CommandBuffer,
+        sample_order_type: vk::CoarseSampleOrderTypeNV,
         custom_sample_order_count: u32,
-        p_custom_sample_orders: *const crate::vk::CoarseSampleOrderCustomNV<'_>,
+        p_custom_sample_orders: *const vk::CoarseSampleOrderCustomNV<'_>,
     );
 }
 pub use items::*;

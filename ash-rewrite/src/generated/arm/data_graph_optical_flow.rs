@@ -2,8 +2,12 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_ARM_data_graph_optical_flow.html) · Extension `VK_ARM_data_graph_optical_flow`
 #![doc(alias = "VK_ARM_data_graph_optical_flow")]
+use crate::vk;
+use core::ffi::CStr;
+use crate::VkResult;
+use core::ffi::c_void;
 ///Provided by [VK_ARM_data_graph_optical_flow](crate::arm::data_graph_optical_flow)
-impl crate::vk::StructureType {
+impl vk::StructureType {
     pub const PHYSICAL_DEVICE_DATA_GRAPH_OPTICAL_FLOW_FEATURES_ARM: Self = Self(
         1000631000,
     );
@@ -25,11 +29,11 @@ impl crate::vk::StructureType {
     pub const DATA_GRAPH_PIPELINE_SINGLE_NODE_CONNECTION_ARM: Self = Self(1000631008);
 }
 ///Provided by [VK_ARM_data_graph_optical_flow](crate::arm::data_graph_optical_flow)
-impl crate::vk::DataGraphPipelineSessionBindPointARM {
+impl vk::DataGraphPipelineSessionBindPointARM {
     pub const OPTICAL_FLOW_CACHE: Self = Self(1000631001);
 }
 ///Provided by [VK_ARM_data_graph_optical_flow](crate::arm::data_graph_optical_flow)
-impl crate::vk::PhysicalDeviceDataGraphOperationTypeARM {
+impl vk::PhysicalDeviceDataGraphOperationTypeARM {
     pub const OPTICAL_FLOW: Self = Self(1000631000);
 }
 ///Provided by [VK_ARM_data_graph_optical_flow](crate::arm::data_graph_optical_flow)
@@ -51,32 +55,32 @@ impl DataGraphPipelineNodeConnectionTypeARM {
 impl DataGraphPipelineNodeTypeARM {
     pub const OPTICAL_FLOW: Self = Self(1000631000);
 }
-///Provided by [VK_ARM_data_graph_optical_flow](crate::arm::data_graph_optical_flow)
-impl crate::vk::FormatFeatureFlags2 {
+///Provided by [Vulkan 1.3](crate::vk1_3)
+impl vk::FormatFeatureFlags2 {
     pub const DATA_GRAPH_OPTICAL_FLOW_IMAGE_ARM: Self = Self(
-        crate::vk::FormatFeatureFlagBits2::DATA_GRAPH_OPTICAL_FLOW_IMAGE_ARM.0,
+        vk::FormatFeatureFlagBits2::DATA_GRAPH_OPTICAL_FLOW_IMAGE_ARM.0,
     );
     pub const DATA_GRAPH_OPTICAL_FLOW_VECTOR_ARM: Self = Self(
-        crate::vk::FormatFeatureFlagBits2::DATA_GRAPH_OPTICAL_FLOW_VECTOR_ARM.0,
+        vk::FormatFeatureFlagBits2::DATA_GRAPH_OPTICAL_FLOW_VECTOR_ARM.0,
     );
     pub const DATA_GRAPH_OPTICAL_FLOW_COST_ARM: Self = Self(
-        crate::vk::FormatFeatureFlagBits2::DATA_GRAPH_OPTICAL_FLOW_COST_ARM.0,
+        vk::FormatFeatureFlagBits2::DATA_GRAPH_OPTICAL_FLOW_COST_ARM.0,
     );
 }
-///Provided by [VK_ARM_data_graph_optical_flow](crate::arm::data_graph_optical_flow)
-impl crate::vk::FormatFeatureFlagBits2 {
+///Provided by [Vulkan 1.3](crate::vk1_3)
+impl vk::FormatFeatureFlagBits2 {
     pub const DATA_GRAPH_OPTICAL_FLOW_IMAGE_ARM: Self = Self(1 << 56);
     pub const DATA_GRAPH_OPTICAL_FLOW_VECTOR_ARM: Self = Self(1 << 57);
     pub const DATA_GRAPH_OPTICAL_FLOW_COST_ARM: Self = Self(1 << 58);
 }
-///Provided by [VK_ARM_data_graph_optical_flow](crate::arm::data_graph_optical_flow)
-impl crate::vk::DataGraphPipelineSessionCreateFlagsARM {
+///Provided by [VK_ARM_data_graph](crate::arm::data_graph)
+impl vk::DataGraphPipelineSessionCreateFlagsARM {
     pub const OPTICAL_FLOW_CACHE: Self = Self(
-        crate::vk::DataGraphPipelineSessionCreateFlagBitsARM::OPTICAL_FLOW_CACHE.0,
+        vk::DataGraphPipelineSessionCreateFlagBitsARM::OPTICAL_FLOW_CACHE.0,
     );
 }
-///Provided by [VK_ARM_data_graph_optical_flow](crate::arm::data_graph_optical_flow)
-impl crate::vk::DataGraphPipelineSessionCreateFlagBitsARM {
+///Provided by [VK_ARM_data_graph](crate::arm::data_graph)
+impl vk::DataGraphPipelineSessionCreateFlagBitsARM {
     pub const OPTICAL_FLOW_CACHE: Self = Self(1 << 1);
 }
 ///Provided by [VK_ARM_data_graph_optical_flow](crate::arm::data_graph_optical_flow)
@@ -155,30 +159,28 @@ impl DataGraphOpticalFlowExecuteFlagBitsARM {
     pub const INPUT_IS_PREVIOUS_REFERENCE: Self = Self(1 << 3);
     pub const REFERENCE_IS_PREVIOUS_INPUT: Self = Self(1 << 4);
 }
+pub const SPEC_VERSION: u32 = 1;
+pub const NAME: &CStr = c"VK_ARM_data_graph_optical_flow";
 #[derive(Clone)]
 pub struct InstanceFn {
-    pub get_physical_device_queue_family_data_graph_engine_operation_properties: crate::vk::PFN_vkGetPhysicalDeviceQueueFamilyDataGraphEngineOperationPropertiesARM,
-    pub get_physical_device_queue_family_data_graph_optical_flow_image_formats: crate::vk::PFN_vkGetPhysicalDeviceQueueFamilyDataGraphOpticalFlowImageFormatsARM,
+    pub get_physical_device_queue_family_data_graph_engine_operation_properties: vk::PFN_vkGetPhysicalDeviceQueueFamilyDataGraphEngineOperationPropertiesARM,
+    pub get_physical_device_queue_family_data_graph_optical_flow_image_formats: vk::PFN_vkGetPhysicalDeviceQueueFamilyDataGraphOpticalFlowImageFormatsARM,
 }
 unsafe impl Send for InstanceFn {}
 unsafe impl Sync for InstanceFn {}
 impl InstanceFn {
-    pub fn load<F: FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void>(
-        mut f: F,
-    ) -> Self {
+    pub fn load<F: FnMut(&CStr) -> *const c_void>(mut f: F) -> Self {
         Self::load_erased(&mut f)
     }
-    fn load_erased(
-        _f: &mut dyn FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void,
-    ) -> Self {
+    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const c_void) -> Self {
         Self {
             get_physical_device_queue_family_data_graph_engine_operation_properties: unsafe {
                 unsafe extern "system" fn get_physical_device_queue_family_data_graph_engine_operation_properties(
-                    _: crate::vk::PhysicalDevice,
+                    _: vk::PhysicalDevice,
                     _: u32,
-                    _: *const crate::vk::QueueFamilyDataGraphPropertiesARM<'_>,
-                    _: *mut crate::vk::BaseOutStructure<'_>,
-                ) -> crate::vk::Result {
+                    _: *const vk::QueueFamilyDataGraphPropertiesARM<'_>,
+                    _: *mut vk::BaseOutStructure<'_>,
+                ) -> vk::Result {
                     panic!(
                         "unable to load vkGetPhysicalDeviceQueueFamilyDataGraphEngineOperationPropertiesARM"
                     )
@@ -194,13 +196,13 @@ impl InstanceFn {
             },
             get_physical_device_queue_family_data_graph_optical_flow_image_formats: unsafe {
                 unsafe extern "system" fn get_physical_device_queue_family_data_graph_optical_flow_image_formats(
-                    _: crate::vk::PhysicalDevice,
+                    _: vk::PhysicalDevice,
                     _: u32,
-                    _: *const crate::vk::QueueFamilyDataGraphPropertiesARM<'_>,
-                    _: *const crate::vk::DataGraphOpticalFlowImageFormatInfoARM<'_>,
+                    _: *const vk::QueueFamilyDataGraphPropertiesARM<'_>,
+                    _: *const vk::DataGraphOpticalFlowImageFormatInfoARM<'_>,
                     _: *mut u32,
-                    _: *mut crate::vk::DataGraphOpticalFlowImageFormatPropertiesARM<'_>,
-                ) -> crate::vk::Result {
+                    _: *mut vk::DataGraphOpticalFlowImageFormatPropertiesARM<'_>,
+                ) -> vk::Result {
                     panic!(
                         "unable to load vkGetPhysicalDeviceQueueFamilyDataGraphOpticalFlowImageFormatsARM"
                     )
@@ -242,12 +244,10 @@ impl Instance {
     #[inline]
     pub unsafe fn get_physical_device_queue_family_data_graph_engine_operation_properties(
         &self,
-        physical_device: crate::vk::PhysicalDevice,
+        physical_device: vk::PhysicalDevice,
         queue_family_index: u32,
-        queue_family_data_graph_properties: &crate::vk::QueueFamilyDataGraphPropertiesARM<
-            '_,
-        >,
-    ) -> crate::VkResult<crate::vk::BaseOutStructure<'_>> {
+        queue_family_data_graph_properties: &vk::QueueFamilyDataGraphPropertiesARM<'_>,
+    ) -> VkResult<vk::BaseOutStructure<'_>> {
         let mut properties = core::mem::MaybeUninit::uninit();
         (self
             .fp
@@ -263,15 +263,11 @@ impl Instance {
     #[inline]
     pub unsafe fn get_physical_device_queue_family_data_graph_optical_flow_image_formats_len(
         &self,
-        physical_device: crate::vk::PhysicalDevice,
+        physical_device: vk::PhysicalDevice,
         queue_family_index: u32,
-        queue_family_data_graph_properties: &crate::vk::QueueFamilyDataGraphPropertiesARM<
-            '_,
-        >,
-        optical_flow_image_format_info: &crate::vk::DataGraphOpticalFlowImageFormatInfoARM<
-            '_,
-        >,
-    ) -> crate::VkResult<usize> {
+        queue_family_data_graph_properties: &vk::QueueFamilyDataGraphPropertiesARM<'_>,
+        optical_flow_image_format_info: &vk::DataGraphOpticalFlowImageFormatInfoARM<'_>,
+    ) -> VkResult<usize> {
         let mut format_count = core::mem::MaybeUninit::uninit();
         (self
             .fp
@@ -290,15 +286,11 @@ impl Instance {
     #[inline]
     pub unsafe fn get_physical_device_queue_family_data_graph_optical_flow_image_formats(
         &self,
-        physical_device: crate::vk::PhysicalDevice,
+        physical_device: vk::PhysicalDevice,
         queue_family_index: u32,
-        queue_family_data_graph_properties: &crate::vk::QueueFamilyDataGraphPropertiesARM<
-            '_,
-        >,
-        optical_flow_image_format_info: &crate::vk::DataGraphOpticalFlowImageFormatInfoARM<
-            '_,
-        >,
-        image_format_properties: &mut [crate::vk::DataGraphOpticalFlowImageFormatPropertiesARM<
+        queue_family_data_graph_properties: &vk::QueueFamilyDataGraphPropertiesARM<'_>,
+        optical_flow_image_format_info: &vk::DataGraphOpticalFlowImageFormatInfoARM<'_>,
+        image_format_properties: &mut [vk::DataGraphOpticalFlowImageFormatPropertiesARM<
             '_,
         >],
     ) -> crate::VkResult<()> {
@@ -318,25 +310,25 @@ impl Instance {
         Ok(())
     }
 }
-pub const SPEC_VERSION: u32 = 1;
-pub const NAME: &core::ffi::CStr = c"VK_ARM_data_graph_optical_flow";
 pub(crate) mod items {
+    use core::marker::PhantomData;
+    use crate::vk;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct DataGraphPipelineResourceInfoImageLayoutARM<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *const core::ffi::c_void,
-        pub layout: crate::vk::ImageLayout,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub layout: vk::ImageLayout,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for DataGraphPipelineResourceInfoImageLayoutARM<'_> {}
     unsafe impl Sync for DataGraphPipelineResourceInfoImageLayoutARM<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for DataGraphPipelineResourceInfoImageLayoutARM<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::DATA_GRAPH_PIPELINE_RESOURCE_INFO_IMAGE_LAYOUT_ARM;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::DATA_GRAPH_PIPELINE_RESOURCE_INFO_IMAGE_LAYOUT_ARM;
     }
-    unsafe impl<'a> crate::Extends<crate::vk::DataGraphPipelineResourceInfoARM<'_>>
+    unsafe impl<'a> crate::Extends<vk::DataGraphPipelineResourceInfoARM<'_>>
     for DataGraphPipelineResourceInfoImageLayoutARM<'a> {}
     impl<'a> Default for DataGraphPipelineResourceInfoImageLayoutARM<'a> {
         fn default() -> Self {
@@ -344,12 +336,12 @@ pub(crate) mod items {
                 s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
                 p_next: Default::default(),
                 layout: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
     impl<'a> DataGraphPipelineResourceInfoImageLayoutARM<'a> {
-        pub fn layout(mut self, layout: crate::vk::ImageLayout) -> Self {
+        pub fn layout(mut self, layout: vk::ImageLayout) -> Self {
             self.layout = layout;
             self
         }
@@ -358,18 +350,18 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct DataGraphPipelineSingleNodeConnectionARM<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
         pub set: u32,
         pub binding: u32,
-        pub connection: crate::vk::DataGraphPipelineNodeConnectionTypeARM,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub connection: vk::DataGraphPipelineNodeConnectionTypeARM,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for DataGraphPipelineSingleNodeConnectionARM<'_> {}
     unsafe impl Sync for DataGraphPipelineSingleNodeConnectionARM<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for DataGraphPipelineSingleNodeConnectionARM<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::DATA_GRAPH_PIPELINE_SINGLE_NODE_CONNECTION_ARM;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::DATA_GRAPH_PIPELINE_SINGLE_NODE_CONNECTION_ARM;
     }
     impl<'a> Default for DataGraphPipelineSingleNodeConnectionARM<'a> {
         fn default() -> Self {
@@ -379,7 +371,7 @@ pub(crate) mod items {
                 set: Default::default(),
                 binding: Default::default(),
                 connection: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
@@ -394,7 +386,7 @@ pub(crate) mod items {
         }
         pub fn connection(
             mut self,
-            connection: crate::vk::DataGraphPipelineNodeConnectionTypeARM,
+            connection: vk::DataGraphPipelineNodeConnectionTypeARM,
         ) -> Self {
             self.connection = connection;
             self
@@ -404,20 +396,20 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceDataGraphOpticalFlowFeaturesARM<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
-        pub data_graph_optical_flow: crate::vk::Bool32,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub data_graph_optical_flow: vk::Bool32,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for PhysicalDeviceDataGraphOpticalFlowFeaturesARM<'_> {}
     unsafe impl Sync for PhysicalDeviceDataGraphOpticalFlowFeaturesARM<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceDataGraphOpticalFlowFeaturesARM<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_DATA_GRAPH_OPTICAL_FLOW_FEATURES_ARM;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PHYSICAL_DEVICE_DATA_GRAPH_OPTICAL_FLOW_FEATURES_ARM;
     }
-    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+    unsafe impl<'a> crate::Extends<vk::PhysicalDeviceFeatures2<'_>>
     for PhysicalDeviceDataGraphOpticalFlowFeaturesARM<'a> {}
-    unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+    unsafe impl<'a> crate::Extends<vk::DeviceCreateInfo<'_>>
     for PhysicalDeviceDataGraphOpticalFlowFeaturesARM<'a> {}
     impl<'a> Default for PhysicalDeviceDataGraphOpticalFlowFeaturesARM<'a> {
         fn default() -> Self {
@@ -425,7 +417,7 @@ pub(crate) mod items {
                 s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
                 p_next: Default::default(),
                 data_graph_optical_flow: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
@@ -439,23 +431,23 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct QueueFamilyDataGraphOpticalFlowPropertiesARM<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
-        pub supported_output_grid_sizes: crate::vk::DataGraphOpticalFlowGridSizeFlagsARM,
-        pub supported_hint_grid_sizes: crate::vk::DataGraphOpticalFlowGridSizeFlagsARM,
-        pub hint_supported: crate::vk::Bool32,
-        pub cost_supported: crate::vk::Bool32,
+        pub supported_output_grid_sizes: vk::DataGraphOpticalFlowGridSizeFlagsARM,
+        pub supported_hint_grid_sizes: vk::DataGraphOpticalFlowGridSizeFlagsARM,
+        pub hint_supported: vk::Bool32,
+        pub cost_supported: vk::Bool32,
         pub min_width: u32,
         pub min_height: u32,
         pub max_width: u32,
         pub max_height: u32,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for QueueFamilyDataGraphOpticalFlowPropertiesARM<'_> {}
     unsafe impl Sync for QueueFamilyDataGraphOpticalFlowPropertiesARM<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for QueueFamilyDataGraphOpticalFlowPropertiesARM<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::QUEUE_FAMILY_DATA_GRAPH_OPTICAL_FLOW_PROPERTIES_ARM;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::QUEUE_FAMILY_DATA_GRAPH_OPTICAL_FLOW_PROPERTIES_ARM;
     }
     impl<'a> Default for QueueFamilyDataGraphOpticalFlowPropertiesARM<'a> {
         fn default() -> Self {
@@ -470,21 +462,21 @@ pub(crate) mod items {
                 min_height: Default::default(),
                 max_width: Default::default(),
                 max_height: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
     impl<'a> QueueFamilyDataGraphOpticalFlowPropertiesARM<'a> {
         pub fn supported_output_grid_sizes(
             mut self,
-            supported_output_grid_sizes: crate::vk::DataGraphOpticalFlowGridSizeFlagsARM,
+            supported_output_grid_sizes: vk::DataGraphOpticalFlowGridSizeFlagsARM,
         ) -> Self {
             self.supported_output_grid_sizes = supported_output_grid_sizes;
             self
         }
         pub fn supported_hint_grid_sizes(
             mut self,
-            supported_hint_grid_sizes: crate::vk::DataGraphOpticalFlowGridSizeFlagsARM,
+            supported_hint_grid_sizes: vk::DataGraphOpticalFlowGridSizeFlagsARM,
         ) -> Self {
             self.supported_hint_grid_sizes = supported_hint_grid_sizes;
             self
@@ -518,20 +510,20 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct DataGraphOpticalFlowImageFormatInfoARM<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *const core::ffi::c_void,
-        pub usage: crate::vk::DataGraphOpticalFlowImageUsageFlagsARM,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub usage: vk::DataGraphOpticalFlowImageUsageFlagsARM,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for DataGraphOpticalFlowImageFormatInfoARM<'_> {}
     unsafe impl Sync for DataGraphOpticalFlowImageFormatInfoARM<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for DataGraphOpticalFlowImageFormatInfoARM<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::DATA_GRAPH_OPTICAL_FLOW_IMAGE_FORMAT_INFO_ARM;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::DATA_GRAPH_OPTICAL_FLOW_IMAGE_FORMAT_INFO_ARM;
     }
-    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceImageFormatInfo2<'_>>
+    unsafe impl<'a> crate::Extends<vk::PhysicalDeviceImageFormatInfo2<'_>>
     for DataGraphOpticalFlowImageFormatInfoARM<'a> {}
-    unsafe impl<'a> crate::Extends<crate::vk::ImageCreateInfo<'_>>
+    unsafe impl<'a> crate::Extends<vk::ImageCreateInfo<'_>>
     for DataGraphOpticalFlowImageFormatInfoARM<'a> {}
     impl<'a> Default for DataGraphOpticalFlowImageFormatInfoARM<'a> {
         fn default() -> Self {
@@ -539,14 +531,14 @@ pub(crate) mod items {
                 s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
                 p_next: Default::default(),
                 usage: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
     impl<'a> DataGraphOpticalFlowImageFormatInfoARM<'a> {
         pub fn usage(
             mut self,
-            usage: crate::vk::DataGraphOpticalFlowImageUsageFlagsARM,
+            usage: vk::DataGraphOpticalFlowImageUsageFlagsARM,
         ) -> Self {
             self.usage = usage;
             self
@@ -556,16 +548,16 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct DataGraphOpticalFlowImageFormatPropertiesARM<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
-        pub format: crate::vk::Format,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub format: vk::Format,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for DataGraphOpticalFlowImageFormatPropertiesARM<'_> {}
     unsafe impl Sync for DataGraphOpticalFlowImageFormatPropertiesARM<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for DataGraphOpticalFlowImageFormatPropertiesARM<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::DATA_GRAPH_OPTICAL_FLOW_IMAGE_FORMAT_PROPERTIES_ARM;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::DATA_GRAPH_OPTICAL_FLOW_IMAGE_FORMAT_PROPERTIES_ARM;
     }
     impl<'a> Default for DataGraphOpticalFlowImageFormatPropertiesARM<'a> {
         fn default() -> Self {
@@ -573,12 +565,12 @@ pub(crate) mod items {
                 s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
                 p_next: Default::default(),
                 format: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
     impl<'a> DataGraphOpticalFlowImageFormatPropertiesARM<'a> {
-        pub fn format(mut self, format: crate::vk::Format) -> Self {
+        pub fn format(mut self, format: vk::Format) -> Self {
             self.format = format;
             self
         }
@@ -587,22 +579,20 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct DataGraphPipelineSingleNodeCreateInfoARM<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
-        pub node_type: crate::vk::DataGraphPipelineNodeTypeARM,
+        pub node_type: vk::DataGraphPipelineNodeTypeARM,
         pub connection_count: u32,
-        pub p_connections: *const crate::vk::DataGraphPipelineSingleNodeConnectionARM<
-            'a,
-        >,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub p_connections: *const vk::DataGraphPipelineSingleNodeConnectionARM<'a>,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for DataGraphPipelineSingleNodeCreateInfoARM<'_> {}
     unsafe impl Sync for DataGraphPipelineSingleNodeCreateInfoARM<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for DataGraphPipelineSingleNodeCreateInfoARM<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::DATA_GRAPH_PIPELINE_SINGLE_NODE_CREATE_INFO_ARM;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::DATA_GRAPH_PIPELINE_SINGLE_NODE_CREATE_INFO_ARM;
     }
-    unsafe impl<'a> crate::Extends<crate::vk::DataGraphPipelineCreateInfoARM<'_>>
+    unsafe impl<'a> crate::Extends<vk::DataGraphPipelineCreateInfoARM<'_>>
     for DataGraphPipelineSingleNodeCreateInfoARM<'a> {}
     impl<'a> Default for DataGraphPipelineSingleNodeCreateInfoARM<'a> {
         fn default() -> Self {
@@ -612,21 +602,18 @@ pub(crate) mod items {
                 node_type: Default::default(),
                 connection_count: Default::default(),
                 p_connections: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
     impl<'a> DataGraphPipelineSingleNodeCreateInfoARM<'a> {
-        pub fn node_type(
-            mut self,
-            node_type: crate::vk::DataGraphPipelineNodeTypeARM,
-        ) -> Self {
+        pub fn node_type(mut self, node_type: vk::DataGraphPipelineNodeTypeARM) -> Self {
             self.node_type = node_type;
             self
         }
         pub fn connections(
             mut self,
-            connections: &'a [crate::vk::DataGraphPipelineSingleNodeConnectionARM<'a>],
+            connections: &'a [vk::DataGraphPipelineSingleNodeConnectionARM<'a>],
         ) -> Self {
             self.connection_count = connections.len() as _;
             self.p_connections = connections.as_ptr();
@@ -637,26 +624,26 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct DataGraphPipelineOpticalFlowCreateInfoARM<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
         pub width: u32,
         pub height: u32,
-        pub image_format: crate::vk::Format,
-        pub flow_vector_format: crate::vk::Format,
-        pub cost_format: crate::vk::Format,
-        pub output_grid_size: crate::vk::DataGraphOpticalFlowGridSizeFlagsARM,
-        pub hint_grid_size: crate::vk::DataGraphOpticalFlowGridSizeFlagsARM,
-        pub performance_level: crate::vk::DataGraphOpticalFlowPerformanceLevelARM,
-        pub flags: crate::vk::DataGraphOpticalFlowCreateFlagsARM,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub image_format: vk::Format,
+        pub flow_vector_format: vk::Format,
+        pub cost_format: vk::Format,
+        pub output_grid_size: vk::DataGraphOpticalFlowGridSizeFlagsARM,
+        pub hint_grid_size: vk::DataGraphOpticalFlowGridSizeFlagsARM,
+        pub performance_level: vk::DataGraphOpticalFlowPerformanceLevelARM,
+        pub flags: vk::DataGraphOpticalFlowCreateFlagsARM,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for DataGraphPipelineOpticalFlowCreateInfoARM<'_> {}
     unsafe impl Sync for DataGraphPipelineOpticalFlowCreateInfoARM<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for DataGraphPipelineOpticalFlowCreateInfoARM<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::DATA_GRAPH_PIPELINE_OPTICAL_FLOW_CREATE_INFO_ARM;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::DATA_GRAPH_PIPELINE_OPTICAL_FLOW_CREATE_INFO_ARM;
     }
-    unsafe impl<'a> crate::Extends<crate::vk::DataGraphPipelineCreateInfoARM<'_>>
+    unsafe impl<'a> crate::Extends<vk::DataGraphPipelineCreateInfoARM<'_>>
     for DataGraphPipelineOpticalFlowCreateInfoARM<'a> {}
     impl<'a> Default for DataGraphPipelineOpticalFlowCreateInfoARM<'a> {
         fn default() -> Self {
@@ -672,7 +659,7 @@ pub(crate) mod items {
                 hint_grid_size: Default::default(),
                 performance_level: Default::default(),
                 flags: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
@@ -685,46 +672,40 @@ pub(crate) mod items {
             self.height = height;
             self
         }
-        pub fn image_format(mut self, image_format: crate::vk::Format) -> Self {
+        pub fn image_format(mut self, image_format: vk::Format) -> Self {
             self.image_format = image_format;
             self
         }
-        pub fn flow_vector_format(
-            mut self,
-            flow_vector_format: crate::vk::Format,
-        ) -> Self {
+        pub fn flow_vector_format(mut self, flow_vector_format: vk::Format) -> Self {
             self.flow_vector_format = flow_vector_format;
             self
         }
-        pub fn cost_format(mut self, cost_format: crate::vk::Format) -> Self {
+        pub fn cost_format(mut self, cost_format: vk::Format) -> Self {
             self.cost_format = cost_format;
             self
         }
         pub fn output_grid_size(
             mut self,
-            output_grid_size: crate::vk::DataGraphOpticalFlowGridSizeFlagsARM,
+            output_grid_size: vk::DataGraphOpticalFlowGridSizeFlagsARM,
         ) -> Self {
             self.output_grid_size = output_grid_size;
             self
         }
         pub fn hint_grid_size(
             mut self,
-            hint_grid_size: crate::vk::DataGraphOpticalFlowGridSizeFlagsARM,
+            hint_grid_size: vk::DataGraphOpticalFlowGridSizeFlagsARM,
         ) -> Self {
             self.hint_grid_size = hint_grid_size;
             self
         }
         pub fn performance_level(
             mut self,
-            performance_level: crate::vk::DataGraphOpticalFlowPerformanceLevelARM,
+            performance_level: vk::DataGraphOpticalFlowPerformanceLevelARM,
         ) -> Self {
             self.performance_level = performance_level;
             self
         }
-        pub fn flags(
-            mut self,
-            flags: crate::vk::DataGraphOpticalFlowCreateFlagsARM,
-        ) -> Self {
+        pub fn flags(mut self, flags: vk::DataGraphOpticalFlowCreateFlagsARM) -> Self {
             self.flags = flags;
             self
         }
@@ -733,19 +714,19 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct DataGraphPipelineOpticalFlowDispatchInfoARM<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
-        pub flags: crate::vk::DataGraphOpticalFlowExecuteFlagsARM,
+        pub flags: vk::DataGraphOpticalFlowExecuteFlagsARM,
         pub mean_flow_l1_norm_hint: u32,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for DataGraphPipelineOpticalFlowDispatchInfoARM<'_> {}
     unsafe impl Sync for DataGraphPipelineOpticalFlowDispatchInfoARM<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for DataGraphPipelineOpticalFlowDispatchInfoARM<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::DATA_GRAPH_PIPELINE_OPTICAL_FLOW_DISPATCH_INFO_ARM;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::DATA_GRAPH_PIPELINE_OPTICAL_FLOW_DISPATCH_INFO_ARM;
     }
-    unsafe impl<'a> crate::Extends<crate::vk::DataGraphPipelineDispatchInfoARM<'_>>
+    unsafe impl<'a> crate::Extends<vk::DataGraphPipelineDispatchInfoARM<'_>>
     for DataGraphPipelineOpticalFlowDispatchInfoARM<'a> {}
     impl<'a> Default for DataGraphPipelineOpticalFlowDispatchInfoARM<'a> {
         fn default() -> Self {
@@ -754,15 +735,12 @@ pub(crate) mod items {
                 p_next: Default::default(),
                 flags: Default::default(),
                 mean_flow_l1_norm_hint: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
     impl<'a> DataGraphPipelineOpticalFlowDispatchInfoARM<'a> {
-        pub fn flags(
-            mut self,
-            flags: crate::vk::DataGraphOpticalFlowExecuteFlagsARM,
-        ) -> Self {
+        pub fn flags(mut self, flags: vk::DataGraphOpticalFlowExecuteFlagsARM) -> Self {
             self.flags = flags;
             self
         }
@@ -1263,18 +1241,18 @@ pub(crate) mod items {
         }
     }
     pub type PFN_vkGetPhysicalDeviceQueueFamilyDataGraphOpticalFlowImageFormatsARM = unsafe extern "system" fn(
-        physical_device: crate::vk::PhysicalDevice,
+        physical_device: vk::PhysicalDevice,
         queue_family_index: u32,
-        p_queue_family_data_graph_properties: *const crate::vk::QueueFamilyDataGraphPropertiesARM<
+        p_queue_family_data_graph_properties: *const vk::QueueFamilyDataGraphPropertiesARM<
             '_,
         >,
-        p_optical_flow_image_format_info: *const crate::vk::DataGraphOpticalFlowImageFormatInfoARM<
+        p_optical_flow_image_format_info: *const vk::DataGraphOpticalFlowImageFormatInfoARM<
             '_,
         >,
         p_format_count: *mut u32,
-        p_image_format_properties: *mut crate::vk::DataGraphOpticalFlowImageFormatPropertiesARM<
+        p_image_format_properties: *mut vk::DataGraphOpticalFlowImageFormatPropertiesARM<
             '_,
         >,
-    ) -> crate::vk::Result;
+    ) -> vk::Result;
 }
 pub use items::*;

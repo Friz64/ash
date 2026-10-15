@@ -2,8 +2,10 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_vertex_attribute_divisor.html) · Extension `VK_EXT_vertex_attribute_divisor`
 #![doc(alias = "VK_EXT_vertex_attribute_divisor")]
+use crate::vk;
+use core::ffi::CStr;
 ///Provided by [VK_EXT_vertex_attribute_divisor](crate::ext::vertex_attribute_divisor)
-impl crate::vk::StructureType {
+impl vk::StructureType {
     pub const PHYSICAL_DEVICE_VERTEX_ATTRIBUTE_DIVISOR_PROPERTIES_EXT: Self = Self(
         1000190000,
     );
@@ -11,24 +13,26 @@ impl crate::vk::StructureType {
     pub const PHYSICAL_DEVICE_VERTEX_ATTRIBUTE_DIVISOR_FEATURES_EXT: Self = Self::PHYSICAL_DEVICE_VERTEX_ATTRIBUTE_DIVISOR_FEATURES;
 }
 pub const SPEC_VERSION: u32 = 3;
-pub const NAME: &core::ffi::CStr = c"VK_EXT_vertex_attribute_divisor";
+pub const NAME: &CStr = c"VK_EXT_vertex_attribute_divisor";
 pub(crate) mod items {
+    use core::marker::PhantomData;
+    use crate::vk;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceVertexAttributeDivisorPropertiesEXT<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
         pub max_vertex_attrib_divisor: u32,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for PhysicalDeviceVertexAttributeDivisorPropertiesEXT<'_> {}
     unsafe impl Sync for PhysicalDeviceVertexAttributeDivisorPropertiesEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceVertexAttributeDivisorPropertiesEXT<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_VERTEX_ATTRIBUTE_DIVISOR_PROPERTIES_EXT;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PHYSICAL_DEVICE_VERTEX_ATTRIBUTE_DIVISOR_PROPERTIES_EXT;
     }
-    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceProperties2<'_>>
+    unsafe impl<'a> crate::Extends<vk::PhysicalDeviceProperties2<'_>>
     for PhysicalDeviceVertexAttributeDivisorPropertiesEXT<'a> {}
     impl<'a> Default for PhysicalDeviceVertexAttributeDivisorPropertiesEXT<'a> {
         fn default() -> Self {
@@ -36,7 +40,7 @@ pub(crate) mod items {
                 s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
                 p_next: Default::default(),
                 max_vertex_attrib_divisor: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
@@ -49,11 +53,11 @@ pub(crate) mod items {
             self
         }
     }
-    pub type VertexInputBindingDivisorDescriptionEXT = crate::vk::VertexInputBindingDivisorDescription;
-    pub type PipelineVertexInputDivisorStateCreateInfoEXT<'a> = crate::vk::PipelineVertexInputDivisorStateCreateInfo<
+    pub type VertexInputBindingDivisorDescriptionEXT = vk::VertexInputBindingDivisorDescription;
+    pub type PipelineVertexInputDivisorStateCreateInfoEXT<'a> = vk::PipelineVertexInputDivisorStateCreateInfo<
         'a,
     >;
-    pub type PhysicalDeviceVertexAttributeDivisorFeaturesEXT<'a> = crate::vk::PhysicalDeviceVertexAttributeDivisorFeatures<
+    pub type PhysicalDeviceVertexAttributeDivisorFeaturesEXT<'a> = vk::PhysicalDeviceVertexAttributeDivisorFeatures<
         'a,
     >;
 }

@@ -2,12 +2,16 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_NV_optical_flow.html) · Extension `VK_NV_optical_flow`
 #![doc(alias = "VK_NV_optical_flow")]
+use crate::vk;
+use core::ffi::CStr;
+use crate::VkResult;
+use core::ffi::c_void;
 ///Provided by [VK_NV_optical_flow](crate::nv::optical_flow)
-impl crate::vk::Format {
+impl vk::Format {
     pub const R16G16_SFIXED5_NV: Self = Self(1000464000);
 }
 ///Provided by [VK_NV_optical_flow](crate::nv::optical_flow)
-impl crate::vk::StructureType {
+impl vk::StructureType {
     pub const PHYSICAL_DEVICE_OPTICAL_FLOW_FEATURES_NV: Self = Self(1000464000);
     pub const PHYSICAL_DEVICE_OPTICAL_FLOW_PROPERTIES_NV: Self = Self(1000464001);
     pub const OPTICAL_FLOW_IMAGE_FORMAT_INFO_NV: Self = Self(1000464002);
@@ -17,7 +21,7 @@ impl crate::vk::StructureType {
     pub const OPTICAL_FLOW_SESSION_CREATE_PRIVATE_DATA_INFO_NV: Self = Self(1000464010);
 }
 ///Provided by [VK_NV_optical_flow](crate::nv::optical_flow)
-impl crate::vk::ObjectType {
+impl vk::ObjectType {
     pub const OPTICAL_FLOW_SESSION_NV: Self = Self(1000464000);
 }
 ///Provided by [VK_NV_optical_flow](crate::nv::optical_flow)
@@ -39,52 +43,52 @@ impl OpticalFlowSessionBindingPointNV {
     pub const BACKWARD_COST: Self = Self(7);
     pub const GLOBAL_FLOW: Self = Self(8);
 }
-///Provided by [VK_NV_optical_flow](crate::nv::optical_flow)
-impl crate::vk::QueueFlags {
-    pub const OPTICAL_FLOW_NV: Self = Self(crate::vk::QueueFlagBits::OPTICAL_FLOW_NV.0);
+///Provided by [Vulkan 1.0](crate::vk1_0)
+impl vk::QueueFlags {
+    pub const OPTICAL_FLOW_NV: Self = Self(vk::QueueFlagBits::OPTICAL_FLOW_NV.0);
 }
-///Provided by [VK_NV_optical_flow](crate::nv::optical_flow)
-impl crate::vk::QueueFlagBits {
+///Provided by [Vulkan 1.0](crate::vk1_0)
+impl vk::QueueFlagBits {
     pub const OPTICAL_FLOW_NV: Self = Self(1 << 8);
 }
-///Provided by [VK_NV_optical_flow](crate::nv::optical_flow)
-impl crate::vk::AccessFlags2 {
+///Provided by [Vulkan 1.3](crate::vk1_3)
+impl vk::AccessFlags2 {
     pub const OPTICAL_FLOW_READ_NV: Self = Self(
-        crate::vk::AccessFlagBits2::OPTICAL_FLOW_READ_NV.0,
+        vk::AccessFlagBits2::OPTICAL_FLOW_READ_NV.0,
     );
     pub const OPTICAL_FLOW_WRITE_NV: Self = Self(
-        crate::vk::AccessFlagBits2::OPTICAL_FLOW_WRITE_NV.0,
+        vk::AccessFlagBits2::OPTICAL_FLOW_WRITE_NV.0,
     );
 }
-///Provided by [VK_NV_optical_flow](crate::nv::optical_flow)
-impl crate::vk::AccessFlagBits2 {
+///Provided by [Vulkan 1.3](crate::vk1_3)
+impl vk::AccessFlagBits2 {
     pub const OPTICAL_FLOW_READ_NV: Self = Self(1 << 42);
     pub const OPTICAL_FLOW_WRITE_NV: Self = Self(1 << 43);
 }
-///Provided by [VK_NV_optical_flow](crate::nv::optical_flow)
-impl crate::vk::PipelineStageFlags2 {
+///Provided by [Vulkan 1.3](crate::vk1_3)
+impl vk::PipelineStageFlags2 {
     pub const OPTICAL_FLOW_NV: Self = Self(
-        crate::vk::PipelineStageFlagBits2::OPTICAL_FLOW_NV.0,
+        vk::PipelineStageFlagBits2::OPTICAL_FLOW_NV.0,
     );
 }
-///Provided by [VK_NV_optical_flow](crate::nv::optical_flow)
-impl crate::vk::PipelineStageFlagBits2 {
+///Provided by [Vulkan 1.3](crate::vk1_3)
+impl vk::PipelineStageFlagBits2 {
     pub const OPTICAL_FLOW_NV: Self = Self(1 << 29);
 }
-///Provided by [VK_NV_optical_flow](crate::nv::optical_flow)
-impl crate::vk::FormatFeatureFlags2 {
+///Provided by [Vulkan 1.3](crate::vk1_3)
+impl vk::FormatFeatureFlags2 {
     pub const OPTICAL_FLOW_IMAGE_NV: Self = Self(
-        crate::vk::FormatFeatureFlagBits2::OPTICAL_FLOW_IMAGE_NV.0,
+        vk::FormatFeatureFlagBits2::OPTICAL_FLOW_IMAGE_NV.0,
     );
     pub const OPTICAL_FLOW_VECTOR_NV: Self = Self(
-        crate::vk::FormatFeatureFlagBits2::OPTICAL_FLOW_VECTOR_NV.0,
+        vk::FormatFeatureFlagBits2::OPTICAL_FLOW_VECTOR_NV.0,
     );
     pub const OPTICAL_FLOW_COST_NV: Self = Self(
-        crate::vk::FormatFeatureFlagBits2::OPTICAL_FLOW_COST_NV.0,
+        vk::FormatFeatureFlagBits2::OPTICAL_FLOW_COST_NV.0,
     );
 }
-///Provided by [VK_NV_optical_flow](crate::nv::optical_flow)
-impl crate::vk::FormatFeatureFlagBits2 {
+///Provided by [Vulkan 1.3](crate::vk1_3)
+impl vk::FormatFeatureFlagBits2 {
     pub const OPTICAL_FLOW_IMAGE_NV: Self = Self(1 << 40);
     pub const OPTICAL_FLOW_VECTOR_NV: Self = Self(1 << 41);
     pub const OPTICAL_FLOW_COST_NV: Self = Self(1 << 42);
@@ -159,29 +163,27 @@ impl OpticalFlowExecuteFlagsNV {
 impl OpticalFlowExecuteFlagBitsNV {
     pub const DISABLE_TEMPORAL_HINTS: Self = Self(1 << 0);
 }
+pub const SPEC_VERSION: u32 = 1;
+pub const NAME: &CStr = c"VK_NV_optical_flow";
 #[derive(Clone)]
 pub struct InstanceFn {
-    pub get_physical_device_optical_flow_image_formats: crate::vk::PFN_vkGetPhysicalDeviceOpticalFlowImageFormatsNV,
+    pub get_physical_device_optical_flow_image_formats: vk::PFN_vkGetPhysicalDeviceOpticalFlowImageFormatsNV,
 }
 unsafe impl Send for InstanceFn {}
 unsafe impl Sync for InstanceFn {}
 impl InstanceFn {
-    pub fn load<F: FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void>(
-        mut f: F,
-    ) -> Self {
+    pub fn load<F: FnMut(&CStr) -> *const c_void>(mut f: F) -> Self {
         Self::load_erased(&mut f)
     }
-    fn load_erased(
-        _f: &mut dyn FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void,
-    ) -> Self {
+    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const c_void) -> Self {
         Self {
             get_physical_device_optical_flow_image_formats: unsafe {
                 unsafe extern "system" fn get_physical_device_optical_flow_image_formats(
-                    _: crate::vk::PhysicalDevice,
-                    _: *const crate::vk::OpticalFlowImageFormatInfoNV<'_>,
+                    _: vk::PhysicalDevice,
+                    _: *const vk::OpticalFlowImageFormatInfoNV<'_>,
                     _: *mut u32,
-                    _: *mut crate::vk::OpticalFlowImageFormatPropertiesNV<'_>,
-                ) -> crate::vk::Result {
+                    _: *mut vk::OpticalFlowImageFormatPropertiesNV<'_>,
+                ) -> vk::Result {
                     panic!("unable to load vkGetPhysicalDeviceOpticalFlowImageFormatsNV")
                 }
                 let val = _f(c"vkGetPhysicalDeviceOpticalFlowImageFormatsNV");
@@ -219,9 +221,9 @@ impl Instance {
     #[inline]
     pub unsafe fn get_physical_device_optical_flow_image_formats_len(
         &self,
-        physical_device: crate::vk::PhysicalDevice,
-        optical_flow_image_format_info: &crate::vk::OpticalFlowImageFormatInfoNV<'_>,
-    ) -> crate::VkResult<usize> {
+        physical_device: vk::PhysicalDevice,
+        optical_flow_image_format_info: &vk::OpticalFlowImageFormatInfoNV<'_>,
+    ) -> VkResult<usize> {
         let mut format_count = core::mem::MaybeUninit::uninit();
         (self
             .fp
@@ -238,9 +240,9 @@ impl Instance {
     #[inline]
     pub unsafe fn get_physical_device_optical_flow_image_formats(
         &self,
-        physical_device: crate::vk::PhysicalDevice,
-        optical_flow_image_format_info: &crate::vk::OpticalFlowImageFormatInfoNV<'_>,
-        image_format_properties: &mut [crate::vk::OpticalFlowImageFormatPropertiesNV<'_>],
+        physical_device: vk::PhysicalDevice,
+        optical_flow_image_format_info: &vk::OpticalFlowImageFormatInfoNV<'_>,
+        image_format_properties: &mut [vk::OpticalFlowImageFormatPropertiesNV<'_>],
     ) -> crate::VkResult<()> {
         let mut format_count = image_format_properties.len() as _;
         (self
@@ -258,30 +260,26 @@ impl Instance {
 }
 #[derive(Clone)]
 pub struct DeviceFn {
-    pub create_optical_flow_session: crate::vk::PFN_vkCreateOpticalFlowSessionNV,
-    pub destroy_optical_flow_session: crate::vk::PFN_vkDestroyOpticalFlowSessionNV,
-    pub bind_optical_flow_session_image: crate::vk::PFN_vkBindOpticalFlowSessionImageNV,
-    pub cmd_optical_flow_execute: crate::vk::PFN_vkCmdOpticalFlowExecuteNV,
+    pub create_optical_flow_session: vk::PFN_vkCreateOpticalFlowSessionNV,
+    pub destroy_optical_flow_session: vk::PFN_vkDestroyOpticalFlowSessionNV,
+    pub bind_optical_flow_session_image: vk::PFN_vkBindOpticalFlowSessionImageNV,
+    pub cmd_optical_flow_execute: vk::PFN_vkCmdOpticalFlowExecuteNV,
 }
 unsafe impl Send for DeviceFn {}
 unsafe impl Sync for DeviceFn {}
 impl DeviceFn {
-    pub fn load<F: FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void>(
-        mut f: F,
-    ) -> Self {
+    pub fn load<F: FnMut(&CStr) -> *const c_void>(mut f: F) -> Self {
         Self::load_erased(&mut f)
     }
-    fn load_erased(
-        _f: &mut dyn FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void,
-    ) -> Self {
+    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const c_void) -> Self {
         Self {
             create_optical_flow_session: unsafe {
                 unsafe extern "system" fn create_optical_flow_session(
-                    _: crate::vk::Device,
-                    _: *const crate::vk::OpticalFlowSessionCreateInfoNV<'_>,
-                    _: *const crate::vk::AllocationCallbacks<'_>,
-                    _: *mut crate::vk::OpticalFlowSessionNV,
-                ) -> crate::vk::Result {
+                    _: vk::Device,
+                    _: *const vk::OpticalFlowSessionCreateInfoNV<'_>,
+                    _: *const vk::AllocationCallbacks<'_>,
+                    _: *mut vk::OpticalFlowSessionNV,
+                ) -> vk::Result {
                     panic!("unable to load vkCreateOpticalFlowSessionNV")
                 }
                 let val = _f(c"vkCreateOpticalFlowSessionNV");
@@ -293,9 +291,9 @@ impl DeviceFn {
             },
             destroy_optical_flow_session: unsafe {
                 unsafe extern "system" fn destroy_optical_flow_session(
-                    _: crate::vk::Device,
-                    _: crate::vk::OpticalFlowSessionNV,
-                    _: *const crate::vk::AllocationCallbacks<'_>,
+                    _: vk::Device,
+                    _: vk::OpticalFlowSessionNV,
+                    _: *const vk::AllocationCallbacks<'_>,
                 ) {
                     panic!("unable to load vkDestroyOpticalFlowSessionNV")
                 }
@@ -308,12 +306,12 @@ impl DeviceFn {
             },
             bind_optical_flow_session_image: unsafe {
                 unsafe extern "system" fn bind_optical_flow_session_image(
-                    _: crate::vk::Device,
-                    _: crate::vk::OpticalFlowSessionNV,
-                    _: crate::vk::OpticalFlowSessionBindingPointNV,
-                    _: crate::vk::ImageView,
-                    _: crate::vk::ImageLayout,
-                ) -> crate::vk::Result {
+                    _: vk::Device,
+                    _: vk::OpticalFlowSessionNV,
+                    _: vk::OpticalFlowSessionBindingPointNV,
+                    _: vk::ImageView,
+                    _: vk::ImageLayout,
+                ) -> vk::Result {
                     panic!("unable to load vkBindOpticalFlowSessionImageNV")
                 }
                 let val = _f(c"vkBindOpticalFlowSessionImageNV");
@@ -325,9 +323,9 @@ impl DeviceFn {
             },
             cmd_optical_flow_execute: unsafe {
                 unsafe extern "system" fn cmd_optical_flow_execute(
-                    _: crate::vk::CommandBuffer,
-                    _: crate::vk::OpticalFlowSessionNV,
-                    _: *const crate::vk::OpticalFlowExecuteInfoNV<'_>,
+                    _: vk::CommandBuffer,
+                    _: vk::OpticalFlowSessionNV,
+                    _: *const vk::OpticalFlowExecuteInfoNV<'_>,
                 ) {
                     panic!("unable to load vkCmdOpticalFlowExecuteNV")
                 }
@@ -366,9 +364,9 @@ impl Device {
     #[inline]
     pub unsafe fn create_optical_flow_session(
         &self,
-        create_info: &crate::vk::OpticalFlowSessionCreateInfoNV<'_>,
-        allocator: Option<&crate::vk::AllocationCallbacks<'_>>,
-    ) -> crate::VkResult<crate::vk::OpticalFlowSessionNV> {
+        create_info: &vk::OpticalFlowSessionCreateInfoNV<'_>,
+        allocator: Option<&vk::AllocationCallbacks<'_>>,
+    ) -> VkResult<vk::OpticalFlowSessionNV> {
         let mut session = core::mem::MaybeUninit::uninit();
         (self
             .fp
@@ -387,8 +385,8 @@ impl Device {
     #[inline]
     pub unsafe fn destroy_optical_flow_session(
         &self,
-        session: crate::vk::OpticalFlowSessionNV,
-        allocator: Option<&crate::vk::AllocationCallbacks<'_>>,
+        session: vk::OpticalFlowSessionNV,
+        allocator: Option<&vk::AllocationCallbacks<'_>>,
     ) {
         (self
             .fp
@@ -405,11 +403,11 @@ impl Device {
     #[inline]
     pub unsafe fn bind_optical_flow_session_image(
         &self,
-        session: crate::vk::OpticalFlowSessionNV,
-        binding_point: crate::vk::OpticalFlowSessionBindingPointNV,
-        view: crate::vk::ImageView,
-        layout: crate::vk::ImageLayout,
-    ) -> crate::VkResult<()> {
+        session: vk::OpticalFlowSessionNV,
+        binding_point: vk::OpticalFlowSessionBindingPointNV,
+        view: vk::ImageView,
+        layout: vk::ImageLayout,
+    ) -> VkResult<()> {
         (self
             .fp
             .bind_optical_flow_session_image)(
@@ -425,34 +423,38 @@ impl Device {
     #[inline]
     pub unsafe fn cmd_optical_flow_execute(
         &self,
-        command_buffer: crate::vk::CommandBuffer,
-        session: crate::vk::OpticalFlowSessionNV,
-        execute_info: &crate::vk::OpticalFlowExecuteInfoNV<'_>,
+        command_buffer: vk::CommandBuffer,
+        session: vk::OpticalFlowSessionNV,
+        execute_info: &vk::OpticalFlowExecuteInfoNV<'_>,
     ) {
         (self.fp.cmd_optical_flow_execute)(command_buffer, session, execute_info)
     }
 }
-pub const SPEC_VERSION: u32 = 1;
-pub const NAME: &core::ffi::CStr = c"VK_NV_optical_flow";
 pub(crate) mod items {
+    use core::marker::PhantomData;
+    use crate::vk;
+    use crate::Handle;
+    use core::fmt;
+    #[cfg(feature = "debug")]
+    use core::fmt as fmtdebug;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceOpticalFlowFeaturesNV<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
-        pub optical_flow: crate::vk::Bool32,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub optical_flow: vk::Bool32,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for PhysicalDeviceOpticalFlowFeaturesNV<'_> {}
     unsafe impl Sync for PhysicalDeviceOpticalFlowFeaturesNV<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceOpticalFlowFeaturesNV<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_OPTICAL_FLOW_FEATURES_NV;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PHYSICAL_DEVICE_OPTICAL_FLOW_FEATURES_NV;
     }
-    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+    unsafe impl<'a> crate::Extends<vk::PhysicalDeviceFeatures2<'_>>
     for PhysicalDeviceOpticalFlowFeaturesNV<'a> {}
-    unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+    unsafe impl<'a> crate::Extends<vk::DeviceCreateInfo<'_>>
     for PhysicalDeviceOpticalFlowFeaturesNV<'a> {}
     impl<'a> Default for PhysicalDeviceOpticalFlowFeaturesNV<'a> {
         fn default() -> Self {
@@ -460,7 +462,7 @@ pub(crate) mod items {
                 s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
                 p_next: Default::default(),
                 optical_flow: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
@@ -474,28 +476,28 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceOpticalFlowPropertiesNV<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
-        pub supported_output_grid_sizes: crate::vk::OpticalFlowGridSizeFlagsNV,
-        pub supported_hint_grid_sizes: crate::vk::OpticalFlowGridSizeFlagsNV,
-        pub hint_supported: crate::vk::Bool32,
-        pub cost_supported: crate::vk::Bool32,
-        pub bidirectional_flow_supported: crate::vk::Bool32,
-        pub global_flow_supported: crate::vk::Bool32,
+        pub supported_output_grid_sizes: vk::OpticalFlowGridSizeFlagsNV,
+        pub supported_hint_grid_sizes: vk::OpticalFlowGridSizeFlagsNV,
+        pub hint_supported: vk::Bool32,
+        pub cost_supported: vk::Bool32,
+        pub bidirectional_flow_supported: vk::Bool32,
+        pub global_flow_supported: vk::Bool32,
         pub min_width: u32,
         pub min_height: u32,
         pub max_width: u32,
         pub max_height: u32,
         pub max_num_regions_of_interest: u32,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for PhysicalDeviceOpticalFlowPropertiesNV<'_> {}
     unsafe impl Sync for PhysicalDeviceOpticalFlowPropertiesNV<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceOpticalFlowPropertiesNV<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_OPTICAL_FLOW_PROPERTIES_NV;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PHYSICAL_DEVICE_OPTICAL_FLOW_PROPERTIES_NV;
     }
-    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceProperties2<'_>>
+    unsafe impl<'a> crate::Extends<vk::PhysicalDeviceProperties2<'_>>
     for PhysicalDeviceOpticalFlowPropertiesNV<'a> {}
     impl<'a> Default for PhysicalDeviceOpticalFlowPropertiesNV<'a> {
         fn default() -> Self {
@@ -513,21 +515,21 @@ pub(crate) mod items {
                 max_width: Default::default(),
                 max_height: Default::default(),
                 max_num_regions_of_interest: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
     impl<'a> PhysicalDeviceOpticalFlowPropertiesNV<'a> {
         pub fn supported_output_grid_sizes(
             mut self,
-            supported_output_grid_sizes: crate::vk::OpticalFlowGridSizeFlagsNV,
+            supported_output_grid_sizes: vk::OpticalFlowGridSizeFlagsNV,
         ) -> Self {
             self.supported_output_grid_sizes = supported_output_grid_sizes;
             self
         }
         pub fn supported_hint_grid_sizes(
             mut self,
-            supported_hint_grid_sizes: crate::vk::OpticalFlowGridSizeFlagsNV,
+            supported_hint_grid_sizes: vk::OpticalFlowGridSizeFlagsNV,
         ) -> Self {
             self.supported_hint_grid_sizes = supported_hint_grid_sizes;
             self
@@ -579,19 +581,19 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct OpticalFlowImageFormatInfoNV<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *const core::ffi::c_void,
-        pub usage: crate::vk::OpticalFlowUsageFlagsNV,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub usage: vk::OpticalFlowUsageFlagsNV,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for OpticalFlowImageFormatInfoNV<'_> {}
     unsafe impl Sync for OpticalFlowImageFormatInfoNV<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for OpticalFlowImageFormatInfoNV<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::OPTICAL_FLOW_IMAGE_FORMAT_INFO_NV;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::OPTICAL_FLOW_IMAGE_FORMAT_INFO_NV;
     }
-    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceImageFormatInfo2<'_>>
+    unsafe impl<'a> crate::Extends<vk::PhysicalDeviceImageFormatInfo2<'_>>
     for OpticalFlowImageFormatInfoNV<'a> {}
-    unsafe impl<'a> crate::Extends<crate::vk::ImageCreateInfo<'_>>
+    unsafe impl<'a> crate::Extends<vk::ImageCreateInfo<'_>>
     for OpticalFlowImageFormatInfoNV<'a> {}
     impl<'a> Default for OpticalFlowImageFormatInfoNV<'a> {
         fn default() -> Self {
@@ -599,12 +601,12 @@ pub(crate) mod items {
                 s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
                 p_next: Default::default(),
                 usage: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
     impl<'a> OpticalFlowImageFormatInfoNV<'a> {
-        pub fn usage(mut self, usage: crate::vk::OpticalFlowUsageFlagsNV) -> Self {
+        pub fn usage(mut self, usage: vk::OpticalFlowUsageFlagsNV) -> Self {
             self.usage = usage;
             self
         }
@@ -613,16 +615,16 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct OpticalFlowImageFormatPropertiesNV<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
-        pub format: crate::vk::Format,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub format: vk::Format,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for OpticalFlowImageFormatPropertiesNV<'_> {}
     unsafe impl Sync for OpticalFlowImageFormatPropertiesNV<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for OpticalFlowImageFormatPropertiesNV<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::OPTICAL_FLOW_IMAGE_FORMAT_PROPERTIES_NV;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::OPTICAL_FLOW_IMAGE_FORMAT_PROPERTIES_NV;
     }
     impl<'a> Default for OpticalFlowImageFormatPropertiesNV<'a> {
         fn default() -> Self {
@@ -630,12 +632,12 @@ pub(crate) mod items {
                 s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
                 p_next: Default::default(),
                 format: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
     impl<'a> OpticalFlowImageFormatPropertiesNV<'a> {
-        pub fn format(mut self, format: crate::vk::Format) -> Self {
+        pub fn format(mut self, format: vk::Format) -> Self {
             self.format = format;
             self
         }
@@ -644,23 +646,23 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct OpticalFlowSessionCreateInfoNV<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
         pub width: u32,
         pub height: u32,
-        pub image_format: crate::vk::Format,
-        pub flow_vector_format: crate::vk::Format,
-        pub cost_format: crate::vk::Format,
-        pub output_grid_size: crate::vk::OpticalFlowGridSizeFlagsNV,
-        pub hint_grid_size: crate::vk::OpticalFlowGridSizeFlagsNV,
-        pub performance_level: crate::vk::OpticalFlowPerformanceLevelNV,
-        pub flags: crate::vk::OpticalFlowSessionCreateFlagsNV,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub image_format: vk::Format,
+        pub flow_vector_format: vk::Format,
+        pub cost_format: vk::Format,
+        pub output_grid_size: vk::OpticalFlowGridSizeFlagsNV,
+        pub hint_grid_size: vk::OpticalFlowGridSizeFlagsNV,
+        pub performance_level: vk::OpticalFlowPerformanceLevelNV,
+        pub flags: vk::OpticalFlowSessionCreateFlagsNV,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for OpticalFlowSessionCreateInfoNV<'_> {}
     unsafe impl Sync for OpticalFlowSessionCreateInfoNV<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for OpticalFlowSessionCreateInfoNV<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::OPTICAL_FLOW_SESSION_CREATE_INFO_NV;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::OPTICAL_FLOW_SESSION_CREATE_INFO_NV;
     }
     impl<'a> Default for OpticalFlowSessionCreateInfoNV<'a> {
         fn default() -> Self {
@@ -676,7 +678,7 @@ pub(crate) mod items {
                 hint_grid_size: Default::default(),
                 performance_level: Default::default(),
                 flags: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
@@ -689,46 +691,40 @@ pub(crate) mod items {
             self.height = height;
             self
         }
-        pub fn image_format(mut self, image_format: crate::vk::Format) -> Self {
+        pub fn image_format(mut self, image_format: vk::Format) -> Self {
             self.image_format = image_format;
             self
         }
-        pub fn flow_vector_format(
-            mut self,
-            flow_vector_format: crate::vk::Format,
-        ) -> Self {
+        pub fn flow_vector_format(mut self, flow_vector_format: vk::Format) -> Self {
             self.flow_vector_format = flow_vector_format;
             self
         }
-        pub fn cost_format(mut self, cost_format: crate::vk::Format) -> Self {
+        pub fn cost_format(mut self, cost_format: vk::Format) -> Self {
             self.cost_format = cost_format;
             self
         }
         pub fn output_grid_size(
             mut self,
-            output_grid_size: crate::vk::OpticalFlowGridSizeFlagsNV,
+            output_grid_size: vk::OpticalFlowGridSizeFlagsNV,
         ) -> Self {
             self.output_grid_size = output_grid_size;
             self
         }
         pub fn hint_grid_size(
             mut self,
-            hint_grid_size: crate::vk::OpticalFlowGridSizeFlagsNV,
+            hint_grid_size: vk::OpticalFlowGridSizeFlagsNV,
         ) -> Self {
             self.hint_grid_size = hint_grid_size;
             self
         }
         pub fn performance_level(
             mut self,
-            performance_level: crate::vk::OpticalFlowPerformanceLevelNV,
+            performance_level: vk::OpticalFlowPerformanceLevelNV,
         ) -> Self {
             self.performance_level = performance_level;
             self
         }
-        pub fn flags(
-            mut self,
-            flags: crate::vk::OpticalFlowSessionCreateFlagsNV,
-        ) -> Self {
+        pub fn flags(mut self, flags: vk::OpticalFlowSessionCreateFlagsNV) -> Self {
             self.flags = flags;
             self
         }
@@ -737,20 +733,20 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct OpticalFlowSessionCreatePrivateDataInfoNV<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
         pub id: u32,
         pub size: u32,
         pub p_private_data: *const core::ffi::c_void,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for OpticalFlowSessionCreatePrivateDataInfoNV<'_> {}
     unsafe impl Sync for OpticalFlowSessionCreatePrivateDataInfoNV<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for OpticalFlowSessionCreatePrivateDataInfoNV<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::OPTICAL_FLOW_SESSION_CREATE_PRIVATE_DATA_INFO_NV;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::OPTICAL_FLOW_SESSION_CREATE_PRIVATE_DATA_INFO_NV;
     }
-    unsafe impl<'a> crate::Extends<crate::vk::OpticalFlowSessionCreateInfoNV<'_>>
+    unsafe impl<'a> crate::Extends<vk::OpticalFlowSessionCreateInfoNV<'_>>
     for OpticalFlowSessionCreatePrivateDataInfoNV<'a> {}
     impl<'a> Default for OpticalFlowSessionCreatePrivateDataInfoNV<'a> {
         fn default() -> Self {
@@ -760,7 +756,7 @@ pub(crate) mod items {
                 id: Default::default(),
                 size: Default::default(),
                 p_private_data: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
@@ -782,17 +778,17 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct OpticalFlowExecuteInfoNV<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
-        pub flags: crate::vk::OpticalFlowExecuteFlagsNV,
+        pub flags: vk::OpticalFlowExecuteFlagsNV,
         pub region_count: u32,
-        pub p_regions: *const crate::vk::Rect2D,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub p_regions: *const vk::Rect2D,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for OpticalFlowExecuteInfoNV<'_> {}
     unsafe impl Sync for OpticalFlowExecuteInfoNV<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for OpticalFlowExecuteInfoNV<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::OPTICAL_FLOW_EXECUTE_INFO_NV;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::OPTICAL_FLOW_EXECUTE_INFO_NV;
     }
     impl<'a> Default for OpticalFlowExecuteInfoNV<'a> {
         fn default() -> Self {
@@ -802,16 +798,16 @@ pub(crate) mod items {
                 flags: Default::default(),
                 region_count: Default::default(),
                 p_regions: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
     impl<'a> OpticalFlowExecuteInfoNV<'a> {
-        pub fn flags(mut self, flags: crate::vk::OpticalFlowExecuteFlagsNV) -> Self {
+        pub fn flags(mut self, flags: vk::OpticalFlowExecuteFlagsNV) -> Self {
             self.flags = flags;
             self
         }
-        pub fn regions(mut self, regions: &'a [crate::vk::Rect2D]) -> Self {
+        pub fn regions(mut self, regions: &'a [vk::Rect2D]) -> Self {
             self.region_count = regions.len() as _;
             self.p_regions = regions.as_ptr();
             self
@@ -1286,8 +1282,8 @@ pub(crate) mod items {
     #[repr(transparent)]
     #[derive(Eq, PartialEq, Ord, PartialOrd, Clone, Copy, Hash, Default)]
     pub struct OpticalFlowSessionNV(u64);
-    impl crate::Handle for OpticalFlowSessionNV {
-        const TYPE: crate::vk::ObjectType = crate::vk::ObjectType::OPTICAL_FLOW_SESSION_NV;
+    impl Handle for OpticalFlowSessionNV {
+        const TYPE: vk::ObjectType = vk::ObjectType::OPTICAL_FLOW_SESSION_NV;
         fn as_raw(self) -> u64 {
             self.0
         }
@@ -1300,46 +1296,45 @@ pub(crate) mod items {
             Self(0)
         }
     }
-    impl core::fmt::Pointer for OpticalFlowSessionNV {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+    impl fmt::Pointer for OpticalFlowSessionNV {
+        fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
             write!(f, "0x{:x}", self.0)
         }
     }
-    impl core::fmt::Debug for OpticalFlowSessionNV {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+    #[cfg(feature = "debug")]
+    impl fmtdebug::Debug for OpticalFlowSessionNV {
+        fn fmt(&self, f: &mut fmtdebug::Formatter) -> fmtdebug::Result {
             write!(f, "0x{:x}", self.0)
         }
     }
     pub type PFN_vkGetPhysicalDeviceOpticalFlowImageFormatsNV = unsafe extern "system" fn(
-        physical_device: crate::vk::PhysicalDevice,
-        p_optical_flow_image_format_info: *const crate::vk::OpticalFlowImageFormatInfoNV<
-            '_,
-        >,
+        physical_device: vk::PhysicalDevice,
+        p_optical_flow_image_format_info: *const vk::OpticalFlowImageFormatInfoNV<'_>,
         p_format_count: *mut u32,
-        p_image_format_properties: *mut crate::vk::OpticalFlowImageFormatPropertiesNV<'_>,
-    ) -> crate::vk::Result;
+        p_image_format_properties: *mut vk::OpticalFlowImageFormatPropertiesNV<'_>,
+    ) -> vk::Result;
     pub type PFN_vkCreateOpticalFlowSessionNV = unsafe extern "system" fn(
-        device: crate::vk::Device,
-        p_create_info: *const crate::vk::OpticalFlowSessionCreateInfoNV<'_>,
-        p_allocator: *const crate::vk::AllocationCallbacks<'_>,
-        p_session: *mut crate::vk::OpticalFlowSessionNV,
-    ) -> crate::vk::Result;
+        device: vk::Device,
+        p_create_info: *const vk::OpticalFlowSessionCreateInfoNV<'_>,
+        p_allocator: *const vk::AllocationCallbacks<'_>,
+        p_session: *mut vk::OpticalFlowSessionNV,
+    ) -> vk::Result;
     pub type PFN_vkDestroyOpticalFlowSessionNV = unsafe extern "system" fn(
-        device: crate::vk::Device,
-        session: crate::vk::OpticalFlowSessionNV,
-        p_allocator: *const crate::vk::AllocationCallbacks<'_>,
+        device: vk::Device,
+        session: vk::OpticalFlowSessionNV,
+        p_allocator: *const vk::AllocationCallbacks<'_>,
     );
     pub type PFN_vkBindOpticalFlowSessionImageNV = unsafe extern "system" fn(
-        device: crate::vk::Device,
-        session: crate::vk::OpticalFlowSessionNV,
-        binding_point: crate::vk::OpticalFlowSessionBindingPointNV,
-        view: crate::vk::ImageView,
-        layout: crate::vk::ImageLayout,
-    ) -> crate::vk::Result;
+        device: vk::Device,
+        session: vk::OpticalFlowSessionNV,
+        binding_point: vk::OpticalFlowSessionBindingPointNV,
+        view: vk::ImageView,
+        layout: vk::ImageLayout,
+    ) -> vk::Result;
     pub type PFN_vkCmdOpticalFlowExecuteNV = unsafe extern "system" fn(
-        command_buffer: crate::vk::CommandBuffer,
-        session: crate::vk::OpticalFlowSessionNV,
-        p_execute_info: *const crate::vk::OpticalFlowExecuteInfoNV<'_>,
+        command_buffer: vk::CommandBuffer,
+        session: vk::OpticalFlowSessionNV,
+        p_execute_info: *const vk::OpticalFlowExecuteInfoNV<'_>,
     );
 }
 pub use items::*;

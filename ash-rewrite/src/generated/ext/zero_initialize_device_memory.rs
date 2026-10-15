@@ -2,47 +2,51 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_zero_initialize_device_memory.html) · Extension `VK_EXT_zero_initialize_device_memory`
 #![doc(alias = "VK_EXT_zero_initialize_device_memory")]
+use crate::vk;
+use core::ffi::CStr;
 ///Provided by [VK_EXT_zero_initialize_device_memory](crate::ext::zero_initialize_device_memory)
-impl crate::vk::ImageLayout {
+impl vk::ImageLayout {
     pub const ZERO_INITIALIZED_EXT: Self = Self(1000620000);
 }
 ///Provided by [VK_EXT_zero_initialize_device_memory](crate::ext::zero_initialize_device_memory)
-impl crate::vk::StructureType {
+impl vk::StructureType {
     pub const PHYSICAL_DEVICE_ZERO_INITIALIZE_DEVICE_MEMORY_FEATURES_EXT: Self = Self(
         1000620000,
     );
 }
-///Provided by [VK_EXT_zero_initialize_device_memory](crate::ext::zero_initialize_device_memory)
-impl crate::vk::MemoryAllocateFlags {
+///Provided by [Vulkan 1.1](crate::vk1_1)
+impl vk::MemoryAllocateFlags {
     pub const ZERO_INITIALIZE_EXT: Self = Self(
-        crate::vk::MemoryAllocateFlagBits::ZERO_INITIALIZE_EXT.0,
+        vk::MemoryAllocateFlagBits::ZERO_INITIALIZE_EXT.0,
     );
 }
-///Provided by [VK_EXT_zero_initialize_device_memory](crate::ext::zero_initialize_device_memory)
-impl crate::vk::MemoryAllocateFlagBits {
+///Provided by [Vulkan 1.1](crate::vk1_1)
+impl vk::MemoryAllocateFlagBits {
     pub const ZERO_INITIALIZE_EXT: Self = Self(1 << 3);
 }
 pub const SPEC_VERSION: u32 = 1;
-pub const NAME: &core::ffi::CStr = c"VK_EXT_zero_initialize_device_memory";
+pub const NAME: &CStr = c"VK_EXT_zero_initialize_device_memory";
 pub(crate) mod items {
+    use core::marker::PhantomData;
+    use crate::vk;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceZeroInitializeDeviceMemoryFeaturesEXT<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
-        pub zero_initialize_device_memory: crate::vk::Bool32,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub zero_initialize_device_memory: vk::Bool32,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for PhysicalDeviceZeroInitializeDeviceMemoryFeaturesEXT<'_> {}
     unsafe impl Sync for PhysicalDeviceZeroInitializeDeviceMemoryFeaturesEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceZeroInitializeDeviceMemoryFeaturesEXT<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_ZERO_INITIALIZE_DEVICE_MEMORY_FEATURES_EXT;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PHYSICAL_DEVICE_ZERO_INITIALIZE_DEVICE_MEMORY_FEATURES_EXT;
     }
-    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+    unsafe impl<'a> crate::Extends<vk::PhysicalDeviceFeatures2<'_>>
     for PhysicalDeviceZeroInitializeDeviceMemoryFeaturesEXT<'a> {}
-    unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+    unsafe impl<'a> crate::Extends<vk::DeviceCreateInfo<'_>>
     for PhysicalDeviceZeroInitializeDeviceMemoryFeaturesEXT<'a> {}
     impl<'a> Default for PhysicalDeviceZeroInitializeDeviceMemoryFeaturesEXT<'a> {
         fn default() -> Self {
@@ -50,7 +54,7 @@ pub(crate) mod items {
                 s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
                 p_next: Default::default(),
                 zero_initialize_device_memory: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }

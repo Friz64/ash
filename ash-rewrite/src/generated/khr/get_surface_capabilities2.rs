@@ -2,35 +2,37 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_get_surface_capabilities2.html) · Extension `VK_KHR_get_surface_capabilities2`
 #![doc(alias = "VK_KHR_get_surface_capabilities2")]
+use crate::vk;
+use core::ffi::CStr;
+use crate::VkResult;
+use core::ffi::c_void;
 ///Provided by [VK_KHR_get_surface_capabilities2](crate::khr::get_surface_capabilities2)
-impl crate::vk::StructureType {
+impl vk::StructureType {
     pub const PHYSICAL_DEVICE_SURFACE_INFO_2_KHR: Self = Self(1000119000);
     pub const SURFACE_CAPABILITIES_2_KHR: Self = Self(1000119001);
     pub const SURFACE_FORMAT_2_KHR: Self = Self(1000119002);
 }
+pub const SPEC_VERSION: u32 = 1;
+pub const NAME: &CStr = c"VK_KHR_get_surface_capabilities2";
 #[derive(Clone)]
 pub struct InstanceFn {
-    pub get_physical_device_surface_capabilities2: crate::vk::PFN_vkGetPhysicalDeviceSurfaceCapabilities2KHR,
-    pub get_physical_device_surface_formats2: crate::vk::PFN_vkGetPhysicalDeviceSurfaceFormats2KHR,
+    pub get_physical_device_surface_capabilities2: vk::PFN_vkGetPhysicalDeviceSurfaceCapabilities2KHR,
+    pub get_physical_device_surface_formats2: vk::PFN_vkGetPhysicalDeviceSurfaceFormats2KHR,
 }
 unsafe impl Send for InstanceFn {}
 unsafe impl Sync for InstanceFn {}
 impl InstanceFn {
-    pub fn load<F: FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void>(
-        mut f: F,
-    ) -> Self {
+    pub fn load<F: FnMut(&CStr) -> *const c_void>(mut f: F) -> Self {
         Self::load_erased(&mut f)
     }
-    fn load_erased(
-        _f: &mut dyn FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void,
-    ) -> Self {
+    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const c_void) -> Self {
         Self {
             get_physical_device_surface_capabilities2: unsafe {
                 unsafe extern "system" fn get_physical_device_surface_capabilities2(
-                    _: crate::vk::PhysicalDevice,
-                    _: *const crate::vk::PhysicalDeviceSurfaceInfo2KHR<'_>,
-                    _: *mut crate::vk::SurfaceCapabilities2KHR<'_>,
-                ) -> crate::vk::Result {
+                    _: vk::PhysicalDevice,
+                    _: *const vk::PhysicalDeviceSurfaceInfo2KHR<'_>,
+                    _: *mut vk::SurfaceCapabilities2KHR<'_>,
+                ) -> vk::Result {
                     panic!("unable to load vkGetPhysicalDeviceSurfaceCapabilities2KHR")
                 }
                 let val = _f(c"vkGetPhysicalDeviceSurfaceCapabilities2KHR");
@@ -42,11 +44,11 @@ impl InstanceFn {
             },
             get_physical_device_surface_formats2: unsafe {
                 unsafe extern "system" fn get_physical_device_surface_formats2(
-                    _: crate::vk::PhysicalDevice,
-                    _: *const crate::vk::PhysicalDeviceSurfaceInfo2KHR<'_>,
+                    _: vk::PhysicalDevice,
+                    _: *const vk::PhysicalDeviceSurfaceInfo2KHR<'_>,
                     _: *mut u32,
-                    _: *mut crate::vk::SurfaceFormat2KHR<'_>,
-                ) -> crate::vk::Result {
+                    _: *mut vk::SurfaceFormat2KHR<'_>,
+                ) -> vk::Result {
                     panic!("unable to load vkGetPhysicalDeviceSurfaceFormats2KHR")
                 }
                 let val = _f(c"vkGetPhysicalDeviceSurfaceFormats2KHR");
@@ -84,9 +86,9 @@ impl Instance {
     #[inline]
     pub unsafe fn get_physical_device_surface_capabilities2(
         &self,
-        physical_device: crate::vk::PhysicalDevice,
-        surface_info: &crate::vk::PhysicalDeviceSurfaceInfo2KHR<'_>,
-    ) -> crate::VkResult<crate::vk::SurfaceCapabilities2KHR<'_>> {
+        physical_device: vk::PhysicalDevice,
+        surface_info: &vk::PhysicalDeviceSurfaceInfo2KHR<'_>,
+    ) -> VkResult<vk::SurfaceCapabilities2KHR<'_>> {
         let mut surface_capabilities = core::mem::MaybeUninit::uninit();
         (self
             .fp
@@ -101,9 +103,9 @@ impl Instance {
     #[inline]
     pub unsafe fn get_physical_device_surface_formats2_len(
         &self,
-        physical_device: crate::vk::PhysicalDevice,
-        surface_info: &crate::vk::PhysicalDeviceSurfaceInfo2KHR<'_>,
-    ) -> crate::VkResult<usize> {
+        physical_device: vk::PhysicalDevice,
+        surface_info: &vk::PhysicalDeviceSurfaceInfo2KHR<'_>,
+    ) -> VkResult<usize> {
         let mut surface_format_count = core::mem::MaybeUninit::uninit();
         (self
             .fp
@@ -120,9 +122,9 @@ impl Instance {
     #[inline]
     pub unsafe fn get_physical_device_surface_formats2(
         &self,
-        physical_device: crate::vk::PhysicalDevice,
-        surface_info: &crate::vk::PhysicalDeviceSurfaceInfo2KHR<'_>,
-        surface_formats: &mut [crate::vk::SurfaceFormat2KHR<'_>],
+        physical_device: vk::PhysicalDevice,
+        surface_info: &vk::PhysicalDeviceSurfaceInfo2KHR<'_>,
+        surface_formats: &mut [vk::SurfaceFormat2KHR<'_>],
     ) -> crate::VkResult<()> {
         let mut surface_format_count = surface_formats.len() as _;
         (self
@@ -138,22 +140,22 @@ impl Instance {
         Ok(())
     }
 }
-pub const SPEC_VERSION: u32 = 1;
-pub const NAME: &core::ffi::CStr = c"VK_KHR_get_surface_capabilities2";
 pub(crate) mod items {
+    use core::marker::PhantomData;
+    use crate::vk;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceSurfaceInfo2KHR<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *const core::ffi::c_void,
-        pub surface: crate::vk::SurfaceKHR,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub surface: vk::SurfaceKHR,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for PhysicalDeviceSurfaceInfo2KHR<'_> {}
     unsafe impl Sync for PhysicalDeviceSurfaceInfo2KHR<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for PhysicalDeviceSurfaceInfo2KHR<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_SURFACE_INFO_2_KHR;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PHYSICAL_DEVICE_SURFACE_INFO_2_KHR;
     }
     impl<'a> Default for PhysicalDeviceSurfaceInfo2KHR<'a> {
         fn default() -> Self {
@@ -161,12 +163,12 @@ pub(crate) mod items {
                 s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
                 p_next: Default::default(),
                 surface: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
     impl<'a> PhysicalDeviceSurfaceInfo2KHR<'a> {
-        pub fn surface(mut self, surface: crate::vk::SurfaceKHR) -> Self {
+        pub fn surface(mut self, surface: vk::SurfaceKHR) -> Self {
             self.surface = surface;
             self
         }
@@ -175,15 +177,15 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct SurfaceCapabilities2KHR<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
-        pub surface_capabilities: crate::vk::SurfaceCapabilitiesKHR,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub surface_capabilities: vk::SurfaceCapabilitiesKHR,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for SurfaceCapabilities2KHR<'_> {}
     unsafe impl Sync for SurfaceCapabilities2KHR<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for SurfaceCapabilities2KHR<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::SURFACE_CAPABILITIES_2_KHR;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::SURFACE_CAPABILITIES_2_KHR;
     }
     impl<'a> Default for SurfaceCapabilities2KHR<'a> {
         fn default() -> Self {
@@ -191,14 +193,14 @@ pub(crate) mod items {
                 s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
                 p_next: Default::default(),
                 surface_capabilities: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
     impl<'a> SurfaceCapabilities2KHR<'a> {
         pub fn surface_capabilities(
             mut self,
-            surface_capabilities: crate::vk::SurfaceCapabilitiesKHR,
+            surface_capabilities: vk::SurfaceCapabilitiesKHR,
         ) -> Self {
             self.surface_capabilities = surface_capabilities;
             self
@@ -208,15 +210,15 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct SurfaceFormat2KHR<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
-        pub surface_format: crate::vk::SurfaceFormatKHR,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub surface_format: vk::SurfaceFormatKHR,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for SurfaceFormat2KHR<'_> {}
     unsafe impl Sync for SurfaceFormat2KHR<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for SurfaceFormat2KHR<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::SURFACE_FORMAT_2_KHR;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::SURFACE_FORMAT_2_KHR;
     }
     impl<'a> Default for SurfaceFormat2KHR<'a> {
         fn default() -> Self {
@@ -224,29 +226,26 @@ pub(crate) mod items {
                 s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
                 p_next: Default::default(),
                 surface_format: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
     impl<'a> SurfaceFormat2KHR<'a> {
-        pub fn surface_format(
-            mut self,
-            surface_format: crate::vk::SurfaceFormatKHR,
-        ) -> Self {
+        pub fn surface_format(mut self, surface_format: vk::SurfaceFormatKHR) -> Self {
             self.surface_format = surface_format;
             self
         }
     }
     pub type PFN_vkGetPhysicalDeviceSurfaceCapabilities2KHR = unsafe extern "system" fn(
-        physical_device: crate::vk::PhysicalDevice,
-        p_surface_info: *const crate::vk::PhysicalDeviceSurfaceInfo2KHR<'_>,
-        p_surface_capabilities: *mut crate::vk::SurfaceCapabilities2KHR<'_>,
-    ) -> crate::vk::Result;
+        physical_device: vk::PhysicalDevice,
+        p_surface_info: *const vk::PhysicalDeviceSurfaceInfo2KHR<'_>,
+        p_surface_capabilities: *mut vk::SurfaceCapabilities2KHR<'_>,
+    ) -> vk::Result;
     pub type PFN_vkGetPhysicalDeviceSurfaceFormats2KHR = unsafe extern "system" fn(
-        physical_device: crate::vk::PhysicalDevice,
-        p_surface_info: *const crate::vk::PhysicalDeviceSurfaceInfo2KHR<'_>,
+        physical_device: vk::PhysicalDevice,
+        p_surface_info: *const vk::PhysicalDeviceSurfaceInfo2KHR<'_>,
         p_surface_format_count: *mut u32,
-        p_surface_formats: *mut crate::vk::SurfaceFormat2KHR<'_>,
-    ) -> crate::vk::Result;
+        p_surface_formats: *mut vk::SurfaceFormat2KHR<'_>,
+    ) -> vk::Result;
 }
 pub use items::*;

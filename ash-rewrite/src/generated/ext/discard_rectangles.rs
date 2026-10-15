@@ -2,13 +2,16 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_discard_rectangles.html) · Extension `VK_EXT_discard_rectangles`
 #![doc(alias = "VK_EXT_discard_rectangles")]
+use crate::vk;
+use core::ffi::CStr;
+use core::ffi::c_void;
 ///Provided by [VK_EXT_discard_rectangles](crate::ext::discard_rectangles)
-impl crate::vk::StructureType {
+impl vk::StructureType {
     pub const PHYSICAL_DEVICE_DISCARD_RECTANGLE_PROPERTIES_EXT: Self = Self(1000099000);
     pub const PIPELINE_DISCARD_RECTANGLE_STATE_CREATE_INFO_EXT: Self = Self(1000099001);
 }
 ///Provided by [VK_EXT_discard_rectangles](crate::ext::discard_rectangles)
-impl crate::vk::DynamicState {
+impl vk::DynamicState {
     pub const DISCARD_RECTANGLE_EXT: Self = Self(1000099000);
     pub const DISCARD_RECTANGLE_ENABLE_EXT: Self = Self(1000099001);
     pub const DISCARD_RECTANGLE_MODE_EXT: Self = Self(1000099002);
@@ -18,30 +21,28 @@ impl DiscardRectangleModeEXT {
     pub const INCLUSIVE: Self = Self(0);
     pub const EXCLUSIVE: Self = Self(1);
 }
+pub const SPEC_VERSION: u32 = 2;
+pub const NAME: &CStr = c"VK_EXT_discard_rectangles";
 #[derive(Clone)]
 pub struct DeviceFn {
-    pub cmd_set_discard_rectangle: crate::vk::PFN_vkCmdSetDiscardRectangleEXT,
-    pub cmd_set_discard_rectangle_enable: crate::vk::PFN_vkCmdSetDiscardRectangleEnableEXT,
-    pub cmd_set_discard_rectangle_mode: crate::vk::PFN_vkCmdSetDiscardRectangleModeEXT,
+    pub cmd_set_discard_rectangle: vk::PFN_vkCmdSetDiscardRectangleEXT,
+    pub cmd_set_discard_rectangle_enable: vk::PFN_vkCmdSetDiscardRectangleEnableEXT,
+    pub cmd_set_discard_rectangle_mode: vk::PFN_vkCmdSetDiscardRectangleModeEXT,
 }
 unsafe impl Send for DeviceFn {}
 unsafe impl Sync for DeviceFn {}
 impl DeviceFn {
-    pub fn load<F: FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void>(
-        mut f: F,
-    ) -> Self {
+    pub fn load<F: FnMut(&CStr) -> *const c_void>(mut f: F) -> Self {
         Self::load_erased(&mut f)
     }
-    fn load_erased(
-        _f: &mut dyn FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void,
-    ) -> Self {
+    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const c_void) -> Self {
         Self {
             cmd_set_discard_rectangle: unsafe {
                 unsafe extern "system" fn cmd_set_discard_rectangle(
-                    _: crate::vk::CommandBuffer,
+                    _: vk::CommandBuffer,
                     _: u32,
                     _: u32,
-                    _: *const crate::vk::Rect2D,
+                    _: *const vk::Rect2D,
                 ) {
                     panic!("unable to load vkCmdSetDiscardRectangleEXT")
                 }
@@ -54,8 +55,8 @@ impl DeviceFn {
             },
             cmd_set_discard_rectangle_enable: unsafe {
                 unsafe extern "system" fn cmd_set_discard_rectangle_enable(
-                    _: crate::vk::CommandBuffer,
-                    _: crate::vk::Bool32,
+                    _: vk::CommandBuffer,
+                    _: vk::Bool32,
                 ) {
                     panic!("unable to load vkCmdSetDiscardRectangleEnableEXT")
                 }
@@ -68,8 +69,8 @@ impl DeviceFn {
             },
             cmd_set_discard_rectangle_mode: unsafe {
                 unsafe extern "system" fn cmd_set_discard_rectangle_mode(
-                    _: crate::vk::CommandBuffer,
-                    _: crate::vk::DiscardRectangleModeEXT,
+                    _: vk::CommandBuffer,
+                    _: vk::DiscardRectangleModeEXT,
                 ) {
                     panic!("unable to load vkCmdSetDiscardRectangleModeEXT")
                 }
@@ -108,9 +109,9 @@ impl Device {
     #[inline]
     pub unsafe fn cmd_set_discard_rectangle(
         &self,
-        command_buffer: crate::vk::CommandBuffer,
+        command_buffer: vk::CommandBuffer,
         first_discard_rectangle: u32,
-        discard_rectangles: &[crate::vk::Rect2D],
+        discard_rectangles: &[vk::Rect2D],
     ) {
         (self
             .fp
@@ -125,8 +126,8 @@ impl Device {
     #[inline]
     pub unsafe fn cmd_set_discard_rectangle_enable(
         &self,
-        command_buffer: crate::vk::CommandBuffer,
-        discard_rectangle_enable: crate::vk::Bool32,
+        command_buffer: vk::CommandBuffer,
+        discard_rectangle_enable: vk::Bool32,
     ) {
         (self
             .fp
@@ -136,31 +137,31 @@ impl Device {
     #[inline]
     pub unsafe fn cmd_set_discard_rectangle_mode(
         &self,
-        command_buffer: crate::vk::CommandBuffer,
-        discard_rectangle_mode: crate::vk::DiscardRectangleModeEXT,
+        command_buffer: vk::CommandBuffer,
+        discard_rectangle_mode: vk::DiscardRectangleModeEXT,
     ) {
         (self.fp.cmd_set_discard_rectangle_mode)(command_buffer, discard_rectangle_mode)
     }
 }
-pub const SPEC_VERSION: u32 = 2;
-pub const NAME: &core::ffi::CStr = c"VK_EXT_discard_rectangles";
 pub(crate) mod items {
+    use core::marker::PhantomData;
+    use crate::vk;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceDiscardRectanglePropertiesEXT<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
         pub max_discard_rectangles: u32,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for PhysicalDeviceDiscardRectanglePropertiesEXT<'_> {}
     unsafe impl Sync for PhysicalDeviceDiscardRectanglePropertiesEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceDiscardRectanglePropertiesEXT<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_DISCARD_RECTANGLE_PROPERTIES_EXT;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PHYSICAL_DEVICE_DISCARD_RECTANGLE_PROPERTIES_EXT;
     }
-    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceProperties2<'_>>
+    unsafe impl<'a> crate::Extends<vk::PhysicalDeviceProperties2<'_>>
     for PhysicalDeviceDiscardRectanglePropertiesEXT<'a> {}
     impl<'a> Default for PhysicalDeviceDiscardRectanglePropertiesEXT<'a> {
         fn default() -> Self {
@@ -168,7 +169,7 @@ pub(crate) mod items {
                 s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
                 p_next: Default::default(),
                 max_discard_rectangles: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
@@ -182,21 +183,21 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct PipelineDiscardRectangleStateCreateInfoEXT<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *const core::ffi::c_void,
-        pub flags: crate::vk::PipelineDiscardRectangleStateCreateFlagsEXT,
-        pub discard_rectangle_mode: crate::vk::DiscardRectangleModeEXT,
+        pub flags: vk::PipelineDiscardRectangleStateCreateFlagsEXT,
+        pub discard_rectangle_mode: vk::DiscardRectangleModeEXT,
         pub discard_rectangle_count: u32,
-        pub p_discard_rectangles: *const crate::vk::Rect2D,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub p_discard_rectangles: *const vk::Rect2D,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for PipelineDiscardRectangleStateCreateInfoEXT<'_> {}
     unsafe impl Sync for PipelineDiscardRectangleStateCreateInfoEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PipelineDiscardRectangleStateCreateInfoEXT<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PIPELINE_DISCARD_RECTANGLE_STATE_CREATE_INFO_EXT;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PIPELINE_DISCARD_RECTANGLE_STATE_CREATE_INFO_EXT;
     }
-    unsafe impl<'a> crate::Extends<crate::vk::GraphicsPipelineCreateInfo<'_>>
+    unsafe impl<'a> crate::Extends<vk::GraphicsPipelineCreateInfo<'_>>
     for PipelineDiscardRectangleStateCreateInfoEXT<'a> {}
     impl<'a> Default for PipelineDiscardRectangleStateCreateInfoEXT<'a> {
         fn default() -> Self {
@@ -207,28 +208,28 @@ pub(crate) mod items {
                 discard_rectangle_mode: Default::default(),
                 discard_rectangle_count: Default::default(),
                 p_discard_rectangles: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
     impl<'a> PipelineDiscardRectangleStateCreateInfoEXT<'a> {
         pub fn flags(
             mut self,
-            flags: crate::vk::PipelineDiscardRectangleStateCreateFlagsEXT,
+            flags: vk::PipelineDiscardRectangleStateCreateFlagsEXT,
         ) -> Self {
             self.flags = flags;
             self
         }
         pub fn discard_rectangle_mode(
             mut self,
-            discard_rectangle_mode: crate::vk::DiscardRectangleModeEXT,
+            discard_rectangle_mode: vk::DiscardRectangleModeEXT,
         ) -> Self {
             self.discard_rectangle_mode = discard_rectangle_mode;
             self
         }
         pub fn discard_rectangles(
             mut self,
-            discard_rectangles: &'a [crate::vk::Rect2D],
+            discard_rectangles: &'a [vk::Rect2D],
         ) -> Self {
             self.discard_rectangle_count = discard_rectangles.len() as _;
             self.p_discard_rectangles = discard_rectangles.as_ptr();
@@ -331,18 +332,18 @@ pub(crate) mod items {
         }
     }
     pub type PFN_vkCmdSetDiscardRectangleEXT = unsafe extern "system" fn(
-        command_buffer: crate::vk::CommandBuffer,
+        command_buffer: vk::CommandBuffer,
         first_discard_rectangle: u32,
         discard_rectangle_count: u32,
-        p_discard_rectangles: *const crate::vk::Rect2D,
+        p_discard_rectangles: *const vk::Rect2D,
     );
     pub type PFN_vkCmdSetDiscardRectangleEnableEXT = unsafe extern "system" fn(
-        command_buffer: crate::vk::CommandBuffer,
-        discard_rectangle_enable: crate::vk::Bool32,
+        command_buffer: vk::CommandBuffer,
+        discard_rectangle_enable: vk::Bool32,
     );
     pub type PFN_vkCmdSetDiscardRectangleModeEXT = unsafe extern "system" fn(
-        command_buffer: crate::vk::CommandBuffer,
-        discard_rectangle_mode: crate::vk::DiscardRectangleModeEXT,
+        command_buffer: vk::CommandBuffer,
+        discard_rectangle_mode: vk::DiscardRectangleModeEXT,
     );
 }
 pub use items::*;

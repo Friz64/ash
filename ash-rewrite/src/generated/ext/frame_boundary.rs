@@ -2,8 +2,10 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_frame_boundary.html) · Extension `VK_EXT_frame_boundary`
 #![doc(alias = "VK_EXT_frame_boundary")]
+use crate::vk;
+use core::ffi::CStr;
 ///Provided by [VK_EXT_frame_boundary](crate::ext::frame_boundary)
-impl crate::vk::StructureType {
+impl vk::StructureType {
     pub const PHYSICAL_DEVICE_FRAME_BOUNDARY_FEATURES_EXT: Self = Self(1000375000);
     pub const FRAME_BOUNDARY_EXT: Self = Self(1000375001);
 }
@@ -16,36 +18,36 @@ impl FrameBoundaryFlagBitsEXT {
     pub const FRAME_END: Self = Self(1 << 0);
 }
 pub const SPEC_VERSION: u32 = 1;
-pub const NAME: &core::ffi::CStr = c"VK_EXT_frame_boundary";
+pub const NAME: &CStr = c"VK_EXT_frame_boundary";
 pub(crate) mod items {
+    use core::marker::PhantomData;
+    use crate::vk;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct FrameBoundaryEXT<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *const core::ffi::c_void,
-        pub flags: crate::vk::FrameBoundaryFlagsEXT,
+        pub flags: vk::FrameBoundaryFlagsEXT,
         pub frame_id: u64,
         pub image_count: u32,
-        pub p_images: *const crate::vk::Image,
+        pub p_images: *const vk::Image,
         pub buffer_count: u32,
-        pub p_buffers: *const crate::vk::Buffer,
+        pub p_buffers: *const vk::Buffer,
         pub tag_name: u64,
         pub tag_size: usize,
         pub p_tag: *const core::ffi::c_void,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for FrameBoundaryEXT<'_> {}
     unsafe impl Sync for FrameBoundaryEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for FrameBoundaryEXT<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::FRAME_BOUNDARY_EXT;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::FRAME_BOUNDARY_EXT;
     }
-    unsafe impl<'a> crate::Extends<crate::vk::SubmitInfo<'_>> for FrameBoundaryEXT<'a> {}
-    unsafe impl<'a> crate::Extends<crate::vk::SubmitInfo2<'_>> for FrameBoundaryEXT<'a> {}
-    unsafe impl<'a> crate::Extends<crate::vk::PresentInfoKHR<'_>>
-    for FrameBoundaryEXT<'a> {}
-    unsafe impl<'a> crate::Extends<crate::vk::BindSparseInfo<'_>>
-    for FrameBoundaryEXT<'a> {}
+    unsafe impl<'a> crate::Extends<vk::SubmitInfo<'_>> for FrameBoundaryEXT<'a> {}
+    unsafe impl<'a> crate::Extends<vk::SubmitInfo2<'_>> for FrameBoundaryEXT<'a> {}
+    unsafe impl<'a> crate::Extends<vk::PresentInfoKHR<'_>> for FrameBoundaryEXT<'a> {}
+    unsafe impl<'a> crate::Extends<vk::BindSparseInfo<'_>> for FrameBoundaryEXT<'a> {}
     impl<'a> Default for FrameBoundaryEXT<'a> {
         fn default() -> Self {
             Self {
@@ -60,12 +62,12 @@ pub(crate) mod items {
                 tag_name: Default::default(),
                 tag_size: Default::default(),
                 p_tag: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
     impl<'a> FrameBoundaryEXT<'a> {
-        pub fn flags(mut self, flags: crate::vk::FrameBoundaryFlagsEXT) -> Self {
+        pub fn flags(mut self, flags: vk::FrameBoundaryFlagsEXT) -> Self {
             self.flags = flags;
             self
         }
@@ -73,12 +75,12 @@ pub(crate) mod items {
             self.frame_id = frame_id;
             self
         }
-        pub fn images(mut self, images: &'a [crate::vk::Image]) -> Self {
+        pub fn images(mut self, images: &'a [vk::Image]) -> Self {
             self.image_count = images.len() as _;
             self.p_images = images.as_ptr();
             self
         }
-        pub fn buffers(mut self, buffers: &'a [crate::vk::Buffer]) -> Self {
+        pub fn buffers(mut self, buffers: &'a [vk::Buffer]) -> Self {
             self.buffer_count = buffers.len() as _;
             self.p_buffers = buffers.as_ptr();
             self
@@ -97,20 +99,20 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceFrameBoundaryFeaturesEXT<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
-        pub frame_boundary: crate::vk::Bool32,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub frame_boundary: vk::Bool32,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for PhysicalDeviceFrameBoundaryFeaturesEXT<'_> {}
     unsafe impl Sync for PhysicalDeviceFrameBoundaryFeaturesEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceFrameBoundaryFeaturesEXT<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_FRAME_BOUNDARY_FEATURES_EXT;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PHYSICAL_DEVICE_FRAME_BOUNDARY_FEATURES_EXT;
     }
-    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+    unsafe impl<'a> crate::Extends<vk::PhysicalDeviceFeatures2<'_>>
     for PhysicalDeviceFrameBoundaryFeaturesEXT<'a> {}
-    unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+    unsafe impl<'a> crate::Extends<vk::DeviceCreateInfo<'_>>
     for PhysicalDeviceFrameBoundaryFeaturesEXT<'a> {}
     impl<'a> Default for PhysicalDeviceFrameBoundaryFeaturesEXT<'a> {
         fn default() -> Self {
@@ -118,7 +120,7 @@ pub(crate) mod items {
                 s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
                 p_next: Default::default(),
                 frame_boundary: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }

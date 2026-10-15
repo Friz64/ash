@@ -2,42 +2,46 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_image_2d_view_of_3d.html) · Extension `VK_EXT_image_2d_view_of_3d`
 #![doc(alias = "VK_EXT_image_2d_view_of_3d")]
+use crate::vk;
+use core::ffi::CStr;
 ///Provided by [VK_EXT_image_2d_view_of_3d](crate::ext::image_2d_view_of_3d)
-impl crate::vk::StructureType {
+impl vk::StructureType {
     pub const PHYSICAL_DEVICE_IMAGE_2D_VIEW_OF_3D_FEATURES_EXT: Self = Self(1000393000);
 }
-///Provided by [VK_EXT_image_2d_view_of_3d](crate::ext::image_2d_view_of_3d)
-impl crate::vk::ImageCreateFlags {
+///Provided by [Vulkan 1.0](crate::vk1_0)
+impl vk::ImageCreateFlags {
     pub const TYPE_2D_VIEW_COMPATIBLE_EXT: Self = Self(
-        crate::vk::ImageCreateFlagBits::TYPE_2D_VIEW_COMPATIBLE_EXT.0,
+        vk::ImageCreateFlagBits::TYPE_2D_VIEW_COMPATIBLE_EXT.0,
     );
 }
-///Provided by [VK_EXT_image_2d_view_of_3d](crate::ext::image_2d_view_of_3d)
-impl crate::vk::ImageCreateFlagBits {
+///Provided by [Vulkan 1.0](crate::vk1_0)
+impl vk::ImageCreateFlagBits {
     pub const TYPE_2D_VIEW_COMPATIBLE_EXT: Self = Self(1 << 17);
 }
 pub const SPEC_VERSION: u32 = 1;
-pub const NAME: &core::ffi::CStr = c"VK_EXT_image_2d_view_of_3d";
+pub const NAME: &CStr = c"VK_EXT_image_2d_view_of_3d";
 pub(crate) mod items {
+    use core::marker::PhantomData;
+    use crate::vk;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceImage2DViewOf3DFeaturesEXT<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
-        pub image2_d_view_of3_d: crate::vk::Bool32,
-        pub sampler2_d_view_of3_d: crate::vk::Bool32,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub image2_d_view_of3_d: vk::Bool32,
+        pub sampler2_d_view_of3_d: vk::Bool32,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for PhysicalDeviceImage2DViewOf3DFeaturesEXT<'_> {}
     unsafe impl Sync for PhysicalDeviceImage2DViewOf3DFeaturesEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceImage2DViewOf3DFeaturesEXT<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_IMAGE_2D_VIEW_OF_3D_FEATURES_EXT;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PHYSICAL_DEVICE_IMAGE_2D_VIEW_OF_3D_FEATURES_EXT;
     }
-    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+    unsafe impl<'a> crate::Extends<vk::PhysicalDeviceFeatures2<'_>>
     for PhysicalDeviceImage2DViewOf3DFeaturesEXT<'a> {}
-    unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+    unsafe impl<'a> crate::Extends<vk::DeviceCreateInfo<'_>>
     for PhysicalDeviceImage2DViewOf3DFeaturesEXT<'a> {}
     impl<'a> Default for PhysicalDeviceImage2DViewOf3DFeaturesEXT<'a> {
         fn default() -> Self {
@@ -46,7 +50,7 @@ pub(crate) mod items {
                 p_next: Default::default(),
                 image2_d_view_of3_d: Default::default(),
                 sampler2_d_view_of3_d: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }

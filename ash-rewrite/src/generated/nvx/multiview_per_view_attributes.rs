@@ -2,46 +2,50 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_NVX_multiview_per_view_attributes.html) · Extension `VK_NVX_multiview_per_view_attributes`
 #![doc(alias = "VK_NVX_multiview_per_view_attributes")]
+use crate::vk;
+use core::ffi::CStr;
 ///Provided by [VK_NVX_multiview_per_view_attributes](crate::nvx::multiview_per_view_attributes)
-impl crate::vk::StructureType {
+impl vk::StructureType {
     pub const PHYSICAL_DEVICE_MULTIVIEW_PER_VIEW_ATTRIBUTES_PROPERTIES_NVX: Self = Self(
         1000097000,
     );
     pub const MULTIVIEW_PER_VIEW_ATTRIBUTES_INFO_NVX: Self = Self(1000044009);
 }
-///Provided by [VK_NVX_multiview_per_view_attributes](crate::nvx::multiview_per_view_attributes)
-impl crate::vk::SubpassDescriptionFlags {
+///Provided by [Vulkan 1.0](crate::vk1_0)
+impl vk::SubpassDescriptionFlags {
     pub const PER_VIEW_ATTRIBUTES_NVX: Self = Self(
-        crate::vk::SubpassDescriptionFlagBits::PER_VIEW_ATTRIBUTES_NVX.0,
+        vk::SubpassDescriptionFlagBits::PER_VIEW_ATTRIBUTES_NVX.0,
     );
     pub const PER_VIEW_POSITION_X_ONLY_NVX: Self = Self(
-        crate::vk::SubpassDescriptionFlagBits::PER_VIEW_POSITION_X_ONLY_NVX.0,
+        vk::SubpassDescriptionFlagBits::PER_VIEW_POSITION_X_ONLY_NVX.0,
     );
 }
-///Provided by [VK_NVX_multiview_per_view_attributes](crate::nvx::multiview_per_view_attributes)
-impl crate::vk::SubpassDescriptionFlagBits {
+///Provided by [Vulkan 1.0](crate::vk1_0)
+impl vk::SubpassDescriptionFlagBits {
     pub const PER_VIEW_ATTRIBUTES_NVX: Self = Self(1 << 0);
     pub const PER_VIEW_POSITION_X_ONLY_NVX: Self = Self(1 << 1);
 }
 pub const SPEC_VERSION: u32 = 1;
-pub const NAME: &core::ffi::CStr = c"VK_NVX_multiview_per_view_attributes";
+pub const NAME: &CStr = c"VK_NVX_multiview_per_view_attributes";
 pub(crate) mod items {
+    use core::marker::PhantomData;
+    use crate::vk;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceMultiviewPerViewAttributesPropertiesNVX<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
-        pub per_view_position_all_components: crate::vk::Bool32,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub per_view_position_all_components: vk::Bool32,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for PhysicalDeviceMultiviewPerViewAttributesPropertiesNVX<'_> {}
     unsafe impl Sync for PhysicalDeviceMultiviewPerViewAttributesPropertiesNVX<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceMultiviewPerViewAttributesPropertiesNVX<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_MULTIVIEW_PER_VIEW_ATTRIBUTES_PROPERTIES_NVX;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PHYSICAL_DEVICE_MULTIVIEW_PER_VIEW_ATTRIBUTES_PROPERTIES_NVX;
     }
-    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceProperties2<'_>>
+    unsafe impl<'a> crate::Extends<vk::PhysicalDeviceProperties2<'_>>
     for PhysicalDeviceMultiviewPerViewAttributesPropertiesNVX<'a> {}
     impl<'a> Default for PhysicalDeviceMultiviewPerViewAttributesPropertiesNVX<'a> {
         fn default() -> Self {
@@ -49,7 +53,7 @@ pub(crate) mod items {
                 s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
                 p_next: Default::default(),
                 per_view_position_all_components: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
@@ -67,23 +71,23 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct MultiviewPerViewAttributesInfoNVX<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *const core::ffi::c_void,
-        pub per_view_attributes: crate::vk::Bool32,
-        pub per_view_attributes_position_x_only: crate::vk::Bool32,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub per_view_attributes: vk::Bool32,
+        pub per_view_attributes_position_x_only: vk::Bool32,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for MultiviewPerViewAttributesInfoNVX<'_> {}
     unsafe impl Sync for MultiviewPerViewAttributesInfoNVX<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for MultiviewPerViewAttributesInfoNVX<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::MULTIVIEW_PER_VIEW_ATTRIBUTES_INFO_NVX;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::MULTIVIEW_PER_VIEW_ATTRIBUTES_INFO_NVX;
     }
-    unsafe impl<'a> crate::Extends<crate::vk::CommandBufferInheritanceInfo<'_>>
+    unsafe impl<'a> crate::Extends<vk::CommandBufferInheritanceInfo<'_>>
     for MultiviewPerViewAttributesInfoNVX<'a> {}
-    unsafe impl<'a> crate::Extends<crate::vk::GraphicsPipelineCreateInfo<'_>>
+    unsafe impl<'a> crate::Extends<vk::GraphicsPipelineCreateInfo<'_>>
     for MultiviewPerViewAttributesInfoNVX<'a> {}
-    unsafe impl<'a> crate::Extends<crate::vk::RenderingInfo<'_>>
+    unsafe impl<'a> crate::Extends<vk::RenderingInfo<'_>>
     for MultiviewPerViewAttributesInfoNVX<'a> {}
     impl<'a> Default for MultiviewPerViewAttributesInfoNVX<'a> {
         fn default() -> Self {
@@ -92,7 +96,7 @@ pub(crate) mod items {
                 p_next: Default::default(),
                 per_view_attributes: Default::default(),
                 per_view_attributes_position_x_only: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }

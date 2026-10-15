@@ -2,36 +2,39 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_subgroup_size_control.html) · Extension `VK_EXT_subgroup_size_control`
 #![doc(alias = "VK_EXT_subgroup_size_control")]
+use crate::vk;
+use core::ffi::CStr;
 ///Provided by [VK_EXT_subgroup_size_control](crate::ext::subgroup_size_control)
-impl crate::vk::StructureType {
+impl vk::StructureType {
     pub const PHYSICAL_DEVICE_SUBGROUP_SIZE_CONTROL_PROPERTIES_EXT: Self = Self::PHYSICAL_DEVICE_SUBGROUP_SIZE_CONTROL_PROPERTIES;
     pub const PIPELINE_SHADER_STAGE_REQUIRED_SUBGROUP_SIZE_CREATE_INFO_EXT: Self = Self::PIPELINE_SHADER_STAGE_REQUIRED_SUBGROUP_SIZE_CREATE_INFO;
     pub const PHYSICAL_DEVICE_SUBGROUP_SIZE_CONTROL_FEATURES_EXT: Self = Self::PHYSICAL_DEVICE_SUBGROUP_SIZE_CONTROL_FEATURES;
 }
-///Provided by [VK_EXT_subgroup_size_control](crate::ext::subgroup_size_control)
-impl crate::vk::PipelineShaderStageCreateFlags {
+///Provided by [Vulkan 1.0](crate::vk1_0)
+impl vk::PipelineShaderStageCreateFlags {
     pub const ALLOW_VARYING_SUBGROUP_SIZE_EXT: Self = Self(
-        crate::vk::PipelineShaderStageCreateFlagBits::ALLOW_VARYING_SUBGROUP_SIZE_EXT.0,
+        vk::PipelineShaderStageCreateFlagBits::ALLOW_VARYING_SUBGROUP_SIZE_EXT.0,
     );
     pub const REQUIRE_FULL_SUBGROUPS_EXT: Self = Self(
-        crate::vk::PipelineShaderStageCreateFlagBits::REQUIRE_FULL_SUBGROUPS_EXT.0,
+        vk::PipelineShaderStageCreateFlagBits::REQUIRE_FULL_SUBGROUPS_EXT.0,
     );
 }
-///Provided by [VK_EXT_subgroup_size_control](crate::ext::subgroup_size_control)
-impl crate::vk::PipelineShaderStageCreateFlagBits {
+///Provided by [Vulkan 1.0](crate::vk1_0)
+impl vk::PipelineShaderStageCreateFlagBits {
     pub const ALLOW_VARYING_SUBGROUP_SIZE_EXT: Self = Self::ALLOW_VARYING_SUBGROUP_SIZE;
     pub const REQUIRE_FULL_SUBGROUPS_EXT: Self = Self::REQUIRE_FULL_SUBGROUPS;
 }
 pub const SPEC_VERSION: u32 = 2;
-pub const NAME: &core::ffi::CStr = c"VK_EXT_subgroup_size_control";
+pub const NAME: &CStr = c"VK_EXT_subgroup_size_control";
 pub(crate) mod items {
-    pub type PhysicalDeviceSubgroupSizeControlFeaturesEXT<'a> = crate::vk::PhysicalDeviceSubgroupSizeControlFeatures<
+    use crate::vk;
+    pub type PhysicalDeviceSubgroupSizeControlFeaturesEXT<'a> = vk::PhysicalDeviceSubgroupSizeControlFeatures<
         'a,
     >;
-    pub type PhysicalDeviceSubgroupSizeControlPropertiesEXT<'a> = crate::vk::PhysicalDeviceSubgroupSizeControlProperties<
+    pub type PhysicalDeviceSubgroupSizeControlPropertiesEXT<'a> = vk::PhysicalDeviceSubgroupSizeControlProperties<
         'a,
     >;
-    pub type PipelineShaderStageRequiredSubgroupSizeCreateInfoEXT<'a> = crate::vk::PipelineShaderStageRequiredSubgroupSizeCreateInfo<
+    pub type PipelineShaderStageRequiredSubgroupSizeCreateInfoEXT<'a> = vk::PipelineShaderStageRequiredSubgroupSizeCreateInfo<
         'a,
     >;
 }

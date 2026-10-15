@@ -2,8 +2,10 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_descriptor_indexing.html) · Extension `VK_EXT_descriptor_indexing`
 #![doc(alias = "VK_EXT_descriptor_indexing")]
+use crate::vk;
+use core::ffi::CStr;
 ///Provided by [VK_EXT_descriptor_indexing](crate::ext::descriptor_indexing)
-impl crate::vk::StructureType {
+impl vk::StructureType {
     pub const DESCRIPTOR_SET_LAYOUT_BINDING_FLAGS_CREATE_INFO_EXT: Self = Self::DESCRIPTOR_SET_LAYOUT_BINDING_FLAGS_CREATE_INFO;
     pub const PHYSICAL_DEVICE_DESCRIPTOR_INDEXING_FEATURES_EXT: Self = Self::PHYSICAL_DEVICE_DESCRIPTOR_INDEXING_FEATURES;
     pub const PHYSICAL_DEVICE_DESCRIPTOR_INDEXING_PROPERTIES_EXT: Self = Self::PHYSICAL_DEVICE_DESCRIPTOR_INDEXING_PROPERTIES;
@@ -11,70 +13,71 @@ impl crate::vk::StructureType {
     pub const DESCRIPTOR_SET_VARIABLE_DESCRIPTOR_COUNT_LAYOUT_SUPPORT_EXT: Self = Self::DESCRIPTOR_SET_VARIABLE_DESCRIPTOR_COUNT_LAYOUT_SUPPORT;
 }
 ///Provided by [VK_EXT_descriptor_indexing](crate::ext::descriptor_indexing)
-impl crate::vk::Result {
+impl vk::Result {
     pub const ERROR_FRAGMENTATION_EXT: Self = Self::ERROR_FRAGMENTATION;
 }
-///Provided by [VK_EXT_descriptor_indexing](crate::ext::descriptor_indexing)
-impl crate::vk::DescriptorSetLayoutCreateFlags {
+///Provided by [Vulkan 1.0](crate::vk1_0)
+impl vk::DescriptorSetLayoutCreateFlags {
     pub const UPDATE_AFTER_BIND_POOL_EXT: Self = Self(
-        crate::vk::DescriptorSetLayoutCreateFlagBits::UPDATE_AFTER_BIND_POOL_EXT.0,
+        vk::DescriptorSetLayoutCreateFlagBits::UPDATE_AFTER_BIND_POOL_EXT.0,
     );
 }
-///Provided by [VK_EXT_descriptor_indexing](crate::ext::descriptor_indexing)
-impl crate::vk::DescriptorSetLayoutCreateFlagBits {
+///Provided by [Vulkan 1.0](crate::vk1_0)
+impl vk::DescriptorSetLayoutCreateFlagBits {
     pub const UPDATE_AFTER_BIND_POOL_EXT: Self = Self::UPDATE_AFTER_BIND_POOL;
 }
-///Provided by [VK_EXT_descriptor_indexing](crate::ext::descriptor_indexing)
-impl crate::vk::DescriptorPoolCreateFlags {
+///Provided by [Vulkan 1.0](crate::vk1_0)
+impl vk::DescriptorPoolCreateFlags {
     pub const UPDATE_AFTER_BIND_EXT: Self = Self(
-        crate::vk::DescriptorPoolCreateFlagBits::UPDATE_AFTER_BIND_EXT.0,
+        vk::DescriptorPoolCreateFlagBits::UPDATE_AFTER_BIND_EXT.0,
     );
 }
-///Provided by [VK_EXT_descriptor_indexing](crate::ext::descriptor_indexing)
-impl crate::vk::DescriptorPoolCreateFlagBits {
+///Provided by [Vulkan 1.0](crate::vk1_0)
+impl vk::DescriptorPoolCreateFlagBits {
     pub const UPDATE_AFTER_BIND_EXT: Self = Self::UPDATE_AFTER_BIND;
 }
-///Provided by [VK_EXT_descriptor_indexing](crate::ext::descriptor_indexing)
-impl crate::vk::DescriptorBindingFlags {
+///Provided by [Vulkan 1.2](crate::vk1_2)
+impl vk::DescriptorBindingFlags {
     pub const UPDATE_AFTER_BIND_EXT: Self = Self(
-        crate::vk::DescriptorBindingFlagBits::UPDATE_AFTER_BIND_EXT.0,
+        vk::DescriptorBindingFlagBits::UPDATE_AFTER_BIND_EXT.0,
     );
     pub const UPDATE_UNUSED_WHILE_PENDING_EXT: Self = Self(
-        crate::vk::DescriptorBindingFlagBits::UPDATE_UNUSED_WHILE_PENDING_EXT.0,
+        vk::DescriptorBindingFlagBits::UPDATE_UNUSED_WHILE_PENDING_EXT.0,
     );
     pub const PARTIALLY_BOUND_EXT: Self = Self(
-        crate::vk::DescriptorBindingFlagBits::PARTIALLY_BOUND_EXT.0,
+        vk::DescriptorBindingFlagBits::PARTIALLY_BOUND_EXT.0,
     );
     pub const VARIABLE_DESCRIPTOR_COUNT_EXT: Self = Self(
-        crate::vk::DescriptorBindingFlagBits::VARIABLE_DESCRIPTOR_COUNT_EXT.0,
+        vk::DescriptorBindingFlagBits::VARIABLE_DESCRIPTOR_COUNT_EXT.0,
     );
 }
-///Provided by [VK_EXT_descriptor_indexing](crate::ext::descriptor_indexing)
-impl crate::vk::DescriptorBindingFlagBits {
+///Provided by [Vulkan 1.2](crate::vk1_2)
+impl vk::DescriptorBindingFlagBits {
     pub const UPDATE_AFTER_BIND_EXT: Self = Self::UPDATE_AFTER_BIND;
     pub const UPDATE_UNUSED_WHILE_PENDING_EXT: Self = Self::UPDATE_UNUSED_WHILE_PENDING;
     pub const PARTIALLY_BOUND_EXT: Self = Self::PARTIALLY_BOUND;
     pub const VARIABLE_DESCRIPTOR_COUNT_EXT: Self = Self::VARIABLE_DESCRIPTOR_COUNT;
 }
 pub const SPEC_VERSION: u32 = 2;
-pub const NAME: &core::ffi::CStr = c"VK_EXT_descriptor_indexing";
+pub const NAME: &CStr = c"VK_EXT_descriptor_indexing";
 pub(crate) mod items {
-    pub type PhysicalDeviceDescriptorIndexingFeaturesEXT<'a> = crate::vk::PhysicalDeviceDescriptorIndexingFeatures<
+    use crate::vk;
+    pub type PhysicalDeviceDescriptorIndexingFeaturesEXT<'a> = vk::PhysicalDeviceDescriptorIndexingFeatures<
         'a,
     >;
-    pub type PhysicalDeviceDescriptorIndexingPropertiesEXT<'a> = crate::vk::PhysicalDeviceDescriptorIndexingProperties<
+    pub type PhysicalDeviceDescriptorIndexingPropertiesEXT<'a> = vk::PhysicalDeviceDescriptorIndexingProperties<
         'a,
     >;
-    pub type DescriptorSetLayoutBindingFlagsCreateInfoEXT<'a> = crate::vk::DescriptorSetLayoutBindingFlagsCreateInfo<
+    pub type DescriptorSetLayoutBindingFlagsCreateInfoEXT<'a> = vk::DescriptorSetLayoutBindingFlagsCreateInfo<
         'a,
     >;
-    pub type DescriptorSetVariableDescriptorCountAllocateInfoEXT<'a> = crate::vk::DescriptorSetVariableDescriptorCountAllocateInfo<
+    pub type DescriptorSetVariableDescriptorCountAllocateInfoEXT<'a> = vk::DescriptorSetVariableDescriptorCountAllocateInfo<
         'a,
     >;
-    pub type DescriptorSetVariableDescriptorCountLayoutSupportEXT<'a> = crate::vk::DescriptorSetVariableDescriptorCountLayoutSupport<
+    pub type DescriptorSetVariableDescriptorCountLayoutSupportEXT<'a> = vk::DescriptorSetVariableDescriptorCountLayoutSupport<
         'a,
     >;
-    pub type DescriptorBindingFlagBitsEXT = crate::vk::DescriptorBindingFlagBits;
-    pub type DescriptorBindingFlagsEXT = crate::vk::DescriptorBindingFlags;
+    pub type DescriptorBindingFlagBitsEXT = vk::DescriptorBindingFlagBits;
+    pub type DescriptorBindingFlagsEXT = vk::DescriptorBindingFlags;
 }
 pub use items::*;

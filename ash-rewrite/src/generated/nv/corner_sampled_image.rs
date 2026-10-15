@@ -2,41 +2,45 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_NV_corner_sampled_image.html) · Extension `VK_NV_corner_sampled_image`
 #![doc(alias = "VK_NV_corner_sampled_image")]
+use crate::vk;
+use core::ffi::CStr;
 ///Provided by [VK_NV_corner_sampled_image](crate::nv::corner_sampled_image)
-impl crate::vk::StructureType {
+impl vk::StructureType {
     pub const PHYSICAL_DEVICE_CORNER_SAMPLED_IMAGE_FEATURES_NV: Self = Self(1000050000);
 }
-///Provided by [VK_NV_corner_sampled_image](crate::nv::corner_sampled_image)
-impl crate::vk::ImageCreateFlags {
+///Provided by [Vulkan 1.0](crate::vk1_0)
+impl vk::ImageCreateFlags {
     pub const CORNER_SAMPLED_NV: Self = Self(
-        crate::vk::ImageCreateFlagBits::CORNER_SAMPLED_NV.0,
+        vk::ImageCreateFlagBits::CORNER_SAMPLED_NV.0,
     );
 }
-///Provided by [VK_NV_corner_sampled_image](crate::nv::corner_sampled_image)
-impl crate::vk::ImageCreateFlagBits {
+///Provided by [Vulkan 1.0](crate::vk1_0)
+impl vk::ImageCreateFlagBits {
     pub const CORNER_SAMPLED_NV: Self = Self(1 << 13);
 }
 pub const SPEC_VERSION: u32 = 2;
-pub const NAME: &core::ffi::CStr = c"VK_NV_corner_sampled_image";
+pub const NAME: &CStr = c"VK_NV_corner_sampled_image";
 pub(crate) mod items {
+    use core::marker::PhantomData;
+    use crate::vk;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceCornerSampledImageFeaturesNV<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
-        pub corner_sampled_image: crate::vk::Bool32,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub corner_sampled_image: vk::Bool32,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for PhysicalDeviceCornerSampledImageFeaturesNV<'_> {}
     unsafe impl Sync for PhysicalDeviceCornerSampledImageFeaturesNV<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceCornerSampledImageFeaturesNV<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_CORNER_SAMPLED_IMAGE_FEATURES_NV;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PHYSICAL_DEVICE_CORNER_SAMPLED_IMAGE_FEATURES_NV;
     }
-    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+    unsafe impl<'a> crate::Extends<vk::PhysicalDeviceFeatures2<'_>>
     for PhysicalDeviceCornerSampledImageFeaturesNV<'a> {}
-    unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+    unsafe impl<'a> crate::Extends<vk::DeviceCreateInfo<'_>>
     for PhysicalDeviceCornerSampledImageFeaturesNV<'a> {}
     impl<'a> Default for PhysicalDeviceCornerSampledImageFeaturesNV<'a> {
         fn default() -> Self {
@@ -44,7 +48,7 @@ pub(crate) mod items {
                 s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
                 p_next: Default::default(),
                 corner_sampled_image: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }

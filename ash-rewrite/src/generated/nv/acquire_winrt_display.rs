@@ -2,30 +2,30 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_NV_acquire_winrt_display.html) · Extension `VK_NV_acquire_winrt_display`
 #![doc(alias = "VK_NV_acquire_winrt_display")]
+use core::ffi::CStr;
+use crate::vk;
+use crate::VkResult;
+use core::ffi::c_void;
 pub const SPEC_VERSION: u32 = 1;
-pub const NAME: &core::ffi::CStr = c"VK_NV_acquire_winrt_display";
+pub const NAME: &CStr = c"VK_NV_acquire_winrt_display";
 #[derive(Clone)]
 pub struct InstanceFn {
-    pub acquire_winrt_display: crate::vk::PFN_vkAcquireWinrtDisplayNV,
-    pub get_winrt_display: crate::vk::PFN_vkGetWinrtDisplayNV,
+    pub acquire_winrt_display: vk::PFN_vkAcquireWinrtDisplayNV,
+    pub get_winrt_display: vk::PFN_vkGetWinrtDisplayNV,
 }
 unsafe impl Send for InstanceFn {}
 unsafe impl Sync for InstanceFn {}
 impl InstanceFn {
-    pub fn load<F: FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void>(
-        mut f: F,
-    ) -> Self {
+    pub fn load<F: FnMut(&CStr) -> *const c_void>(mut f: F) -> Self {
         Self::load_erased(&mut f)
     }
-    fn load_erased(
-        _f: &mut dyn FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void,
-    ) -> Self {
+    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const c_void) -> Self {
         Self {
             acquire_winrt_display: unsafe {
                 unsafe extern "system" fn acquire_winrt_display(
-                    _: crate::vk::PhysicalDevice,
-                    _: crate::vk::DisplayKHR,
-                ) -> crate::vk::Result {
+                    _: vk::PhysicalDevice,
+                    _: vk::DisplayKHR,
+                ) -> vk::Result {
                     panic!("unable to load vkAcquireWinrtDisplayNV")
                 }
                 let val = _f(c"vkAcquireWinrtDisplayNV");
@@ -37,10 +37,10 @@ impl InstanceFn {
             },
             get_winrt_display: unsafe {
                 unsafe extern "system" fn get_winrt_display(
-                    _: crate::vk::PhysicalDevice,
+                    _: vk::PhysicalDevice,
                     _: u32,
-                    _: *mut crate::vk::DisplayKHR,
-                ) -> crate::vk::Result {
+                    _: *mut vk::DisplayKHR,
+                ) -> vk::Result {
                     panic!("unable to load vkGetWinrtDisplayNV")
                 }
                 let val = _f(c"vkGetWinrtDisplayNV");
@@ -78,18 +78,18 @@ impl Instance {
     #[inline]
     pub unsafe fn acquire_winrt_display(
         &self,
-        physical_device: crate::vk::PhysicalDevice,
-        display: crate::vk::DisplayKHR,
-    ) -> crate::VkResult<()> {
+        physical_device: vk::PhysicalDevice,
+        display: vk::DisplayKHR,
+    ) -> VkResult<()> {
         (self.fp.acquire_winrt_display)(physical_device, display).result()
     }
     ///vkGetWinrtDisplayNV
     #[inline]
     pub unsafe fn get_winrt_display(
         &self,
-        physical_device: crate::vk::PhysicalDevice,
+        physical_device: vk::PhysicalDevice,
         device_relative_id: u32,
-    ) -> crate::VkResult<crate::vk::DisplayKHR> {
+    ) -> VkResult<vk::DisplayKHR> {
         let mut display = core::mem::MaybeUninit::uninit();
         (self
             .fp
@@ -102,14 +102,15 @@ impl Instance {
     }
 }
 pub(crate) mod items {
+    use crate::vk;
     pub type PFN_vkAcquireWinrtDisplayNV = unsafe extern "system" fn(
-        physical_device: crate::vk::PhysicalDevice,
-        display: crate::vk::DisplayKHR,
-    ) -> crate::vk::Result;
+        physical_device: vk::PhysicalDevice,
+        display: vk::DisplayKHR,
+    ) -> vk::Result;
     pub type PFN_vkGetWinrtDisplayNV = unsafe extern "system" fn(
-        physical_device: crate::vk::PhysicalDevice,
+        physical_device: vk::PhysicalDevice,
         device_relative_id: u32,
-        p_display: *mut crate::vk::DisplayKHR,
-    ) -> crate::vk::Result;
+        p_display: *mut vk::DisplayKHR,
+    ) -> vk::Result;
 }
 pub use items::*;

@@ -2,32 +2,36 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_image_sliced_view_of_3d.html) · Extension `VK_EXT_image_sliced_view_of_3d`
 #![doc(alias = "VK_EXT_image_sliced_view_of_3d")]
+use crate::vk;
+use core::ffi::CStr;
 ///Provided by [VK_EXT_image_sliced_view_of_3d](crate::ext::image_sliced_view_of_3d)
-impl crate::vk::StructureType {
+impl vk::StructureType {
     pub const PHYSICAL_DEVICE_IMAGE_SLICED_VIEW_OF_3D_FEATURES_EXT: Self = Self(
         1000418000,
     );
     pub const IMAGE_VIEW_SLICED_CREATE_INFO_EXT: Self = Self(1000418001);
 }
 pub const SPEC_VERSION: u32 = 1;
-pub const NAME: &core::ffi::CStr = c"VK_EXT_image_sliced_view_of_3d";
+pub const NAME: &CStr = c"VK_EXT_image_sliced_view_of_3d";
 pub(crate) mod items {
+    use core::marker::PhantomData;
+    use crate::vk;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct ImageViewSlicedCreateInfoEXT<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *const core::ffi::c_void,
         pub slice_offset: u32,
         pub slice_count: u32,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for ImageViewSlicedCreateInfoEXT<'_> {}
     unsafe impl Sync for ImageViewSlicedCreateInfoEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for ImageViewSlicedCreateInfoEXT<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::IMAGE_VIEW_SLICED_CREATE_INFO_EXT;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::IMAGE_VIEW_SLICED_CREATE_INFO_EXT;
     }
-    unsafe impl<'a> crate::Extends<crate::vk::ImageViewCreateInfo<'_>>
+    unsafe impl<'a> crate::Extends<vk::ImageViewCreateInfo<'_>>
     for ImageViewSlicedCreateInfoEXT<'a> {}
     impl<'a> Default for ImageViewSlicedCreateInfoEXT<'a> {
         fn default() -> Self {
@@ -36,7 +40,7 @@ pub(crate) mod items {
                 p_next: Default::default(),
                 slice_offset: Default::default(),
                 slice_count: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
@@ -54,20 +58,20 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceImageSlicedViewOf3DFeaturesEXT<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
-        pub image_sliced_view_of3_d: crate::vk::Bool32,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub image_sliced_view_of3_d: vk::Bool32,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for PhysicalDeviceImageSlicedViewOf3DFeaturesEXT<'_> {}
     unsafe impl Sync for PhysicalDeviceImageSlicedViewOf3DFeaturesEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceImageSlicedViewOf3DFeaturesEXT<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_IMAGE_SLICED_VIEW_OF_3D_FEATURES_EXT;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PHYSICAL_DEVICE_IMAGE_SLICED_VIEW_OF_3D_FEATURES_EXT;
     }
-    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+    unsafe impl<'a> crate::Extends<vk::PhysicalDeviceFeatures2<'_>>
     for PhysicalDeviceImageSlicedViewOf3DFeaturesEXT<'a> {}
-    unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+    unsafe impl<'a> crate::Extends<vk::DeviceCreateInfo<'_>>
     for PhysicalDeviceImageSlicedViewOf3DFeaturesEXT<'a> {}
     impl<'a> Default for PhysicalDeviceImageSlicedViewOf3DFeaturesEXT<'a> {
         fn default() -> Self {
@@ -75,7 +79,7 @@ pub(crate) mod items {
                 s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
                 p_next: Default::default(),
                 image_sliced_view_of3_d: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }

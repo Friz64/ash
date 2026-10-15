@@ -2,8 +2,12 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_cooperative_matrix.html) · Extension `VK_KHR_cooperative_matrix`
 #![doc(alias = "VK_KHR_cooperative_matrix")]
+use crate::vk;
+use core::ffi::CStr;
+use crate::VkResult;
+use core::ffi::c_void;
 ///Provided by [VK_KHR_cooperative_matrix](crate::khr::cooperative_matrix)
-impl crate::vk::StructureType {
+impl vk::StructureType {
     pub const PHYSICAL_DEVICE_COOPERATIVE_MATRIX_FEATURES_KHR: Self = Self(1000506000);
     pub const COOPERATIVE_MATRIX_PROPERTIES_KHR: Self = Self(1000506001);
     pub const PHYSICAL_DEVICE_COOPERATIVE_MATRIX_PROPERTIES_KHR: Self = Self(1000506002);
@@ -15,28 +19,26 @@ impl ScopeKHR {
     pub const SUBGROUP: Self = Self(3);
     pub const QUEUE_FAMILY: Self = Self(5);
 }
+pub const SPEC_VERSION: u32 = 2;
+pub const NAME: &CStr = c"VK_KHR_cooperative_matrix";
 #[derive(Clone)]
 pub struct InstanceFn {
-    pub get_physical_device_cooperative_matrix_properties: crate::vk::PFN_vkGetPhysicalDeviceCooperativeMatrixPropertiesKHR,
+    pub get_physical_device_cooperative_matrix_properties: vk::PFN_vkGetPhysicalDeviceCooperativeMatrixPropertiesKHR,
 }
 unsafe impl Send for InstanceFn {}
 unsafe impl Sync for InstanceFn {}
 impl InstanceFn {
-    pub fn load<F: FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void>(
-        mut f: F,
-    ) -> Self {
+    pub fn load<F: FnMut(&CStr) -> *const c_void>(mut f: F) -> Self {
         Self::load_erased(&mut f)
     }
-    fn load_erased(
-        _f: &mut dyn FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void,
-    ) -> Self {
+    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const c_void) -> Self {
         Self {
             get_physical_device_cooperative_matrix_properties: unsafe {
                 unsafe extern "system" fn get_physical_device_cooperative_matrix_properties(
-                    _: crate::vk::PhysicalDevice,
+                    _: vk::PhysicalDevice,
                     _: *mut u32,
-                    _: *mut crate::vk::CooperativeMatrixPropertiesKHR<'_>,
-                ) -> crate::vk::Result {
+                    _: *mut vk::CooperativeMatrixPropertiesKHR<'_>,
+                ) -> vk::Result {
                     panic!(
                         "unable to load vkGetPhysicalDeviceCooperativeMatrixPropertiesKHR"
                     )
@@ -76,8 +78,8 @@ impl Instance {
     #[inline]
     pub unsafe fn get_physical_device_cooperative_matrix_properties_len(
         &self,
-        physical_device: crate::vk::PhysicalDevice,
-    ) -> crate::VkResult<usize> {
+        physical_device: vk::PhysicalDevice,
+    ) -> VkResult<usize> {
         let mut property_count = core::mem::MaybeUninit::uninit();
         (self
             .fp
@@ -93,8 +95,8 @@ impl Instance {
     #[inline]
     pub unsafe fn get_physical_device_cooperative_matrix_properties(
         &self,
-        physical_device: crate::vk::PhysicalDevice,
-        properties: &mut [crate::vk::CooperativeMatrixPropertiesKHR<'_>],
+        physical_device: vk::PhysicalDevice,
+        properties: &mut [vk::CooperativeMatrixPropertiesKHR<'_>],
     ) -> crate::VkResult<()> {
         let mut property_count = properties.len() as _;
         (self
@@ -109,28 +111,28 @@ impl Instance {
         Ok(())
     }
 }
-pub const SPEC_VERSION: u32 = 2;
-pub const NAME: &core::ffi::CStr = c"VK_KHR_cooperative_matrix";
 pub(crate) mod items {
+    use core::marker::PhantomData;
+    use crate::vk;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceCooperativeMatrixFeaturesKHR<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
-        pub cooperative_matrix: crate::vk::Bool32,
-        pub cooperative_matrix_robust_buffer_access: crate::vk::Bool32,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub cooperative_matrix: vk::Bool32,
+        pub cooperative_matrix_robust_buffer_access: vk::Bool32,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for PhysicalDeviceCooperativeMatrixFeaturesKHR<'_> {}
     unsafe impl Sync for PhysicalDeviceCooperativeMatrixFeaturesKHR<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceCooperativeMatrixFeaturesKHR<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_COOPERATIVE_MATRIX_FEATURES_KHR;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PHYSICAL_DEVICE_COOPERATIVE_MATRIX_FEATURES_KHR;
     }
-    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+    unsafe impl<'a> crate::Extends<vk::PhysicalDeviceFeatures2<'_>>
     for PhysicalDeviceCooperativeMatrixFeaturesKHR<'a> {}
-    unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+    unsafe impl<'a> crate::Extends<vk::DeviceCreateInfo<'_>>
     for PhysicalDeviceCooperativeMatrixFeaturesKHR<'a> {}
     impl<'a> Default for PhysicalDeviceCooperativeMatrixFeaturesKHR<'a> {
         fn default() -> Self {
@@ -139,7 +141,7 @@ pub(crate) mod items {
                 p_next: Default::default(),
                 cooperative_matrix: Default::default(),
                 cooperative_matrix_robust_buffer_access: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
@@ -161,23 +163,23 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct CooperativeMatrixPropertiesKHR<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
         pub m_size: u32,
         pub n_size: u32,
         pub k_size: u32,
-        pub a_type: crate::vk::ComponentTypeKHR,
-        pub b_type: crate::vk::ComponentTypeKHR,
-        pub c_type: crate::vk::ComponentTypeKHR,
-        pub result_type: crate::vk::ComponentTypeKHR,
-        pub saturating_accumulation: crate::vk::Bool32,
-        pub scope: crate::vk::ScopeKHR,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub a_type: vk::ComponentTypeKHR,
+        pub b_type: vk::ComponentTypeKHR,
+        pub c_type: vk::ComponentTypeKHR,
+        pub result_type: vk::ComponentTypeKHR,
+        pub saturating_accumulation: vk::Bool32,
+        pub scope: vk::ScopeKHR,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for CooperativeMatrixPropertiesKHR<'_> {}
     unsafe impl Sync for CooperativeMatrixPropertiesKHR<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for CooperativeMatrixPropertiesKHR<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::COOPERATIVE_MATRIX_PROPERTIES_KHR;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::COOPERATIVE_MATRIX_PROPERTIES_KHR;
     }
     impl<'a> Default for CooperativeMatrixPropertiesKHR<'a> {
         fn default() -> Self {
@@ -193,7 +195,7 @@ pub(crate) mod items {
                 result_type: Default::default(),
                 saturating_accumulation: Default::default(),
                 scope: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
@@ -210,19 +212,19 @@ pub(crate) mod items {
             self.k_size = k_size;
             self
         }
-        pub fn a_type(mut self, a_type: crate::vk::ComponentTypeKHR) -> Self {
+        pub fn a_type(mut self, a_type: vk::ComponentTypeKHR) -> Self {
             self.a_type = a_type;
             self
         }
-        pub fn b_type(mut self, b_type: crate::vk::ComponentTypeKHR) -> Self {
+        pub fn b_type(mut self, b_type: vk::ComponentTypeKHR) -> Self {
             self.b_type = b_type;
             self
         }
-        pub fn c_type(mut self, c_type: crate::vk::ComponentTypeKHR) -> Self {
+        pub fn c_type(mut self, c_type: vk::ComponentTypeKHR) -> Self {
             self.c_type = c_type;
             self
         }
-        pub fn result_type(mut self, result_type: crate::vk::ComponentTypeKHR) -> Self {
+        pub fn result_type(mut self, result_type: vk::ComponentTypeKHR) -> Self {
             self.result_type = result_type;
             self
         }
@@ -230,7 +232,7 @@ pub(crate) mod items {
             self.saturating_accumulation = saturating_accumulation.into();
             self
         }
-        pub fn scope(mut self, scope: crate::vk::ScopeKHR) -> Self {
+        pub fn scope(mut self, scope: vk::ScopeKHR) -> Self {
             self.scope = scope;
             self
         }
@@ -239,18 +241,18 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceCooperativeMatrixPropertiesKHR<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
-        pub cooperative_matrix_supported_stages: crate::vk::ShaderStageFlags,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub cooperative_matrix_supported_stages: vk::ShaderStageFlags,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for PhysicalDeviceCooperativeMatrixPropertiesKHR<'_> {}
     unsafe impl Sync for PhysicalDeviceCooperativeMatrixPropertiesKHR<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceCooperativeMatrixPropertiesKHR<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_COOPERATIVE_MATRIX_PROPERTIES_KHR;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PHYSICAL_DEVICE_COOPERATIVE_MATRIX_PROPERTIES_KHR;
     }
-    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceProperties2<'_>>
+    unsafe impl<'a> crate::Extends<vk::PhysicalDeviceProperties2<'_>>
     for PhysicalDeviceCooperativeMatrixPropertiesKHR<'a> {}
     impl<'a> Default for PhysicalDeviceCooperativeMatrixPropertiesKHR<'a> {
         fn default() -> Self {
@@ -258,14 +260,14 @@ pub(crate) mod items {
                 s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
                 p_next: Default::default(),
                 cooperative_matrix_supported_stages: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
     impl<'a> PhysicalDeviceCooperativeMatrixPropertiesKHR<'a> {
         pub fn cooperative_matrix_supported_stages(
             mut self,
-            cooperative_matrix_supported_stages: crate::vk::ShaderStageFlags,
+            cooperative_matrix_supported_stages: vk::ShaderStageFlags,
         ) -> Self {
             self.cooperative_matrix_supported_stages = cooperative_matrix_supported_stages;
             self
@@ -301,9 +303,9 @@ pub(crate) mod items {
         }
     }
     pub type PFN_vkGetPhysicalDeviceCooperativeMatrixPropertiesKHR = unsafe extern "system" fn(
-        physical_device: crate::vk::PhysicalDevice,
+        physical_device: vk::PhysicalDevice,
         p_property_count: *mut u32,
-        p_properties: *mut crate::vk::CooperativeMatrixPropertiesKHR<'_>,
-    ) -> crate::vk::Result;
+        p_properties: *mut vk::CooperativeMatrixPropertiesKHR<'_>,
+    ) -> vk::Result;
 }
 pub use items::*;

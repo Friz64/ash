@@ -2,33 +2,35 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_GOOGLE_display_timing.html) · Extension `VK_GOOGLE_display_timing`
 #![doc(alias = "VK_GOOGLE_display_timing")]
+use crate::vk;
+use core::ffi::CStr;
+use crate::VkResult;
+use core::ffi::c_void;
 ///Provided by [VK_GOOGLE_display_timing](crate::google::display_timing)
-impl crate::vk::StructureType {
+impl vk::StructureType {
     pub const PRESENT_TIMES_INFO_GOOGLE: Self = Self(1000092000);
 }
+pub const SPEC_VERSION: u32 = 1;
+pub const NAME: &CStr = c"VK_GOOGLE_display_timing";
 #[derive(Clone)]
 pub struct DeviceFn {
-    pub get_refresh_cycle_duration: crate::vk::PFN_vkGetRefreshCycleDurationGOOGLE,
-    pub get_past_presentation_timing: crate::vk::PFN_vkGetPastPresentationTimingGOOGLE,
+    pub get_refresh_cycle_duration: vk::PFN_vkGetRefreshCycleDurationGOOGLE,
+    pub get_past_presentation_timing: vk::PFN_vkGetPastPresentationTimingGOOGLE,
 }
 unsafe impl Send for DeviceFn {}
 unsafe impl Sync for DeviceFn {}
 impl DeviceFn {
-    pub fn load<F: FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void>(
-        mut f: F,
-    ) -> Self {
+    pub fn load<F: FnMut(&CStr) -> *const c_void>(mut f: F) -> Self {
         Self::load_erased(&mut f)
     }
-    fn load_erased(
-        _f: &mut dyn FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void,
-    ) -> Self {
+    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const c_void) -> Self {
         Self {
             get_refresh_cycle_duration: unsafe {
                 unsafe extern "system" fn get_refresh_cycle_duration(
-                    _: crate::vk::Device,
-                    _: crate::vk::SwapchainKHR,
-                    _: *mut crate::vk::RefreshCycleDurationGOOGLE,
-                ) -> crate::vk::Result {
+                    _: vk::Device,
+                    _: vk::SwapchainKHR,
+                    _: *mut vk::RefreshCycleDurationGOOGLE,
+                ) -> vk::Result {
                     panic!("unable to load vkGetRefreshCycleDurationGOOGLE")
                 }
                 let val = _f(c"vkGetRefreshCycleDurationGOOGLE");
@@ -40,11 +42,11 @@ impl DeviceFn {
             },
             get_past_presentation_timing: unsafe {
                 unsafe extern "system" fn get_past_presentation_timing(
-                    _: crate::vk::Device,
-                    _: crate::vk::SwapchainKHR,
+                    _: vk::Device,
+                    _: vk::SwapchainKHR,
                     _: *mut u32,
-                    _: *mut crate::vk::PastPresentationTimingGOOGLE,
-                ) -> crate::vk::Result {
+                    _: *mut vk::PastPresentationTimingGOOGLE,
+                ) -> vk::Result {
                     panic!("unable to load vkGetPastPresentationTimingGOOGLE")
                 }
                 let val = _f(c"vkGetPastPresentationTimingGOOGLE");
@@ -82,8 +84,8 @@ impl Device {
     #[inline]
     pub unsafe fn get_refresh_cycle_duration(
         &self,
-        swapchain: crate::vk::SwapchainKHR,
-    ) -> crate::VkResult<crate::vk::RefreshCycleDurationGOOGLE> {
+        swapchain: vk::SwapchainKHR,
+    ) -> VkResult<vk::RefreshCycleDurationGOOGLE> {
         let mut display_timing_properties = core::mem::MaybeUninit::uninit();
         (self
             .fp
@@ -98,8 +100,8 @@ impl Device {
     #[inline]
     pub unsafe fn get_past_presentation_timing(
         &self,
-        swapchain: crate::vk::SwapchainKHR,
-    ) -> crate::VkResult<Vec<crate::vk::PastPresentationTimingGOOGLE>> {
+        swapchain: vk::SwapchainKHR,
+    ) -> crate::VkResult<Vec<vk::PastPresentationTimingGOOGLE>> {
         crate::read_into_uninitialized_vector(|
             presentation_timing_count,
             presentation_timings|
@@ -113,9 +115,9 @@ impl Device {
         ))
     }
 }
-pub const SPEC_VERSION: u32 = 1;
-pub const NAME: &core::ffi::CStr = c"VK_GOOGLE_display_timing";
 pub(crate) mod items {
+    use core::marker::PhantomData;
+    use crate::vk;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy, Default)]
@@ -168,18 +170,18 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct PresentTimesInfoGOOGLE<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *const core::ffi::c_void,
         pub swapchain_count: u32,
-        pub p_times: *const crate::vk::PresentTimeGOOGLE,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub p_times: *const vk::PresentTimeGOOGLE,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for PresentTimesInfoGOOGLE<'_> {}
     unsafe impl Sync for PresentTimesInfoGOOGLE<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for PresentTimesInfoGOOGLE<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PRESENT_TIMES_INFO_GOOGLE;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PRESENT_TIMES_INFO_GOOGLE;
     }
-    unsafe impl<'a> crate::Extends<crate::vk::PresentInfoKHR<'_>>
+    unsafe impl<'a> crate::Extends<vk::PresentInfoKHR<'_>>
     for PresentTimesInfoGOOGLE<'a> {}
     impl<'a> Default for PresentTimesInfoGOOGLE<'a> {
         fn default() -> Self {
@@ -188,12 +190,12 @@ pub(crate) mod items {
                 p_next: Default::default(),
                 swapchain_count: Default::default(),
                 p_times: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
     impl<'a> PresentTimesInfoGOOGLE<'a> {
-        pub fn times(mut self, times: &'a [crate::vk::PresentTimeGOOGLE]) -> Self {
+        pub fn times(mut self, times: &'a [vk::PresentTimeGOOGLE]) -> Self {
             self.swapchain_count = times.len() as _;
             self.p_times = times.as_ptr();
             self
@@ -219,15 +221,15 @@ pub(crate) mod items {
         }
     }
     pub type PFN_vkGetRefreshCycleDurationGOOGLE = unsafe extern "system" fn(
-        device: crate::vk::Device,
-        swapchain: crate::vk::SwapchainKHR,
-        p_display_timing_properties: *mut crate::vk::RefreshCycleDurationGOOGLE,
-    ) -> crate::vk::Result;
+        device: vk::Device,
+        swapchain: vk::SwapchainKHR,
+        p_display_timing_properties: *mut vk::RefreshCycleDurationGOOGLE,
+    ) -> vk::Result;
     pub type PFN_vkGetPastPresentationTimingGOOGLE = unsafe extern "system" fn(
-        device: crate::vk::Device,
-        swapchain: crate::vk::SwapchainKHR,
+        device: vk::Device,
+        swapchain: vk::SwapchainKHR,
         p_presentation_timing_count: *mut u32,
-        p_presentation_timings: *mut crate::vk::PastPresentationTimingGOOGLE,
-    ) -> crate::vk::Result;
+        p_presentation_timings: *mut vk::PastPresentationTimingGOOGLE,
+    ) -> vk::Result;
 }
 pub use items::*;

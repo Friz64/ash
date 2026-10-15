@@ -2,9 +2,12 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //!Items provided by `vulkan_video_codec_h265std_decode`
 #![doc(alias = "vulkan_video_codec_h265std_decode")]
-pub const SPEC_VERSION: u32 = crate::vk::STD_VULKAN_VIDEO_CODEC_H265_DECODE_API_VERSION_1_0_0;
-pub const NAME: &core::ffi::CStr = c"VK_STD_vulkan_video_codec_h265_decode";
+use crate::vk;
+use core::ffi::CStr;
+pub const SPEC_VERSION: u32 = vk::STD_VULKAN_VIDEO_CODEC_H265_DECODE_API_VERSION_1_0_0;
+pub const NAME: &CStr = c"VK_STD_vulkan_video_codec_h265_decode";
 pub(crate) mod items {
+    use crate::vk;
     #[repr(C)]
     #[derive(Clone, Copy, Default)]
     pub struct DecodeH265PictureInfoFlags {
@@ -72,7 +75,7 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct DecodeH265PictureInfo {
-        pub flags: crate::vk::DecodeH265PictureInfoFlags,
+        pub flags: vk::DecodeH265PictureInfoFlags,
         pub sps_video_parameter_set_id: u8,
         pub pps_seq_parameter_set_id: u8,
         pub pps_pic_parameter_set_id: u8,
@@ -80,11 +83,9 @@ pub(crate) mod items {
         pub pic_order_cnt_val: i32,
         pub num_bits_for_st_ref_pic_set_in_slice: u16,
         pub reserved: u16,
-        pub ref_pic_set_st_curr_before: [u8; crate::vk::DECODE_H265_REF_PIC_SET_LIST_SIZE
-            as _],
-        pub ref_pic_set_st_curr_after: [u8; crate::vk::DECODE_H265_REF_PIC_SET_LIST_SIZE
-            as _],
-        pub ref_pic_set_lt_curr: [u8; crate::vk::DECODE_H265_REF_PIC_SET_LIST_SIZE as _],
+        pub ref_pic_set_st_curr_before: [u8; vk::DECODE_H265_REF_PIC_SET_LIST_SIZE as _],
+        pub ref_pic_set_st_curr_after: [u8; vk::DECODE_H265_REF_PIC_SET_LIST_SIZE as _],
+        pub ref_pic_set_lt_curr: [u8; vk::DECODE_H265_REF_PIC_SET_LIST_SIZE as _],
     }
     unsafe impl Send for DecodeH265PictureInfo {}
     unsafe impl Sync for DecodeH265PictureInfo {}
@@ -106,7 +107,7 @@ pub(crate) mod items {
         }
     }
     impl DecodeH265PictureInfo {
-        pub fn flags(mut self, flags: crate::vk::DecodeH265PictureInfoFlags) -> Self {
+        pub fn flags(mut self, flags: vk::DecodeH265PictureInfoFlags) -> Self {
             self.flags = flags;
             self
         }
@@ -149,23 +150,21 @@ pub(crate) mod items {
         }
         pub fn ref_pic_set_st_curr_before(
             mut self,
-            ref_pic_set_st_curr_before: [u8; crate::vk::DECODE_H265_REF_PIC_SET_LIST_SIZE
-                as _],
+            ref_pic_set_st_curr_before: [u8; vk::DECODE_H265_REF_PIC_SET_LIST_SIZE as _],
         ) -> Self {
             self.ref_pic_set_st_curr_before = ref_pic_set_st_curr_before;
             self
         }
         pub fn ref_pic_set_st_curr_after(
             mut self,
-            ref_pic_set_st_curr_after: [u8; crate::vk::DECODE_H265_REF_PIC_SET_LIST_SIZE
-                as _],
+            ref_pic_set_st_curr_after: [u8; vk::DECODE_H265_REF_PIC_SET_LIST_SIZE as _],
         ) -> Self {
             self.ref_pic_set_st_curr_after = ref_pic_set_st_curr_after;
             self
         }
         pub fn ref_pic_set_lt_curr(
             mut self,
-            ref_pic_set_lt_curr: [u8; crate::vk::DECODE_H265_REF_PIC_SET_LIST_SIZE as _],
+            ref_pic_set_lt_curr: [u8; vk::DECODE_H265_REF_PIC_SET_LIST_SIZE as _],
         ) -> Self {
             self.ref_pic_set_lt_curr = ref_pic_set_lt_curr;
             self
@@ -217,13 +216,13 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy, Default)]
     pub struct DecodeH265ReferenceInfo {
-        pub flags: crate::vk::DecodeH265ReferenceInfoFlags,
+        pub flags: vk::DecodeH265ReferenceInfoFlags,
         pub pic_order_cnt_val: i32,
     }
     unsafe impl Send for DecodeH265ReferenceInfo {}
     unsafe impl Sync for DecodeH265ReferenceInfo {}
     impl DecodeH265ReferenceInfo {
-        pub fn flags(mut self, flags: crate::vk::DecodeH265ReferenceInfoFlags) -> Self {
+        pub fn flags(mut self, flags: vk::DecodeH265ReferenceInfoFlags) -> Self {
             self.flags = flags;
             self
         }
@@ -233,7 +232,7 @@ pub(crate) mod items {
         }
     }
     pub const DECODE_H265_REF_PIC_SET_LIST_SIZE: u32 = 8;
-    pub const STD_VULKAN_VIDEO_CODEC_H265_DECODE_API_VERSION_1_0_0: u32 = crate::vk::make_video_std_version(
+    pub const STD_VULKAN_VIDEO_CODEC_H265_DECODE_API_VERSION_1_0_0: u32 = vk::make_video_std_version(
         1,
         0,
         0,

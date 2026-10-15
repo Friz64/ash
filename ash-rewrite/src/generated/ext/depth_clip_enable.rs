@@ -2,34 +2,38 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_depth_clip_enable.html) · Extension `VK_EXT_depth_clip_enable`
 #![doc(alias = "VK_EXT_depth_clip_enable")]
+use crate::vk;
+use core::ffi::CStr;
 ///Provided by [VK_EXT_depth_clip_enable](crate::ext::depth_clip_enable)
-impl crate::vk::StructureType {
+impl vk::StructureType {
     pub const PHYSICAL_DEVICE_DEPTH_CLIP_ENABLE_FEATURES_EXT: Self = Self(1000102000);
     pub const PIPELINE_RASTERIZATION_DEPTH_CLIP_STATE_CREATE_INFO_EXT: Self = Self(
         1000102001,
     );
 }
 pub const SPEC_VERSION: u32 = 1;
-pub const NAME: &core::ffi::CStr = c"VK_EXT_depth_clip_enable";
+pub const NAME: &CStr = c"VK_EXT_depth_clip_enable";
 pub(crate) mod items {
+    use core::marker::PhantomData;
+    use crate::vk;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceDepthClipEnableFeaturesEXT<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
-        pub depth_clip_enable: crate::vk::Bool32,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub depth_clip_enable: vk::Bool32,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for PhysicalDeviceDepthClipEnableFeaturesEXT<'_> {}
     unsafe impl Sync for PhysicalDeviceDepthClipEnableFeaturesEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceDepthClipEnableFeaturesEXT<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_DEPTH_CLIP_ENABLE_FEATURES_EXT;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PHYSICAL_DEVICE_DEPTH_CLIP_ENABLE_FEATURES_EXT;
     }
-    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+    unsafe impl<'a> crate::Extends<vk::PhysicalDeviceFeatures2<'_>>
     for PhysicalDeviceDepthClipEnableFeaturesEXT<'a> {}
-    unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+    unsafe impl<'a> crate::Extends<vk::DeviceCreateInfo<'_>>
     for PhysicalDeviceDepthClipEnableFeaturesEXT<'a> {}
     impl<'a> Default for PhysicalDeviceDepthClipEnableFeaturesEXT<'a> {
         fn default() -> Self {
@@ -37,7 +41,7 @@ pub(crate) mod items {
                 s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
                 p_next: Default::default(),
                 depth_clip_enable: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
@@ -51,19 +55,19 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct PipelineRasterizationDepthClipStateCreateInfoEXT<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *const core::ffi::c_void,
-        pub flags: crate::vk::PipelineRasterizationDepthClipStateCreateFlagsEXT,
-        pub depth_clip_enable: crate::vk::Bool32,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub flags: vk::PipelineRasterizationDepthClipStateCreateFlagsEXT,
+        pub depth_clip_enable: vk::Bool32,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for PipelineRasterizationDepthClipStateCreateInfoEXT<'_> {}
     unsafe impl Sync for PipelineRasterizationDepthClipStateCreateInfoEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PipelineRasterizationDepthClipStateCreateInfoEXT<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PIPELINE_RASTERIZATION_DEPTH_CLIP_STATE_CREATE_INFO_EXT;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PIPELINE_RASTERIZATION_DEPTH_CLIP_STATE_CREATE_INFO_EXT;
     }
-    unsafe impl<'a> crate::Extends<crate::vk::PipelineRasterizationStateCreateInfo<'_>>
+    unsafe impl<'a> crate::Extends<vk::PipelineRasterizationStateCreateInfo<'_>>
     for PipelineRasterizationDepthClipStateCreateInfoEXT<'a> {}
     impl<'a> Default for PipelineRasterizationDepthClipStateCreateInfoEXT<'a> {
         fn default() -> Self {
@@ -72,14 +76,14 @@ pub(crate) mod items {
                 p_next: Default::default(),
                 flags: Default::default(),
                 depth_clip_enable: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
     impl<'a> PipelineRasterizationDepthClipStateCreateInfoEXT<'a> {
         pub fn flags(
             mut self,
-            flags: crate::vk::PipelineRasterizationDepthClipStateCreateFlagsEXT,
+            flags: vk::PipelineRasterizationDepthClipStateCreateFlagsEXT,
         ) -> Self {
             self.flags = flags;
             self

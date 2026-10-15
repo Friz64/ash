@@ -2,45 +2,49 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_AMD_device_coherent_memory.html) · Extension `VK_AMD_device_coherent_memory`
 #![doc(alias = "VK_AMD_device_coherent_memory")]
+use crate::vk;
+use core::ffi::CStr;
 ///Provided by [VK_AMD_device_coherent_memory](crate::amd::device_coherent_memory)
-impl crate::vk::StructureType {
+impl vk::StructureType {
     pub const PHYSICAL_DEVICE_COHERENT_MEMORY_FEATURES_AMD: Self = Self(1000229000);
 }
-///Provided by [VK_AMD_device_coherent_memory](crate::amd::device_coherent_memory)
-impl crate::vk::MemoryPropertyFlags {
+///Provided by [Vulkan 1.0](crate::vk1_0)
+impl vk::MemoryPropertyFlags {
     pub const DEVICE_COHERENT_AMD: Self = Self(
-        crate::vk::MemoryPropertyFlagBits::DEVICE_COHERENT_AMD.0,
+        vk::MemoryPropertyFlagBits::DEVICE_COHERENT_AMD.0,
     );
     pub const DEVICE_UNCACHED_AMD: Self = Self(
-        crate::vk::MemoryPropertyFlagBits::DEVICE_UNCACHED_AMD.0,
+        vk::MemoryPropertyFlagBits::DEVICE_UNCACHED_AMD.0,
     );
 }
-///Provided by [VK_AMD_device_coherent_memory](crate::amd::device_coherent_memory)
-impl crate::vk::MemoryPropertyFlagBits {
+///Provided by [Vulkan 1.0](crate::vk1_0)
+impl vk::MemoryPropertyFlagBits {
     pub const DEVICE_COHERENT_AMD: Self = Self(1 << 6);
     pub const DEVICE_UNCACHED_AMD: Self = Self(1 << 7);
 }
 pub const SPEC_VERSION: u32 = 1;
-pub const NAME: &core::ffi::CStr = c"VK_AMD_device_coherent_memory";
+pub const NAME: &CStr = c"VK_AMD_device_coherent_memory";
 pub(crate) mod items {
+    use core::marker::PhantomData;
+    use crate::vk;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceCoherentMemoryFeaturesAMD<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
-        pub device_coherent_memory: crate::vk::Bool32,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub device_coherent_memory: vk::Bool32,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for PhysicalDeviceCoherentMemoryFeaturesAMD<'_> {}
     unsafe impl Sync for PhysicalDeviceCoherentMemoryFeaturesAMD<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceCoherentMemoryFeaturesAMD<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_COHERENT_MEMORY_FEATURES_AMD;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PHYSICAL_DEVICE_COHERENT_MEMORY_FEATURES_AMD;
     }
-    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+    unsafe impl<'a> crate::Extends<vk::PhysicalDeviceFeatures2<'_>>
     for PhysicalDeviceCoherentMemoryFeaturesAMD<'a> {}
-    unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+    unsafe impl<'a> crate::Extends<vk::DeviceCreateInfo<'_>>
     for PhysicalDeviceCoherentMemoryFeaturesAMD<'a> {}
     impl<'a> Default for PhysicalDeviceCoherentMemoryFeaturesAMD<'a> {
         fn default() -> Self {
@@ -48,7 +52,7 @@ pub(crate) mod items {
                 s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
                 p_next: Default::default(),
                 device_coherent_memory: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }

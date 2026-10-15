@@ -2,8 +2,12 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_NV_external_compute_queue.html) · Extension `VK_NV_external_compute_queue`
 #![doc(alias = "VK_NV_external_compute_queue")]
+use crate::vk;
+use core::ffi::CStr;
+use crate::VkResult;
+use core::ffi::c_void;
 ///Provided by [VK_NV_external_compute_queue](crate::nv::external_compute_queue)
-impl crate::vk::StructureType {
+impl vk::StructureType {
     pub const EXTERNAL_COMPUTE_QUEUE_DEVICE_CREATE_INFO_NV: Self = Self(1000556000);
     pub const EXTERNAL_COMPUTE_QUEUE_CREATE_INFO_NV: Self = Self(1000556001);
     pub const EXTERNAL_COMPUTE_QUEUE_DATA_PARAMS_NV: Self = Self(1000556002);
@@ -12,33 +16,31 @@ impl crate::vk::StructureType {
     );
 }
 ///Provided by [VK_NV_external_compute_queue](crate::nv::external_compute_queue)
-impl crate::vk::ObjectType {
+impl vk::ObjectType {
     pub const EXTERNAL_COMPUTE_QUEUE_NV: Self = Self(1000556000);
 }
+pub const SPEC_VERSION: u32 = 1;
+pub const NAME: &CStr = c"VK_NV_external_compute_queue";
 #[derive(Clone)]
 pub struct DeviceFn {
-    pub create_external_compute_queue: crate::vk::PFN_vkCreateExternalComputeQueueNV,
-    pub destroy_external_compute_queue: crate::vk::PFN_vkDestroyExternalComputeQueueNV,
+    pub create_external_compute_queue: vk::PFN_vkCreateExternalComputeQueueNV,
+    pub destroy_external_compute_queue: vk::PFN_vkDestroyExternalComputeQueueNV,
 }
 unsafe impl Send for DeviceFn {}
 unsafe impl Sync for DeviceFn {}
 impl DeviceFn {
-    pub fn load<F: FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void>(
-        mut f: F,
-    ) -> Self {
+    pub fn load<F: FnMut(&CStr) -> *const c_void>(mut f: F) -> Self {
         Self::load_erased(&mut f)
     }
-    fn load_erased(
-        _f: &mut dyn FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void,
-    ) -> Self {
+    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const c_void) -> Self {
         Self {
             create_external_compute_queue: unsafe {
                 unsafe extern "system" fn create_external_compute_queue(
-                    _: crate::vk::Device,
-                    _: *const crate::vk::ExternalComputeQueueCreateInfoNV<'_>,
-                    _: *const crate::vk::AllocationCallbacks<'_>,
-                    _: *mut crate::vk::ExternalComputeQueueNV,
-                ) -> crate::vk::Result {
+                    _: vk::Device,
+                    _: *const vk::ExternalComputeQueueCreateInfoNV<'_>,
+                    _: *const vk::AllocationCallbacks<'_>,
+                    _: *mut vk::ExternalComputeQueueNV,
+                ) -> vk::Result {
                     panic!("unable to load vkCreateExternalComputeQueueNV")
                 }
                 let val = _f(c"vkCreateExternalComputeQueueNV");
@@ -50,9 +52,9 @@ impl DeviceFn {
             },
             destroy_external_compute_queue: unsafe {
                 unsafe extern "system" fn destroy_external_compute_queue(
-                    _: crate::vk::Device,
-                    _: crate::vk::ExternalComputeQueueNV,
-                    _: *const crate::vk::AllocationCallbacks<'_>,
+                    _: vk::Device,
+                    _: vk::ExternalComputeQueueNV,
+                    _: *const vk::AllocationCallbacks<'_>,
                 ) {
                     panic!("unable to load vkDestroyExternalComputeQueueNV")
                 }
@@ -91,9 +93,9 @@ impl Device {
     #[inline]
     pub unsafe fn create_external_compute_queue(
         &self,
-        create_info: &crate::vk::ExternalComputeQueueCreateInfoNV<'_>,
-        allocator: Option<&crate::vk::AllocationCallbacks<'_>>,
-    ) -> crate::VkResult<crate::vk::ExternalComputeQueueNV> {
+        create_info: &vk::ExternalComputeQueueCreateInfoNV<'_>,
+        allocator: Option<&vk::AllocationCallbacks<'_>>,
+    ) -> VkResult<vk::ExternalComputeQueueNV> {
         let mut external_queue = core::mem::MaybeUninit::uninit();
         (self
             .fp
@@ -112,8 +114,8 @@ impl Device {
     #[inline]
     pub unsafe fn destroy_external_compute_queue(
         &self,
-        external_queue: crate::vk::ExternalComputeQueueNV,
-        allocator: Option<&crate::vk::AllocationCallbacks<'_>>,
+        external_queue: vk::ExternalComputeQueueNV,
+        allocator: Option<&vk::AllocationCallbacks<'_>>,
     ) {
         (self
             .fp
@@ -129,24 +131,20 @@ impl Device {
 }
 #[derive(Clone)]
 pub struct EntryFn {
-    pub get_external_compute_queue_data: crate::vk::PFN_vkGetExternalComputeQueueDataNV,
+    pub get_external_compute_queue_data: vk::PFN_vkGetExternalComputeQueueDataNV,
 }
 unsafe impl Send for EntryFn {}
 unsafe impl Sync for EntryFn {}
 impl EntryFn {
-    pub fn load<F: FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void>(
-        mut f: F,
-    ) -> Self {
+    pub fn load<F: FnMut(&CStr) -> *const c_void>(mut f: F) -> Self {
         Self::load_erased(&mut f)
     }
-    fn load_erased(
-        _f: &mut dyn FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void,
-    ) -> Self {
+    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const c_void) -> Self {
         Self {
             get_external_compute_queue_data: unsafe {
                 unsafe extern "system" fn get_external_compute_queue_data(
-                    _: crate::vk::ExternalComputeQueueNV,
-                    _: *mut crate::vk::ExternalComputeQueueDataParamsNV<'_>,
+                    _: vk::ExternalComputeQueueNV,
+                    _: *mut vk::ExternalComputeQueueDataParamsNV<'_>,
                     _: *mut core::ffi::c_void,
                 ) {
                     panic!("unable to load vkGetExternalComputeQueueDataNV")
@@ -161,25 +159,30 @@ impl EntryFn {
         }
     }
 }
-pub const SPEC_VERSION: u32 = 1;
-pub const NAME: &core::ffi::CStr = c"VK_NV_external_compute_queue";
 pub(crate) mod items {
+    use core::marker::PhantomData;
+    use crate::vk;
+    use crate::Handle;
+    use core::fmt;
+    #[cfg(feature = "debug")]
+    use core::fmt as fmtdebug;
+    use core::ptr;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct ExternalComputeQueueDeviceCreateInfoNV<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *const core::ffi::c_void,
         pub reserved_external_queues: u32,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for ExternalComputeQueueDeviceCreateInfoNV<'_> {}
     unsafe impl Sync for ExternalComputeQueueDeviceCreateInfoNV<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for ExternalComputeQueueDeviceCreateInfoNV<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::EXTERNAL_COMPUTE_QUEUE_DEVICE_CREATE_INFO_NV;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::EXTERNAL_COMPUTE_QUEUE_DEVICE_CREATE_INFO_NV;
     }
-    unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+    unsafe impl<'a> crate::Extends<vk::DeviceCreateInfo<'_>>
     for ExternalComputeQueueDeviceCreateInfoNV<'a> {}
     impl<'a> Default for ExternalComputeQueueDeviceCreateInfoNV<'a> {
         fn default() -> Self {
@@ -187,7 +190,7 @@ pub(crate) mod items {
                 s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
                 p_next: Default::default(),
                 reserved_external_queues: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
@@ -204,15 +207,15 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct ExternalComputeQueueCreateInfoNV<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *const core::ffi::c_void,
-        pub preferred_queue: crate::vk::Queue,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub preferred_queue: vk::Queue,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for ExternalComputeQueueCreateInfoNV<'_> {}
     unsafe impl Sync for ExternalComputeQueueCreateInfoNV<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for ExternalComputeQueueCreateInfoNV<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::EXTERNAL_COMPUTE_QUEUE_CREATE_INFO_NV;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::EXTERNAL_COMPUTE_QUEUE_CREATE_INFO_NV;
     }
     impl<'a> Default for ExternalComputeQueueCreateInfoNV<'a> {
         fn default() -> Self {
@@ -220,12 +223,12 @@ pub(crate) mod items {
                 s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
                 p_next: Default::default(),
                 preferred_queue: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
     impl<'a> ExternalComputeQueueCreateInfoNV<'a> {
-        pub fn preferred_queue(mut self, preferred_queue: crate::vk::Queue) -> Self {
+        pub fn preferred_queue(mut self, preferred_queue: vk::Queue) -> Self {
             self.preferred_queue = preferred_queue;
             self
         }
@@ -234,15 +237,15 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct ExternalComputeQueueDataParamsNV<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *const core::ffi::c_void,
         pub device_index: u32,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for ExternalComputeQueueDataParamsNV<'_> {}
     unsafe impl Sync for ExternalComputeQueueDataParamsNV<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for ExternalComputeQueueDataParamsNV<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::EXTERNAL_COMPUTE_QUEUE_DATA_PARAMS_NV;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::EXTERNAL_COMPUTE_QUEUE_DATA_PARAMS_NV;
     }
     impl<'a> Default for ExternalComputeQueueDataParamsNV<'a> {
         fn default() -> Self {
@@ -250,7 +253,7 @@ pub(crate) mod items {
                 s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
                 p_next: Default::default(),
                 device_index: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
@@ -264,19 +267,19 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceExternalComputeQueuePropertiesNV<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
         pub external_data_size: u32,
         pub max_external_queues: u32,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for PhysicalDeviceExternalComputeQueuePropertiesNV<'_> {}
     unsafe impl Sync for PhysicalDeviceExternalComputeQueuePropertiesNV<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceExternalComputeQueuePropertiesNV<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_EXTERNAL_COMPUTE_QUEUE_PROPERTIES_NV;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PHYSICAL_DEVICE_EXTERNAL_COMPUTE_QUEUE_PROPERTIES_NV;
     }
-    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceProperties2<'_>>
+    unsafe impl<'a> crate::Extends<vk::PhysicalDeviceProperties2<'_>>
     for PhysicalDeviceExternalComputeQueuePropertiesNV<'a> {}
     impl<'a> Default for PhysicalDeviceExternalComputeQueuePropertiesNV<'a> {
         fn default() -> Self {
@@ -285,7 +288,7 @@ pub(crate) mod items {
                 p_next: Default::default(),
                 external_data_size: Default::default(),
                 max_external_queues: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
@@ -307,8 +310,8 @@ pub(crate) mod items {
             Self::null()
         }
     }
-    impl crate::Handle for ExternalComputeQueueNV {
-        const TYPE: crate::vk::ObjectType = crate::vk::ObjectType::EXTERNAL_COMPUTE_QUEUE_NV;
+    impl Handle for ExternalComputeQueueNV {
+        const TYPE: vk::ObjectType = vk::ObjectType::EXTERNAL_COMPUTE_QUEUE_NV;
         fn as_raw(self) -> u64 {
             self.0 as u64
         }
@@ -320,33 +323,34 @@ pub(crate) mod items {
     unsafe impl Sync for ExternalComputeQueueNV {}
     impl ExternalComputeQueueNV {
         pub const fn null() -> Self {
-            Self(::core::ptr::null_mut())
+            Self(ptr::null_mut())
         }
     }
-    impl core::fmt::Pointer for ExternalComputeQueueNV {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
-            core::fmt::Pointer::fmt(&self.0, f)
+    impl fmt::Pointer for ExternalComputeQueueNV {
+        fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+            fmt::Pointer::fmt(&self.0, f)
         }
     }
-    impl core::fmt::Debug for ExternalComputeQueueNV {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
-            core::fmt::Debug::fmt(&self.0, f)
+    #[cfg(feature = "debug")]
+    impl fmtdebug::Debug for ExternalComputeQueueNV {
+        fn fmt(&self, f: &mut fmtdebug::Formatter) -> fmtdebug::Result {
+            fmtdebug::Debug::fmt(&self.0, f)
         }
     }
     pub type PFN_vkCreateExternalComputeQueueNV = unsafe extern "system" fn(
-        device: crate::vk::Device,
-        p_create_info: *const crate::vk::ExternalComputeQueueCreateInfoNV<'_>,
-        p_allocator: *const crate::vk::AllocationCallbacks<'_>,
-        p_external_queue: *mut crate::vk::ExternalComputeQueueNV,
-    ) -> crate::vk::Result;
+        device: vk::Device,
+        p_create_info: *const vk::ExternalComputeQueueCreateInfoNV<'_>,
+        p_allocator: *const vk::AllocationCallbacks<'_>,
+        p_external_queue: *mut vk::ExternalComputeQueueNV,
+    ) -> vk::Result;
     pub type PFN_vkDestroyExternalComputeQueueNV = unsafe extern "system" fn(
-        device: crate::vk::Device,
-        external_queue: crate::vk::ExternalComputeQueueNV,
-        p_allocator: *const crate::vk::AllocationCallbacks<'_>,
+        device: vk::Device,
+        external_queue: vk::ExternalComputeQueueNV,
+        p_allocator: *const vk::AllocationCallbacks<'_>,
     );
     pub type PFN_vkGetExternalComputeQueueDataNV = unsafe extern "system" fn(
-        external_queue: crate::vk::ExternalComputeQueueNV,
-        params: *mut crate::vk::ExternalComputeQueueDataParamsNV<'_>,
+        external_queue: vk::ExternalComputeQueueNV,
+        params: *mut vk::ExternalComputeQueueDataParamsNV<'_>,
         p_data: *mut core::ffi::c_void,
     );
 }

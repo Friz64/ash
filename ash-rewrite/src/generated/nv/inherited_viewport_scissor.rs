@@ -2,8 +2,10 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_NV_inherited_viewport_scissor.html) · Extension `VK_NV_inherited_viewport_scissor`
 #![doc(alias = "VK_NV_inherited_viewport_scissor")]
+use crate::vk;
+use core::ffi::CStr;
 ///Provided by [VK_NV_inherited_viewport_scissor](crate::nv::inherited_viewport_scissor)
-impl crate::vk::StructureType {
+impl vk::StructureType {
     pub const PHYSICAL_DEVICE_INHERITED_VIEWPORT_SCISSOR_FEATURES_NV: Self = Self(
         1000278000,
     );
@@ -12,26 +14,28 @@ impl crate::vk::StructureType {
     );
 }
 pub const SPEC_VERSION: u32 = 1;
-pub const NAME: &core::ffi::CStr = c"VK_NV_inherited_viewport_scissor";
+pub const NAME: &CStr = c"VK_NV_inherited_viewport_scissor";
 pub(crate) mod items {
+    use core::marker::PhantomData;
+    use crate::vk;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceInheritedViewportScissorFeaturesNV<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
-        pub inherited_viewport_scissor2_d: crate::vk::Bool32,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub inherited_viewport_scissor2_d: vk::Bool32,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for PhysicalDeviceInheritedViewportScissorFeaturesNV<'_> {}
     unsafe impl Sync for PhysicalDeviceInheritedViewportScissorFeaturesNV<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceInheritedViewportScissorFeaturesNV<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_INHERITED_VIEWPORT_SCISSOR_FEATURES_NV;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PHYSICAL_DEVICE_INHERITED_VIEWPORT_SCISSOR_FEATURES_NV;
     }
-    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+    unsafe impl<'a> crate::Extends<vk::PhysicalDeviceFeatures2<'_>>
     for PhysicalDeviceInheritedViewportScissorFeaturesNV<'a> {}
-    unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+    unsafe impl<'a> crate::Extends<vk::DeviceCreateInfo<'_>>
     for PhysicalDeviceInheritedViewportScissorFeaturesNV<'a> {}
     impl<'a> Default for PhysicalDeviceInheritedViewportScissorFeaturesNV<'a> {
         fn default() -> Self {
@@ -39,7 +43,7 @@ pub(crate) mod items {
                 s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
                 p_next: Default::default(),
                 inherited_viewport_scissor2_d: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
@@ -56,20 +60,20 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct CommandBufferInheritanceViewportScissorInfoNV<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *const core::ffi::c_void,
-        pub viewport_scissor2_d: crate::vk::Bool32,
+        pub viewport_scissor2_d: vk::Bool32,
         pub viewport_depth_count: u32,
-        pub p_viewport_depths: *const crate::vk::Viewport,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub p_viewport_depths: *const vk::Viewport,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for CommandBufferInheritanceViewportScissorInfoNV<'_> {}
     unsafe impl Sync for CommandBufferInheritanceViewportScissorInfoNV<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for CommandBufferInheritanceViewportScissorInfoNV<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::COMMAND_BUFFER_INHERITANCE_VIEWPORT_SCISSOR_INFO_NV;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::COMMAND_BUFFER_INHERITANCE_VIEWPORT_SCISSOR_INFO_NV;
     }
-    unsafe impl<'a> crate::Extends<crate::vk::CommandBufferInheritanceInfo<'_>>
+    unsafe impl<'a> crate::Extends<vk::CommandBufferInheritanceInfo<'_>>
     for CommandBufferInheritanceViewportScissorInfoNV<'a> {}
     impl<'a> Default for CommandBufferInheritanceViewportScissorInfoNV<'a> {
         fn default() -> Self {
@@ -79,7 +83,7 @@ pub(crate) mod items {
                 viewport_scissor2_d: Default::default(),
                 viewport_depth_count: Default::default(),
                 p_viewport_depths: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
@@ -92,10 +96,7 @@ pub(crate) mod items {
             self.viewport_depth_count = viewport_depth_count;
             self
         }
-        pub fn viewport_depths(
-            mut self,
-            viewport_depths: &'a crate::vk::Viewport,
-        ) -> Self {
+        pub fn viewport_depths(mut self, viewport_depths: &'a vk::Viewport) -> Self {
             self.p_viewport_depths = viewport_depths;
             self
         }

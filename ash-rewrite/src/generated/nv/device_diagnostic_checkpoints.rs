@@ -2,34 +2,35 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_NV_device_diagnostic_checkpoints.html) · Extension `VK_NV_device_diagnostic_checkpoints`
 #![doc(alias = "VK_NV_device_diagnostic_checkpoints")]
+use crate::vk;
+use core::ffi::CStr;
+use core::ffi::c_void;
 ///Provided by [VK_NV_device_diagnostic_checkpoints](crate::nv::device_diagnostic_checkpoints)
-impl crate::vk::StructureType {
+impl vk::StructureType {
     pub const CHECKPOINT_DATA_NV: Self = Self(1000206000);
     pub const QUEUE_FAMILY_CHECKPOINT_PROPERTIES_NV: Self = Self(1000206001);
     pub const QUEUE_FAMILY_CHECKPOINT_PROPERTIES_2_NV: Self = Self(1000314008);
     pub const CHECKPOINT_DATA_2_NV: Self = Self(1000314009);
 }
+pub const SPEC_VERSION: u32 = 2;
+pub const NAME: &CStr = c"VK_NV_device_diagnostic_checkpoints";
 #[derive(Clone)]
 pub struct DeviceFn {
-    pub cmd_set_checkpoint: crate::vk::PFN_vkCmdSetCheckpointNV,
-    pub get_queue_checkpoint_data: crate::vk::PFN_vkGetQueueCheckpointDataNV,
-    pub get_queue_checkpoint_data2: crate::vk::PFN_vkGetQueueCheckpointData2NV,
+    pub cmd_set_checkpoint: vk::PFN_vkCmdSetCheckpointNV,
+    pub get_queue_checkpoint_data: vk::PFN_vkGetQueueCheckpointDataNV,
+    pub get_queue_checkpoint_data2: vk::PFN_vkGetQueueCheckpointData2NV,
 }
 unsafe impl Send for DeviceFn {}
 unsafe impl Sync for DeviceFn {}
 impl DeviceFn {
-    pub fn load<F: FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void>(
-        mut f: F,
-    ) -> Self {
+    pub fn load<F: FnMut(&CStr) -> *const c_void>(mut f: F) -> Self {
         Self::load_erased(&mut f)
     }
-    fn load_erased(
-        _f: &mut dyn FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void,
-    ) -> Self {
+    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const c_void) -> Self {
         Self {
             cmd_set_checkpoint: unsafe {
                 unsafe extern "system" fn cmd_set_checkpoint(
-                    _: crate::vk::CommandBuffer,
+                    _: vk::CommandBuffer,
                     _: *const core::ffi::c_void,
                 ) {
                     panic!("unable to load vkCmdSetCheckpointNV")
@@ -43,9 +44,9 @@ impl DeviceFn {
             },
             get_queue_checkpoint_data: unsafe {
                 unsafe extern "system" fn get_queue_checkpoint_data(
-                    _: crate::vk::Queue,
+                    _: vk::Queue,
                     _: *mut u32,
-                    _: *mut crate::vk::CheckpointDataNV<'_>,
+                    _: *mut vk::CheckpointDataNV<'_>,
                 ) {
                     panic!("unable to load vkGetQueueCheckpointDataNV")
                 }
@@ -58,9 +59,9 @@ impl DeviceFn {
             },
             get_queue_checkpoint_data2: unsafe {
                 unsafe extern "system" fn get_queue_checkpoint_data2(
-                    _: crate::vk::Queue,
+                    _: vk::Queue,
                     _: *mut u32,
-                    _: *mut crate::vk::CheckpointData2NV<'_>,
+                    _: *mut vk::CheckpointData2NV<'_>,
                 ) {
                     panic!("unable to load vkGetQueueCheckpointData2NV")
                 }
@@ -99,17 +100,14 @@ impl Device {
     #[inline]
     pub unsafe fn cmd_set_checkpoint(
         &self,
-        command_buffer: crate::vk::CommandBuffer,
+        command_buffer: vk::CommandBuffer,
         checkpoint_marker: &core::ffi::c_void,
     ) {
         (self.fp.cmd_set_checkpoint)(command_buffer, checkpoint_marker)
     }
     ///vkGetQueueCheckpointDataNV
     #[inline]
-    pub unsafe fn get_queue_checkpoint_data_len(
-        &self,
-        queue: crate::vk::Queue,
-    ) -> usize {
+    pub unsafe fn get_queue_checkpoint_data_len(&self, queue: vk::Queue) -> usize {
         let mut checkpoint_data_count = core::mem::MaybeUninit::uninit();
         (self
             .fp
@@ -124,8 +122,8 @@ impl Device {
     #[inline]
     pub unsafe fn get_queue_checkpoint_data(
         &self,
-        queue: crate::vk::Queue,
-        checkpoint_data: &mut [crate::vk::CheckpointDataNV<'_>],
+        queue: vk::Queue,
+        checkpoint_data: &mut [vk::CheckpointDataNV<'_>],
     ) {
         let mut checkpoint_data_count = checkpoint_data.len() as _;
         (self
@@ -139,10 +137,7 @@ impl Device {
     }
     ///vkGetQueueCheckpointData2NV
     #[inline]
-    pub unsafe fn get_queue_checkpoint_data2_len(
-        &self,
-        queue: crate::vk::Queue,
-    ) -> usize {
+    pub unsafe fn get_queue_checkpoint_data2_len(&self, queue: vk::Queue) -> usize {
         let mut checkpoint_data_count = core::mem::MaybeUninit::uninit();
         (self
             .fp
@@ -157,8 +152,8 @@ impl Device {
     #[inline]
     pub unsafe fn get_queue_checkpoint_data2(
         &self,
-        queue: crate::vk::Queue,
-        checkpoint_data: &mut [crate::vk::CheckpointData2NV<'_>],
+        queue: vk::Queue,
+        checkpoint_data: &mut [vk::CheckpointData2NV<'_>],
     ) {
         let mut checkpoint_data_count = checkpoint_data.len() as _;
         (self
@@ -171,25 +166,25 @@ impl Device {
         assert_eq!(checkpoint_data_count as usize, checkpoint_data.len());
     }
 }
-pub const SPEC_VERSION: u32 = 2;
-pub const NAME: &core::ffi::CStr = c"VK_NV_device_diagnostic_checkpoints";
 pub(crate) mod items {
+    use core::marker::PhantomData;
+    use crate::vk;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct QueueFamilyCheckpointPropertiesNV<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
-        pub checkpoint_execution_stage_mask: crate::vk::PipelineStageFlags,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub checkpoint_execution_stage_mask: vk::PipelineStageFlags,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for QueueFamilyCheckpointPropertiesNV<'_> {}
     unsafe impl Sync for QueueFamilyCheckpointPropertiesNV<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for QueueFamilyCheckpointPropertiesNV<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::QUEUE_FAMILY_CHECKPOINT_PROPERTIES_NV;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::QUEUE_FAMILY_CHECKPOINT_PROPERTIES_NV;
     }
-    unsafe impl<'a> crate::Extends<crate::vk::QueueFamilyProperties2<'_>>
+    unsafe impl<'a> crate::Extends<vk::QueueFamilyProperties2<'_>>
     for QueueFamilyCheckpointPropertiesNV<'a> {}
     impl<'a> Default for QueueFamilyCheckpointPropertiesNV<'a> {
         fn default() -> Self {
@@ -197,14 +192,14 @@ pub(crate) mod items {
                 s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
                 p_next: Default::default(),
                 checkpoint_execution_stage_mask: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
     impl<'a> QueueFamilyCheckpointPropertiesNV<'a> {
         pub fn checkpoint_execution_stage_mask(
             mut self,
-            checkpoint_execution_stage_mask: crate::vk::PipelineStageFlags,
+            checkpoint_execution_stage_mask: vk::PipelineStageFlags,
         ) -> Self {
             self.checkpoint_execution_stage_mask = checkpoint_execution_stage_mask;
             self
@@ -214,16 +209,16 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct CheckpointDataNV<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
-        pub stage: crate::vk::PipelineStageFlagBits,
+        pub stage: vk::PipelineStageFlagBits,
         pub p_checkpoint_marker: *mut core::ffi::c_void,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for CheckpointDataNV<'_> {}
     unsafe impl Sync for CheckpointDataNV<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for CheckpointDataNV<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::CHECKPOINT_DATA_NV;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::CHECKPOINT_DATA_NV;
     }
     impl<'a> Default for CheckpointDataNV<'a> {
         fn default() -> Self {
@@ -232,12 +227,12 @@ pub(crate) mod items {
                 p_next: Default::default(),
                 stage: Default::default(),
                 p_checkpoint_marker: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
     impl<'a> CheckpointDataNV<'a> {
-        pub fn stage(mut self, stage: crate::vk::PipelineStageFlagBits) -> Self {
+        pub fn stage(mut self, stage: vk::PipelineStageFlagBits) -> Self {
             self.stage = stage;
             self
         }
@@ -253,18 +248,18 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct QueueFamilyCheckpointProperties2NV<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
-        pub checkpoint_execution_stage_mask: crate::vk::PipelineStageFlags2,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub checkpoint_execution_stage_mask: vk::PipelineStageFlags2,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for QueueFamilyCheckpointProperties2NV<'_> {}
     unsafe impl Sync for QueueFamilyCheckpointProperties2NV<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for QueueFamilyCheckpointProperties2NV<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::QUEUE_FAMILY_CHECKPOINT_PROPERTIES_2_NV;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::QUEUE_FAMILY_CHECKPOINT_PROPERTIES_2_NV;
     }
-    unsafe impl<'a> crate::Extends<crate::vk::QueueFamilyProperties2<'_>>
+    unsafe impl<'a> crate::Extends<vk::QueueFamilyProperties2<'_>>
     for QueueFamilyCheckpointProperties2NV<'a> {}
     impl<'a> Default for QueueFamilyCheckpointProperties2NV<'a> {
         fn default() -> Self {
@@ -272,14 +267,14 @@ pub(crate) mod items {
                 s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
                 p_next: Default::default(),
                 checkpoint_execution_stage_mask: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
     impl<'a> QueueFamilyCheckpointProperties2NV<'a> {
         pub fn checkpoint_execution_stage_mask(
             mut self,
-            checkpoint_execution_stage_mask: crate::vk::PipelineStageFlags2,
+            checkpoint_execution_stage_mask: vk::PipelineStageFlags2,
         ) -> Self {
             self.checkpoint_execution_stage_mask = checkpoint_execution_stage_mask;
             self
@@ -289,16 +284,16 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct CheckpointData2NV<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
-        pub stage: crate::vk::PipelineStageFlags2,
+        pub stage: vk::PipelineStageFlags2,
         pub p_checkpoint_marker: *mut core::ffi::c_void,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for CheckpointData2NV<'_> {}
     unsafe impl Sync for CheckpointData2NV<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for CheckpointData2NV<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::CHECKPOINT_DATA_2_NV;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::CHECKPOINT_DATA_2_NV;
     }
     impl<'a> Default for CheckpointData2NV<'a> {
         fn default() -> Self {
@@ -307,12 +302,12 @@ pub(crate) mod items {
                 p_next: Default::default(),
                 stage: Default::default(),
                 p_checkpoint_marker: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
     impl<'a> CheckpointData2NV<'a> {
-        pub fn stage(mut self, stage: crate::vk::PipelineStageFlags2) -> Self {
+        pub fn stage(mut self, stage: vk::PipelineStageFlags2) -> Self {
             self.stage = stage;
             self
         }
@@ -325,18 +320,18 @@ pub(crate) mod items {
         }
     }
     pub type PFN_vkCmdSetCheckpointNV = unsafe extern "system" fn(
-        command_buffer: crate::vk::CommandBuffer,
+        command_buffer: vk::CommandBuffer,
         p_checkpoint_marker: *const core::ffi::c_void,
     );
     pub type PFN_vkGetQueueCheckpointDataNV = unsafe extern "system" fn(
-        queue: crate::vk::Queue,
+        queue: vk::Queue,
         p_checkpoint_data_count: *mut u32,
-        p_checkpoint_data: *mut crate::vk::CheckpointDataNV<'_>,
+        p_checkpoint_data: *mut vk::CheckpointDataNV<'_>,
     );
     pub type PFN_vkGetQueueCheckpointData2NV = unsafe extern "system" fn(
-        queue: crate::vk::Queue,
+        queue: vk::Queue,
         p_checkpoint_data_count: *mut u32,
-        p_checkpoint_data: *mut crate::vk::CheckpointData2NV<'_>,
+        p_checkpoint_data: *mut vk::CheckpointData2NV<'_>,
     );
 }
 pub use items::*;

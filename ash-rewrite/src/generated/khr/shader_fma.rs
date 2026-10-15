@@ -2,33 +2,37 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_shader_fma.html) · Extension `VK_KHR_shader_fma`
 #![doc(alias = "VK_KHR_shader_fma")]
+use crate::vk;
+use core::ffi::CStr;
 ///Provided by [VK_KHR_shader_fma](crate::khr::shader_fma)
-impl crate::vk::StructureType {
+impl vk::StructureType {
     pub const PHYSICAL_DEVICE_SHADER_FMA_FEATURES_KHR: Self = Self(1000579000);
 }
 pub const SPEC_VERSION: u32 = 1;
-pub const NAME: &core::ffi::CStr = c"VK_KHR_shader_fma";
+pub const NAME: &CStr = c"VK_KHR_shader_fma";
 pub(crate) mod items {
+    use core::marker::PhantomData;
+    use crate::vk;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceShaderFmaFeaturesKHR<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
-        pub shader_fma_float16: crate::vk::Bool32,
-        pub shader_fma_float32: crate::vk::Bool32,
-        pub shader_fma_float64: crate::vk::Bool32,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub shader_fma_float16: vk::Bool32,
+        pub shader_fma_float32: vk::Bool32,
+        pub shader_fma_float64: vk::Bool32,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for PhysicalDeviceShaderFmaFeaturesKHR<'_> {}
     unsafe impl Sync for PhysicalDeviceShaderFmaFeaturesKHR<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceShaderFmaFeaturesKHR<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_SHADER_FMA_FEATURES_KHR;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PHYSICAL_DEVICE_SHADER_FMA_FEATURES_KHR;
     }
-    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+    unsafe impl<'a> crate::Extends<vk::PhysicalDeviceFeatures2<'_>>
     for PhysicalDeviceShaderFmaFeaturesKHR<'a> {}
-    unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+    unsafe impl<'a> crate::Extends<vk::DeviceCreateInfo<'_>>
     for PhysicalDeviceShaderFmaFeaturesKHR<'a> {}
     impl<'a> Default for PhysicalDeviceShaderFmaFeaturesKHR<'a> {
         fn default() -> Self {
@@ -38,7 +42,7 @@ pub(crate) mod items {
                 shader_fma_float16: Default::default(),
                 shader_fma_float32: Default::default(),
                 shader_fma_float64: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }

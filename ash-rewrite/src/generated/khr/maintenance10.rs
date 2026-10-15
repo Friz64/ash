@@ -2,58 +2,61 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_maintenance10.html) · Extension `VK_KHR_maintenance10`
 #![doc(alias = "VK_KHR_maintenance10")]
+use crate::vk;
+use core::ffi::CStr;
+use core::ffi::c_void;
 ///Provided by [VK_KHR_maintenance10](crate::khr::maintenance10)
-impl crate::vk::StructureType {
+impl vk::StructureType {
     pub const PHYSICAL_DEVICE_MAINTENANCE_10_FEATURES_KHR: Self = Self(1000630000);
     pub const PHYSICAL_DEVICE_MAINTENANCE_10_PROPERTIES_KHR: Self = Self(1000630001);
     pub const RENDERING_ATTACHMENT_FLAGS_INFO_KHR: Self = Self(1000630002);
     pub const RENDERING_END_INFO_KHR: Self = Self(1000619003);
     pub const RESOLVE_IMAGE_MODE_INFO_KHR: Self = Self(1000630004);
 }
-///Provided by [VK_KHR_maintenance10](crate::khr::maintenance10)
-impl crate::vk::AttachmentDescriptionFlags {
+///Provided by [Vulkan 1.0](crate::vk1_0)
+impl vk::AttachmentDescriptionFlags {
     pub const RESOLVE_SKIP_TRANSFER_FUNCTION_KHR: Self = Self(
-        crate::vk::AttachmentDescriptionFlagBits::RESOLVE_SKIP_TRANSFER_FUNCTION_KHR.0,
+        vk::AttachmentDescriptionFlagBits::RESOLVE_SKIP_TRANSFER_FUNCTION_KHR.0,
     );
     pub const RESOLVE_ENABLE_TRANSFER_FUNCTION_KHR: Self = Self(
-        crate::vk::AttachmentDescriptionFlagBits::RESOLVE_ENABLE_TRANSFER_FUNCTION_KHR.0,
+        vk::AttachmentDescriptionFlagBits::RESOLVE_ENABLE_TRANSFER_FUNCTION_KHR.0,
     );
 }
-///Provided by [VK_KHR_maintenance10](crate::khr::maintenance10)
-impl crate::vk::AttachmentDescriptionFlagBits {
+///Provided by [Vulkan 1.0](crate::vk1_0)
+impl vk::AttachmentDescriptionFlagBits {
     pub const RESOLVE_SKIP_TRANSFER_FUNCTION_KHR: Self = Self(1 << 1);
     pub const RESOLVE_ENABLE_TRANSFER_FUNCTION_KHR: Self = Self(1 << 2);
 }
-///Provided by [VK_KHR_maintenance10](crate::khr::maintenance10)
-impl crate::vk::FormatFeatureFlags2 {
+///Provided by [Vulkan 1.3](crate::vk1_3)
+impl vk::FormatFeatureFlags2 {
     pub const DEPTH_COPY_ON_COMPUTE_QUEUE_KHR: Self = Self(
-        crate::vk::FormatFeatureFlagBits2::DEPTH_COPY_ON_COMPUTE_QUEUE_KHR.0,
+        vk::FormatFeatureFlagBits2::DEPTH_COPY_ON_COMPUTE_QUEUE_KHR.0,
     );
     pub const DEPTH_COPY_ON_TRANSFER_QUEUE_KHR: Self = Self(
-        crate::vk::FormatFeatureFlagBits2::DEPTH_COPY_ON_TRANSFER_QUEUE_KHR.0,
+        vk::FormatFeatureFlagBits2::DEPTH_COPY_ON_TRANSFER_QUEUE_KHR.0,
     );
     pub const STENCIL_COPY_ON_COMPUTE_QUEUE_KHR: Self = Self(
-        crate::vk::FormatFeatureFlagBits2::STENCIL_COPY_ON_COMPUTE_QUEUE_KHR.0,
+        vk::FormatFeatureFlagBits2::STENCIL_COPY_ON_COMPUTE_QUEUE_KHR.0,
     );
     pub const STENCIL_COPY_ON_TRANSFER_QUEUE_KHR: Self = Self(
-        crate::vk::FormatFeatureFlagBits2::STENCIL_COPY_ON_TRANSFER_QUEUE_KHR.0,
+        vk::FormatFeatureFlagBits2::STENCIL_COPY_ON_TRANSFER_QUEUE_KHR.0,
     );
 }
-///Provided by [VK_KHR_maintenance10](crate::khr::maintenance10)
-impl crate::vk::FormatFeatureFlagBits2 {
+///Provided by [Vulkan 1.3](crate::vk1_3)
+impl vk::FormatFeatureFlagBits2 {
     pub const DEPTH_COPY_ON_COMPUTE_QUEUE_KHR: Self = Self(1 << 52);
     pub const DEPTH_COPY_ON_TRANSFER_QUEUE_KHR: Self = Self(1 << 53);
     pub const STENCIL_COPY_ON_COMPUTE_QUEUE_KHR: Self = Self(1 << 54);
     pub const STENCIL_COPY_ON_TRANSFER_QUEUE_KHR: Self = Self(1 << 55);
 }
-///Provided by [VK_KHR_maintenance10](crate::khr::maintenance10)
-impl crate::vk::RenderingFlags {
+///Provided by [Vulkan 1.3](crate::vk1_3)
+impl vk::RenderingFlags {
     pub const LOCAL_READ_CONCURRENT_ACCESS_CONTROL_KHR: Self = Self(
-        crate::vk::RenderingFlagBits::LOCAL_READ_CONCURRENT_ACCESS_CONTROL_KHR.0,
+        vk::RenderingFlagBits::LOCAL_READ_CONCURRENT_ACCESS_CONTROL_KHR.0,
     );
 }
-///Provided by [VK_KHR_maintenance10](crate::khr::maintenance10)
-impl crate::vk::RenderingFlagBits {
+///Provided by [Vulkan 1.3](crate::vk1_3)
+impl vk::RenderingFlagBits {
     pub const LOCAL_READ_CONCURRENT_ACCESS_CONTROL_KHR: Self = Self(1 << 8);
 }
 ///Provided by [VK_KHR_maintenance10](crate::khr::maintenance10)
@@ -88,26 +91,24 @@ impl ResolveImageFlagBitsKHR {
     pub const SKIP_TRANSFER_FUNCTION: Self = Self(1 << 0);
     pub const ENABLE_TRANSFER_FUNCTION: Self = Self(1 << 1);
 }
+pub const SPEC_VERSION: u32 = 1;
+pub const NAME: &CStr = c"VK_KHR_maintenance10";
 #[derive(Clone)]
 pub struct DeviceFn {
-    pub cmd_end_rendering2: crate::vk::PFN_vkCmdEndRendering2KHR,
+    pub cmd_end_rendering2: vk::PFN_vkCmdEndRendering2KHR,
 }
 unsafe impl Send for DeviceFn {}
 unsafe impl Sync for DeviceFn {}
 impl DeviceFn {
-    pub fn load<F: FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void>(
-        mut f: F,
-    ) -> Self {
+    pub fn load<F: FnMut(&CStr) -> *const c_void>(mut f: F) -> Self {
         Self::load_erased(&mut f)
     }
-    fn load_erased(
-        _f: &mut dyn FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void,
-    ) -> Self {
+    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const c_void) -> Self {
         Self {
             cmd_end_rendering2: unsafe {
                 unsafe extern "system" fn cmd_end_rendering2(
-                    _: crate::vk::CommandBuffer,
-                    _: *const crate::vk::RenderingEndInfoKHR<'_>,
+                    _: vk::CommandBuffer,
+                    _: *const vk::RenderingEndInfoKHR<'_>,
                 ) {
                     panic!("unable to load vkCmdEndRendering2KHR")
                 }
@@ -146,8 +147,8 @@ impl Device {
     #[inline]
     pub unsafe fn cmd_end_rendering2(
         &self,
-        command_buffer: crate::vk::CommandBuffer,
-        rendering_end_info: Option<&crate::vk::RenderingEndInfoKHR<'_>>,
+        command_buffer: vk::CommandBuffer,
+        rendering_end_info: Option<&vk::RenderingEndInfoKHR<'_>>,
     ) {
         (self
             .fp
@@ -160,27 +161,27 @@ impl Device {
         )
     }
 }
-pub const SPEC_VERSION: u32 = 1;
-pub const NAME: &core::ffi::CStr = c"VK_KHR_maintenance10";
 pub(crate) mod items {
+    use core::marker::PhantomData;
+    use crate::vk;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceMaintenance10PropertiesKHR<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
-        pub rgba4_opaque_black_swizzled: crate::vk::Bool32,
-        pub resolve_srgb_format_applies_transfer_function: crate::vk::Bool32,
-        pub resolve_srgb_format_supports_transfer_function_control: crate::vk::Bool32,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub rgba4_opaque_black_swizzled: vk::Bool32,
+        pub resolve_srgb_format_applies_transfer_function: vk::Bool32,
+        pub resolve_srgb_format_supports_transfer_function_control: vk::Bool32,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for PhysicalDeviceMaintenance10PropertiesKHR<'_> {}
     unsafe impl Sync for PhysicalDeviceMaintenance10PropertiesKHR<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceMaintenance10PropertiesKHR<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_MAINTENANCE_10_PROPERTIES_KHR;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PHYSICAL_DEVICE_MAINTENANCE_10_PROPERTIES_KHR;
     }
-    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceProperties2<'_>>
+    unsafe impl<'a> crate::Extends<vk::PhysicalDeviceProperties2<'_>>
     for PhysicalDeviceMaintenance10PropertiesKHR<'a> {}
     impl<'a> Default for PhysicalDeviceMaintenance10PropertiesKHR<'a> {
         fn default() -> Self {
@@ -190,7 +191,7 @@ pub(crate) mod items {
                 rgba4_opaque_black_swizzled: Default::default(),
                 resolve_srgb_format_applies_transfer_function: Default::default(),
                 resolve_srgb_format_supports_transfer_function_control: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
@@ -223,20 +224,20 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceMaintenance10FeaturesKHR<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
-        pub maintenance10: crate::vk::Bool32,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub maintenance10: vk::Bool32,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for PhysicalDeviceMaintenance10FeaturesKHR<'_> {}
     unsafe impl Sync for PhysicalDeviceMaintenance10FeaturesKHR<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceMaintenance10FeaturesKHR<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_MAINTENANCE_10_FEATURES_KHR;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PHYSICAL_DEVICE_MAINTENANCE_10_FEATURES_KHR;
     }
-    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+    unsafe impl<'a> crate::Extends<vk::PhysicalDeviceFeatures2<'_>>
     for PhysicalDeviceMaintenance10FeaturesKHR<'a> {}
-    unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+    unsafe impl<'a> crate::Extends<vk::DeviceCreateInfo<'_>>
     for PhysicalDeviceMaintenance10FeaturesKHR<'a> {}
     impl<'a> Default for PhysicalDeviceMaintenance10FeaturesKHR<'a> {
         fn default() -> Self {
@@ -244,7 +245,7 @@ pub(crate) mod items {
                 s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
                 p_next: Default::default(),
                 maintenance10: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
@@ -258,21 +259,21 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct RenderingEndInfoKHR<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *const core::ffi::c_void,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for RenderingEndInfoKHR<'_> {}
     unsafe impl Sync for RenderingEndInfoKHR<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for RenderingEndInfoKHR<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::RENDERING_END_INFO_KHR;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::RENDERING_END_INFO_KHR;
     }
     impl<'a> Default for RenderingEndInfoKHR<'a> {
         fn default() -> Self {
             Self {
                 s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
                 p_next: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
@@ -281,17 +282,17 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct RenderingAttachmentFlagsInfoKHR<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *const core::ffi::c_void,
-        pub flags: crate::vk::RenderingAttachmentFlagsKHR,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub flags: vk::RenderingAttachmentFlagsKHR,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for RenderingAttachmentFlagsInfoKHR<'_> {}
     unsafe impl Sync for RenderingAttachmentFlagsInfoKHR<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for RenderingAttachmentFlagsInfoKHR<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::RENDERING_ATTACHMENT_FLAGS_INFO_KHR;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::RENDERING_ATTACHMENT_FLAGS_INFO_KHR;
     }
-    unsafe impl<'a> crate::Extends<crate::vk::RenderingAttachmentInfo<'_>>
+    unsafe impl<'a> crate::Extends<vk::RenderingAttachmentInfo<'_>>
     for RenderingAttachmentFlagsInfoKHR<'a> {}
     impl<'a> Default for RenderingAttachmentFlagsInfoKHR<'a> {
         fn default() -> Self {
@@ -299,12 +300,12 @@ pub(crate) mod items {
                 s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
                 p_next: Default::default(),
                 flags: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
     impl<'a> RenderingAttachmentFlagsInfoKHR<'a> {
-        pub fn flags(mut self, flags: crate::vk::RenderingAttachmentFlagsKHR) -> Self {
+        pub fn flags(mut self, flags: vk::RenderingAttachmentFlagsKHR) -> Self {
             self.flags = flags;
             self
         }
@@ -313,19 +314,19 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct ResolveImageModeInfoKHR<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *const core::ffi::c_void,
-        pub flags: crate::vk::ResolveImageFlagsKHR,
-        pub resolve_mode: crate::vk::ResolveModeFlagBits,
-        pub stencil_resolve_mode: crate::vk::ResolveModeFlagBits,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub flags: vk::ResolveImageFlagsKHR,
+        pub resolve_mode: vk::ResolveModeFlagBits,
+        pub stencil_resolve_mode: vk::ResolveModeFlagBits,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for ResolveImageModeInfoKHR<'_> {}
     unsafe impl Sync for ResolveImageModeInfoKHR<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for ResolveImageModeInfoKHR<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::RESOLVE_IMAGE_MODE_INFO_KHR;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::RESOLVE_IMAGE_MODE_INFO_KHR;
     }
-    unsafe impl<'a> crate::Extends<crate::vk::ResolveImageInfo2<'_>>
+    unsafe impl<'a> crate::Extends<vk::ResolveImageInfo2<'_>>
     for ResolveImageModeInfoKHR<'a> {}
     impl<'a> Default for ResolveImageModeInfoKHR<'a> {
         fn default() -> Self {
@@ -335,25 +336,22 @@ pub(crate) mod items {
                 flags: Default::default(),
                 resolve_mode: Default::default(),
                 stencil_resolve_mode: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
     impl<'a> ResolveImageModeInfoKHR<'a> {
-        pub fn flags(mut self, flags: crate::vk::ResolveImageFlagsKHR) -> Self {
+        pub fn flags(mut self, flags: vk::ResolveImageFlagsKHR) -> Self {
             self.flags = flags;
             self
         }
-        pub fn resolve_mode(
-            mut self,
-            resolve_mode: crate::vk::ResolveModeFlagBits,
-        ) -> Self {
+        pub fn resolve_mode(mut self, resolve_mode: vk::ResolveModeFlagBits) -> Self {
             self.resolve_mode = resolve_mode;
             self
         }
         pub fn stencil_resolve_mode(
             mut self,
-            stencil_resolve_mode: crate::vk::ResolveModeFlagBits,
+            stencil_resolve_mode: vk::ResolveModeFlagBits,
         ) -> Self {
             self.stencil_resolve_mode = stencil_resolve_mode;
             self
@@ -565,8 +563,8 @@ pub(crate) mod items {
         }
     }
     pub type PFN_vkCmdEndRendering2KHR = unsafe extern "system" fn(
-        command_buffer: crate::vk::CommandBuffer,
-        p_rendering_end_info: *const crate::vk::RenderingEndInfoKHR<'_>,
+        command_buffer: vk::CommandBuffer,
+        p_rendering_end_info: *const vk::RenderingEndInfoKHR<'_>,
     );
 }
 pub use items::*;

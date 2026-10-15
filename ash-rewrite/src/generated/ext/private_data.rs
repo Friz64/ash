@@ -2,42 +2,44 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_private_data.html) · Extension `VK_EXT_private_data`
 #![doc(alias = "VK_EXT_private_data")]
+use crate::vk;
+use core::ffi::CStr;
+use crate::VkResult;
+use core::ffi::c_void;
 ///Provided by [VK_EXT_private_data](crate::ext::private_data)
-impl crate::vk::StructureType {
+impl vk::StructureType {
     pub const PHYSICAL_DEVICE_PRIVATE_DATA_FEATURES_EXT: Self = Self::PHYSICAL_DEVICE_PRIVATE_DATA_FEATURES;
     pub const DEVICE_PRIVATE_DATA_CREATE_INFO_EXT: Self = Self::DEVICE_PRIVATE_DATA_CREATE_INFO;
     pub const PRIVATE_DATA_SLOT_CREATE_INFO_EXT: Self = Self::PRIVATE_DATA_SLOT_CREATE_INFO;
 }
 ///Provided by [VK_EXT_private_data](crate::ext::private_data)
-impl crate::vk::ObjectType {
+impl vk::ObjectType {
     pub const PRIVATE_DATA_SLOT_EXT: Self = Self::PRIVATE_DATA_SLOT;
 }
+pub const SPEC_VERSION: u32 = 1;
+pub const NAME: &CStr = c"VK_EXT_private_data";
 #[derive(Clone)]
 pub struct DeviceFn {
-    pub create_private_data_slot: crate::vk::PFN_vkCreatePrivateDataSlotEXT,
-    pub destroy_private_data_slot: crate::vk::PFN_vkDestroyPrivateDataSlotEXT,
-    pub set_private_data: crate::vk::PFN_vkSetPrivateDataEXT,
-    pub get_private_data: crate::vk::PFN_vkGetPrivateDataEXT,
+    pub create_private_data_slot: vk::PFN_vkCreatePrivateDataSlotEXT,
+    pub destroy_private_data_slot: vk::PFN_vkDestroyPrivateDataSlotEXT,
+    pub set_private_data: vk::PFN_vkSetPrivateDataEXT,
+    pub get_private_data: vk::PFN_vkGetPrivateDataEXT,
 }
 unsafe impl Send for DeviceFn {}
 unsafe impl Sync for DeviceFn {}
 impl DeviceFn {
-    pub fn load<F: FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void>(
-        mut f: F,
-    ) -> Self {
+    pub fn load<F: FnMut(&CStr) -> *const c_void>(mut f: F) -> Self {
         Self::load_erased(&mut f)
     }
-    fn load_erased(
-        _f: &mut dyn FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void,
-    ) -> Self {
+    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const c_void) -> Self {
         Self {
             create_private_data_slot: unsafe {
                 unsafe extern "system" fn create_private_data_slot(
-                    _: crate::vk::Device,
-                    _: *const crate::vk::PrivateDataSlotCreateInfo<'_>,
-                    _: *const crate::vk::AllocationCallbacks<'_>,
-                    _: *mut crate::vk::PrivateDataSlot,
-                ) -> crate::vk::Result {
+                    _: vk::Device,
+                    _: *const vk::PrivateDataSlotCreateInfo<'_>,
+                    _: *const vk::AllocationCallbacks<'_>,
+                    _: *mut vk::PrivateDataSlot,
+                ) -> vk::Result {
                     panic!("unable to load vkCreatePrivateDataSlotEXT")
                 }
                 let val = _f(c"vkCreatePrivateDataSlotEXT");
@@ -49,9 +51,9 @@ impl DeviceFn {
             },
             destroy_private_data_slot: unsafe {
                 unsafe extern "system" fn destroy_private_data_slot(
-                    _: crate::vk::Device,
-                    _: crate::vk::PrivateDataSlot,
-                    _: *const crate::vk::AllocationCallbacks<'_>,
+                    _: vk::Device,
+                    _: vk::PrivateDataSlot,
+                    _: *const vk::AllocationCallbacks<'_>,
                 ) {
                     panic!("unable to load vkDestroyPrivateDataSlotEXT")
                 }
@@ -64,12 +66,12 @@ impl DeviceFn {
             },
             set_private_data: unsafe {
                 unsafe extern "system" fn set_private_data(
-                    _: crate::vk::Device,
-                    _: crate::vk::ObjectType,
+                    _: vk::Device,
+                    _: vk::ObjectType,
                     _: u64,
-                    _: crate::vk::PrivateDataSlot,
+                    _: vk::PrivateDataSlot,
                     _: u64,
-                ) -> crate::vk::Result {
+                ) -> vk::Result {
                     panic!("unable to load vkSetPrivateDataEXT")
                 }
                 let val = _f(c"vkSetPrivateDataEXT");
@@ -81,10 +83,10 @@ impl DeviceFn {
             },
             get_private_data: unsafe {
                 unsafe extern "system" fn get_private_data(
-                    _: crate::vk::Device,
-                    _: crate::vk::ObjectType,
+                    _: vk::Device,
+                    _: vk::ObjectType,
                     _: u64,
-                    _: crate::vk::PrivateDataSlot,
+                    _: vk::PrivateDataSlot,
                     _: *mut u64,
                 ) {
                     panic!("unable to load vkGetPrivateDataEXT")
@@ -124,9 +126,9 @@ impl Device {
     #[inline]
     pub unsafe fn create_private_data_slot(
         &self,
-        create_info: &crate::vk::PrivateDataSlotCreateInfo<'_>,
-        allocator: Option<&crate::vk::AllocationCallbacks<'_>>,
-    ) -> crate::VkResult<crate::vk::PrivateDataSlot> {
+        create_info: &vk::PrivateDataSlotCreateInfo<'_>,
+        allocator: Option<&vk::AllocationCallbacks<'_>>,
+    ) -> VkResult<vk::PrivateDataSlot> {
         let mut private_data_slot = core::mem::MaybeUninit::uninit();
         (self
             .fp
@@ -145,8 +147,8 @@ impl Device {
     #[inline]
     pub unsafe fn destroy_private_data_slot(
         &self,
-        private_data_slot: crate::vk::PrivateDataSlot,
-        allocator: Option<&crate::vk::AllocationCallbacks<'_>>,
+        private_data_slot: vk::PrivateDataSlot,
+        allocator: Option<&vk::AllocationCallbacks<'_>>,
     ) {
         (self
             .fp
@@ -163,11 +165,11 @@ impl Device {
     #[inline]
     pub unsafe fn set_private_data(
         &self,
-        object_type: crate::vk::ObjectType,
+        object_type: vk::ObjectType,
         object_handle: u64,
-        private_data_slot: crate::vk::PrivateDataSlot,
+        private_data_slot: vk::PrivateDataSlot,
         data: u64,
-    ) -> crate::VkResult<()> {
+    ) -> VkResult<()> {
         (self
             .fp
             .set_private_data)(
@@ -183,9 +185,9 @@ impl Device {
     #[inline]
     pub unsafe fn get_private_data(
         &self,
-        object_type: crate::vk::ObjectType,
+        object_type: vk::ObjectType,
         object_handle: u64,
-        private_data_slot: crate::vk::PrivateDataSlot,
+        private_data_slot: vk::PrivateDataSlot,
     ) -> u64 {
         let mut data = core::mem::MaybeUninit::uninit();
         (self
@@ -200,22 +202,19 @@ impl Device {
         data.assume_init()
     }
 }
-pub const SPEC_VERSION: u32 = 1;
-pub const NAME: &core::ffi::CStr = c"VK_EXT_private_data";
 pub(crate) mod items {
-    pub type DevicePrivateDataCreateInfoEXT<'a> = crate::vk::DevicePrivateDataCreateInfo<
+    use crate::vk;
+    pub type DevicePrivateDataCreateInfoEXT<'a> = vk::DevicePrivateDataCreateInfo<'a>;
+    pub type PrivateDataSlotCreateInfoEXT<'a> = vk::PrivateDataSlotCreateInfo<'a>;
+    pub type PhysicalDevicePrivateDataFeaturesEXT<'a> = vk::PhysicalDevicePrivateDataFeatures<
         'a,
     >;
-    pub type PrivateDataSlotCreateInfoEXT<'a> = crate::vk::PrivateDataSlotCreateInfo<'a>;
-    pub type PhysicalDevicePrivateDataFeaturesEXT<'a> = crate::vk::PhysicalDevicePrivateDataFeatures<
-        'a,
-    >;
-    pub type PrivateDataSlotCreateFlagBitsEXT = crate::vk::PrivateDataSlotCreateFlagBits;
-    pub type PrivateDataSlotCreateFlagsEXT = crate::vk::PrivateDataSlotCreateFlags;
-    pub type PrivateDataSlotEXT = crate::vk::PrivateDataSlot;
-    pub type PFN_vkCreatePrivateDataSlotEXT = crate::vk::PFN_vkCreatePrivateDataSlot;
-    pub type PFN_vkDestroyPrivateDataSlotEXT = crate::vk::PFN_vkDestroyPrivateDataSlot;
-    pub type PFN_vkSetPrivateDataEXT = crate::vk::PFN_vkSetPrivateData;
-    pub type PFN_vkGetPrivateDataEXT = crate::vk::PFN_vkGetPrivateData;
+    pub type PrivateDataSlotCreateFlagBitsEXT = vk::PrivateDataSlotCreateFlagBits;
+    pub type PrivateDataSlotCreateFlagsEXT = vk::PrivateDataSlotCreateFlags;
+    pub type PrivateDataSlotEXT = vk::PrivateDataSlot;
+    pub type PFN_vkCreatePrivateDataSlotEXT = vk::PFN_vkCreatePrivateDataSlot;
+    pub type PFN_vkDestroyPrivateDataSlotEXT = vk::PFN_vkDestroyPrivateDataSlot;
+    pub type PFN_vkSetPrivateDataEXT = vk::PFN_vkSetPrivateData;
+    pub type PFN_vkGetPrivateDataEXT = vk::PFN_vkGetPrivateData;
 }
 pub use items::*;

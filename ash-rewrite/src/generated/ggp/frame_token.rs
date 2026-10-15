@@ -2,36 +2,39 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_GGP_frame_token.html) · Extension `VK_GGP_frame_token`
 #![doc(alias = "VK_GGP_frame_token")]
+use crate::vk;
+use core::ffi::CStr;
 ///Provided by [VK_GGP_frame_token](crate::ggp::frame_token)
-impl crate::vk::StructureType {
+impl vk::StructureType {
     pub const PRESENT_FRAME_TOKEN_GGP: Self = Self(1000191000);
 }
 pub const SPEC_VERSION: u32 = 1;
-pub const NAME: &core::ffi::CStr = c"VK_GGP_frame_token";
+pub const NAME: &CStr = c"VK_GGP_frame_token";
 pub(crate) mod items {
+    use core::marker::PhantomData;
+    use crate::vk;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct PresentFrameTokenGGP<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *const core::ffi::c_void,
         pub frame_token: crate::platform_types::GgpFrameToken,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for PresentFrameTokenGGP<'_> {}
     unsafe impl Sync for PresentFrameTokenGGP<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for PresentFrameTokenGGP<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PRESENT_FRAME_TOKEN_GGP;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PRESENT_FRAME_TOKEN_GGP;
     }
-    unsafe impl<'a> crate::Extends<crate::vk::PresentInfoKHR<'_>>
-    for PresentFrameTokenGGP<'a> {}
+    unsafe impl<'a> crate::Extends<vk::PresentInfoKHR<'_>> for PresentFrameTokenGGP<'a> {}
     impl<'a> Default for PresentFrameTokenGGP<'a> {
         fn default() -> Self {
             Self {
                 s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
                 p_next: Default::default(),
                 frame_token: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }

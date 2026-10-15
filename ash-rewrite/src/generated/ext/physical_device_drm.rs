@@ -2,33 +2,37 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_physical_device_drm.html) · Extension `VK_EXT_physical_device_drm`
 #![doc(alias = "VK_EXT_physical_device_drm")]
+use crate::vk;
+use core::ffi::CStr;
 ///Provided by [VK_EXT_physical_device_drm](crate::ext::physical_device_drm)
-impl crate::vk::StructureType {
+impl vk::StructureType {
     pub const PHYSICAL_DEVICE_DRM_PROPERTIES_EXT: Self = Self(1000353000);
 }
 pub const SPEC_VERSION: u32 = 1;
-pub const NAME: &core::ffi::CStr = c"VK_EXT_physical_device_drm";
+pub const NAME: &CStr = c"VK_EXT_physical_device_drm";
 pub(crate) mod items {
+    use core::marker::PhantomData;
+    use crate::vk;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceDrmPropertiesEXT<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
-        pub has_primary: crate::vk::Bool32,
-        pub has_render: crate::vk::Bool32,
+        pub has_primary: vk::Bool32,
+        pub has_render: vk::Bool32,
         pub primary_major: i64,
         pub primary_minor: i64,
         pub render_major: i64,
         pub render_minor: i64,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for PhysicalDeviceDrmPropertiesEXT<'_> {}
     unsafe impl Sync for PhysicalDeviceDrmPropertiesEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for PhysicalDeviceDrmPropertiesEXT<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_DRM_PROPERTIES_EXT;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PHYSICAL_DEVICE_DRM_PROPERTIES_EXT;
     }
-    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceProperties2<'_>>
+    unsafe impl<'a> crate::Extends<vk::PhysicalDeviceProperties2<'_>>
     for PhysicalDeviceDrmPropertiesEXT<'a> {}
     impl<'a> Default for PhysicalDeviceDrmPropertiesEXT<'a> {
         fn default() -> Self {
@@ -41,7 +45,7 @@ pub(crate) mod items {
                 primary_minor: Default::default(),
                 render_major: Default::default(),
                 render_minor: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }

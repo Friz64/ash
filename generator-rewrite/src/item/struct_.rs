@@ -1,6 +1,7 @@
 use super::{Code, Context};
 use crate::{
-    output::{CodeMap, Destination},
+    OutputContext,
+    output::{CodeMap, GlobExport, Import, OutputLocation},
     rules::{BuilderMethod, BuilderRule},
 };
 use analysis::{
@@ -34,12 +35,14 @@ fn bitfield_name_token(bitfield_i: usize) -> Ident {
 }
 
 impl Code for Struct {
-    #[instrument(skip(ctx))]
-    fn code(&self, ctx: &Context) -> CodeMap {
+    #[instrument(skip(ctx, codemap))]
+    fn code(&self, ctx: &Context, codemap: &mut CodeMap) {
         trace!("generating");
+        let output = OutputLocation::primary_location(self.required_by, GlobExport::Yes);
+        let octx = codemap.octx(output, ctx);
         let lifetime = Lifetime(format_ident!("a"));
-        let name = ctx.type_tokens(self.name, false, Some(&lifetime));
-        let anon_name = ctx.type_tokens(self.name, false, None);
+        let name = octx.type_tokens(self.name, false, Some(&lifetime));
+        let anon_name = octx.type_tokens(self.name, false, None);
 
         let lifetime_brackets = ctx
             .type_has_lifetime(self.name)
@@ -52,7 +55,7 @@ impl Code for Struct {
             Member::Regular(RegularMember { decl, .. }) => {
                 contains_static_array |= matches!(decl.ty, Ty::Array(..));
 
-                let decl = decl.to_rust().tokens(ctx, Some(&lifetime));
+                let decl = decl.to_rust().tokens(&octx, Some(&lifetime));
                 quote! { pub #decl }
             }
             Member::Bitfield(ranges) => {
@@ -73,17 +76,17 @@ impl Code for Struct {
             }
         });
 
-        let lifetime_marker = ctx.type_has_lifetime(self.name).then(|| {
-            quote! { pub _marker: ::core::marker::PhantomData<& #lifetime ()> }
-        });
-
-        let lifetime_marker_val = ctx.type_has_lifetime(self.name).then(|| {
-            quote! { _marker: ::core::marker::PhantomData }
-        });
+        let mut lifetime_marker = TokenStream::new();
+        let mut lifetime_marker_val = TokenStream::new();
+        if ctx.type_has_lifetime(self.name) {
+            octx.insert_import(Import::CoreMarkerPhantomData);
+            lifetime_marker = quote! { pub _marker: PhantomData<& #lifetime ()> };
+            lifetime_marker_val = quote! { _marker: PhantomData };
+        }
 
         let tagged_structure = self.structure_type.as_ref().map(|ty| {
-            let structure_ty = ctx.type_tokens(TypeName::VK_STRUCTURE_TYPE, true, Some(&lifetime));
-            let ty = ctx.enumerator_tokens(*ty, TypeName::VK_STRUCTURE_TYPE, true);
+            let structure_ty = octx.type_tokens(TypeName::VK_STRUCTURE_TYPE, true, Some(&lifetime));
+            let ty = octx.enumerator_tokens(*ty, TypeName::VK_STRUCTURE_TYPE, true);
             let extends = self.extends.iter().map(|ty| {
                 let is_provisional = ctx
                     .type_required_by(*ty)
@@ -92,7 +95,7 @@ impl Code for Struct {
                 let provisional_guard =
                     is_provisional.then_some(quote! { #[cfg(feature = "provisional")] });
 
-                let extends = ctx.type_tokens(*ty, true, None);
+                let extends = octx.type_tokens(*ty, true, None);
                 quote! {
                     #provisional_guard
                     unsafe impl #lifetime_brackets crate::Extends<#extends> for #name {}
@@ -129,7 +132,7 @@ impl Code for Struct {
         let default = {
             let defaults = self.members.iter().map(|member| match member {
                 Member::Regular(RegularMember { decl, .. }) => {
-                    let field_name = ctx.variable_token(decl.name);
+                    let field_name = octx.variable_token(decl.name);
                     if tagged_structure.is_some()
                         && decl.name.original() == "sType"
                         && let Ty::ApiType(ty) = &decl.ty
@@ -167,7 +170,7 @@ impl Code for Struct {
         let debug = {
             let debug_fields = self.members.iter().map(|member| match member {
                 Member::Regular(member @ RegularMember { decl, .. }) => {
-                    let field_name = ctx.variable_token(decl.name);
+                    let field_name = octx.variable_token(decl.name);
                     let field_name_string = field_name.to_string();
                     let value = match decl.ty {
                         Ty::Array(Ty::CPrimary(CPrimaryType::Char), ..)
@@ -185,7 +188,7 @@ impl Code for Struct {
                 Member::Bitfield(bitfield_ranges) => {
                     custom_debug = true;
                     let debug_fields = bitfield_ranges.iter().map(|bitfield_member| {
-                        let field_name = ctx.variable_token(bitfield_member.decl.name);
+                        let field_name = octx.variable_token(bitfield_member.decl.name);
                         let field_name_string = field_name.to_string();
                         let get_field_name = format_ident!("get_{field_name}");
                         quote! { .field(#field_name_string, &self.#get_field_name()) }
@@ -233,14 +236,14 @@ impl Code for Struct {
                     }
                     rule @ (Some(BuilderRule::Keep) | None) => {
                         let keep = matches!(rule, Some(BuilderRule::Keep));
-                        regular_builder(ctx, self, member, &lifetime, keep)
+                        regular_builder(&octx, self, member, &lifetime, keep)
                     }
                 };
 
                 itertools::Either::Left(iter::once(tokens))
             }
             Member::Bitfield(bitfield_ranges) => {
-                let bitfield_builder = bitfield_builder(ctx, bitfield_i, bitfield_ranges);
+                let bitfield_builder = bitfield_builder(&octx, bitfield_i, bitfield_ranges);
                 bitfield_i += 1;
                 itertools::Either::Right(bitfield_builder)
             }
@@ -258,12 +261,12 @@ impl Code for Struct {
             }
         };
 
-        CodeMap::new(Destination::primary_location(self.required_by), code)
+        octx.insert_tokens(code)
     }
 }
 
 fn regular_builder(
-    ctx: &Context,
+    octx: &OutputContext,
     structure: &Struct,
     member: &RegularMember,
     lifetime: &Lifetime,
@@ -273,7 +276,7 @@ fn regular_builder(
         return quote! {};
     }
 
-    let field_name = ctx.variable_token(member.decl.name);
+    let field_name = octx.variable_token(member.decl.name);
     let method_name = method_name_token(member);
 
     if !keep && {
@@ -319,13 +322,14 @@ fn regular_builder(
         {
             let ty = RustTy::Ref(
                 Box::new(RustTy::Custom {
-                    custom_type: quote! { core::ffi::CStr },
+                    custom_type: quote! { CStr },
                     generic_args: vec![],
                 }),
                 mutability,
             )
-            .tokens(ctx, Some(lifetime));
+            .tokens(octx, Some(lifetime));
 
+            octx.insert_import(Import::CoreFfiCStr);
             let method_name_as_cstr = as_c_str_method_token(&method_name);
             quote! {
                 pub fn #method_name(mut self, #method_name: #ty) -> Self {
@@ -333,11 +337,11 @@ fn regular_builder(
                     self
                 }
 
-                pub unsafe fn #method_name_as_cstr(&self) -> Option<&core::ffi::CStr> {
+                pub unsafe fn #method_name_as_cstr(&self) -> Option<&CStr> {
                     if self.#field_name.is_null() {
                         None
                     } else {
-                        Some(unsafe { core::ffi::CStr::from_ptr(self.#field_name) })
+                        Some(unsafe { CStr::from_ptr(self.#field_name) })
                     }
                 }
             }
@@ -345,13 +349,15 @@ fn regular_builder(
         Ty::Array(Ty::CPrimary(CPrimaryType::Char), _)
             if member.length_at_depth(0) == Some(Length::NullTerminated) =>
         {
+            octx.insert_import(Import::CoreFfiCStr);
+            octx.insert_import(Import::CoreFfi);
             let method_name_as_cstr = as_c_str_method_token(&method_name);
             quote! {
-                pub fn #method_name(mut self, #method_name: &core::ffi::CStr) -> core::result::Result<Self, crate::CStrTooLargeForStaticArray> {
+                pub fn #method_name(mut self, #method_name: &CStr) -> core::result::Result<Self, crate::CStrTooLargeForStaticArray> {
                     crate::write_c_str_slice_with_nul(&mut self.#field_name, #method_name).map(|_| self)
                 }
 
-                pub fn #method_name_as_cstr(&self) -> core::result::Result<&core::ffi::CStr, core::ffi::FromBytesUntilNulError> {
+                pub fn #method_name_as_cstr(&self) -> core::result::Result<&CStr, ffi::FromBytesUntilNulError> {
                     crate::wrap_c_str_slice_until_nul(&self.#field_name)
                 }
             }
@@ -359,10 +365,10 @@ fn regular_builder(
         Ty::Array(element_ty, _)
             if let Some(Length::DefinedByMember(length_member)) = member.length_at_depth(0) =>
         {
-            let length_name = ctx.variable_token(length_member);
+            let length_name = octx.variable_token(length_member);
             let method_name_as_slice = format_ident!("{method_name}_as_slice");
             let slice_ty = array_element_ty(element_ty);
-            let slice = RustTy::Slice(Box::new(slice_ty), Mutability::Not, None).tokens(ctx, None);
+            let slice = RustTy::Slice(Box::new(slice_ty), Mutability::Not, None).tokens(octx, None);
 
             quote! {
                 pub fn #field_name(mut self, #method_name: #slice) -> Self {
@@ -395,9 +401,9 @@ fn regular_builder(
                 array_element_ty(element_ty)
             };
 
-            let len_name = ctx.variable_token(length_member);
+            let len_name = octx.variable_token(length_member);
             let slice =
-                RustTy::Slice(Box::new(slice_ty), mutability, None).tokens(ctx, Some(lifetime));
+                RustTy::Slice(Box::new(slice_ty), mutability, None).tokens(octx, Some(lifetime));
             quote! {
                 pub fn #method_name(mut self, #method_name: #slice) -> Self {
                     self.#len_name = #method_name.len() as _;
@@ -411,7 +417,7 @@ fn regular_builder(
                 .length_at_depth(0)
                 .is_none_or(|l| l == Length::Count(1)) =>
         {
-            let ty = RustTy::Ref(Box::new(base.to_rust()), mutability).tokens(ctx, Some(lifetime));
+            let ty = RustTy::Ref(Box::new(base.to_rust()), mutability).tokens(octx, Some(lifetime));
             quote! {
                 pub fn #method_name(mut self, #method_name: #ty) -> Self {
                     self.#field_name = #method_name;
@@ -420,7 +426,7 @@ fn regular_builder(
             }
         }
         _ => {
-            let ty = member.decl.ty.to_rust().tokens(ctx, Some(lifetime));
+            let ty = member.decl.ty.to_rust().tokens(octx, Some(lifetime));
             quote! {
                 pub fn #method_name(mut self, #method_name: #ty) -> Self {
                     self.#field_name = #method_name;
@@ -432,13 +438,13 @@ fn regular_builder(
 }
 
 fn bitfield_builder(
-    ctx: &Context,
+    octx: &OutputContext,
     bitfield_i: usize,
     bitfield_ranges: &[BitfieldMemberRange],
 ) -> impl Iterator<Item = TokenStream> {
     let name = bitfield_name_token(bitfield_i);
     bitfield_ranges.iter().map(move |member| {
-        let field_name = ctx.variable_token(member.decl.name);
+        let field_name = octx.variable_token(member.decl.name);
         let mask = {
             let top = u32::MAX >> (u32::BITS - member.range.end as u32);
             let bottom = u32::MAX << (member.range.start);
@@ -474,15 +480,20 @@ fn bitfield_builder(
 }
 
 impl Code for Union {
-    #[instrument(skip(ctx))]
-    fn code(&self, ctx: &Context) -> CodeMap {
+    #[instrument(skip(ctx, codemap))]
+    fn code(&self, ctx: &Context, codemap: &mut CodeMap) {
         trace!("generating");
+
+        let output = OutputLocation::primary_location(self.required_by, GlobExport::Yes);
+        let octx = codemap.octx(output, ctx);
+
         let lifetime = Lifetime(format_ident!("a"));
         let lifetime_brackets = ctx
             .type_has_lifetime(self.name)
             .then(|| quote! { <#lifetime> });
-        let name = ctx.type_tokens(self.name, false, Some(&lifetime));
-        let members = (self.members.iter()).map(|decl| decl.to_rust().tokens(ctx, Some(&lifetime)));
+        let name = octx.type_tokens(self.name, false, Some(&lifetime));
+        let members =
+            (self.members.iter()).map(|decl| decl.to_rust().tokens(&octx, Some(&lifetime)));
 
         let name_string = name.to_string();
         let code = quote! {
@@ -506,6 +517,6 @@ impl Code for Union {
             }
         };
 
-        CodeMap::new(Destination::primary_location(self.required_by), code)
+        octx.insert_tokens(code)
     }
 }

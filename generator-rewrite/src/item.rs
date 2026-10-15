@@ -13,54 +13,52 @@ mod handle;
 mod struct_;
 
 pub trait Code {
-    fn code(&self, ctx: &Context) -> CodeMap;
+    fn code(&self, ctx: &Context, codemap: &mut CodeMap);
 }
 
 impl Code for TypeItem {
-    fn code(&self, ctx: &Context) -> CodeMap {
+    fn code(&self, ctx: &Context, codemap: &mut CodeMap) {
         match self {
-            TypeItem::Alias(alias) => alias.code(ctx),
-            TypeItem::Struct(struct_) => struct_.code(ctx),
-            TypeItem::Union(union) => union.code(ctx),
-            TypeItem::Enum(enum_) => enum_.code(ctx),
-            TypeItem::BitMask(bitmask) => bitmask.code(ctx),
-            TypeItem::BitMaskBits { .. } => CodeMap::default(), // covered by `TypeItem::BitMask`
-            TypeItem::BaseType(basetype) => basetype.code(ctx),
-            TypeItem::Handle(handle) => handle.code(ctx),
+            TypeItem::Alias(alias) => alias.code(ctx, codemap),
+            TypeItem::Struct(struct_) => struct_.code(ctx, codemap),
+            TypeItem::Union(union) => union.code(ctx, codemap),
+            TypeItem::Enum(enum_) => enum_.code(ctx, codemap),
+            TypeItem::BitMask(bitmask) => bitmask.code(ctx, codemap),
+            TypeItem::BitMaskBits { .. } => (), // covered by `TypeItem::BitMask`
+            TypeItem::BaseType(basetype) => basetype.code(ctx, codemap),
+            TypeItem::Handle(handle) => handle.code(ctx, codemap),
         }
     }
 }
 
 impl Code for CommandItem {
-    fn code(&self, ctx: &Context) -> CodeMap {
+    fn code(&self, ctx: &Context, codemap: &mut CodeMap) {
         match self {
-            CommandItem::Alias(alias) => alias.code(ctx),
-            CommandItem::Command(command) => command.code(ctx),
+            CommandItem::Alias(alias) => alias.code(ctx, codemap),
+            CommandItem::Command(command) => command.code(ctx, codemap),
         }
     }
 }
 
-impl CodeMap {
-    pub fn extend_from_items<'a, C: Code + 'a>(
-        &mut self,
-        ctx: &Context,
-        item_iter: impl IntoIterator<Item = &'a C>,
-    ) {
-        for item in item_iter {
-            self.extend(item.code(ctx));
-        }
+fn extend_from_items<'a, C: Code + 'a>(
+    codemap: &mut CodeMap,
+    ctx: &Context,
+    item_iter: impl IntoIterator<Item = &'a C>,
+) {
+    for item in item_iter {
+        item.code(ctx, codemap);
     }
 }
 
 pub fn generate_code(ctx: &Context, codemap: &mut CodeMap) {
     debug!("generating types code");
-    codemap.extend_from_items(ctx, ctx.items.types.values());
+    extend_from_items(codemap, ctx, ctx.items.types.values());
     debug!("generating function pointers code");
-    codemap.extend_from_items(ctx, ctx.items.func_pointers.values());
+    extend_from_items(codemap, ctx, ctx.items.func_pointers.values());
     debug!("generating commands code");
-    codemap.extend_from_items(ctx, ctx.items.commands.values());
+    extend_from_items(codemap, ctx, ctx.items.commands.values());
     debug!("generating constants code");
-    codemap.extend_from_items(ctx, ctx.items.constants.values());
+    extend_from_items(codemap, ctx, ctx.items.constants.values());
     debug!("generating macros code");
-    codemap.extend_from_items(ctx, ctx.items.cmacros.values());
+    extend_from_items(codemap, ctx, ctx.items.cmacros.values());
 }

@@ -2,43 +2,47 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_internally_synchronized_queues.html) · Extension `VK_KHR_internally_synchronized_queues`
 #![doc(alias = "VK_KHR_internally_synchronized_queues")]
+use crate::vk;
+use core::ffi::CStr;
 ///Provided by [VK_KHR_internally_synchronized_queues](crate::khr::internally_synchronized_queues)
-impl crate::vk::StructureType {
+impl vk::StructureType {
     pub const PHYSICAL_DEVICE_INTERNALLY_SYNCHRONIZED_QUEUES_FEATURES_KHR: Self = Self(
         1000504000,
     );
 }
-///Provided by [VK_KHR_internally_synchronized_queues](crate::khr::internally_synchronized_queues)
-impl crate::vk::DeviceQueueCreateFlags {
+///Provided by [Vulkan 1.0](crate::vk1_0)
+impl vk::DeviceQueueCreateFlags {
     pub const INTERNALLY_SYNCHRONIZED_KHR: Self = Self(
-        crate::vk::DeviceQueueCreateFlagBits::INTERNALLY_SYNCHRONIZED_KHR.0,
+        vk::DeviceQueueCreateFlagBits::INTERNALLY_SYNCHRONIZED_KHR.0,
     );
 }
-///Provided by [VK_KHR_internally_synchronized_queues](crate::khr::internally_synchronized_queues)
-impl crate::vk::DeviceQueueCreateFlagBits {
+///Provided by [Vulkan 1.0](crate::vk1_0)
+impl vk::DeviceQueueCreateFlagBits {
     pub const INTERNALLY_SYNCHRONIZED_KHR: Self = Self(1 << 2);
 }
 pub const SPEC_VERSION: u32 = 1;
-pub const NAME: &core::ffi::CStr = c"VK_KHR_internally_synchronized_queues";
+pub const NAME: &CStr = c"VK_KHR_internally_synchronized_queues";
 pub(crate) mod items {
+    use core::marker::PhantomData;
+    use crate::vk;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceInternallySynchronizedQueuesFeaturesKHR<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
-        pub internally_synchronized_queues: crate::vk::Bool32,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub internally_synchronized_queues: vk::Bool32,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for PhysicalDeviceInternallySynchronizedQueuesFeaturesKHR<'_> {}
     unsafe impl Sync for PhysicalDeviceInternallySynchronizedQueuesFeaturesKHR<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceInternallySynchronizedQueuesFeaturesKHR<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_INTERNALLY_SYNCHRONIZED_QUEUES_FEATURES_KHR;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PHYSICAL_DEVICE_INTERNALLY_SYNCHRONIZED_QUEUES_FEATURES_KHR;
     }
-    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+    unsafe impl<'a> crate::Extends<vk::PhysicalDeviceFeatures2<'_>>
     for PhysicalDeviceInternallySynchronizedQueuesFeaturesKHR<'a> {}
-    unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+    unsafe impl<'a> crate::Extends<vk::DeviceCreateInfo<'_>>
     for PhysicalDeviceInternallySynchronizedQueuesFeaturesKHR<'a> {}
     impl<'a> Default for PhysicalDeviceInternallySynchronizedQueuesFeaturesKHR<'a> {
         fn default() -> Self {
@@ -46,7 +50,7 @@ pub(crate) mod items {
                 s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
                 p_next: Default::default(),
                 internally_synchronized_queues: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }

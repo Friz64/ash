@@ -2,29 +2,33 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_astc_decode_mode.html) · Extension `VK_EXT_astc_decode_mode`
 #![doc(alias = "VK_EXT_astc_decode_mode")]
+use crate::vk;
+use core::ffi::CStr;
 ///Provided by [VK_EXT_astc_decode_mode](crate::ext::astc_decode_mode)
-impl crate::vk::StructureType {
+impl vk::StructureType {
     pub const IMAGE_VIEW_ASTC_DECODE_MODE_EXT: Self = Self(1000067000);
     pub const PHYSICAL_DEVICE_ASTC_DECODE_FEATURES_EXT: Self = Self(1000067001);
 }
 pub const SPEC_VERSION: u32 = 1;
-pub const NAME: &core::ffi::CStr = c"VK_EXT_astc_decode_mode";
+pub const NAME: &CStr = c"VK_EXT_astc_decode_mode";
 pub(crate) mod items {
+    use core::marker::PhantomData;
+    use crate::vk;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct ImageViewASTCDecodeModeEXT<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *const core::ffi::c_void,
-        pub decode_mode: crate::vk::Format,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub decode_mode: vk::Format,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for ImageViewASTCDecodeModeEXT<'_> {}
     unsafe impl Sync for ImageViewASTCDecodeModeEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for ImageViewASTCDecodeModeEXT<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::IMAGE_VIEW_ASTC_DECODE_MODE_EXT;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::IMAGE_VIEW_ASTC_DECODE_MODE_EXT;
     }
-    unsafe impl<'a> crate::Extends<crate::vk::ImageViewCreateInfo<'_>>
+    unsafe impl<'a> crate::Extends<vk::ImageViewCreateInfo<'_>>
     for ImageViewASTCDecodeModeEXT<'a> {}
     impl<'a> Default for ImageViewASTCDecodeModeEXT<'a> {
         fn default() -> Self {
@@ -32,12 +36,12 @@ pub(crate) mod items {
                 s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
                 p_next: Default::default(),
                 decode_mode: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
     impl<'a> ImageViewASTCDecodeModeEXT<'a> {
-        pub fn decode_mode(mut self, decode_mode: crate::vk::Format) -> Self {
+        pub fn decode_mode(mut self, decode_mode: vk::Format) -> Self {
             self.decode_mode = decode_mode;
             self
         }
@@ -46,20 +50,20 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceASTCDecodeFeaturesEXT<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
-        pub decode_mode_shared_exponent: crate::vk::Bool32,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub decode_mode_shared_exponent: vk::Bool32,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for PhysicalDeviceASTCDecodeFeaturesEXT<'_> {}
     unsafe impl Sync for PhysicalDeviceASTCDecodeFeaturesEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceASTCDecodeFeaturesEXT<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_ASTC_DECODE_FEATURES_EXT;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PHYSICAL_DEVICE_ASTC_DECODE_FEATURES_EXT;
     }
-    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+    unsafe impl<'a> crate::Extends<vk::PhysicalDeviceFeatures2<'_>>
     for PhysicalDeviceASTCDecodeFeaturesEXT<'a> {}
-    unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+    unsafe impl<'a> crate::Extends<vk::DeviceCreateInfo<'_>>
     for PhysicalDeviceASTCDecodeFeaturesEXT<'a> {}
     impl<'a> Default for PhysicalDeviceASTCDecodeFeaturesEXT<'a> {
         fn default() -> Self {
@@ -67,7 +71,7 @@ pub(crate) mod items {
                 s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
                 p_next: Default::default(),
                 decode_mode_shared_exponent: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }

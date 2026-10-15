@@ -2,43 +2,46 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_pipeline_creation_cache_control.html) · Extension `VK_EXT_pipeline_creation_cache_control`
 #![doc(alias = "VK_EXT_pipeline_creation_cache_control")]
+use crate::vk;
+use core::ffi::CStr;
 ///Provided by [VK_EXT_pipeline_creation_cache_control](crate::ext::pipeline_creation_cache_control)
-impl crate::vk::StructureType {
+impl vk::StructureType {
     pub const PHYSICAL_DEVICE_PIPELINE_CREATION_CACHE_CONTROL_FEATURES_EXT: Self = Self::PHYSICAL_DEVICE_PIPELINE_CREATION_CACHE_CONTROL_FEATURES;
 }
 ///Provided by [VK_EXT_pipeline_creation_cache_control](crate::ext::pipeline_creation_cache_control)
-impl crate::vk::Result {
+impl vk::Result {
     pub const PIPELINE_COMPILE_REQUIRED_EXT: Self = Self::PIPELINE_COMPILE_REQUIRED;
     pub const ERROR_PIPELINE_COMPILE_REQUIRED_EXT: Self = Self::PIPELINE_COMPILE_REQUIRED;
 }
-///Provided by [VK_EXT_pipeline_creation_cache_control](crate::ext::pipeline_creation_cache_control)
-impl crate::vk::PipelineCacheCreateFlags {
+///Provided by [Vulkan 1.0](crate::vk1_0)
+impl vk::PipelineCacheCreateFlags {
     pub const EXTERNALLY_SYNCHRONIZED_EXT: Self = Self(
-        crate::vk::PipelineCacheCreateFlagBits::EXTERNALLY_SYNCHRONIZED_EXT.0,
+        vk::PipelineCacheCreateFlagBits::EXTERNALLY_SYNCHRONIZED_EXT.0,
     );
 }
-///Provided by [VK_EXT_pipeline_creation_cache_control](crate::ext::pipeline_creation_cache_control)
-impl crate::vk::PipelineCacheCreateFlagBits {
+///Provided by [Vulkan 1.0](crate::vk1_0)
+impl vk::PipelineCacheCreateFlagBits {
     pub const EXTERNALLY_SYNCHRONIZED_EXT: Self = Self::EXTERNALLY_SYNCHRONIZED;
 }
-///Provided by [VK_EXT_pipeline_creation_cache_control](crate::ext::pipeline_creation_cache_control)
-impl crate::vk::PipelineCreateFlags {
+///Provided by [Vulkan 1.0](crate::vk1_0)
+impl vk::PipelineCreateFlags {
     pub const FAIL_ON_PIPELINE_COMPILE_REQUIRED_EXT: Self = Self(
-        crate::vk::PipelineCreateFlagBits::FAIL_ON_PIPELINE_COMPILE_REQUIRED_EXT.0,
+        vk::PipelineCreateFlagBits::FAIL_ON_PIPELINE_COMPILE_REQUIRED_EXT.0,
     );
     pub const EARLY_RETURN_ON_FAILURE_EXT: Self = Self(
-        crate::vk::PipelineCreateFlagBits::EARLY_RETURN_ON_FAILURE_EXT.0,
+        vk::PipelineCreateFlagBits::EARLY_RETURN_ON_FAILURE_EXT.0,
     );
 }
-///Provided by [VK_EXT_pipeline_creation_cache_control](crate::ext::pipeline_creation_cache_control)
-impl crate::vk::PipelineCreateFlagBits {
+///Provided by [Vulkan 1.0](crate::vk1_0)
+impl vk::PipelineCreateFlagBits {
     pub const FAIL_ON_PIPELINE_COMPILE_REQUIRED_EXT: Self = Self::FAIL_ON_PIPELINE_COMPILE_REQUIRED;
     pub const EARLY_RETURN_ON_FAILURE_EXT: Self = Self::EARLY_RETURN_ON_FAILURE;
 }
 pub const SPEC_VERSION: u32 = 3;
-pub const NAME: &core::ffi::CStr = c"VK_EXT_pipeline_creation_cache_control";
+pub const NAME: &CStr = c"VK_EXT_pipeline_creation_cache_control";
 pub(crate) mod items {
-    pub type PhysicalDevicePipelineCreationCacheControlFeaturesEXT<'a> = crate::vk::PhysicalDevicePipelineCreationCacheControlFeatures<
+    use crate::vk;
+    pub type PhysicalDevicePipelineCreationCacheControlFeaturesEXT<'a> = vk::PhysicalDevicePipelineCreationCacheControlFeatures<
         'a,
     >;
 }

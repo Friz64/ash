@@ -2,31 +2,30 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_AMD_buffer_marker.html) · Extension `VK_AMD_buffer_marker`
 #![doc(alias = "VK_AMD_buffer_marker")]
+use core::ffi::CStr;
+use crate::vk;
+use core::ffi::c_void;
 pub const SPEC_VERSION: u32 = 1;
-pub const NAME: &core::ffi::CStr = c"VK_AMD_buffer_marker";
+pub const NAME: &CStr = c"VK_AMD_buffer_marker";
 #[derive(Clone)]
 pub struct DeviceFn {
-    pub cmd_write_buffer_marker: crate::vk::PFN_vkCmdWriteBufferMarkerAMD,
-    pub cmd_write_buffer_marker2: crate::vk::PFN_vkCmdWriteBufferMarker2AMD,
+    pub cmd_write_buffer_marker: vk::PFN_vkCmdWriteBufferMarkerAMD,
+    pub cmd_write_buffer_marker2: vk::PFN_vkCmdWriteBufferMarker2AMD,
 }
 unsafe impl Send for DeviceFn {}
 unsafe impl Sync for DeviceFn {}
 impl DeviceFn {
-    pub fn load<F: FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void>(
-        mut f: F,
-    ) -> Self {
+    pub fn load<F: FnMut(&CStr) -> *const c_void>(mut f: F) -> Self {
         Self::load_erased(&mut f)
     }
-    fn load_erased(
-        _f: &mut dyn FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void,
-    ) -> Self {
+    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const c_void) -> Self {
         Self {
             cmd_write_buffer_marker: unsafe {
                 unsafe extern "system" fn cmd_write_buffer_marker(
-                    _: crate::vk::CommandBuffer,
-                    _: crate::vk::PipelineStageFlagBits,
-                    _: crate::vk::Buffer,
-                    _: crate::vk::DeviceSize,
+                    _: vk::CommandBuffer,
+                    _: vk::PipelineStageFlagBits,
+                    _: vk::Buffer,
+                    _: vk::DeviceSize,
                     _: u32,
                 ) {
                     panic!("unable to load vkCmdWriteBufferMarkerAMD")
@@ -40,10 +39,10 @@ impl DeviceFn {
             },
             cmd_write_buffer_marker2: unsafe {
                 unsafe extern "system" fn cmd_write_buffer_marker2(
-                    _: crate::vk::CommandBuffer,
-                    _: crate::vk::PipelineStageFlags2,
-                    _: crate::vk::Buffer,
-                    _: crate::vk::DeviceSize,
+                    _: vk::CommandBuffer,
+                    _: vk::PipelineStageFlags2,
+                    _: vk::Buffer,
+                    _: vk::DeviceSize,
                     _: u32,
                 ) {
                     panic!("unable to load vkCmdWriteBufferMarker2AMD")
@@ -83,10 +82,10 @@ impl Device {
     #[inline]
     pub unsafe fn cmd_write_buffer_marker(
         &self,
-        command_buffer: crate::vk::CommandBuffer,
-        pipeline_stage: crate::vk::PipelineStageFlagBits,
-        dst_buffer: crate::vk::Buffer,
-        dst_offset: crate::vk::DeviceSize,
+        command_buffer: vk::CommandBuffer,
+        pipeline_stage: vk::PipelineStageFlagBits,
+        dst_buffer: vk::Buffer,
+        dst_offset: vk::DeviceSize,
         marker: u32,
     ) {
         (self
@@ -103,10 +102,10 @@ impl Device {
     #[inline]
     pub unsafe fn cmd_write_buffer_marker2(
         &self,
-        command_buffer: crate::vk::CommandBuffer,
-        stage: crate::vk::PipelineStageFlags2,
-        dst_buffer: crate::vk::Buffer,
-        dst_offset: crate::vk::DeviceSize,
+        command_buffer: vk::CommandBuffer,
+        stage: vk::PipelineStageFlags2,
+        dst_buffer: vk::Buffer,
+        dst_offset: vk::DeviceSize,
         marker: u32,
     ) {
         (self
@@ -121,18 +120,19 @@ impl Device {
     }
 }
 pub(crate) mod items {
+    use crate::vk;
     pub type PFN_vkCmdWriteBufferMarkerAMD = unsafe extern "system" fn(
-        command_buffer: crate::vk::CommandBuffer,
-        pipeline_stage: crate::vk::PipelineStageFlagBits,
-        dst_buffer: crate::vk::Buffer,
-        dst_offset: crate::vk::DeviceSize,
+        command_buffer: vk::CommandBuffer,
+        pipeline_stage: vk::PipelineStageFlagBits,
+        dst_buffer: vk::Buffer,
+        dst_offset: vk::DeviceSize,
         marker: u32,
     );
     pub type PFN_vkCmdWriteBufferMarker2AMD = unsafe extern "system" fn(
-        command_buffer: crate::vk::CommandBuffer,
-        stage: crate::vk::PipelineStageFlags2,
-        dst_buffer: crate::vk::Buffer,
-        dst_offset: crate::vk::DeviceSize,
+        command_buffer: vk::CommandBuffer,
+        stage: vk::PipelineStageFlags2,
+        dst_buffer: vk::Buffer,
+        dst_offset: vk::DeviceSize,
         marker: u32,
     );
 }

@@ -2,62 +2,66 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_video_maintenance1.html) · Extension `VK_KHR_video_maintenance1`
 #![doc(alias = "VK_KHR_video_maintenance1")]
+use crate::vk;
+use core::ffi::CStr;
 ///Provided by [VK_KHR_video_maintenance1](crate::khr::video_maintenance1)
-impl crate::vk::StructureType {
+impl vk::StructureType {
     pub const PHYSICAL_DEVICE_VIDEO_MAINTENANCE_1_FEATURES_KHR: Self = Self(1000515000);
     pub const VIDEO_INLINE_QUERY_INFO_KHR: Self = Self(1000515001);
 }
-///Provided by [VK_KHR_video_maintenance1](crate::khr::video_maintenance1)
-impl crate::vk::BufferCreateFlags {
+///Provided by [Vulkan 1.0](crate::vk1_0)
+impl vk::BufferCreateFlags {
     pub const VIDEO_PROFILE_INDEPENDENT_KHR: Self = Self(
-        crate::vk::BufferCreateFlagBits::VIDEO_PROFILE_INDEPENDENT_KHR.0,
+        vk::BufferCreateFlagBits::VIDEO_PROFILE_INDEPENDENT_KHR.0,
     );
 }
-///Provided by [VK_KHR_video_maintenance1](crate::khr::video_maintenance1)
-impl crate::vk::BufferCreateFlagBits {
+///Provided by [Vulkan 1.0](crate::vk1_0)
+impl vk::BufferCreateFlagBits {
     pub const VIDEO_PROFILE_INDEPENDENT_KHR: Self = Self(1 << 6);
 }
-///Provided by [VK_KHR_video_maintenance1](crate::khr::video_maintenance1)
-impl crate::vk::ImageCreateFlags {
+///Provided by [Vulkan 1.0](crate::vk1_0)
+impl vk::ImageCreateFlags {
     pub const VIDEO_PROFILE_INDEPENDENT_KHR: Self = Self(
-        crate::vk::ImageCreateFlagBits::VIDEO_PROFILE_INDEPENDENT_KHR.0,
+        vk::ImageCreateFlagBits::VIDEO_PROFILE_INDEPENDENT_KHR.0,
     );
 }
-///Provided by [VK_KHR_video_maintenance1](crate::khr::video_maintenance1)
-impl crate::vk::ImageCreateFlagBits {
+///Provided by [Vulkan 1.0](crate::vk1_0)
+impl vk::ImageCreateFlagBits {
     pub const VIDEO_PROFILE_INDEPENDENT_KHR: Self = Self(1 << 20);
 }
-///Provided by [VK_KHR_video_maintenance1](crate::khr::video_maintenance1)
-impl crate::vk::VideoSessionCreateFlagsKHR {
+///Provided by [VK_KHR_video_queue](crate::khr::video_queue)
+impl vk::VideoSessionCreateFlagsKHR {
     pub const INLINE_QUERIES: Self = Self(
-        crate::vk::VideoSessionCreateFlagBitsKHR::INLINE_QUERIES.0,
+        vk::VideoSessionCreateFlagBitsKHR::INLINE_QUERIES.0,
     );
 }
-///Provided by [VK_KHR_video_maintenance1](crate::khr::video_maintenance1)
-impl crate::vk::VideoSessionCreateFlagBitsKHR {
+///Provided by [VK_KHR_video_queue](crate::khr::video_queue)
+impl vk::VideoSessionCreateFlagBitsKHR {
     pub const INLINE_QUERIES: Self = Self(1 << 2);
 }
 pub const SPEC_VERSION: u32 = 1;
-pub const NAME: &core::ffi::CStr = c"VK_KHR_video_maintenance1";
+pub const NAME: &CStr = c"VK_KHR_video_maintenance1";
 pub(crate) mod items {
+    use core::marker::PhantomData;
+    use crate::vk;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceVideoMaintenance1FeaturesKHR<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
-        pub video_maintenance1: crate::vk::Bool32,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub video_maintenance1: vk::Bool32,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for PhysicalDeviceVideoMaintenance1FeaturesKHR<'_> {}
     unsafe impl Sync for PhysicalDeviceVideoMaintenance1FeaturesKHR<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceVideoMaintenance1FeaturesKHR<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_VIDEO_MAINTENANCE_1_FEATURES_KHR;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PHYSICAL_DEVICE_VIDEO_MAINTENANCE_1_FEATURES_KHR;
     }
-    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+    unsafe impl<'a> crate::Extends<vk::PhysicalDeviceFeatures2<'_>>
     for PhysicalDeviceVideoMaintenance1FeaturesKHR<'a> {}
-    unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+    unsafe impl<'a> crate::Extends<vk::DeviceCreateInfo<'_>>
     for PhysicalDeviceVideoMaintenance1FeaturesKHR<'a> {}
     impl<'a> Default for PhysicalDeviceVideoMaintenance1FeaturesKHR<'a> {
         fn default() -> Self {
@@ -65,7 +69,7 @@ pub(crate) mod items {
                 s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
                 p_next: Default::default(),
                 video_maintenance1: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
@@ -79,21 +83,21 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct VideoInlineQueryInfoKHR<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *const core::ffi::c_void,
-        pub query_pool: crate::vk::QueryPool,
+        pub query_pool: vk::QueryPool,
         pub first_query: u32,
         pub query_count: u32,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for VideoInlineQueryInfoKHR<'_> {}
     unsafe impl Sync for VideoInlineQueryInfoKHR<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for VideoInlineQueryInfoKHR<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::VIDEO_INLINE_QUERY_INFO_KHR;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::VIDEO_INLINE_QUERY_INFO_KHR;
     }
-    unsafe impl<'a> crate::Extends<crate::vk::VideoDecodeInfoKHR<'_>>
+    unsafe impl<'a> crate::Extends<vk::VideoDecodeInfoKHR<'_>>
     for VideoInlineQueryInfoKHR<'a> {}
-    unsafe impl<'a> crate::Extends<crate::vk::VideoEncodeInfoKHR<'_>>
+    unsafe impl<'a> crate::Extends<vk::VideoEncodeInfoKHR<'_>>
     for VideoInlineQueryInfoKHR<'a> {}
     impl<'a> Default for VideoInlineQueryInfoKHR<'a> {
         fn default() -> Self {
@@ -103,12 +107,12 @@ pub(crate) mod items {
                 query_pool: Default::default(),
                 first_query: Default::default(),
                 query_count: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
     impl<'a> VideoInlineQueryInfoKHR<'a> {
-        pub fn query_pool(mut self, query_pool: crate::vk::QueryPool) -> Self {
+        pub fn query_pool(mut self, query_pool: vk::QueryPool) -> Self {
             self.query_pool = query_pool;
             self
         }

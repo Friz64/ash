@@ -2,37 +2,38 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_AMD_shader_info.html) · Extension `VK_AMD_shader_info`
 #![doc(alias = "VK_AMD_shader_info")]
+use core::ffi::CStr;
+use crate::vk;
+use core::ffi::c_void;
 ///Provided by [VK_AMD_shader_info](crate::amd::shader_info)
 impl ShaderInfoTypeAMD {
     pub const STATISTICS: Self = Self(0);
     pub const BINARY: Self = Self(1);
     pub const DISASSEMBLY: Self = Self(2);
 }
+pub const SPEC_VERSION: u32 = 1;
+pub const NAME: &CStr = c"VK_AMD_shader_info";
 #[derive(Clone)]
 pub struct DeviceFn {
-    pub get_shader_info: crate::vk::PFN_vkGetShaderInfoAMD,
+    pub get_shader_info: vk::PFN_vkGetShaderInfoAMD,
 }
 unsafe impl Send for DeviceFn {}
 unsafe impl Sync for DeviceFn {}
 impl DeviceFn {
-    pub fn load<F: FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void>(
-        mut f: F,
-    ) -> Self {
+    pub fn load<F: FnMut(&CStr) -> *const c_void>(mut f: F) -> Self {
         Self::load_erased(&mut f)
     }
-    fn load_erased(
-        _f: &mut dyn FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void,
-    ) -> Self {
+    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const c_void) -> Self {
         Self {
             get_shader_info: unsafe {
                 unsafe extern "system" fn get_shader_info(
-                    _: crate::vk::Device,
-                    _: crate::vk::Pipeline,
-                    _: crate::vk::ShaderStageFlagBits,
-                    _: crate::vk::ShaderInfoTypeAMD,
+                    _: vk::Device,
+                    _: vk::Pipeline,
+                    _: vk::ShaderStageFlagBits,
+                    _: vk::ShaderInfoTypeAMD,
                     _: *mut usize,
                     _: *mut core::ffi::c_void,
-                ) -> crate::vk::Result {
+                ) -> vk::Result {
                     panic!("unable to load vkGetShaderInfoAMD")
                 }
                 let val = _f(c"vkGetShaderInfoAMD");
@@ -66,9 +67,9 @@ impl Device {
     #[inline]
     pub unsafe fn get_shader_info(
         &self,
-        pipeline: crate::vk::Pipeline,
-        shader_stage: crate::vk::ShaderStageFlagBits,
-        info_type: crate::vk::ShaderInfoTypeAMD,
+        pipeline: vk::Pipeline,
+        shader_stage: vk::ShaderStageFlagBits,
+        info_type: vk::ShaderInfoTypeAMD,
     ) -> crate::VkResult<Vec<core::ffi::c_void>> {
         crate::read_into_uninitialized_vector(|info_size, info| (self
             .fp
@@ -82,9 +83,8 @@ impl Device {
         ))
     }
 }
-pub const SPEC_VERSION: u32 = 1;
-pub const NAME: &core::ffi::CStr = c"VK_AMD_shader_info";
 pub(crate) mod items {
+    use crate::vk;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy, Default)]
@@ -132,8 +132,8 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct ShaderStatisticsInfoAMD {
-        pub shader_stage_mask: crate::vk::ShaderStageFlags,
-        pub resource_usage: crate::vk::ShaderResourceUsageAMD,
+        pub shader_stage_mask: vk::ShaderStageFlags,
+        pub resource_usage: vk::ShaderResourceUsageAMD,
         pub num_physical_vgprs: u32,
         pub num_physical_sgprs: u32,
         pub num_available_vgprs: u32,
@@ -158,14 +158,14 @@ pub(crate) mod items {
     impl ShaderStatisticsInfoAMD {
         pub fn shader_stage_mask(
             mut self,
-            shader_stage_mask: crate::vk::ShaderStageFlags,
+            shader_stage_mask: vk::ShaderStageFlags,
         ) -> Self {
             self.shader_stage_mask = shader_stage_mask;
             self
         }
         pub fn resource_usage(
             mut self,
-            resource_usage: crate::vk::ShaderResourceUsageAMD,
+            resource_usage: vk::ShaderResourceUsageAMD,
         ) -> Self {
             self.resource_usage = resource_usage;
             self
@@ -223,12 +223,12 @@ pub(crate) mod items {
         }
     }
     pub type PFN_vkGetShaderInfoAMD = unsafe extern "system" fn(
-        device: crate::vk::Device,
-        pipeline: crate::vk::Pipeline,
-        shader_stage: crate::vk::ShaderStageFlagBits,
-        info_type: crate::vk::ShaderInfoTypeAMD,
+        device: vk::Device,
+        pipeline: vk::Pipeline,
+        shader_stage: vk::ShaderStageFlagBits,
+        info_type: vk::ShaderInfoTypeAMD,
         p_info_size: *mut usize,
         p_info: *mut core::ffi::c_void,
-    ) -> crate::vk::Result;
+    ) -> vk::Result;
 }
 pub use items::*;

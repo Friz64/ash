@@ -2,8 +2,12 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_host_image_copy.html) · Extension `VK_EXT_host_image_copy`
 #![doc(alias = "VK_EXT_host_image_copy")]
+use crate::vk;
+use core::ffi::CStr;
+use crate::VkResult;
+use core::ffi::c_void;
 ///Provided by [VK_EXT_host_image_copy](crate::ext::host_image_copy)
-impl crate::vk::StructureType {
+impl vk::StructureType {
     pub const PHYSICAL_DEVICE_HOST_IMAGE_COPY_FEATURES_EXT: Self = Self::PHYSICAL_DEVICE_HOST_IMAGE_COPY_FEATURES;
     pub const PHYSICAL_DEVICE_HOST_IMAGE_COPY_PROPERTIES_EXT: Self = Self::PHYSICAL_DEVICE_HOST_IMAGE_COPY_PROPERTIES;
     pub const MEMORY_TO_IMAGE_COPY_EXT: Self = Self::MEMORY_TO_IMAGE_COPY;
@@ -15,59 +19,57 @@ impl crate::vk::StructureType {
     pub const SUBRESOURCE_HOST_MEMCPY_SIZE_EXT: Self = Self::SUBRESOURCE_HOST_MEMCPY_SIZE;
     pub const HOST_IMAGE_COPY_DEVICE_PERFORMANCE_QUERY_EXT: Self = Self::HOST_IMAGE_COPY_DEVICE_PERFORMANCE_QUERY;
 }
-///Provided by [VK_EXT_host_image_copy](crate::ext::host_image_copy)
-impl crate::vk::ImageUsageFlags {
+///Provided by [Vulkan 1.0](crate::vk1_0)
+impl vk::ImageUsageFlags {
     pub const HOST_TRANSFER_EXT: Self = Self(
-        crate::vk::ImageUsageFlagBits::HOST_TRANSFER_EXT.0,
+        vk::ImageUsageFlagBits::HOST_TRANSFER_EXT.0,
     );
 }
-///Provided by [VK_EXT_host_image_copy](crate::ext::host_image_copy)
-impl crate::vk::ImageUsageFlagBits {
+///Provided by [Vulkan 1.0](crate::vk1_0)
+impl vk::ImageUsageFlagBits {
     pub const HOST_TRANSFER_EXT: Self = Self::HOST_TRANSFER;
 }
-///Provided by [VK_EXT_host_image_copy](crate::ext::host_image_copy)
-impl crate::vk::FormatFeatureFlags2 {
+///Provided by [Vulkan 1.3](crate::vk1_3)
+impl vk::FormatFeatureFlags2 {
     pub const HOST_IMAGE_TRANSFER_EXT: Self = Self(
-        crate::vk::FormatFeatureFlagBits2::HOST_IMAGE_TRANSFER_EXT.0,
+        vk::FormatFeatureFlagBits2::HOST_IMAGE_TRANSFER_EXT.0,
     );
 }
-///Provided by [VK_EXT_host_image_copy](crate::ext::host_image_copy)
-impl crate::vk::FormatFeatureFlagBits2 {
+///Provided by [Vulkan 1.3](crate::vk1_3)
+impl vk::FormatFeatureFlagBits2 {
     pub const HOST_IMAGE_TRANSFER_EXT: Self = Self::HOST_IMAGE_TRANSFER;
 }
-///Provided by [VK_EXT_host_image_copy](crate::ext::host_image_copy)
-impl crate::vk::HostImageCopyFlags {
-    pub const MEMCPY_EXT: Self = Self(crate::vk::HostImageCopyFlagBits::MEMCPY_EXT.0);
+///Provided by [Vulkan 1.4](crate::vk1_4)
+impl vk::HostImageCopyFlags {
+    pub const MEMCPY_EXT: Self = Self(vk::HostImageCopyFlagBits::MEMCPY_EXT.0);
 }
-///Provided by [VK_EXT_host_image_copy](crate::ext::host_image_copy)
-impl crate::vk::HostImageCopyFlagBits {
+///Provided by [Vulkan 1.4](crate::vk1_4)
+impl vk::HostImageCopyFlagBits {
     pub const MEMCPY_EXT: Self = Self::MEMCPY;
 }
+pub const SPEC_VERSION: u32 = 1;
+pub const NAME: &CStr = c"VK_EXT_host_image_copy";
 #[derive(Clone)]
 pub struct DeviceFn {
-    pub copy_memory_to_image: crate::vk::PFN_vkCopyMemoryToImageEXT,
-    pub copy_image_to_memory: crate::vk::PFN_vkCopyImageToMemoryEXT,
-    pub copy_image_to_image: crate::vk::PFN_vkCopyImageToImageEXT,
-    pub transition_image_layout: crate::vk::PFN_vkTransitionImageLayoutEXT,
-    pub get_image_subresource_layout2: crate::vk::PFN_vkGetImageSubresourceLayout2EXT,
+    pub copy_memory_to_image: vk::PFN_vkCopyMemoryToImageEXT,
+    pub copy_image_to_memory: vk::PFN_vkCopyImageToMemoryEXT,
+    pub copy_image_to_image: vk::PFN_vkCopyImageToImageEXT,
+    pub transition_image_layout: vk::PFN_vkTransitionImageLayoutEXT,
+    pub get_image_subresource_layout2: vk::PFN_vkGetImageSubresourceLayout2EXT,
 }
 unsafe impl Send for DeviceFn {}
 unsafe impl Sync for DeviceFn {}
 impl DeviceFn {
-    pub fn load<F: FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void>(
-        mut f: F,
-    ) -> Self {
+    pub fn load<F: FnMut(&CStr) -> *const c_void>(mut f: F) -> Self {
         Self::load_erased(&mut f)
     }
-    fn load_erased(
-        _f: &mut dyn FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void,
-    ) -> Self {
+    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const c_void) -> Self {
         Self {
             copy_memory_to_image: unsafe {
                 unsafe extern "system" fn copy_memory_to_image(
-                    _: crate::vk::Device,
-                    _: *const crate::vk::CopyMemoryToImageInfo<'_>,
-                ) -> crate::vk::Result {
+                    _: vk::Device,
+                    _: *const vk::CopyMemoryToImageInfo<'_>,
+                ) -> vk::Result {
                     panic!("unable to load vkCopyMemoryToImageEXT")
                 }
                 let val = _f(c"vkCopyMemoryToImageEXT");
@@ -79,9 +81,9 @@ impl DeviceFn {
             },
             copy_image_to_memory: unsafe {
                 unsafe extern "system" fn copy_image_to_memory(
-                    _: crate::vk::Device,
-                    _: *const crate::vk::CopyImageToMemoryInfo<'_>,
-                ) -> crate::vk::Result {
+                    _: vk::Device,
+                    _: *const vk::CopyImageToMemoryInfo<'_>,
+                ) -> vk::Result {
                     panic!("unable to load vkCopyImageToMemoryEXT")
                 }
                 let val = _f(c"vkCopyImageToMemoryEXT");
@@ -93,9 +95,9 @@ impl DeviceFn {
             },
             copy_image_to_image: unsafe {
                 unsafe extern "system" fn copy_image_to_image(
-                    _: crate::vk::Device,
-                    _: *const crate::vk::CopyImageToImageInfo<'_>,
-                ) -> crate::vk::Result {
+                    _: vk::Device,
+                    _: *const vk::CopyImageToImageInfo<'_>,
+                ) -> vk::Result {
                     panic!("unable to load vkCopyImageToImageEXT")
                 }
                 let val = _f(c"vkCopyImageToImageEXT");
@@ -107,10 +109,10 @@ impl DeviceFn {
             },
             transition_image_layout: unsafe {
                 unsafe extern "system" fn transition_image_layout(
-                    _: crate::vk::Device,
+                    _: vk::Device,
                     _: u32,
-                    _: *const crate::vk::HostImageLayoutTransitionInfo<'_>,
-                ) -> crate::vk::Result {
+                    _: *const vk::HostImageLayoutTransitionInfo<'_>,
+                ) -> vk::Result {
                     panic!("unable to load vkTransitionImageLayoutEXT")
                 }
                 let val = _f(c"vkTransitionImageLayoutEXT");
@@ -122,10 +124,10 @@ impl DeviceFn {
             },
             get_image_subresource_layout2: unsafe {
                 unsafe extern "system" fn get_image_subresource_layout2(
-                    _: crate::vk::Device,
-                    _: crate::vk::Image,
-                    _: *const crate::vk::ImageSubresource2<'_>,
-                    _: *mut crate::vk::SubresourceLayout2<'_>,
+                    _: vk::Device,
+                    _: vk::Image,
+                    _: *const vk::ImageSubresource2<'_>,
+                    _: *mut vk::SubresourceLayout2<'_>,
                 ) {
                     panic!("unable to load vkGetImageSubresourceLayout2EXT")
                 }
@@ -164,32 +166,32 @@ impl Device {
     #[inline]
     pub unsafe fn copy_memory_to_image(
         &self,
-        copy_memory_to_image_info: &crate::vk::CopyMemoryToImageInfo<'_>,
-    ) -> crate::VkResult<()> {
+        copy_memory_to_image_info: &vk::CopyMemoryToImageInfo<'_>,
+    ) -> VkResult<()> {
         (self.fp.copy_memory_to_image)(self.handle, copy_memory_to_image_info).result()
     }
     ///vkCopyImageToMemory
     #[inline]
     pub unsafe fn copy_image_to_memory(
         &self,
-        copy_image_to_memory_info: &crate::vk::CopyImageToMemoryInfo<'_>,
-    ) -> crate::VkResult<()> {
+        copy_image_to_memory_info: &vk::CopyImageToMemoryInfo<'_>,
+    ) -> VkResult<()> {
         (self.fp.copy_image_to_memory)(self.handle, copy_image_to_memory_info).result()
     }
     ///vkCopyImageToImage
     #[inline]
     pub unsafe fn copy_image_to_image(
         &self,
-        copy_image_to_image_info: &crate::vk::CopyImageToImageInfo<'_>,
-    ) -> crate::VkResult<()> {
+        copy_image_to_image_info: &vk::CopyImageToImageInfo<'_>,
+    ) -> VkResult<()> {
         (self.fp.copy_image_to_image)(self.handle, copy_image_to_image_info).result()
     }
     ///vkTransitionImageLayout
     #[inline]
     pub unsafe fn transition_image_layout(
         &self,
-        transitions: &[crate::vk::HostImageLayoutTransitionInfo<'_>],
-    ) -> crate::VkResult<()> {
+        transitions: &[vk::HostImageLayoutTransitionInfo<'_>],
+    ) -> VkResult<()> {
         (self
             .fp
             .transition_image_layout)(
@@ -203,9 +205,9 @@ impl Device {
     #[inline]
     pub unsafe fn get_image_subresource_layout2(
         &self,
-        image: crate::vk::Image,
-        subresource: &crate::vk::ImageSubresource2<'_>,
-    ) -> crate::vk::SubresourceLayout2<'_> {
+        image: vk::Image,
+        subresource: &vk::ImageSubresource2<'_>,
+    ) -> vk::SubresourceLayout2<'_> {
         let mut layout = core::mem::MaybeUninit::uninit();
         (self
             .fp
@@ -218,35 +220,34 @@ impl Device {
         layout.assume_init()
     }
 }
-pub const SPEC_VERSION: u32 = 1;
-pub const NAME: &core::ffi::CStr = c"VK_EXT_host_image_copy";
 pub(crate) mod items {
-    pub type PhysicalDeviceHostImageCopyFeaturesEXT<'a> = crate::vk::PhysicalDeviceHostImageCopyFeatures<
+    use crate::vk;
+    pub type PhysicalDeviceHostImageCopyFeaturesEXT<'a> = vk::PhysicalDeviceHostImageCopyFeatures<
         'a,
     >;
-    pub type PhysicalDeviceHostImageCopyPropertiesEXT<'a> = crate::vk::PhysicalDeviceHostImageCopyProperties<
+    pub type PhysicalDeviceHostImageCopyPropertiesEXT<'a> = vk::PhysicalDeviceHostImageCopyProperties<
         'a,
     >;
-    pub type MemoryToImageCopyEXT<'a> = crate::vk::MemoryToImageCopy<'a>;
-    pub type ImageToMemoryCopyEXT<'a> = crate::vk::ImageToMemoryCopy<'a>;
-    pub type CopyMemoryToImageInfoEXT<'a> = crate::vk::CopyMemoryToImageInfo<'a>;
-    pub type CopyImageToMemoryInfoEXT<'a> = crate::vk::CopyImageToMemoryInfo<'a>;
-    pub type CopyImageToImageInfoEXT<'a> = crate::vk::CopyImageToImageInfo<'a>;
-    pub type HostImageLayoutTransitionInfoEXT<'a> = crate::vk::HostImageLayoutTransitionInfo<
+    pub type MemoryToImageCopyEXT<'a> = vk::MemoryToImageCopy<'a>;
+    pub type ImageToMemoryCopyEXT<'a> = vk::ImageToMemoryCopy<'a>;
+    pub type CopyMemoryToImageInfoEXT<'a> = vk::CopyMemoryToImageInfo<'a>;
+    pub type CopyImageToMemoryInfoEXT<'a> = vk::CopyImageToMemoryInfo<'a>;
+    pub type CopyImageToImageInfoEXT<'a> = vk::CopyImageToImageInfo<'a>;
+    pub type HostImageLayoutTransitionInfoEXT<'a> = vk::HostImageLayoutTransitionInfo<
         'a,
     >;
-    pub type SubresourceHostMemcpySizeEXT<'a> = crate::vk::SubresourceHostMemcpySize<'a>;
-    pub type HostImageCopyDevicePerformanceQueryEXT<'a> = crate::vk::HostImageCopyDevicePerformanceQuery<
+    pub type SubresourceHostMemcpySizeEXT<'a> = vk::SubresourceHostMemcpySize<'a>;
+    pub type HostImageCopyDevicePerformanceQueryEXT<'a> = vk::HostImageCopyDevicePerformanceQuery<
         'a,
     >;
-    pub type ImageSubresource2EXT<'a> = crate::vk::ImageSubresource2<'a>;
-    pub type SubresourceLayout2EXT<'a> = crate::vk::SubresourceLayout2<'a>;
-    pub type HostImageCopyFlagBitsEXT = crate::vk::HostImageCopyFlagBits;
-    pub type HostImageCopyFlagsEXT = crate::vk::HostImageCopyFlags;
-    pub type PFN_vkCopyMemoryToImageEXT = crate::vk::PFN_vkCopyMemoryToImage;
-    pub type PFN_vkCopyImageToMemoryEXT = crate::vk::PFN_vkCopyImageToMemory;
-    pub type PFN_vkCopyImageToImageEXT = crate::vk::PFN_vkCopyImageToImage;
-    pub type PFN_vkTransitionImageLayoutEXT = crate::vk::PFN_vkTransitionImageLayout;
-    pub type PFN_vkGetImageSubresourceLayout2EXT = crate::vk::PFN_vkGetImageSubresourceLayout2;
+    pub type ImageSubresource2EXT<'a> = vk::ImageSubresource2<'a>;
+    pub type SubresourceLayout2EXT<'a> = vk::SubresourceLayout2<'a>;
+    pub type HostImageCopyFlagBitsEXT = vk::HostImageCopyFlagBits;
+    pub type HostImageCopyFlagsEXT = vk::HostImageCopyFlags;
+    pub type PFN_vkCopyMemoryToImageEXT = vk::PFN_vkCopyMemoryToImage;
+    pub type PFN_vkCopyImageToMemoryEXT = vk::PFN_vkCopyImageToMemory;
+    pub type PFN_vkCopyImageToImageEXT = vk::PFN_vkCopyImageToImage;
+    pub type PFN_vkTransitionImageLayoutEXT = vk::PFN_vkTransitionImageLayout;
+    pub type PFN_vkGetImageSubresourceLayout2EXT = vk::PFN_vkGetImageSubresourceLayout2;
 }
 pub use items::*;

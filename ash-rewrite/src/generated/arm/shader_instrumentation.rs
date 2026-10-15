@@ -2,8 +2,12 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_ARM_shader_instrumentation.html) · Extension `VK_ARM_shader_instrumentation`
 #![doc(alias = "VK_ARM_shader_instrumentation")]
+use crate::vk;
+use core::ffi::CStr;
+use crate::VkResult;
+use core::ffi::c_void;
 ///Provided by [VK_ARM_shader_instrumentation](crate::arm::shader_instrumentation)
-impl crate::vk::StructureType {
+impl vk::StructureType {
     pub const PHYSICAL_DEVICE_SHADER_INSTRUMENTATION_FEATURES_ARM: Self = Self(
         1000607000,
     );
@@ -14,31 +18,29 @@ impl crate::vk::StructureType {
     pub const SHADER_INSTRUMENTATION_METRIC_DESCRIPTION_ARM: Self = Self(1000607003);
 }
 ///Provided by [VK_ARM_shader_instrumentation](crate::arm::shader_instrumentation)
-impl crate::vk::ObjectType {
+impl vk::ObjectType {
     pub const SHADER_INSTRUMENTATION_ARM: Self = Self(1000607000);
 }
+pub const SPEC_VERSION: u32 = 1;
+pub const NAME: &CStr = c"VK_ARM_shader_instrumentation";
 #[derive(Clone)]
 pub struct InstanceFn {
-    pub enumerate_physical_device_shader_instrumentation_metrics: crate::vk::PFN_vkEnumeratePhysicalDeviceShaderInstrumentationMetricsARM,
+    pub enumerate_physical_device_shader_instrumentation_metrics: vk::PFN_vkEnumeratePhysicalDeviceShaderInstrumentationMetricsARM,
 }
 unsafe impl Send for InstanceFn {}
 unsafe impl Sync for InstanceFn {}
 impl InstanceFn {
-    pub fn load<F: FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void>(
-        mut f: F,
-    ) -> Self {
+    pub fn load<F: FnMut(&CStr) -> *const c_void>(mut f: F) -> Self {
         Self::load_erased(&mut f)
     }
-    fn load_erased(
-        _f: &mut dyn FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void,
-    ) -> Self {
+    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const c_void) -> Self {
         Self {
             enumerate_physical_device_shader_instrumentation_metrics: unsafe {
                 unsafe extern "system" fn enumerate_physical_device_shader_instrumentation_metrics(
-                    _: crate::vk::PhysicalDevice,
+                    _: vk::PhysicalDevice,
                     _: *mut u32,
-                    _: *mut crate::vk::ShaderInstrumentationMetricDescriptionARM<'_>,
-                ) -> crate::vk::Result {
+                    _: *mut vk::ShaderInstrumentationMetricDescriptionARM<'_>,
+                ) -> vk::Result {
                     panic!(
                         "unable to load vkEnumeratePhysicalDeviceShaderInstrumentationMetricsARM"
                     )
@@ -80,8 +82,8 @@ impl Instance {
     #[inline]
     pub unsafe fn enumerate_physical_device_shader_instrumentation_metrics_len(
         &self,
-        physical_device: crate::vk::PhysicalDevice,
-    ) -> crate::VkResult<usize> {
+        physical_device: vk::PhysicalDevice,
+    ) -> VkResult<usize> {
         let mut description_count = core::mem::MaybeUninit::uninit();
         (self
             .fp
@@ -97,8 +99,8 @@ impl Instance {
     #[inline]
     pub unsafe fn enumerate_physical_device_shader_instrumentation_metrics(
         &self,
-        physical_device: crate::vk::PhysicalDevice,
-        descriptions: &mut [crate::vk::ShaderInstrumentationMetricDescriptionARM<'_>],
+        physical_device: vk::PhysicalDevice,
+        descriptions: &mut [vk::ShaderInstrumentationMetricDescriptionARM<'_>],
     ) -> crate::VkResult<()> {
         let mut description_count = descriptions.len() as _;
         (self
@@ -115,32 +117,28 @@ impl Instance {
 }
 #[derive(Clone)]
 pub struct DeviceFn {
-    pub create_shader_instrumentation: crate::vk::PFN_vkCreateShaderInstrumentationARM,
-    pub destroy_shader_instrumentation: crate::vk::PFN_vkDestroyShaderInstrumentationARM,
-    pub cmd_begin_shader_instrumentation: crate::vk::PFN_vkCmdBeginShaderInstrumentationARM,
-    pub cmd_end_shader_instrumentation: crate::vk::PFN_vkCmdEndShaderInstrumentationARM,
-    pub get_shader_instrumentation_values: crate::vk::PFN_vkGetShaderInstrumentationValuesARM,
-    pub clear_shader_instrumentation_metrics: crate::vk::PFN_vkClearShaderInstrumentationMetricsARM,
+    pub create_shader_instrumentation: vk::PFN_vkCreateShaderInstrumentationARM,
+    pub destroy_shader_instrumentation: vk::PFN_vkDestroyShaderInstrumentationARM,
+    pub cmd_begin_shader_instrumentation: vk::PFN_vkCmdBeginShaderInstrumentationARM,
+    pub cmd_end_shader_instrumentation: vk::PFN_vkCmdEndShaderInstrumentationARM,
+    pub get_shader_instrumentation_values: vk::PFN_vkGetShaderInstrumentationValuesARM,
+    pub clear_shader_instrumentation_metrics: vk::PFN_vkClearShaderInstrumentationMetricsARM,
 }
 unsafe impl Send for DeviceFn {}
 unsafe impl Sync for DeviceFn {}
 impl DeviceFn {
-    pub fn load<F: FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void>(
-        mut f: F,
-    ) -> Self {
+    pub fn load<F: FnMut(&CStr) -> *const c_void>(mut f: F) -> Self {
         Self::load_erased(&mut f)
     }
-    fn load_erased(
-        _f: &mut dyn FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void,
-    ) -> Self {
+    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const c_void) -> Self {
         Self {
             create_shader_instrumentation: unsafe {
                 unsafe extern "system" fn create_shader_instrumentation(
-                    _: crate::vk::Device,
-                    _: *const crate::vk::ShaderInstrumentationCreateInfoARM<'_>,
-                    _: *const crate::vk::AllocationCallbacks<'_>,
-                    _: *mut crate::vk::ShaderInstrumentationARM,
-                ) -> crate::vk::Result {
+                    _: vk::Device,
+                    _: *const vk::ShaderInstrumentationCreateInfoARM<'_>,
+                    _: *const vk::AllocationCallbacks<'_>,
+                    _: *mut vk::ShaderInstrumentationARM,
+                ) -> vk::Result {
                     panic!("unable to load vkCreateShaderInstrumentationARM")
                 }
                 let val = _f(c"vkCreateShaderInstrumentationARM");
@@ -152,9 +150,9 @@ impl DeviceFn {
             },
             destroy_shader_instrumentation: unsafe {
                 unsafe extern "system" fn destroy_shader_instrumentation(
-                    _: crate::vk::Device,
-                    _: crate::vk::ShaderInstrumentationARM,
-                    _: *const crate::vk::AllocationCallbacks<'_>,
+                    _: vk::Device,
+                    _: vk::ShaderInstrumentationARM,
+                    _: *const vk::AllocationCallbacks<'_>,
                 ) {
                     panic!("unable to load vkDestroyShaderInstrumentationARM")
                 }
@@ -167,8 +165,8 @@ impl DeviceFn {
             },
             cmd_begin_shader_instrumentation: unsafe {
                 unsafe extern "system" fn cmd_begin_shader_instrumentation(
-                    _: crate::vk::CommandBuffer,
-                    _: crate::vk::ShaderInstrumentationARM,
+                    _: vk::CommandBuffer,
+                    _: vk::ShaderInstrumentationARM,
                 ) {
                     panic!("unable to load vkCmdBeginShaderInstrumentationARM")
                 }
@@ -181,7 +179,7 @@ impl DeviceFn {
             },
             cmd_end_shader_instrumentation: unsafe {
                 unsafe extern "system" fn cmd_end_shader_instrumentation(
-                    _: crate::vk::CommandBuffer,
+                    _: vk::CommandBuffer,
                 ) {
                     panic!("unable to load vkCmdEndShaderInstrumentationARM")
                 }
@@ -194,12 +192,12 @@ impl DeviceFn {
             },
             get_shader_instrumentation_values: unsafe {
                 unsafe extern "system" fn get_shader_instrumentation_values(
-                    _: crate::vk::Device,
-                    _: crate::vk::ShaderInstrumentationARM,
+                    _: vk::Device,
+                    _: vk::ShaderInstrumentationARM,
                     _: *mut u32,
                     _: *mut core::ffi::c_void,
-                    _: crate::vk::ShaderInstrumentationValuesFlagsARM,
-                ) -> crate::vk::Result {
+                    _: vk::ShaderInstrumentationValuesFlagsARM,
+                ) -> vk::Result {
                     panic!("unable to load vkGetShaderInstrumentationValuesARM")
                 }
                 let val = _f(c"vkGetShaderInstrumentationValuesARM");
@@ -211,8 +209,8 @@ impl DeviceFn {
             },
             clear_shader_instrumentation_metrics: unsafe {
                 unsafe extern "system" fn clear_shader_instrumentation_metrics(
-                    _: crate::vk::Device,
-                    _: crate::vk::ShaderInstrumentationARM,
+                    _: vk::Device,
+                    _: vk::ShaderInstrumentationARM,
                 ) {
                     panic!("unable to load vkClearShaderInstrumentationMetricsARM")
                 }
@@ -251,9 +249,9 @@ impl Device {
     #[inline]
     pub unsafe fn create_shader_instrumentation(
         &self,
-        create_info: &crate::vk::ShaderInstrumentationCreateInfoARM<'_>,
-        allocator: Option<&crate::vk::AllocationCallbacks<'_>>,
-    ) -> crate::VkResult<crate::vk::ShaderInstrumentationARM> {
+        create_info: &vk::ShaderInstrumentationCreateInfoARM<'_>,
+        allocator: Option<&vk::AllocationCallbacks<'_>>,
+    ) -> VkResult<vk::ShaderInstrumentationARM> {
         let mut instrumentation = core::mem::MaybeUninit::uninit();
         (self
             .fp
@@ -272,8 +270,8 @@ impl Device {
     #[inline]
     pub unsafe fn destroy_shader_instrumentation(
         &self,
-        instrumentation: crate::vk::ShaderInstrumentationARM,
-        allocator: Option<&crate::vk::AllocationCallbacks<'_>>,
+        instrumentation: vk::ShaderInstrumentationARM,
+        allocator: Option<&vk::AllocationCallbacks<'_>>,
     ) {
         (self
             .fp
@@ -290,8 +288,8 @@ impl Device {
     #[inline]
     pub unsafe fn cmd_begin_shader_instrumentation(
         &self,
-        command_buffer: crate::vk::CommandBuffer,
-        instrumentation: crate::vk::ShaderInstrumentationARM,
+        command_buffer: vk::CommandBuffer,
+        instrumentation: vk::ShaderInstrumentationARM,
     ) {
         (self.fp.cmd_begin_shader_instrumentation)(command_buffer, instrumentation)
     }
@@ -299,7 +297,7 @@ impl Device {
     #[inline]
     pub unsafe fn cmd_end_shader_instrumentation(
         &self,
-        command_buffer: crate::vk::CommandBuffer,
+        command_buffer: vk::CommandBuffer,
     ) {
         (self.fp.cmd_end_shader_instrumentation)(command_buffer)
     }
@@ -307,11 +305,11 @@ impl Device {
     #[inline]
     pub unsafe fn get_shader_instrumentation_values(
         &self,
-        instrumentation: crate::vk::ShaderInstrumentationARM,
+        instrumentation: vk::ShaderInstrumentationARM,
         metric_block_count: &mut u32,
         metric_values: &mut core::ffi::c_void,
-        flags: crate::vk::ShaderInstrumentationValuesFlagsARM,
-    ) -> crate::VkResult<()> {
+        flags: vk::ShaderInstrumentationValuesFlagsARM,
+    ) -> VkResult<()> {
         (self
             .fp
             .get_shader_instrumentation_values)(
@@ -327,32 +325,38 @@ impl Device {
     #[inline]
     pub unsafe fn clear_shader_instrumentation_metrics(
         &self,
-        instrumentation: crate::vk::ShaderInstrumentationARM,
+        instrumentation: vk::ShaderInstrumentationARM,
     ) {
         (self.fp.clear_shader_instrumentation_metrics)(self.handle, instrumentation)
     }
 }
-pub const SPEC_VERSION: u32 = 1;
-pub const NAME: &core::ffi::CStr = c"VK_ARM_shader_instrumentation";
 pub(crate) mod items {
+    use core::marker::PhantomData;
+    use crate::vk;
+    use core::ffi::CStr;
+    use core::ffi;
+    use crate::Handle;
+    use core::fmt;
+    #[cfg(feature = "debug")]
+    use core::fmt as fmtdebug;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceShaderInstrumentationFeaturesARM<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
-        pub shader_instrumentation: crate::vk::Bool32,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub shader_instrumentation: vk::Bool32,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for PhysicalDeviceShaderInstrumentationFeaturesARM<'_> {}
     unsafe impl Sync for PhysicalDeviceShaderInstrumentationFeaturesARM<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceShaderInstrumentationFeaturesARM<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_SHADER_INSTRUMENTATION_FEATURES_ARM;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PHYSICAL_DEVICE_SHADER_INSTRUMENTATION_FEATURES_ARM;
     }
-    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+    unsafe impl<'a> crate::Extends<vk::PhysicalDeviceFeatures2<'_>>
     for PhysicalDeviceShaderInstrumentationFeaturesARM<'a> {}
-    unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+    unsafe impl<'a> crate::Extends<vk::DeviceCreateInfo<'_>>
     for PhysicalDeviceShaderInstrumentationFeaturesARM<'a> {}
     impl<'a> Default for PhysicalDeviceShaderInstrumentationFeaturesARM<'a> {
         fn default() -> Self {
@@ -360,7 +364,7 @@ pub(crate) mod items {
                 s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
                 p_next: Default::default(),
                 shader_instrumentation: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
@@ -374,19 +378,19 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceShaderInstrumentationPropertiesARM<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
         pub num_metrics: u32,
-        pub per_basic_block_granularity: crate::vk::Bool32,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub per_basic_block_granularity: vk::Bool32,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for PhysicalDeviceShaderInstrumentationPropertiesARM<'_> {}
     unsafe impl Sync for PhysicalDeviceShaderInstrumentationPropertiesARM<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceShaderInstrumentationPropertiesARM<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_SHADER_INSTRUMENTATION_PROPERTIES_ARM;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PHYSICAL_DEVICE_SHADER_INSTRUMENTATION_PROPERTIES_ARM;
     }
-    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceProperties2<'_>>
+    unsafe impl<'a> crate::Extends<vk::PhysicalDeviceProperties2<'_>>
     for PhysicalDeviceShaderInstrumentationPropertiesARM<'a> {}
     impl<'a> Default for PhysicalDeviceShaderInstrumentationPropertiesARM<'a> {
         fn default() -> Self {
@@ -395,7 +399,7 @@ pub(crate) mod items {
                 p_next: Default::default(),
                 num_metrics: Default::default(),
                 per_basic_block_granularity: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
@@ -416,22 +420,22 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct ShaderInstrumentationCreateInfoARM<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for ShaderInstrumentationCreateInfoARM<'_> {}
     unsafe impl Sync for ShaderInstrumentationCreateInfoARM<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for ShaderInstrumentationCreateInfoARM<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::SHADER_INSTRUMENTATION_CREATE_INFO_ARM;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::SHADER_INSTRUMENTATION_CREATE_INFO_ARM;
     }
     impl<'a> Default for ShaderInstrumentationCreateInfoARM<'a> {
         fn default() -> Self {
             Self {
                 s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
                 p_next: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
@@ -439,17 +443,17 @@ pub(crate) mod items {
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct ShaderInstrumentationMetricDescriptionARM<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
-        pub name: [core::ffi::c_char; crate::vk::MAX_DESCRIPTION_SIZE as _],
-        pub description: [core::ffi::c_char; crate::vk::MAX_DESCRIPTION_SIZE as _],
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub name: [core::ffi::c_char; vk::MAX_DESCRIPTION_SIZE as _],
+        pub description: [core::ffi::c_char; vk::MAX_DESCRIPTION_SIZE as _],
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for ShaderInstrumentationMetricDescriptionARM<'_> {}
     unsafe impl Sync for ShaderInstrumentationMetricDescriptionARM<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for ShaderInstrumentationMetricDescriptionARM<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::SHADER_INSTRUMENTATION_METRIC_DESCRIPTION_ARM;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::SHADER_INSTRUMENTATION_METRIC_DESCRIPTION_ARM;
     }
     impl<'a> Default for ShaderInstrumentationMetricDescriptionARM<'a> {
         fn default() -> Self {
@@ -458,7 +462,7 @@ pub(crate) mod items {
                 p_next: Default::default(),
                 name: unsafe { core::mem::zeroed() },
                 description: unsafe { core::mem::zeroed() },
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
@@ -476,25 +480,25 @@ pub(crate) mod items {
     impl<'a> ShaderInstrumentationMetricDescriptionARM<'a> {
         pub fn name(
             mut self,
-            name: &core::ffi::CStr,
+            name: &CStr,
         ) -> core::result::Result<Self, crate::CStrTooLargeForStaticArray> {
             crate::write_c_str_slice_with_nul(&mut self.name, name).map(|_| self)
         }
         pub fn name_as_c_str(
             &self,
-        ) -> core::result::Result<&core::ffi::CStr, core::ffi::FromBytesUntilNulError> {
+        ) -> core::result::Result<&CStr, ffi::FromBytesUntilNulError> {
             crate::wrap_c_str_slice_until_nul(&self.name)
         }
         pub fn description(
             mut self,
-            description: &core::ffi::CStr,
+            description: &CStr,
         ) -> core::result::Result<Self, crate::CStrTooLargeForStaticArray> {
             crate::write_c_str_slice_with_nul(&mut self.description, description)
                 .map(|_| self)
         }
         pub fn description_as_c_str(
             &self,
-        ) -> core::result::Result<&core::ffi::CStr, core::ffi::FromBytesUntilNulError> {
+        ) -> core::result::Result<&CStr, ffi::FromBytesUntilNulError> {
             crate::wrap_c_str_slice_until_nul(&self.description)
         }
     }
@@ -504,7 +508,7 @@ pub(crate) mod items {
     pub struct ShaderInstrumentationMetricDataHeaderARM {
         pub result_index: u32,
         pub result_sub_index: u32,
-        pub stages: crate::vk::ShaderStageFlags,
+        pub stages: vk::ShaderStageFlags,
         pub basic_block_index: u32,
     }
     unsafe impl Send for ShaderInstrumentationMetricDataHeaderARM {}
@@ -518,7 +522,7 @@ pub(crate) mod items {
             self.result_sub_index = result_sub_index;
             self
         }
-        pub fn stages(mut self, stages: crate::vk::ShaderStageFlags) -> Self {
+        pub fn stages(mut self, stages: vk::ShaderStageFlags) -> Self {
             self.stages = stages;
             self
         }
@@ -598,8 +602,8 @@ pub(crate) mod items {
     #[repr(transparent)]
     #[derive(Eq, PartialEq, Ord, PartialOrd, Clone, Copy, Hash, Default)]
     pub struct ShaderInstrumentationARM(u64);
-    impl crate::Handle for ShaderInstrumentationARM {
-        const TYPE: crate::vk::ObjectType = crate::vk::ObjectType::SHADER_INSTRUMENTATION_ARM;
+    impl Handle for ShaderInstrumentationARM {
+        const TYPE: vk::ObjectType = vk::ObjectType::SHADER_INSTRUMENTATION_ARM;
         fn as_raw(self) -> u64 {
             self.0
         }
@@ -612,49 +616,50 @@ pub(crate) mod items {
             Self(0)
         }
     }
-    impl core::fmt::Pointer for ShaderInstrumentationARM {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+    impl fmt::Pointer for ShaderInstrumentationARM {
+        fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
             write!(f, "0x{:x}", self.0)
         }
     }
-    impl core::fmt::Debug for ShaderInstrumentationARM {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+    #[cfg(feature = "debug")]
+    impl fmtdebug::Debug for ShaderInstrumentationARM {
+        fn fmt(&self, f: &mut fmtdebug::Formatter) -> fmtdebug::Result {
             write!(f, "0x{:x}", self.0)
         }
     }
     pub type PFN_vkEnumeratePhysicalDeviceShaderInstrumentationMetricsARM = unsafe extern "system" fn(
-        physical_device: crate::vk::PhysicalDevice,
+        physical_device: vk::PhysicalDevice,
         p_description_count: *mut u32,
-        p_descriptions: *mut crate::vk::ShaderInstrumentationMetricDescriptionARM<'_>,
-    ) -> crate::vk::Result;
+        p_descriptions: *mut vk::ShaderInstrumentationMetricDescriptionARM<'_>,
+    ) -> vk::Result;
     pub type PFN_vkCreateShaderInstrumentationARM = unsafe extern "system" fn(
-        device: crate::vk::Device,
-        p_create_info: *const crate::vk::ShaderInstrumentationCreateInfoARM<'_>,
-        p_allocator: *const crate::vk::AllocationCallbacks<'_>,
-        p_instrumentation: *mut crate::vk::ShaderInstrumentationARM,
-    ) -> crate::vk::Result;
+        device: vk::Device,
+        p_create_info: *const vk::ShaderInstrumentationCreateInfoARM<'_>,
+        p_allocator: *const vk::AllocationCallbacks<'_>,
+        p_instrumentation: *mut vk::ShaderInstrumentationARM,
+    ) -> vk::Result;
     pub type PFN_vkDestroyShaderInstrumentationARM = unsafe extern "system" fn(
-        device: crate::vk::Device,
-        instrumentation: crate::vk::ShaderInstrumentationARM,
-        p_allocator: *const crate::vk::AllocationCallbacks<'_>,
+        device: vk::Device,
+        instrumentation: vk::ShaderInstrumentationARM,
+        p_allocator: *const vk::AllocationCallbacks<'_>,
     );
     pub type PFN_vkCmdBeginShaderInstrumentationARM = unsafe extern "system" fn(
-        command_buffer: crate::vk::CommandBuffer,
-        instrumentation: crate::vk::ShaderInstrumentationARM,
+        command_buffer: vk::CommandBuffer,
+        instrumentation: vk::ShaderInstrumentationARM,
     );
     pub type PFN_vkCmdEndShaderInstrumentationARM = unsafe extern "system" fn(
-        command_buffer: crate::vk::CommandBuffer,
+        command_buffer: vk::CommandBuffer,
     );
     pub type PFN_vkGetShaderInstrumentationValuesARM = unsafe extern "system" fn(
-        device: crate::vk::Device,
-        instrumentation: crate::vk::ShaderInstrumentationARM,
+        device: vk::Device,
+        instrumentation: vk::ShaderInstrumentationARM,
         p_metric_block_count: *mut u32,
         p_metric_values: *mut core::ffi::c_void,
-        flags: crate::vk::ShaderInstrumentationValuesFlagsARM,
-    ) -> crate::vk::Result;
+        flags: vk::ShaderInstrumentationValuesFlagsARM,
+    ) -> vk::Result;
     pub type PFN_vkClearShaderInstrumentationMetricsARM = unsafe extern "system" fn(
-        device: crate::vk::Device,
-        instrumentation: crate::vk::ShaderInstrumentationARM,
+        device: vk::Device,
+        instrumentation: vk::ShaderInstrumentationARM,
     );
 }
 pub use items::*;

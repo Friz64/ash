@@ -2,8 +2,10 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_validation_features.html) · Extension `VK_EXT_validation_features`
 #![doc(alias = "VK_EXT_validation_features")]
+use crate::vk;
+use core::ffi::CStr;
 ///Provided by [VK_EXT_validation_features](crate::ext::validation_features)
-impl crate::vk::StructureType {
+impl vk::StructureType {
     pub const VALIDATION_FEATURES_EXT: Self = Self(1000247000);
 }
 ///Provided by [VK_EXT_validation_features](crate::ext::validation_features)
@@ -26,38 +28,40 @@ impl ValidationFeatureDisableEXT {
     pub const SHADER_VALIDATION_CACHE: Self = Self(7);
 }
 pub const SPEC_VERSION: u32 = 6;
-pub const NAME: &core::ffi::CStr = c"VK_EXT_validation_features";
+pub const NAME: &CStr = c"VK_EXT_validation_features";
 pub(crate) mod items {
+    use core::marker::PhantomData;
+    use crate::vk;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct ValidationFeaturesEXT<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *const core::ffi::c_void,
         pub enabled_validation_feature_count: u32,
-        pub p_enabled_validation_features: *const crate::vk::ValidationFeatureEnableEXT,
+        pub p_enabled_validation_features: *const vk::ValidationFeatureEnableEXT,
         pub disabled_validation_feature_count: u32,
-        pub p_disabled_validation_features: *const crate::vk::ValidationFeatureDisableEXT,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub p_disabled_validation_features: *const vk::ValidationFeatureDisableEXT,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for ValidationFeaturesEXT<'_> {}
     unsafe impl Sync for ValidationFeaturesEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for ValidationFeaturesEXT<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::VALIDATION_FEATURES_EXT;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::VALIDATION_FEATURES_EXT;
     }
-    unsafe impl<'a> crate::Extends<crate::vk::InstanceCreateInfo<'_>>
+    unsafe impl<'a> crate::Extends<vk::InstanceCreateInfo<'_>>
     for ValidationFeaturesEXT<'a> {}
-    unsafe impl<'a> crate::Extends<crate::vk::ShaderModuleCreateInfo<'_>>
+    unsafe impl<'a> crate::Extends<vk::ShaderModuleCreateInfo<'_>>
     for ValidationFeaturesEXT<'a> {}
-    unsafe impl<'a> crate::Extends<crate::vk::ShaderCreateInfoEXT<'_>>
+    unsafe impl<'a> crate::Extends<vk::ShaderCreateInfoEXT<'_>>
     for ValidationFeaturesEXT<'a> {}
-    unsafe impl<'a> crate::Extends<crate::vk::PipelineShaderStageCreateInfo<'_>>
+    unsafe impl<'a> crate::Extends<vk::PipelineShaderStageCreateInfo<'_>>
     for ValidationFeaturesEXT<'a> {}
-    unsafe impl<'a> crate::Extends<crate::vk::GraphicsPipelineCreateInfo<'_>>
+    unsafe impl<'a> crate::Extends<vk::GraphicsPipelineCreateInfo<'_>>
     for ValidationFeaturesEXT<'a> {}
-    unsafe impl<'a> crate::Extends<crate::vk::ComputePipelineCreateInfo<'_>>
+    unsafe impl<'a> crate::Extends<vk::ComputePipelineCreateInfo<'_>>
     for ValidationFeaturesEXT<'a> {}
-    unsafe impl<'a> crate::Extends<crate::vk::RayTracingPipelineCreateInfoKHR<'_>>
+    unsafe impl<'a> crate::Extends<vk::RayTracingPipelineCreateInfoKHR<'_>>
     for ValidationFeaturesEXT<'a> {}
     impl<'a> Default for ValidationFeaturesEXT<'a> {
         fn default() -> Self {
@@ -68,14 +72,14 @@ pub(crate) mod items {
                 p_enabled_validation_features: Default::default(),
                 disabled_validation_feature_count: Default::default(),
                 p_disabled_validation_features: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
     impl<'a> ValidationFeaturesEXT<'a> {
         pub fn enabled_validation_features(
             mut self,
-            enabled_validation_features: &'a [crate::vk::ValidationFeatureEnableEXT],
+            enabled_validation_features: &'a [vk::ValidationFeatureEnableEXT],
         ) -> Self {
             self.enabled_validation_feature_count = enabled_validation_features.len()
                 as _;
@@ -84,7 +88,7 @@ pub(crate) mod items {
         }
         pub fn disabled_validation_features(
             mut self,
-            disabled_validation_features: &'a [crate::vk::ValidationFeatureDisableEXT],
+            disabled_validation_features: &'a [vk::ValidationFeatureDisableEXT],
         ) -> Self {
             self.disabled_validation_feature_count = disabled_validation_features.len()
                 as _;

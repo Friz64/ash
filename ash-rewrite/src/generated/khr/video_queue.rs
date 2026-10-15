@@ -2,12 +2,16 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_video_queue.html) · Extension `VK_KHR_video_queue`
 #![doc(alias = "VK_KHR_video_queue")]
+use crate::vk;
+use core::ffi::CStr;
+use crate::VkResult;
+use core::ffi::c_void;
 ///Provided by [VK_KHR_video_queue](crate::khr::video_queue)
-impl crate::vk::QueryType {
+impl vk::QueryType {
     pub const RESULT_STATUS_ONLY_KHR: Self = Self(1000023000);
 }
 ///Provided by [VK_KHR_video_queue](crate::khr::video_queue)
-impl crate::vk::StructureType {
+impl vk::StructureType {
     pub const VIDEO_PROFILE_INFO_KHR: Self = Self(1000023000);
     pub const VIDEO_CAPABILITIES_KHR: Self = Self(1000023001);
     pub const VIDEO_PICTURE_RESOURCE_INFO_KHR: Self = Self(1000023002);
@@ -27,7 +31,7 @@ impl crate::vk::StructureType {
     pub const QUEUE_FAMILY_QUERY_RESULT_STATUS_PROPERTIES_KHR: Self = Self(1000023016);
 }
 ///Provided by [VK_KHR_video_queue](crate::khr::video_queue)
-impl crate::vk::Result {
+impl vk::Result {
     pub const ERROR_IMAGE_USAGE_NOT_SUPPORTED_KHR: Self = Self(-1000023000);
     pub const ERROR_VIDEO_PICTURE_LAYOUT_NOT_SUPPORTED_KHR: Self = Self(-1000023001);
     pub const ERROR_VIDEO_PROFILE_OPERATION_NOT_SUPPORTED_KHR: Self = Self(-1000023002);
@@ -36,7 +40,7 @@ impl crate::vk::Result {
     pub const ERROR_VIDEO_STD_VERSION_NOT_SUPPORTED_KHR: Self = Self(-1000023005);
 }
 ///Provided by [VK_KHR_video_queue](crate::khr::video_queue)
-impl crate::vk::ObjectType {
+impl vk::ObjectType {
     pub const VIDEO_SESSION_KHR: Self = Self(1000023000);
     pub const VIDEO_SESSION_PARAMETERS_KHR: Self = Self(1000023001);
 }
@@ -46,14 +50,12 @@ impl QueryResultStatusKHR {
     pub const NOT_READY: Self = Self(0);
     pub const COMPLETE: Self = Self(1);
 }
-///Provided by [VK_KHR_video_queue](crate::khr::video_queue)
-impl crate::vk::QueryResultFlags {
-    pub const WITH_STATUS_KHR: Self = Self(
-        crate::vk::QueryResultFlagBits::WITH_STATUS_KHR.0,
-    );
+///Provided by [Vulkan 1.0](crate::vk1_0)
+impl vk::QueryResultFlags {
+    pub const WITH_STATUS_KHR: Self = Self(vk::QueryResultFlagBits::WITH_STATUS_KHR.0);
 }
-///Provided by [VK_KHR_video_queue](crate::khr::video_queue)
-impl crate::vk::QueryResultFlagBits {
+///Provided by [Vulkan 1.0](crate::vk1_0)
+impl vk::QueryResultFlagBits {
     pub const WITH_STATUS_KHR: Self = Self(1 << 4);
 }
 ///Provided by [VK_KHR_video_queue](crate::khr::video_queue)
@@ -126,29 +128,27 @@ impl VideoComponentBitDepthFlagBitsKHR {
     pub const TYPE_10: Self = Self(1 << 2);
     pub const TYPE_12: Self = Self(1 << 4);
 }
+pub const SPEC_VERSION: u32 = 8;
+pub const NAME: &CStr = c"VK_KHR_video_queue";
 #[derive(Clone)]
 pub struct InstanceFn {
-    pub get_physical_device_video_capabilities: crate::vk::PFN_vkGetPhysicalDeviceVideoCapabilitiesKHR,
-    pub get_physical_device_video_format_properties: crate::vk::PFN_vkGetPhysicalDeviceVideoFormatPropertiesKHR,
+    pub get_physical_device_video_capabilities: vk::PFN_vkGetPhysicalDeviceVideoCapabilitiesKHR,
+    pub get_physical_device_video_format_properties: vk::PFN_vkGetPhysicalDeviceVideoFormatPropertiesKHR,
 }
 unsafe impl Send for InstanceFn {}
 unsafe impl Sync for InstanceFn {}
 impl InstanceFn {
-    pub fn load<F: FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void>(
-        mut f: F,
-    ) -> Self {
+    pub fn load<F: FnMut(&CStr) -> *const c_void>(mut f: F) -> Self {
         Self::load_erased(&mut f)
     }
-    fn load_erased(
-        _f: &mut dyn FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void,
-    ) -> Self {
+    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const c_void) -> Self {
         Self {
             get_physical_device_video_capabilities: unsafe {
                 unsafe extern "system" fn get_physical_device_video_capabilities(
-                    _: crate::vk::PhysicalDevice,
-                    _: *const crate::vk::VideoProfileInfoKHR<'_>,
-                    _: *mut crate::vk::VideoCapabilitiesKHR<'_>,
-                ) -> crate::vk::Result {
+                    _: vk::PhysicalDevice,
+                    _: *const vk::VideoProfileInfoKHR<'_>,
+                    _: *mut vk::VideoCapabilitiesKHR<'_>,
+                ) -> vk::Result {
                     panic!("unable to load vkGetPhysicalDeviceVideoCapabilitiesKHR")
                 }
                 let val = _f(c"vkGetPhysicalDeviceVideoCapabilitiesKHR");
@@ -160,11 +160,11 @@ impl InstanceFn {
             },
             get_physical_device_video_format_properties: unsafe {
                 unsafe extern "system" fn get_physical_device_video_format_properties(
-                    _: crate::vk::PhysicalDevice,
-                    _: *const crate::vk::PhysicalDeviceVideoFormatInfoKHR<'_>,
+                    _: vk::PhysicalDevice,
+                    _: *const vk::PhysicalDeviceVideoFormatInfoKHR<'_>,
                     _: *mut u32,
-                    _: *mut crate::vk::VideoFormatPropertiesKHR<'_>,
-                ) -> crate::vk::Result {
+                    _: *mut vk::VideoFormatPropertiesKHR<'_>,
+                ) -> vk::Result {
                     panic!("unable to load vkGetPhysicalDeviceVideoFormatPropertiesKHR")
                 }
                 let val = _f(c"vkGetPhysicalDeviceVideoFormatPropertiesKHR");
@@ -202,9 +202,9 @@ impl Instance {
     #[inline]
     pub unsafe fn get_physical_device_video_capabilities(
         &self,
-        physical_device: crate::vk::PhysicalDevice,
-        video_profile: &crate::vk::VideoProfileInfoKHR<'_>,
-    ) -> crate::VkResult<crate::vk::VideoCapabilitiesKHR<'_>> {
+        physical_device: vk::PhysicalDevice,
+        video_profile: &vk::VideoProfileInfoKHR<'_>,
+    ) -> VkResult<vk::VideoCapabilitiesKHR<'_>> {
         let mut capabilities = core::mem::MaybeUninit::uninit();
         (self
             .fp
@@ -219,9 +219,9 @@ impl Instance {
     #[inline]
     pub unsafe fn get_physical_device_video_format_properties_len(
         &self,
-        physical_device: crate::vk::PhysicalDevice,
-        video_format_info: &crate::vk::PhysicalDeviceVideoFormatInfoKHR<'_>,
-    ) -> crate::VkResult<usize> {
+        physical_device: vk::PhysicalDevice,
+        video_format_info: &vk::PhysicalDeviceVideoFormatInfoKHR<'_>,
+    ) -> VkResult<usize> {
         let mut video_format_property_count = core::mem::MaybeUninit::uninit();
         (self
             .fp
@@ -238,9 +238,9 @@ impl Instance {
     #[inline]
     pub unsafe fn get_physical_device_video_format_properties(
         &self,
-        physical_device: crate::vk::PhysicalDevice,
-        video_format_info: &crate::vk::PhysicalDeviceVideoFormatInfoKHR<'_>,
-        video_format_properties: &mut [crate::vk::VideoFormatPropertiesKHR<'_>],
+        physical_device: vk::PhysicalDevice,
+        video_format_info: &vk::PhysicalDeviceVideoFormatInfoKHR<'_>,
+        video_format_properties: &mut [vk::VideoFormatPropertiesKHR<'_>],
     ) -> crate::VkResult<()> {
         let mut video_format_property_count = video_format_properties.len() as _;
         (self
@@ -258,36 +258,32 @@ impl Instance {
 }
 #[derive(Clone)]
 pub struct DeviceFn {
-    pub create_video_session: crate::vk::PFN_vkCreateVideoSessionKHR,
-    pub destroy_video_session: crate::vk::PFN_vkDestroyVideoSessionKHR,
-    pub create_video_session_parameters: crate::vk::PFN_vkCreateVideoSessionParametersKHR,
-    pub update_video_session_parameters: crate::vk::PFN_vkUpdateVideoSessionParametersKHR,
-    pub destroy_video_session_parameters: crate::vk::PFN_vkDestroyVideoSessionParametersKHR,
-    pub get_video_session_memory_requirements: crate::vk::PFN_vkGetVideoSessionMemoryRequirementsKHR,
-    pub bind_video_session_memory: crate::vk::PFN_vkBindVideoSessionMemoryKHR,
-    pub cmd_begin_video_coding: crate::vk::PFN_vkCmdBeginVideoCodingKHR,
-    pub cmd_control_video_coding: crate::vk::PFN_vkCmdControlVideoCodingKHR,
-    pub cmd_end_video_coding: crate::vk::PFN_vkCmdEndVideoCodingKHR,
+    pub create_video_session: vk::PFN_vkCreateVideoSessionKHR,
+    pub destroy_video_session: vk::PFN_vkDestroyVideoSessionKHR,
+    pub create_video_session_parameters: vk::PFN_vkCreateVideoSessionParametersKHR,
+    pub update_video_session_parameters: vk::PFN_vkUpdateVideoSessionParametersKHR,
+    pub destroy_video_session_parameters: vk::PFN_vkDestroyVideoSessionParametersKHR,
+    pub get_video_session_memory_requirements: vk::PFN_vkGetVideoSessionMemoryRequirementsKHR,
+    pub bind_video_session_memory: vk::PFN_vkBindVideoSessionMemoryKHR,
+    pub cmd_begin_video_coding: vk::PFN_vkCmdBeginVideoCodingKHR,
+    pub cmd_control_video_coding: vk::PFN_vkCmdControlVideoCodingKHR,
+    pub cmd_end_video_coding: vk::PFN_vkCmdEndVideoCodingKHR,
 }
 unsafe impl Send for DeviceFn {}
 unsafe impl Sync for DeviceFn {}
 impl DeviceFn {
-    pub fn load<F: FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void>(
-        mut f: F,
-    ) -> Self {
+    pub fn load<F: FnMut(&CStr) -> *const c_void>(mut f: F) -> Self {
         Self::load_erased(&mut f)
     }
-    fn load_erased(
-        _f: &mut dyn FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void,
-    ) -> Self {
+    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const c_void) -> Self {
         Self {
             create_video_session: unsafe {
                 unsafe extern "system" fn create_video_session(
-                    _: crate::vk::Device,
-                    _: *const crate::vk::VideoSessionCreateInfoKHR<'_>,
-                    _: *const crate::vk::AllocationCallbacks<'_>,
-                    _: *mut crate::vk::VideoSessionKHR,
-                ) -> crate::vk::Result {
+                    _: vk::Device,
+                    _: *const vk::VideoSessionCreateInfoKHR<'_>,
+                    _: *const vk::AllocationCallbacks<'_>,
+                    _: *mut vk::VideoSessionKHR,
+                ) -> vk::Result {
                     panic!("unable to load vkCreateVideoSessionKHR")
                 }
                 let val = _f(c"vkCreateVideoSessionKHR");
@@ -299,9 +295,9 @@ impl DeviceFn {
             },
             destroy_video_session: unsafe {
                 unsafe extern "system" fn destroy_video_session(
-                    _: crate::vk::Device,
-                    _: crate::vk::VideoSessionKHR,
-                    _: *const crate::vk::AllocationCallbacks<'_>,
+                    _: vk::Device,
+                    _: vk::VideoSessionKHR,
+                    _: *const vk::AllocationCallbacks<'_>,
                 ) {
                     panic!("unable to load vkDestroyVideoSessionKHR")
                 }
@@ -314,11 +310,11 @@ impl DeviceFn {
             },
             create_video_session_parameters: unsafe {
                 unsafe extern "system" fn create_video_session_parameters(
-                    _: crate::vk::Device,
-                    _: *const crate::vk::VideoSessionParametersCreateInfoKHR<'_>,
-                    _: *const crate::vk::AllocationCallbacks<'_>,
-                    _: *mut crate::vk::VideoSessionParametersKHR,
-                ) -> crate::vk::Result {
+                    _: vk::Device,
+                    _: *const vk::VideoSessionParametersCreateInfoKHR<'_>,
+                    _: *const vk::AllocationCallbacks<'_>,
+                    _: *mut vk::VideoSessionParametersKHR,
+                ) -> vk::Result {
                     panic!("unable to load vkCreateVideoSessionParametersKHR")
                 }
                 let val = _f(c"vkCreateVideoSessionParametersKHR");
@@ -330,10 +326,10 @@ impl DeviceFn {
             },
             update_video_session_parameters: unsafe {
                 unsafe extern "system" fn update_video_session_parameters(
-                    _: crate::vk::Device,
-                    _: crate::vk::VideoSessionParametersKHR,
-                    _: *const crate::vk::VideoSessionParametersUpdateInfoKHR<'_>,
-                ) -> crate::vk::Result {
+                    _: vk::Device,
+                    _: vk::VideoSessionParametersKHR,
+                    _: *const vk::VideoSessionParametersUpdateInfoKHR<'_>,
+                ) -> vk::Result {
                     panic!("unable to load vkUpdateVideoSessionParametersKHR")
                 }
                 let val = _f(c"vkUpdateVideoSessionParametersKHR");
@@ -345,9 +341,9 @@ impl DeviceFn {
             },
             destroy_video_session_parameters: unsafe {
                 unsafe extern "system" fn destroy_video_session_parameters(
-                    _: crate::vk::Device,
-                    _: crate::vk::VideoSessionParametersKHR,
-                    _: *const crate::vk::AllocationCallbacks<'_>,
+                    _: vk::Device,
+                    _: vk::VideoSessionParametersKHR,
+                    _: *const vk::AllocationCallbacks<'_>,
                 ) {
                     panic!("unable to load vkDestroyVideoSessionParametersKHR")
                 }
@@ -360,11 +356,11 @@ impl DeviceFn {
             },
             get_video_session_memory_requirements: unsafe {
                 unsafe extern "system" fn get_video_session_memory_requirements(
-                    _: crate::vk::Device,
-                    _: crate::vk::VideoSessionKHR,
+                    _: vk::Device,
+                    _: vk::VideoSessionKHR,
                     _: *mut u32,
-                    _: *mut crate::vk::VideoSessionMemoryRequirementsKHR<'_>,
-                ) -> crate::vk::Result {
+                    _: *mut vk::VideoSessionMemoryRequirementsKHR<'_>,
+                ) -> vk::Result {
                     panic!("unable to load vkGetVideoSessionMemoryRequirementsKHR")
                 }
                 let val = _f(c"vkGetVideoSessionMemoryRequirementsKHR");
@@ -376,11 +372,11 @@ impl DeviceFn {
             },
             bind_video_session_memory: unsafe {
                 unsafe extern "system" fn bind_video_session_memory(
-                    _: crate::vk::Device,
-                    _: crate::vk::VideoSessionKHR,
+                    _: vk::Device,
+                    _: vk::VideoSessionKHR,
                     _: u32,
-                    _: *const crate::vk::BindVideoSessionMemoryInfoKHR<'_>,
-                ) -> crate::vk::Result {
+                    _: *const vk::BindVideoSessionMemoryInfoKHR<'_>,
+                ) -> vk::Result {
                     panic!("unable to load vkBindVideoSessionMemoryKHR")
                 }
                 let val = _f(c"vkBindVideoSessionMemoryKHR");
@@ -392,8 +388,8 @@ impl DeviceFn {
             },
             cmd_begin_video_coding: unsafe {
                 unsafe extern "system" fn cmd_begin_video_coding(
-                    _: crate::vk::CommandBuffer,
-                    _: *const crate::vk::VideoBeginCodingInfoKHR<'_>,
+                    _: vk::CommandBuffer,
+                    _: *const vk::VideoBeginCodingInfoKHR<'_>,
                 ) {
                     panic!("unable to load vkCmdBeginVideoCodingKHR")
                 }
@@ -406,8 +402,8 @@ impl DeviceFn {
             },
             cmd_control_video_coding: unsafe {
                 unsafe extern "system" fn cmd_control_video_coding(
-                    _: crate::vk::CommandBuffer,
-                    _: *const crate::vk::VideoCodingControlInfoKHR<'_>,
+                    _: vk::CommandBuffer,
+                    _: *const vk::VideoCodingControlInfoKHR<'_>,
                 ) {
                     panic!("unable to load vkCmdControlVideoCodingKHR")
                 }
@@ -420,8 +416,8 @@ impl DeviceFn {
             },
             cmd_end_video_coding: unsafe {
                 unsafe extern "system" fn cmd_end_video_coding(
-                    _: crate::vk::CommandBuffer,
-                    _: *const crate::vk::VideoEndCodingInfoKHR<'_>,
+                    _: vk::CommandBuffer,
+                    _: *const vk::VideoEndCodingInfoKHR<'_>,
                 ) {
                     panic!("unable to load vkCmdEndVideoCodingKHR")
                 }
@@ -460,9 +456,9 @@ impl Device {
     #[inline]
     pub unsafe fn create_video_session(
         &self,
-        create_info: &crate::vk::VideoSessionCreateInfoKHR<'_>,
-        allocator: Option<&crate::vk::AllocationCallbacks<'_>>,
-    ) -> crate::VkResult<crate::vk::VideoSessionKHR> {
+        create_info: &vk::VideoSessionCreateInfoKHR<'_>,
+        allocator: Option<&vk::AllocationCallbacks<'_>>,
+    ) -> VkResult<vk::VideoSessionKHR> {
         let mut video_session = core::mem::MaybeUninit::uninit();
         (self
             .fp
@@ -481,8 +477,8 @@ impl Device {
     #[inline]
     pub unsafe fn destroy_video_session(
         &self,
-        video_session: crate::vk::VideoSessionKHR,
-        allocator: Option<&crate::vk::AllocationCallbacks<'_>>,
+        video_session: vk::VideoSessionKHR,
+        allocator: Option<&vk::AllocationCallbacks<'_>>,
     ) {
         (self
             .fp
@@ -499,9 +495,9 @@ impl Device {
     #[inline]
     pub unsafe fn create_video_session_parameters(
         &self,
-        create_info: &crate::vk::VideoSessionParametersCreateInfoKHR<'_>,
-        allocator: Option<&crate::vk::AllocationCallbacks<'_>>,
-    ) -> crate::VkResult<crate::vk::VideoSessionParametersKHR> {
+        create_info: &vk::VideoSessionParametersCreateInfoKHR<'_>,
+        allocator: Option<&vk::AllocationCallbacks<'_>>,
+    ) -> VkResult<vk::VideoSessionParametersKHR> {
         let mut video_session_parameters = core::mem::MaybeUninit::uninit();
         (self
             .fp
@@ -520,9 +516,9 @@ impl Device {
     #[inline]
     pub unsafe fn update_video_session_parameters(
         &self,
-        video_session_parameters: crate::vk::VideoSessionParametersKHR,
-        update_info: &crate::vk::VideoSessionParametersUpdateInfoKHR<'_>,
-    ) -> crate::VkResult<()> {
+        video_session_parameters: vk::VideoSessionParametersKHR,
+        update_info: &vk::VideoSessionParametersUpdateInfoKHR<'_>,
+    ) -> VkResult<()> {
         (self
             .fp
             .update_video_session_parameters)(
@@ -536,8 +532,8 @@ impl Device {
     #[inline]
     pub unsafe fn destroy_video_session_parameters(
         &self,
-        video_session_parameters: crate::vk::VideoSessionParametersKHR,
-        allocator: Option<&crate::vk::AllocationCallbacks<'_>>,
+        video_session_parameters: vk::VideoSessionParametersKHR,
+        allocator: Option<&vk::AllocationCallbacks<'_>>,
     ) {
         (self
             .fp
@@ -554,8 +550,8 @@ impl Device {
     #[inline]
     pub unsafe fn get_video_session_memory_requirements_len(
         &self,
-        video_session: crate::vk::VideoSessionKHR,
-    ) -> crate::VkResult<usize> {
+        video_session: vk::VideoSessionKHR,
+    ) -> VkResult<usize> {
         let mut memory_requirements_count = core::mem::MaybeUninit::uninit();
         (self
             .fp
@@ -572,8 +568,8 @@ impl Device {
     #[inline]
     pub unsafe fn get_video_session_memory_requirements(
         &self,
-        video_session: crate::vk::VideoSessionKHR,
-        memory_requirements: &mut [crate::vk::VideoSessionMemoryRequirementsKHR<'_>],
+        video_session: vk::VideoSessionKHR,
+        memory_requirements: &mut [vk::VideoSessionMemoryRequirementsKHR<'_>],
     ) -> crate::VkResult<()> {
         let mut memory_requirements_count = memory_requirements.len() as _;
         (self
@@ -592,9 +588,9 @@ impl Device {
     #[inline]
     pub unsafe fn bind_video_session_memory(
         &self,
-        video_session: crate::vk::VideoSessionKHR,
-        bind_session_memory_infos: &[crate::vk::BindVideoSessionMemoryInfoKHR<'_>],
-    ) -> crate::VkResult<()> {
+        video_session: vk::VideoSessionKHR,
+        bind_session_memory_infos: &[vk::BindVideoSessionMemoryInfoKHR<'_>],
+    ) -> VkResult<()> {
         (self
             .fp
             .bind_video_session_memory)(
@@ -609,8 +605,8 @@ impl Device {
     #[inline]
     pub unsafe fn cmd_begin_video_coding(
         &self,
-        command_buffer: crate::vk::CommandBuffer,
-        begin_info: &crate::vk::VideoBeginCodingInfoKHR<'_>,
+        command_buffer: vk::CommandBuffer,
+        begin_info: &vk::VideoBeginCodingInfoKHR<'_>,
     ) {
         (self.fp.cmd_begin_video_coding)(command_buffer, begin_info)
     }
@@ -618,8 +614,8 @@ impl Device {
     #[inline]
     pub unsafe fn cmd_control_video_coding(
         &self,
-        command_buffer: crate::vk::CommandBuffer,
-        coding_control_info: &crate::vk::VideoCodingControlInfoKHR<'_>,
+        command_buffer: vk::CommandBuffer,
+        coding_control_info: &vk::VideoCodingControlInfoKHR<'_>,
     ) {
         (self.fp.cmd_control_video_coding)(command_buffer, coding_control_info)
     }
@@ -627,30 +623,34 @@ impl Device {
     #[inline]
     pub unsafe fn cmd_end_video_coding(
         &self,
-        command_buffer: crate::vk::CommandBuffer,
-        end_coding_info: &crate::vk::VideoEndCodingInfoKHR<'_>,
+        command_buffer: vk::CommandBuffer,
+        end_coding_info: &vk::VideoEndCodingInfoKHR<'_>,
     ) {
         (self.fp.cmd_end_video_coding)(command_buffer, end_coding_info)
     }
 }
-pub const SPEC_VERSION: u32 = 8;
-pub const NAME: &core::ffi::CStr = c"VK_KHR_video_queue";
 pub(crate) mod items {
+    use core::marker::PhantomData;
+    use crate::vk;
+    use crate::Handle;
+    use core::fmt;
+    #[cfg(feature = "debug")]
+    use core::fmt as fmtdebug;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct QueueFamilyVideoPropertiesKHR<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
-        pub video_codec_operations: crate::vk::VideoCodecOperationFlagsKHR,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub video_codec_operations: vk::VideoCodecOperationFlagsKHR,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for QueueFamilyVideoPropertiesKHR<'_> {}
     unsafe impl Sync for QueueFamilyVideoPropertiesKHR<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for QueueFamilyVideoPropertiesKHR<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::QUEUE_FAMILY_VIDEO_PROPERTIES_KHR;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::QUEUE_FAMILY_VIDEO_PROPERTIES_KHR;
     }
-    unsafe impl<'a> crate::Extends<crate::vk::QueueFamilyProperties2<'_>>
+    unsafe impl<'a> crate::Extends<vk::QueueFamilyProperties2<'_>>
     for QueueFamilyVideoPropertiesKHR<'a> {}
     impl<'a> Default for QueueFamilyVideoPropertiesKHR<'a> {
         fn default() -> Self {
@@ -658,14 +658,14 @@ pub(crate) mod items {
                 s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
                 p_next: Default::default(),
                 video_codec_operations: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
     impl<'a> QueueFamilyVideoPropertiesKHR<'a> {
         pub fn video_codec_operations(
             mut self,
-            video_codec_operations: crate::vk::VideoCodecOperationFlagsKHR,
+            video_codec_operations: vk::VideoCodecOperationFlagsKHR,
         ) -> Self {
             self.video_codec_operations = video_codec_operations;
             self
@@ -675,18 +675,18 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct QueueFamilyQueryResultStatusPropertiesKHR<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
-        pub query_result_status_support: crate::vk::Bool32,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub query_result_status_support: vk::Bool32,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for QueueFamilyQueryResultStatusPropertiesKHR<'_> {}
     unsafe impl Sync for QueueFamilyQueryResultStatusPropertiesKHR<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for QueueFamilyQueryResultStatusPropertiesKHR<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::QUEUE_FAMILY_QUERY_RESULT_STATUS_PROPERTIES_KHR;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::QUEUE_FAMILY_QUERY_RESULT_STATUS_PROPERTIES_KHR;
     }
-    unsafe impl<'a> crate::Extends<crate::vk::QueueFamilyProperties2<'_>>
+    unsafe impl<'a> crate::Extends<vk::QueueFamilyProperties2<'_>>
     for QueueFamilyQueryResultStatusPropertiesKHR<'a> {}
     impl<'a> Default for QueueFamilyQueryResultStatusPropertiesKHR<'a> {
         fn default() -> Self {
@@ -694,7 +694,7 @@ pub(crate) mod items {
                 s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
                 p_next: Default::default(),
                 query_result_status_support: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
@@ -711,24 +711,24 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct VideoProfileListInfoKHR<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *const core::ffi::c_void,
         pub profile_count: u32,
-        pub p_profiles: *const crate::vk::VideoProfileInfoKHR<'a>,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub p_profiles: *const vk::VideoProfileInfoKHR<'a>,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for VideoProfileListInfoKHR<'_> {}
     unsafe impl Sync for VideoProfileListInfoKHR<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for VideoProfileListInfoKHR<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::VIDEO_PROFILE_LIST_INFO_KHR;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::VIDEO_PROFILE_LIST_INFO_KHR;
     }
-    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceImageFormatInfo2<'_>>
+    unsafe impl<'a> crate::Extends<vk::PhysicalDeviceImageFormatInfo2<'_>>
     for VideoProfileListInfoKHR<'a> {}
-    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceVideoFormatInfoKHR<'_>>
+    unsafe impl<'a> crate::Extends<vk::PhysicalDeviceVideoFormatInfoKHR<'_>>
     for VideoProfileListInfoKHR<'a> {}
-    unsafe impl<'a> crate::Extends<crate::vk::ImageCreateInfo<'_>>
+    unsafe impl<'a> crate::Extends<vk::ImageCreateInfo<'_>>
     for VideoProfileListInfoKHR<'a> {}
-    unsafe impl<'a> crate::Extends<crate::vk::BufferCreateInfo<'_>>
+    unsafe impl<'a> crate::Extends<vk::BufferCreateInfo<'_>>
     for VideoProfileListInfoKHR<'a> {}
     impl<'a> Default for VideoProfileListInfoKHR<'a> {
         fn default() -> Self {
@@ -737,15 +737,12 @@ pub(crate) mod items {
                 p_next: Default::default(),
                 profile_count: Default::default(),
                 p_profiles: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
     impl<'a> VideoProfileListInfoKHR<'a> {
-        pub fn profiles(
-            mut self,
-            profiles: &'a [crate::vk::VideoProfileInfoKHR<'a>],
-        ) -> Self {
+        pub fn profiles(mut self, profiles: &'a [vk::VideoProfileInfoKHR<'a>]) -> Self {
             self.profile_count = profiles.len() as _;
             self.p_profiles = profiles.as_ptr();
             self
@@ -755,15 +752,15 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceVideoFormatInfoKHR<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *const core::ffi::c_void,
-        pub image_usage: crate::vk::ImageUsageFlags,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub image_usage: vk::ImageUsageFlags,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for PhysicalDeviceVideoFormatInfoKHR<'_> {}
     unsafe impl Sync for PhysicalDeviceVideoFormatInfoKHR<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for PhysicalDeviceVideoFormatInfoKHR<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_VIDEO_FORMAT_INFO_KHR;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PHYSICAL_DEVICE_VIDEO_FORMAT_INFO_KHR;
     }
     impl<'a> Default for PhysicalDeviceVideoFormatInfoKHR<'a> {
         fn default() -> Self {
@@ -771,12 +768,12 @@ pub(crate) mod items {
                 s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
                 p_next: Default::default(),
                 image_usage: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
     impl<'a> PhysicalDeviceVideoFormatInfoKHR<'a> {
-        pub fn image_usage(mut self, image_usage: crate::vk::ImageUsageFlags) -> Self {
+        pub fn image_usage(mut self, image_usage: vk::ImageUsageFlags) -> Self {
             self.image_usage = image_usage;
             self
         }
@@ -785,20 +782,20 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct VideoFormatPropertiesKHR<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
-        pub format: crate::vk::Format,
-        pub component_mapping: crate::vk::ComponentMapping,
-        pub image_create_flags: crate::vk::ImageCreateFlags,
-        pub image_type: crate::vk::ImageType,
-        pub image_tiling: crate::vk::ImageTiling,
-        pub image_usage_flags: crate::vk::ImageUsageFlags,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub format: vk::Format,
+        pub component_mapping: vk::ComponentMapping,
+        pub image_create_flags: vk::ImageCreateFlags,
+        pub image_type: vk::ImageType,
+        pub image_tiling: vk::ImageTiling,
+        pub image_usage_flags: vk::ImageUsageFlags,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for VideoFormatPropertiesKHR<'_> {}
     unsafe impl Sync for VideoFormatPropertiesKHR<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for VideoFormatPropertiesKHR<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::VIDEO_FORMAT_PROPERTIES_KHR;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::VIDEO_FORMAT_PROPERTIES_KHR;
     }
     impl<'a> Default for VideoFormatPropertiesKHR<'a> {
         fn default() -> Self {
@@ -811,40 +808,40 @@ pub(crate) mod items {
                 image_type: Default::default(),
                 image_tiling: Default::default(),
                 image_usage_flags: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
     impl<'a> VideoFormatPropertiesKHR<'a> {
-        pub fn format(mut self, format: crate::vk::Format) -> Self {
+        pub fn format(mut self, format: vk::Format) -> Self {
             self.format = format;
             self
         }
         pub fn component_mapping(
             mut self,
-            component_mapping: crate::vk::ComponentMapping,
+            component_mapping: vk::ComponentMapping,
         ) -> Self {
             self.component_mapping = component_mapping;
             self
         }
         pub fn image_create_flags(
             mut self,
-            image_create_flags: crate::vk::ImageCreateFlags,
+            image_create_flags: vk::ImageCreateFlags,
         ) -> Self {
             self.image_create_flags = image_create_flags;
             self
         }
-        pub fn image_type(mut self, image_type: crate::vk::ImageType) -> Self {
+        pub fn image_type(mut self, image_type: vk::ImageType) -> Self {
             self.image_type = image_type;
             self
         }
-        pub fn image_tiling(mut self, image_tiling: crate::vk::ImageTiling) -> Self {
+        pub fn image_tiling(mut self, image_tiling: vk::ImageTiling) -> Self {
             self.image_tiling = image_tiling;
             self
         }
         pub fn image_usage_flags(
             mut self,
-            image_usage_flags: crate::vk::ImageUsageFlags,
+            image_usage_flags: vk::ImageUsageFlags,
         ) -> Self {
             self.image_usage_flags = image_usage_flags;
             self
@@ -854,20 +851,20 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct VideoProfileInfoKHR<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *const core::ffi::c_void,
-        pub video_codec_operation: crate::vk::VideoCodecOperationFlagBitsKHR,
-        pub chroma_subsampling: crate::vk::VideoChromaSubsamplingFlagsKHR,
-        pub luma_bit_depth: crate::vk::VideoComponentBitDepthFlagsKHR,
-        pub chroma_bit_depth: crate::vk::VideoComponentBitDepthFlagsKHR,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub video_codec_operation: vk::VideoCodecOperationFlagBitsKHR,
+        pub chroma_subsampling: vk::VideoChromaSubsamplingFlagsKHR,
+        pub luma_bit_depth: vk::VideoComponentBitDepthFlagsKHR,
+        pub chroma_bit_depth: vk::VideoComponentBitDepthFlagsKHR,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for VideoProfileInfoKHR<'_> {}
     unsafe impl Sync for VideoProfileInfoKHR<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for VideoProfileInfoKHR<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::VIDEO_PROFILE_INFO_KHR;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::VIDEO_PROFILE_INFO_KHR;
     }
-    unsafe impl<'a> crate::Extends<crate::vk::QueryPoolCreateInfo<'_>>
+    unsafe impl<'a> crate::Extends<vk::QueryPoolCreateInfo<'_>>
     for VideoProfileInfoKHR<'a> {}
     impl<'a> Default for VideoProfileInfoKHR<'a> {
         fn default() -> Self {
@@ -878,35 +875,35 @@ pub(crate) mod items {
                 chroma_subsampling: Default::default(),
                 luma_bit_depth: Default::default(),
                 chroma_bit_depth: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
     impl<'a> VideoProfileInfoKHR<'a> {
         pub fn video_codec_operation(
             mut self,
-            video_codec_operation: crate::vk::VideoCodecOperationFlagBitsKHR,
+            video_codec_operation: vk::VideoCodecOperationFlagBitsKHR,
         ) -> Self {
             self.video_codec_operation = video_codec_operation;
             self
         }
         pub fn chroma_subsampling(
             mut self,
-            chroma_subsampling: crate::vk::VideoChromaSubsamplingFlagsKHR,
+            chroma_subsampling: vk::VideoChromaSubsamplingFlagsKHR,
         ) -> Self {
             self.chroma_subsampling = chroma_subsampling;
             self
         }
         pub fn luma_bit_depth(
             mut self,
-            luma_bit_depth: crate::vk::VideoComponentBitDepthFlagsKHR,
+            luma_bit_depth: vk::VideoComponentBitDepthFlagsKHR,
         ) -> Self {
             self.luma_bit_depth = luma_bit_depth;
             self
         }
         pub fn chroma_bit_depth(
             mut self,
-            chroma_bit_depth: crate::vk::VideoComponentBitDepthFlagsKHR,
+            chroma_bit_depth: vk::VideoComponentBitDepthFlagsKHR,
         ) -> Self {
             self.chroma_bit_depth = chroma_bit_depth;
             self
@@ -916,23 +913,23 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct VideoCapabilitiesKHR<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
-        pub flags: crate::vk::VideoCapabilityFlagsKHR,
-        pub min_bitstream_buffer_offset_alignment: crate::vk::DeviceSize,
-        pub min_bitstream_buffer_size_alignment: crate::vk::DeviceSize,
-        pub picture_access_granularity: crate::vk::Extent2D,
-        pub min_coded_extent: crate::vk::Extent2D,
-        pub max_coded_extent: crate::vk::Extent2D,
+        pub flags: vk::VideoCapabilityFlagsKHR,
+        pub min_bitstream_buffer_offset_alignment: vk::DeviceSize,
+        pub min_bitstream_buffer_size_alignment: vk::DeviceSize,
+        pub picture_access_granularity: vk::Extent2D,
+        pub min_coded_extent: vk::Extent2D,
+        pub max_coded_extent: vk::Extent2D,
         pub max_dpb_slots: u32,
         pub max_active_reference_pictures: u32,
-        pub std_header_version: crate::vk::ExtensionProperties,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub std_header_version: vk::ExtensionProperties,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for VideoCapabilitiesKHR<'_> {}
     unsafe impl Sync for VideoCapabilitiesKHR<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for VideoCapabilitiesKHR<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::VIDEO_CAPABILITIES_KHR;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::VIDEO_CAPABILITIES_KHR;
     }
     impl<'a> Default for VideoCapabilitiesKHR<'a> {
         fn default() -> Self {
@@ -948,47 +945,41 @@ pub(crate) mod items {
                 max_dpb_slots: Default::default(),
                 max_active_reference_pictures: Default::default(),
                 std_header_version: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
     impl<'a> VideoCapabilitiesKHR<'a> {
-        pub fn flags(mut self, flags: crate::vk::VideoCapabilityFlagsKHR) -> Self {
+        pub fn flags(mut self, flags: vk::VideoCapabilityFlagsKHR) -> Self {
             self.flags = flags;
             self
         }
         pub fn min_bitstream_buffer_offset_alignment(
             mut self,
-            min_bitstream_buffer_offset_alignment: crate::vk::DeviceSize,
+            min_bitstream_buffer_offset_alignment: vk::DeviceSize,
         ) -> Self {
             self.min_bitstream_buffer_offset_alignment = min_bitstream_buffer_offset_alignment;
             self
         }
         pub fn min_bitstream_buffer_size_alignment(
             mut self,
-            min_bitstream_buffer_size_alignment: crate::vk::DeviceSize,
+            min_bitstream_buffer_size_alignment: vk::DeviceSize,
         ) -> Self {
             self.min_bitstream_buffer_size_alignment = min_bitstream_buffer_size_alignment;
             self
         }
         pub fn picture_access_granularity(
             mut self,
-            picture_access_granularity: crate::vk::Extent2D,
+            picture_access_granularity: vk::Extent2D,
         ) -> Self {
             self.picture_access_granularity = picture_access_granularity;
             self
         }
-        pub fn min_coded_extent(
-            mut self,
-            min_coded_extent: crate::vk::Extent2D,
-        ) -> Self {
+        pub fn min_coded_extent(mut self, min_coded_extent: vk::Extent2D) -> Self {
             self.min_coded_extent = min_coded_extent;
             self
         }
-        pub fn max_coded_extent(
-            mut self,
-            max_coded_extent: crate::vk::Extent2D,
-        ) -> Self {
+        pub fn max_coded_extent(mut self, max_coded_extent: vk::Extent2D) -> Self {
             self.max_coded_extent = max_coded_extent;
             self
         }
@@ -1005,7 +996,7 @@ pub(crate) mod items {
         }
         pub fn std_header_version(
             mut self,
-            std_header_version: crate::vk::ExtensionProperties,
+            std_header_version: vk::ExtensionProperties,
         ) -> Self {
             self.std_header_version = std_header_version;
             self
@@ -1015,17 +1006,17 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct VideoSessionMemoryRequirementsKHR<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
         pub memory_bind_index: u32,
-        pub memory_requirements: crate::vk::MemoryRequirements,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub memory_requirements: vk::MemoryRequirements,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for VideoSessionMemoryRequirementsKHR<'_> {}
     unsafe impl Sync for VideoSessionMemoryRequirementsKHR<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for VideoSessionMemoryRequirementsKHR<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::VIDEO_SESSION_MEMORY_REQUIREMENTS_KHR;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::VIDEO_SESSION_MEMORY_REQUIREMENTS_KHR;
     }
     impl<'a> Default for VideoSessionMemoryRequirementsKHR<'a> {
         fn default() -> Self {
@@ -1034,7 +1025,7 @@ pub(crate) mod items {
                 p_next: Default::default(),
                 memory_bind_index: Default::default(),
                 memory_requirements: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
@@ -1045,7 +1036,7 @@ pub(crate) mod items {
         }
         pub fn memory_requirements(
             mut self,
-            memory_requirements: crate::vk::MemoryRequirements,
+            memory_requirements: vk::MemoryRequirements,
         ) -> Self {
             self.memory_requirements = memory_requirements;
             self
@@ -1055,18 +1046,18 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct BindVideoSessionMemoryInfoKHR<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *const core::ffi::c_void,
         pub memory_bind_index: u32,
-        pub memory: crate::vk::DeviceMemory,
-        pub memory_offset: crate::vk::DeviceSize,
-        pub memory_size: crate::vk::DeviceSize,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub memory: vk::DeviceMemory,
+        pub memory_offset: vk::DeviceSize,
+        pub memory_size: vk::DeviceSize,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for BindVideoSessionMemoryInfoKHR<'_> {}
     unsafe impl Sync for BindVideoSessionMemoryInfoKHR<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for BindVideoSessionMemoryInfoKHR<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::BIND_VIDEO_SESSION_MEMORY_INFO_KHR;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::BIND_VIDEO_SESSION_MEMORY_INFO_KHR;
     }
     impl<'a> Default for BindVideoSessionMemoryInfoKHR<'a> {
         fn default() -> Self {
@@ -1077,7 +1068,7 @@ pub(crate) mod items {
                 memory: Default::default(),
                 memory_offset: Default::default(),
                 memory_size: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
@@ -1086,15 +1077,15 @@ pub(crate) mod items {
             self.memory_bind_index = memory_bind_index;
             self
         }
-        pub fn memory(mut self, memory: crate::vk::DeviceMemory) -> Self {
+        pub fn memory(mut self, memory: vk::DeviceMemory) -> Self {
             self.memory = memory;
             self
         }
-        pub fn memory_offset(mut self, memory_offset: crate::vk::DeviceSize) -> Self {
+        pub fn memory_offset(mut self, memory_offset: vk::DeviceSize) -> Self {
             self.memory_offset = memory_offset;
             self
         }
-        pub fn memory_size(mut self, memory_size: crate::vk::DeviceSize) -> Self {
+        pub fn memory_size(mut self, memory_size: vk::DeviceSize) -> Self {
             self.memory_size = memory_size;
             self
         }
@@ -1103,18 +1094,18 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct VideoPictureResourceInfoKHR<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *const core::ffi::c_void,
-        pub coded_offset: crate::vk::Offset2D,
-        pub coded_extent: crate::vk::Extent2D,
+        pub coded_offset: vk::Offset2D,
+        pub coded_extent: vk::Extent2D,
         pub base_array_layer: u32,
-        pub image_view_binding: crate::vk::ImageView,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub image_view_binding: vk::ImageView,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for VideoPictureResourceInfoKHR<'_> {}
     unsafe impl Sync for VideoPictureResourceInfoKHR<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for VideoPictureResourceInfoKHR<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::VIDEO_PICTURE_RESOURCE_INFO_KHR;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::VIDEO_PICTURE_RESOURCE_INFO_KHR;
     }
     impl<'a> Default for VideoPictureResourceInfoKHR<'a> {
         fn default() -> Self {
@@ -1125,16 +1116,16 @@ pub(crate) mod items {
                 coded_extent: Default::default(),
                 base_array_layer: Default::default(),
                 image_view_binding: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
     impl<'a> VideoPictureResourceInfoKHR<'a> {
-        pub fn coded_offset(mut self, coded_offset: crate::vk::Offset2D) -> Self {
+        pub fn coded_offset(mut self, coded_offset: vk::Offset2D) -> Self {
             self.coded_offset = coded_offset;
             self
         }
-        pub fn coded_extent(mut self, coded_extent: crate::vk::Extent2D) -> Self {
+        pub fn coded_extent(mut self, coded_extent: vk::Extent2D) -> Self {
             self.coded_extent = coded_extent;
             self
         }
@@ -1142,10 +1133,7 @@ pub(crate) mod items {
             self.base_array_layer = base_array_layer;
             self
         }
-        pub fn image_view_binding(
-            mut self,
-            image_view_binding: crate::vk::ImageView,
-        ) -> Self {
+        pub fn image_view_binding(mut self, image_view_binding: vk::ImageView) -> Self {
             self.image_view_binding = image_view_binding;
             self
         }
@@ -1154,16 +1142,16 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct VideoReferenceSlotInfoKHR<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *const core::ffi::c_void,
         pub slot_index: i32,
-        pub p_picture_resource: *const crate::vk::VideoPictureResourceInfoKHR<'a>,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub p_picture_resource: *const vk::VideoPictureResourceInfoKHR<'a>,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for VideoReferenceSlotInfoKHR<'_> {}
     unsafe impl Sync for VideoReferenceSlotInfoKHR<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for VideoReferenceSlotInfoKHR<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::VIDEO_REFERENCE_SLOT_INFO_KHR;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::VIDEO_REFERENCE_SLOT_INFO_KHR;
     }
     impl<'a> Default for VideoReferenceSlotInfoKHR<'a> {
         fn default() -> Self {
@@ -1172,7 +1160,7 @@ pub(crate) mod items {
                 p_next: Default::default(),
                 slot_index: Default::default(),
                 p_picture_resource: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
@@ -1183,7 +1171,7 @@ pub(crate) mod items {
         }
         pub fn picture_resource(
             mut self,
-            picture_resource: &'a crate::vk::VideoPictureResourceInfoKHR<'a>,
+            picture_resource: &'a vk::VideoPictureResourceInfoKHR<'a>,
         ) -> Self {
             self.p_picture_resource = picture_resource;
             self
@@ -1193,23 +1181,23 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct VideoSessionCreateInfoKHR<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *const core::ffi::c_void,
         pub queue_family_index: u32,
-        pub flags: crate::vk::VideoSessionCreateFlagsKHR,
-        pub p_video_profile: *const crate::vk::VideoProfileInfoKHR<'a>,
-        pub picture_format: crate::vk::Format,
-        pub max_coded_extent: crate::vk::Extent2D,
-        pub reference_picture_format: crate::vk::Format,
+        pub flags: vk::VideoSessionCreateFlagsKHR,
+        pub p_video_profile: *const vk::VideoProfileInfoKHR<'a>,
+        pub picture_format: vk::Format,
+        pub max_coded_extent: vk::Extent2D,
+        pub reference_picture_format: vk::Format,
         pub max_dpb_slots: u32,
         pub max_active_reference_pictures: u32,
-        pub p_std_header_version: *const crate::vk::ExtensionProperties,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub p_std_header_version: *const vk::ExtensionProperties,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for VideoSessionCreateInfoKHR<'_> {}
     unsafe impl Sync for VideoSessionCreateInfoKHR<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for VideoSessionCreateInfoKHR<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::VIDEO_SESSION_CREATE_INFO_KHR;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::VIDEO_SESSION_CREATE_INFO_KHR;
     }
     impl<'a> Default for VideoSessionCreateInfoKHR<'a> {
         fn default() -> Self {
@@ -1225,7 +1213,7 @@ pub(crate) mod items {
                 max_dpb_slots: Default::default(),
                 max_active_reference_pictures: Default::default(),
                 p_std_header_version: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
@@ -1234,31 +1222,28 @@ pub(crate) mod items {
             self.queue_family_index = queue_family_index;
             self
         }
-        pub fn flags(mut self, flags: crate::vk::VideoSessionCreateFlagsKHR) -> Self {
+        pub fn flags(mut self, flags: vk::VideoSessionCreateFlagsKHR) -> Self {
             self.flags = flags;
             self
         }
         pub fn video_profile(
             mut self,
-            video_profile: &'a crate::vk::VideoProfileInfoKHR<'a>,
+            video_profile: &'a vk::VideoProfileInfoKHR<'a>,
         ) -> Self {
             self.p_video_profile = video_profile;
             self
         }
-        pub fn picture_format(mut self, picture_format: crate::vk::Format) -> Self {
+        pub fn picture_format(mut self, picture_format: vk::Format) -> Self {
             self.picture_format = picture_format;
             self
         }
-        pub fn max_coded_extent(
-            mut self,
-            max_coded_extent: crate::vk::Extent2D,
-        ) -> Self {
+        pub fn max_coded_extent(mut self, max_coded_extent: vk::Extent2D) -> Self {
             self.max_coded_extent = max_coded_extent;
             self
         }
         pub fn reference_picture_format(
             mut self,
-            reference_picture_format: crate::vk::Format,
+            reference_picture_format: vk::Format,
         ) -> Self {
             self.reference_picture_format = reference_picture_format;
             self
@@ -1276,7 +1261,7 @@ pub(crate) mod items {
         }
         pub fn std_header_version(
             mut self,
-            std_header_version: &'a crate::vk::ExtensionProperties,
+            std_header_version: &'a vk::ExtensionProperties,
         ) -> Self {
             self.p_std_header_version = std_header_version;
             self
@@ -1286,18 +1271,18 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct VideoSessionParametersCreateInfoKHR<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *const core::ffi::c_void,
-        pub flags: crate::vk::VideoSessionParametersCreateFlagsKHR,
-        pub video_session_parameters_template: crate::vk::VideoSessionParametersKHR,
-        pub video_session: crate::vk::VideoSessionKHR,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub flags: vk::VideoSessionParametersCreateFlagsKHR,
+        pub video_session_parameters_template: vk::VideoSessionParametersKHR,
+        pub video_session: vk::VideoSessionKHR,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for VideoSessionParametersCreateInfoKHR<'_> {}
     unsafe impl Sync for VideoSessionParametersCreateInfoKHR<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for VideoSessionParametersCreateInfoKHR<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::VIDEO_SESSION_PARAMETERS_CREATE_INFO_KHR;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::VIDEO_SESSION_PARAMETERS_CREATE_INFO_KHR;
     }
     impl<'a> Default for VideoSessionParametersCreateInfoKHR<'a> {
         fn default() -> Self {
@@ -1307,29 +1292,23 @@ pub(crate) mod items {
                 flags: Default::default(),
                 video_session_parameters_template: Default::default(),
                 video_session: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
     impl<'a> VideoSessionParametersCreateInfoKHR<'a> {
-        pub fn flags(
-            mut self,
-            flags: crate::vk::VideoSessionParametersCreateFlagsKHR,
-        ) -> Self {
+        pub fn flags(mut self, flags: vk::VideoSessionParametersCreateFlagsKHR) -> Self {
             self.flags = flags;
             self
         }
         pub fn video_session_parameters_template(
             mut self,
-            video_session_parameters_template: crate::vk::VideoSessionParametersKHR,
+            video_session_parameters_template: vk::VideoSessionParametersKHR,
         ) -> Self {
             self.video_session_parameters_template = video_session_parameters_template;
             self
         }
-        pub fn video_session(
-            mut self,
-            video_session: crate::vk::VideoSessionKHR,
-        ) -> Self {
+        pub fn video_session(mut self, video_session: vk::VideoSessionKHR) -> Self {
             self.video_session = video_session;
             self
         }
@@ -1338,16 +1317,16 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct VideoSessionParametersUpdateInfoKHR<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *const core::ffi::c_void,
         pub update_sequence_count: u32,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for VideoSessionParametersUpdateInfoKHR<'_> {}
     unsafe impl Sync for VideoSessionParametersUpdateInfoKHR<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for VideoSessionParametersUpdateInfoKHR<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::VIDEO_SESSION_PARAMETERS_UPDATE_INFO_KHR;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::VIDEO_SESSION_PARAMETERS_UPDATE_INFO_KHR;
     }
     impl<'a> Default for VideoSessionParametersUpdateInfoKHR<'a> {
         fn default() -> Self {
@@ -1355,7 +1334,7 @@ pub(crate) mod items {
                 s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
                 p_next: Default::default(),
                 update_sequence_count: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
@@ -1369,19 +1348,19 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct VideoBeginCodingInfoKHR<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *const core::ffi::c_void,
-        pub flags: crate::vk::VideoBeginCodingFlagsKHR,
-        pub video_session: crate::vk::VideoSessionKHR,
-        pub video_session_parameters: crate::vk::VideoSessionParametersKHR,
+        pub flags: vk::VideoBeginCodingFlagsKHR,
+        pub video_session: vk::VideoSessionKHR,
+        pub video_session_parameters: vk::VideoSessionParametersKHR,
         pub reference_slot_count: u32,
-        pub p_reference_slots: *const crate::vk::VideoReferenceSlotInfoKHR<'a>,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub p_reference_slots: *const vk::VideoReferenceSlotInfoKHR<'a>,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for VideoBeginCodingInfoKHR<'_> {}
     unsafe impl Sync for VideoBeginCodingInfoKHR<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for VideoBeginCodingInfoKHR<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::VIDEO_BEGIN_CODING_INFO_KHR;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::VIDEO_BEGIN_CODING_INFO_KHR;
     }
     impl<'a> Default for VideoBeginCodingInfoKHR<'a> {
         fn default() -> Self {
@@ -1393,32 +1372,29 @@ pub(crate) mod items {
                 video_session_parameters: Default::default(),
                 reference_slot_count: Default::default(),
                 p_reference_slots: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
     impl<'a> VideoBeginCodingInfoKHR<'a> {
-        pub fn flags(mut self, flags: crate::vk::VideoBeginCodingFlagsKHR) -> Self {
+        pub fn flags(mut self, flags: vk::VideoBeginCodingFlagsKHR) -> Self {
             self.flags = flags;
             self
         }
-        pub fn video_session(
-            mut self,
-            video_session: crate::vk::VideoSessionKHR,
-        ) -> Self {
+        pub fn video_session(mut self, video_session: vk::VideoSessionKHR) -> Self {
             self.video_session = video_session;
             self
         }
         pub fn video_session_parameters(
             mut self,
-            video_session_parameters: crate::vk::VideoSessionParametersKHR,
+            video_session_parameters: vk::VideoSessionParametersKHR,
         ) -> Self {
             self.video_session_parameters = video_session_parameters;
             self
         }
         pub fn reference_slots(
             mut self,
-            reference_slots: &'a [crate::vk::VideoReferenceSlotInfoKHR<'a>],
+            reference_slots: &'a [vk::VideoReferenceSlotInfoKHR<'a>],
         ) -> Self {
             self.reference_slot_count = reference_slots.len() as _;
             self.p_reference_slots = reference_slots.as_ptr();
@@ -1429,15 +1405,15 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct VideoEndCodingInfoKHR<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *const core::ffi::c_void,
-        pub flags: crate::vk::VideoEndCodingFlagsKHR,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub flags: vk::VideoEndCodingFlagsKHR,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for VideoEndCodingInfoKHR<'_> {}
     unsafe impl Sync for VideoEndCodingInfoKHR<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for VideoEndCodingInfoKHR<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::VIDEO_END_CODING_INFO_KHR;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::VIDEO_END_CODING_INFO_KHR;
     }
     impl<'a> Default for VideoEndCodingInfoKHR<'a> {
         fn default() -> Self {
@@ -1445,12 +1421,12 @@ pub(crate) mod items {
                 s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
                 p_next: Default::default(),
                 flags: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
     impl<'a> VideoEndCodingInfoKHR<'a> {
-        pub fn flags(mut self, flags: crate::vk::VideoEndCodingFlagsKHR) -> Self {
+        pub fn flags(mut self, flags: vk::VideoEndCodingFlagsKHR) -> Self {
             self.flags = flags;
             self
         }
@@ -1459,15 +1435,15 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct VideoCodingControlInfoKHR<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *const core::ffi::c_void,
-        pub flags: crate::vk::VideoCodingControlFlagsKHR,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub flags: vk::VideoCodingControlFlagsKHR,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for VideoCodingControlInfoKHR<'_> {}
     unsafe impl Sync for VideoCodingControlInfoKHR<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for VideoCodingControlInfoKHR<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::VIDEO_CODING_CONTROL_INFO_KHR;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::VIDEO_CODING_CONTROL_INFO_KHR;
     }
     impl<'a> Default for VideoCodingControlInfoKHR<'a> {
         fn default() -> Self {
@@ -1475,12 +1451,12 @@ pub(crate) mod items {
                 s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
                 p_next: Default::default(),
                 flags: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
     impl<'a> VideoCodingControlInfoKHR<'a> {
-        pub fn flags(mut self, flags: crate::vk::VideoCodingControlFlagsKHR) -> Self {
+        pub fn flags(mut self, flags: vk::VideoCodingControlFlagsKHR) -> Self {
             self.flags = flags;
             self
         }
@@ -2367,8 +2343,8 @@ pub(crate) mod items {
     #[repr(transparent)]
     #[derive(Eq, PartialEq, Ord, PartialOrd, Clone, Copy, Hash, Default)]
     pub struct VideoSessionKHR(u64);
-    impl crate::Handle for VideoSessionKHR {
-        const TYPE: crate::vk::ObjectType = crate::vk::ObjectType::VIDEO_SESSION_KHR;
+    impl Handle for VideoSessionKHR {
+        const TYPE: vk::ObjectType = vk::ObjectType::VIDEO_SESSION_KHR;
         fn as_raw(self) -> u64 {
             self.0
         }
@@ -2381,21 +2357,22 @@ pub(crate) mod items {
             Self(0)
         }
     }
-    impl core::fmt::Pointer for VideoSessionKHR {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+    impl fmt::Pointer for VideoSessionKHR {
+        fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
             write!(f, "0x{:x}", self.0)
         }
     }
-    impl core::fmt::Debug for VideoSessionKHR {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+    #[cfg(feature = "debug")]
+    impl fmtdebug::Debug for VideoSessionKHR {
+        fn fmt(&self, f: &mut fmtdebug::Formatter) -> fmtdebug::Result {
             write!(f, "0x{:x}", self.0)
         }
     }
     #[repr(transparent)]
     #[derive(Eq, PartialEq, Ord, PartialOrd, Clone, Copy, Hash, Default)]
     pub struct VideoSessionParametersKHR(u64);
-    impl crate::Handle for VideoSessionParametersKHR {
-        const TYPE: crate::vk::ObjectType = crate::vk::ObjectType::VIDEO_SESSION_PARAMETERS_KHR;
+    impl Handle for VideoSessionParametersKHR {
+        const TYPE: vk::ObjectType = vk::ObjectType::VIDEO_SESSION_PARAMETERS_KHR;
         fn as_raw(self) -> u64 {
             self.0
         }
@@ -2408,77 +2385,78 @@ pub(crate) mod items {
             Self(0)
         }
     }
-    impl core::fmt::Pointer for VideoSessionParametersKHR {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+    impl fmt::Pointer for VideoSessionParametersKHR {
+        fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
             write!(f, "0x{:x}", self.0)
         }
     }
-    impl core::fmt::Debug for VideoSessionParametersKHR {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+    #[cfg(feature = "debug")]
+    impl fmtdebug::Debug for VideoSessionParametersKHR {
+        fn fmt(&self, f: &mut fmtdebug::Formatter) -> fmtdebug::Result {
             write!(f, "0x{:x}", self.0)
         }
     }
     pub type PFN_vkGetPhysicalDeviceVideoCapabilitiesKHR = unsafe extern "system" fn(
-        physical_device: crate::vk::PhysicalDevice,
-        p_video_profile: *const crate::vk::VideoProfileInfoKHR<'_>,
-        p_capabilities: *mut crate::vk::VideoCapabilitiesKHR<'_>,
-    ) -> crate::vk::Result;
+        physical_device: vk::PhysicalDevice,
+        p_video_profile: *const vk::VideoProfileInfoKHR<'_>,
+        p_capabilities: *mut vk::VideoCapabilitiesKHR<'_>,
+    ) -> vk::Result;
     pub type PFN_vkGetPhysicalDeviceVideoFormatPropertiesKHR = unsafe extern "system" fn(
-        physical_device: crate::vk::PhysicalDevice,
-        p_video_format_info: *const crate::vk::PhysicalDeviceVideoFormatInfoKHR<'_>,
+        physical_device: vk::PhysicalDevice,
+        p_video_format_info: *const vk::PhysicalDeviceVideoFormatInfoKHR<'_>,
         p_video_format_property_count: *mut u32,
-        p_video_format_properties: *mut crate::vk::VideoFormatPropertiesKHR<'_>,
-    ) -> crate::vk::Result;
+        p_video_format_properties: *mut vk::VideoFormatPropertiesKHR<'_>,
+    ) -> vk::Result;
     pub type PFN_vkCreateVideoSessionKHR = unsafe extern "system" fn(
-        device: crate::vk::Device,
-        p_create_info: *const crate::vk::VideoSessionCreateInfoKHR<'_>,
-        p_allocator: *const crate::vk::AllocationCallbacks<'_>,
-        p_video_session: *mut crate::vk::VideoSessionKHR,
-    ) -> crate::vk::Result;
+        device: vk::Device,
+        p_create_info: *const vk::VideoSessionCreateInfoKHR<'_>,
+        p_allocator: *const vk::AllocationCallbacks<'_>,
+        p_video_session: *mut vk::VideoSessionKHR,
+    ) -> vk::Result;
     pub type PFN_vkDestroyVideoSessionKHR = unsafe extern "system" fn(
-        device: crate::vk::Device,
-        video_session: crate::vk::VideoSessionKHR,
-        p_allocator: *const crate::vk::AllocationCallbacks<'_>,
+        device: vk::Device,
+        video_session: vk::VideoSessionKHR,
+        p_allocator: *const vk::AllocationCallbacks<'_>,
     );
     pub type PFN_vkCreateVideoSessionParametersKHR = unsafe extern "system" fn(
-        device: crate::vk::Device,
-        p_create_info: *const crate::vk::VideoSessionParametersCreateInfoKHR<'_>,
-        p_allocator: *const crate::vk::AllocationCallbacks<'_>,
-        p_video_session_parameters: *mut crate::vk::VideoSessionParametersKHR,
-    ) -> crate::vk::Result;
+        device: vk::Device,
+        p_create_info: *const vk::VideoSessionParametersCreateInfoKHR<'_>,
+        p_allocator: *const vk::AllocationCallbacks<'_>,
+        p_video_session_parameters: *mut vk::VideoSessionParametersKHR,
+    ) -> vk::Result;
     pub type PFN_vkUpdateVideoSessionParametersKHR = unsafe extern "system" fn(
-        device: crate::vk::Device,
-        video_session_parameters: crate::vk::VideoSessionParametersKHR,
-        p_update_info: *const crate::vk::VideoSessionParametersUpdateInfoKHR<'_>,
-    ) -> crate::vk::Result;
+        device: vk::Device,
+        video_session_parameters: vk::VideoSessionParametersKHR,
+        p_update_info: *const vk::VideoSessionParametersUpdateInfoKHR<'_>,
+    ) -> vk::Result;
     pub type PFN_vkDestroyVideoSessionParametersKHR = unsafe extern "system" fn(
-        device: crate::vk::Device,
-        video_session_parameters: crate::vk::VideoSessionParametersKHR,
-        p_allocator: *const crate::vk::AllocationCallbacks<'_>,
+        device: vk::Device,
+        video_session_parameters: vk::VideoSessionParametersKHR,
+        p_allocator: *const vk::AllocationCallbacks<'_>,
     );
     pub type PFN_vkGetVideoSessionMemoryRequirementsKHR = unsafe extern "system" fn(
-        device: crate::vk::Device,
-        video_session: crate::vk::VideoSessionKHR,
+        device: vk::Device,
+        video_session: vk::VideoSessionKHR,
         p_memory_requirements_count: *mut u32,
-        p_memory_requirements: *mut crate::vk::VideoSessionMemoryRequirementsKHR<'_>,
-    ) -> crate::vk::Result;
+        p_memory_requirements: *mut vk::VideoSessionMemoryRequirementsKHR<'_>,
+    ) -> vk::Result;
     pub type PFN_vkBindVideoSessionMemoryKHR = unsafe extern "system" fn(
-        device: crate::vk::Device,
-        video_session: crate::vk::VideoSessionKHR,
+        device: vk::Device,
+        video_session: vk::VideoSessionKHR,
         bind_session_memory_info_count: u32,
-        p_bind_session_memory_infos: *const crate::vk::BindVideoSessionMemoryInfoKHR<'_>,
-    ) -> crate::vk::Result;
+        p_bind_session_memory_infos: *const vk::BindVideoSessionMemoryInfoKHR<'_>,
+    ) -> vk::Result;
     pub type PFN_vkCmdBeginVideoCodingKHR = unsafe extern "system" fn(
-        command_buffer: crate::vk::CommandBuffer,
-        p_begin_info: *const crate::vk::VideoBeginCodingInfoKHR<'_>,
+        command_buffer: vk::CommandBuffer,
+        p_begin_info: *const vk::VideoBeginCodingInfoKHR<'_>,
     );
     pub type PFN_vkCmdControlVideoCodingKHR = unsafe extern "system" fn(
-        command_buffer: crate::vk::CommandBuffer,
-        p_coding_control_info: *const crate::vk::VideoCodingControlInfoKHR<'_>,
+        command_buffer: vk::CommandBuffer,
+        p_coding_control_info: *const vk::VideoCodingControlInfoKHR<'_>,
     );
     pub type PFN_vkCmdEndVideoCodingKHR = unsafe extern "system" fn(
-        command_buffer: crate::vk::CommandBuffer,
-        p_end_coding_info: *const crate::vk::VideoEndCodingInfoKHR<'_>,
+        command_buffer: vk::CommandBuffer,
+        p_end_coding_info: *const vk::VideoEndCodingInfoKHR<'_>,
     );
 }
 pub use items::*;

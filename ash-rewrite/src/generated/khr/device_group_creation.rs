@@ -2,43 +2,45 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_device_group_creation.html) · Extension `VK_KHR_device_group_creation`
 #![doc(alias = "VK_KHR_device_group_creation")]
+use crate::vk;
+use core::ffi::CStr;
+use crate::VkResult;
+use core::ffi::c_void;
 ///Provided by [VK_KHR_device_group_creation](crate::khr::device_group_creation)
-impl crate::vk::StructureType {
+impl vk::StructureType {
     pub const PHYSICAL_DEVICE_GROUP_PROPERTIES_KHR: Self = Self::PHYSICAL_DEVICE_GROUP_PROPERTIES;
     pub const DEVICE_GROUP_DEVICE_CREATE_INFO_KHR: Self = Self::DEVICE_GROUP_DEVICE_CREATE_INFO;
 }
-///Provided by [VK_KHR_device_group_creation](crate::khr::device_group_creation)
-impl crate::vk::MemoryHeapFlags {
+///Provided by [Vulkan 1.0](crate::vk1_0)
+impl vk::MemoryHeapFlags {
     pub const MULTI_INSTANCE_KHR: Self = Self(
-        crate::vk::MemoryHeapFlagBits::MULTI_INSTANCE_KHR.0,
+        vk::MemoryHeapFlagBits::MULTI_INSTANCE_KHR.0,
     );
 }
-///Provided by [VK_KHR_device_group_creation](crate::khr::device_group_creation)
-impl crate::vk::MemoryHeapFlagBits {
+///Provided by [Vulkan 1.0](crate::vk1_0)
+impl vk::MemoryHeapFlagBits {
     pub const MULTI_INSTANCE_KHR: Self = Self::MULTI_INSTANCE;
 }
+pub const SPEC_VERSION: u32 = 1;
+pub const NAME: &CStr = c"VK_KHR_device_group_creation";
 #[derive(Clone)]
 pub struct InstanceFn {
-    pub enumerate_physical_device_groups: crate::vk::PFN_vkEnumeratePhysicalDeviceGroupsKHR,
+    pub enumerate_physical_device_groups: vk::PFN_vkEnumeratePhysicalDeviceGroupsKHR,
 }
 unsafe impl Send for InstanceFn {}
 unsafe impl Sync for InstanceFn {}
 impl InstanceFn {
-    pub fn load<F: FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void>(
-        mut f: F,
-    ) -> Self {
+    pub fn load<F: FnMut(&CStr) -> *const c_void>(mut f: F) -> Self {
         Self::load_erased(&mut f)
     }
-    fn load_erased(
-        _f: &mut dyn FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void,
-    ) -> Self {
+    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const c_void) -> Self {
         Self {
             enumerate_physical_device_groups: unsafe {
                 unsafe extern "system" fn enumerate_physical_device_groups(
-                    _: crate::vk::Instance,
+                    _: vk::Instance,
                     _: *mut u32,
-                    _: *mut crate::vk::PhysicalDeviceGroupProperties<'_>,
-                ) -> crate::vk::Result {
+                    _: *mut vk::PhysicalDeviceGroupProperties<'_>,
+                ) -> vk::Result {
                     panic!("unable to load vkEnumeratePhysicalDeviceGroupsKHR")
                 }
                 let val = _f(c"vkEnumeratePhysicalDeviceGroupsKHR");
@@ -74,7 +76,7 @@ impl Instance {
     }
     ///vkEnumeratePhysicalDeviceGroups
     #[inline]
-    pub unsafe fn enumerate_physical_device_groups_len(&self) -> crate::VkResult<usize> {
+    pub unsafe fn enumerate_physical_device_groups_len(&self) -> VkResult<usize> {
         let mut physical_device_group_count = core::mem::MaybeUninit::uninit();
         (self
             .fp
@@ -90,9 +92,7 @@ impl Instance {
     #[inline]
     pub unsafe fn enumerate_physical_device_groups(
         &self,
-        physical_device_group_properties: &mut [crate::vk::PhysicalDeviceGroupProperties<
-            '_,
-        >],
+        physical_device_group_properties: &mut [vk::PhysicalDeviceGroupProperties<'_>],
     ) -> crate::VkResult<()> {
         let mut physical_device_group_count = physical_device_group_properties.len()
             as _;
@@ -110,15 +110,12 @@ impl Instance {
         Ok(())
     }
 }
-pub const SPEC_VERSION: u32 = 1;
-pub const NAME: &core::ffi::CStr = c"VK_KHR_device_group_creation";
 pub(crate) mod items {
-    pub type PhysicalDeviceGroupPropertiesKHR<'a> = crate::vk::PhysicalDeviceGroupProperties<
+    use crate::vk;
+    pub type PhysicalDeviceGroupPropertiesKHR<'a> = vk::PhysicalDeviceGroupProperties<
         'a,
     >;
-    pub type DeviceGroupDeviceCreateInfoKHR<'a> = crate::vk::DeviceGroupDeviceCreateInfo<
-        'a,
-    >;
-    pub type PFN_vkEnumeratePhysicalDeviceGroupsKHR = crate::vk::PFN_vkEnumeratePhysicalDeviceGroups;
+    pub type DeviceGroupDeviceCreateInfoKHR<'a> = vk::DeviceGroupDeviceCreateInfo<'a>;
+    pub type PFN_vkEnumeratePhysicalDeviceGroupsKHR = vk::PFN_vkEnumeratePhysicalDeviceGroups;
 }
 pub use items::*;

@@ -2,18 +2,21 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_variable_pointers.html) · Extension `VK_KHR_variable_pointers`
 #![doc(alias = "VK_KHR_variable_pointers")]
+use crate::vk;
+use core::ffi::CStr;
 ///Provided by [VK_KHR_variable_pointers](crate::khr::variable_pointers)
-impl crate::vk::StructureType {
+impl vk::StructureType {
     pub const PHYSICAL_DEVICE_VARIABLE_POINTERS_FEATURES_KHR: Self = Self::PHYSICAL_DEVICE_VARIABLE_POINTERS_FEATURES;
     pub const PHYSICAL_DEVICE_VARIABLE_POINTER_FEATURES_KHR: Self = Self::PHYSICAL_DEVICE_VARIABLE_POINTERS_FEATURES_KHR;
 }
 pub const SPEC_VERSION: u32 = 1;
-pub const NAME: &core::ffi::CStr = c"VK_KHR_variable_pointers";
+pub const NAME: &CStr = c"VK_KHR_variable_pointers";
 pub(crate) mod items {
-    pub type PhysicalDeviceVariablePointersFeaturesKHR<'a> = crate::vk::PhysicalDeviceVariablePointersFeatures<
+    use crate::vk;
+    pub type PhysicalDeviceVariablePointersFeaturesKHR<'a> = vk::PhysicalDeviceVariablePointersFeatures<
         'a,
     >;
-    pub type PhysicalDeviceVariablePointerFeaturesKHR<'a> = crate::vk::PhysicalDeviceVariablePointersFeatures<
+    pub type PhysicalDeviceVariablePointerFeaturesKHR<'a> = vk::PhysicalDeviceVariablePointersFeatures<
         'a,
     >;
 }

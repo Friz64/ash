@@ -2,5 +2,6 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_shader_non_semantic_info.html) · Extension `VK_KHR_shader_non_semantic_info`
 #![doc(alias = "VK_KHR_shader_non_semantic_info")]
+use core::ffi::CStr;
 pub const SPEC_VERSION: u32 = 1;
-pub const NAME: &core::ffi::CStr = c"VK_KHR_shader_non_semantic_info";
+pub const NAME: &CStr = c"VK_KHR_shader_non_semantic_info";

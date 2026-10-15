@@ -2,32 +2,36 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_memory_priority.html) · Extension `VK_EXT_memory_priority`
 #![doc(alias = "VK_EXT_memory_priority")]
+use crate::vk;
+use core::ffi::CStr;
 ///Provided by [VK_EXT_memory_priority](crate::ext::memory_priority)
-impl crate::vk::StructureType {
+impl vk::StructureType {
     pub const PHYSICAL_DEVICE_MEMORY_PRIORITY_FEATURES_EXT: Self = Self(1000238000);
     pub const MEMORY_PRIORITY_ALLOCATE_INFO_EXT: Self = Self(1000238001);
 }
 pub const SPEC_VERSION: u32 = 1;
-pub const NAME: &core::ffi::CStr = c"VK_EXT_memory_priority";
+pub const NAME: &CStr = c"VK_EXT_memory_priority";
 pub(crate) mod items {
+    use core::marker::PhantomData;
+    use crate::vk;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceMemoryPriorityFeaturesEXT<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
-        pub memory_priority: crate::vk::Bool32,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub memory_priority: vk::Bool32,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for PhysicalDeviceMemoryPriorityFeaturesEXT<'_> {}
     unsafe impl Sync for PhysicalDeviceMemoryPriorityFeaturesEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceMemoryPriorityFeaturesEXT<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_MEMORY_PRIORITY_FEATURES_EXT;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PHYSICAL_DEVICE_MEMORY_PRIORITY_FEATURES_EXT;
     }
-    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+    unsafe impl<'a> crate::Extends<vk::PhysicalDeviceFeatures2<'_>>
     for PhysicalDeviceMemoryPriorityFeaturesEXT<'a> {}
-    unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+    unsafe impl<'a> crate::Extends<vk::DeviceCreateInfo<'_>>
     for PhysicalDeviceMemoryPriorityFeaturesEXT<'a> {}
     impl<'a> Default for PhysicalDeviceMemoryPriorityFeaturesEXT<'a> {
         fn default() -> Self {
@@ -35,7 +39,7 @@ pub(crate) mod items {
                 s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
                 p_next: Default::default(),
                 memory_priority: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
@@ -49,17 +53,17 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct MemoryPriorityAllocateInfoEXT<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *const core::ffi::c_void,
         pub priority: core::ffi::c_float,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for MemoryPriorityAllocateInfoEXT<'_> {}
     unsafe impl Sync for MemoryPriorityAllocateInfoEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for MemoryPriorityAllocateInfoEXT<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::MEMORY_PRIORITY_ALLOCATE_INFO_EXT;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::MEMORY_PRIORITY_ALLOCATE_INFO_EXT;
     }
-    unsafe impl<'a> crate::Extends<crate::vk::MemoryAllocateInfo<'_>>
+    unsafe impl<'a> crate::Extends<vk::MemoryAllocateInfo<'_>>
     for MemoryPriorityAllocateInfoEXT<'a> {}
     impl<'a> Default for MemoryPriorityAllocateInfoEXT<'a> {
         fn default() -> Self {
@@ -67,7 +71,7 @@ pub(crate) mod items {
                 s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
                 p_next: Default::default(),
                 priority: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }

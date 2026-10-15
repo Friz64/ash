@@ -2,8 +2,12 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_pipeline_binary.html) · Extension `VK_KHR_pipeline_binary`
 #![doc(alias = "VK_KHR_pipeline_binary")]
+use crate::vk;
+use core::ffi::CStr;
+use crate::VkResult;
+use core::ffi::c_void;
 ///Provided by [VK_KHR_pipeline_binary](crate::khr::pipeline_binary)
-impl crate::vk::StructureType {
+impl vk::StructureType {
     pub const PHYSICAL_DEVICE_PIPELINE_BINARY_FEATURES_KHR: Self = Self(1000483000);
     pub const PIPELINE_BINARY_CREATE_INFO_KHR: Self = Self(1000483001);
     pub const PIPELINE_BINARY_INFO_KHR: Self = Self(1000483002);
@@ -16,51 +20,49 @@ impl crate::vk::StructureType {
     pub const PIPELINE_BINARY_HANDLES_INFO_KHR: Self = Self(1000483009);
 }
 ///Provided by [VK_KHR_pipeline_binary](crate::khr::pipeline_binary)
-impl crate::vk::Result {
+impl vk::Result {
     pub const PIPELINE_BINARY_MISSING_KHR: Self = Self(1000483000);
     pub const ERROR_NOT_ENOUGH_SPACE_KHR: Self = Self(-1000483000);
 }
 ///Provided by [VK_KHR_pipeline_binary](crate::khr::pipeline_binary)
-impl crate::vk::ObjectType {
+impl vk::ObjectType {
     pub const PIPELINE_BINARY_KHR: Self = Self(1000483000);
 }
-///Provided by [VK_KHR_pipeline_binary](crate::khr::pipeline_binary)
-impl crate::vk::PipelineCreateFlags2 {
+///Provided by [Vulkan 1.4](crate::vk1_4)
+impl vk::PipelineCreateFlags2 {
     pub const CAPTURE_DATA_KHR: Self = Self(
-        crate::vk::PipelineCreateFlagBits2::CAPTURE_DATA_KHR.0,
+        vk::PipelineCreateFlagBits2::CAPTURE_DATA_KHR.0,
     );
 }
-///Provided by [VK_KHR_pipeline_binary](crate::khr::pipeline_binary)
-impl crate::vk::PipelineCreateFlagBits2 {
+///Provided by [Vulkan 1.4](crate::vk1_4)
+impl vk::PipelineCreateFlagBits2 {
     pub const CAPTURE_DATA_KHR: Self = Self(1 << 31);
 }
+pub const SPEC_VERSION: u32 = 1;
+pub const NAME: &CStr = c"VK_KHR_pipeline_binary";
 #[derive(Clone)]
 pub struct DeviceFn {
-    pub create_pipeline_binaries: crate::vk::PFN_vkCreatePipelineBinariesKHR,
-    pub destroy_pipeline_binary: crate::vk::PFN_vkDestroyPipelineBinaryKHR,
-    pub get_pipeline_key: crate::vk::PFN_vkGetPipelineKeyKHR,
-    pub get_pipeline_binary_data: crate::vk::PFN_vkGetPipelineBinaryDataKHR,
-    pub release_captured_pipeline_data: crate::vk::PFN_vkReleaseCapturedPipelineDataKHR,
+    pub create_pipeline_binaries: vk::PFN_vkCreatePipelineBinariesKHR,
+    pub destroy_pipeline_binary: vk::PFN_vkDestroyPipelineBinaryKHR,
+    pub get_pipeline_key: vk::PFN_vkGetPipelineKeyKHR,
+    pub get_pipeline_binary_data: vk::PFN_vkGetPipelineBinaryDataKHR,
+    pub release_captured_pipeline_data: vk::PFN_vkReleaseCapturedPipelineDataKHR,
 }
 unsafe impl Send for DeviceFn {}
 unsafe impl Sync for DeviceFn {}
 impl DeviceFn {
-    pub fn load<F: FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void>(
-        mut f: F,
-    ) -> Self {
+    pub fn load<F: FnMut(&CStr) -> *const c_void>(mut f: F) -> Self {
         Self::load_erased(&mut f)
     }
-    fn load_erased(
-        _f: &mut dyn FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void,
-    ) -> Self {
+    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const c_void) -> Self {
         Self {
             create_pipeline_binaries: unsafe {
                 unsafe extern "system" fn create_pipeline_binaries(
-                    _: crate::vk::Device,
-                    _: *const crate::vk::PipelineBinaryCreateInfoKHR<'_>,
-                    _: *const crate::vk::AllocationCallbacks<'_>,
-                    _: *mut crate::vk::PipelineBinaryHandlesInfoKHR<'_>,
-                ) -> crate::vk::Result {
+                    _: vk::Device,
+                    _: *const vk::PipelineBinaryCreateInfoKHR<'_>,
+                    _: *const vk::AllocationCallbacks<'_>,
+                    _: *mut vk::PipelineBinaryHandlesInfoKHR<'_>,
+                ) -> vk::Result {
                     panic!("unable to load vkCreatePipelineBinariesKHR")
                 }
                 let val = _f(c"vkCreatePipelineBinariesKHR");
@@ -72,9 +74,9 @@ impl DeviceFn {
             },
             destroy_pipeline_binary: unsafe {
                 unsafe extern "system" fn destroy_pipeline_binary(
-                    _: crate::vk::Device,
-                    _: crate::vk::PipelineBinaryKHR,
-                    _: *const crate::vk::AllocationCallbacks<'_>,
+                    _: vk::Device,
+                    _: vk::PipelineBinaryKHR,
+                    _: *const vk::AllocationCallbacks<'_>,
                 ) {
                     panic!("unable to load vkDestroyPipelineBinaryKHR")
                 }
@@ -87,10 +89,10 @@ impl DeviceFn {
             },
             get_pipeline_key: unsafe {
                 unsafe extern "system" fn get_pipeline_key(
-                    _: crate::vk::Device,
-                    _: *const crate::vk::PipelineCreateInfoKHR<'_>,
-                    _: *mut crate::vk::PipelineBinaryKeyKHR<'_>,
-                ) -> crate::vk::Result {
+                    _: vk::Device,
+                    _: *const vk::PipelineCreateInfoKHR<'_>,
+                    _: *mut vk::PipelineBinaryKeyKHR<'_>,
+                ) -> vk::Result {
                     panic!("unable to load vkGetPipelineKeyKHR")
                 }
                 let val = _f(c"vkGetPipelineKeyKHR");
@@ -102,12 +104,12 @@ impl DeviceFn {
             },
             get_pipeline_binary_data: unsafe {
                 unsafe extern "system" fn get_pipeline_binary_data(
-                    _: crate::vk::Device,
-                    _: *const crate::vk::PipelineBinaryDataInfoKHR<'_>,
-                    _: *mut crate::vk::PipelineBinaryKeyKHR<'_>,
+                    _: vk::Device,
+                    _: *const vk::PipelineBinaryDataInfoKHR<'_>,
+                    _: *mut vk::PipelineBinaryKeyKHR<'_>,
                     _: *mut usize,
                     _: *mut core::ffi::c_void,
-                ) -> crate::vk::Result {
+                ) -> vk::Result {
                     panic!("unable to load vkGetPipelineBinaryDataKHR")
                 }
                 let val = _f(c"vkGetPipelineBinaryDataKHR");
@@ -119,10 +121,10 @@ impl DeviceFn {
             },
             release_captured_pipeline_data: unsafe {
                 unsafe extern "system" fn release_captured_pipeline_data(
-                    _: crate::vk::Device,
-                    _: *const crate::vk::ReleaseCapturedPipelineDataInfoKHR<'_>,
-                    _: *const crate::vk::AllocationCallbacks<'_>,
-                ) -> crate::vk::Result {
+                    _: vk::Device,
+                    _: *const vk::ReleaseCapturedPipelineDataInfoKHR<'_>,
+                    _: *const vk::AllocationCallbacks<'_>,
+                ) -> vk::Result {
                     panic!("unable to load vkReleaseCapturedPipelineDataKHR")
                 }
                 let val = _f(c"vkReleaseCapturedPipelineDataKHR");
@@ -160,9 +162,9 @@ impl Device {
     #[inline]
     pub unsafe fn create_pipeline_binaries(
         &self,
-        create_info: &crate::vk::PipelineBinaryCreateInfoKHR<'_>,
-        allocator: Option<&crate::vk::AllocationCallbacks<'_>>,
-    ) -> crate::VkResult<crate::vk::PipelineBinaryHandlesInfoKHR<'_>> {
+        create_info: &vk::PipelineBinaryCreateInfoKHR<'_>,
+        allocator: Option<&vk::AllocationCallbacks<'_>>,
+    ) -> VkResult<vk::PipelineBinaryHandlesInfoKHR<'_>> {
         let mut binaries = core::mem::MaybeUninit::uninit();
         (self
             .fp
@@ -181,8 +183,8 @@ impl Device {
     #[inline]
     pub unsafe fn destroy_pipeline_binary(
         &self,
-        pipeline_binary: crate::vk::PipelineBinaryKHR,
-        allocator: Option<&crate::vk::AllocationCallbacks<'_>>,
+        pipeline_binary: vk::PipelineBinaryKHR,
+        allocator: Option<&vk::AllocationCallbacks<'_>>,
     ) {
         (self
             .fp
@@ -199,8 +201,8 @@ impl Device {
     #[inline]
     pub unsafe fn get_pipeline_key(
         &self,
-        pipeline_create_info: Option<&crate::vk::PipelineCreateInfoKHR<'_>>,
-    ) -> crate::VkResult<crate::vk::PipelineBinaryKeyKHR<'_>> {
+        pipeline_create_info: Option<&vk::PipelineCreateInfoKHR<'_>>,
+    ) -> VkResult<vk::PipelineBinaryKeyKHR<'_>> {
         let mut pipeline_key = core::mem::MaybeUninit::uninit();
         (self
             .fp
@@ -218,9 +220,9 @@ impl Device {
     #[inline]
     pub unsafe fn release_captured_pipeline_data(
         &self,
-        info: &crate::vk::ReleaseCapturedPipelineDataInfoKHR<'_>,
-        allocator: Option<&crate::vk::AllocationCallbacks<'_>>,
-    ) -> crate::VkResult<()> {
+        info: &vk::ReleaseCapturedPipelineDataInfoKHR<'_>,
+        allocator: Option<&vk::AllocationCallbacks<'_>>,
+    ) -> VkResult<()> {
         (self
             .fp
             .release_captured_pipeline_data)(
@@ -234,24 +236,28 @@ impl Device {
             .result()
     }
 }
-pub const SPEC_VERSION: u32 = 1;
-pub const NAME: &core::ffi::CStr = c"VK_KHR_pipeline_binary";
 pub(crate) mod items {
+    use core::marker::PhantomData;
+    use crate::vk;
+    use crate::Handle;
+    use core::fmt;
+    #[cfg(feature = "debug")]
+    use core::fmt as fmtdebug;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct PipelineBinaryCreateInfoKHR<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *const core::ffi::c_void,
-        pub p_keys_and_data_info: *const crate::vk::PipelineBinaryKeysAndDataKHR<'a>,
-        pub pipeline: crate::vk::Pipeline,
-        pub p_pipeline_create_info: *const crate::vk::PipelineCreateInfoKHR<'a>,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub p_keys_and_data_info: *const vk::PipelineBinaryKeysAndDataKHR<'a>,
+        pub pipeline: vk::Pipeline,
+        pub p_pipeline_create_info: *const vk::PipelineCreateInfoKHR<'a>,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for PipelineBinaryCreateInfoKHR<'_> {}
     unsafe impl Sync for PipelineBinaryCreateInfoKHR<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for PipelineBinaryCreateInfoKHR<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PIPELINE_BINARY_CREATE_INFO_KHR;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PIPELINE_BINARY_CREATE_INFO_KHR;
     }
     impl<'a> Default for PipelineBinaryCreateInfoKHR<'a> {
         fn default() -> Self {
@@ -261,25 +267,25 @@ pub(crate) mod items {
                 p_keys_and_data_info: Default::default(),
                 pipeline: Default::default(),
                 p_pipeline_create_info: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
     impl<'a> PipelineBinaryCreateInfoKHR<'a> {
         pub fn keys_and_data_info(
             mut self,
-            keys_and_data_info: &'a crate::vk::PipelineBinaryKeysAndDataKHR<'a>,
+            keys_and_data_info: &'a vk::PipelineBinaryKeysAndDataKHR<'a>,
         ) -> Self {
             self.p_keys_and_data_info = keys_and_data_info;
             self
         }
-        pub fn pipeline(mut self, pipeline: crate::vk::Pipeline) -> Self {
+        pub fn pipeline(mut self, pipeline: vk::Pipeline) -> Self {
             self.pipeline = pipeline;
             self
         }
         pub fn pipeline_create_info(
             mut self,
-            pipeline_create_info: &'a crate::vk::PipelineCreateInfoKHR<'a>,
+            pipeline_create_info: &'a vk::PipelineCreateInfoKHR<'a>,
         ) -> Self {
             self.p_pipeline_create_info = pipeline_create_info;
             self
@@ -289,16 +295,16 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct PipelineBinaryHandlesInfoKHR<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *const core::ffi::c_void,
         pub pipeline_binary_count: u32,
-        pub p_pipeline_binaries: *mut crate::vk::PipelineBinaryKHR,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub p_pipeline_binaries: *mut vk::PipelineBinaryKHR,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for PipelineBinaryHandlesInfoKHR<'_> {}
     unsafe impl Sync for PipelineBinaryHandlesInfoKHR<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for PipelineBinaryHandlesInfoKHR<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PIPELINE_BINARY_HANDLES_INFO_KHR;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PIPELINE_BINARY_HANDLES_INFO_KHR;
     }
     impl<'a> Default for PipelineBinaryHandlesInfoKHR<'a> {
         fn default() -> Self {
@@ -307,14 +313,14 @@ pub(crate) mod items {
                 p_next: Default::default(),
                 pipeline_binary_count: Default::default(),
                 p_pipeline_binaries: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
     impl<'a> PipelineBinaryHandlesInfoKHR<'a> {
         pub fn pipeline_binaries(
             mut self,
-            pipeline_binaries: &'a mut [crate::vk::PipelineBinaryKHR],
+            pipeline_binaries: &'a mut [vk::PipelineBinaryKHR],
         ) -> Self {
             self.pipeline_binary_count = pipeline_binaries.len() as _;
             self.p_pipeline_binaries = pipeline_binaries.as_mut_ptr();
@@ -327,7 +333,7 @@ pub(crate) mod items {
     pub struct PipelineBinaryDataKHR<'a> {
         pub data_size: usize,
         pub p_data: *mut core::ffi::c_void,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for PipelineBinaryDataKHR<'_> {}
     unsafe impl Sync for PipelineBinaryDataKHR<'_> {}
@@ -343,16 +349,16 @@ pub(crate) mod items {
     #[derive(Clone, Copy, Default)]
     pub struct PipelineBinaryKeysAndDataKHR<'a> {
         pub binary_count: u32,
-        pub p_pipeline_binary_keys: *const crate::vk::PipelineBinaryKeyKHR<'a>,
-        pub p_pipeline_binary_data: *const crate::vk::PipelineBinaryDataKHR<'a>,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub p_pipeline_binary_keys: *const vk::PipelineBinaryKeyKHR<'a>,
+        pub p_pipeline_binary_data: *const vk::PipelineBinaryDataKHR<'a>,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for PipelineBinaryKeysAndDataKHR<'_> {}
     unsafe impl Sync for PipelineBinaryKeysAndDataKHR<'_> {}
     impl<'a> PipelineBinaryKeysAndDataKHR<'a> {
         pub fn pipeline_binary_keys(
             mut self,
-            pipeline_binary_keys: &'a [crate::vk::PipelineBinaryKeyKHR<'a>],
+            pipeline_binary_keys: &'a [vk::PipelineBinaryKeyKHR<'a>],
         ) -> Self {
             self.binary_count = pipeline_binary_keys.len() as _;
             self.p_pipeline_binary_keys = pipeline_binary_keys.as_ptr();
@@ -360,7 +366,7 @@ pub(crate) mod items {
         }
         pub fn pipeline_binary_data(
             mut self,
-            pipeline_binary_data: &'a [crate::vk::PipelineBinaryDataKHR<'a>],
+            pipeline_binary_data: &'a [vk::PipelineBinaryDataKHR<'a>],
         ) -> Self {
             self.binary_count = pipeline_binary_data.len() as _;
             self.p_pipeline_binary_data = pipeline_binary_data.as_ptr();
@@ -371,16 +377,16 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct PipelineBinaryKeyKHR<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
         pub key_size: u32,
-        pub key: [u8; crate::vk::MAX_PIPELINE_BINARY_KEY_SIZE_KHR as _],
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub key: [u8; vk::MAX_PIPELINE_BINARY_KEY_SIZE_KHR as _],
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for PipelineBinaryKeyKHR<'_> {}
     unsafe impl Sync for PipelineBinaryKeyKHR<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for PipelineBinaryKeyKHR<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PIPELINE_BINARY_KEY_KHR;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PIPELINE_BINARY_KEY_KHR;
     }
     impl<'a> Default for PipelineBinaryKeyKHR<'a> {
         fn default() -> Self {
@@ -389,7 +395,7 @@ pub(crate) mod items {
                 p_next: Default::default(),
                 key_size: Default::default(),
                 key: unsafe { core::mem::zeroed() },
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
@@ -400,7 +406,7 @@ pub(crate) mod items {
         }
         pub fn key(
             mut self,
-            key: [u8; crate::vk::MAX_PIPELINE_BINARY_KEY_SIZE_KHR as _],
+            key: [u8; vk::MAX_PIPELINE_BINARY_KEY_SIZE_KHR as _],
         ) -> Self {
             self.key = key;
             self
@@ -410,22 +416,22 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct PipelineBinaryInfoKHR<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *const core::ffi::c_void,
         pub binary_count: u32,
-        pub p_pipeline_binaries: *const crate::vk::PipelineBinaryKHR,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub p_pipeline_binaries: *const vk::PipelineBinaryKHR,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for PipelineBinaryInfoKHR<'_> {}
     unsafe impl Sync for PipelineBinaryInfoKHR<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for PipelineBinaryInfoKHR<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PIPELINE_BINARY_INFO_KHR;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PIPELINE_BINARY_INFO_KHR;
     }
-    unsafe impl<'a> crate::Extends<crate::vk::GraphicsPipelineCreateInfo<'_>>
+    unsafe impl<'a> crate::Extends<vk::GraphicsPipelineCreateInfo<'_>>
     for PipelineBinaryInfoKHR<'a> {}
-    unsafe impl<'a> crate::Extends<crate::vk::ComputePipelineCreateInfo<'_>>
+    unsafe impl<'a> crate::Extends<vk::ComputePipelineCreateInfo<'_>>
     for PipelineBinaryInfoKHR<'a> {}
-    unsafe impl<'a> crate::Extends<crate::vk::RayTracingPipelineCreateInfoKHR<'_>>
+    unsafe impl<'a> crate::Extends<vk::RayTracingPipelineCreateInfoKHR<'_>>
     for PipelineBinaryInfoKHR<'a> {}
     impl<'a> Default for PipelineBinaryInfoKHR<'a> {
         fn default() -> Self {
@@ -434,14 +440,14 @@ pub(crate) mod items {
                 p_next: Default::default(),
                 binary_count: Default::default(),
                 p_pipeline_binaries: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
     impl<'a> PipelineBinaryInfoKHR<'a> {
         pub fn pipeline_binaries(
             mut self,
-            pipeline_binaries: &'a [crate::vk::PipelineBinaryKHR],
+            pipeline_binaries: &'a [vk::PipelineBinaryKHR],
         ) -> Self {
             self.binary_count = pipeline_binaries.len() as _;
             self.p_pipeline_binaries = pipeline_binaries.as_ptr();
@@ -452,16 +458,16 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct ReleaseCapturedPipelineDataInfoKHR<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
-        pub pipeline: crate::vk::Pipeline,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub pipeline: vk::Pipeline,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for ReleaseCapturedPipelineDataInfoKHR<'_> {}
     unsafe impl Sync for ReleaseCapturedPipelineDataInfoKHR<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for ReleaseCapturedPipelineDataInfoKHR<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::RELEASE_CAPTURED_PIPELINE_DATA_INFO_KHR;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::RELEASE_CAPTURED_PIPELINE_DATA_INFO_KHR;
     }
     impl<'a> Default for ReleaseCapturedPipelineDataInfoKHR<'a> {
         fn default() -> Self {
@@ -469,12 +475,12 @@ pub(crate) mod items {
                 s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
                 p_next: Default::default(),
                 pipeline: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
     impl<'a> ReleaseCapturedPipelineDataInfoKHR<'a> {
-        pub fn pipeline(mut self, pipeline: crate::vk::Pipeline) -> Self {
+        pub fn pipeline(mut self, pipeline: vk::Pipeline) -> Self {
             self.pipeline = pipeline;
             self
         }
@@ -483,15 +489,15 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct PipelineBinaryDataInfoKHR<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
-        pub pipeline_binary: crate::vk::PipelineBinaryKHR,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub pipeline_binary: vk::PipelineBinaryKHR,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for PipelineBinaryDataInfoKHR<'_> {}
     unsafe impl Sync for PipelineBinaryDataInfoKHR<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for PipelineBinaryDataInfoKHR<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PIPELINE_BINARY_DATA_INFO_KHR;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PIPELINE_BINARY_DATA_INFO_KHR;
     }
     impl<'a> Default for PipelineBinaryDataInfoKHR<'a> {
         fn default() -> Self {
@@ -499,14 +505,14 @@ pub(crate) mod items {
                 s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
                 p_next: Default::default(),
                 pipeline_binary: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
     impl<'a> PipelineBinaryDataInfoKHR<'a> {
         pub fn pipeline_binary(
             mut self,
-            pipeline_binary: crate::vk::PipelineBinaryKHR,
+            pipeline_binary: vk::PipelineBinaryKHR,
         ) -> Self {
             self.pipeline_binary = pipeline_binary;
             self
@@ -516,21 +522,21 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct PipelineCreateInfoKHR<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for PipelineCreateInfoKHR<'_> {}
     unsafe impl Sync for PipelineCreateInfoKHR<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for PipelineCreateInfoKHR<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PIPELINE_CREATE_INFO_KHR;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PIPELINE_CREATE_INFO_KHR;
     }
     impl<'a> Default for PipelineCreateInfoKHR<'a> {
         fn default() -> Self {
             Self {
                 s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
                 p_next: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
@@ -539,20 +545,20 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct PhysicalDevicePipelineBinaryFeaturesKHR<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
-        pub pipeline_binaries: crate::vk::Bool32,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub pipeline_binaries: vk::Bool32,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for PhysicalDevicePipelineBinaryFeaturesKHR<'_> {}
     unsafe impl Sync for PhysicalDevicePipelineBinaryFeaturesKHR<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDevicePipelineBinaryFeaturesKHR<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_PIPELINE_BINARY_FEATURES_KHR;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PHYSICAL_DEVICE_PIPELINE_BINARY_FEATURES_KHR;
     }
-    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+    unsafe impl<'a> crate::Extends<vk::PhysicalDeviceFeatures2<'_>>
     for PhysicalDevicePipelineBinaryFeaturesKHR<'a> {}
-    unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+    unsafe impl<'a> crate::Extends<vk::DeviceCreateInfo<'_>>
     for PhysicalDevicePipelineBinaryFeaturesKHR<'a> {}
     impl<'a> Default for PhysicalDevicePipelineBinaryFeaturesKHR<'a> {
         fn default() -> Self {
@@ -560,7 +566,7 @@ pub(crate) mod items {
                 s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
                 p_next: Default::default(),
                 pipeline_binaries: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
@@ -574,18 +580,18 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct DevicePipelineBinaryInternalCacheControlKHR<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *const core::ffi::c_void,
-        pub disable_internal_cache: crate::vk::Bool32,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub disable_internal_cache: vk::Bool32,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for DevicePipelineBinaryInternalCacheControlKHR<'_> {}
     unsafe impl Sync for DevicePipelineBinaryInternalCacheControlKHR<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for DevicePipelineBinaryInternalCacheControlKHR<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::DEVICE_PIPELINE_BINARY_INTERNAL_CACHE_CONTROL_KHR;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::DEVICE_PIPELINE_BINARY_INTERNAL_CACHE_CONTROL_KHR;
     }
-    unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+    unsafe impl<'a> crate::Extends<vk::DeviceCreateInfo<'_>>
     for DevicePipelineBinaryInternalCacheControlKHR<'a> {}
     impl<'a> Default for DevicePipelineBinaryInternalCacheControlKHR<'a> {
         fn default() -> Self {
@@ -593,7 +599,7 @@ pub(crate) mod items {
                 s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
                 p_next: Default::default(),
                 disable_internal_cache: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
@@ -607,22 +613,22 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct PhysicalDevicePipelineBinaryPropertiesKHR<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
-        pub pipeline_binary_internal_cache: crate::vk::Bool32,
-        pub pipeline_binary_internal_cache_control: crate::vk::Bool32,
-        pub pipeline_binary_prefers_internal_cache: crate::vk::Bool32,
-        pub pipeline_binary_precompiled_internal_cache: crate::vk::Bool32,
-        pub pipeline_binary_compressed_data: crate::vk::Bool32,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub pipeline_binary_internal_cache: vk::Bool32,
+        pub pipeline_binary_internal_cache_control: vk::Bool32,
+        pub pipeline_binary_prefers_internal_cache: vk::Bool32,
+        pub pipeline_binary_precompiled_internal_cache: vk::Bool32,
+        pub pipeline_binary_compressed_data: vk::Bool32,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for PhysicalDevicePipelineBinaryPropertiesKHR<'_> {}
     unsafe impl Sync for PhysicalDevicePipelineBinaryPropertiesKHR<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDevicePipelineBinaryPropertiesKHR<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_PIPELINE_BINARY_PROPERTIES_KHR;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PHYSICAL_DEVICE_PIPELINE_BINARY_PROPERTIES_KHR;
     }
-    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceProperties2<'_>>
+    unsafe impl<'a> crate::Extends<vk::PhysicalDeviceProperties2<'_>>
     for PhysicalDevicePipelineBinaryPropertiesKHR<'a> {}
     impl<'a> Default for PhysicalDevicePipelineBinaryPropertiesKHR<'a> {
         fn default() -> Self {
@@ -634,7 +640,7 @@ pub(crate) mod items {
                 pipeline_binary_prefers_internal_cache: Default::default(),
                 pipeline_binary_precompiled_internal_cache: Default::default(),
                 pipeline_binary_compressed_data: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
@@ -682,8 +688,8 @@ pub(crate) mod items {
     #[repr(transparent)]
     #[derive(Eq, PartialEq, Ord, PartialOrd, Clone, Copy, Hash, Default)]
     pub struct PipelineBinaryKHR(u64);
-    impl crate::Handle for PipelineBinaryKHR {
-        const TYPE: crate::vk::ObjectType = crate::vk::ObjectType::PIPELINE_BINARY_KHR;
+    impl Handle for PipelineBinaryKHR {
+        const TYPE: vk::ObjectType = vk::ObjectType::PIPELINE_BINARY_KHR;
         fn as_raw(self) -> u64 {
             self.0
         }
@@ -696,44 +702,45 @@ pub(crate) mod items {
             Self(0)
         }
     }
-    impl core::fmt::Pointer for PipelineBinaryKHR {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+    impl fmt::Pointer for PipelineBinaryKHR {
+        fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
             write!(f, "0x{:x}", self.0)
         }
     }
-    impl core::fmt::Debug for PipelineBinaryKHR {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+    #[cfg(feature = "debug")]
+    impl fmtdebug::Debug for PipelineBinaryKHR {
+        fn fmt(&self, f: &mut fmtdebug::Formatter) -> fmtdebug::Result {
             write!(f, "0x{:x}", self.0)
         }
     }
     pub type PFN_vkCreatePipelineBinariesKHR = unsafe extern "system" fn(
-        device: crate::vk::Device,
-        p_create_info: *const crate::vk::PipelineBinaryCreateInfoKHR<'_>,
-        p_allocator: *const crate::vk::AllocationCallbacks<'_>,
-        p_binaries: *mut crate::vk::PipelineBinaryHandlesInfoKHR<'_>,
-    ) -> crate::vk::Result;
+        device: vk::Device,
+        p_create_info: *const vk::PipelineBinaryCreateInfoKHR<'_>,
+        p_allocator: *const vk::AllocationCallbacks<'_>,
+        p_binaries: *mut vk::PipelineBinaryHandlesInfoKHR<'_>,
+    ) -> vk::Result;
     pub type PFN_vkDestroyPipelineBinaryKHR = unsafe extern "system" fn(
-        device: crate::vk::Device,
-        pipeline_binary: crate::vk::PipelineBinaryKHR,
-        p_allocator: *const crate::vk::AllocationCallbacks<'_>,
+        device: vk::Device,
+        pipeline_binary: vk::PipelineBinaryKHR,
+        p_allocator: *const vk::AllocationCallbacks<'_>,
     );
     pub type PFN_vkGetPipelineKeyKHR = unsafe extern "system" fn(
-        device: crate::vk::Device,
-        p_pipeline_create_info: *const crate::vk::PipelineCreateInfoKHR<'_>,
-        p_pipeline_key: *mut crate::vk::PipelineBinaryKeyKHR<'_>,
-    ) -> crate::vk::Result;
+        device: vk::Device,
+        p_pipeline_create_info: *const vk::PipelineCreateInfoKHR<'_>,
+        p_pipeline_key: *mut vk::PipelineBinaryKeyKHR<'_>,
+    ) -> vk::Result;
     pub type PFN_vkGetPipelineBinaryDataKHR = unsafe extern "system" fn(
-        device: crate::vk::Device,
-        p_info: *const crate::vk::PipelineBinaryDataInfoKHR<'_>,
-        p_pipeline_binary_key: *mut crate::vk::PipelineBinaryKeyKHR<'_>,
+        device: vk::Device,
+        p_info: *const vk::PipelineBinaryDataInfoKHR<'_>,
+        p_pipeline_binary_key: *mut vk::PipelineBinaryKeyKHR<'_>,
         p_pipeline_binary_data_size: *mut usize,
         p_pipeline_binary_data: *mut core::ffi::c_void,
-    ) -> crate::vk::Result;
+    ) -> vk::Result;
     pub type PFN_vkReleaseCapturedPipelineDataKHR = unsafe extern "system" fn(
-        device: crate::vk::Device,
-        p_info: *const crate::vk::ReleaseCapturedPipelineDataInfoKHR<'_>,
-        p_allocator: *const crate::vk::AllocationCallbacks<'_>,
-    ) -> crate::vk::Result;
+        device: vk::Device,
+        p_info: *const vk::ReleaseCapturedPipelineDataInfoKHR<'_>,
+        p_allocator: *const vk::AllocationCallbacks<'_>,
+    ) -> vk::Result;
     pub const MAX_PIPELINE_BINARY_KEY_SIZE_KHR: u32 = 32;
 }
 pub use items::*;

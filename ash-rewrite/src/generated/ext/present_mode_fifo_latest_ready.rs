@@ -2,18 +2,21 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_present_mode_fifo_latest_ready.html) · Extension `VK_EXT_present_mode_fifo_latest_ready`
 #![doc(alias = "VK_EXT_present_mode_fifo_latest_ready")]
+use crate::vk;
+use core::ffi::CStr;
 ///Provided by [VK_EXT_present_mode_fifo_latest_ready](crate::ext::present_mode_fifo_latest_ready)
-impl crate::vk::StructureType {
+impl vk::StructureType {
     pub const PHYSICAL_DEVICE_PRESENT_MODE_FIFO_LATEST_READY_FEATURES_EXT: Self = Self::PHYSICAL_DEVICE_PRESENT_MODE_FIFO_LATEST_READY_FEATURES_KHR;
 }
 ///Provided by [VK_EXT_present_mode_fifo_latest_ready](crate::ext::present_mode_fifo_latest_ready)
-impl crate::vk::PresentModeKHR {
+impl vk::PresentModeKHR {
     pub const FIFO_LATEST_READY_EXT: Self = Self::FIFO_LATEST_READY;
 }
 pub const SPEC_VERSION: u32 = 1;
-pub const NAME: &core::ffi::CStr = c"VK_EXT_present_mode_fifo_latest_ready";
+pub const NAME: &CStr = c"VK_EXT_present_mode_fifo_latest_ready";
 pub(crate) mod items {
-    pub type PhysicalDevicePresentModeFifoLatestReadyFeaturesEXT<'a> = crate::vk::PhysicalDevicePresentModeFifoLatestReadyFeaturesKHR<
+    use crate::vk;
+    pub type PhysicalDevicePresentModeFifoLatestReadyFeaturesEXT<'a> = vk::PhysicalDevicePresentModeFifoLatestReadyFeaturesKHR<
         'a,
     >;
 }

@@ -2,8 +2,10 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_conservative_rasterization.html) · Extension `VK_EXT_conservative_rasterization`
 #![doc(alias = "VK_EXT_conservative_rasterization")]
+use crate::vk;
+use core::ffi::CStr;
 ///Provided by [VK_EXT_conservative_rasterization](crate::ext::conservative_rasterization)
-impl crate::vk::StructureType {
+impl vk::StructureType {
     pub const PHYSICAL_DEVICE_CONSERVATIVE_RASTERIZATION_PROPERTIES_EXT: Self = Self(
         1000101000,
     );
@@ -18,32 +20,34 @@ impl ConservativeRasterizationModeEXT {
     pub const UNDERESTIMATE: Self = Self(2);
 }
 pub const SPEC_VERSION: u32 = 1;
-pub const NAME: &core::ffi::CStr = c"VK_EXT_conservative_rasterization";
+pub const NAME: &CStr = c"VK_EXT_conservative_rasterization";
 pub(crate) mod items {
+    use core::marker::PhantomData;
+    use crate::vk;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceConservativeRasterizationPropertiesEXT<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
         pub primitive_overestimation_size: core::ffi::c_float,
         pub max_extra_primitive_overestimation_size: core::ffi::c_float,
         pub extra_primitive_overestimation_size_granularity: core::ffi::c_float,
-        pub primitive_underestimation: crate::vk::Bool32,
-        pub conservative_point_and_line_rasterization: crate::vk::Bool32,
-        pub degenerate_triangles_rasterized: crate::vk::Bool32,
-        pub degenerate_lines_rasterized: crate::vk::Bool32,
-        pub fully_covered_fragment_shader_input_variable: crate::vk::Bool32,
-        pub conservative_rasterization_post_depth_coverage: crate::vk::Bool32,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub primitive_underestimation: vk::Bool32,
+        pub conservative_point_and_line_rasterization: vk::Bool32,
+        pub degenerate_triangles_rasterized: vk::Bool32,
+        pub degenerate_lines_rasterized: vk::Bool32,
+        pub fully_covered_fragment_shader_input_variable: vk::Bool32,
+        pub conservative_rasterization_post_depth_coverage: vk::Bool32,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for PhysicalDeviceConservativeRasterizationPropertiesEXT<'_> {}
     unsafe impl Sync for PhysicalDeviceConservativeRasterizationPropertiesEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceConservativeRasterizationPropertiesEXT<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_CONSERVATIVE_RASTERIZATION_PROPERTIES_EXT;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PHYSICAL_DEVICE_CONSERVATIVE_RASTERIZATION_PROPERTIES_EXT;
     }
-    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceProperties2<'_>>
+    unsafe impl<'a> crate::Extends<vk::PhysicalDeviceProperties2<'_>>
     for PhysicalDeviceConservativeRasterizationPropertiesEXT<'a> {}
     impl<'a> Default for PhysicalDeviceConservativeRasterizationPropertiesEXT<'a> {
         fn default() -> Self {
@@ -59,7 +63,7 @@ pub(crate) mod items {
                 degenerate_lines_rasterized: Default::default(),
                 fully_covered_fragment_shader_input_variable: Default::default(),
                 conservative_rasterization_post_depth_coverage: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
@@ -136,20 +140,20 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct PipelineRasterizationConservativeStateCreateInfoEXT<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *const core::ffi::c_void,
-        pub flags: crate::vk::PipelineRasterizationConservativeStateCreateFlagsEXT,
-        pub conservative_rasterization_mode: crate::vk::ConservativeRasterizationModeEXT,
+        pub flags: vk::PipelineRasterizationConservativeStateCreateFlagsEXT,
+        pub conservative_rasterization_mode: vk::ConservativeRasterizationModeEXT,
         pub extra_primitive_overestimation_size: core::ffi::c_float,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for PipelineRasterizationConservativeStateCreateInfoEXT<'_> {}
     unsafe impl Sync for PipelineRasterizationConservativeStateCreateInfoEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PipelineRasterizationConservativeStateCreateInfoEXT<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PIPELINE_RASTERIZATION_CONSERVATIVE_STATE_CREATE_INFO_EXT;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PIPELINE_RASTERIZATION_CONSERVATIVE_STATE_CREATE_INFO_EXT;
     }
-    unsafe impl<'a> crate::Extends<crate::vk::PipelineRasterizationStateCreateInfo<'_>>
+    unsafe impl<'a> crate::Extends<vk::PipelineRasterizationStateCreateInfo<'_>>
     for PipelineRasterizationConservativeStateCreateInfoEXT<'a> {}
     impl<'a> Default for PipelineRasterizationConservativeStateCreateInfoEXT<'a> {
         fn default() -> Self {
@@ -159,21 +163,21 @@ pub(crate) mod items {
                 flags: Default::default(),
                 conservative_rasterization_mode: Default::default(),
                 extra_primitive_overestimation_size: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
     impl<'a> PipelineRasterizationConservativeStateCreateInfoEXT<'a> {
         pub fn flags(
             mut self,
-            flags: crate::vk::PipelineRasterizationConservativeStateCreateFlagsEXT,
+            flags: vk::PipelineRasterizationConservativeStateCreateFlagsEXT,
         ) -> Self {
             self.flags = flags;
             self
         }
         pub fn conservative_rasterization_mode(
             mut self,
-            conservative_rasterization_mode: crate::vk::ConservativeRasterizationModeEXT,
+            conservative_rasterization_mode: vk::ConservativeRasterizationModeEXT,
         ) -> Self {
             self.conservative_rasterization_mode = conservative_rasterization_mode;
             self

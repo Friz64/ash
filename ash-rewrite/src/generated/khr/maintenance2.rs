@@ -2,57 +2,60 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_maintenance2.html) · Extension `VK_KHR_maintenance2`
 #![doc(alias = "VK_KHR_maintenance2")]
+use crate::vk;
+use core::ffi::CStr;
 ///Provided by [VK_KHR_maintenance2](crate::khr::maintenance2)
-impl crate::vk::ImageLayout {
+impl vk::ImageLayout {
     pub const DEPTH_READ_ONLY_STENCIL_ATTACHMENT_OPTIMAL_KHR: Self = Self::DEPTH_READ_ONLY_STENCIL_ATTACHMENT_OPTIMAL;
     pub const DEPTH_ATTACHMENT_STENCIL_READ_ONLY_OPTIMAL_KHR: Self = Self::DEPTH_ATTACHMENT_STENCIL_READ_ONLY_OPTIMAL;
 }
 ///Provided by [VK_KHR_maintenance2](crate::khr::maintenance2)
-impl crate::vk::StructureType {
+impl vk::StructureType {
     pub const PHYSICAL_DEVICE_POINT_CLIPPING_PROPERTIES_KHR: Self = Self::PHYSICAL_DEVICE_POINT_CLIPPING_PROPERTIES;
     pub const RENDER_PASS_INPUT_ATTACHMENT_ASPECT_CREATE_INFO_KHR: Self = Self::RENDER_PASS_INPUT_ATTACHMENT_ASPECT_CREATE_INFO;
     pub const IMAGE_VIEW_USAGE_CREATE_INFO_KHR: Self = Self::IMAGE_VIEW_USAGE_CREATE_INFO;
     pub const PIPELINE_TESSELLATION_DOMAIN_ORIGIN_STATE_CREATE_INFO_KHR: Self = Self::PIPELINE_TESSELLATION_DOMAIN_ORIGIN_STATE_CREATE_INFO;
 }
 ///Provided by [VK_KHR_maintenance2](crate::khr::maintenance2)
-impl crate::vk::PointClippingBehavior {
+impl vk::PointClippingBehavior {
     pub const ALL_CLIP_PLANES_KHR: Self = Self::ALL_CLIP_PLANES;
     pub const USER_CLIP_PLANES_ONLY_KHR: Self = Self::USER_CLIP_PLANES_ONLY;
 }
 ///Provided by [VK_KHR_maintenance2](crate::khr::maintenance2)
-impl crate::vk::TessellationDomainOrigin {
+impl vk::TessellationDomainOrigin {
     pub const UPPER_LEFT_KHR: Self = Self::UPPER_LEFT;
     pub const LOWER_LEFT_KHR: Self = Self::LOWER_LEFT;
 }
-///Provided by [VK_KHR_maintenance2](crate::khr::maintenance2)
-impl crate::vk::ImageCreateFlags {
+///Provided by [Vulkan 1.0](crate::vk1_0)
+impl vk::ImageCreateFlags {
     pub const BLOCK_TEXEL_VIEW_COMPATIBLE_KHR: Self = Self(
-        crate::vk::ImageCreateFlagBits::BLOCK_TEXEL_VIEW_COMPATIBLE_KHR.0,
+        vk::ImageCreateFlagBits::BLOCK_TEXEL_VIEW_COMPATIBLE_KHR.0,
     );
     pub const EXTENDED_USAGE_KHR: Self = Self(
-        crate::vk::ImageCreateFlagBits::EXTENDED_USAGE_KHR.0,
+        vk::ImageCreateFlagBits::EXTENDED_USAGE_KHR.0,
     );
 }
-///Provided by [VK_KHR_maintenance2](crate::khr::maintenance2)
-impl crate::vk::ImageCreateFlagBits {
+///Provided by [Vulkan 1.0](crate::vk1_0)
+impl vk::ImageCreateFlagBits {
     pub const BLOCK_TEXEL_VIEW_COMPATIBLE_KHR: Self = Self::BLOCK_TEXEL_VIEW_COMPATIBLE;
     pub const EXTENDED_USAGE_KHR: Self = Self::EXTENDED_USAGE;
 }
 pub const SPEC_VERSION: u32 = 1;
-pub const NAME: &core::ffi::CStr = c"VK_KHR_maintenance2";
+pub const NAME: &CStr = c"VK_KHR_maintenance2";
 pub(crate) mod items {
-    pub type InputAttachmentAspectReferenceKHR = crate::vk::InputAttachmentAspectReference;
-    pub type RenderPassInputAttachmentAspectCreateInfoKHR<'a> = crate::vk::RenderPassInputAttachmentAspectCreateInfo<
+    use crate::vk;
+    pub type InputAttachmentAspectReferenceKHR = vk::InputAttachmentAspectReference;
+    pub type RenderPassInputAttachmentAspectCreateInfoKHR<'a> = vk::RenderPassInputAttachmentAspectCreateInfo<
         'a,
     >;
-    pub type PhysicalDevicePointClippingPropertiesKHR<'a> = crate::vk::PhysicalDevicePointClippingProperties<
+    pub type PhysicalDevicePointClippingPropertiesKHR<'a> = vk::PhysicalDevicePointClippingProperties<
         'a,
     >;
-    pub type ImageViewUsageCreateInfoKHR<'a> = crate::vk::ImageViewUsageCreateInfo<'a>;
-    pub type PipelineTessellationDomainOriginStateCreateInfoKHR<'a> = crate::vk::PipelineTessellationDomainOriginStateCreateInfo<
+    pub type ImageViewUsageCreateInfoKHR<'a> = vk::ImageViewUsageCreateInfo<'a>;
+    pub type PipelineTessellationDomainOriginStateCreateInfoKHR<'a> = vk::PipelineTessellationDomainOriginStateCreateInfo<
         'a,
     >;
-    pub type PointClippingBehaviorKHR = crate::vk::PointClippingBehavior;
-    pub type TessellationDomainOriginKHR = crate::vk::TessellationDomainOrigin;
+    pub type PointClippingBehaviorKHR = vk::PointClippingBehavior;
+    pub type TessellationDomainOriginKHR = vk::TessellationDomainOrigin;
 }
 pub use items::*;

@@ -64,6 +64,7 @@ impl VP9ColorSpace {
     pub const INVALID: Self = Self(0x7FFFFFFF);
 }
 pub(crate) mod items {
+    use crate::vk;
     #[repr(C)]
     #[derive(Clone, Copy, Default)]
     pub struct VP9ColorConfigFlags {
@@ -94,17 +95,17 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy, Default)]
     pub struct VP9ColorConfig {
-        pub flags: crate::vk::VP9ColorConfigFlags,
+        pub flags: vk::VP9ColorConfigFlags,
         pub bit_depth: u8,
         pub subsampling_x: u8,
         pub subsampling_y: u8,
         pub reserved1: u8,
-        pub color_space: crate::vk::VP9ColorSpace,
+        pub color_space: vk::VP9ColorSpace,
     }
     unsafe impl Send for VP9ColorConfig {}
     unsafe impl Sync for VP9ColorConfig {}
     impl VP9ColorConfig {
-        pub fn flags(mut self, flags: crate::vk::VP9ColorConfigFlags) -> Self {
+        pub fn flags(mut self, flags: vk::VP9ColorConfigFlags) -> Self {
             self.flags = flags;
             self
         }
@@ -124,7 +125,7 @@ pub(crate) mod items {
             self.reserved1 = reserved1;
             self
         }
-        pub fn color_space(mut self, color_space: crate::vk::VP9ColorSpace) -> Self {
+        pub fn color_space(mut self, color_space: vk::VP9ColorSpace) -> Self {
             self.color_space = color_space;
             self
         }
@@ -178,13 +179,13 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct VP9LoopFilter {
-        pub flags: crate::vk::VP9LoopFilterFlags,
+        pub flags: vk::VP9LoopFilterFlags,
         pub loop_filter_level: u8,
         pub loop_filter_sharpness: u8,
         pub update_ref_delta: u8,
-        pub loop_filter_ref_deltas: [i8; crate::vk::VP9_MAX_REF_FRAMES as _],
+        pub loop_filter_ref_deltas: [i8; vk::VP9_MAX_REF_FRAMES as _],
         pub update_mode_delta: u8,
-        pub loop_filter_mode_deltas: [i8; crate::vk::VP9_LOOP_FILTER_ADJUSTMENTS as _],
+        pub loop_filter_mode_deltas: [i8; vk::VP9_LOOP_FILTER_ADJUSTMENTS as _],
     }
     unsafe impl Send for VP9LoopFilter {}
     unsafe impl Sync for VP9LoopFilter {}
@@ -202,7 +203,7 @@ pub(crate) mod items {
         }
     }
     impl VP9LoopFilter {
-        pub fn flags(mut self, flags: crate::vk::VP9LoopFilterFlags) -> Self {
+        pub fn flags(mut self, flags: vk::VP9LoopFilterFlags) -> Self {
             self.flags = flags;
             self
         }
@@ -220,7 +221,7 @@ pub(crate) mod items {
         }
         pub fn loop_filter_ref_deltas(
             mut self,
-            loop_filter_ref_deltas: [i8; crate::vk::VP9_MAX_REF_FRAMES as _],
+            loop_filter_ref_deltas: [i8; vk::VP9_MAX_REF_FRAMES as _],
         ) -> Self {
             self.loop_filter_ref_deltas = loop_filter_ref_deltas;
             self
@@ -231,7 +232,7 @@ pub(crate) mod items {
         }
         pub fn loop_filter_mode_deltas(
             mut self,
-            loop_filter_mode_deltas: [i8; crate::vk::VP9_LOOP_FILTER_ADJUSTMENTS as _],
+            loop_filter_mode_deltas: [i8; vk::VP9_LOOP_FILTER_ADJUSTMENTS as _],
         ) -> Self {
             self.loop_filter_mode_deltas = loop_filter_mode_deltas;
             self
@@ -314,13 +315,11 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct VP9Segmentation {
-        pub flags: crate::vk::VP9SegmentationFlags,
-        pub segmentation_tree_probs: [u8; crate::vk::VP9_MAX_SEGMENTATION_TREE_PROBS
-            as _],
-        pub segmentation_pred_prob: [u8; crate::vk::VP9_MAX_SEGMENTATION_PRED_PROB as _],
-        pub feature_enabled: [u8; crate::vk::VP9_MAX_SEGMENTS as _],
-        pub feature_data: [[i16; crate::vk::VP9_SEG_LVL_MAX
-            as _]; crate::vk::VP9_MAX_SEGMENTS as _],
+        pub flags: vk::VP9SegmentationFlags,
+        pub segmentation_tree_probs: [u8; vk::VP9_MAX_SEGMENTATION_TREE_PROBS as _],
+        pub segmentation_pred_prob: [u8; vk::VP9_MAX_SEGMENTATION_PRED_PROB as _],
+        pub feature_enabled: [u8; vk::VP9_MAX_SEGMENTS as _],
+        pub feature_data: [[i16; vk::VP9_SEG_LVL_MAX as _]; vk::VP9_MAX_SEGMENTS as _],
     }
     unsafe impl Send for VP9Segmentation {}
     unsafe impl Sync for VP9Segmentation {}
@@ -336,36 +335,34 @@ pub(crate) mod items {
         }
     }
     impl VP9Segmentation {
-        pub fn flags(mut self, flags: crate::vk::VP9SegmentationFlags) -> Self {
+        pub fn flags(mut self, flags: vk::VP9SegmentationFlags) -> Self {
             self.flags = flags;
             self
         }
         pub fn segmentation_tree_probs(
             mut self,
-            segmentation_tree_probs: [u8; crate::vk::VP9_MAX_SEGMENTATION_TREE_PROBS
-                as _],
+            segmentation_tree_probs: [u8; vk::VP9_MAX_SEGMENTATION_TREE_PROBS as _],
         ) -> Self {
             self.segmentation_tree_probs = segmentation_tree_probs;
             self
         }
         pub fn segmentation_pred_prob(
             mut self,
-            segmentation_pred_prob: [u8; crate::vk::VP9_MAX_SEGMENTATION_PRED_PROB as _],
+            segmentation_pred_prob: [u8; vk::VP9_MAX_SEGMENTATION_PRED_PROB as _],
         ) -> Self {
             self.segmentation_pred_prob = segmentation_pred_prob;
             self
         }
         pub fn feature_enabled(
             mut self,
-            feature_enabled: [u8; crate::vk::VP9_MAX_SEGMENTS as _],
+            feature_enabled: [u8; vk::VP9_MAX_SEGMENTS as _],
         ) -> Self {
             self.feature_enabled = feature_enabled;
             self
         }
         pub fn feature_data(
             mut self,
-            feature_data: [[i16; crate::vk::VP9_SEG_LVL_MAX
-                as _]; crate::vk::VP9_MAX_SEGMENTS as _],
+            feature_data: [[i16; vk::VP9_SEG_LVL_MAX as _]; vk::VP9_MAX_SEGMENTS as _],
         ) -> Self {
             self.feature_data = feature_data;
             self

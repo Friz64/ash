@@ -2,42 +2,44 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_bind_memory2.html) · Extension `VK_KHR_bind_memory2`
 #![doc(alias = "VK_KHR_bind_memory2")]
+use crate::vk;
+use core::ffi::CStr;
+use crate::VkResult;
+use core::ffi::c_void;
 ///Provided by [VK_KHR_bind_memory2](crate::khr::bind_memory2)
-impl crate::vk::StructureType {
+impl vk::StructureType {
     pub const BIND_BUFFER_MEMORY_INFO_KHR: Self = Self::BIND_BUFFER_MEMORY_INFO;
     pub const BIND_IMAGE_MEMORY_INFO_KHR: Self = Self::BIND_IMAGE_MEMORY_INFO;
 }
-///Provided by [VK_KHR_bind_memory2](crate::khr::bind_memory2)
-impl crate::vk::ImageCreateFlags {
-    pub const ALIAS_KHR: Self = Self(crate::vk::ImageCreateFlagBits::ALIAS_KHR.0);
+///Provided by [Vulkan 1.0](crate::vk1_0)
+impl vk::ImageCreateFlags {
+    pub const ALIAS_KHR: Self = Self(vk::ImageCreateFlagBits::ALIAS_KHR.0);
 }
-///Provided by [VK_KHR_bind_memory2](crate::khr::bind_memory2)
-impl crate::vk::ImageCreateFlagBits {
+///Provided by [Vulkan 1.0](crate::vk1_0)
+impl vk::ImageCreateFlagBits {
     pub const ALIAS_KHR: Self = Self::ALIAS;
 }
+pub const SPEC_VERSION: u32 = 1;
+pub const NAME: &CStr = c"VK_KHR_bind_memory2";
 #[derive(Clone)]
 pub struct DeviceFn {
-    pub bind_buffer_memory2: crate::vk::PFN_vkBindBufferMemory2KHR,
-    pub bind_image_memory2: crate::vk::PFN_vkBindImageMemory2KHR,
+    pub bind_buffer_memory2: vk::PFN_vkBindBufferMemory2KHR,
+    pub bind_image_memory2: vk::PFN_vkBindImageMemory2KHR,
 }
 unsafe impl Send for DeviceFn {}
 unsafe impl Sync for DeviceFn {}
 impl DeviceFn {
-    pub fn load<F: FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void>(
-        mut f: F,
-    ) -> Self {
+    pub fn load<F: FnMut(&CStr) -> *const c_void>(mut f: F) -> Self {
         Self::load_erased(&mut f)
     }
-    fn load_erased(
-        _f: &mut dyn FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void,
-    ) -> Self {
+    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const c_void) -> Self {
         Self {
             bind_buffer_memory2: unsafe {
                 unsafe extern "system" fn bind_buffer_memory2(
-                    _: crate::vk::Device,
+                    _: vk::Device,
                     _: u32,
-                    _: *const crate::vk::BindBufferMemoryInfo<'_>,
-                ) -> crate::vk::Result {
+                    _: *const vk::BindBufferMemoryInfo<'_>,
+                ) -> vk::Result {
                     panic!("unable to load vkBindBufferMemory2KHR")
                 }
                 let val = _f(c"vkBindBufferMemory2KHR");
@@ -49,10 +51,10 @@ impl DeviceFn {
             },
             bind_image_memory2: unsafe {
                 unsafe extern "system" fn bind_image_memory2(
-                    _: crate::vk::Device,
+                    _: vk::Device,
                     _: u32,
-                    _: *const crate::vk::BindImageMemoryInfo<'_>,
-                ) -> crate::vk::Result {
+                    _: *const vk::BindImageMemoryInfo<'_>,
+                ) -> vk::Result {
                     panic!("unable to load vkBindImageMemory2KHR")
                 }
                 let val = _f(c"vkBindImageMemory2KHR");
@@ -90,8 +92,8 @@ impl Device {
     #[inline]
     pub unsafe fn bind_buffer_memory2(
         &self,
-        bind_infos: &[crate::vk::BindBufferMemoryInfo<'_>],
-    ) -> crate::VkResult<()> {
+        bind_infos: &[vk::BindBufferMemoryInfo<'_>],
+    ) -> VkResult<()> {
         (self
             .fp
             .bind_buffer_memory2)(
@@ -105,20 +107,19 @@ impl Device {
     #[inline]
     pub unsafe fn bind_image_memory2(
         &self,
-        bind_infos: &[crate::vk::BindImageMemoryInfo<'_>],
-    ) -> crate::VkResult<()> {
+        bind_infos: &[vk::BindImageMemoryInfo<'_>],
+    ) -> VkResult<()> {
         (self
             .fp
             .bind_image_memory2)(self.handle, bind_infos.len() as _, bind_infos.as_ptr())
             .result()
     }
 }
-pub const SPEC_VERSION: u32 = 1;
-pub const NAME: &core::ffi::CStr = c"VK_KHR_bind_memory2";
 pub(crate) mod items {
-    pub type BindBufferMemoryInfoKHR<'a> = crate::vk::BindBufferMemoryInfo<'a>;
-    pub type BindImageMemoryInfoKHR<'a> = crate::vk::BindImageMemoryInfo<'a>;
-    pub type PFN_vkBindBufferMemory2KHR = crate::vk::PFN_vkBindBufferMemory2;
-    pub type PFN_vkBindImageMemory2KHR = crate::vk::PFN_vkBindImageMemory2;
+    use crate::vk;
+    pub type BindBufferMemoryInfoKHR<'a> = vk::BindBufferMemoryInfo<'a>;
+    pub type BindImageMemoryInfoKHR<'a> = vk::BindImageMemoryInfo<'a>;
+    pub type PFN_vkBindBufferMemory2KHR = vk::PFN_vkBindBufferMemory2;
+    pub type PFN_vkBindImageMemory2KHR = vk::PFN_vkBindImageMemory2;
 }
 pub use items::*;

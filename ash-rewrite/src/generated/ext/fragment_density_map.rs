@@ -2,12 +2,14 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_fragment_density_map.html) · Extension `VK_EXT_fragment_density_map`
 #![doc(alias = "VK_EXT_fragment_density_map")]
+use crate::vk;
+use core::ffi::CStr;
 ///Provided by [VK_EXT_fragment_density_map](crate::ext::fragment_density_map)
-impl crate::vk::ImageLayout {
+impl vk::ImageLayout {
     pub const FRAGMENT_DENSITY_MAP_OPTIMAL_EXT: Self = Self(1000218000);
 }
 ///Provided by [VK_EXT_fragment_density_map](crate::ext::fragment_density_map)
-impl crate::vk::StructureType {
+impl vk::StructureType {
     pub const PHYSICAL_DEVICE_FRAGMENT_DENSITY_MAP_FEATURES_EXT: Self = Self(1000218000);
     pub const PHYSICAL_DEVICE_FRAGMENT_DENSITY_MAP_PROPERTIES_EXT: Self = Self(
         1000218001,
@@ -17,124 +19,121 @@ impl crate::vk::StructureType {
         1000044007,
     );
 }
-///Provided by [VK_EXT_fragment_density_map](crate::ext::fragment_density_map)
-impl crate::vk::SamplerCreateFlags {
-    pub const SUBSAMPLED_EXT: Self = Self(
-        crate::vk::SamplerCreateFlagBits::SUBSAMPLED_EXT.0,
-    );
+///Provided by [Vulkan 1.0](crate::vk1_0)
+impl vk::SamplerCreateFlags {
+    pub const SUBSAMPLED_EXT: Self = Self(vk::SamplerCreateFlagBits::SUBSAMPLED_EXT.0);
     pub const SUBSAMPLED_COARSE_RECONSTRUCTION_EXT: Self = Self(
-        crate::vk::SamplerCreateFlagBits::SUBSAMPLED_COARSE_RECONSTRUCTION_EXT.0,
+        vk::SamplerCreateFlagBits::SUBSAMPLED_COARSE_RECONSTRUCTION_EXT.0,
     );
 }
-///Provided by [VK_EXT_fragment_density_map](crate::ext::fragment_density_map)
-impl crate::vk::SamplerCreateFlagBits {
+///Provided by [Vulkan 1.0](crate::vk1_0)
+impl vk::SamplerCreateFlagBits {
     pub const SUBSAMPLED_EXT: Self = Self(1 << 0);
     pub const SUBSAMPLED_COARSE_RECONSTRUCTION_EXT: Self = Self(1 << 1);
 }
-///Provided by [VK_EXT_fragment_density_map](crate::ext::fragment_density_map)
-impl crate::vk::AccessFlags {
+///Provided by [Vulkan 1.0](crate::vk1_0)
+impl vk::AccessFlags {
     pub const FRAGMENT_DENSITY_MAP_READ_EXT: Self = Self(
-        crate::vk::AccessFlagBits::FRAGMENT_DENSITY_MAP_READ_EXT.0,
+        vk::AccessFlagBits::FRAGMENT_DENSITY_MAP_READ_EXT.0,
     );
 }
-///Provided by [VK_EXT_fragment_density_map](crate::ext::fragment_density_map)
-impl crate::vk::AccessFlagBits {
+///Provided by [Vulkan 1.0](crate::vk1_0)
+impl vk::AccessFlagBits {
     pub const FRAGMENT_DENSITY_MAP_READ_EXT: Self = Self(1 << 24);
 }
-///Provided by [VK_EXT_fragment_density_map](crate::ext::fragment_density_map)
-impl crate::vk::ImageUsageFlags {
+///Provided by [Vulkan 1.0](crate::vk1_0)
+impl vk::ImageUsageFlags {
     pub const FRAGMENT_DENSITY_MAP_EXT: Self = Self(
-        crate::vk::ImageUsageFlagBits::FRAGMENT_DENSITY_MAP_EXT.0,
+        vk::ImageUsageFlagBits::FRAGMENT_DENSITY_MAP_EXT.0,
     );
 }
-///Provided by [VK_EXT_fragment_density_map](crate::ext::fragment_density_map)
-impl crate::vk::ImageUsageFlagBits {
+///Provided by [Vulkan 1.0](crate::vk1_0)
+impl vk::ImageUsageFlagBits {
     pub const FRAGMENT_DENSITY_MAP_EXT: Self = Self(1 << 9);
 }
-///Provided by [VK_EXT_fragment_density_map](crate::ext::fragment_density_map)
-impl crate::vk::ImageCreateFlags {
-    pub const SUBSAMPLED_EXT: Self = Self(
-        crate::vk::ImageCreateFlagBits::SUBSAMPLED_EXT.0,
-    );
+///Provided by [Vulkan 1.0](crate::vk1_0)
+impl vk::ImageCreateFlags {
+    pub const SUBSAMPLED_EXT: Self = Self(vk::ImageCreateFlagBits::SUBSAMPLED_EXT.0);
 }
-///Provided by [VK_EXT_fragment_density_map](crate::ext::fragment_density_map)
-impl crate::vk::ImageCreateFlagBits {
+///Provided by [Vulkan 1.0](crate::vk1_0)
+impl vk::ImageCreateFlagBits {
     pub const SUBSAMPLED_EXT: Self = Self(1 << 14);
 }
-///Provided by [VK_EXT_fragment_density_map](crate::ext::fragment_density_map)
-impl crate::vk::ImageViewCreateFlags {
+///Provided by [Vulkan 1.0](crate::vk1_0)
+impl vk::ImageViewCreateFlags {
     pub const FRAGMENT_DENSITY_MAP_DYNAMIC_EXT: Self = Self(
-        crate::vk::ImageViewCreateFlagBits::FRAGMENT_DENSITY_MAP_DYNAMIC_EXT.0,
+        vk::ImageViewCreateFlagBits::FRAGMENT_DENSITY_MAP_DYNAMIC_EXT.0,
     );
 }
-///Provided by [VK_EXT_fragment_density_map](crate::ext::fragment_density_map)
-impl crate::vk::ImageViewCreateFlagBits {
+///Provided by [Vulkan 1.0](crate::vk1_0)
+impl vk::ImageViewCreateFlagBits {
     pub const FRAGMENT_DENSITY_MAP_DYNAMIC_EXT: Self = Self(1 << 0);
 }
-///Provided by [VK_EXT_fragment_density_map](crate::ext::fragment_density_map)
-impl crate::vk::PipelineCreateFlags {
+///Provided by [Vulkan 1.0](crate::vk1_0)
+impl vk::PipelineCreateFlags {
     pub const RENDERING_FRAGMENT_DENSITY_MAP_ATTACHMENT_EXT: Self = Self(
-        crate::vk::PipelineCreateFlagBits::RENDERING_FRAGMENT_DENSITY_MAP_ATTACHMENT_EXT
-            .0,
+        vk::PipelineCreateFlagBits::RENDERING_FRAGMENT_DENSITY_MAP_ATTACHMENT_EXT.0,
     );
 }
-///Provided by [VK_EXT_fragment_density_map](crate::ext::fragment_density_map)
-impl crate::vk::PipelineCreateFlagBits {
+///Provided by [Vulkan 1.0](crate::vk1_0)
+impl vk::PipelineCreateFlagBits {
     pub const RENDERING_FRAGMENT_DENSITY_MAP_ATTACHMENT_EXT: Self = Self(1 << 22);
 }
-///Provided by [VK_EXT_fragment_density_map](crate::ext::fragment_density_map)
-impl crate::vk::FormatFeatureFlags {
+///Provided by [Vulkan 1.0](crate::vk1_0)
+impl vk::FormatFeatureFlags {
     pub const FRAGMENT_DENSITY_MAP_EXT: Self = Self(
-        crate::vk::FormatFeatureFlagBits::FRAGMENT_DENSITY_MAP_EXT.0,
+        vk::FormatFeatureFlagBits::FRAGMENT_DENSITY_MAP_EXT.0,
     );
 }
-///Provided by [VK_EXT_fragment_density_map](crate::ext::fragment_density_map)
-impl crate::vk::FormatFeatureFlagBits {
+///Provided by [Vulkan 1.0](crate::vk1_0)
+impl vk::FormatFeatureFlagBits {
     pub const FRAGMENT_DENSITY_MAP_EXT: Self = Self(1 << 24);
 }
-///Provided by [VK_EXT_fragment_density_map](crate::ext::fragment_density_map)
-impl crate::vk::PipelineStageFlags {
+///Provided by [Vulkan 1.0](crate::vk1_0)
+impl vk::PipelineStageFlags {
     pub const FRAGMENT_DENSITY_PROCESS_EXT: Self = Self(
-        crate::vk::PipelineStageFlagBits::FRAGMENT_DENSITY_PROCESS_EXT.0,
+        vk::PipelineStageFlagBits::FRAGMENT_DENSITY_PROCESS_EXT.0,
     );
 }
-///Provided by [VK_EXT_fragment_density_map](crate::ext::fragment_density_map)
-impl crate::vk::PipelineStageFlagBits {
+///Provided by [Vulkan 1.0](crate::vk1_0)
+impl vk::PipelineStageFlagBits {
     pub const FRAGMENT_DENSITY_PROCESS_EXT: Self = Self(1 << 23);
 }
-///Provided by [VK_EXT_fragment_density_map](crate::ext::fragment_density_map)
-impl crate::vk::FormatFeatureFlags2 {
+///Provided by [Vulkan 1.3](crate::vk1_3)
+impl vk::FormatFeatureFlags2 {
     pub const FRAGMENT_DENSITY_MAP_EXT: Self = Self(
-        crate::vk::FormatFeatureFlagBits2::FRAGMENT_DENSITY_MAP_EXT.0,
+        vk::FormatFeatureFlagBits2::FRAGMENT_DENSITY_MAP_EXT.0,
     );
 }
-///Provided by [VK_EXT_fragment_density_map](crate::ext::fragment_density_map)
-impl crate::vk::FormatFeatureFlagBits2 {
+///Provided by [Vulkan 1.3](crate::vk1_3)
+impl vk::FormatFeatureFlagBits2 {
     pub const FRAGMENT_DENSITY_MAP_EXT: Self = Self(1 << 24);
 }
 pub const SPEC_VERSION: u32 = 3;
-pub const NAME: &core::ffi::CStr = c"VK_EXT_fragment_density_map";
+pub const NAME: &CStr = c"VK_EXT_fragment_density_map";
 pub(crate) mod items {
+    use core::marker::PhantomData;
+    use crate::vk;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceFragmentDensityMapFeaturesEXT<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
-        pub fragment_density_map: crate::vk::Bool32,
-        pub fragment_density_map_dynamic: crate::vk::Bool32,
-        pub fragment_density_map_non_subsampled_images: crate::vk::Bool32,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub fragment_density_map: vk::Bool32,
+        pub fragment_density_map_dynamic: vk::Bool32,
+        pub fragment_density_map_non_subsampled_images: vk::Bool32,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for PhysicalDeviceFragmentDensityMapFeaturesEXT<'_> {}
     unsafe impl Sync for PhysicalDeviceFragmentDensityMapFeaturesEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceFragmentDensityMapFeaturesEXT<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_FRAGMENT_DENSITY_MAP_FEATURES_EXT;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PHYSICAL_DEVICE_FRAGMENT_DENSITY_MAP_FEATURES_EXT;
     }
-    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+    unsafe impl<'a> crate::Extends<vk::PhysicalDeviceFeatures2<'_>>
     for PhysicalDeviceFragmentDensityMapFeaturesEXT<'a> {}
-    unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+    unsafe impl<'a> crate::Extends<vk::DeviceCreateInfo<'_>>
     for PhysicalDeviceFragmentDensityMapFeaturesEXT<'a> {}
     impl<'a> Default for PhysicalDeviceFragmentDensityMapFeaturesEXT<'a> {
         fn default() -> Self {
@@ -144,7 +143,7 @@ pub(crate) mod items {
                 fragment_density_map: Default::default(),
                 fragment_density_map_dynamic: Default::default(),
                 fragment_density_map_non_subsampled_images: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
@@ -173,20 +172,20 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceFragmentDensityMapPropertiesEXT<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
-        pub min_fragment_density_texel_size: crate::vk::Extent2D,
-        pub max_fragment_density_texel_size: crate::vk::Extent2D,
-        pub fragment_density_invocations: crate::vk::Bool32,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub min_fragment_density_texel_size: vk::Extent2D,
+        pub max_fragment_density_texel_size: vk::Extent2D,
+        pub fragment_density_invocations: vk::Bool32,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for PhysicalDeviceFragmentDensityMapPropertiesEXT<'_> {}
     unsafe impl Sync for PhysicalDeviceFragmentDensityMapPropertiesEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceFragmentDensityMapPropertiesEXT<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_FRAGMENT_DENSITY_MAP_PROPERTIES_EXT;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PHYSICAL_DEVICE_FRAGMENT_DENSITY_MAP_PROPERTIES_EXT;
     }
-    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceProperties2<'_>>
+    unsafe impl<'a> crate::Extends<vk::PhysicalDeviceProperties2<'_>>
     for PhysicalDeviceFragmentDensityMapPropertiesEXT<'a> {}
     impl<'a> Default for PhysicalDeviceFragmentDensityMapPropertiesEXT<'a> {
         fn default() -> Self {
@@ -196,21 +195,21 @@ pub(crate) mod items {
                 min_fragment_density_texel_size: Default::default(),
                 max_fragment_density_texel_size: Default::default(),
                 fragment_density_invocations: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
     impl<'a> PhysicalDeviceFragmentDensityMapPropertiesEXT<'a> {
         pub fn min_fragment_density_texel_size(
             mut self,
-            min_fragment_density_texel_size: crate::vk::Extent2D,
+            min_fragment_density_texel_size: vk::Extent2D,
         ) -> Self {
             self.min_fragment_density_texel_size = min_fragment_density_texel_size;
             self
         }
         pub fn max_fragment_density_texel_size(
             mut self,
-            max_fragment_density_texel_size: crate::vk::Extent2D,
+            max_fragment_density_texel_size: vk::Extent2D,
         ) -> Self {
             self.max_fragment_density_texel_size = max_fragment_density_texel_size;
             self
@@ -227,20 +226,20 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct RenderPassFragmentDensityMapCreateInfoEXT<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *const core::ffi::c_void,
-        pub fragment_density_map_attachment: crate::vk::AttachmentReference,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub fragment_density_map_attachment: vk::AttachmentReference,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for RenderPassFragmentDensityMapCreateInfoEXT<'_> {}
     unsafe impl Sync for RenderPassFragmentDensityMapCreateInfoEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for RenderPassFragmentDensityMapCreateInfoEXT<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::RENDER_PASS_FRAGMENT_DENSITY_MAP_CREATE_INFO_EXT;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::RENDER_PASS_FRAGMENT_DENSITY_MAP_CREATE_INFO_EXT;
     }
-    unsafe impl<'a> crate::Extends<crate::vk::RenderPassCreateInfo<'_>>
+    unsafe impl<'a> crate::Extends<vk::RenderPassCreateInfo<'_>>
     for RenderPassFragmentDensityMapCreateInfoEXT<'a> {}
-    unsafe impl<'a> crate::Extends<crate::vk::RenderPassCreateInfo2<'_>>
+    unsafe impl<'a> crate::Extends<vk::RenderPassCreateInfo2<'_>>
     for RenderPassFragmentDensityMapCreateInfoEXT<'a> {}
     impl<'a> Default for RenderPassFragmentDensityMapCreateInfoEXT<'a> {
         fn default() -> Self {
@@ -248,14 +247,14 @@ pub(crate) mod items {
                 s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
                 p_next: Default::default(),
                 fragment_density_map_attachment: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
     impl<'a> RenderPassFragmentDensityMapCreateInfoEXT<'a> {
         pub fn fragment_density_map_attachment(
             mut self,
-            fragment_density_map_attachment: crate::vk::AttachmentReference,
+            fragment_density_map_attachment: vk::AttachmentReference,
         ) -> Self {
             self.fragment_density_map_attachment = fragment_density_map_attachment;
             self
@@ -265,19 +264,19 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct RenderingFragmentDensityMapAttachmentInfoEXT<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *const core::ffi::c_void,
-        pub image_view: crate::vk::ImageView,
-        pub image_layout: crate::vk::ImageLayout,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub image_view: vk::ImageView,
+        pub image_layout: vk::ImageLayout,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for RenderingFragmentDensityMapAttachmentInfoEXT<'_> {}
     unsafe impl Sync for RenderingFragmentDensityMapAttachmentInfoEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for RenderingFragmentDensityMapAttachmentInfoEXT<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::RENDERING_FRAGMENT_DENSITY_MAP_ATTACHMENT_INFO_EXT;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::RENDERING_FRAGMENT_DENSITY_MAP_ATTACHMENT_INFO_EXT;
     }
-    unsafe impl<'a> crate::Extends<crate::vk::RenderingInfo<'_>>
+    unsafe impl<'a> crate::Extends<vk::RenderingInfo<'_>>
     for RenderingFragmentDensityMapAttachmentInfoEXT<'a> {}
     impl<'a> Default for RenderingFragmentDensityMapAttachmentInfoEXT<'a> {
         fn default() -> Self {
@@ -286,16 +285,16 @@ pub(crate) mod items {
                 p_next: Default::default(),
                 image_view: Default::default(),
                 image_layout: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
     impl<'a> RenderingFragmentDensityMapAttachmentInfoEXT<'a> {
-        pub fn image_view(mut self, image_view: crate::vk::ImageView) -> Self {
+        pub fn image_view(mut self, image_view: vk::ImageView) -> Self {
             self.image_view = image_view;
             self
         }
-        pub fn image_layout(mut self, image_layout: crate::vk::ImageLayout) -> Self {
+        pub fn image_layout(mut self, image_layout: vk::ImageLayout) -> Self {
             self.image_layout = image_layout;
             self
         }

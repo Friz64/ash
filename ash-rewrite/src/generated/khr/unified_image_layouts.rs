@@ -2,35 +2,39 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_unified_image_layouts.html) · Extension `VK_KHR_unified_image_layouts`
 #![doc(alias = "VK_KHR_unified_image_layouts")]
+use crate::vk;
+use core::ffi::CStr;
 ///Provided by [VK_KHR_unified_image_layouts](crate::khr::unified_image_layouts)
-impl crate::vk::StructureType {
+impl vk::StructureType {
     pub const PHYSICAL_DEVICE_UNIFIED_IMAGE_LAYOUTS_FEATURES_KHR: Self = Self(
         1000527000,
     );
     pub const ATTACHMENT_FEEDBACK_LOOP_INFO_EXT: Self = Self(1000527001);
 }
 pub const SPEC_VERSION: u32 = 1;
-pub const NAME: &core::ffi::CStr = c"VK_KHR_unified_image_layouts";
+pub const NAME: &CStr = c"VK_KHR_unified_image_layouts";
 pub(crate) mod items {
+    use core::marker::PhantomData;
+    use crate::vk;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceUnifiedImageLayoutsFeaturesKHR<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
-        pub unified_image_layouts: crate::vk::Bool32,
-        pub unified_image_layouts_video: crate::vk::Bool32,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub unified_image_layouts: vk::Bool32,
+        pub unified_image_layouts_video: vk::Bool32,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for PhysicalDeviceUnifiedImageLayoutsFeaturesKHR<'_> {}
     unsafe impl Sync for PhysicalDeviceUnifiedImageLayoutsFeaturesKHR<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceUnifiedImageLayoutsFeaturesKHR<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_UNIFIED_IMAGE_LAYOUTS_FEATURES_KHR;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PHYSICAL_DEVICE_UNIFIED_IMAGE_LAYOUTS_FEATURES_KHR;
     }
-    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+    unsafe impl<'a> crate::Extends<vk::PhysicalDeviceFeatures2<'_>>
     for PhysicalDeviceUnifiedImageLayoutsFeaturesKHR<'a> {}
-    unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+    unsafe impl<'a> crate::Extends<vk::DeviceCreateInfo<'_>>
     for PhysicalDeviceUnifiedImageLayoutsFeaturesKHR<'a> {}
     impl<'a> Default for PhysicalDeviceUnifiedImageLayoutsFeaturesKHR<'a> {
         fn default() -> Self {
@@ -39,7 +43,7 @@ pub(crate) mod items {
                 p_next: Default::default(),
                 unified_image_layouts: Default::default(),
                 unified_image_layouts_video: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
@@ -60,17 +64,17 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct AttachmentFeedbackLoopInfoEXT<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *const core::ffi::c_void,
-        pub feedback_loop_enable: crate::vk::Bool32,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub feedback_loop_enable: vk::Bool32,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for AttachmentFeedbackLoopInfoEXT<'_> {}
     unsafe impl Sync for AttachmentFeedbackLoopInfoEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for AttachmentFeedbackLoopInfoEXT<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::ATTACHMENT_FEEDBACK_LOOP_INFO_EXT;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::ATTACHMENT_FEEDBACK_LOOP_INFO_EXT;
     }
-    unsafe impl<'a> crate::Extends<crate::vk::RenderingAttachmentInfo<'_>>
+    unsafe impl<'a> crate::Extends<vk::RenderingAttachmentInfo<'_>>
     for AttachmentFeedbackLoopInfoEXT<'a> {}
     impl<'a> Default for AttachmentFeedbackLoopInfoEXT<'a> {
         fn default() -> Self {
@@ -78,7 +82,7 @@ pub(crate) mod items {
                 s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
                 p_next: Default::default(),
                 feedback_loop_enable: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }

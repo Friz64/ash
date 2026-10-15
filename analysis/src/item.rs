@@ -67,6 +67,13 @@ impl RequireLocation {
                 if analysis_result.is_extension_provisional(*name)
         )
     }
+
+    pub fn original_name(&self) -> String {
+        match self {
+            RequireLocation::Core { major, minor } => format!("VK_VERSION_{major}_{minor}"),
+            RequireLocation::Extension { name } => name.original().into(),
+        }
+    }
 }
 
 impl Default for RequireLocation {

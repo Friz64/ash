@@ -2,36 +2,37 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_imageless_framebuffer.html) · Extension `VK_KHR_imageless_framebuffer`
 #![doc(alias = "VK_KHR_imageless_framebuffer")]
+use crate::vk;
+use core::ffi::CStr;
 ///Provided by [VK_KHR_imageless_framebuffer](crate::khr::imageless_framebuffer)
-impl crate::vk::StructureType {
+impl vk::StructureType {
     pub const PHYSICAL_DEVICE_IMAGELESS_FRAMEBUFFER_FEATURES_KHR: Self = Self::PHYSICAL_DEVICE_IMAGELESS_FRAMEBUFFER_FEATURES;
     pub const FRAMEBUFFER_ATTACHMENTS_CREATE_INFO_KHR: Self = Self::FRAMEBUFFER_ATTACHMENTS_CREATE_INFO;
     pub const FRAMEBUFFER_ATTACHMENT_IMAGE_INFO_KHR: Self = Self::FRAMEBUFFER_ATTACHMENT_IMAGE_INFO;
     pub const RENDER_PASS_ATTACHMENT_BEGIN_INFO_KHR: Self = Self::RENDER_PASS_ATTACHMENT_BEGIN_INFO;
 }
-///Provided by [VK_KHR_imageless_framebuffer](crate::khr::imageless_framebuffer)
-impl crate::vk::FramebufferCreateFlags {
-    pub const IMAGELESS_KHR: Self = Self(
-        crate::vk::FramebufferCreateFlagBits::IMAGELESS_KHR.0,
-    );
+///Provided by [Vulkan 1.0](crate::vk1_0)
+impl vk::FramebufferCreateFlags {
+    pub const IMAGELESS_KHR: Self = Self(vk::FramebufferCreateFlagBits::IMAGELESS_KHR.0);
 }
-///Provided by [VK_KHR_imageless_framebuffer](crate::khr::imageless_framebuffer)
-impl crate::vk::FramebufferCreateFlagBits {
+///Provided by [Vulkan 1.0](crate::vk1_0)
+impl vk::FramebufferCreateFlagBits {
     pub const IMAGELESS_KHR: Self = Self::IMAGELESS;
 }
 pub const SPEC_VERSION: u32 = 1;
-pub const NAME: &core::ffi::CStr = c"VK_KHR_imageless_framebuffer";
+pub const NAME: &CStr = c"VK_KHR_imageless_framebuffer";
 pub(crate) mod items {
-    pub type PhysicalDeviceImagelessFramebufferFeaturesKHR<'a> = crate::vk::PhysicalDeviceImagelessFramebufferFeatures<
+    use crate::vk;
+    pub type PhysicalDeviceImagelessFramebufferFeaturesKHR<'a> = vk::PhysicalDeviceImagelessFramebufferFeatures<
         'a,
     >;
-    pub type FramebufferAttachmentsCreateInfoKHR<'a> = crate::vk::FramebufferAttachmentsCreateInfo<
+    pub type FramebufferAttachmentsCreateInfoKHR<'a> = vk::FramebufferAttachmentsCreateInfo<
         'a,
     >;
-    pub type FramebufferAttachmentImageInfoKHR<'a> = crate::vk::FramebufferAttachmentImageInfo<
+    pub type FramebufferAttachmentImageInfoKHR<'a> = vk::FramebufferAttachmentImageInfo<
         'a,
     >;
-    pub type RenderPassAttachmentBeginInfoKHR<'a> = crate::vk::RenderPassAttachmentBeginInfo<
+    pub type RenderPassAttachmentBeginInfoKHR<'a> = vk::RenderPassAttachmentBeginInfo<
         'a,
     >;
 }

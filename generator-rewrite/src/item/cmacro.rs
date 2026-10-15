@@ -1,16 +1,18 @@
 use super::{Code, Context};
-use crate::output::{CodeMap, Destination};
+use crate::output::{CodeMap, GlobExport, OutputLocation};
 use analysis::{item::cmacro::CMacro, rust::RustTokens, xml::cexpr::CExprItem};
 use quote::{format_ident, quote};
 use tracing::{instrument, trace};
 
 impl Code for CMacro {
-    #[instrument(skip(ctx))]
-    fn code(&self, ctx: &Context) -> CodeMap {
+    #[instrument(skip(ctx, codemap))]
+    fn code(&self, ctx: &Context, codemap: &mut CodeMap) {
         trace!("generating");
 
-        let name = ctx.cmacro_tokens(self.name, false);
-        let expr = CExprItem::tokens(self.cexpr.iter(), ctx);
+        let output = OutputLocation::primary_location(self.required_by, GlobExport::Yes);
+        let octx = codemap.octx(output, ctx);
+        let name = octx.cmacro_tokens(self.name, false);
+        let expr = CExprItem::tokens(self.cexpr.iter(), &octx);
         let code = if self.has_args() {
             quote! {
                 pub const #name: u32 = #expr;
@@ -22,6 +24,6 @@ impl Code for CMacro {
             }
         };
 
-        CodeMap::new(Destination::primary_location(self.required_by), code)
+        octx.insert_tokens(code);
     }
 }

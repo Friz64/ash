@@ -2,35 +2,38 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_global_priority.html) · Extension `VK_KHR_global_priority`
 #![doc(alias = "VK_KHR_global_priority")]
+use crate::vk;
+use core::ffi::CStr;
 ///Provided by [VK_KHR_global_priority](crate::khr::global_priority)
-impl crate::vk::StructureType {
+impl vk::StructureType {
     pub const DEVICE_QUEUE_GLOBAL_PRIORITY_CREATE_INFO_KHR: Self = Self::DEVICE_QUEUE_GLOBAL_PRIORITY_CREATE_INFO;
     pub const PHYSICAL_DEVICE_GLOBAL_PRIORITY_QUERY_FEATURES_KHR: Self = Self::PHYSICAL_DEVICE_GLOBAL_PRIORITY_QUERY_FEATURES;
     pub const QUEUE_FAMILY_GLOBAL_PRIORITY_PROPERTIES_KHR: Self = Self::QUEUE_FAMILY_GLOBAL_PRIORITY_PROPERTIES;
 }
 ///Provided by [VK_KHR_global_priority](crate::khr::global_priority)
-impl crate::vk::Result {
+impl vk::Result {
     pub const ERROR_NOT_PERMITTED_KHR: Self = Self::ERROR_NOT_PERMITTED;
 }
 ///Provided by [VK_KHR_global_priority](crate::khr::global_priority)
-impl crate::vk::QueueGlobalPriority {
+impl vk::QueueGlobalPriority {
     pub const LOW_KHR: Self = Self::LOW;
     pub const MEDIUM_KHR: Self = Self::MEDIUM;
     pub const HIGH_KHR: Self = Self::HIGH;
     pub const REALTIME_KHR: Self = Self::REALTIME;
 }
 pub const SPEC_VERSION: u32 = 1;
-pub const NAME: &core::ffi::CStr = c"VK_KHR_global_priority";
+pub const NAME: &CStr = c"VK_KHR_global_priority";
 pub(crate) mod items {
-    pub type DeviceQueueGlobalPriorityCreateInfoKHR<'a> = crate::vk::DeviceQueueGlobalPriorityCreateInfo<
+    use crate::vk;
+    pub type DeviceQueueGlobalPriorityCreateInfoKHR<'a> = vk::DeviceQueueGlobalPriorityCreateInfo<
         'a,
     >;
-    pub type PhysicalDeviceGlobalPriorityQueryFeaturesKHR<'a> = crate::vk::PhysicalDeviceGlobalPriorityQueryFeatures<
+    pub type PhysicalDeviceGlobalPriorityQueryFeaturesKHR<'a> = vk::PhysicalDeviceGlobalPriorityQueryFeatures<
         'a,
     >;
-    pub type QueueFamilyGlobalPriorityPropertiesKHR<'a> = crate::vk::QueueFamilyGlobalPriorityProperties<
+    pub type QueueFamilyGlobalPriorityPropertiesKHR<'a> = vk::QueueFamilyGlobalPriorityProperties<
         'a,
     >;
-    pub type QueueGlobalPriorityKHR = crate::vk::QueueGlobalPriority;
+    pub type QueueGlobalPriorityKHR = vk::QueueGlobalPriority;
 }
 pub use items::*;

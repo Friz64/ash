@@ -2,8 +2,11 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_copy_commands2.html) · Extension `VK_KHR_copy_commands2`
 #![doc(alias = "VK_KHR_copy_commands2")]
+use crate::vk;
+use core::ffi::CStr;
+use core::ffi::c_void;
 ///Provided by [VK_KHR_copy_commands2](crate::khr::copy_commands2)
-impl crate::vk::StructureType {
+impl vk::StructureType {
     pub const COPY_BUFFER_INFO_2_KHR: Self = Self::COPY_BUFFER_INFO_2;
     pub const COPY_IMAGE_INFO_2_KHR: Self = Self::COPY_IMAGE_INFO_2;
     pub const COPY_BUFFER_TO_IMAGE_INFO_2_KHR: Self = Self::COPY_BUFFER_TO_IMAGE_INFO_2;
@@ -16,31 +19,29 @@ impl crate::vk::StructureType {
     pub const BUFFER_IMAGE_COPY_2_KHR: Self = Self::BUFFER_IMAGE_COPY_2;
     pub const IMAGE_RESOLVE_2_KHR: Self = Self::IMAGE_RESOLVE_2;
 }
+pub const SPEC_VERSION: u32 = 1;
+pub const NAME: &CStr = c"VK_KHR_copy_commands2";
 #[derive(Clone)]
 pub struct DeviceFn {
-    pub cmd_copy_buffer2: crate::vk::PFN_vkCmdCopyBuffer2KHR,
-    pub cmd_copy_image2: crate::vk::PFN_vkCmdCopyImage2KHR,
-    pub cmd_blit_image2: crate::vk::PFN_vkCmdBlitImage2KHR,
-    pub cmd_copy_buffer_to_image2: crate::vk::PFN_vkCmdCopyBufferToImage2KHR,
-    pub cmd_copy_image_to_buffer2: crate::vk::PFN_vkCmdCopyImageToBuffer2KHR,
-    pub cmd_resolve_image2: crate::vk::PFN_vkCmdResolveImage2KHR,
+    pub cmd_copy_buffer2: vk::PFN_vkCmdCopyBuffer2KHR,
+    pub cmd_copy_image2: vk::PFN_vkCmdCopyImage2KHR,
+    pub cmd_blit_image2: vk::PFN_vkCmdBlitImage2KHR,
+    pub cmd_copy_buffer_to_image2: vk::PFN_vkCmdCopyBufferToImage2KHR,
+    pub cmd_copy_image_to_buffer2: vk::PFN_vkCmdCopyImageToBuffer2KHR,
+    pub cmd_resolve_image2: vk::PFN_vkCmdResolveImage2KHR,
 }
 unsafe impl Send for DeviceFn {}
 unsafe impl Sync for DeviceFn {}
 impl DeviceFn {
-    pub fn load<F: FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void>(
-        mut f: F,
-    ) -> Self {
+    pub fn load<F: FnMut(&CStr) -> *const c_void>(mut f: F) -> Self {
         Self::load_erased(&mut f)
     }
-    fn load_erased(
-        _f: &mut dyn FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void,
-    ) -> Self {
+    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const c_void) -> Self {
         Self {
             cmd_copy_buffer2: unsafe {
                 unsafe extern "system" fn cmd_copy_buffer2(
-                    _: crate::vk::CommandBuffer,
-                    _: *const crate::vk::CopyBufferInfo2<'_>,
+                    _: vk::CommandBuffer,
+                    _: *const vk::CopyBufferInfo2<'_>,
                 ) {
                     panic!("unable to load vkCmdCopyBuffer2KHR")
                 }
@@ -53,8 +54,8 @@ impl DeviceFn {
             },
             cmd_copy_image2: unsafe {
                 unsafe extern "system" fn cmd_copy_image2(
-                    _: crate::vk::CommandBuffer,
-                    _: *const crate::vk::CopyImageInfo2<'_>,
+                    _: vk::CommandBuffer,
+                    _: *const vk::CopyImageInfo2<'_>,
                 ) {
                     panic!("unable to load vkCmdCopyImage2KHR")
                 }
@@ -63,8 +64,8 @@ impl DeviceFn {
             },
             cmd_blit_image2: unsafe {
                 unsafe extern "system" fn cmd_blit_image2(
-                    _: crate::vk::CommandBuffer,
-                    _: *const crate::vk::BlitImageInfo2<'_>,
+                    _: vk::CommandBuffer,
+                    _: *const vk::BlitImageInfo2<'_>,
                 ) {
                     panic!("unable to load vkCmdBlitImage2KHR")
                 }
@@ -73,8 +74,8 @@ impl DeviceFn {
             },
             cmd_copy_buffer_to_image2: unsafe {
                 unsafe extern "system" fn cmd_copy_buffer_to_image2(
-                    _: crate::vk::CommandBuffer,
-                    _: *const crate::vk::CopyBufferToImageInfo2<'_>,
+                    _: vk::CommandBuffer,
+                    _: *const vk::CopyBufferToImageInfo2<'_>,
                 ) {
                     panic!("unable to load vkCmdCopyBufferToImage2KHR")
                 }
@@ -87,8 +88,8 @@ impl DeviceFn {
             },
             cmd_copy_image_to_buffer2: unsafe {
                 unsafe extern "system" fn cmd_copy_image_to_buffer2(
-                    _: crate::vk::CommandBuffer,
-                    _: *const crate::vk::CopyImageToBufferInfo2<'_>,
+                    _: vk::CommandBuffer,
+                    _: *const vk::CopyImageToBufferInfo2<'_>,
                 ) {
                     panic!("unable to load vkCmdCopyImageToBuffer2KHR")
                 }
@@ -101,8 +102,8 @@ impl DeviceFn {
             },
             cmd_resolve_image2: unsafe {
                 unsafe extern "system" fn cmd_resolve_image2(
-                    _: crate::vk::CommandBuffer,
-                    _: *const crate::vk::ResolveImageInfo2<'_>,
+                    _: vk::CommandBuffer,
+                    _: *const vk::ResolveImageInfo2<'_>,
                 ) {
                     panic!("unable to load vkCmdResolveImage2KHR")
                 }
@@ -141,8 +142,8 @@ impl Device {
     #[inline]
     pub unsafe fn cmd_copy_buffer2(
         &self,
-        command_buffer: crate::vk::CommandBuffer,
-        copy_buffer_info: &crate::vk::CopyBufferInfo2<'_>,
+        command_buffer: vk::CommandBuffer,
+        copy_buffer_info: &vk::CopyBufferInfo2<'_>,
     ) {
         (self.fp.cmd_copy_buffer2)(command_buffer, copy_buffer_info)
     }
@@ -150,8 +151,8 @@ impl Device {
     #[inline]
     pub unsafe fn cmd_copy_image2(
         &self,
-        command_buffer: crate::vk::CommandBuffer,
-        copy_image_info: &crate::vk::CopyImageInfo2<'_>,
+        command_buffer: vk::CommandBuffer,
+        copy_image_info: &vk::CopyImageInfo2<'_>,
     ) {
         (self.fp.cmd_copy_image2)(command_buffer, copy_image_info)
     }
@@ -159,8 +160,8 @@ impl Device {
     #[inline]
     pub unsafe fn cmd_blit_image2(
         &self,
-        command_buffer: crate::vk::CommandBuffer,
-        blit_image_info: &crate::vk::BlitImageInfo2<'_>,
+        command_buffer: vk::CommandBuffer,
+        blit_image_info: &vk::BlitImageInfo2<'_>,
     ) {
         (self.fp.cmd_blit_image2)(command_buffer, blit_image_info)
     }
@@ -168,8 +169,8 @@ impl Device {
     #[inline]
     pub unsafe fn cmd_copy_buffer_to_image2(
         &self,
-        command_buffer: crate::vk::CommandBuffer,
-        copy_buffer_to_image_info: &crate::vk::CopyBufferToImageInfo2<'_>,
+        command_buffer: vk::CommandBuffer,
+        copy_buffer_to_image_info: &vk::CopyBufferToImageInfo2<'_>,
     ) {
         (self.fp.cmd_copy_buffer_to_image2)(command_buffer, copy_buffer_to_image_info)
     }
@@ -177,8 +178,8 @@ impl Device {
     #[inline]
     pub unsafe fn cmd_copy_image_to_buffer2(
         &self,
-        command_buffer: crate::vk::CommandBuffer,
-        copy_image_to_buffer_info: &crate::vk::CopyImageToBufferInfo2<'_>,
+        command_buffer: vk::CommandBuffer,
+        copy_image_to_buffer_info: &vk::CopyImageToBufferInfo2<'_>,
     ) {
         (self.fp.cmd_copy_image_to_buffer2)(command_buffer, copy_image_to_buffer_info)
     }
@@ -186,31 +187,30 @@ impl Device {
     #[inline]
     pub unsafe fn cmd_resolve_image2(
         &self,
-        command_buffer: crate::vk::CommandBuffer,
-        resolve_image_info: &crate::vk::ResolveImageInfo2<'_>,
+        command_buffer: vk::CommandBuffer,
+        resolve_image_info: &vk::ResolveImageInfo2<'_>,
     ) {
         (self.fp.cmd_resolve_image2)(command_buffer, resolve_image_info)
     }
 }
-pub const SPEC_VERSION: u32 = 1;
-pub const NAME: &core::ffi::CStr = c"VK_KHR_copy_commands2";
 pub(crate) mod items {
-    pub type BufferCopy2KHR<'a> = crate::vk::BufferCopy2<'a>;
-    pub type ImageCopy2KHR<'a> = crate::vk::ImageCopy2<'a>;
-    pub type ImageBlit2KHR<'a> = crate::vk::ImageBlit2<'a>;
-    pub type BufferImageCopy2KHR<'a> = crate::vk::BufferImageCopy2<'a>;
-    pub type ImageResolve2KHR<'a> = crate::vk::ImageResolve2<'a>;
-    pub type CopyBufferInfo2KHR<'a> = crate::vk::CopyBufferInfo2<'a>;
-    pub type CopyImageInfo2KHR<'a> = crate::vk::CopyImageInfo2<'a>;
-    pub type BlitImageInfo2KHR<'a> = crate::vk::BlitImageInfo2<'a>;
-    pub type CopyBufferToImageInfo2KHR<'a> = crate::vk::CopyBufferToImageInfo2<'a>;
-    pub type CopyImageToBufferInfo2KHR<'a> = crate::vk::CopyImageToBufferInfo2<'a>;
-    pub type ResolveImageInfo2KHR<'a> = crate::vk::ResolveImageInfo2<'a>;
-    pub type PFN_vkCmdCopyBuffer2KHR = crate::vk::PFN_vkCmdCopyBuffer2;
-    pub type PFN_vkCmdCopyImage2KHR = crate::vk::PFN_vkCmdCopyImage2;
-    pub type PFN_vkCmdBlitImage2KHR = crate::vk::PFN_vkCmdBlitImage2;
-    pub type PFN_vkCmdCopyBufferToImage2KHR = crate::vk::PFN_vkCmdCopyBufferToImage2;
-    pub type PFN_vkCmdCopyImageToBuffer2KHR = crate::vk::PFN_vkCmdCopyImageToBuffer2;
-    pub type PFN_vkCmdResolveImage2KHR = crate::vk::PFN_vkCmdResolveImage2;
+    use crate::vk;
+    pub type BufferCopy2KHR<'a> = vk::BufferCopy2<'a>;
+    pub type ImageCopy2KHR<'a> = vk::ImageCopy2<'a>;
+    pub type ImageBlit2KHR<'a> = vk::ImageBlit2<'a>;
+    pub type BufferImageCopy2KHR<'a> = vk::BufferImageCopy2<'a>;
+    pub type ImageResolve2KHR<'a> = vk::ImageResolve2<'a>;
+    pub type CopyBufferInfo2KHR<'a> = vk::CopyBufferInfo2<'a>;
+    pub type CopyImageInfo2KHR<'a> = vk::CopyImageInfo2<'a>;
+    pub type BlitImageInfo2KHR<'a> = vk::BlitImageInfo2<'a>;
+    pub type CopyBufferToImageInfo2KHR<'a> = vk::CopyBufferToImageInfo2<'a>;
+    pub type CopyImageToBufferInfo2KHR<'a> = vk::CopyImageToBufferInfo2<'a>;
+    pub type ResolveImageInfo2KHR<'a> = vk::ResolveImageInfo2<'a>;
+    pub type PFN_vkCmdCopyBuffer2KHR = vk::PFN_vkCmdCopyBuffer2;
+    pub type PFN_vkCmdCopyImage2KHR = vk::PFN_vkCmdCopyImage2;
+    pub type PFN_vkCmdBlitImage2KHR = vk::PFN_vkCmdBlitImage2;
+    pub type PFN_vkCmdCopyBufferToImage2KHR = vk::PFN_vkCmdCopyBufferToImage2;
+    pub type PFN_vkCmdCopyImageToBuffer2KHR = vk::PFN_vkCmdCopyImageToBuffer2;
+    pub type PFN_vkCmdResolveImage2KHR = vk::PFN_vkCmdResolveImage2;
 }
 pub use items::*;

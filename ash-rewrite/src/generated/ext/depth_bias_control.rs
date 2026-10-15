@@ -2,8 +2,11 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_depth_bias_control.html) · Extension `VK_EXT_depth_bias_control`
 #![doc(alias = "VK_EXT_depth_bias_control")]
+use crate::vk;
+use core::ffi::CStr;
+use core::ffi::c_void;
 ///Provided by [VK_EXT_depth_bias_control](crate::ext::depth_bias_control)
-impl crate::vk::StructureType {
+impl vk::StructureType {
     pub const PHYSICAL_DEVICE_DEPTH_BIAS_CONTROL_FEATURES_EXT: Self = Self(1000283000);
     pub const DEPTH_BIAS_INFO_EXT: Self = Self(1000283001);
     pub const DEPTH_BIAS_REPRESENTATION_INFO_EXT: Self = Self(1000283002);
@@ -14,26 +17,24 @@ impl DepthBiasRepresentationEXT {
     pub const LEAST_REPRESENTABLE_VALUE_FORCE_UNORM: Self = Self(1);
     pub const FLOAT: Self = Self(2);
 }
+pub const SPEC_VERSION: u32 = 1;
+pub const NAME: &CStr = c"VK_EXT_depth_bias_control";
 #[derive(Clone)]
 pub struct DeviceFn {
-    pub cmd_set_depth_bias2: crate::vk::PFN_vkCmdSetDepthBias2EXT,
+    pub cmd_set_depth_bias2: vk::PFN_vkCmdSetDepthBias2EXT,
 }
 unsafe impl Send for DeviceFn {}
 unsafe impl Sync for DeviceFn {}
 impl DeviceFn {
-    pub fn load<F: FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void>(
-        mut f: F,
-    ) -> Self {
+    pub fn load<F: FnMut(&CStr) -> *const c_void>(mut f: F) -> Self {
         Self::load_erased(&mut f)
     }
-    fn load_erased(
-        _f: &mut dyn FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void,
-    ) -> Self {
+    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const c_void) -> Self {
         Self {
             cmd_set_depth_bias2: unsafe {
                 unsafe extern "system" fn cmd_set_depth_bias2(
-                    _: crate::vk::CommandBuffer,
-                    _: *const crate::vk::DepthBiasInfoEXT<'_>,
+                    _: vk::CommandBuffer,
+                    _: *const vk::DepthBiasInfoEXT<'_>,
                 ) {
                     panic!("unable to load vkCmdSetDepthBias2EXT")
                 }
@@ -72,30 +73,30 @@ impl Device {
     #[inline]
     pub unsafe fn cmd_set_depth_bias2(
         &self,
-        command_buffer: crate::vk::CommandBuffer,
-        depth_bias_info: &crate::vk::DepthBiasInfoEXT<'_>,
+        command_buffer: vk::CommandBuffer,
+        depth_bias_info: &vk::DepthBiasInfoEXT<'_>,
     ) {
         (self.fp.cmd_set_depth_bias2)(command_buffer, depth_bias_info)
     }
 }
-pub const SPEC_VERSION: u32 = 1;
-pub const NAME: &core::ffi::CStr = c"VK_EXT_depth_bias_control";
 pub(crate) mod items {
+    use core::marker::PhantomData;
+    use crate::vk;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct DepthBiasInfoEXT<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *const core::ffi::c_void,
         pub depth_bias_constant_factor: core::ffi::c_float,
         pub depth_bias_clamp: core::ffi::c_float,
         pub depth_bias_slope_factor: core::ffi::c_float,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for DepthBiasInfoEXT<'_> {}
     unsafe impl Sync for DepthBiasInfoEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for DepthBiasInfoEXT<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::DEPTH_BIAS_INFO_EXT;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::DEPTH_BIAS_INFO_EXT;
     }
     impl<'a> Default for DepthBiasInfoEXT<'a> {
         fn default() -> Self {
@@ -105,7 +106,7 @@ pub(crate) mod items {
                 depth_bias_constant_factor: Default::default(),
                 depth_bias_clamp: Default::default(),
                 depth_bias_slope_factor: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
@@ -133,20 +134,20 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct DepthBiasRepresentationInfoEXT<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *const core::ffi::c_void,
-        pub depth_bias_representation: crate::vk::DepthBiasRepresentationEXT,
-        pub depth_bias_exact: crate::vk::Bool32,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub depth_bias_representation: vk::DepthBiasRepresentationEXT,
+        pub depth_bias_exact: vk::Bool32,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for DepthBiasRepresentationInfoEXT<'_> {}
     unsafe impl Sync for DepthBiasRepresentationInfoEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for DepthBiasRepresentationInfoEXT<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::DEPTH_BIAS_REPRESENTATION_INFO_EXT;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::DEPTH_BIAS_REPRESENTATION_INFO_EXT;
     }
-    unsafe impl<'a> crate::Extends<crate::vk::DepthBiasInfoEXT<'_>>
+    unsafe impl<'a> crate::Extends<vk::DepthBiasInfoEXT<'_>>
     for DepthBiasRepresentationInfoEXT<'a> {}
-    unsafe impl<'a> crate::Extends<crate::vk::PipelineRasterizationStateCreateInfo<'_>>
+    unsafe impl<'a> crate::Extends<vk::PipelineRasterizationStateCreateInfo<'_>>
     for DepthBiasRepresentationInfoEXT<'a> {}
     impl<'a> Default for DepthBiasRepresentationInfoEXT<'a> {
         fn default() -> Self {
@@ -155,14 +156,14 @@ pub(crate) mod items {
                 p_next: Default::default(),
                 depth_bias_representation: Default::default(),
                 depth_bias_exact: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
     impl<'a> DepthBiasRepresentationInfoEXT<'a> {
         pub fn depth_bias_representation(
             mut self,
-            depth_bias_representation: crate::vk::DepthBiasRepresentationEXT,
+            depth_bias_representation: vk::DepthBiasRepresentationEXT,
         ) -> Self {
             self.depth_bias_representation = depth_bias_representation;
             self
@@ -176,23 +177,23 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceDepthBiasControlFeaturesEXT<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
-        pub depth_bias_control: crate::vk::Bool32,
-        pub least_representable_value_force_unorm_representation: crate::vk::Bool32,
-        pub float_representation: crate::vk::Bool32,
-        pub depth_bias_exact: crate::vk::Bool32,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub depth_bias_control: vk::Bool32,
+        pub least_representable_value_force_unorm_representation: vk::Bool32,
+        pub float_representation: vk::Bool32,
+        pub depth_bias_exact: vk::Bool32,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for PhysicalDeviceDepthBiasControlFeaturesEXT<'_> {}
     unsafe impl Sync for PhysicalDeviceDepthBiasControlFeaturesEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceDepthBiasControlFeaturesEXT<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_DEPTH_BIAS_CONTROL_FEATURES_EXT;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PHYSICAL_DEVICE_DEPTH_BIAS_CONTROL_FEATURES_EXT;
     }
-    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+    unsafe impl<'a> crate::Extends<vk::PhysicalDeviceFeatures2<'_>>
     for PhysicalDeviceDepthBiasControlFeaturesEXT<'a> {}
-    unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+    unsafe impl<'a> crate::Extends<vk::DeviceCreateInfo<'_>>
     for PhysicalDeviceDepthBiasControlFeaturesEXT<'a> {}
     impl<'a> Default for PhysicalDeviceDepthBiasControlFeaturesEXT<'a> {
         fn default() -> Self {
@@ -203,7 +204,7 @@ pub(crate) mod items {
                 least_representable_value_force_unorm_representation: Default::default(),
                 float_representation: Default::default(),
                 depth_bias_exact: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
@@ -262,8 +263,8 @@ pub(crate) mod items {
         }
     }
     pub type PFN_vkCmdSetDepthBias2EXT = unsafe extern "system" fn(
-        command_buffer: crate::vk::CommandBuffer,
-        p_depth_bias_info: *const crate::vk::DepthBiasInfoEXT<'_>,
+        command_buffer: vk::CommandBuffer,
+        p_depth_bias_info: *const vk::DepthBiasInfoEXT<'_>,
     );
 }
 pub use items::*;

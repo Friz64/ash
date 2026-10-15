@@ -2,31 +2,35 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_NV_dedicated_allocation.html) · Extension `VK_NV_dedicated_allocation`
 #![doc(alias = "VK_NV_dedicated_allocation")]
+use crate::vk;
+use core::ffi::CStr;
 ///Provided by [VK_NV_dedicated_allocation](crate::nv::dedicated_allocation)
-impl crate::vk::StructureType {
+impl vk::StructureType {
     pub const DEDICATED_ALLOCATION_IMAGE_CREATE_INFO_NV: Self = Self(1000026000);
     pub const DEDICATED_ALLOCATION_BUFFER_CREATE_INFO_NV: Self = Self(1000026001);
     pub const DEDICATED_ALLOCATION_MEMORY_ALLOCATE_INFO_NV: Self = Self(1000026002);
 }
 pub const SPEC_VERSION: u32 = 1;
-pub const NAME: &core::ffi::CStr = c"VK_NV_dedicated_allocation";
+pub const NAME: &CStr = c"VK_NV_dedicated_allocation";
 pub(crate) mod items {
+    use core::marker::PhantomData;
+    use crate::vk;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct DedicatedAllocationImageCreateInfoNV<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *const core::ffi::c_void,
-        pub dedicated_allocation: crate::vk::Bool32,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub dedicated_allocation: vk::Bool32,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for DedicatedAllocationImageCreateInfoNV<'_> {}
     unsafe impl Sync for DedicatedAllocationImageCreateInfoNV<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for DedicatedAllocationImageCreateInfoNV<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::DEDICATED_ALLOCATION_IMAGE_CREATE_INFO_NV;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::DEDICATED_ALLOCATION_IMAGE_CREATE_INFO_NV;
     }
-    unsafe impl<'a> crate::Extends<crate::vk::ImageCreateInfo<'_>>
+    unsafe impl<'a> crate::Extends<vk::ImageCreateInfo<'_>>
     for DedicatedAllocationImageCreateInfoNV<'a> {}
     impl<'a> Default for DedicatedAllocationImageCreateInfoNV<'a> {
         fn default() -> Self {
@@ -34,7 +38,7 @@ pub(crate) mod items {
                 s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
                 p_next: Default::default(),
                 dedicated_allocation: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
@@ -48,18 +52,18 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct DedicatedAllocationBufferCreateInfoNV<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *const core::ffi::c_void,
-        pub dedicated_allocation: crate::vk::Bool32,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub dedicated_allocation: vk::Bool32,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for DedicatedAllocationBufferCreateInfoNV<'_> {}
     unsafe impl Sync for DedicatedAllocationBufferCreateInfoNV<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for DedicatedAllocationBufferCreateInfoNV<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::DEDICATED_ALLOCATION_BUFFER_CREATE_INFO_NV;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::DEDICATED_ALLOCATION_BUFFER_CREATE_INFO_NV;
     }
-    unsafe impl<'a> crate::Extends<crate::vk::BufferCreateInfo<'_>>
+    unsafe impl<'a> crate::Extends<vk::BufferCreateInfo<'_>>
     for DedicatedAllocationBufferCreateInfoNV<'a> {}
     impl<'a> Default for DedicatedAllocationBufferCreateInfoNV<'a> {
         fn default() -> Self {
@@ -67,7 +71,7 @@ pub(crate) mod items {
                 s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
                 p_next: Default::default(),
                 dedicated_allocation: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
@@ -81,19 +85,19 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct DedicatedAllocationMemoryAllocateInfoNV<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *const core::ffi::c_void,
-        pub image: crate::vk::Image,
-        pub buffer: crate::vk::Buffer,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub image: vk::Image,
+        pub buffer: vk::Buffer,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for DedicatedAllocationMemoryAllocateInfoNV<'_> {}
     unsafe impl Sync for DedicatedAllocationMemoryAllocateInfoNV<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for DedicatedAllocationMemoryAllocateInfoNV<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::DEDICATED_ALLOCATION_MEMORY_ALLOCATE_INFO_NV;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::DEDICATED_ALLOCATION_MEMORY_ALLOCATE_INFO_NV;
     }
-    unsafe impl<'a> crate::Extends<crate::vk::MemoryAllocateInfo<'_>>
+    unsafe impl<'a> crate::Extends<vk::MemoryAllocateInfo<'_>>
     for DedicatedAllocationMemoryAllocateInfoNV<'a> {}
     impl<'a> Default for DedicatedAllocationMemoryAllocateInfoNV<'a> {
         fn default() -> Self {
@@ -102,16 +106,16 @@ pub(crate) mod items {
                 p_next: Default::default(),
                 image: Default::default(),
                 buffer: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
     impl<'a> DedicatedAllocationMemoryAllocateInfoNV<'a> {
-        pub fn image(mut self, image: crate::vk::Image) -> Self {
+        pub fn image(mut self, image: vk::Image) -> Self {
             self.image = image;
             self
         }
-        pub fn buffer(mut self, buffer: crate::vk::Buffer) -> Self {
+        pub fn buffer(mut self, buffer: vk::Buffer) -> Self {
             self.buffer = buffer;
             self
         }

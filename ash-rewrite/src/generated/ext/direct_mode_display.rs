@@ -2,29 +2,29 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_direct_mode_display.html) · Extension `VK_EXT_direct_mode_display`
 #![doc(alias = "VK_EXT_direct_mode_display")]
+use core::ffi::CStr;
+use crate::vk;
+use crate::VkResult;
+use core::ffi::c_void;
 pub const SPEC_VERSION: u32 = 1;
-pub const NAME: &core::ffi::CStr = c"VK_EXT_direct_mode_display";
+pub const NAME: &CStr = c"VK_EXT_direct_mode_display";
 #[derive(Clone)]
 pub struct InstanceFn {
-    pub release_display: crate::vk::PFN_vkReleaseDisplayEXT,
+    pub release_display: vk::PFN_vkReleaseDisplayEXT,
 }
 unsafe impl Send for InstanceFn {}
 unsafe impl Sync for InstanceFn {}
 impl InstanceFn {
-    pub fn load<F: FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void>(
-        mut f: F,
-    ) -> Self {
+    pub fn load<F: FnMut(&CStr) -> *const c_void>(mut f: F) -> Self {
         Self::load_erased(&mut f)
     }
-    fn load_erased(
-        _f: &mut dyn FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void,
-    ) -> Self {
+    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const c_void) -> Self {
         Self {
             release_display: unsafe {
                 unsafe extern "system" fn release_display(
-                    _: crate::vk::PhysicalDevice,
-                    _: crate::vk::DisplayKHR,
-                ) -> crate::vk::Result {
+                    _: vk::PhysicalDevice,
+                    _: vk::DisplayKHR,
+                ) -> vk::Result {
                     panic!("unable to load vkReleaseDisplayEXT")
                 }
                 let val = _f(c"vkReleaseDisplayEXT");
@@ -58,16 +58,17 @@ impl Instance {
     #[inline]
     pub unsafe fn release_display(
         &self,
-        physical_device: crate::vk::PhysicalDevice,
-        display: crate::vk::DisplayKHR,
-    ) -> crate::VkResult<()> {
+        physical_device: vk::PhysicalDevice,
+        display: vk::DisplayKHR,
+    ) -> VkResult<()> {
         (self.fp.release_display)(physical_device, display).result()
     }
 }
 pub(crate) mod items {
+    use crate::vk;
     pub type PFN_vkReleaseDisplayEXT = unsafe extern "system" fn(
-        physical_device: crate::vk::PhysicalDevice,
-        display: crate::vk::DisplayKHR,
-    ) -> crate::vk::Result;
+        physical_device: vk::PhysicalDevice,
+        display: vk::DisplayKHR,
+    ) -> vk::Result;
 }
 pub use items::*;

@@ -2,32 +2,31 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_draw_indirect_count.html) · Extension `VK_KHR_draw_indirect_count`
 #![doc(alias = "VK_KHR_draw_indirect_count")]
+use core::ffi::CStr;
+use crate::vk;
+use core::ffi::c_void;
 pub const SPEC_VERSION: u32 = 1;
-pub const NAME: &core::ffi::CStr = c"VK_KHR_draw_indirect_count";
+pub const NAME: &CStr = c"VK_KHR_draw_indirect_count";
 #[derive(Clone)]
 pub struct DeviceFn {
-    pub cmd_draw_indirect_count: crate::vk::PFN_vkCmdDrawIndirectCountKHR,
-    pub cmd_draw_indexed_indirect_count: crate::vk::PFN_vkCmdDrawIndexedIndirectCountKHR,
+    pub cmd_draw_indirect_count: vk::PFN_vkCmdDrawIndirectCountKHR,
+    pub cmd_draw_indexed_indirect_count: vk::PFN_vkCmdDrawIndexedIndirectCountKHR,
 }
 unsafe impl Send for DeviceFn {}
 unsafe impl Sync for DeviceFn {}
 impl DeviceFn {
-    pub fn load<F: FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void>(
-        mut f: F,
-    ) -> Self {
+    pub fn load<F: FnMut(&CStr) -> *const c_void>(mut f: F) -> Self {
         Self::load_erased(&mut f)
     }
-    fn load_erased(
-        _f: &mut dyn FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void,
-    ) -> Self {
+    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const c_void) -> Self {
         Self {
             cmd_draw_indirect_count: unsafe {
                 unsafe extern "system" fn cmd_draw_indirect_count(
-                    _: crate::vk::CommandBuffer,
-                    _: crate::vk::Buffer,
-                    _: crate::vk::DeviceSize,
-                    _: crate::vk::Buffer,
-                    _: crate::vk::DeviceSize,
+                    _: vk::CommandBuffer,
+                    _: vk::Buffer,
+                    _: vk::DeviceSize,
+                    _: vk::Buffer,
+                    _: vk::DeviceSize,
                     _: u32,
                     _: u32,
                 ) {
@@ -42,11 +41,11 @@ impl DeviceFn {
             },
             cmd_draw_indexed_indirect_count: unsafe {
                 unsafe extern "system" fn cmd_draw_indexed_indirect_count(
-                    _: crate::vk::CommandBuffer,
-                    _: crate::vk::Buffer,
-                    _: crate::vk::DeviceSize,
-                    _: crate::vk::Buffer,
-                    _: crate::vk::DeviceSize,
+                    _: vk::CommandBuffer,
+                    _: vk::Buffer,
+                    _: vk::DeviceSize,
+                    _: vk::Buffer,
+                    _: vk::DeviceSize,
                     _: u32,
                     _: u32,
                 ) {
@@ -87,11 +86,11 @@ impl Device {
     #[inline]
     pub unsafe fn cmd_draw_indirect_count(
         &self,
-        command_buffer: crate::vk::CommandBuffer,
-        buffer: crate::vk::Buffer,
-        offset: crate::vk::DeviceSize,
-        count_buffer: crate::vk::Buffer,
-        count_buffer_offset: crate::vk::DeviceSize,
+        command_buffer: vk::CommandBuffer,
+        buffer: vk::Buffer,
+        offset: vk::DeviceSize,
+        count_buffer: vk::Buffer,
+        count_buffer_offset: vk::DeviceSize,
         max_draw_count: u32,
         stride: u32,
     ) {
@@ -111,11 +110,11 @@ impl Device {
     #[inline]
     pub unsafe fn cmd_draw_indexed_indirect_count(
         &self,
-        command_buffer: crate::vk::CommandBuffer,
-        buffer: crate::vk::Buffer,
-        offset: crate::vk::DeviceSize,
-        count_buffer: crate::vk::Buffer,
-        count_buffer_offset: crate::vk::DeviceSize,
+        command_buffer: vk::CommandBuffer,
+        buffer: vk::Buffer,
+        offset: vk::DeviceSize,
+        count_buffer: vk::Buffer,
+        count_buffer_offset: vk::DeviceSize,
         max_draw_count: u32,
         stride: u32,
     ) {
@@ -133,7 +132,8 @@ impl Device {
     }
 }
 pub(crate) mod items {
-    pub type PFN_vkCmdDrawIndirectCountKHR = crate::vk::PFN_vkCmdDrawIndirectCount;
-    pub type PFN_vkCmdDrawIndexedIndirectCountKHR = crate::vk::PFN_vkCmdDrawIndexedIndirectCount;
+    use crate::vk;
+    pub type PFN_vkCmdDrawIndirectCountKHR = vk::PFN_vkCmdDrawIndirectCount;
+    pub type PFN_vkCmdDrawIndexedIndirectCountKHR = vk::PFN_vkCmdDrawIndexedIndirectCount;
 }
 pub use items::*;

@@ -2,8 +2,12 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_swapchain_maintenance1.html) · Extension `VK_KHR_swapchain_maintenance1`
 #![doc(alias = "VK_KHR_swapchain_maintenance1")]
+use crate::vk;
+use core::ffi::CStr;
+use crate::VkResult;
+use core::ffi::c_void;
 ///Provided by [VK_KHR_swapchain_maintenance1](crate::khr::swapchain_maintenance1)
-impl crate::vk::StructureType {
+impl vk::StructureType {
     pub const PHYSICAL_DEVICE_SWAPCHAIN_MAINTENANCE_1_FEATURES_KHR: Self = Self(
         1000275000,
     );
@@ -13,37 +17,35 @@ impl crate::vk::StructureType {
     pub const SWAPCHAIN_PRESENT_SCALING_CREATE_INFO_KHR: Self = Self(1000275004);
     pub const RELEASE_SWAPCHAIN_IMAGES_INFO_KHR: Self = Self(1000275005);
 }
-///Provided by [VK_KHR_swapchain_maintenance1](crate::khr::swapchain_maintenance1)
-impl crate::vk::SwapchainCreateFlagsKHR {
+///Provided by [VK_KHR_swapchain](crate::khr::swapchain)
+impl vk::SwapchainCreateFlagsKHR {
     pub const DEFERRED_MEMORY_ALLOCATION: Self = Self(
-        crate::vk::SwapchainCreateFlagBitsKHR::DEFERRED_MEMORY_ALLOCATION.0,
+        vk::SwapchainCreateFlagBitsKHR::DEFERRED_MEMORY_ALLOCATION.0,
     );
 }
-///Provided by [VK_KHR_swapchain_maintenance1](crate::khr::swapchain_maintenance1)
-impl crate::vk::SwapchainCreateFlagBitsKHR {
+///Provided by [VK_KHR_swapchain](crate::khr::swapchain)
+impl vk::SwapchainCreateFlagBitsKHR {
     pub const DEFERRED_MEMORY_ALLOCATION: Self = Self(1 << 3);
 }
+pub const SPEC_VERSION: u32 = 1;
+pub const NAME: &CStr = c"VK_KHR_swapchain_maintenance1";
 #[derive(Clone)]
 pub struct DeviceFn {
-    pub release_swapchain_images: crate::vk::PFN_vkReleaseSwapchainImagesKHR,
+    pub release_swapchain_images: vk::PFN_vkReleaseSwapchainImagesKHR,
 }
 unsafe impl Send for DeviceFn {}
 unsafe impl Sync for DeviceFn {}
 impl DeviceFn {
-    pub fn load<F: FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void>(
-        mut f: F,
-    ) -> Self {
+    pub fn load<F: FnMut(&CStr) -> *const c_void>(mut f: F) -> Self {
         Self::load_erased(&mut f)
     }
-    fn load_erased(
-        _f: &mut dyn FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void,
-    ) -> Self {
+    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const c_void) -> Self {
         Self {
             release_swapchain_images: unsafe {
                 unsafe extern "system" fn release_swapchain_images(
-                    _: crate::vk::Device,
-                    _: *const crate::vk::ReleaseSwapchainImagesInfoKHR<'_>,
-                ) -> crate::vk::Result {
+                    _: vk::Device,
+                    _: *const vk::ReleaseSwapchainImagesInfoKHR<'_>,
+                ) -> vk::Result {
                     panic!("unable to load vkReleaseSwapchainImagesKHR")
                 }
                 let val = _f(c"vkReleaseSwapchainImagesKHR");
@@ -81,32 +83,32 @@ impl Device {
     #[inline]
     pub unsafe fn release_swapchain_images(
         &self,
-        release_info: &crate::vk::ReleaseSwapchainImagesInfoKHR<'_>,
-    ) -> crate::VkResult<()> {
+        release_info: &vk::ReleaseSwapchainImagesInfoKHR<'_>,
+    ) -> VkResult<()> {
         (self.fp.release_swapchain_images)(self.handle, release_info).result()
     }
 }
-pub const SPEC_VERSION: u32 = 1;
-pub const NAME: &core::ffi::CStr = c"VK_KHR_swapchain_maintenance1";
 pub(crate) mod items {
+    use core::marker::PhantomData;
+    use crate::vk;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceSwapchainMaintenance1FeaturesKHR<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
-        pub swapchain_maintenance1: crate::vk::Bool32,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub swapchain_maintenance1: vk::Bool32,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for PhysicalDeviceSwapchainMaintenance1FeaturesKHR<'_> {}
     unsafe impl Sync for PhysicalDeviceSwapchainMaintenance1FeaturesKHR<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceSwapchainMaintenance1FeaturesKHR<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_SWAPCHAIN_MAINTENANCE_1_FEATURES_KHR;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PHYSICAL_DEVICE_SWAPCHAIN_MAINTENANCE_1_FEATURES_KHR;
     }
-    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+    unsafe impl<'a> crate::Extends<vk::PhysicalDeviceFeatures2<'_>>
     for PhysicalDeviceSwapchainMaintenance1FeaturesKHR<'a> {}
-    unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+    unsafe impl<'a> crate::Extends<vk::DeviceCreateInfo<'_>>
     for PhysicalDeviceSwapchainMaintenance1FeaturesKHR<'a> {}
     impl<'a> Default for PhysicalDeviceSwapchainMaintenance1FeaturesKHR<'a> {
         fn default() -> Self {
@@ -114,7 +116,7 @@ pub(crate) mod items {
                 s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
                 p_next: Default::default(),
                 swapchain_maintenance1: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
@@ -128,18 +130,18 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct SwapchainPresentFenceInfoKHR<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *const core::ffi::c_void,
         pub swapchain_count: u32,
-        pub p_fences: *const crate::vk::Fence,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub p_fences: *const vk::Fence,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for SwapchainPresentFenceInfoKHR<'_> {}
     unsafe impl Sync for SwapchainPresentFenceInfoKHR<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for SwapchainPresentFenceInfoKHR<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::SWAPCHAIN_PRESENT_FENCE_INFO_KHR;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::SWAPCHAIN_PRESENT_FENCE_INFO_KHR;
     }
-    unsafe impl<'a> crate::Extends<crate::vk::PresentInfoKHR<'_>>
+    unsafe impl<'a> crate::Extends<vk::PresentInfoKHR<'_>>
     for SwapchainPresentFenceInfoKHR<'a> {}
     impl<'a> Default for SwapchainPresentFenceInfoKHR<'a> {
         fn default() -> Self {
@@ -148,12 +150,12 @@ pub(crate) mod items {
                 p_next: Default::default(),
                 swapchain_count: Default::default(),
                 p_fences: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
     impl<'a> SwapchainPresentFenceInfoKHR<'a> {
-        pub fn fences(mut self, fences: &'a [crate::vk::Fence]) -> Self {
+        pub fn fences(mut self, fences: &'a [vk::Fence]) -> Self {
             self.swapchain_count = fences.len() as _;
             self.p_fences = fences.as_ptr();
             self
@@ -163,19 +165,19 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct SwapchainPresentModesCreateInfoKHR<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *const core::ffi::c_void,
         pub present_mode_count: u32,
-        pub p_present_modes: *const crate::vk::PresentModeKHR,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub p_present_modes: *const vk::PresentModeKHR,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for SwapchainPresentModesCreateInfoKHR<'_> {}
     unsafe impl Sync for SwapchainPresentModesCreateInfoKHR<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for SwapchainPresentModesCreateInfoKHR<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::SWAPCHAIN_PRESENT_MODES_CREATE_INFO_KHR;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::SWAPCHAIN_PRESENT_MODES_CREATE_INFO_KHR;
     }
-    unsafe impl<'a> crate::Extends<crate::vk::SwapchainCreateInfoKHR<'_>>
+    unsafe impl<'a> crate::Extends<vk::SwapchainCreateInfoKHR<'_>>
     for SwapchainPresentModesCreateInfoKHR<'a> {}
     impl<'a> Default for SwapchainPresentModesCreateInfoKHR<'a> {
         fn default() -> Self {
@@ -184,15 +186,12 @@ pub(crate) mod items {
                 p_next: Default::default(),
                 present_mode_count: Default::default(),
                 p_present_modes: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
     impl<'a> SwapchainPresentModesCreateInfoKHR<'a> {
-        pub fn present_modes(
-            mut self,
-            present_modes: &'a [crate::vk::PresentModeKHR],
-        ) -> Self {
+        pub fn present_modes(mut self, present_modes: &'a [vk::PresentModeKHR]) -> Self {
             self.present_mode_count = present_modes.len() as _;
             self.p_present_modes = present_modes.as_ptr();
             self
@@ -202,18 +201,18 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct SwapchainPresentModeInfoKHR<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *const core::ffi::c_void,
         pub swapchain_count: u32,
-        pub p_present_modes: *const crate::vk::PresentModeKHR,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub p_present_modes: *const vk::PresentModeKHR,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for SwapchainPresentModeInfoKHR<'_> {}
     unsafe impl Sync for SwapchainPresentModeInfoKHR<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for SwapchainPresentModeInfoKHR<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::SWAPCHAIN_PRESENT_MODE_INFO_KHR;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::SWAPCHAIN_PRESENT_MODE_INFO_KHR;
     }
-    unsafe impl<'a> crate::Extends<crate::vk::PresentInfoKHR<'_>>
+    unsafe impl<'a> crate::Extends<vk::PresentInfoKHR<'_>>
     for SwapchainPresentModeInfoKHR<'a> {}
     impl<'a> Default for SwapchainPresentModeInfoKHR<'a> {
         fn default() -> Self {
@@ -222,15 +221,12 @@ pub(crate) mod items {
                 p_next: Default::default(),
                 swapchain_count: Default::default(),
                 p_present_modes: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
     impl<'a> SwapchainPresentModeInfoKHR<'a> {
-        pub fn present_modes(
-            mut self,
-            present_modes: &'a [crate::vk::PresentModeKHR],
-        ) -> Self {
+        pub fn present_modes(mut self, present_modes: &'a [vk::PresentModeKHR]) -> Self {
             self.swapchain_count = present_modes.len() as _;
             self.p_present_modes = present_modes.as_ptr();
             self
@@ -240,20 +236,20 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct SwapchainPresentScalingCreateInfoKHR<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *const core::ffi::c_void,
-        pub scaling_behavior: crate::vk::PresentScalingFlagsKHR,
-        pub present_gravity_x: crate::vk::PresentGravityFlagsKHR,
-        pub present_gravity_y: crate::vk::PresentGravityFlagsKHR,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub scaling_behavior: vk::PresentScalingFlagsKHR,
+        pub present_gravity_x: vk::PresentGravityFlagsKHR,
+        pub present_gravity_y: vk::PresentGravityFlagsKHR,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for SwapchainPresentScalingCreateInfoKHR<'_> {}
     unsafe impl Sync for SwapchainPresentScalingCreateInfoKHR<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for SwapchainPresentScalingCreateInfoKHR<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::SWAPCHAIN_PRESENT_SCALING_CREATE_INFO_KHR;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::SWAPCHAIN_PRESENT_SCALING_CREATE_INFO_KHR;
     }
-    unsafe impl<'a> crate::Extends<crate::vk::SwapchainCreateInfoKHR<'_>>
+    unsafe impl<'a> crate::Extends<vk::SwapchainCreateInfoKHR<'_>>
     for SwapchainPresentScalingCreateInfoKHR<'a> {}
     impl<'a> Default for SwapchainPresentScalingCreateInfoKHR<'a> {
         fn default() -> Self {
@@ -263,28 +259,28 @@ pub(crate) mod items {
                 scaling_behavior: Default::default(),
                 present_gravity_x: Default::default(),
                 present_gravity_y: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
     impl<'a> SwapchainPresentScalingCreateInfoKHR<'a> {
         pub fn scaling_behavior(
             mut self,
-            scaling_behavior: crate::vk::PresentScalingFlagsKHR,
+            scaling_behavior: vk::PresentScalingFlagsKHR,
         ) -> Self {
             self.scaling_behavior = scaling_behavior;
             self
         }
         pub fn present_gravity_x(
             mut self,
-            present_gravity_x: crate::vk::PresentGravityFlagsKHR,
+            present_gravity_x: vk::PresentGravityFlagsKHR,
         ) -> Self {
             self.present_gravity_x = present_gravity_x;
             self
         }
         pub fn present_gravity_y(
             mut self,
-            present_gravity_y: crate::vk::PresentGravityFlagsKHR,
+            present_gravity_y: vk::PresentGravityFlagsKHR,
         ) -> Self {
             self.present_gravity_y = present_gravity_y;
             self
@@ -294,17 +290,17 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct ReleaseSwapchainImagesInfoKHR<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *const core::ffi::c_void,
-        pub swapchain: crate::vk::SwapchainKHR,
+        pub swapchain: vk::SwapchainKHR,
         pub image_index_count: u32,
         pub p_image_indices: *const u32,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for ReleaseSwapchainImagesInfoKHR<'_> {}
     unsafe impl Sync for ReleaseSwapchainImagesInfoKHR<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for ReleaseSwapchainImagesInfoKHR<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::RELEASE_SWAPCHAIN_IMAGES_INFO_KHR;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::RELEASE_SWAPCHAIN_IMAGES_INFO_KHR;
     }
     impl<'a> Default for ReleaseSwapchainImagesInfoKHR<'a> {
         fn default() -> Self {
@@ -314,12 +310,12 @@ pub(crate) mod items {
                 swapchain: Default::default(),
                 image_index_count: Default::default(),
                 p_image_indices: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
     impl<'a> ReleaseSwapchainImagesInfoKHR<'a> {
-        pub fn swapchain(mut self, swapchain: crate::vk::SwapchainKHR) -> Self {
+        pub fn swapchain(mut self, swapchain: vk::SwapchainKHR) -> Self {
             self.swapchain = swapchain;
             self
         }
@@ -330,8 +326,8 @@ pub(crate) mod items {
         }
     }
     pub type PFN_vkReleaseSwapchainImagesKHR = unsafe extern "system" fn(
-        device: crate::vk::Device,
-        p_release_info: *const crate::vk::ReleaseSwapchainImagesInfoKHR<'_>,
-    ) -> crate::vk::Result;
+        device: vk::Device,
+        p_release_info: *const vk::ReleaseSwapchainImagesInfoKHR<'_>,
+    ) -> vk::Result;
 }
 pub use items::*;

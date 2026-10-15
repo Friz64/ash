@@ -2,32 +2,33 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_maintenance3.html) · Extension `VK_KHR_maintenance3`
 #![doc(alias = "VK_KHR_maintenance3")]
+use crate::vk;
+use core::ffi::CStr;
+use core::ffi::c_void;
 ///Provided by [VK_KHR_maintenance3](crate::khr::maintenance3)
-impl crate::vk::StructureType {
+impl vk::StructureType {
     pub const PHYSICAL_DEVICE_MAINTENANCE_3_PROPERTIES_KHR: Self = Self::PHYSICAL_DEVICE_MAINTENANCE_3_PROPERTIES;
     pub const DESCRIPTOR_SET_LAYOUT_SUPPORT_KHR: Self = Self::DESCRIPTOR_SET_LAYOUT_SUPPORT;
 }
+pub const SPEC_VERSION: u32 = 1;
+pub const NAME: &CStr = c"VK_KHR_maintenance3";
 #[derive(Clone)]
 pub struct DeviceFn {
-    pub get_descriptor_set_layout_support: crate::vk::PFN_vkGetDescriptorSetLayoutSupportKHR,
+    pub get_descriptor_set_layout_support: vk::PFN_vkGetDescriptorSetLayoutSupportKHR,
 }
 unsafe impl Send for DeviceFn {}
 unsafe impl Sync for DeviceFn {}
 impl DeviceFn {
-    pub fn load<F: FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void>(
-        mut f: F,
-    ) -> Self {
+    pub fn load<F: FnMut(&CStr) -> *const c_void>(mut f: F) -> Self {
         Self::load_erased(&mut f)
     }
-    fn load_erased(
-        _f: &mut dyn FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void,
-    ) -> Self {
+    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const c_void) -> Self {
         Self {
             get_descriptor_set_layout_support: unsafe {
                 unsafe extern "system" fn get_descriptor_set_layout_support(
-                    _: crate::vk::Device,
-                    _: *const crate::vk::DescriptorSetLayoutCreateInfo<'_>,
-                    _: *mut crate::vk::DescriptorSetLayoutSupport<'_>,
+                    _: vk::Device,
+                    _: *const vk::DescriptorSetLayoutCreateInfo<'_>,
+                    _: *mut vk::DescriptorSetLayoutSupport<'_>,
                 ) {
                     panic!("unable to load vkGetDescriptorSetLayoutSupportKHR")
                 }
@@ -66,8 +67,8 @@ impl Device {
     #[inline]
     pub unsafe fn get_descriptor_set_layout_support(
         &self,
-        create_info: &crate::vk::DescriptorSetLayoutCreateInfo<'_>,
-    ) -> crate::vk::DescriptorSetLayoutSupport<'_> {
+        create_info: &vk::DescriptorSetLayoutCreateInfo<'_>,
+    ) -> vk::DescriptorSetLayoutSupport<'_> {
         let mut support = core::mem::MaybeUninit::uninit();
         (self
             .fp
@@ -79,15 +80,12 @@ impl Device {
         support.assume_init()
     }
 }
-pub const SPEC_VERSION: u32 = 1;
-pub const NAME: &core::ffi::CStr = c"VK_KHR_maintenance3";
 pub(crate) mod items {
-    pub type PhysicalDeviceMaintenance3PropertiesKHR<'a> = crate::vk::PhysicalDeviceMaintenance3Properties<
+    use crate::vk;
+    pub type PhysicalDeviceMaintenance3PropertiesKHR<'a> = vk::PhysicalDeviceMaintenance3Properties<
         'a,
     >;
-    pub type DescriptorSetLayoutSupportKHR<'a> = crate::vk::DescriptorSetLayoutSupport<
-        'a,
-    >;
-    pub type PFN_vkGetDescriptorSetLayoutSupportKHR = crate::vk::PFN_vkGetDescriptorSetLayoutSupport;
+    pub type DescriptorSetLayoutSupportKHR<'a> = vk::DescriptorSetLayoutSupport<'a>;
+    pub type PFN_vkGetDescriptorSetLayoutSupportKHR = vk::PFN_vkGetDescriptorSetLayoutSupport;
 }
 pub use items::*;

@@ -2,63 +2,64 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_ray_tracing_maintenance1.html) · Extension `VK_KHR_ray_tracing_maintenance1`
 #![doc(alias = "VK_KHR_ray_tracing_maintenance1")]
+use crate::vk;
+use core::ffi::CStr;
+use core::ffi::c_void;
 ///Provided by [VK_KHR_ray_tracing_maintenance1](crate::khr::ray_tracing_maintenance1)
-impl crate::vk::QueryType {
+impl vk::QueryType {
     pub const ACCELERATION_STRUCTURE_SERIALIZATION_BOTTOM_LEVEL_POINTERS_KHR: Self = Self(
         1000386000,
     );
     pub const ACCELERATION_STRUCTURE_SIZE_KHR: Self = Self(1000386001);
 }
 ///Provided by [VK_KHR_ray_tracing_maintenance1](crate::khr::ray_tracing_maintenance1)
-impl crate::vk::StructureType {
+impl vk::StructureType {
     pub const PHYSICAL_DEVICE_RAY_TRACING_MAINTENANCE_1_FEATURES_KHR: Self = Self(
         1000386000,
     );
 }
 ///Provided by [VK_KHR_ray_tracing_maintenance1](crate::khr::ray_tracing_maintenance1)
-impl crate::vk::IndirectCommandsTokenTypeEXT {
+impl vk::IndirectCommandsTokenTypeEXT {
     pub const TRACE_RAYS2: Self = Self(1000386004);
 }
-///Provided by [VK_KHR_ray_tracing_maintenance1](crate::khr::ray_tracing_maintenance1)
-impl crate::vk::AccessFlags2 {
+///Provided by [Vulkan 1.3](crate::vk1_3)
+impl vk::AccessFlags2 {
     pub const SHADER_BINDING_TABLE_READ_KHR: Self = Self(
-        crate::vk::AccessFlagBits2::SHADER_BINDING_TABLE_READ_KHR.0,
+        vk::AccessFlagBits2::SHADER_BINDING_TABLE_READ_KHR.0,
     );
 }
-///Provided by [VK_KHR_ray_tracing_maintenance1](crate::khr::ray_tracing_maintenance1)
-impl crate::vk::AccessFlagBits2 {
+///Provided by [Vulkan 1.3](crate::vk1_3)
+impl vk::AccessFlagBits2 {
     pub const SHADER_BINDING_TABLE_READ_KHR: Self = Self(1 << 40);
 }
-///Provided by [VK_KHR_ray_tracing_maintenance1](crate::khr::ray_tracing_maintenance1)
-impl crate::vk::PipelineStageFlags2 {
+///Provided by [Vulkan 1.3](crate::vk1_3)
+impl vk::PipelineStageFlags2 {
     pub const ACCELERATION_STRUCTURE_COPY_KHR: Self = Self(
-        crate::vk::PipelineStageFlagBits2::ACCELERATION_STRUCTURE_COPY_KHR.0,
+        vk::PipelineStageFlagBits2::ACCELERATION_STRUCTURE_COPY_KHR.0,
     );
 }
-///Provided by [VK_KHR_ray_tracing_maintenance1](crate::khr::ray_tracing_maintenance1)
-impl crate::vk::PipelineStageFlagBits2 {
+///Provided by [Vulkan 1.3](crate::vk1_3)
+impl vk::PipelineStageFlagBits2 {
     pub const ACCELERATION_STRUCTURE_COPY_KHR: Self = Self(1 << 28);
 }
+pub const SPEC_VERSION: u32 = 1;
+pub const NAME: &CStr = c"VK_KHR_ray_tracing_maintenance1";
 #[derive(Clone)]
 pub struct DeviceFn {
-    pub cmd_trace_rays_indirect2: crate::vk::PFN_vkCmdTraceRaysIndirect2KHR,
+    pub cmd_trace_rays_indirect2: vk::PFN_vkCmdTraceRaysIndirect2KHR,
 }
 unsafe impl Send for DeviceFn {}
 unsafe impl Sync for DeviceFn {}
 impl DeviceFn {
-    pub fn load<F: FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void>(
-        mut f: F,
-    ) -> Self {
+    pub fn load<F: FnMut(&CStr) -> *const c_void>(mut f: F) -> Self {
         Self::load_erased(&mut f)
     }
-    fn load_erased(
-        _f: &mut dyn FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void,
-    ) -> Self {
+    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const c_void) -> Self {
         Self {
             cmd_trace_rays_indirect2: unsafe {
                 unsafe extern "system" fn cmd_trace_rays_indirect2(
-                    _: crate::vk::CommandBuffer,
-                    _: crate::vk::DeviceAddress,
+                    _: vk::CommandBuffer,
+                    _: vk::DeviceAddress,
                 ) {
                     panic!("unable to load vkCmdTraceRaysIndirect2KHR")
                 }
@@ -97,30 +98,30 @@ impl Device {
     #[inline]
     pub unsafe fn cmd_trace_rays_indirect2(
         &self,
-        command_buffer: crate::vk::CommandBuffer,
-        indirect_device_address: crate::vk::DeviceAddress,
+        command_buffer: vk::CommandBuffer,
+        indirect_device_address: vk::DeviceAddress,
     ) {
         (self.fp.cmd_trace_rays_indirect2)(command_buffer, indirect_device_address)
     }
 }
-pub const SPEC_VERSION: u32 = 1;
-pub const NAME: &core::ffi::CStr = c"VK_KHR_ray_tracing_maintenance1";
 pub(crate) mod items {
+    use crate::vk;
+    use core::marker::PhantomData;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy, Default)]
     pub struct TraceRaysIndirectCommand2KHR {
-        pub raygen_shader_record_address: crate::vk::DeviceAddress,
-        pub raygen_shader_record_size: crate::vk::DeviceSize,
-        pub miss_shader_binding_table_address: crate::vk::DeviceAddress,
-        pub miss_shader_binding_table_size: crate::vk::DeviceSize,
-        pub miss_shader_binding_table_stride: crate::vk::DeviceSize,
-        pub hit_shader_binding_table_address: crate::vk::DeviceAddress,
-        pub hit_shader_binding_table_size: crate::vk::DeviceSize,
-        pub hit_shader_binding_table_stride: crate::vk::DeviceSize,
-        pub callable_shader_binding_table_address: crate::vk::DeviceAddress,
-        pub callable_shader_binding_table_size: crate::vk::DeviceSize,
-        pub callable_shader_binding_table_stride: crate::vk::DeviceSize,
+        pub raygen_shader_record_address: vk::DeviceAddress,
+        pub raygen_shader_record_size: vk::DeviceSize,
+        pub miss_shader_binding_table_address: vk::DeviceAddress,
+        pub miss_shader_binding_table_size: vk::DeviceSize,
+        pub miss_shader_binding_table_stride: vk::DeviceSize,
+        pub hit_shader_binding_table_address: vk::DeviceAddress,
+        pub hit_shader_binding_table_size: vk::DeviceSize,
+        pub hit_shader_binding_table_stride: vk::DeviceSize,
+        pub callable_shader_binding_table_address: vk::DeviceAddress,
+        pub callable_shader_binding_table_size: vk::DeviceSize,
+        pub callable_shader_binding_table_stride: vk::DeviceSize,
         pub width: u32,
         pub height: u32,
         pub depth: u32,
@@ -130,77 +131,77 @@ pub(crate) mod items {
     impl TraceRaysIndirectCommand2KHR {
         pub fn raygen_shader_record_address(
             mut self,
-            raygen_shader_record_address: crate::vk::DeviceAddress,
+            raygen_shader_record_address: vk::DeviceAddress,
         ) -> Self {
             self.raygen_shader_record_address = raygen_shader_record_address;
             self
         }
         pub fn raygen_shader_record_size(
             mut self,
-            raygen_shader_record_size: crate::vk::DeviceSize,
+            raygen_shader_record_size: vk::DeviceSize,
         ) -> Self {
             self.raygen_shader_record_size = raygen_shader_record_size;
             self
         }
         pub fn miss_shader_binding_table_address(
             mut self,
-            miss_shader_binding_table_address: crate::vk::DeviceAddress,
+            miss_shader_binding_table_address: vk::DeviceAddress,
         ) -> Self {
             self.miss_shader_binding_table_address = miss_shader_binding_table_address;
             self
         }
         pub fn miss_shader_binding_table_size(
             mut self,
-            miss_shader_binding_table_size: crate::vk::DeviceSize,
+            miss_shader_binding_table_size: vk::DeviceSize,
         ) -> Self {
             self.miss_shader_binding_table_size = miss_shader_binding_table_size;
             self
         }
         pub fn miss_shader_binding_table_stride(
             mut self,
-            miss_shader_binding_table_stride: crate::vk::DeviceSize,
+            miss_shader_binding_table_stride: vk::DeviceSize,
         ) -> Self {
             self.miss_shader_binding_table_stride = miss_shader_binding_table_stride;
             self
         }
         pub fn hit_shader_binding_table_address(
             mut self,
-            hit_shader_binding_table_address: crate::vk::DeviceAddress,
+            hit_shader_binding_table_address: vk::DeviceAddress,
         ) -> Self {
             self.hit_shader_binding_table_address = hit_shader_binding_table_address;
             self
         }
         pub fn hit_shader_binding_table_size(
             mut self,
-            hit_shader_binding_table_size: crate::vk::DeviceSize,
+            hit_shader_binding_table_size: vk::DeviceSize,
         ) -> Self {
             self.hit_shader_binding_table_size = hit_shader_binding_table_size;
             self
         }
         pub fn hit_shader_binding_table_stride(
             mut self,
-            hit_shader_binding_table_stride: crate::vk::DeviceSize,
+            hit_shader_binding_table_stride: vk::DeviceSize,
         ) -> Self {
             self.hit_shader_binding_table_stride = hit_shader_binding_table_stride;
             self
         }
         pub fn callable_shader_binding_table_address(
             mut self,
-            callable_shader_binding_table_address: crate::vk::DeviceAddress,
+            callable_shader_binding_table_address: vk::DeviceAddress,
         ) -> Self {
             self.callable_shader_binding_table_address = callable_shader_binding_table_address;
             self
         }
         pub fn callable_shader_binding_table_size(
             mut self,
-            callable_shader_binding_table_size: crate::vk::DeviceSize,
+            callable_shader_binding_table_size: vk::DeviceSize,
         ) -> Self {
             self.callable_shader_binding_table_size = callable_shader_binding_table_size;
             self
         }
         pub fn callable_shader_binding_table_stride(
             mut self,
-            callable_shader_binding_table_stride: crate::vk::DeviceSize,
+            callable_shader_binding_table_stride: vk::DeviceSize,
         ) -> Self {
             self.callable_shader_binding_table_stride = callable_shader_binding_table_stride;
             self
@@ -222,21 +223,21 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceRayTracingMaintenance1FeaturesKHR<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
-        pub ray_tracing_maintenance1: crate::vk::Bool32,
-        pub ray_tracing_pipeline_trace_rays_indirect2: crate::vk::Bool32,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub ray_tracing_maintenance1: vk::Bool32,
+        pub ray_tracing_pipeline_trace_rays_indirect2: vk::Bool32,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for PhysicalDeviceRayTracingMaintenance1FeaturesKHR<'_> {}
     unsafe impl Sync for PhysicalDeviceRayTracingMaintenance1FeaturesKHR<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceRayTracingMaintenance1FeaturesKHR<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_RAY_TRACING_MAINTENANCE_1_FEATURES_KHR;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PHYSICAL_DEVICE_RAY_TRACING_MAINTENANCE_1_FEATURES_KHR;
     }
-    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+    unsafe impl<'a> crate::Extends<vk::PhysicalDeviceFeatures2<'_>>
     for PhysicalDeviceRayTracingMaintenance1FeaturesKHR<'a> {}
-    unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+    unsafe impl<'a> crate::Extends<vk::DeviceCreateInfo<'_>>
     for PhysicalDeviceRayTracingMaintenance1FeaturesKHR<'a> {}
     impl<'a> Default for PhysicalDeviceRayTracingMaintenance1FeaturesKHR<'a> {
         fn default() -> Self {
@@ -245,7 +246,7 @@ pub(crate) mod items {
                 p_next: Default::default(),
                 ray_tracing_maintenance1: Default::default(),
                 ray_tracing_pipeline_trace_rays_indirect2: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
@@ -267,8 +268,8 @@ pub(crate) mod items {
         }
     }
     pub type PFN_vkCmdTraceRaysIndirect2KHR = unsafe extern "system" fn(
-        command_buffer: crate::vk::CommandBuffer,
-        indirect_device_address: crate::vk::DeviceAddress,
+        command_buffer: vk::CommandBuffer,
+        indirect_device_address: vk::DeviceAddress,
     );
 }
 pub use items::*;

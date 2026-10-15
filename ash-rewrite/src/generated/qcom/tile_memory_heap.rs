@@ -2,74 +2,69 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_QCOM_tile_memory_heap.html) · Extension `VK_QCOM_tile_memory_heap`
 #![doc(alias = "VK_QCOM_tile_memory_heap")]
+use crate::vk;
+use core::ffi::CStr;
+use core::ffi::c_void;
 ///Provided by [VK_QCOM_tile_memory_heap](crate::qcom::tile_memory_heap)
-impl crate::vk::StructureType {
+impl vk::StructureType {
     pub const PHYSICAL_DEVICE_TILE_MEMORY_HEAP_FEATURES_QCOM: Self = Self(1000547000);
     pub const PHYSICAL_DEVICE_TILE_MEMORY_HEAP_PROPERTIES_QCOM: Self = Self(1000547001);
     pub const TILE_MEMORY_REQUIREMENTS_QCOM: Self = Self(1000547002);
     pub const TILE_MEMORY_BIND_INFO_QCOM: Self = Self(1000547003);
     pub const TILE_MEMORY_SIZE_INFO_QCOM: Self = Self(1000547004);
 }
-///Provided by [VK_QCOM_tile_memory_heap](crate::qcom::tile_memory_heap)
-impl crate::vk::MemoryHeapFlags {
-    pub const TILE_MEMORY_QCOM: Self = Self(
-        crate::vk::MemoryHeapFlagBits::TILE_MEMORY_QCOM.0,
-    );
+///Provided by [Vulkan 1.0](crate::vk1_0)
+impl vk::MemoryHeapFlags {
+    pub const TILE_MEMORY_QCOM: Self = Self(vk::MemoryHeapFlagBits::TILE_MEMORY_QCOM.0);
 }
-///Provided by [VK_QCOM_tile_memory_heap](crate::qcom::tile_memory_heap)
-impl crate::vk::MemoryHeapFlagBits {
+///Provided by [Vulkan 1.0](crate::vk1_0)
+impl vk::MemoryHeapFlagBits {
     pub const TILE_MEMORY_QCOM: Self = Self(1 << 3);
 }
-///Provided by [VK_QCOM_tile_memory_heap](crate::qcom::tile_memory_heap)
-impl crate::vk::BufferUsageFlags {
-    pub const TILE_MEMORY_QCOM: Self = Self(
-        crate::vk::BufferUsageFlagBits::TILE_MEMORY_QCOM.0,
-    );
+///Provided by [Vulkan 1.0](crate::vk1_0)
+impl vk::BufferUsageFlags {
+    pub const TILE_MEMORY_QCOM: Self = Self(vk::BufferUsageFlagBits::TILE_MEMORY_QCOM.0);
 }
-///Provided by [VK_QCOM_tile_memory_heap](crate::qcom::tile_memory_heap)
-impl crate::vk::BufferUsageFlagBits {
+///Provided by [Vulkan 1.0](crate::vk1_0)
+impl vk::BufferUsageFlagBits {
     pub const TILE_MEMORY_QCOM: Self = Self(1 << 27);
 }
-///Provided by [VK_QCOM_tile_memory_heap](crate::qcom::tile_memory_heap)
-impl crate::vk::ImageUsageFlags {
-    pub const TILE_MEMORY_QCOM: Self = Self(
-        crate::vk::ImageUsageFlagBits::TILE_MEMORY_QCOM.0,
-    );
+///Provided by [Vulkan 1.0](crate::vk1_0)
+impl vk::ImageUsageFlags {
+    pub const TILE_MEMORY_QCOM: Self = Self(vk::ImageUsageFlagBits::TILE_MEMORY_QCOM.0);
 }
-///Provided by [VK_QCOM_tile_memory_heap](crate::qcom::tile_memory_heap)
-impl crate::vk::ImageUsageFlagBits {
+///Provided by [Vulkan 1.0](crate::vk1_0)
+impl vk::ImageUsageFlagBits {
     pub const TILE_MEMORY_QCOM: Self = Self(1 << 27);
 }
-///Provided by [VK_QCOM_tile_memory_heap](crate::qcom::tile_memory_heap)
-impl crate::vk::BufferUsageFlags2 {
+///Provided by [Vulkan 1.4](crate::vk1_4)
+impl vk::BufferUsageFlags2 {
     pub const TILE_MEMORY_QCOM: Self = Self(
-        crate::vk::BufferUsageFlagBits2::TILE_MEMORY_QCOM.0,
+        vk::BufferUsageFlagBits2::TILE_MEMORY_QCOM.0,
     );
 }
-///Provided by [VK_QCOM_tile_memory_heap](crate::qcom::tile_memory_heap)
-impl crate::vk::BufferUsageFlagBits2 {
+///Provided by [Vulkan 1.4](crate::vk1_4)
+impl vk::BufferUsageFlagBits2 {
     pub const TILE_MEMORY_QCOM: Self = Self(1 << 27);
 }
+pub const SPEC_VERSION: u32 = 1;
+pub const NAME: &CStr = c"VK_QCOM_tile_memory_heap";
 #[derive(Clone)]
 pub struct DeviceFn {
-    pub cmd_bind_tile_memory: crate::vk::PFN_vkCmdBindTileMemoryQCOM,
+    pub cmd_bind_tile_memory: vk::PFN_vkCmdBindTileMemoryQCOM,
 }
 unsafe impl Send for DeviceFn {}
 unsafe impl Sync for DeviceFn {}
 impl DeviceFn {
-    pub fn load<F: FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void>(
-        mut f: F,
-    ) -> Self {
+    pub fn load<F: FnMut(&CStr) -> *const c_void>(mut f: F) -> Self {
         Self::load_erased(&mut f)
     }
-    fn load_erased(
-        _f: &mut dyn FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void,
-    ) -> Self {
+    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const c_void) -> Self {
         Self {
             cmd_bind_tile_memory: unsafe {
                 unsafe extern "system" fn cmd_bind_tile_memory(
-                    _: crate::vk::CommandBuffer,
-                    _: *const crate::vk::TileMemoryBindInfoQCOM<'_>,
+                    _: vk::CommandBuffer,
+                    _: *const vk::TileMemoryBindInfoQCOM<'_>,
                 ) {
                     panic!("unable to load vkCmdBindTileMemoryQCOM")
                 }
@@ -108,8 +103,8 @@ impl Device {
     #[inline]
     pub unsafe fn cmd_bind_tile_memory(
         &self,
-        command_buffer: crate::vk::CommandBuffer,
-        tile_memory_bind_info: Option<&crate::vk::TileMemoryBindInfoQCOM<'_>>,
+        command_buffer: vk::CommandBuffer,
+        tile_memory_bind_info: Option<&vk::TileMemoryBindInfoQCOM<'_>>,
     ) {
         (self
             .fp
@@ -122,24 +117,24 @@ impl Device {
         )
     }
 }
-pub const SPEC_VERSION: u32 = 1;
-pub const NAME: &core::ffi::CStr = c"VK_QCOM_tile_memory_heap";
 pub(crate) mod items {
+    use core::marker::PhantomData;
+    use crate::vk;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct TileMemoryBindInfoQCOM<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *const core::ffi::c_void,
-        pub memory: crate::vk::DeviceMemory,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub memory: vk::DeviceMemory,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for TileMemoryBindInfoQCOM<'_> {}
     unsafe impl Sync for TileMemoryBindInfoQCOM<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for TileMemoryBindInfoQCOM<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::TILE_MEMORY_BIND_INFO_QCOM;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::TILE_MEMORY_BIND_INFO_QCOM;
     }
-    unsafe impl<'a> crate::Extends<crate::vk::CommandBufferInheritanceInfo<'_>>
+    unsafe impl<'a> crate::Extends<vk::CommandBufferInheritanceInfo<'_>>
     for TileMemoryBindInfoQCOM<'a> {}
     impl<'a> Default for TileMemoryBindInfoQCOM<'a> {
         fn default() -> Self {
@@ -147,12 +142,12 @@ pub(crate) mod items {
                 s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
                 p_next: Default::default(),
                 memory: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
     impl<'a> TileMemoryBindInfoQCOM<'a> {
-        pub fn memory(mut self, memory: crate::vk::DeviceMemory) -> Self {
+        pub fn memory(mut self, memory: vk::DeviceMemory) -> Self {
             self.memory = memory;
             self
         }
@@ -161,20 +156,20 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceTileMemoryHeapFeaturesQCOM<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
-        pub tile_memory_heap: crate::vk::Bool32,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub tile_memory_heap: vk::Bool32,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for PhysicalDeviceTileMemoryHeapFeaturesQCOM<'_> {}
     unsafe impl Sync for PhysicalDeviceTileMemoryHeapFeaturesQCOM<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceTileMemoryHeapFeaturesQCOM<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_TILE_MEMORY_HEAP_FEATURES_QCOM;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PHYSICAL_DEVICE_TILE_MEMORY_HEAP_FEATURES_QCOM;
     }
-    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+    unsafe impl<'a> crate::Extends<vk::PhysicalDeviceFeatures2<'_>>
     for PhysicalDeviceTileMemoryHeapFeaturesQCOM<'a> {}
-    unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+    unsafe impl<'a> crate::Extends<vk::DeviceCreateInfo<'_>>
     for PhysicalDeviceTileMemoryHeapFeaturesQCOM<'a> {}
     impl<'a> Default for PhysicalDeviceTileMemoryHeapFeaturesQCOM<'a> {
         fn default() -> Self {
@@ -182,7 +177,7 @@ pub(crate) mod items {
                 s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
                 p_next: Default::default(),
                 tile_memory_heap: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
@@ -196,19 +191,19 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceTileMemoryHeapPropertiesQCOM<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
-        pub queue_submit_boundary: crate::vk::Bool32,
-        pub tile_buffer_transfers: crate::vk::Bool32,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub queue_submit_boundary: vk::Bool32,
+        pub tile_buffer_transfers: vk::Bool32,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for PhysicalDeviceTileMemoryHeapPropertiesQCOM<'_> {}
     unsafe impl Sync for PhysicalDeviceTileMemoryHeapPropertiesQCOM<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceTileMemoryHeapPropertiesQCOM<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_TILE_MEMORY_HEAP_PROPERTIES_QCOM;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PHYSICAL_DEVICE_TILE_MEMORY_HEAP_PROPERTIES_QCOM;
     }
-    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceProperties2<'_>>
+    unsafe impl<'a> crate::Extends<vk::PhysicalDeviceProperties2<'_>>
     for PhysicalDeviceTileMemoryHeapPropertiesQCOM<'a> {}
     impl<'a> Default for PhysicalDeviceTileMemoryHeapPropertiesQCOM<'a> {
         fn default() -> Self {
@@ -217,7 +212,7 @@ pub(crate) mod items {
                 p_next: Default::default(),
                 queue_submit_boundary: Default::default(),
                 tile_buffer_transfers: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
@@ -235,21 +230,21 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct TileMemorySizeInfoQCOM<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *const core::ffi::c_void,
-        pub size: crate::vk::DeviceSize,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub size: vk::DeviceSize,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for TileMemorySizeInfoQCOM<'_> {}
     unsafe impl Sync for TileMemorySizeInfoQCOM<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for TileMemorySizeInfoQCOM<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::TILE_MEMORY_SIZE_INFO_QCOM;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::TILE_MEMORY_SIZE_INFO_QCOM;
     }
-    unsafe impl<'a> crate::Extends<crate::vk::RenderPassCreateInfo<'_>>
+    unsafe impl<'a> crate::Extends<vk::RenderPassCreateInfo<'_>>
     for TileMemorySizeInfoQCOM<'a> {}
-    unsafe impl<'a> crate::Extends<crate::vk::RenderPassCreateInfo2<'_>>
+    unsafe impl<'a> crate::Extends<vk::RenderPassCreateInfo2<'_>>
     for TileMemorySizeInfoQCOM<'a> {}
-    unsafe impl<'a> crate::Extends<crate::vk::RenderingInfo<'_>>
+    unsafe impl<'a> crate::Extends<vk::RenderingInfo<'_>>
     for TileMemorySizeInfoQCOM<'a> {}
     impl<'a> Default for TileMemorySizeInfoQCOM<'a> {
         fn default() -> Self {
@@ -257,12 +252,12 @@ pub(crate) mod items {
                 s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
                 p_next: Default::default(),
                 size: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
     impl<'a> TileMemorySizeInfoQCOM<'a> {
-        pub fn size(mut self, size: crate::vk::DeviceSize) -> Self {
+        pub fn size(mut self, size: vk::DeviceSize) -> Self {
             self.size = size;
             self
         }
@@ -271,18 +266,18 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct TileMemoryRequirementsQCOM<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
-        pub size: crate::vk::DeviceSize,
-        pub alignment: crate::vk::DeviceSize,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub size: vk::DeviceSize,
+        pub alignment: vk::DeviceSize,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for TileMemoryRequirementsQCOM<'_> {}
     unsafe impl Sync for TileMemoryRequirementsQCOM<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for TileMemoryRequirementsQCOM<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::TILE_MEMORY_REQUIREMENTS_QCOM;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::TILE_MEMORY_REQUIREMENTS_QCOM;
     }
-    unsafe impl<'a> crate::Extends<crate::vk::MemoryRequirements2<'_>>
+    unsafe impl<'a> crate::Extends<vk::MemoryRequirements2<'_>>
     for TileMemoryRequirementsQCOM<'a> {}
     impl<'a> Default for TileMemoryRequirementsQCOM<'a> {
         fn default() -> Self {
@@ -291,23 +286,23 @@ pub(crate) mod items {
                 p_next: Default::default(),
                 size: Default::default(),
                 alignment: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
     impl<'a> TileMemoryRequirementsQCOM<'a> {
-        pub fn size(mut self, size: crate::vk::DeviceSize) -> Self {
+        pub fn size(mut self, size: vk::DeviceSize) -> Self {
             self.size = size;
             self
         }
-        pub fn alignment(mut self, alignment: crate::vk::DeviceSize) -> Self {
+        pub fn alignment(mut self, alignment: vk::DeviceSize) -> Self {
             self.alignment = alignment;
             self
         }
     }
     pub type PFN_vkCmdBindTileMemoryQCOM = unsafe extern "system" fn(
-        command_buffer: crate::vk::CommandBuffer,
-        p_tile_memory_bind_info: *const crate::vk::TileMemoryBindInfoQCOM<'_>,
+        command_buffer: vk::CommandBuffer,
+        p_tile_memory_bind_info: *const vk::TileMemoryBindInfoQCOM<'_>,
     );
 }
 pub use items::*;

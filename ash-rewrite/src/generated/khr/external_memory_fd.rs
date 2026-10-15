@@ -2,35 +2,37 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_external_memory_fd.html) · Extension `VK_KHR_external_memory_fd`
 #![doc(alias = "VK_KHR_external_memory_fd")]
+use crate::vk;
+use core::ffi::CStr;
+use crate::VkResult;
+use core::ffi::c_void;
 ///Provided by [VK_KHR_external_memory_fd](crate::khr::external_memory_fd)
-impl crate::vk::StructureType {
+impl vk::StructureType {
     pub const IMPORT_MEMORY_FD_INFO_KHR: Self = Self(1000074000);
     pub const MEMORY_FD_PROPERTIES_KHR: Self = Self(1000074001);
     pub const MEMORY_GET_FD_INFO_KHR: Self = Self(1000074002);
 }
+pub const SPEC_VERSION: u32 = 1;
+pub const NAME: &CStr = c"VK_KHR_external_memory_fd";
 #[derive(Clone)]
 pub struct DeviceFn {
-    pub get_memory_fd: crate::vk::PFN_vkGetMemoryFdKHR,
-    pub get_memory_fd_properties: crate::vk::PFN_vkGetMemoryFdPropertiesKHR,
+    pub get_memory_fd: vk::PFN_vkGetMemoryFdKHR,
+    pub get_memory_fd_properties: vk::PFN_vkGetMemoryFdPropertiesKHR,
 }
 unsafe impl Send for DeviceFn {}
 unsafe impl Sync for DeviceFn {}
 impl DeviceFn {
-    pub fn load<F: FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void>(
-        mut f: F,
-    ) -> Self {
+    pub fn load<F: FnMut(&CStr) -> *const c_void>(mut f: F) -> Self {
         Self::load_erased(&mut f)
     }
-    fn load_erased(
-        _f: &mut dyn FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void,
-    ) -> Self {
+    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const c_void) -> Self {
         Self {
             get_memory_fd: unsafe {
                 unsafe extern "system" fn get_memory_fd(
-                    _: crate::vk::Device,
-                    _: *const crate::vk::MemoryGetFdInfoKHR<'_>,
+                    _: vk::Device,
+                    _: *const vk::MemoryGetFdInfoKHR<'_>,
                     _: *mut core::ffi::c_int,
-                ) -> crate::vk::Result {
+                ) -> vk::Result {
                     panic!("unable to load vkGetMemoryFdKHR")
                 }
                 let val = _f(c"vkGetMemoryFdKHR");
@@ -38,11 +40,11 @@ impl DeviceFn {
             },
             get_memory_fd_properties: unsafe {
                 unsafe extern "system" fn get_memory_fd_properties(
-                    _: crate::vk::Device,
-                    _: crate::vk::ExternalMemoryHandleTypeFlagBits,
+                    _: vk::Device,
+                    _: vk::ExternalMemoryHandleTypeFlagBits,
                     _: core::ffi::c_int,
-                    _: *mut crate::vk::MemoryFdPropertiesKHR<'_>,
-                ) -> crate::vk::Result {
+                    _: *mut vk::MemoryFdPropertiesKHR<'_>,
+                ) -> vk::Result {
                     panic!("unable to load vkGetMemoryFdPropertiesKHR")
                 }
                 let val = _f(c"vkGetMemoryFdPropertiesKHR");
@@ -80,8 +82,8 @@ impl Device {
     #[inline]
     pub unsafe fn get_memory_fd(
         &self,
-        get_fd_info: &crate::vk::MemoryGetFdInfoKHR<'_>,
-    ) -> crate::VkResult<core::ffi::c_int> {
+        get_fd_info: &vk::MemoryGetFdInfoKHR<'_>,
+    ) -> VkResult<core::ffi::c_int> {
         let mut fd = core::mem::MaybeUninit::uninit();
         (self.fp.get_memory_fd)(self.handle, get_fd_info, fd.as_mut_ptr())
             .assume_init_on_success(fd)
@@ -90,9 +92,9 @@ impl Device {
     #[inline]
     pub unsafe fn get_memory_fd_properties(
         &self,
-        handle_type: crate::vk::ExternalMemoryHandleTypeFlagBits,
+        handle_type: vk::ExternalMemoryHandleTypeFlagBits,
         fd: core::ffi::c_int,
-    ) -> crate::VkResult<crate::vk::MemoryFdPropertiesKHR<'_>> {
+    ) -> VkResult<vk::MemoryFdPropertiesKHR<'_>> {
         let mut memory_fd_properties = core::mem::MaybeUninit::uninit();
         (self
             .fp
@@ -105,25 +107,25 @@ impl Device {
             .assume_init_on_success(memory_fd_properties)
     }
 }
-pub const SPEC_VERSION: u32 = 1;
-pub const NAME: &core::ffi::CStr = c"VK_KHR_external_memory_fd";
 pub(crate) mod items {
+    use core::marker::PhantomData;
+    use crate::vk;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct ImportMemoryFdInfoKHR<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *const core::ffi::c_void,
-        pub handle_type: crate::vk::ExternalMemoryHandleTypeFlagBits,
+        pub handle_type: vk::ExternalMemoryHandleTypeFlagBits,
         pub fd: core::ffi::c_int,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for ImportMemoryFdInfoKHR<'_> {}
     unsafe impl Sync for ImportMemoryFdInfoKHR<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for ImportMemoryFdInfoKHR<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::IMPORT_MEMORY_FD_INFO_KHR;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::IMPORT_MEMORY_FD_INFO_KHR;
     }
-    unsafe impl<'a> crate::Extends<crate::vk::MemoryAllocateInfo<'_>>
+    unsafe impl<'a> crate::Extends<vk::MemoryAllocateInfo<'_>>
     for ImportMemoryFdInfoKHR<'a> {}
     impl<'a> Default for ImportMemoryFdInfoKHR<'a> {
         fn default() -> Self {
@@ -132,14 +134,14 @@ pub(crate) mod items {
                 p_next: Default::default(),
                 handle_type: Default::default(),
                 fd: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
     impl<'a> ImportMemoryFdInfoKHR<'a> {
         pub fn handle_type(
             mut self,
-            handle_type: crate::vk::ExternalMemoryHandleTypeFlagBits,
+            handle_type: vk::ExternalMemoryHandleTypeFlagBits,
         ) -> Self {
             self.handle_type = handle_type;
             self
@@ -153,15 +155,15 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct MemoryFdPropertiesKHR<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
         pub memory_type_bits: u32,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for MemoryFdPropertiesKHR<'_> {}
     unsafe impl Sync for MemoryFdPropertiesKHR<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for MemoryFdPropertiesKHR<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::MEMORY_FD_PROPERTIES_KHR;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::MEMORY_FD_PROPERTIES_KHR;
     }
     impl<'a> Default for MemoryFdPropertiesKHR<'a> {
         fn default() -> Self {
@@ -169,7 +171,7 @@ pub(crate) mod items {
                 s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
                 p_next: Default::default(),
                 memory_type_bits: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
@@ -183,16 +185,16 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct MemoryGetFdInfoKHR<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *const core::ffi::c_void,
-        pub memory: crate::vk::DeviceMemory,
-        pub handle_type: crate::vk::ExternalMemoryHandleTypeFlagBits,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub memory: vk::DeviceMemory,
+        pub handle_type: vk::ExternalMemoryHandleTypeFlagBits,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for MemoryGetFdInfoKHR<'_> {}
     unsafe impl Sync for MemoryGetFdInfoKHR<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for MemoryGetFdInfoKHR<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::MEMORY_GET_FD_INFO_KHR;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::MEMORY_GET_FD_INFO_KHR;
     }
     impl<'a> Default for MemoryGetFdInfoKHR<'a> {
         fn default() -> Self {
@@ -201,33 +203,33 @@ pub(crate) mod items {
                 p_next: Default::default(),
                 memory: Default::default(),
                 handle_type: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
     impl<'a> MemoryGetFdInfoKHR<'a> {
-        pub fn memory(mut self, memory: crate::vk::DeviceMemory) -> Self {
+        pub fn memory(mut self, memory: vk::DeviceMemory) -> Self {
             self.memory = memory;
             self
         }
         pub fn handle_type(
             mut self,
-            handle_type: crate::vk::ExternalMemoryHandleTypeFlagBits,
+            handle_type: vk::ExternalMemoryHandleTypeFlagBits,
         ) -> Self {
             self.handle_type = handle_type;
             self
         }
     }
     pub type PFN_vkGetMemoryFdKHR = unsafe extern "system" fn(
-        device: crate::vk::Device,
-        p_get_fd_info: *const crate::vk::MemoryGetFdInfoKHR<'_>,
+        device: vk::Device,
+        p_get_fd_info: *const vk::MemoryGetFdInfoKHR<'_>,
         p_fd: *mut core::ffi::c_int,
-    ) -> crate::vk::Result;
+    ) -> vk::Result;
     pub type PFN_vkGetMemoryFdPropertiesKHR = unsafe extern "system" fn(
-        device: crate::vk::Device,
-        handle_type: crate::vk::ExternalMemoryHandleTypeFlagBits,
+        device: vk::Device,
+        handle_type: vk::ExternalMemoryHandleTypeFlagBits,
         fd: core::ffi::c_int,
-        p_memory_fd_properties: *mut crate::vk::MemoryFdPropertiesKHR<'_>,
-    ) -> crate::vk::Result;
+        p_memory_fd_properties: *mut vk::MemoryFdPropertiesKHR<'_>,
+    ) -> vk::Result;
 }
 pub use items::*;

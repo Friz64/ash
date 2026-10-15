@@ -2,12 +2,16 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_ARM_data_graph.html) · Extension `VK_ARM_data_graph`
 #![doc(alias = "VK_ARM_data_graph")]
+use crate::vk;
+use core::ffi::CStr;
+use crate::VkResult;
+use core::ffi::c_void;
 ///Provided by [VK_ARM_data_graph](crate::arm::data_graph)
-impl crate::vk::PipelineBindPoint {
+impl vk::PipelineBindPoint {
     pub const DATA_GRAPH_ARM: Self = Self(1000507000);
 }
 ///Provided by [VK_ARM_data_graph](crate::arm::data_graph)
-impl crate::vk::StructureType {
+impl vk::StructureType {
     pub const DATA_GRAPH_PIPELINE_CREATE_INFO_ARM: Self = Self(1000507000);
     pub const DATA_GRAPH_PIPELINE_SESSION_CREATE_INFO_ARM: Self = Self(1000507001);
     pub const DATA_GRAPH_PIPELINE_RESOURCE_INFO_ARM: Self = Self(1000507002);
@@ -44,7 +48,7 @@ impl crate::vk::StructureType {
     );
 }
 ///Provided by [VK_ARM_data_graph](crate::arm::data_graph)
-impl crate::vk::ObjectType {
+impl vk::ObjectType {
     pub const DATA_GRAPH_PIPELINE_SESSION_ARM: Self = Self(1000507000);
 }
 ///Provided by [VK_ARM_data_graph](crate::arm::data_graph)
@@ -68,64 +72,62 @@ impl PhysicalDeviceDataGraphProcessingEngineTypeARM {
 impl PhysicalDeviceDataGraphOperationTypeARM {
     pub const SPIRV_EXTENDED_INSTRUCTION_SET: Self = Self(0);
 }
-///Provided by [VK_ARM_data_graph](crate::arm::data_graph)
-impl crate::vk::QueueFlags {
-    pub const DATA_GRAPH_ARM: Self = Self(crate::vk::QueueFlagBits::DATA_GRAPH_ARM.0);
+///Provided by [Vulkan 1.0](crate::vk1_0)
+impl vk::QueueFlags {
+    pub const DATA_GRAPH_ARM: Self = Self(vk::QueueFlagBits::DATA_GRAPH_ARM.0);
 }
-///Provided by [VK_ARM_data_graph](crate::arm::data_graph)
-impl crate::vk::QueueFlagBits {
+///Provided by [Vulkan 1.0](crate::vk1_0)
+impl vk::QueueFlagBits {
     pub const DATA_GRAPH_ARM: Self = Self(1 << 10);
 }
-///Provided by [VK_ARM_data_graph](crate::arm::data_graph)
-impl crate::vk::AccessFlags2 {
+///Provided by [Vulkan 1.3](crate::vk1_3)
+impl vk::AccessFlags2 {
     pub const DATA_GRAPH_READ_ARM: Self = Self(
-        crate::vk::AccessFlagBits2::DATA_GRAPH_READ_ARM.0,
+        vk::AccessFlagBits2::DATA_GRAPH_READ_ARM.0,
     );
     pub const DATA_GRAPH_WRITE_ARM: Self = Self(
-        crate::vk::AccessFlagBits2::DATA_GRAPH_WRITE_ARM.0,
+        vk::AccessFlagBits2::DATA_GRAPH_WRITE_ARM.0,
     );
 }
-///Provided by [VK_ARM_data_graph](crate::arm::data_graph)
-impl crate::vk::AccessFlagBits2 {
+///Provided by [Vulkan 1.3](crate::vk1_3)
+impl vk::AccessFlagBits2 {
     pub const DATA_GRAPH_READ_ARM: Self = Self(1 << 47);
     pub const DATA_GRAPH_WRITE_ARM: Self = Self(1 << 48);
 }
-///Provided by [VK_ARM_data_graph](crate::arm::data_graph)
-impl crate::vk::PipelineStageFlags2 {
-    pub const DATA_GRAPH_ARM: Self = Self(
-        crate::vk::PipelineStageFlagBits2::DATA_GRAPH_ARM.0,
-    );
+///Provided by [Vulkan 1.3](crate::vk1_3)
+impl vk::PipelineStageFlags2 {
+    pub const DATA_GRAPH_ARM: Self = Self(vk::PipelineStageFlagBits2::DATA_GRAPH_ARM.0);
 }
-///Provided by [VK_ARM_data_graph](crate::arm::data_graph)
-impl crate::vk::PipelineStageFlagBits2 {
+///Provided by [Vulkan 1.3](crate::vk1_3)
+impl vk::PipelineStageFlagBits2 {
     pub const DATA_GRAPH_ARM: Self = Self(1 << 42);
 }
-///Provided by [VK_ARM_data_graph](crate::arm::data_graph)
-impl crate::vk::FormatFeatureFlags2 {
+///Provided by [Vulkan 1.3](crate::vk1_3)
+impl vk::FormatFeatureFlags2 {
     pub const TENSOR_DATA_GRAPH_ARM: Self = Self(
-        crate::vk::FormatFeatureFlagBits2::TENSOR_DATA_GRAPH_ARM.0,
+        vk::FormatFeatureFlagBits2::TENSOR_DATA_GRAPH_ARM.0,
     );
 }
-///Provided by [VK_ARM_data_graph](crate::arm::data_graph)
-impl crate::vk::FormatFeatureFlagBits2 {
+///Provided by [Vulkan 1.3](crate::vk1_3)
+impl vk::FormatFeatureFlagBits2 {
     pub const TENSOR_DATA_GRAPH_ARM: Self = Self(1 << 48);
 }
-///Provided by [VK_ARM_data_graph](crate::arm::data_graph)
-impl crate::vk::BufferUsageFlags2 {
+///Provided by [Vulkan 1.4](crate::vk1_4)
+impl vk::BufferUsageFlags2 {
     pub const DATA_GRAPH_FOREIGN_DESCRIPTOR_ARM: Self = Self(
-        crate::vk::BufferUsageFlagBits2::DATA_GRAPH_FOREIGN_DESCRIPTOR_ARM.0,
+        vk::BufferUsageFlagBits2::DATA_GRAPH_FOREIGN_DESCRIPTOR_ARM.0,
     );
 }
-///Provided by [VK_ARM_data_graph](crate::arm::data_graph)
-impl crate::vk::BufferUsageFlagBits2 {
+///Provided by [Vulkan 1.4](crate::vk1_4)
+impl vk::BufferUsageFlagBits2 {
     pub const DATA_GRAPH_FOREIGN_DESCRIPTOR_ARM: Self = Self(1 << 29);
 }
-///Provided by [VK_ARM_data_graph](crate::arm::data_graph)
-impl crate::vk::TensorUsageFlagsARM {
-    pub const DATA_GRAPH: Self = Self(crate::vk::TensorUsageFlagBitsARM::DATA_GRAPH.0);
+///Provided by [VK_ARM_tensors](crate::arm::tensors)
+impl vk::TensorUsageFlagsARM {
+    pub const DATA_GRAPH: Self = Self(vk::TensorUsageFlagBitsARM::DATA_GRAPH.0);
 }
-///Provided by [VK_ARM_data_graph](crate::arm::data_graph)
-impl crate::vk::TensorUsageFlagBitsARM {
+///Provided by [VK_ARM_tensors](crate::arm::tensors)
+impl vk::TensorUsageFlagBitsARM {
     pub const DATA_GRAPH: Self = Self(1 << 5);
 }
 ///Provided by [VK_ARM_data_graph](crate::arm::data_graph)
@@ -138,40 +140,38 @@ impl DataGraphPipelineSessionCreateFlagsARM {
 impl DataGraphPipelineSessionCreateFlagBitsARM {
     pub const PROTECTED: Self = Self(1 << 0);
 }
+pub const SPEC_VERSION: u32 = 1;
+pub const NAME: &CStr = c"VK_ARM_data_graph";
 #[derive(Clone)]
 pub struct DeviceFn {
-    pub create_data_graph_pipelines: crate::vk::PFN_vkCreateDataGraphPipelinesARM,
-    pub create_data_graph_pipeline_session: crate::vk::PFN_vkCreateDataGraphPipelineSessionARM,
-    pub get_data_graph_pipeline_session_bind_point_requirements: crate::vk::PFN_vkGetDataGraphPipelineSessionBindPointRequirementsARM,
-    pub get_data_graph_pipeline_session_memory_requirements: crate::vk::PFN_vkGetDataGraphPipelineSessionMemoryRequirementsARM,
-    pub bind_data_graph_pipeline_session_memory: crate::vk::PFN_vkBindDataGraphPipelineSessionMemoryARM,
-    pub destroy_data_graph_pipeline_session: crate::vk::PFN_vkDestroyDataGraphPipelineSessionARM,
-    pub cmd_dispatch_data_graph: crate::vk::PFN_vkCmdDispatchDataGraphARM,
-    pub get_data_graph_pipeline_available_properties: crate::vk::PFN_vkGetDataGraphPipelineAvailablePropertiesARM,
-    pub get_data_graph_pipeline_properties: crate::vk::PFN_vkGetDataGraphPipelinePropertiesARM,
+    pub create_data_graph_pipelines: vk::PFN_vkCreateDataGraphPipelinesARM,
+    pub create_data_graph_pipeline_session: vk::PFN_vkCreateDataGraphPipelineSessionARM,
+    pub get_data_graph_pipeline_session_bind_point_requirements: vk::PFN_vkGetDataGraphPipelineSessionBindPointRequirementsARM,
+    pub get_data_graph_pipeline_session_memory_requirements: vk::PFN_vkGetDataGraphPipelineSessionMemoryRequirementsARM,
+    pub bind_data_graph_pipeline_session_memory: vk::PFN_vkBindDataGraphPipelineSessionMemoryARM,
+    pub destroy_data_graph_pipeline_session: vk::PFN_vkDestroyDataGraphPipelineSessionARM,
+    pub cmd_dispatch_data_graph: vk::PFN_vkCmdDispatchDataGraphARM,
+    pub get_data_graph_pipeline_available_properties: vk::PFN_vkGetDataGraphPipelineAvailablePropertiesARM,
+    pub get_data_graph_pipeline_properties: vk::PFN_vkGetDataGraphPipelinePropertiesARM,
 }
 unsafe impl Send for DeviceFn {}
 unsafe impl Sync for DeviceFn {}
 impl DeviceFn {
-    pub fn load<F: FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void>(
-        mut f: F,
-    ) -> Self {
+    pub fn load<F: FnMut(&CStr) -> *const c_void>(mut f: F) -> Self {
         Self::load_erased(&mut f)
     }
-    fn load_erased(
-        _f: &mut dyn FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void,
-    ) -> Self {
+    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const c_void) -> Self {
         Self {
             create_data_graph_pipelines: unsafe {
                 unsafe extern "system" fn create_data_graph_pipelines(
-                    _: crate::vk::Device,
-                    _: crate::vk::DeferredOperationKHR,
-                    _: crate::vk::PipelineCache,
+                    _: vk::Device,
+                    _: vk::DeferredOperationKHR,
+                    _: vk::PipelineCache,
                     _: u32,
-                    _: *const crate::vk::DataGraphPipelineCreateInfoARM<'_>,
-                    _: *const crate::vk::AllocationCallbacks<'_>,
-                    _: *mut crate::vk::Pipeline,
-                ) -> crate::vk::Result {
+                    _: *const vk::DataGraphPipelineCreateInfoARM<'_>,
+                    _: *const vk::AllocationCallbacks<'_>,
+                    _: *mut vk::Pipeline,
+                ) -> vk::Result {
                     panic!("unable to load vkCreateDataGraphPipelinesARM")
                 }
                 let val = _f(c"vkCreateDataGraphPipelinesARM");
@@ -183,11 +183,11 @@ impl DeviceFn {
             },
             create_data_graph_pipeline_session: unsafe {
                 unsafe extern "system" fn create_data_graph_pipeline_session(
-                    _: crate::vk::Device,
-                    _: *const crate::vk::DataGraphPipelineSessionCreateInfoARM<'_>,
-                    _: *const crate::vk::AllocationCallbacks<'_>,
-                    _: *mut crate::vk::DataGraphPipelineSessionARM,
-                ) -> crate::vk::Result {
+                    _: vk::Device,
+                    _: *const vk::DataGraphPipelineSessionCreateInfoARM<'_>,
+                    _: *const vk::AllocationCallbacks<'_>,
+                    _: *mut vk::DataGraphPipelineSessionARM,
+                ) -> vk::Result {
                     panic!("unable to load vkCreateDataGraphPipelineSessionARM")
                 }
                 let val = _f(c"vkCreateDataGraphPipelineSessionARM");
@@ -199,15 +199,13 @@ impl DeviceFn {
             },
             get_data_graph_pipeline_session_bind_point_requirements: unsafe {
                 unsafe extern "system" fn get_data_graph_pipeline_session_bind_point_requirements(
-                    _: crate::vk::Device,
-                    _: *const crate::vk::DataGraphPipelineSessionBindPointRequirementsInfoARM<
+                    _: vk::Device,
+                    _: *const vk::DataGraphPipelineSessionBindPointRequirementsInfoARM<
                         '_,
                     >,
                     _: *mut u32,
-                    _: *mut crate::vk::DataGraphPipelineSessionBindPointRequirementARM<
-                        '_,
-                    >,
-                ) -> crate::vk::Result {
+                    _: *mut vk::DataGraphPipelineSessionBindPointRequirementARM<'_>,
+                ) -> vk::Result {
                     panic!(
                         "unable to load vkGetDataGraphPipelineSessionBindPointRequirementsARM"
                     )
@@ -221,11 +219,9 @@ impl DeviceFn {
             },
             get_data_graph_pipeline_session_memory_requirements: unsafe {
                 unsafe extern "system" fn get_data_graph_pipeline_session_memory_requirements(
-                    _: crate::vk::Device,
-                    _: *const crate::vk::DataGraphPipelineSessionMemoryRequirementsInfoARM<
-                        '_,
-                    >,
-                    _: *mut crate::vk::MemoryRequirements2<'_>,
+                    _: vk::Device,
+                    _: *const vk::DataGraphPipelineSessionMemoryRequirementsInfoARM<'_>,
+                    _: *mut vk::MemoryRequirements2<'_>,
                 ) {
                     panic!(
                         "unable to load vkGetDataGraphPipelineSessionMemoryRequirementsARM"
@@ -240,10 +236,10 @@ impl DeviceFn {
             },
             bind_data_graph_pipeline_session_memory: unsafe {
                 unsafe extern "system" fn bind_data_graph_pipeline_session_memory(
-                    _: crate::vk::Device,
+                    _: vk::Device,
                     _: u32,
-                    _: *const crate::vk::BindDataGraphPipelineSessionMemoryInfoARM<'_>,
-                ) -> crate::vk::Result {
+                    _: *const vk::BindDataGraphPipelineSessionMemoryInfoARM<'_>,
+                ) -> vk::Result {
                     panic!("unable to load vkBindDataGraphPipelineSessionMemoryARM")
                 }
                 let val = _f(c"vkBindDataGraphPipelineSessionMemoryARM");
@@ -255,9 +251,9 @@ impl DeviceFn {
             },
             destroy_data_graph_pipeline_session: unsafe {
                 unsafe extern "system" fn destroy_data_graph_pipeline_session(
-                    _: crate::vk::Device,
-                    _: crate::vk::DataGraphPipelineSessionARM,
-                    _: *const crate::vk::AllocationCallbacks<'_>,
+                    _: vk::Device,
+                    _: vk::DataGraphPipelineSessionARM,
+                    _: *const vk::AllocationCallbacks<'_>,
                 ) {
                     panic!("unable to load vkDestroyDataGraphPipelineSessionARM")
                 }
@@ -270,9 +266,9 @@ impl DeviceFn {
             },
             cmd_dispatch_data_graph: unsafe {
                 unsafe extern "system" fn cmd_dispatch_data_graph(
-                    _: crate::vk::CommandBuffer,
-                    _: crate::vk::DataGraphPipelineSessionARM,
-                    _: *const crate::vk::DataGraphPipelineDispatchInfoARM<'_>,
+                    _: vk::CommandBuffer,
+                    _: vk::DataGraphPipelineSessionARM,
+                    _: *const vk::DataGraphPipelineDispatchInfoARM<'_>,
                 ) {
                     panic!("unable to load vkCmdDispatchDataGraphARM")
                 }
@@ -285,11 +281,11 @@ impl DeviceFn {
             },
             get_data_graph_pipeline_available_properties: unsafe {
                 unsafe extern "system" fn get_data_graph_pipeline_available_properties(
-                    _: crate::vk::Device,
-                    _: *const crate::vk::DataGraphPipelineInfoARM<'_>,
+                    _: vk::Device,
+                    _: *const vk::DataGraphPipelineInfoARM<'_>,
                     _: *mut u32,
-                    _: *mut crate::vk::DataGraphPipelinePropertyARM,
-                ) -> crate::vk::Result {
+                    _: *mut vk::DataGraphPipelinePropertyARM,
+                ) -> vk::Result {
                     panic!("unable to load vkGetDataGraphPipelineAvailablePropertiesARM")
                 }
                 let val = _f(c"vkGetDataGraphPipelineAvailablePropertiesARM");
@@ -301,11 +297,11 @@ impl DeviceFn {
             },
             get_data_graph_pipeline_properties: unsafe {
                 unsafe extern "system" fn get_data_graph_pipeline_properties(
-                    _: crate::vk::Device,
-                    _: *const crate::vk::DataGraphPipelineInfoARM<'_>,
+                    _: vk::Device,
+                    _: *const vk::DataGraphPipelineInfoARM<'_>,
                     _: u32,
-                    _: *mut crate::vk::DataGraphPipelinePropertyQueryResultARM<'_>,
-                ) -> crate::vk::Result {
+                    _: *mut vk::DataGraphPipelinePropertyQueryResultARM<'_>,
+                ) -> vk::Result {
                     panic!("unable to load vkGetDataGraphPipelinePropertiesARM")
                 }
                 let val = _f(c"vkGetDataGraphPipelinePropertiesARM");
@@ -343,12 +339,12 @@ impl Device {
     #[inline]
     pub unsafe fn create_data_graph_pipelines(
         &self,
-        deferred_operation: crate::vk::DeferredOperationKHR,
-        pipeline_cache: crate::vk::PipelineCache,
-        create_infos: &[crate::vk::DataGraphPipelineCreateInfoARM<'_>],
-        allocator: Option<&crate::vk::AllocationCallbacks<'_>>,
-        pipelines: &mut [crate::vk::Pipeline],
-    ) -> crate::VkResult<()> {
+        deferred_operation: vk::DeferredOperationKHR,
+        pipeline_cache: vk::PipelineCache,
+        create_infos: &[vk::DataGraphPipelineCreateInfoARM<'_>],
+        allocator: Option<&vk::AllocationCallbacks<'_>>,
+        pipelines: &mut [vk::Pipeline],
+    ) -> VkResult<()> {
         assert_eq!(create_infos.len(), pipelines.len());
         (self
             .fp
@@ -370,9 +366,9 @@ impl Device {
     #[inline]
     pub unsafe fn create_data_graph_pipeline_session(
         &self,
-        create_info: &crate::vk::DataGraphPipelineSessionCreateInfoARM<'_>,
-        allocator: Option<&crate::vk::AllocationCallbacks<'_>>,
-    ) -> crate::VkResult<crate::vk::DataGraphPipelineSessionARM> {
+        create_info: &vk::DataGraphPipelineSessionCreateInfoARM<'_>,
+        allocator: Option<&vk::AllocationCallbacks<'_>>,
+    ) -> VkResult<vk::DataGraphPipelineSessionARM> {
         let mut session = core::mem::MaybeUninit::uninit();
         (self
             .fp
@@ -391,8 +387,8 @@ impl Device {
     #[inline]
     pub unsafe fn get_data_graph_pipeline_session_bind_point_requirements_len(
         &self,
-        info: &crate::vk::DataGraphPipelineSessionBindPointRequirementsInfoARM<'_>,
-    ) -> crate::VkResult<usize> {
+        info: &vk::DataGraphPipelineSessionBindPointRequirementsInfoARM<'_>,
+    ) -> VkResult<usize> {
         let mut bind_point_requirement_count = core::mem::MaybeUninit::uninit();
         (self
             .fp
@@ -409,8 +405,8 @@ impl Device {
     #[inline]
     pub unsafe fn get_data_graph_pipeline_session_bind_point_requirements(
         &self,
-        info: &crate::vk::DataGraphPipelineSessionBindPointRequirementsInfoARM<'_>,
-        bind_point_requirements: &mut [crate::vk::DataGraphPipelineSessionBindPointRequirementARM<
+        info: &vk::DataGraphPipelineSessionBindPointRequirementsInfoARM<'_>,
+        bind_point_requirements: &mut [vk::DataGraphPipelineSessionBindPointRequirementARM<
             '_,
         >],
     ) -> crate::VkResult<()> {
@@ -431,8 +427,8 @@ impl Device {
     #[inline]
     pub unsafe fn get_data_graph_pipeline_session_memory_requirements(
         &self,
-        info: &crate::vk::DataGraphPipelineSessionMemoryRequirementsInfoARM<'_>,
-    ) -> crate::vk::MemoryRequirements2<'_> {
+        info: &vk::DataGraphPipelineSessionMemoryRequirementsInfoARM<'_>,
+    ) -> vk::MemoryRequirements2<'_> {
         let mut memory_requirements = core::mem::MaybeUninit::uninit();
         (self
             .fp
@@ -447,8 +443,8 @@ impl Device {
     #[inline]
     pub unsafe fn bind_data_graph_pipeline_session_memory(
         &self,
-        bind_infos: &[crate::vk::BindDataGraphPipelineSessionMemoryInfoARM<'_>],
-    ) -> crate::VkResult<()> {
+        bind_infos: &[vk::BindDataGraphPipelineSessionMemoryInfoARM<'_>],
+    ) -> VkResult<()> {
         (self
             .fp
             .bind_data_graph_pipeline_session_memory)(
@@ -462,8 +458,8 @@ impl Device {
     #[inline]
     pub unsafe fn destroy_data_graph_pipeline_session(
         &self,
-        session: crate::vk::DataGraphPipelineSessionARM,
-        allocator: Option<&crate::vk::AllocationCallbacks<'_>>,
+        session: vk::DataGraphPipelineSessionARM,
+        allocator: Option<&vk::AllocationCallbacks<'_>>,
     ) {
         (self
             .fp
@@ -480,9 +476,9 @@ impl Device {
     #[inline]
     pub unsafe fn cmd_dispatch_data_graph(
         &self,
-        command_buffer: crate::vk::CommandBuffer,
-        session: crate::vk::DataGraphPipelineSessionARM,
-        info: Option<&crate::vk::DataGraphPipelineDispatchInfoARM<'_>>,
+        command_buffer: vk::CommandBuffer,
+        session: vk::DataGraphPipelineSessionARM,
+        info: Option<&vk::DataGraphPipelineDispatchInfoARM<'_>>,
     ) {
         (self
             .fp
@@ -499,8 +495,8 @@ impl Device {
     #[inline]
     pub unsafe fn get_data_graph_pipeline_available_properties(
         &self,
-        pipeline_info: &crate::vk::DataGraphPipelineInfoARM<'_>,
-    ) -> crate::VkResult<Vec<crate::vk::DataGraphPipelinePropertyARM>> {
+        pipeline_info: &vk::DataGraphPipelineInfoARM<'_>,
+    ) -> crate::VkResult<Vec<vk::DataGraphPipelinePropertyARM>> {
         crate::read_into_uninitialized_vector(|properties_count, properties| (self
             .fp
             .get_data_graph_pipeline_available_properties)(
@@ -514,9 +510,9 @@ impl Device {
     #[inline]
     pub unsafe fn get_data_graph_pipeline_properties(
         &self,
-        pipeline_info: &crate::vk::DataGraphPipelineInfoARM<'_>,
-        properties: &mut [crate::vk::DataGraphPipelinePropertyQueryResultARM<'_>],
-    ) -> crate::VkResult<()> {
+        pipeline_info: &vk::DataGraphPipelineInfoARM<'_>,
+        properties: &mut [vk::DataGraphPipelinePropertyQueryResultARM<'_>],
+    ) -> VkResult<()> {
         (self
             .fp
             .get_data_graph_pipeline_properties)(
@@ -530,28 +526,24 @@ impl Device {
 }
 #[derive(Clone)]
 pub struct InstanceFn {
-    pub get_physical_device_queue_family_data_graph_properties: crate::vk::PFN_vkGetPhysicalDeviceQueueFamilyDataGraphPropertiesARM,
-    pub get_physical_device_queue_family_data_graph_processing_engine_properties: crate::vk::PFN_vkGetPhysicalDeviceQueueFamilyDataGraphProcessingEnginePropertiesARM,
+    pub get_physical_device_queue_family_data_graph_properties: vk::PFN_vkGetPhysicalDeviceQueueFamilyDataGraphPropertiesARM,
+    pub get_physical_device_queue_family_data_graph_processing_engine_properties: vk::PFN_vkGetPhysicalDeviceQueueFamilyDataGraphProcessingEnginePropertiesARM,
 }
 unsafe impl Send for InstanceFn {}
 unsafe impl Sync for InstanceFn {}
 impl InstanceFn {
-    pub fn load<F: FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void>(
-        mut f: F,
-    ) -> Self {
+    pub fn load<F: FnMut(&CStr) -> *const c_void>(mut f: F) -> Self {
         Self::load_erased(&mut f)
     }
-    fn load_erased(
-        _f: &mut dyn FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void,
-    ) -> Self {
+    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const c_void) -> Self {
         Self {
             get_physical_device_queue_family_data_graph_properties: unsafe {
                 unsafe extern "system" fn get_physical_device_queue_family_data_graph_properties(
-                    _: crate::vk::PhysicalDevice,
+                    _: vk::PhysicalDevice,
                     _: u32,
                     _: *mut u32,
-                    _: *mut crate::vk::QueueFamilyDataGraphPropertiesARM<'_>,
-                ) -> crate::vk::Result {
+                    _: *mut vk::QueueFamilyDataGraphPropertiesARM<'_>,
+                ) -> vk::Result {
                     panic!(
                         "unable to load vkGetPhysicalDeviceQueueFamilyDataGraphPropertiesARM"
                     )
@@ -565,13 +557,11 @@ impl InstanceFn {
             },
             get_physical_device_queue_family_data_graph_processing_engine_properties: unsafe {
                 unsafe extern "system" fn get_physical_device_queue_family_data_graph_processing_engine_properties(
-                    _: crate::vk::PhysicalDevice,
-                    _: *const crate::vk::PhysicalDeviceQueueFamilyDataGraphProcessingEngineInfoARM<
+                    _: vk::PhysicalDevice,
+                    _: *const vk::PhysicalDeviceQueueFamilyDataGraphProcessingEngineInfoARM<
                         '_,
                     >,
-                    _: *mut crate::vk::QueueFamilyDataGraphProcessingEnginePropertiesARM<
-                        '_,
-                    >,
+                    _: *mut vk::QueueFamilyDataGraphProcessingEnginePropertiesARM<'_>,
                 ) {
                     panic!(
                         "unable to load vkGetPhysicalDeviceQueueFamilyDataGraphProcessingEnginePropertiesARM"
@@ -614,9 +604,9 @@ impl Instance {
     #[inline]
     pub unsafe fn get_physical_device_queue_family_data_graph_properties_len(
         &self,
-        physical_device: crate::vk::PhysicalDevice,
+        physical_device: vk::PhysicalDevice,
         queue_family_index: u32,
-    ) -> crate::VkResult<usize> {
+    ) -> VkResult<usize> {
         let mut queue_family_data_graph_property_count = core::mem::MaybeUninit::uninit();
         (self
             .fp
@@ -633,9 +623,9 @@ impl Instance {
     #[inline]
     pub unsafe fn get_physical_device_queue_family_data_graph_properties(
         &self,
-        physical_device: crate::vk::PhysicalDevice,
+        physical_device: vk::PhysicalDevice,
         queue_family_index: u32,
-        queue_family_data_graph_properties: &mut [crate::vk::QueueFamilyDataGraphPropertiesARM<
+        queue_family_data_graph_properties: &mut [vk::QueueFamilyDataGraphPropertiesARM<
             '_,
         >],
     ) -> crate::VkResult<()> {
@@ -660,11 +650,11 @@ impl Instance {
     #[inline]
     pub unsafe fn get_physical_device_queue_family_data_graph_processing_engine_properties(
         &self,
-        physical_device: crate::vk::PhysicalDevice,
-        queue_family_data_graph_processing_engine_info: &crate::vk::PhysicalDeviceQueueFamilyDataGraphProcessingEngineInfoARM<
+        physical_device: vk::PhysicalDevice,
+        queue_family_data_graph_processing_engine_info: &vk::PhysicalDeviceQueueFamilyDataGraphProcessingEngineInfoARM<
             '_,
         >,
-    ) -> crate::vk::QueueFamilyDataGraphProcessingEnginePropertiesARM<'_> {
+    ) -> vk::QueueFamilyDataGraphProcessingEnginePropertiesARM<'_> {
         let mut queue_family_data_graph_processing_engine_properties = core::mem::MaybeUninit::uninit();
         (self
             .fp
@@ -676,31 +666,37 @@ impl Instance {
         queue_family_data_graph_processing_engine_properties.assume_init()
     }
 }
-pub const SPEC_VERSION: u32 = 1;
-pub const NAME: &core::ffi::CStr = c"VK_ARM_data_graph";
 pub(crate) mod items {
+    use core::marker::PhantomData;
+    use crate::vk;
+    use core::ffi::CStr;
+    use core::ffi;
+    use crate::Handle;
+    use core::fmt;
+    #[cfg(feature = "debug")]
+    use core::fmt as fmtdebug;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceDataGraphFeaturesARM<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
-        pub data_graph: crate::vk::Bool32,
-        pub data_graph_update_after_bind: crate::vk::Bool32,
-        pub data_graph_specialization_constants: crate::vk::Bool32,
-        pub data_graph_descriptor_buffer: crate::vk::Bool32,
-        pub data_graph_shader_module: crate::vk::Bool32,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub data_graph: vk::Bool32,
+        pub data_graph_update_after_bind: vk::Bool32,
+        pub data_graph_specialization_constants: vk::Bool32,
+        pub data_graph_descriptor_buffer: vk::Bool32,
+        pub data_graph_shader_module: vk::Bool32,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for PhysicalDeviceDataGraphFeaturesARM<'_> {}
     unsafe impl Sync for PhysicalDeviceDataGraphFeaturesARM<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceDataGraphFeaturesARM<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_DATA_GRAPH_FEATURES_ARM;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PHYSICAL_DEVICE_DATA_GRAPH_FEATURES_ARM;
     }
-    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+    unsafe impl<'a> crate::Extends<vk::PhysicalDeviceFeatures2<'_>>
     for PhysicalDeviceDataGraphFeaturesARM<'a> {}
-    unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+    unsafe impl<'a> crate::Extends<vk::DeviceCreateInfo<'_>>
     for PhysicalDeviceDataGraphFeaturesARM<'a> {}
     impl<'a> Default for PhysicalDeviceDataGraphFeaturesARM<'a> {
         fn default() -> Self {
@@ -712,7 +708,7 @@ pub(crate) mod items {
                 data_graph_specialization_constants: Default::default(),
                 data_graph_descriptor_buffer: Default::default(),
                 data_graph_shader_module: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
@@ -755,12 +751,12 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct DataGraphPipelineConstantTensorSemiStructuredSparsityInfoARM<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *const core::ffi::c_void,
         pub dimension: u32,
         pub zero_count: u32,
         pub group_size: u32,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send
     for DataGraphPipelineConstantTensorSemiStructuredSparsityInfoARM<'_> {}
@@ -768,9 +764,9 @@ pub(crate) mod items {
     for DataGraphPipelineConstantTensorSemiStructuredSparsityInfoARM<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for DataGraphPipelineConstantTensorSemiStructuredSparsityInfoARM<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::DATA_GRAPH_PIPELINE_CONSTANT_TENSOR_SEMI_STRUCTURED_SPARSITY_INFO_ARM;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::DATA_GRAPH_PIPELINE_CONSTANT_TENSOR_SEMI_STRUCTURED_SPARSITY_INFO_ARM;
     }
-    unsafe impl<'a> crate::Extends<crate::vk::DataGraphPipelineConstantARM<'_>>
+    unsafe impl<'a> crate::Extends<vk::DataGraphPipelineConstantARM<'_>>
     for DataGraphPipelineConstantTensorSemiStructuredSparsityInfoARM<'a> {}
     impl<'a> Default
     for DataGraphPipelineConstantTensorSemiStructuredSparsityInfoARM<'a> {
@@ -781,7 +777,7 @@ pub(crate) mod items {
                 dimension: Default::default(),
                 zero_count: Default::default(),
                 group_size: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
@@ -803,16 +799,16 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct DataGraphPipelineConstantARM<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *const core::ffi::c_void,
         pub id: u32,
         pub p_constant_data: *const core::ffi::c_void,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for DataGraphPipelineConstantARM<'_> {}
     unsafe impl Sync for DataGraphPipelineConstantARM<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for DataGraphPipelineConstantARM<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::DATA_GRAPH_PIPELINE_CONSTANT_ARM;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::DATA_GRAPH_PIPELINE_CONSTANT_ARM;
     }
     impl<'a> Default for DataGraphPipelineConstantARM<'a> {
         fn default() -> Self {
@@ -821,7 +817,7 @@ pub(crate) mod items {
                 p_next: Default::default(),
                 id: Default::default(),
                 p_constant_data: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
@@ -839,17 +835,17 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct DataGraphPipelineResourceInfoARM<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *const core::ffi::c_void,
         pub descriptor_set: u32,
         pub binding: u32,
         pub array_element: u32,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for DataGraphPipelineResourceInfoARM<'_> {}
     unsafe impl Sync for DataGraphPipelineResourceInfoARM<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for DataGraphPipelineResourceInfoARM<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::DATA_GRAPH_PIPELINE_RESOURCE_INFO_ARM;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::DATA_GRAPH_PIPELINE_RESOURCE_INFO_ARM;
     }
     impl<'a> Default for DataGraphPipelineResourceInfoARM<'a> {
         fn default() -> Self {
@@ -859,7 +855,7 @@ pub(crate) mod items {
                 descriptor_set: Default::default(),
                 binding: Default::default(),
                 array_element: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
@@ -881,18 +877,18 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct DataGraphPipelineCompilerControlCreateInfoARM<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *const core::ffi::c_void,
         pub p_vendor_options: *const core::ffi::c_char,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for DataGraphPipelineCompilerControlCreateInfoARM<'_> {}
     unsafe impl Sync for DataGraphPipelineCompilerControlCreateInfoARM<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for DataGraphPipelineCompilerControlCreateInfoARM<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::DATA_GRAPH_PIPELINE_COMPILER_CONTROL_CREATE_INFO_ARM;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::DATA_GRAPH_PIPELINE_COMPILER_CONTROL_CREATE_INFO_ARM;
     }
-    unsafe impl<'a> crate::Extends<crate::vk::DataGraphPipelineCreateInfoARM<'_>>
+    unsafe impl<'a> crate::Extends<vk::DataGraphPipelineCreateInfoARM<'_>>
     for DataGraphPipelineCompilerControlCreateInfoARM<'a> {}
     impl<'a> Default for DataGraphPipelineCompilerControlCreateInfoARM<'a> {
         fn default() -> Self {
@@ -900,20 +896,20 @@ pub(crate) mod items {
                 s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
                 p_next: Default::default(),
                 p_vendor_options: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
     impl<'a> DataGraphPipelineCompilerControlCreateInfoARM<'a> {
-        pub fn vendor_options(mut self, vendor_options: &'a core::ffi::CStr) -> Self {
+        pub fn vendor_options(mut self, vendor_options: &'a CStr) -> Self {
             self.p_vendor_options = vendor_options.as_ptr();
             self
         }
-        pub unsafe fn vendor_options_as_c_str(&self) -> Option<&core::ffi::CStr> {
+        pub unsafe fn vendor_options_as_c_str(&self) -> Option<&CStr> {
             if self.p_vendor_options.is_null() {
                 None
             } else {
-                Some(unsafe { core::ffi::CStr::from_ptr(self.p_vendor_options) })
+                Some(unsafe { CStr::from_ptr(self.p_vendor_options) })
             }
         }
     }
@@ -921,18 +917,18 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct DataGraphPipelineCreateInfoARM<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *const core::ffi::c_void,
-        pub flags: crate::vk::PipelineCreateFlags2,
-        pub layout: crate::vk::PipelineLayout,
+        pub flags: vk::PipelineCreateFlags2,
+        pub layout: vk::PipelineLayout,
         pub resource_info_count: u32,
-        pub p_resource_infos: *const crate::vk::DataGraphPipelineResourceInfoARM<'a>,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub p_resource_infos: *const vk::DataGraphPipelineResourceInfoARM<'a>,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for DataGraphPipelineCreateInfoARM<'_> {}
     unsafe impl Sync for DataGraphPipelineCreateInfoARM<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for DataGraphPipelineCreateInfoARM<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::DATA_GRAPH_PIPELINE_CREATE_INFO_ARM;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::DATA_GRAPH_PIPELINE_CREATE_INFO_ARM;
     }
     impl<'a> Default for DataGraphPipelineCreateInfoARM<'a> {
         fn default() -> Self {
@@ -943,22 +939,22 @@ pub(crate) mod items {
                 layout: Default::default(),
                 resource_info_count: Default::default(),
                 p_resource_infos: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
     impl<'a> DataGraphPipelineCreateInfoARM<'a> {
-        pub fn flags(mut self, flags: crate::vk::PipelineCreateFlags2) -> Self {
+        pub fn flags(mut self, flags: vk::PipelineCreateFlags2) -> Self {
             self.flags = flags;
             self
         }
-        pub fn layout(mut self, layout: crate::vk::PipelineLayout) -> Self {
+        pub fn layout(mut self, layout: vk::PipelineLayout) -> Self {
             self.layout = layout;
             self
         }
         pub fn resource_infos(
             mut self,
-            resource_infos: &'a [crate::vk::DataGraphPipelineResourceInfoARM<'a>],
+            resource_infos: &'a [vk::DataGraphPipelineResourceInfoARM<'a>],
         ) -> Self {
             self.resource_info_count = resource_infos.len() as _;
             self.p_resource_infos = resource_infos.as_ptr();
@@ -969,22 +965,22 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct DataGraphPipelineShaderModuleCreateInfoARM<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *const core::ffi::c_void,
-        pub module: crate::vk::ShaderModule,
+        pub module: vk::ShaderModule,
         pub p_name: *const core::ffi::c_char,
-        pub p_specialization_info: *const crate::vk::SpecializationInfo<'a>,
+        pub p_specialization_info: *const vk::SpecializationInfo<'a>,
         pub constant_count: u32,
-        pub p_constants: *const crate::vk::DataGraphPipelineConstantARM<'a>,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub p_constants: *const vk::DataGraphPipelineConstantARM<'a>,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for DataGraphPipelineShaderModuleCreateInfoARM<'_> {}
     unsafe impl Sync for DataGraphPipelineShaderModuleCreateInfoARM<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for DataGraphPipelineShaderModuleCreateInfoARM<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::DATA_GRAPH_PIPELINE_SHADER_MODULE_CREATE_INFO_ARM;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::DATA_GRAPH_PIPELINE_SHADER_MODULE_CREATE_INFO_ARM;
     }
-    unsafe impl<'a> crate::Extends<crate::vk::DataGraphPipelineCreateInfoARM<'_>>
+    unsafe impl<'a> crate::Extends<vk::DataGraphPipelineCreateInfoARM<'_>>
     for DataGraphPipelineShaderModuleCreateInfoARM<'a> {}
     impl<'a> Default for DataGraphPipelineShaderModuleCreateInfoARM<'a> {
         fn default() -> Self {
@@ -996,36 +992,36 @@ pub(crate) mod items {
                 p_specialization_info: Default::default(),
                 constant_count: Default::default(),
                 p_constants: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
     impl<'a> DataGraphPipelineShaderModuleCreateInfoARM<'a> {
-        pub fn module(mut self, module: crate::vk::ShaderModule) -> Self {
+        pub fn module(mut self, module: vk::ShaderModule) -> Self {
             self.module = module;
             self
         }
-        pub fn name(mut self, name: &'a core::ffi::CStr) -> Self {
+        pub fn name(mut self, name: &'a CStr) -> Self {
             self.p_name = name.as_ptr();
             self
         }
-        pub unsafe fn name_as_c_str(&self) -> Option<&core::ffi::CStr> {
+        pub unsafe fn name_as_c_str(&self) -> Option<&CStr> {
             if self.p_name.is_null() {
                 None
             } else {
-                Some(unsafe { core::ffi::CStr::from_ptr(self.p_name) })
+                Some(unsafe { CStr::from_ptr(self.p_name) })
             }
         }
         pub fn specialization_info(
             mut self,
-            specialization_info: &'a crate::vk::SpecializationInfo<'a>,
+            specialization_info: &'a vk::SpecializationInfo<'a>,
         ) -> Self {
             self.p_specialization_info = specialization_info;
             self
         }
         pub fn constants(
             mut self,
-            constants: &'a [crate::vk::DataGraphPipelineConstantARM<'a>],
+            constants: &'a [vk::DataGraphPipelineConstantARM<'a>],
         ) -> Self {
             self.constant_count = constants.len() as _;
             self.p_constants = constants.as_ptr();
@@ -1036,17 +1032,17 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct DataGraphPipelineSessionCreateInfoARM<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *const core::ffi::c_void,
-        pub flags: crate::vk::DataGraphPipelineSessionCreateFlagsARM,
-        pub data_graph_pipeline: crate::vk::Pipeline,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub flags: vk::DataGraphPipelineSessionCreateFlagsARM,
+        pub data_graph_pipeline: vk::Pipeline,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for DataGraphPipelineSessionCreateInfoARM<'_> {}
     unsafe impl Sync for DataGraphPipelineSessionCreateInfoARM<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for DataGraphPipelineSessionCreateInfoARM<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::DATA_GRAPH_PIPELINE_SESSION_CREATE_INFO_ARM;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::DATA_GRAPH_PIPELINE_SESSION_CREATE_INFO_ARM;
     }
     impl<'a> Default for DataGraphPipelineSessionCreateInfoARM<'a> {
         fn default() -> Self {
@@ -1055,22 +1051,19 @@ pub(crate) mod items {
                 p_next: Default::default(),
                 flags: Default::default(),
                 data_graph_pipeline: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
     impl<'a> DataGraphPipelineSessionCreateInfoARM<'a> {
         pub fn flags(
             mut self,
-            flags: crate::vk::DataGraphPipelineSessionCreateFlagsARM,
+            flags: vk::DataGraphPipelineSessionCreateFlagsARM,
         ) -> Self {
             self.flags = flags;
             self
         }
-        pub fn data_graph_pipeline(
-            mut self,
-            data_graph_pipeline: crate::vk::Pipeline,
-        ) -> Self {
+        pub fn data_graph_pipeline(mut self, data_graph_pipeline: vk::Pipeline) -> Self {
             self.data_graph_pipeline = data_graph_pipeline;
             self
         }
@@ -1079,16 +1072,16 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct DataGraphPipelineSessionBindPointRequirementsInfoARM<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *const core::ffi::c_void,
-        pub session: crate::vk::DataGraphPipelineSessionARM,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub session: vk::DataGraphPipelineSessionARM,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for DataGraphPipelineSessionBindPointRequirementsInfoARM<'_> {}
     unsafe impl Sync for DataGraphPipelineSessionBindPointRequirementsInfoARM<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for DataGraphPipelineSessionBindPointRequirementsInfoARM<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::DATA_GRAPH_PIPELINE_SESSION_BIND_POINT_REQUIREMENTS_INFO_ARM;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::DATA_GRAPH_PIPELINE_SESSION_BIND_POINT_REQUIREMENTS_INFO_ARM;
     }
     impl<'a> Default for DataGraphPipelineSessionBindPointRequirementsInfoARM<'a> {
         fn default() -> Self {
@@ -1096,15 +1089,12 @@ pub(crate) mod items {
                 s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
                 p_next: Default::default(),
                 session: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
     impl<'a> DataGraphPipelineSessionBindPointRequirementsInfoARM<'a> {
-        pub fn session(
-            mut self,
-            session: crate::vk::DataGraphPipelineSessionARM,
-        ) -> Self {
+        pub fn session(mut self, session: vk::DataGraphPipelineSessionARM) -> Self {
             self.session = session;
             self
         }
@@ -1113,18 +1103,18 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct DataGraphPipelineSessionBindPointRequirementARM<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
-        pub bind_point: crate::vk::DataGraphPipelineSessionBindPointARM,
-        pub bind_point_type: crate::vk::DataGraphPipelineSessionBindPointTypeARM,
+        pub bind_point: vk::DataGraphPipelineSessionBindPointARM,
+        pub bind_point_type: vk::DataGraphPipelineSessionBindPointTypeARM,
         pub num_objects: u32,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for DataGraphPipelineSessionBindPointRequirementARM<'_> {}
     unsafe impl Sync for DataGraphPipelineSessionBindPointRequirementARM<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for DataGraphPipelineSessionBindPointRequirementARM<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::DATA_GRAPH_PIPELINE_SESSION_BIND_POINT_REQUIREMENT_ARM;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::DATA_GRAPH_PIPELINE_SESSION_BIND_POINT_REQUIREMENT_ARM;
     }
     impl<'a> Default for DataGraphPipelineSessionBindPointRequirementARM<'a> {
         fn default() -> Self {
@@ -1134,21 +1124,21 @@ pub(crate) mod items {
                 bind_point: Default::default(),
                 bind_point_type: Default::default(),
                 num_objects: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
     impl<'a> DataGraphPipelineSessionBindPointRequirementARM<'a> {
         pub fn bind_point(
             mut self,
-            bind_point: crate::vk::DataGraphPipelineSessionBindPointARM,
+            bind_point: vk::DataGraphPipelineSessionBindPointARM,
         ) -> Self {
             self.bind_point = bind_point;
             self
         }
         pub fn bind_point_type(
             mut self,
-            bind_point_type: crate::vk::DataGraphPipelineSessionBindPointTypeARM,
+            bind_point_type: vk::DataGraphPipelineSessionBindPointTypeARM,
         ) -> Self {
             self.bind_point_type = bind_point_type;
             self
@@ -1162,18 +1152,18 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct DataGraphPipelineSessionMemoryRequirementsInfoARM<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *const core::ffi::c_void,
-        pub session: crate::vk::DataGraphPipelineSessionARM,
-        pub bind_point: crate::vk::DataGraphPipelineSessionBindPointARM,
+        pub session: vk::DataGraphPipelineSessionARM,
+        pub bind_point: vk::DataGraphPipelineSessionBindPointARM,
         pub object_index: u32,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for DataGraphPipelineSessionMemoryRequirementsInfoARM<'_> {}
     unsafe impl Sync for DataGraphPipelineSessionMemoryRequirementsInfoARM<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for DataGraphPipelineSessionMemoryRequirementsInfoARM<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::DATA_GRAPH_PIPELINE_SESSION_MEMORY_REQUIREMENTS_INFO_ARM;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::DATA_GRAPH_PIPELINE_SESSION_MEMORY_REQUIREMENTS_INFO_ARM;
     }
     impl<'a> Default for DataGraphPipelineSessionMemoryRequirementsInfoARM<'a> {
         fn default() -> Self {
@@ -1183,21 +1173,18 @@ pub(crate) mod items {
                 session: Default::default(),
                 bind_point: Default::default(),
                 object_index: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
     impl<'a> DataGraphPipelineSessionMemoryRequirementsInfoARM<'a> {
-        pub fn session(
-            mut self,
-            session: crate::vk::DataGraphPipelineSessionARM,
-        ) -> Self {
+        pub fn session(mut self, session: vk::DataGraphPipelineSessionARM) -> Self {
             self.session = session;
             self
         }
         pub fn bind_point(
             mut self,
-            bind_point: crate::vk::DataGraphPipelineSessionBindPointARM,
+            bind_point: vk::DataGraphPipelineSessionBindPointARM,
         ) -> Self {
             self.bind_point = bind_point;
             self
@@ -1211,20 +1198,20 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct BindDataGraphPipelineSessionMemoryInfoARM<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *const core::ffi::c_void,
-        pub session: crate::vk::DataGraphPipelineSessionARM,
-        pub bind_point: crate::vk::DataGraphPipelineSessionBindPointARM,
+        pub session: vk::DataGraphPipelineSessionARM,
+        pub bind_point: vk::DataGraphPipelineSessionBindPointARM,
         pub object_index: u32,
-        pub memory: crate::vk::DeviceMemory,
-        pub memory_offset: crate::vk::DeviceSize,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub memory: vk::DeviceMemory,
+        pub memory_offset: vk::DeviceSize,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for BindDataGraphPipelineSessionMemoryInfoARM<'_> {}
     unsafe impl Sync for BindDataGraphPipelineSessionMemoryInfoARM<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for BindDataGraphPipelineSessionMemoryInfoARM<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::BIND_DATA_GRAPH_PIPELINE_SESSION_MEMORY_INFO_ARM;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::BIND_DATA_GRAPH_PIPELINE_SESSION_MEMORY_INFO_ARM;
     }
     impl<'a> Default for BindDataGraphPipelineSessionMemoryInfoARM<'a> {
         fn default() -> Self {
@@ -1236,21 +1223,18 @@ pub(crate) mod items {
                 object_index: Default::default(),
                 memory: Default::default(),
                 memory_offset: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
     impl<'a> BindDataGraphPipelineSessionMemoryInfoARM<'a> {
-        pub fn session(
-            mut self,
-            session: crate::vk::DataGraphPipelineSessionARM,
-        ) -> Self {
+        pub fn session(mut self, session: vk::DataGraphPipelineSessionARM) -> Self {
             self.session = session;
             self
         }
         pub fn bind_point(
             mut self,
-            bind_point: crate::vk::DataGraphPipelineSessionBindPointARM,
+            bind_point: vk::DataGraphPipelineSessionBindPointARM,
         ) -> Self {
             self.bind_point = bind_point;
             self
@@ -1259,11 +1243,11 @@ pub(crate) mod items {
             self.object_index = object_index;
             self
         }
-        pub fn memory(mut self, memory: crate::vk::DeviceMemory) -> Self {
+        pub fn memory(mut self, memory: vk::DeviceMemory) -> Self {
             self.memory = memory;
             self
         }
-        pub fn memory_offset(mut self, memory_offset: crate::vk::DeviceSize) -> Self {
+        pub fn memory_offset(mut self, memory_offset: vk::DeviceSize) -> Self {
             self.memory_offset = memory_offset;
             self
         }
@@ -1272,15 +1256,15 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct DataGraphPipelineInfoARM<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *const core::ffi::c_void,
-        pub data_graph_pipeline: crate::vk::Pipeline,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub data_graph_pipeline: vk::Pipeline,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for DataGraphPipelineInfoARM<'_> {}
     unsafe impl Sync for DataGraphPipelineInfoARM<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for DataGraphPipelineInfoARM<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::DATA_GRAPH_PIPELINE_INFO_ARM;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::DATA_GRAPH_PIPELINE_INFO_ARM;
     }
     impl<'a> Default for DataGraphPipelineInfoARM<'a> {
         fn default() -> Self {
@@ -1288,15 +1272,12 @@ pub(crate) mod items {
                 s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
                 p_next: Default::default(),
                 data_graph_pipeline: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
     impl<'a> DataGraphPipelineInfoARM<'a> {
-        pub fn data_graph_pipeline(
-            mut self,
-            data_graph_pipeline: crate::vk::Pipeline,
-        ) -> Self {
+        pub fn data_graph_pipeline(mut self, data_graph_pipeline: vk::Pipeline) -> Self {
             self.data_graph_pipeline = data_graph_pipeline;
             self
         }
@@ -1305,19 +1286,19 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct DataGraphPipelinePropertyQueryResultARM<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
-        pub property: crate::vk::DataGraphPipelinePropertyARM,
-        pub is_text: crate::vk::Bool32,
+        pub property: vk::DataGraphPipelinePropertyARM,
+        pub is_text: vk::Bool32,
         pub data_size: usize,
         pub p_data: *mut core::ffi::c_void,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for DataGraphPipelinePropertyQueryResultARM<'_> {}
     unsafe impl Sync for DataGraphPipelinePropertyQueryResultARM<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for DataGraphPipelinePropertyQueryResultARM<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::DATA_GRAPH_PIPELINE_PROPERTY_QUERY_RESULT_ARM;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::DATA_GRAPH_PIPELINE_PROPERTY_QUERY_RESULT_ARM;
     }
     impl<'a> Default for DataGraphPipelinePropertyQueryResultARM<'a> {
         fn default() -> Self {
@@ -1328,15 +1309,12 @@ pub(crate) mod items {
                 is_text: Default::default(),
                 data_size: Default::default(),
                 p_data: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
     impl<'a> DataGraphPipelinePropertyQueryResultARM<'a> {
-        pub fn property(
-            mut self,
-            property: crate::vk::DataGraphPipelinePropertyARM,
-        ) -> Self {
+        pub fn property(mut self, property: vk::DataGraphPipelinePropertyARM) -> Self {
             self.property = property;
             self
         }
@@ -1354,19 +1332,19 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct DataGraphPipelineIdentifierCreateInfoARM<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *const core::ffi::c_void,
         pub identifier_size: u32,
         pub p_identifier: *const u8,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for DataGraphPipelineIdentifierCreateInfoARM<'_> {}
     unsafe impl Sync for DataGraphPipelineIdentifierCreateInfoARM<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for DataGraphPipelineIdentifierCreateInfoARM<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::DATA_GRAPH_PIPELINE_IDENTIFIER_CREATE_INFO_ARM;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::DATA_GRAPH_PIPELINE_IDENTIFIER_CREATE_INFO_ARM;
     }
-    unsafe impl<'a> crate::Extends<crate::vk::DataGraphPipelineCreateInfoARM<'_>>
+    unsafe impl<'a> crate::Extends<vk::DataGraphPipelineCreateInfoARM<'_>>
     for DataGraphPipelineIdentifierCreateInfoARM<'a> {}
     impl<'a> Default for DataGraphPipelineIdentifierCreateInfoARM<'a> {
         fn default() -> Self {
@@ -1375,7 +1353,7 @@ pub(crate) mod items {
                 p_next: Default::default(),
                 identifier_size: Default::default(),
                 p_identifier: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
@@ -1390,15 +1368,15 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct DataGraphPipelineDispatchInfoARM<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
-        pub flags: crate::vk::DataGraphPipelineDispatchFlagsARM,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub flags: vk::DataGraphPipelineDispatchFlagsARM,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for DataGraphPipelineDispatchInfoARM<'_> {}
     unsafe impl Sync for DataGraphPipelineDispatchInfoARM<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for DataGraphPipelineDispatchInfoARM<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::DATA_GRAPH_PIPELINE_DISPATCH_INFO_ARM;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::DATA_GRAPH_PIPELINE_DISPATCH_INFO_ARM;
     }
     impl<'a> Default for DataGraphPipelineDispatchInfoARM<'a> {
         fn default() -> Self {
@@ -1406,15 +1384,12 @@ pub(crate) mod items {
                 s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
                 p_next: Default::default(),
                 flags: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
     impl<'a> DataGraphPipelineDispatchInfoARM<'a> {
-        pub fn flags(
-            mut self,
-            flags: crate::vk::DataGraphPipelineDispatchFlagsARM,
-        ) -> Self {
+        pub fn flags(mut self, flags: vk::DataGraphPipelineDispatchFlagsARM) -> Self {
             self.flags = flags;
             self
         }
@@ -1423,15 +1398,15 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy, Default)]
     pub struct PhysicalDeviceDataGraphProcessingEngineARM {
-        pub ty: crate::vk::PhysicalDeviceDataGraphProcessingEngineTypeARM,
-        pub is_foreign: crate::vk::Bool32,
+        pub ty: vk::PhysicalDeviceDataGraphProcessingEngineTypeARM,
+        pub is_foreign: vk::Bool32,
     }
     unsafe impl Send for PhysicalDeviceDataGraphProcessingEngineARM {}
     unsafe impl Sync for PhysicalDeviceDataGraphProcessingEngineARM {}
     impl PhysicalDeviceDataGraphProcessingEngineARM {
         pub fn ty(
             mut self,
-            ty: crate::vk::PhysicalDeviceDataGraphProcessingEngineTypeARM,
+            ty: vk::PhysicalDeviceDataGraphProcessingEngineTypeARM,
         ) -> Self {
             self.ty = ty;
             self
@@ -1444,8 +1419,8 @@ pub(crate) mod items {
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceDataGraphOperationSupportARM {
-        pub operation_type: crate::vk::PhysicalDeviceDataGraphOperationTypeARM,
-        pub name: [core::ffi::c_char; crate::vk::MAX_PHYSICAL_DEVICE_DATA_GRAPH_OPERATION_SET_NAME_SIZE_ARM
+        pub operation_type: vk::PhysicalDeviceDataGraphOperationTypeARM,
+        pub name: [core::ffi::c_char; vk::MAX_PHYSICAL_DEVICE_DATA_GRAPH_OPERATION_SET_NAME_SIZE_ARM
             as _],
         pub version: u32,
     }
@@ -1473,20 +1448,20 @@ pub(crate) mod items {
     impl PhysicalDeviceDataGraphOperationSupportARM {
         pub fn operation_type(
             mut self,
-            operation_type: crate::vk::PhysicalDeviceDataGraphOperationTypeARM,
+            operation_type: vk::PhysicalDeviceDataGraphOperationTypeARM,
         ) -> Self {
             self.operation_type = operation_type;
             self
         }
         pub fn name(
             mut self,
-            name: &core::ffi::CStr,
+            name: &CStr,
         ) -> core::result::Result<Self, crate::CStrTooLargeForStaticArray> {
             crate::write_c_str_slice_with_nul(&mut self.name, name).map(|_| self)
         }
         pub fn name_as_c_str(
             &self,
-        ) -> core::result::Result<&core::ffi::CStr, core::ffi::FromBytesUntilNulError> {
+        ) -> core::result::Result<&CStr, ffi::FromBytesUntilNulError> {
             crate::wrap_c_str_slice_until_nul(&self.name)
         }
         pub fn version(mut self, version: u32) -> Self {
@@ -1498,17 +1473,17 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct QueueFamilyDataGraphPropertiesARM<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
-        pub engine: crate::vk::PhysicalDeviceDataGraphProcessingEngineARM,
-        pub operation: crate::vk::PhysicalDeviceDataGraphOperationSupportARM,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub engine: vk::PhysicalDeviceDataGraphProcessingEngineARM,
+        pub operation: vk::PhysicalDeviceDataGraphOperationSupportARM,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for QueueFamilyDataGraphPropertiesARM<'_> {}
     unsafe impl Sync for QueueFamilyDataGraphPropertiesARM<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for QueueFamilyDataGraphPropertiesARM<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::QUEUE_FAMILY_DATA_GRAPH_PROPERTIES_ARM;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::QUEUE_FAMILY_DATA_GRAPH_PROPERTIES_ARM;
     }
     impl<'a> Default for QueueFamilyDataGraphPropertiesARM<'a> {
         fn default() -> Self {
@@ -1517,21 +1492,21 @@ pub(crate) mod items {
                 p_next: Default::default(),
                 engine: Default::default(),
                 operation: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
     impl<'a> QueueFamilyDataGraphPropertiesARM<'a> {
         pub fn engine(
             mut self,
-            engine: crate::vk::PhysicalDeviceDataGraphProcessingEngineARM,
+            engine: vk::PhysicalDeviceDataGraphProcessingEngineARM,
         ) -> Self {
             self.engine = engine;
             self
         }
         pub fn operation(
             mut self,
-            operation: crate::vk::PhysicalDeviceDataGraphOperationSupportARM,
+            operation: vk::PhysicalDeviceDataGraphOperationSupportARM,
         ) -> Self {
             self.operation = operation;
             self
@@ -1541,17 +1516,17 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceQueueFamilyDataGraphProcessingEngineInfoARM<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *const core::ffi::c_void,
         pub queue_family_index: u32,
-        pub engine_type: crate::vk::PhysicalDeviceDataGraphProcessingEngineTypeARM,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub engine_type: vk::PhysicalDeviceDataGraphProcessingEngineTypeARM,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for PhysicalDeviceQueueFamilyDataGraphProcessingEngineInfoARM<'_> {}
     unsafe impl Sync for PhysicalDeviceQueueFamilyDataGraphProcessingEngineInfoARM<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceQueueFamilyDataGraphProcessingEngineInfoARM<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_QUEUE_FAMILY_DATA_GRAPH_PROCESSING_ENGINE_INFO_ARM;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PHYSICAL_DEVICE_QUEUE_FAMILY_DATA_GRAPH_PROCESSING_ENGINE_INFO_ARM;
     }
     impl<'a> Default for PhysicalDeviceQueueFamilyDataGraphProcessingEngineInfoARM<'a> {
         fn default() -> Self {
@@ -1560,7 +1535,7 @@ pub(crate) mod items {
                 p_next: Default::default(),
                 queue_family_index: Default::default(),
                 engine_type: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
@@ -1571,7 +1546,7 @@ pub(crate) mod items {
         }
         pub fn engine_type(
             mut self,
-            engine_type: crate::vk::PhysicalDeviceDataGraphProcessingEngineTypeARM,
+            engine_type: vk::PhysicalDeviceDataGraphProcessingEngineTypeARM,
         ) -> Self {
             self.engine_type = engine_type;
             self
@@ -1581,17 +1556,17 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct QueueFamilyDataGraphProcessingEnginePropertiesARM<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
-        pub foreign_semaphore_handle_types: crate::vk::ExternalSemaphoreHandleTypeFlags,
-        pub foreign_memory_handle_types: crate::vk::ExternalMemoryHandleTypeFlags,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub foreign_semaphore_handle_types: vk::ExternalSemaphoreHandleTypeFlags,
+        pub foreign_memory_handle_types: vk::ExternalMemoryHandleTypeFlags,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for QueueFamilyDataGraphProcessingEnginePropertiesARM<'_> {}
     unsafe impl Sync for QueueFamilyDataGraphProcessingEnginePropertiesARM<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for QueueFamilyDataGraphProcessingEnginePropertiesARM<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::QUEUE_FAMILY_DATA_GRAPH_PROCESSING_ENGINE_PROPERTIES_ARM;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::QUEUE_FAMILY_DATA_GRAPH_PROCESSING_ENGINE_PROPERTIES_ARM;
     }
     impl<'a> Default for QueueFamilyDataGraphProcessingEnginePropertiesARM<'a> {
         fn default() -> Self {
@@ -1600,21 +1575,21 @@ pub(crate) mod items {
                 p_next: Default::default(),
                 foreign_semaphore_handle_types: Default::default(),
                 foreign_memory_handle_types: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
     impl<'a> QueueFamilyDataGraphProcessingEnginePropertiesARM<'a> {
         pub fn foreign_semaphore_handle_types(
             mut self,
-            foreign_semaphore_handle_types: crate::vk::ExternalSemaphoreHandleTypeFlags,
+            foreign_semaphore_handle_types: vk::ExternalSemaphoreHandleTypeFlags,
         ) -> Self {
             self.foreign_semaphore_handle_types = foreign_semaphore_handle_types;
             self
         }
         pub fn foreign_memory_handle_types(
             mut self,
-            foreign_memory_handle_types: crate::vk::ExternalMemoryHandleTypeFlags,
+            foreign_memory_handle_types: vk::ExternalMemoryHandleTypeFlags,
         ) -> Self {
             self.foreign_memory_handle_types = foreign_memory_handle_types;
             self
@@ -1624,23 +1599,23 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct DataGraphProcessingEngineCreateInfoARM<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *const core::ffi::c_void,
         pub processing_engine_count: u32,
-        pub p_processing_engines: *mut crate::vk::PhysicalDeviceDataGraphProcessingEngineARM,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub p_processing_engines: *mut vk::PhysicalDeviceDataGraphProcessingEngineARM,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for DataGraphProcessingEngineCreateInfoARM<'_> {}
     unsafe impl Sync for DataGraphProcessingEngineCreateInfoARM<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for DataGraphProcessingEngineCreateInfoARM<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::DATA_GRAPH_PROCESSING_ENGINE_CREATE_INFO_ARM;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::DATA_GRAPH_PROCESSING_ENGINE_CREATE_INFO_ARM;
     }
-    unsafe impl<'a> crate::Extends<crate::vk::DataGraphPipelineCreateInfoARM<'_>>
+    unsafe impl<'a> crate::Extends<vk::DataGraphPipelineCreateInfoARM<'_>>
     for DataGraphProcessingEngineCreateInfoARM<'a> {}
-    unsafe impl<'a> crate::Extends<crate::vk::DescriptorPoolCreateInfo<'_>>
+    unsafe impl<'a> crate::Extends<vk::DescriptorPoolCreateInfo<'_>>
     for DataGraphProcessingEngineCreateInfoARM<'a> {}
-    unsafe impl<'a> crate::Extends<crate::vk::CommandPoolCreateInfo<'_>>
+    unsafe impl<'a> crate::Extends<vk::CommandPoolCreateInfo<'_>>
     for DataGraphProcessingEngineCreateInfoARM<'a> {}
     impl<'a> Default for DataGraphProcessingEngineCreateInfoARM<'a> {
         fn default() -> Self {
@@ -1649,14 +1624,14 @@ pub(crate) mod items {
                 p_next: Default::default(),
                 processing_engine_count: Default::default(),
                 p_processing_engines: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
     impl<'a> DataGraphProcessingEngineCreateInfoARM<'a> {
         pub fn processing_engines(
             mut self,
-            processing_engines: &'a mut [crate::vk::PhysicalDeviceDataGraphProcessingEngineARM],
+            processing_engines: &'a mut [vk::PhysicalDeviceDataGraphProcessingEngineARM],
         ) -> Self {
             self.processing_engine_count = processing_engines.len() as _;
             self.p_processing_engines = processing_engines.as_mut_ptr();
@@ -2005,8 +1980,8 @@ pub(crate) mod items {
     #[repr(transparent)]
     #[derive(Eq, PartialEq, Ord, PartialOrd, Clone, Copy, Hash, Default)]
     pub struct DataGraphPipelineSessionARM(u64);
-    impl crate::Handle for DataGraphPipelineSessionARM {
-        const TYPE: crate::vk::ObjectType = crate::vk::ObjectType::DATA_GRAPH_PIPELINE_SESSION_ARM;
+    impl Handle for DataGraphPipelineSessionARM {
+        const TYPE: vk::ObjectType = vk::ObjectType::DATA_GRAPH_PIPELINE_SESSION_ARM;
         fn as_raw(self) -> u64 {
             self.0
         }
@@ -2019,87 +1994,86 @@ pub(crate) mod items {
             Self(0)
         }
     }
-    impl core::fmt::Pointer for DataGraphPipelineSessionARM {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+    impl fmt::Pointer for DataGraphPipelineSessionARM {
+        fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
             write!(f, "0x{:x}", self.0)
         }
     }
-    impl core::fmt::Debug for DataGraphPipelineSessionARM {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+    #[cfg(feature = "debug")]
+    impl fmtdebug::Debug for DataGraphPipelineSessionARM {
+        fn fmt(&self, f: &mut fmtdebug::Formatter) -> fmtdebug::Result {
             write!(f, "0x{:x}", self.0)
         }
     }
     pub type PFN_vkCreateDataGraphPipelinesARM = unsafe extern "system" fn(
-        device: crate::vk::Device,
-        deferred_operation: crate::vk::DeferredOperationKHR,
-        pipeline_cache: crate::vk::PipelineCache,
+        device: vk::Device,
+        deferred_operation: vk::DeferredOperationKHR,
+        pipeline_cache: vk::PipelineCache,
         create_info_count: u32,
-        p_create_infos: *const crate::vk::DataGraphPipelineCreateInfoARM<'_>,
-        p_allocator: *const crate::vk::AllocationCallbacks<'_>,
-        p_pipelines: *mut crate::vk::Pipeline,
-    ) -> crate::vk::Result;
+        p_create_infos: *const vk::DataGraphPipelineCreateInfoARM<'_>,
+        p_allocator: *const vk::AllocationCallbacks<'_>,
+        p_pipelines: *mut vk::Pipeline,
+    ) -> vk::Result;
     pub type PFN_vkCreateDataGraphPipelineSessionARM = unsafe extern "system" fn(
-        device: crate::vk::Device,
-        p_create_info: *const crate::vk::DataGraphPipelineSessionCreateInfoARM<'_>,
-        p_allocator: *const crate::vk::AllocationCallbacks<'_>,
-        p_session: *mut crate::vk::DataGraphPipelineSessionARM,
-    ) -> crate::vk::Result;
+        device: vk::Device,
+        p_create_info: *const vk::DataGraphPipelineSessionCreateInfoARM<'_>,
+        p_allocator: *const vk::AllocationCallbacks<'_>,
+        p_session: *mut vk::DataGraphPipelineSessionARM,
+    ) -> vk::Result;
     pub type PFN_vkGetDataGraphPipelineSessionBindPointRequirementsARM = unsafe extern "system" fn(
-        device: crate::vk::Device,
-        p_info: *const crate::vk::DataGraphPipelineSessionBindPointRequirementsInfoARM<
-            '_,
-        >,
+        device: vk::Device,
+        p_info: *const vk::DataGraphPipelineSessionBindPointRequirementsInfoARM<'_>,
         p_bind_point_requirement_count: *mut u32,
-        p_bind_point_requirements: *mut crate::vk::DataGraphPipelineSessionBindPointRequirementARM<
+        p_bind_point_requirements: *mut vk::DataGraphPipelineSessionBindPointRequirementARM<
             '_,
         >,
-    ) -> crate::vk::Result;
+    ) -> vk::Result;
     pub type PFN_vkGetDataGraphPipelineSessionMemoryRequirementsARM = unsafe extern "system" fn(
-        device: crate::vk::Device,
-        p_info: *const crate::vk::DataGraphPipelineSessionMemoryRequirementsInfoARM<'_>,
-        p_memory_requirements: *mut crate::vk::MemoryRequirements2<'_>,
+        device: vk::Device,
+        p_info: *const vk::DataGraphPipelineSessionMemoryRequirementsInfoARM<'_>,
+        p_memory_requirements: *mut vk::MemoryRequirements2<'_>,
     );
     pub type PFN_vkBindDataGraphPipelineSessionMemoryARM = unsafe extern "system" fn(
-        device: crate::vk::Device,
+        device: vk::Device,
         bind_info_count: u32,
-        p_bind_infos: *const crate::vk::BindDataGraphPipelineSessionMemoryInfoARM<'_>,
-    ) -> crate::vk::Result;
+        p_bind_infos: *const vk::BindDataGraphPipelineSessionMemoryInfoARM<'_>,
+    ) -> vk::Result;
     pub type PFN_vkDestroyDataGraphPipelineSessionARM = unsafe extern "system" fn(
-        device: crate::vk::Device,
-        session: crate::vk::DataGraphPipelineSessionARM,
-        p_allocator: *const crate::vk::AllocationCallbacks<'_>,
+        device: vk::Device,
+        session: vk::DataGraphPipelineSessionARM,
+        p_allocator: *const vk::AllocationCallbacks<'_>,
     );
     pub type PFN_vkCmdDispatchDataGraphARM = unsafe extern "system" fn(
-        command_buffer: crate::vk::CommandBuffer,
-        session: crate::vk::DataGraphPipelineSessionARM,
-        p_info: *const crate::vk::DataGraphPipelineDispatchInfoARM<'_>,
+        command_buffer: vk::CommandBuffer,
+        session: vk::DataGraphPipelineSessionARM,
+        p_info: *const vk::DataGraphPipelineDispatchInfoARM<'_>,
     );
     pub type PFN_vkGetDataGraphPipelineAvailablePropertiesARM = unsafe extern "system" fn(
-        device: crate::vk::Device,
-        p_pipeline_info: *const crate::vk::DataGraphPipelineInfoARM<'_>,
+        device: vk::Device,
+        p_pipeline_info: *const vk::DataGraphPipelineInfoARM<'_>,
         p_properties_count: *mut u32,
-        p_properties: *mut crate::vk::DataGraphPipelinePropertyARM,
-    ) -> crate::vk::Result;
+        p_properties: *mut vk::DataGraphPipelinePropertyARM,
+    ) -> vk::Result;
     pub type PFN_vkGetDataGraphPipelinePropertiesARM = unsafe extern "system" fn(
-        device: crate::vk::Device,
-        p_pipeline_info: *const crate::vk::DataGraphPipelineInfoARM<'_>,
+        device: vk::Device,
+        p_pipeline_info: *const vk::DataGraphPipelineInfoARM<'_>,
         properties_count: u32,
-        p_properties: *mut crate::vk::DataGraphPipelinePropertyQueryResultARM<'_>,
-    ) -> crate::vk::Result;
+        p_properties: *mut vk::DataGraphPipelinePropertyQueryResultARM<'_>,
+    ) -> vk::Result;
     pub type PFN_vkGetPhysicalDeviceQueueFamilyDataGraphPropertiesARM = unsafe extern "system" fn(
-        physical_device: crate::vk::PhysicalDevice,
+        physical_device: vk::PhysicalDevice,
         queue_family_index: u32,
         p_queue_family_data_graph_property_count: *mut u32,
-        p_queue_family_data_graph_properties: *mut crate::vk::QueueFamilyDataGraphPropertiesARM<
+        p_queue_family_data_graph_properties: *mut vk::QueueFamilyDataGraphPropertiesARM<
             '_,
         >,
-    ) -> crate::vk::Result;
+    ) -> vk::Result;
     pub type PFN_vkGetPhysicalDeviceQueueFamilyDataGraphProcessingEnginePropertiesARM = unsafe extern "system" fn(
-        physical_device: crate::vk::PhysicalDevice,
-        p_queue_family_data_graph_processing_engine_info: *const crate::vk::PhysicalDeviceQueueFamilyDataGraphProcessingEngineInfoARM<
+        physical_device: vk::PhysicalDevice,
+        p_queue_family_data_graph_processing_engine_info: *const vk::PhysicalDeviceQueueFamilyDataGraphProcessingEngineInfoARM<
             '_,
         >,
-        p_queue_family_data_graph_processing_engine_properties: *mut crate::vk::QueueFamilyDataGraphProcessingEnginePropertiesARM<
+        p_queue_family_data_graph_processing_engine_properties: *mut vk::QueueFamilyDataGraphProcessingEnginePropertiesARM<
             '_,
         >,
     );

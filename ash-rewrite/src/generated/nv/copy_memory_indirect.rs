@@ -2,32 +2,33 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_NV_copy_memory_indirect.html) · Extension `VK_NV_copy_memory_indirect`
 #![doc(alias = "VK_NV_copy_memory_indirect")]
+use crate::vk;
+use core::ffi::CStr;
+use core::ffi::c_void;
 ///Provided by [VK_NV_copy_memory_indirect](crate::nv::copy_memory_indirect)
-impl crate::vk::StructureType {
+impl vk::StructureType {
     pub const PHYSICAL_DEVICE_COPY_MEMORY_INDIRECT_FEATURES_NV: Self = Self(1000426000);
     pub const PHYSICAL_DEVICE_COPY_MEMORY_INDIRECT_PROPERTIES_NV: Self = Self::PHYSICAL_DEVICE_COPY_MEMORY_INDIRECT_PROPERTIES_KHR;
 }
+pub const SPEC_VERSION: u32 = 1;
+pub const NAME: &CStr = c"VK_NV_copy_memory_indirect";
 #[derive(Clone)]
 pub struct DeviceFn {
-    pub cmd_copy_memory_indirect: crate::vk::PFN_vkCmdCopyMemoryIndirectNV,
-    pub cmd_copy_memory_to_image_indirect: crate::vk::PFN_vkCmdCopyMemoryToImageIndirectNV,
+    pub cmd_copy_memory_indirect: vk::PFN_vkCmdCopyMemoryIndirectNV,
+    pub cmd_copy_memory_to_image_indirect: vk::PFN_vkCmdCopyMemoryToImageIndirectNV,
 }
 unsafe impl Send for DeviceFn {}
 unsafe impl Sync for DeviceFn {}
 impl DeviceFn {
-    pub fn load<F: FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void>(
-        mut f: F,
-    ) -> Self {
+    pub fn load<F: FnMut(&CStr) -> *const c_void>(mut f: F) -> Self {
         Self::load_erased(&mut f)
     }
-    fn load_erased(
-        _f: &mut dyn FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void,
-    ) -> Self {
+    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const c_void) -> Self {
         Self {
             cmd_copy_memory_indirect: unsafe {
                 unsafe extern "system" fn cmd_copy_memory_indirect(
-                    _: crate::vk::CommandBuffer,
-                    _: crate::vk::DeviceAddress,
+                    _: vk::CommandBuffer,
+                    _: vk::DeviceAddress,
                     _: u32,
                     _: u32,
                 ) {
@@ -42,13 +43,13 @@ impl DeviceFn {
             },
             cmd_copy_memory_to_image_indirect: unsafe {
                 unsafe extern "system" fn cmd_copy_memory_to_image_indirect(
-                    _: crate::vk::CommandBuffer,
-                    _: crate::vk::DeviceAddress,
+                    _: vk::CommandBuffer,
+                    _: vk::DeviceAddress,
                     _: u32,
                     _: u32,
-                    _: crate::vk::Image,
-                    _: crate::vk::ImageLayout,
-                    _: *const crate::vk::ImageSubresourceLayers,
+                    _: vk::Image,
+                    _: vk::ImageLayout,
+                    _: *const vk::ImageSubresourceLayers,
                 ) {
                     panic!("unable to load vkCmdCopyMemoryToImageIndirectNV")
                 }
@@ -87,8 +88,8 @@ impl Device {
     #[inline]
     pub unsafe fn cmd_copy_memory_indirect(
         &self,
-        command_buffer: crate::vk::CommandBuffer,
-        copy_buffer_address: crate::vk::DeviceAddress,
+        command_buffer: vk::CommandBuffer,
+        copy_buffer_address: vk::DeviceAddress,
         copy_count: u32,
         stride: u32,
     ) {
@@ -105,12 +106,12 @@ impl Device {
     #[inline]
     pub unsafe fn cmd_copy_memory_to_image_indirect(
         &self,
-        command_buffer: crate::vk::CommandBuffer,
-        copy_buffer_address: crate::vk::DeviceAddress,
+        command_buffer: vk::CommandBuffer,
+        copy_buffer_address: vk::DeviceAddress,
         stride: u32,
-        dst_image: crate::vk::Image,
-        dst_image_layout: crate::vk::ImageLayout,
-        image_subresources: &[crate::vk::ImageSubresourceLayers],
+        dst_image: vk::Image,
+        dst_image_layout: vk::ImageLayout,
+        image_subresources: &[vk::ImageSubresourceLayers],
     ) {
         (self
             .fp
@@ -125,27 +126,27 @@ impl Device {
         )
     }
 }
-pub const SPEC_VERSION: u32 = 1;
-pub const NAME: &core::ffi::CStr = c"VK_NV_copy_memory_indirect";
 pub(crate) mod items {
+    use core::marker::PhantomData;
+    use crate::vk;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceCopyMemoryIndirectFeaturesNV<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
-        pub indirect_copy: crate::vk::Bool32,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub indirect_copy: vk::Bool32,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for PhysicalDeviceCopyMemoryIndirectFeaturesNV<'_> {}
     unsafe impl Sync for PhysicalDeviceCopyMemoryIndirectFeaturesNV<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceCopyMemoryIndirectFeaturesNV<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_COPY_MEMORY_INDIRECT_FEATURES_NV;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PHYSICAL_DEVICE_COPY_MEMORY_INDIRECT_FEATURES_NV;
     }
-    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+    unsafe impl<'a> crate::Extends<vk::PhysicalDeviceFeatures2<'_>>
     for PhysicalDeviceCopyMemoryIndirectFeaturesNV<'a> {}
-    unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+    unsafe impl<'a> crate::Extends<vk::DeviceCreateInfo<'_>>
     for PhysicalDeviceCopyMemoryIndirectFeaturesNV<'a> {}
     impl<'a> Default for PhysicalDeviceCopyMemoryIndirectFeaturesNV<'a> {
         fn default() -> Self {
@@ -153,7 +154,7 @@ pub(crate) mod items {
                 s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
                 p_next: Default::default(),
                 indirect_copy: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
@@ -163,25 +164,25 @@ pub(crate) mod items {
             self
         }
     }
-    pub type CopyMemoryIndirectCommandNV = crate::vk::CopyMemoryIndirectCommandKHR;
-    pub type CopyMemoryToImageIndirectCommandNV = crate::vk::CopyMemoryToImageIndirectCommandKHR;
-    pub type PhysicalDeviceCopyMemoryIndirectPropertiesNV<'a> = crate::vk::PhysicalDeviceCopyMemoryIndirectPropertiesKHR<
+    pub type CopyMemoryIndirectCommandNV = vk::CopyMemoryIndirectCommandKHR;
+    pub type CopyMemoryToImageIndirectCommandNV = vk::CopyMemoryToImageIndirectCommandKHR;
+    pub type PhysicalDeviceCopyMemoryIndirectPropertiesNV<'a> = vk::PhysicalDeviceCopyMemoryIndirectPropertiesKHR<
         'a,
     >;
     pub type PFN_vkCmdCopyMemoryIndirectNV = unsafe extern "system" fn(
-        command_buffer: crate::vk::CommandBuffer,
-        copy_buffer_address: crate::vk::DeviceAddress,
+        command_buffer: vk::CommandBuffer,
+        copy_buffer_address: vk::DeviceAddress,
         copy_count: u32,
         stride: u32,
     );
     pub type PFN_vkCmdCopyMemoryToImageIndirectNV = unsafe extern "system" fn(
-        command_buffer: crate::vk::CommandBuffer,
-        copy_buffer_address: crate::vk::DeviceAddress,
+        command_buffer: vk::CommandBuffer,
+        copy_buffer_address: vk::DeviceAddress,
         copy_count: u32,
         stride: u32,
-        dst_image: crate::vk::Image,
-        dst_image_layout: crate::vk::ImageLayout,
-        p_image_subresources: *const crate::vk::ImageSubresourceLayers,
+        dst_image: vk::Image,
+        dst_image_layout: vk::ImageLayout,
+        p_image_subresources: *const vk::ImageSubresourceLayers,
     );
 }
 pub use items::*;

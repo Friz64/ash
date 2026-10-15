@@ -2,8 +2,10 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_VALVE_video_encode_rgb_conversion.html) · Extension `VK_VALVE_video_encode_rgb_conversion`
 #![doc(alias = "VK_VALVE_video_encode_rgb_conversion")]
+use crate::vk;
+use core::ffi::CStr;
 ///Provided by [VK_VALVE_video_encode_rgb_conversion](crate::valve::video_encode_rgb_conversion)
-impl crate::vk::StructureType {
+impl vk::StructureType {
     pub const PHYSICAL_DEVICE_VIDEO_ENCODE_RGB_CONVERSION_FEATURES_VALVE: Self = Self(
         1000390000,
     );
@@ -66,26 +68,28 @@ impl VideoEncodeRgbChromaOffsetFlagBitsVALVE {
     pub const MIDPOINT: Self = Self(1 << 1);
 }
 pub const SPEC_VERSION: u32 = 1;
-pub const NAME: &core::ffi::CStr = c"VK_VALVE_video_encode_rgb_conversion";
+pub const NAME: &CStr = c"VK_VALVE_video_encode_rgb_conversion";
 pub(crate) mod items {
+    use core::marker::PhantomData;
+    use crate::vk;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceVideoEncodeRgbConversionFeaturesVALVE<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
-        pub video_encode_rgb_conversion: crate::vk::Bool32,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub video_encode_rgb_conversion: vk::Bool32,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for PhysicalDeviceVideoEncodeRgbConversionFeaturesVALVE<'_> {}
     unsafe impl Sync for PhysicalDeviceVideoEncodeRgbConversionFeaturesVALVE<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceVideoEncodeRgbConversionFeaturesVALVE<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_VIDEO_ENCODE_RGB_CONVERSION_FEATURES_VALVE;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PHYSICAL_DEVICE_VIDEO_ENCODE_RGB_CONVERSION_FEATURES_VALVE;
     }
-    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+    unsafe impl<'a> crate::Extends<vk::PhysicalDeviceFeatures2<'_>>
     for PhysicalDeviceVideoEncodeRgbConversionFeaturesVALVE<'a> {}
-    unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+    unsafe impl<'a> crate::Extends<vk::DeviceCreateInfo<'_>>
     for PhysicalDeviceVideoEncodeRgbConversionFeaturesVALVE<'a> {}
     impl<'a> Default for PhysicalDeviceVideoEncodeRgbConversionFeaturesVALVE<'a> {
         fn default() -> Self {
@@ -93,7 +97,7 @@ pub(crate) mod items {
                 s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
                 p_next: Default::default(),
                 video_encode_rgb_conversion: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
@@ -110,21 +114,21 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct VideoEncodeRgbConversionCapabilitiesVALVE<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
-        pub rgb_models: crate::vk::VideoEncodeRgbModelConversionFlagsVALVE,
-        pub rgb_ranges: crate::vk::VideoEncodeRgbRangeCompressionFlagsVALVE,
-        pub x_chroma_offsets: crate::vk::VideoEncodeRgbChromaOffsetFlagsVALVE,
-        pub y_chroma_offsets: crate::vk::VideoEncodeRgbChromaOffsetFlagsVALVE,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub rgb_models: vk::VideoEncodeRgbModelConversionFlagsVALVE,
+        pub rgb_ranges: vk::VideoEncodeRgbRangeCompressionFlagsVALVE,
+        pub x_chroma_offsets: vk::VideoEncodeRgbChromaOffsetFlagsVALVE,
+        pub y_chroma_offsets: vk::VideoEncodeRgbChromaOffsetFlagsVALVE,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for VideoEncodeRgbConversionCapabilitiesVALVE<'_> {}
     unsafe impl Sync for VideoEncodeRgbConversionCapabilitiesVALVE<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for VideoEncodeRgbConversionCapabilitiesVALVE<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::VIDEO_ENCODE_RGB_CONVERSION_CAPABILITIES_VALVE;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::VIDEO_ENCODE_RGB_CONVERSION_CAPABILITIES_VALVE;
     }
-    unsafe impl<'a> crate::Extends<crate::vk::VideoCapabilitiesKHR<'_>>
+    unsafe impl<'a> crate::Extends<vk::VideoCapabilitiesKHR<'_>>
     for VideoEncodeRgbConversionCapabilitiesVALVE<'a> {}
     impl<'a> Default for VideoEncodeRgbConversionCapabilitiesVALVE<'a> {
         fn default() -> Self {
@@ -135,35 +139,35 @@ pub(crate) mod items {
                 rgb_ranges: Default::default(),
                 x_chroma_offsets: Default::default(),
                 y_chroma_offsets: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
     impl<'a> VideoEncodeRgbConversionCapabilitiesVALVE<'a> {
         pub fn rgb_models(
             mut self,
-            rgb_models: crate::vk::VideoEncodeRgbModelConversionFlagsVALVE,
+            rgb_models: vk::VideoEncodeRgbModelConversionFlagsVALVE,
         ) -> Self {
             self.rgb_models = rgb_models;
             self
         }
         pub fn rgb_ranges(
             mut self,
-            rgb_ranges: crate::vk::VideoEncodeRgbRangeCompressionFlagsVALVE,
+            rgb_ranges: vk::VideoEncodeRgbRangeCompressionFlagsVALVE,
         ) -> Self {
             self.rgb_ranges = rgb_ranges;
             self
         }
         pub fn x_chroma_offsets(
             mut self,
-            x_chroma_offsets: crate::vk::VideoEncodeRgbChromaOffsetFlagsVALVE,
+            x_chroma_offsets: vk::VideoEncodeRgbChromaOffsetFlagsVALVE,
         ) -> Self {
             self.x_chroma_offsets = x_chroma_offsets;
             self
         }
         pub fn y_chroma_offsets(
             mut self,
-            y_chroma_offsets: crate::vk::VideoEncodeRgbChromaOffsetFlagsVALVE,
+            y_chroma_offsets: vk::VideoEncodeRgbChromaOffsetFlagsVALVE,
         ) -> Self {
             self.y_chroma_offsets = y_chroma_offsets;
             self
@@ -173,18 +177,18 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct VideoEncodeProfileRgbConversionInfoVALVE<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *const core::ffi::c_void,
-        pub perform_encode_rgb_conversion: crate::vk::Bool32,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub perform_encode_rgb_conversion: vk::Bool32,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for VideoEncodeProfileRgbConversionInfoVALVE<'_> {}
     unsafe impl Sync for VideoEncodeProfileRgbConversionInfoVALVE<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for VideoEncodeProfileRgbConversionInfoVALVE<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::VIDEO_ENCODE_PROFILE_RGB_CONVERSION_INFO_VALVE;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::VIDEO_ENCODE_PROFILE_RGB_CONVERSION_INFO_VALVE;
     }
-    unsafe impl<'a> crate::Extends<crate::vk::VideoProfileInfoKHR<'_>>
+    unsafe impl<'a> crate::Extends<vk::VideoProfileInfoKHR<'_>>
     for VideoEncodeProfileRgbConversionInfoVALVE<'a> {}
     impl<'a> Default for VideoEncodeProfileRgbConversionInfoVALVE<'a> {
         fn default() -> Self {
@@ -192,7 +196,7 @@ pub(crate) mod items {
                 s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
                 p_next: Default::default(),
                 perform_encode_rgb_conversion: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
@@ -209,21 +213,21 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct VideoEncodeSessionRgbConversionCreateInfoVALVE<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *const core::ffi::c_void,
-        pub rgb_model: crate::vk::VideoEncodeRgbModelConversionFlagBitsVALVE,
-        pub rgb_range: crate::vk::VideoEncodeRgbRangeCompressionFlagBitsVALVE,
-        pub x_chroma_offset: crate::vk::VideoEncodeRgbChromaOffsetFlagBitsVALVE,
-        pub y_chroma_offset: crate::vk::VideoEncodeRgbChromaOffsetFlagBitsVALVE,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub rgb_model: vk::VideoEncodeRgbModelConversionFlagBitsVALVE,
+        pub rgb_range: vk::VideoEncodeRgbRangeCompressionFlagBitsVALVE,
+        pub x_chroma_offset: vk::VideoEncodeRgbChromaOffsetFlagBitsVALVE,
+        pub y_chroma_offset: vk::VideoEncodeRgbChromaOffsetFlagBitsVALVE,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for VideoEncodeSessionRgbConversionCreateInfoVALVE<'_> {}
     unsafe impl Sync for VideoEncodeSessionRgbConversionCreateInfoVALVE<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for VideoEncodeSessionRgbConversionCreateInfoVALVE<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::VIDEO_ENCODE_SESSION_RGB_CONVERSION_CREATE_INFO_VALVE;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::VIDEO_ENCODE_SESSION_RGB_CONVERSION_CREATE_INFO_VALVE;
     }
-    unsafe impl<'a> crate::Extends<crate::vk::VideoSessionCreateInfoKHR<'_>>
+    unsafe impl<'a> crate::Extends<vk::VideoSessionCreateInfoKHR<'_>>
     for VideoEncodeSessionRgbConversionCreateInfoVALVE<'a> {}
     impl<'a> Default for VideoEncodeSessionRgbConversionCreateInfoVALVE<'a> {
         fn default() -> Self {
@@ -234,35 +238,35 @@ pub(crate) mod items {
                 rgb_range: Default::default(),
                 x_chroma_offset: Default::default(),
                 y_chroma_offset: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
     impl<'a> VideoEncodeSessionRgbConversionCreateInfoVALVE<'a> {
         pub fn rgb_model(
             mut self,
-            rgb_model: crate::vk::VideoEncodeRgbModelConversionFlagBitsVALVE,
+            rgb_model: vk::VideoEncodeRgbModelConversionFlagBitsVALVE,
         ) -> Self {
             self.rgb_model = rgb_model;
             self
         }
         pub fn rgb_range(
             mut self,
-            rgb_range: crate::vk::VideoEncodeRgbRangeCompressionFlagBitsVALVE,
+            rgb_range: vk::VideoEncodeRgbRangeCompressionFlagBitsVALVE,
         ) -> Self {
             self.rgb_range = rgb_range;
             self
         }
         pub fn x_chroma_offset(
             mut self,
-            x_chroma_offset: crate::vk::VideoEncodeRgbChromaOffsetFlagBitsVALVE,
+            x_chroma_offset: vk::VideoEncodeRgbChromaOffsetFlagBitsVALVE,
         ) -> Self {
             self.x_chroma_offset = x_chroma_offset;
             self
         }
         pub fn y_chroma_offset(
             mut self,
-            y_chroma_offset: crate::vk::VideoEncodeRgbChromaOffsetFlagBitsVALVE,
+            y_chroma_offset: vk::VideoEncodeRgbChromaOffsetFlagBitsVALVE,
         ) -> Self {
             self.y_chroma_offset = y_chroma_offset;
             self

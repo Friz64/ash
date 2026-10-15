@@ -2,34 +2,36 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_directfb_surface.html) · Extension `VK_EXT_directfb_surface`
 #![doc(alias = "VK_EXT_directfb_surface")]
+use crate::vk;
+use core::ffi::CStr;
+use crate::VkResult;
+use core::ffi::c_void;
 ///Provided by [VK_EXT_directfb_surface](crate::ext::directfb_surface)
-impl crate::vk::StructureType {
+impl vk::StructureType {
     pub const DIRECTFB_SURFACE_CREATE_INFO_EXT: Self = Self(1000346000);
 }
+pub const SPEC_VERSION: u32 = 1;
+pub const NAME: &CStr = c"VK_EXT_directfb_surface";
 #[derive(Clone)]
 pub struct InstanceFn {
-    pub create_direct_fb_surface: crate::vk::PFN_vkCreateDirectFBSurfaceEXT,
-    pub get_physical_device_direct_fb_presentation_support: crate::vk::PFN_vkGetPhysicalDeviceDirectFBPresentationSupportEXT,
+    pub create_direct_fb_surface: vk::PFN_vkCreateDirectFBSurfaceEXT,
+    pub get_physical_device_direct_fb_presentation_support: vk::PFN_vkGetPhysicalDeviceDirectFBPresentationSupportEXT,
 }
 unsafe impl Send for InstanceFn {}
 unsafe impl Sync for InstanceFn {}
 impl InstanceFn {
-    pub fn load<F: FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void>(
-        mut f: F,
-    ) -> Self {
+    pub fn load<F: FnMut(&CStr) -> *const c_void>(mut f: F) -> Self {
         Self::load_erased(&mut f)
     }
-    fn load_erased(
-        _f: &mut dyn FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void,
-    ) -> Self {
+    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const c_void) -> Self {
         Self {
             create_direct_fb_surface: unsafe {
                 unsafe extern "system" fn create_direct_fb_surface(
-                    _: crate::vk::Instance,
-                    _: *const crate::vk::DirectFBSurfaceCreateInfoEXT<'_>,
-                    _: *const crate::vk::AllocationCallbacks<'_>,
-                    _: *mut crate::vk::SurfaceKHR,
-                ) -> crate::vk::Result {
+                    _: vk::Instance,
+                    _: *const vk::DirectFBSurfaceCreateInfoEXT<'_>,
+                    _: *const vk::AllocationCallbacks<'_>,
+                    _: *mut vk::SurfaceKHR,
+                ) -> vk::Result {
                     panic!("unable to load vkCreateDirectFBSurfaceEXT")
                 }
                 let val = _f(c"vkCreateDirectFBSurfaceEXT");
@@ -41,10 +43,10 @@ impl InstanceFn {
             },
             get_physical_device_direct_fb_presentation_support: unsafe {
                 unsafe extern "system" fn get_physical_device_direct_fb_presentation_support(
-                    _: crate::vk::PhysicalDevice,
+                    _: vk::PhysicalDevice,
                     _: u32,
                     _: *mut crate::platform_types::IDirectFB,
-                ) -> crate::vk::Bool32 {
+                ) -> vk::Bool32 {
                     panic!(
                         "unable to load vkGetPhysicalDeviceDirectFBPresentationSupportEXT"
                     )
@@ -84,9 +86,9 @@ impl Instance {
     #[inline]
     pub unsafe fn create_direct_fb_surface(
         &self,
-        create_info: &crate::vk::DirectFBSurfaceCreateInfoEXT<'_>,
-        allocator: Option<&crate::vk::AllocationCallbacks<'_>>,
-    ) -> crate::VkResult<crate::vk::SurfaceKHR> {
+        create_info: &vk::DirectFBSurfaceCreateInfoEXT<'_>,
+        allocator: Option<&vk::AllocationCallbacks<'_>>,
+    ) -> VkResult<vk::SurfaceKHR> {
         let mut surface = core::mem::MaybeUninit::uninit();
         (self
             .fp
@@ -105,7 +107,7 @@ impl Instance {
     #[inline]
     pub unsafe fn get_physical_device_direct_fb_presentation_support(
         &self,
-        physical_device: crate::vk::PhysicalDevice,
+        physical_device: vk::PhysicalDevice,
         queue_family_index: u32,
     ) -> crate::platform_types::IDirectFB {
         let mut dfb = core::mem::MaybeUninit::uninit();
@@ -119,24 +121,24 @@ impl Instance {
         dfb.assume_init()
     }
 }
-pub const SPEC_VERSION: u32 = 1;
-pub const NAME: &core::ffi::CStr = c"VK_EXT_directfb_surface";
 pub(crate) mod items {
+    use core::marker::PhantomData;
+    use crate::vk;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct DirectFBSurfaceCreateInfoEXT<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *const core::ffi::c_void,
-        pub flags: crate::vk::DirectFBSurfaceCreateFlagsEXT,
+        pub flags: vk::DirectFBSurfaceCreateFlagsEXT,
         pub dfb: *mut crate::platform_types::IDirectFB,
         pub surface: *mut crate::platform_types::IDirectFBSurface,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for DirectFBSurfaceCreateInfoEXT<'_> {}
     unsafe impl Sync for DirectFBSurfaceCreateInfoEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for DirectFBSurfaceCreateInfoEXT<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::DIRECTFB_SURFACE_CREATE_INFO_EXT;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::DIRECTFB_SURFACE_CREATE_INFO_EXT;
     }
     impl<'a> Default for DirectFBSurfaceCreateInfoEXT<'a> {
         fn default() -> Self {
@@ -146,12 +148,12 @@ pub(crate) mod items {
                 flags: Default::default(),
                 dfb: Default::default(),
                 surface: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
     impl<'a> DirectFBSurfaceCreateInfoEXT<'a> {
-        pub fn flags(mut self, flags: crate::vk::DirectFBSurfaceCreateFlagsEXT) -> Self {
+        pub fn flags(mut self, flags: vk::DirectFBSurfaceCreateFlagsEXT) -> Self {
             self.flags = flags;
             self
         }
@@ -236,15 +238,15 @@ pub(crate) mod items {
         }
     }
     pub type PFN_vkCreateDirectFBSurfaceEXT = unsafe extern "system" fn(
-        instance: crate::vk::Instance,
-        p_create_info: *const crate::vk::DirectFBSurfaceCreateInfoEXT<'_>,
-        p_allocator: *const crate::vk::AllocationCallbacks<'_>,
-        p_surface: *mut crate::vk::SurfaceKHR,
-    ) -> crate::vk::Result;
+        instance: vk::Instance,
+        p_create_info: *const vk::DirectFBSurfaceCreateInfoEXT<'_>,
+        p_allocator: *const vk::AllocationCallbacks<'_>,
+        p_surface: *mut vk::SurfaceKHR,
+    ) -> vk::Result;
     pub type PFN_vkGetPhysicalDeviceDirectFBPresentationSupportEXT = unsafe extern "system" fn(
-        physical_device: crate::vk::PhysicalDevice,
+        physical_device: vk::PhysicalDevice,
         queue_family_index: u32,
         dfb: *mut crate::platform_types::IDirectFB,
-    ) -> crate::vk::Bool32;
+    ) -> vk::Bool32;
 }
 pub use items::*;

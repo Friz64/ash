@@ -2,37 +2,41 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_pipeline_library.html) · Extension `VK_KHR_pipeline_library`
 #![doc(alias = "VK_KHR_pipeline_library")]
+use crate::vk;
+use core::ffi::CStr;
 ///Provided by [VK_KHR_pipeline_library](crate::khr::pipeline_library)
-impl crate::vk::StructureType {
+impl vk::StructureType {
     pub const PIPELINE_LIBRARY_CREATE_INFO_KHR: Self = Self(1000290000);
 }
-///Provided by [VK_KHR_pipeline_library](crate::khr::pipeline_library)
-impl crate::vk::PipelineCreateFlags {
-    pub const LIBRARY_KHR: Self = Self(crate::vk::PipelineCreateFlagBits::LIBRARY_KHR.0);
+///Provided by [Vulkan 1.0](crate::vk1_0)
+impl vk::PipelineCreateFlags {
+    pub const LIBRARY_KHR: Self = Self(vk::PipelineCreateFlagBits::LIBRARY_KHR.0);
 }
-///Provided by [VK_KHR_pipeline_library](crate::khr::pipeline_library)
-impl crate::vk::PipelineCreateFlagBits {
+///Provided by [Vulkan 1.0](crate::vk1_0)
+impl vk::PipelineCreateFlagBits {
     pub const LIBRARY_KHR: Self = Self(1 << 11);
 }
 pub const SPEC_VERSION: u32 = 1;
-pub const NAME: &core::ffi::CStr = c"VK_KHR_pipeline_library";
+pub const NAME: &CStr = c"VK_KHR_pipeline_library";
 pub(crate) mod items {
+    use core::marker::PhantomData;
+    use crate::vk;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct PipelineLibraryCreateInfoKHR<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *const core::ffi::c_void,
         pub library_count: u32,
-        pub p_libraries: *const crate::vk::Pipeline,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub p_libraries: *const vk::Pipeline,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for PipelineLibraryCreateInfoKHR<'_> {}
     unsafe impl Sync for PipelineLibraryCreateInfoKHR<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for PipelineLibraryCreateInfoKHR<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PIPELINE_LIBRARY_CREATE_INFO_KHR;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PIPELINE_LIBRARY_CREATE_INFO_KHR;
     }
-    unsafe impl<'a> crate::Extends<crate::vk::GraphicsPipelineCreateInfo<'_>>
+    unsafe impl<'a> crate::Extends<vk::GraphicsPipelineCreateInfo<'_>>
     for PipelineLibraryCreateInfoKHR<'a> {}
     impl<'a> Default for PipelineLibraryCreateInfoKHR<'a> {
         fn default() -> Self {
@@ -41,12 +45,12 @@ pub(crate) mod items {
                 p_next: Default::default(),
                 library_count: Default::default(),
                 p_libraries: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
     impl<'a> PipelineLibraryCreateInfoKHR<'a> {
-        pub fn libraries(mut self, libraries: &'a [crate::vk::Pipeline]) -> Self {
+        pub fn libraries(mut self, libraries: &'a [vk::Pipeline]) -> Self {
             self.library_count = libraries.len() as _;
             self.p_libraries = libraries.as_ptr();
             self

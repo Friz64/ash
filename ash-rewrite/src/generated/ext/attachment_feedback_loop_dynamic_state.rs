@@ -2,36 +2,37 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_attachment_feedback_loop_dynamic_state.html) · Extension `VK_EXT_attachment_feedback_loop_dynamic_state`
 #![doc(alias = "VK_EXT_attachment_feedback_loop_dynamic_state")]
+use crate::vk;
+use core::ffi::CStr;
+use core::ffi::c_void;
 ///Provided by [VK_EXT_attachment_feedback_loop_dynamic_state](crate::ext::attachment_feedback_loop_dynamic_state)
-impl crate::vk::StructureType {
+impl vk::StructureType {
     pub const PHYSICAL_DEVICE_ATTACHMENT_FEEDBACK_LOOP_DYNAMIC_STATE_FEATURES_EXT: Self = Self(
         1000524000,
     );
 }
 ///Provided by [VK_EXT_attachment_feedback_loop_dynamic_state](crate::ext::attachment_feedback_loop_dynamic_state)
-impl crate::vk::DynamicState {
+impl vk::DynamicState {
     pub const ATTACHMENT_FEEDBACK_LOOP_ENABLE_EXT: Self = Self(1000524000);
 }
+pub const SPEC_VERSION: u32 = 1;
+pub const NAME: &CStr = c"VK_EXT_attachment_feedback_loop_dynamic_state";
 #[derive(Clone)]
 pub struct DeviceFn {
-    pub cmd_set_attachment_feedback_loop_enable: crate::vk::PFN_vkCmdSetAttachmentFeedbackLoopEnableEXT,
+    pub cmd_set_attachment_feedback_loop_enable: vk::PFN_vkCmdSetAttachmentFeedbackLoopEnableEXT,
 }
 unsafe impl Send for DeviceFn {}
 unsafe impl Sync for DeviceFn {}
 impl DeviceFn {
-    pub fn load<F: FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void>(
-        mut f: F,
-    ) -> Self {
+    pub fn load<F: FnMut(&CStr) -> *const c_void>(mut f: F) -> Self {
         Self::load_erased(&mut f)
     }
-    fn load_erased(
-        _f: &mut dyn FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void,
-    ) -> Self {
+    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const c_void) -> Self {
         Self {
             cmd_set_attachment_feedback_loop_enable: unsafe {
                 unsafe extern "system" fn cmd_set_attachment_feedback_loop_enable(
-                    _: crate::vk::CommandBuffer,
-                    _: crate::vk::ImageAspectFlags,
+                    _: vk::CommandBuffer,
+                    _: vk::ImageAspectFlags,
                 ) {
                     panic!("unable to load vkCmdSetAttachmentFeedbackLoopEnableEXT")
                 }
@@ -70,23 +71,23 @@ impl Device {
     #[inline]
     pub unsafe fn cmd_set_attachment_feedback_loop_enable(
         &self,
-        command_buffer: crate::vk::CommandBuffer,
-        aspect_mask: crate::vk::ImageAspectFlags,
+        command_buffer: vk::CommandBuffer,
+        aspect_mask: vk::ImageAspectFlags,
     ) {
         (self.fp.cmd_set_attachment_feedback_loop_enable)(command_buffer, aspect_mask)
     }
 }
-pub const SPEC_VERSION: u32 = 1;
-pub const NAME: &core::ffi::CStr = c"VK_EXT_attachment_feedback_loop_dynamic_state";
 pub(crate) mod items {
+    use core::marker::PhantomData;
+    use crate::vk;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceAttachmentFeedbackLoopDynamicStateFeaturesEXT<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
-        pub attachment_feedback_loop_dynamic_state: crate::vk::Bool32,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub attachment_feedback_loop_dynamic_state: vk::Bool32,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send
     for PhysicalDeviceAttachmentFeedbackLoopDynamicStateFeaturesEXT<'_> {}
@@ -94,11 +95,11 @@ pub(crate) mod items {
     for PhysicalDeviceAttachmentFeedbackLoopDynamicStateFeaturesEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceAttachmentFeedbackLoopDynamicStateFeaturesEXT<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_ATTACHMENT_FEEDBACK_LOOP_DYNAMIC_STATE_FEATURES_EXT;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PHYSICAL_DEVICE_ATTACHMENT_FEEDBACK_LOOP_DYNAMIC_STATE_FEATURES_EXT;
     }
-    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+    unsafe impl<'a> crate::Extends<vk::PhysicalDeviceFeatures2<'_>>
     for PhysicalDeviceAttachmentFeedbackLoopDynamicStateFeaturesEXT<'a> {}
-    unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+    unsafe impl<'a> crate::Extends<vk::DeviceCreateInfo<'_>>
     for PhysicalDeviceAttachmentFeedbackLoopDynamicStateFeaturesEXT<'a> {}
     impl<'a> Default
     for PhysicalDeviceAttachmentFeedbackLoopDynamicStateFeaturesEXT<'a> {
@@ -107,7 +108,7 @@ pub(crate) mod items {
                 s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
                 p_next: Default::default(),
                 attachment_feedback_loop_dynamic_state: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
@@ -122,8 +123,8 @@ pub(crate) mod items {
         }
     }
     pub type PFN_vkCmdSetAttachmentFeedbackLoopEnableEXT = unsafe extern "system" fn(
-        command_buffer: crate::vk::CommandBuffer,
-        aspect_mask: crate::vk::ImageAspectFlags,
+        command_buffer: vk::CommandBuffer,
+        aspect_mask: vk::ImageAspectFlags,
     );
 }
 pub use items::*;

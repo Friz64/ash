@@ -2,8 +2,11 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_image_compression_control.html) · Extension `VK_EXT_image_compression_control`
 #![doc(alias = "VK_EXT_image_compression_control")]
+use crate::vk;
+use core::ffi::CStr;
+use core::ffi::c_void;
 ///Provided by [VK_EXT_image_compression_control](crate::ext::image_compression_control)
-impl crate::vk::StructureType {
+impl vk::StructureType {
     pub const PHYSICAL_DEVICE_IMAGE_COMPRESSION_CONTROL_FEATURES_EXT: Self = Self(
         1000338000,
     );
@@ -13,7 +16,7 @@ impl crate::vk::StructureType {
     pub const IMAGE_COMPRESSION_PROPERTIES_EXT: Self = Self(1000338004);
 }
 ///Provided by [VK_EXT_image_compression_control](crate::ext::image_compression_control)
-impl crate::vk::Result {
+impl vk::Result {
     pub const ERROR_COMPRESSION_EXHAUSTED_EXT: Self = Self(-1000338000);
 }
 ///Provided by [VK_EXT_image_compression_control](crate::ext::image_compression_control)
@@ -120,28 +123,26 @@ impl ImageCompressionFixedRateFlagBitsEXT {
     pub const TYPE_23BPC: Self = Self(1 << 22);
     pub const TYPE_24BPC: Self = Self(1 << 23);
 }
+pub const SPEC_VERSION: u32 = 1;
+pub const NAME: &CStr = c"VK_EXT_image_compression_control";
 #[derive(Clone)]
 pub struct DeviceFn {
-    pub get_image_subresource_layout2: crate::vk::PFN_vkGetImageSubresourceLayout2EXT,
+    pub get_image_subresource_layout2: vk::PFN_vkGetImageSubresourceLayout2EXT,
 }
 unsafe impl Send for DeviceFn {}
 unsafe impl Sync for DeviceFn {}
 impl DeviceFn {
-    pub fn load<F: FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void>(
-        mut f: F,
-    ) -> Self {
+    pub fn load<F: FnMut(&CStr) -> *const c_void>(mut f: F) -> Self {
         Self::load_erased(&mut f)
     }
-    fn load_erased(
-        _f: &mut dyn FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void,
-    ) -> Self {
+    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const c_void) -> Self {
         Self {
             get_image_subresource_layout2: unsafe {
                 unsafe extern "system" fn get_image_subresource_layout2(
-                    _: crate::vk::Device,
-                    _: crate::vk::Image,
-                    _: *const crate::vk::ImageSubresource2<'_>,
-                    _: *mut crate::vk::SubresourceLayout2<'_>,
+                    _: vk::Device,
+                    _: vk::Image,
+                    _: *const vk::ImageSubresource2<'_>,
+                    _: *mut vk::SubresourceLayout2<'_>,
                 ) {
                     panic!("unable to load vkGetImageSubresourceLayout2EXT")
                 }
@@ -180,9 +181,9 @@ impl Device {
     #[inline]
     pub unsafe fn get_image_subresource_layout2(
         &self,
-        image: crate::vk::Image,
-        subresource: &crate::vk::ImageSubresource2<'_>,
-    ) -> crate::vk::SubresourceLayout2<'_> {
+        image: vk::Image,
+        subresource: &vk::ImageSubresource2<'_>,
+    ) -> vk::SubresourceLayout2<'_> {
         let mut layout = core::mem::MaybeUninit::uninit();
         (self
             .fp
@@ -195,30 +196,30 @@ impl Device {
         layout.assume_init()
     }
 }
-pub const SPEC_VERSION: u32 = 1;
-pub const NAME: &core::ffi::CStr = c"VK_EXT_image_compression_control";
 pub(crate) mod items {
+    use core::marker::PhantomData;
+    use crate::vk;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct ImageCompressionControlEXT<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *const core::ffi::c_void,
-        pub flags: crate::vk::ImageCompressionFlagsEXT,
+        pub flags: vk::ImageCompressionFlagsEXT,
         pub compression_control_plane_count: u32,
-        pub p_fixed_rate_flags: *mut crate::vk::ImageCompressionFixedRateFlagsEXT,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub p_fixed_rate_flags: *mut vk::ImageCompressionFixedRateFlagsEXT,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for ImageCompressionControlEXT<'_> {}
     unsafe impl Sync for ImageCompressionControlEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for ImageCompressionControlEXT<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::IMAGE_COMPRESSION_CONTROL_EXT;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::IMAGE_COMPRESSION_CONTROL_EXT;
     }
-    unsafe impl<'a> crate::Extends<crate::vk::ImageCreateInfo<'_>>
+    unsafe impl<'a> crate::Extends<vk::ImageCreateInfo<'_>>
     for ImageCompressionControlEXT<'a> {}
-    unsafe impl<'a> crate::Extends<crate::vk::SwapchainCreateInfoKHR<'_>>
+    unsafe impl<'a> crate::Extends<vk::SwapchainCreateInfoKHR<'_>>
     for ImageCompressionControlEXT<'a> {}
-    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceImageFormatInfo2<'_>>
+    unsafe impl<'a> crate::Extends<vk::PhysicalDeviceImageFormatInfo2<'_>>
     for ImageCompressionControlEXT<'a> {}
     impl<'a> Default for ImageCompressionControlEXT<'a> {
         fn default() -> Self {
@@ -228,18 +229,18 @@ pub(crate) mod items {
                 flags: Default::default(),
                 compression_control_plane_count: Default::default(),
                 p_fixed_rate_flags: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
     impl<'a> ImageCompressionControlEXT<'a> {
-        pub fn flags(mut self, flags: crate::vk::ImageCompressionFlagsEXT) -> Self {
+        pub fn flags(mut self, flags: vk::ImageCompressionFlagsEXT) -> Self {
             self.flags = flags;
             self
         }
         pub fn fixed_rate_flags(
             mut self,
-            fixed_rate_flags: &'a mut [crate::vk::ImageCompressionFixedRateFlagsEXT],
+            fixed_rate_flags: &'a mut [vk::ImageCompressionFixedRateFlagsEXT],
         ) -> Self {
             self.compression_control_plane_count = fixed_rate_flags.len() as _;
             self.p_fixed_rate_flags = fixed_rate_flags.as_mut_ptr();
@@ -250,20 +251,20 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceImageCompressionControlFeaturesEXT<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
-        pub image_compression_control: crate::vk::Bool32,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub image_compression_control: vk::Bool32,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for PhysicalDeviceImageCompressionControlFeaturesEXT<'_> {}
     unsafe impl Sync for PhysicalDeviceImageCompressionControlFeaturesEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceImageCompressionControlFeaturesEXT<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_IMAGE_COMPRESSION_CONTROL_FEATURES_EXT;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PHYSICAL_DEVICE_IMAGE_COMPRESSION_CONTROL_FEATURES_EXT;
     }
-    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+    unsafe impl<'a> crate::Extends<vk::PhysicalDeviceFeatures2<'_>>
     for PhysicalDeviceImageCompressionControlFeaturesEXT<'a> {}
-    unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+    unsafe impl<'a> crate::Extends<vk::DeviceCreateInfo<'_>>
     for PhysicalDeviceImageCompressionControlFeaturesEXT<'a> {}
     impl<'a> Default for PhysicalDeviceImageCompressionControlFeaturesEXT<'a> {
         fn default() -> Self {
@@ -271,7 +272,7 @@ pub(crate) mod items {
                 s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
                 p_next: Default::default(),
                 image_compression_control: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
@@ -288,22 +289,22 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct ImageCompressionPropertiesEXT<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
-        pub image_compression_flags: crate::vk::ImageCompressionFlagsEXT,
-        pub image_compression_fixed_rate_flags: crate::vk::ImageCompressionFixedRateFlagsEXT,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub image_compression_flags: vk::ImageCompressionFlagsEXT,
+        pub image_compression_fixed_rate_flags: vk::ImageCompressionFixedRateFlagsEXT,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for ImageCompressionPropertiesEXT<'_> {}
     unsafe impl Sync for ImageCompressionPropertiesEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for ImageCompressionPropertiesEXT<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::IMAGE_COMPRESSION_PROPERTIES_EXT;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::IMAGE_COMPRESSION_PROPERTIES_EXT;
     }
-    unsafe impl<'a> crate::Extends<crate::vk::ImageFormatProperties2<'_>>
+    unsafe impl<'a> crate::Extends<vk::ImageFormatProperties2<'_>>
     for ImageCompressionPropertiesEXT<'a> {}
-    unsafe impl<'a> crate::Extends<crate::vk::SurfaceFormat2KHR<'_>>
+    unsafe impl<'a> crate::Extends<vk::SurfaceFormat2KHR<'_>>
     for ImageCompressionPropertiesEXT<'a> {}
-    unsafe impl<'a> crate::Extends<crate::vk::SubresourceLayout2<'_>>
+    unsafe impl<'a> crate::Extends<vk::SubresourceLayout2<'_>>
     for ImageCompressionPropertiesEXT<'a> {}
     impl<'a> Default for ImageCompressionPropertiesEXT<'a> {
         fn default() -> Self {
@@ -312,21 +313,21 @@ pub(crate) mod items {
                 p_next: Default::default(),
                 image_compression_flags: Default::default(),
                 image_compression_fixed_rate_flags: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
     impl<'a> ImageCompressionPropertiesEXT<'a> {
         pub fn image_compression_flags(
             mut self,
-            image_compression_flags: crate::vk::ImageCompressionFlagsEXT,
+            image_compression_flags: vk::ImageCompressionFlagsEXT,
         ) -> Self {
             self.image_compression_flags = image_compression_flags;
             self
         }
         pub fn image_compression_fixed_rate_flags(
             mut self,
-            image_compression_fixed_rate_flags: crate::vk::ImageCompressionFixedRateFlagsEXT,
+            image_compression_fixed_rate_flags: vk::ImageCompressionFixedRateFlagsEXT,
         ) -> Self {
             self.image_compression_fixed_rate_flags = image_compression_fixed_rate_flags;
             self

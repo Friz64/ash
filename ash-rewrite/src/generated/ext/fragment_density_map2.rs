@@ -2,8 +2,10 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_fragment_density_map2.html) · Extension `VK_EXT_fragment_density_map2`
 #![doc(alias = "VK_EXT_fragment_density_map2")]
+use crate::vk;
+use core::ffi::CStr;
 ///Provided by [VK_EXT_fragment_density_map2](crate::ext::fragment_density_map2)
-impl crate::vk::StructureType {
+impl vk::StructureType {
     pub const PHYSICAL_DEVICE_FRAGMENT_DENSITY_MAP_2_FEATURES_EXT: Self = Self(
         1000332000,
     );
@@ -11,37 +13,39 @@ impl crate::vk::StructureType {
         1000332001,
     );
 }
-///Provided by [VK_EXT_fragment_density_map2](crate::ext::fragment_density_map2)
-impl crate::vk::ImageViewCreateFlags {
+///Provided by [Vulkan 1.0](crate::vk1_0)
+impl vk::ImageViewCreateFlags {
     pub const FRAGMENT_DENSITY_MAP_DEFERRED_EXT: Self = Self(
-        crate::vk::ImageViewCreateFlagBits::FRAGMENT_DENSITY_MAP_DEFERRED_EXT.0,
+        vk::ImageViewCreateFlagBits::FRAGMENT_DENSITY_MAP_DEFERRED_EXT.0,
     );
 }
-///Provided by [VK_EXT_fragment_density_map2](crate::ext::fragment_density_map2)
-impl crate::vk::ImageViewCreateFlagBits {
+///Provided by [Vulkan 1.0](crate::vk1_0)
+impl vk::ImageViewCreateFlagBits {
     pub const FRAGMENT_DENSITY_MAP_DEFERRED_EXT: Self = Self(1 << 1);
 }
 pub const SPEC_VERSION: u32 = 1;
-pub const NAME: &core::ffi::CStr = c"VK_EXT_fragment_density_map2";
+pub const NAME: &CStr = c"VK_EXT_fragment_density_map2";
 pub(crate) mod items {
+    use core::marker::PhantomData;
+    use crate::vk;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceFragmentDensityMap2FeaturesEXT<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
-        pub fragment_density_map_deferred: crate::vk::Bool32,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub fragment_density_map_deferred: vk::Bool32,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for PhysicalDeviceFragmentDensityMap2FeaturesEXT<'_> {}
     unsafe impl Sync for PhysicalDeviceFragmentDensityMap2FeaturesEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceFragmentDensityMap2FeaturesEXT<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_FRAGMENT_DENSITY_MAP_2_FEATURES_EXT;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PHYSICAL_DEVICE_FRAGMENT_DENSITY_MAP_2_FEATURES_EXT;
     }
-    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+    unsafe impl<'a> crate::Extends<vk::PhysicalDeviceFeatures2<'_>>
     for PhysicalDeviceFragmentDensityMap2FeaturesEXT<'a> {}
-    unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+    unsafe impl<'a> crate::Extends<vk::DeviceCreateInfo<'_>>
     for PhysicalDeviceFragmentDensityMap2FeaturesEXT<'a> {}
     impl<'a> Default for PhysicalDeviceFragmentDensityMap2FeaturesEXT<'a> {
         fn default() -> Self {
@@ -49,7 +53,7 @@ pub(crate) mod items {
                 s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
                 p_next: Default::default(),
                 fragment_density_map_deferred: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
@@ -66,21 +70,21 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceFragmentDensityMap2PropertiesEXT<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
-        pub subsampled_loads: crate::vk::Bool32,
-        pub subsampled_coarse_reconstruction_early_access: crate::vk::Bool32,
+        pub subsampled_loads: vk::Bool32,
+        pub subsampled_coarse_reconstruction_early_access: vk::Bool32,
         pub max_subsampled_array_layers: u32,
         pub max_descriptor_set_subsampled_samplers: u32,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for PhysicalDeviceFragmentDensityMap2PropertiesEXT<'_> {}
     unsafe impl Sync for PhysicalDeviceFragmentDensityMap2PropertiesEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceFragmentDensityMap2PropertiesEXT<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_FRAGMENT_DENSITY_MAP_2_PROPERTIES_EXT;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PHYSICAL_DEVICE_FRAGMENT_DENSITY_MAP_2_PROPERTIES_EXT;
     }
-    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceProperties2<'_>>
+    unsafe impl<'a> crate::Extends<vk::PhysicalDeviceProperties2<'_>>
     for PhysicalDeviceFragmentDensityMap2PropertiesEXT<'a> {}
     impl<'a> Default for PhysicalDeviceFragmentDensityMap2PropertiesEXT<'a> {
         fn default() -> Self {
@@ -91,7 +95,7 @@ pub(crate) mod items {
                 subsampled_coarse_reconstruction_early_access: Default::default(),
                 max_subsampled_array_layers: Default::default(),
                 max_descriptor_set_subsampled_samplers: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }

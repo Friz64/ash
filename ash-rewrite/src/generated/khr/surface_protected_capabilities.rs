@@ -2,28 +2,32 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_surface_protected_capabilities.html) · Extension `VK_KHR_surface_protected_capabilities`
 #![doc(alias = "VK_KHR_surface_protected_capabilities")]
+use crate::vk;
+use core::ffi::CStr;
 ///Provided by [VK_KHR_surface_protected_capabilities](crate::khr::surface_protected_capabilities)
-impl crate::vk::StructureType {
+impl vk::StructureType {
     pub const SURFACE_PROTECTED_CAPABILITIES_KHR: Self = Self(1000239000);
 }
 pub const SPEC_VERSION: u32 = 1;
-pub const NAME: &core::ffi::CStr = c"VK_KHR_surface_protected_capabilities";
+pub const NAME: &CStr = c"VK_KHR_surface_protected_capabilities";
 pub(crate) mod items {
+    use core::marker::PhantomData;
+    use crate::vk;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct SurfaceProtectedCapabilitiesKHR<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
-        pub supports_protected: crate::vk::Bool32,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub supports_protected: vk::Bool32,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for SurfaceProtectedCapabilitiesKHR<'_> {}
     unsafe impl Sync for SurfaceProtectedCapabilitiesKHR<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for SurfaceProtectedCapabilitiesKHR<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::SURFACE_PROTECTED_CAPABILITIES_KHR;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::SURFACE_PROTECTED_CAPABILITIES_KHR;
     }
-    unsafe impl<'a> crate::Extends<crate::vk::SurfaceCapabilities2KHR<'_>>
+    unsafe impl<'a> crate::Extends<vk::SurfaceCapabilities2KHR<'_>>
     for SurfaceProtectedCapabilitiesKHR<'a> {}
     impl<'a> Default for SurfaceProtectedCapabilitiesKHR<'a> {
         fn default() -> Self {
@@ -31,7 +35,7 @@ pub(crate) mod items {
                 s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
                 p_next: Default::default(),
                 supports_protected: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }

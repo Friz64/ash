@@ -2,19 +2,21 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_IMG_filter_cubic.html) · Extension `VK_IMG_filter_cubic`
 #![doc(alias = "VK_IMG_filter_cubic")]
+use crate::vk;
+use core::ffi::CStr;
 ///Provided by [VK_IMG_filter_cubic](crate::img::filter_cubic)
-impl crate::vk::Filter {
+impl vk::Filter {
     pub const CUBIC_IMG: Self = Self::CUBIC_EXT;
 }
-///Provided by [VK_IMG_filter_cubic](crate::img::filter_cubic)
-impl crate::vk::FormatFeatureFlags {
+///Provided by [Vulkan 1.0](crate::vk1_0)
+impl vk::FormatFeatureFlags {
     pub const SAMPLED_IMAGE_FILTER_CUBIC_IMG: Self = Self(
-        crate::vk::FormatFeatureFlagBits::SAMPLED_IMAGE_FILTER_CUBIC_IMG.0,
+        vk::FormatFeatureFlagBits::SAMPLED_IMAGE_FILTER_CUBIC_IMG.0,
     );
 }
-///Provided by [VK_IMG_filter_cubic](crate::img::filter_cubic)
-impl crate::vk::FormatFeatureFlagBits {
+///Provided by [Vulkan 1.0](crate::vk1_0)
+impl vk::FormatFeatureFlagBits {
     pub const SAMPLED_IMAGE_FILTER_CUBIC_IMG: Self = Self::SAMPLED_IMAGE_FILTER_CUBIC_EXT;
 }
 pub const SPEC_VERSION: u32 = 1;
-pub const NAME: &core::ffi::CStr = c"VK_IMG_filter_cubic";
+pub const NAME: &CStr = c"VK_IMG_filter_cubic";

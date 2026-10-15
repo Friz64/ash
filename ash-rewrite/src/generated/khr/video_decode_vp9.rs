@@ -2,44 +2,46 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_video_decode_vp9.html) · Extension `VK_KHR_video_decode_vp9`
 #![doc(alias = "VK_KHR_video_decode_vp9")]
+use crate::vk;
+use core::ffi::CStr;
 ///Provided by [VK_KHR_video_decode_vp9](crate::khr::video_decode_vp9)
-impl crate::vk::StructureType {
+impl vk::StructureType {
     pub const PHYSICAL_DEVICE_VIDEO_DECODE_VP9_FEATURES_KHR: Self = Self(1000514000);
     pub const VIDEO_DECODE_VP9_CAPABILITIES_KHR: Self = Self(1000514001);
     pub const VIDEO_DECODE_VP9_PICTURE_INFO_KHR: Self = Self(1000514002);
     pub const VIDEO_DECODE_VP9_PROFILE_INFO_KHR: Self = Self(1000514003);
 }
-///Provided by [VK_KHR_video_decode_vp9](crate::khr::video_decode_vp9)
-impl crate::vk::VideoCodecOperationFlagsKHR {
-    pub const DECODE_VP9: Self = Self(
-        crate::vk::VideoCodecOperationFlagBitsKHR::DECODE_VP9.0,
-    );
+///Provided by [VK_KHR_video_queue](crate::khr::video_queue)
+impl vk::VideoCodecOperationFlagsKHR {
+    pub const DECODE_VP9: Self = Self(vk::VideoCodecOperationFlagBitsKHR::DECODE_VP9.0);
 }
-///Provided by [VK_KHR_video_decode_vp9](crate::khr::video_decode_vp9)
-impl crate::vk::VideoCodecOperationFlagBitsKHR {
+///Provided by [VK_KHR_video_queue](crate::khr::video_queue)
+impl vk::VideoCodecOperationFlagBitsKHR {
     pub const DECODE_VP9: Self = Self(1 << 3);
 }
 pub const SPEC_VERSION: u32 = 1;
-pub const NAME: &core::ffi::CStr = c"VK_KHR_video_decode_vp9";
+pub const NAME: &CStr = c"VK_KHR_video_decode_vp9";
 pub(crate) mod items {
+    use core::marker::PhantomData;
+    use crate::vk;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceVideoDecodeVP9FeaturesKHR<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
-        pub video_decode_vp9: crate::vk::Bool32,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub video_decode_vp9: vk::Bool32,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for PhysicalDeviceVideoDecodeVP9FeaturesKHR<'_> {}
     unsafe impl Sync for PhysicalDeviceVideoDecodeVP9FeaturesKHR<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceVideoDecodeVP9FeaturesKHR<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_VIDEO_DECODE_VP9_FEATURES_KHR;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PHYSICAL_DEVICE_VIDEO_DECODE_VP9_FEATURES_KHR;
     }
-    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+    unsafe impl<'a> crate::Extends<vk::PhysicalDeviceFeatures2<'_>>
     for PhysicalDeviceVideoDecodeVP9FeaturesKHR<'a> {}
-    unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+    unsafe impl<'a> crate::Extends<vk::DeviceCreateInfo<'_>>
     for PhysicalDeviceVideoDecodeVP9FeaturesKHR<'a> {}
     impl<'a> Default for PhysicalDeviceVideoDecodeVP9FeaturesKHR<'a> {
         fn default() -> Self {
@@ -47,7 +49,7 @@ pub(crate) mod items {
                 s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
                 p_next: Default::default(),
                 video_decode_vp9: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
@@ -61,19 +63,19 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct VideoDecodeVP9ProfileInfoKHR<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *const core::ffi::c_void,
-        pub std_profile: crate::vk::VP9Profile,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub std_profile: vk::VP9Profile,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for VideoDecodeVP9ProfileInfoKHR<'_> {}
     unsafe impl Sync for VideoDecodeVP9ProfileInfoKHR<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for VideoDecodeVP9ProfileInfoKHR<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::VIDEO_DECODE_VP9_PROFILE_INFO_KHR;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::VIDEO_DECODE_VP9_PROFILE_INFO_KHR;
     }
-    unsafe impl<'a> crate::Extends<crate::vk::VideoProfileInfoKHR<'_>>
+    unsafe impl<'a> crate::Extends<vk::VideoProfileInfoKHR<'_>>
     for VideoDecodeVP9ProfileInfoKHR<'a> {}
-    unsafe impl<'a> crate::Extends<crate::vk::QueryPoolCreateInfo<'_>>
+    unsafe impl<'a> crate::Extends<vk::QueryPoolCreateInfo<'_>>
     for VideoDecodeVP9ProfileInfoKHR<'a> {}
     impl<'a> Default for VideoDecodeVP9ProfileInfoKHR<'a> {
         fn default() -> Self {
@@ -81,12 +83,12 @@ pub(crate) mod items {
                 s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
                 p_next: Default::default(),
                 std_profile: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
     impl<'a> VideoDecodeVP9ProfileInfoKHR<'a> {
-        pub fn std_profile(mut self, std_profile: crate::vk::VP9Profile) -> Self {
+        pub fn std_profile(mut self, std_profile: vk::VP9Profile) -> Self {
             self.std_profile = std_profile;
             self
         }
@@ -95,17 +97,17 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct VideoDecodeVP9CapabilitiesKHR<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
-        pub max_level: crate::vk::VP9Level,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub max_level: vk::VP9Level,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for VideoDecodeVP9CapabilitiesKHR<'_> {}
     unsafe impl Sync for VideoDecodeVP9CapabilitiesKHR<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for VideoDecodeVP9CapabilitiesKHR<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::VIDEO_DECODE_VP9_CAPABILITIES_KHR;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::VIDEO_DECODE_VP9_CAPABILITIES_KHR;
     }
-    unsafe impl<'a> crate::Extends<crate::vk::VideoCapabilitiesKHR<'_>>
+    unsafe impl<'a> crate::Extends<vk::VideoCapabilitiesKHR<'_>>
     for VideoDecodeVP9CapabilitiesKHR<'a> {}
     impl<'a> Default for VideoDecodeVP9CapabilitiesKHR<'a> {
         fn default() -> Self {
@@ -113,12 +115,12 @@ pub(crate) mod items {
                 s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
                 p_next: Default::default(),
                 max_level: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
     impl<'a> VideoDecodeVP9CapabilitiesKHR<'a> {
-        pub fn max_level(mut self, max_level: crate::vk::VP9Level) -> Self {
+        pub fn max_level(mut self, max_level: vk::VP9Level) -> Self {
             self.max_level = max_level;
             self
         }
@@ -127,22 +129,22 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct VideoDecodeVP9PictureInfoKHR<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *const core::ffi::c_void,
-        pub p_std_picture_info: *const crate::vk::DecodeVP9PictureInfo<'a>,
-        pub reference_name_slot_indices: [i32; crate::vk::MAX_VIDEO_VP9_REFERENCES_PER_FRAME_KHR
+        pub p_std_picture_info: *const vk::DecodeVP9PictureInfo<'a>,
+        pub reference_name_slot_indices: [i32; vk::MAX_VIDEO_VP9_REFERENCES_PER_FRAME_KHR
             as _],
         pub uncompressed_header_offset: u32,
         pub compressed_header_offset: u32,
         pub tiles_offset: u32,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for VideoDecodeVP9PictureInfoKHR<'_> {}
     unsafe impl Sync for VideoDecodeVP9PictureInfoKHR<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for VideoDecodeVP9PictureInfoKHR<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::VIDEO_DECODE_VP9_PICTURE_INFO_KHR;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::VIDEO_DECODE_VP9_PICTURE_INFO_KHR;
     }
-    unsafe impl<'a> crate::Extends<crate::vk::VideoDecodeInfoKHR<'_>>
+    unsafe impl<'a> crate::Extends<vk::VideoDecodeInfoKHR<'_>>
     for VideoDecodeVP9PictureInfoKHR<'a> {}
     impl<'a> Default for VideoDecodeVP9PictureInfoKHR<'a> {
         fn default() -> Self {
@@ -154,21 +156,21 @@ pub(crate) mod items {
                 uncompressed_header_offset: Default::default(),
                 compressed_header_offset: Default::default(),
                 tiles_offset: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
     impl<'a> VideoDecodeVP9PictureInfoKHR<'a> {
         pub fn std_picture_info(
             mut self,
-            std_picture_info: &'a crate::vk::DecodeVP9PictureInfo<'a>,
+            std_picture_info: &'a vk::DecodeVP9PictureInfo<'a>,
         ) -> Self {
             self.p_std_picture_info = std_picture_info;
             self
         }
         pub fn reference_name_slot_indices(
             mut self,
-            reference_name_slot_indices: [i32; crate::vk::MAX_VIDEO_VP9_REFERENCES_PER_FRAME_KHR
+            reference_name_slot_indices: [i32; vk::MAX_VIDEO_VP9_REFERENCES_PER_FRAME_KHR
                 as _],
         ) -> Self {
             self.reference_name_slot_indices = reference_name_slot_indices;

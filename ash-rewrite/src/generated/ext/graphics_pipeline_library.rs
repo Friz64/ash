@@ -2,8 +2,10 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_graphics_pipeline_library.html) · Extension `VK_EXT_graphics_pipeline_library`
 #![doc(alias = "VK_EXT_graphics_pipeline_library")]
+use crate::vk;
+use core::ffi::CStr;
 ///Provided by [VK_EXT_graphics_pipeline_library](crate::ext::graphics_pipeline_library)
-impl crate::vk::StructureType {
+impl vk::StructureType {
     pub const PHYSICAL_DEVICE_GRAPHICS_PIPELINE_LIBRARY_FEATURES_EXT: Self = Self(
         1000320000,
     );
@@ -12,27 +14,27 @@ impl crate::vk::StructureType {
     );
     pub const GRAPHICS_PIPELINE_LIBRARY_CREATE_INFO_EXT: Self = Self(1000320002);
 }
-///Provided by [VK_EXT_graphics_pipeline_library](crate::ext::graphics_pipeline_library)
-impl crate::vk::PipelineLayoutCreateFlags {
+///Provided by [Vulkan 1.0](crate::vk1_0)
+impl vk::PipelineLayoutCreateFlags {
     pub const INDEPENDENT_SETS_EXT: Self = Self(
-        crate::vk::PipelineLayoutCreateFlagBits::INDEPENDENT_SETS_EXT.0,
+        vk::PipelineLayoutCreateFlagBits::INDEPENDENT_SETS_EXT.0,
     );
 }
-///Provided by [VK_EXT_graphics_pipeline_library](crate::ext::graphics_pipeline_library)
-impl crate::vk::PipelineLayoutCreateFlagBits {
+///Provided by [Vulkan 1.0](crate::vk1_0)
+impl vk::PipelineLayoutCreateFlagBits {
     pub const INDEPENDENT_SETS_EXT: Self = Self(1 << 1);
 }
-///Provided by [VK_EXT_graphics_pipeline_library](crate::ext::graphics_pipeline_library)
-impl crate::vk::PipelineCreateFlags {
+///Provided by [Vulkan 1.0](crate::vk1_0)
+impl vk::PipelineCreateFlags {
     pub const RETAIN_LINK_TIME_OPTIMIZATION_INFO_EXT: Self = Self(
-        crate::vk::PipelineCreateFlagBits::RETAIN_LINK_TIME_OPTIMIZATION_INFO_EXT.0,
+        vk::PipelineCreateFlagBits::RETAIN_LINK_TIME_OPTIMIZATION_INFO_EXT.0,
     );
     pub const LINK_TIME_OPTIMIZATION_EXT: Self = Self(
-        crate::vk::PipelineCreateFlagBits::LINK_TIME_OPTIMIZATION_EXT.0,
+        vk::PipelineCreateFlagBits::LINK_TIME_OPTIMIZATION_EXT.0,
     );
 }
-///Provided by [VK_EXT_graphics_pipeline_library](crate::ext::graphics_pipeline_library)
-impl crate::vk::PipelineCreateFlagBits {
+///Provided by [Vulkan 1.0](crate::vk1_0)
+impl vk::PipelineCreateFlagBits {
     pub const RETAIN_LINK_TIME_OPTIMIZATION_INFO_EXT: Self = Self(1 << 23);
     pub const LINK_TIME_OPTIMIZATION_EXT: Self = Self(1 << 10);
 }
@@ -59,26 +61,28 @@ impl GraphicsPipelineLibraryFlagBitsEXT {
     pub const FRAGMENT_OUTPUT_INTERFACE: Self = Self(1 << 3);
 }
 pub const SPEC_VERSION: u32 = 1;
-pub const NAME: &core::ffi::CStr = c"VK_EXT_graphics_pipeline_library";
+pub const NAME: &CStr = c"VK_EXT_graphics_pipeline_library";
 pub(crate) mod items {
+    use core::marker::PhantomData;
+    use crate::vk;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceGraphicsPipelineLibraryFeaturesEXT<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
-        pub graphics_pipeline_library: crate::vk::Bool32,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub graphics_pipeline_library: vk::Bool32,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for PhysicalDeviceGraphicsPipelineLibraryFeaturesEXT<'_> {}
     unsafe impl Sync for PhysicalDeviceGraphicsPipelineLibraryFeaturesEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceGraphicsPipelineLibraryFeaturesEXT<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_GRAPHICS_PIPELINE_LIBRARY_FEATURES_EXT;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PHYSICAL_DEVICE_GRAPHICS_PIPELINE_LIBRARY_FEATURES_EXT;
     }
-    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+    unsafe impl<'a> crate::Extends<vk::PhysicalDeviceFeatures2<'_>>
     for PhysicalDeviceGraphicsPipelineLibraryFeaturesEXT<'a> {}
-    unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+    unsafe impl<'a> crate::Extends<vk::DeviceCreateInfo<'_>>
     for PhysicalDeviceGraphicsPipelineLibraryFeaturesEXT<'a> {}
     impl<'a> Default for PhysicalDeviceGraphicsPipelineLibraryFeaturesEXT<'a> {
         fn default() -> Self {
@@ -86,7 +90,7 @@ pub(crate) mod items {
                 s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
                 p_next: Default::default(),
                 graphics_pipeline_library: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
@@ -103,19 +107,19 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceGraphicsPipelineLibraryPropertiesEXT<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
-        pub graphics_pipeline_library_fast_linking: crate::vk::Bool32,
-        pub graphics_pipeline_library_independent_interpolation_decoration: crate::vk::Bool32,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub graphics_pipeline_library_fast_linking: vk::Bool32,
+        pub graphics_pipeline_library_independent_interpolation_decoration: vk::Bool32,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for PhysicalDeviceGraphicsPipelineLibraryPropertiesEXT<'_> {}
     unsafe impl Sync for PhysicalDeviceGraphicsPipelineLibraryPropertiesEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceGraphicsPipelineLibraryPropertiesEXT<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_GRAPHICS_PIPELINE_LIBRARY_PROPERTIES_EXT;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PHYSICAL_DEVICE_GRAPHICS_PIPELINE_LIBRARY_PROPERTIES_EXT;
     }
-    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceProperties2<'_>>
+    unsafe impl<'a> crate::Extends<vk::PhysicalDeviceProperties2<'_>>
     for PhysicalDeviceGraphicsPipelineLibraryPropertiesEXT<'a> {}
     impl<'a> Default for PhysicalDeviceGraphicsPipelineLibraryPropertiesEXT<'a> {
         fn default() -> Self {
@@ -124,7 +128,7 @@ pub(crate) mod items {
                 p_next: Default::default(),
                 graphics_pipeline_library_fast_linking: Default::default(),
                 graphics_pipeline_library_independent_interpolation_decoration: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
@@ -150,18 +154,18 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct GraphicsPipelineLibraryCreateInfoEXT<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *const core::ffi::c_void,
-        pub flags: crate::vk::GraphicsPipelineLibraryFlagsEXT,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub flags: vk::GraphicsPipelineLibraryFlagsEXT,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for GraphicsPipelineLibraryCreateInfoEXT<'_> {}
     unsafe impl Sync for GraphicsPipelineLibraryCreateInfoEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for GraphicsPipelineLibraryCreateInfoEXT<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::GRAPHICS_PIPELINE_LIBRARY_CREATE_INFO_EXT;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::GRAPHICS_PIPELINE_LIBRARY_CREATE_INFO_EXT;
     }
-    unsafe impl<'a> crate::Extends<crate::vk::GraphicsPipelineCreateInfo<'_>>
+    unsafe impl<'a> crate::Extends<vk::GraphicsPipelineCreateInfo<'_>>
     for GraphicsPipelineLibraryCreateInfoEXT<'a> {}
     impl<'a> Default for GraphicsPipelineLibraryCreateInfoEXT<'a> {
         fn default() -> Self {
@@ -169,15 +173,12 @@ pub(crate) mod items {
                 s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
                 p_next: Default::default(),
                 flags: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
     impl<'a> GraphicsPipelineLibraryCreateInfoEXT<'a> {
-        pub fn flags(
-            mut self,
-            flags: crate::vk::GraphicsPipelineLibraryFlagsEXT,
-        ) -> Self {
+        pub fn flags(mut self, flags: vk::GraphicsPipelineLibraryFlagsEXT) -> Self {
             self.flags = flags;
             self
         }

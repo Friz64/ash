@@ -2,46 +2,50 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_filter_cubic.html) · Extension `VK_EXT_filter_cubic`
 #![doc(alias = "VK_EXT_filter_cubic")]
+use crate::vk;
+use core::ffi::CStr;
 ///Provided by [VK_EXT_filter_cubic](crate::ext::filter_cubic)
-impl crate::vk::Filter {
+impl vk::Filter {
     pub const CUBIC_EXT: Self = Self(1000015000);
 }
 ///Provided by [VK_EXT_filter_cubic](crate::ext::filter_cubic)
-impl crate::vk::StructureType {
+impl vk::StructureType {
     pub const PHYSICAL_DEVICE_IMAGE_VIEW_IMAGE_FORMAT_INFO_EXT: Self = Self(1000170000);
     pub const FILTER_CUBIC_IMAGE_VIEW_IMAGE_FORMAT_PROPERTIES_EXT: Self = Self(
         1000170001,
     );
 }
-///Provided by [VK_EXT_filter_cubic](crate::ext::filter_cubic)
-impl crate::vk::FormatFeatureFlags {
+///Provided by [Vulkan 1.0](crate::vk1_0)
+impl vk::FormatFeatureFlags {
     pub const SAMPLED_IMAGE_FILTER_CUBIC_EXT: Self = Self(
-        crate::vk::FormatFeatureFlagBits::SAMPLED_IMAGE_FILTER_CUBIC_EXT.0,
+        vk::FormatFeatureFlagBits::SAMPLED_IMAGE_FILTER_CUBIC_EXT.0,
     );
 }
-///Provided by [VK_EXT_filter_cubic](crate::ext::filter_cubic)
-impl crate::vk::FormatFeatureFlagBits {
+///Provided by [Vulkan 1.0](crate::vk1_0)
+impl vk::FormatFeatureFlagBits {
     pub const SAMPLED_IMAGE_FILTER_CUBIC_EXT: Self = Self(1 << 13);
 }
 pub const SPEC_VERSION: u32 = 3;
-pub const NAME: &core::ffi::CStr = c"VK_EXT_filter_cubic";
+pub const NAME: &CStr = c"VK_EXT_filter_cubic";
 pub(crate) mod items {
+    use core::marker::PhantomData;
+    use crate::vk;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceImageViewImageFormatInfoEXT<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
-        pub image_view_type: crate::vk::ImageViewType,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub image_view_type: vk::ImageViewType,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for PhysicalDeviceImageViewImageFormatInfoEXT<'_> {}
     unsafe impl Sync for PhysicalDeviceImageViewImageFormatInfoEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceImageViewImageFormatInfoEXT<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_IMAGE_VIEW_IMAGE_FORMAT_INFO_EXT;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PHYSICAL_DEVICE_IMAGE_VIEW_IMAGE_FORMAT_INFO_EXT;
     }
-    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceImageFormatInfo2<'_>>
+    unsafe impl<'a> crate::Extends<vk::PhysicalDeviceImageFormatInfo2<'_>>
     for PhysicalDeviceImageViewImageFormatInfoEXT<'a> {}
     impl<'a> Default for PhysicalDeviceImageViewImageFormatInfoEXT<'a> {
         fn default() -> Self {
@@ -49,15 +53,12 @@ pub(crate) mod items {
                 s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
                 p_next: Default::default(),
                 image_view_type: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
     impl<'a> PhysicalDeviceImageViewImageFormatInfoEXT<'a> {
-        pub fn image_view_type(
-            mut self,
-            image_view_type: crate::vk::ImageViewType,
-        ) -> Self {
+        pub fn image_view_type(mut self, image_view_type: vk::ImageViewType) -> Self {
             self.image_view_type = image_view_type;
             self
         }
@@ -66,19 +67,19 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct FilterCubicImageViewImageFormatPropertiesEXT<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
-        pub filter_cubic: crate::vk::Bool32,
-        pub filter_cubic_minmax: crate::vk::Bool32,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub filter_cubic: vk::Bool32,
+        pub filter_cubic_minmax: vk::Bool32,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for FilterCubicImageViewImageFormatPropertiesEXT<'_> {}
     unsafe impl Sync for FilterCubicImageViewImageFormatPropertiesEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for FilterCubicImageViewImageFormatPropertiesEXT<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::FILTER_CUBIC_IMAGE_VIEW_IMAGE_FORMAT_PROPERTIES_EXT;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::FILTER_CUBIC_IMAGE_VIEW_IMAGE_FORMAT_PROPERTIES_EXT;
     }
-    unsafe impl<'a> crate::Extends<crate::vk::ImageFormatProperties2<'_>>
+    unsafe impl<'a> crate::Extends<vk::ImageFormatProperties2<'_>>
     for FilterCubicImageViewImageFormatPropertiesEXT<'a> {}
     impl<'a> Default for FilterCubicImageViewImageFormatPropertiesEXT<'a> {
         fn default() -> Self {
@@ -87,7 +88,7 @@ pub(crate) mod items {
                 p_next: Default::default(),
                 filter_cubic: Default::default(),
                 filter_cubic_minmax: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }

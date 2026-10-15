@@ -2,34 +2,38 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_robustness2.html) · Extension `VK_KHR_robustness2`
 #![doc(alias = "VK_KHR_robustness2")]
+use crate::vk;
+use core::ffi::CStr;
 ///Provided by [VK_KHR_robustness2](crate::khr::robustness2)
-impl crate::vk::StructureType {
+impl vk::StructureType {
     pub const PHYSICAL_DEVICE_ROBUSTNESS_2_FEATURES_KHR: Self = Self(1000286000);
     pub const PHYSICAL_DEVICE_ROBUSTNESS_2_PROPERTIES_KHR: Self = Self(1000286001);
 }
 pub const SPEC_VERSION: u32 = 1;
-pub const NAME: &core::ffi::CStr = c"VK_KHR_robustness2";
+pub const NAME: &CStr = c"VK_KHR_robustness2";
 pub(crate) mod items {
+    use core::marker::PhantomData;
+    use crate::vk;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceRobustness2FeaturesKHR<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
-        pub robust_buffer_access2: crate::vk::Bool32,
-        pub robust_image_access2: crate::vk::Bool32,
-        pub null_descriptor: crate::vk::Bool32,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub robust_buffer_access2: vk::Bool32,
+        pub robust_image_access2: vk::Bool32,
+        pub null_descriptor: vk::Bool32,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for PhysicalDeviceRobustness2FeaturesKHR<'_> {}
     unsafe impl Sync for PhysicalDeviceRobustness2FeaturesKHR<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceRobustness2FeaturesKHR<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_ROBUSTNESS_2_FEATURES_KHR;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PHYSICAL_DEVICE_ROBUSTNESS_2_FEATURES_KHR;
     }
-    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+    unsafe impl<'a> crate::Extends<vk::PhysicalDeviceFeatures2<'_>>
     for PhysicalDeviceRobustness2FeaturesKHR<'a> {}
-    unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+    unsafe impl<'a> crate::Extends<vk::DeviceCreateInfo<'_>>
     for PhysicalDeviceRobustness2FeaturesKHR<'a> {}
     impl<'a> Default for PhysicalDeviceRobustness2FeaturesKHR<'a> {
         fn default() -> Self {
@@ -39,7 +43,7 @@ pub(crate) mod items {
                 robust_buffer_access2: Default::default(),
                 robust_image_access2: Default::default(),
                 null_descriptor: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
@@ -61,19 +65,19 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceRobustness2PropertiesKHR<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
-        pub robust_storage_buffer_access_size_alignment: crate::vk::DeviceSize,
-        pub robust_uniform_buffer_access_size_alignment: crate::vk::DeviceSize,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub robust_storage_buffer_access_size_alignment: vk::DeviceSize,
+        pub robust_uniform_buffer_access_size_alignment: vk::DeviceSize,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for PhysicalDeviceRobustness2PropertiesKHR<'_> {}
     unsafe impl Sync for PhysicalDeviceRobustness2PropertiesKHR<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceRobustness2PropertiesKHR<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_ROBUSTNESS_2_PROPERTIES_KHR;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PHYSICAL_DEVICE_ROBUSTNESS_2_PROPERTIES_KHR;
     }
-    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceProperties2<'_>>
+    unsafe impl<'a> crate::Extends<vk::PhysicalDeviceProperties2<'_>>
     for PhysicalDeviceRobustness2PropertiesKHR<'a> {}
     impl<'a> Default for PhysicalDeviceRobustness2PropertiesKHR<'a> {
         fn default() -> Self {
@@ -82,21 +86,21 @@ pub(crate) mod items {
                 p_next: Default::default(),
                 robust_storage_buffer_access_size_alignment: Default::default(),
                 robust_uniform_buffer_access_size_alignment: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
     impl<'a> PhysicalDeviceRobustness2PropertiesKHR<'a> {
         pub fn robust_storage_buffer_access_size_alignment(
             mut self,
-            robust_storage_buffer_access_size_alignment: crate::vk::DeviceSize,
+            robust_storage_buffer_access_size_alignment: vk::DeviceSize,
         ) -> Self {
             self.robust_storage_buffer_access_size_alignment = robust_storage_buffer_access_size_alignment;
             self
         }
         pub fn robust_uniform_buffer_access_size_alignment(
             mut self,
-            robust_uniform_buffer_access_size_alignment: crate::vk::DeviceSize,
+            robust_uniform_buffer_access_size_alignment: vk::DeviceSize,
         ) -> Self {
             self.robust_uniform_buffer_access_size_alignment = robust_uniform_buffer_access_size_alignment;
             self

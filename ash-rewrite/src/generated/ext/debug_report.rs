@@ -2,16 +2,20 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_debug_report.html) · Extension `VK_EXT_debug_report`
 #![doc(alias = "VK_EXT_debug_report")]
+use crate::vk;
+use core::ffi::CStr;
+use crate::VkResult;
+use core::ffi::c_void;
 ///Provided by [VK_EXT_debug_report](crate::ext::debug_report)
-impl crate::vk::StructureType {
+impl vk::StructureType {
     pub const DEBUG_REPORT_CALLBACK_CREATE_INFO_EXT: Self = Self(1000011000);
 }
 ///Provided by [VK_EXT_debug_report](crate::ext::debug_report)
-impl crate::vk::Result {
+impl vk::Result {
     pub const ERROR_VALIDATION_FAILED_EXT: Self = Self::ERROR_VALIDATION_FAILED;
 }
 ///Provided by [VK_EXT_debug_report](crate::ext::debug_report)
-impl crate::vk::ObjectType {
+impl vk::ObjectType {
     pub const DEBUG_REPORT_CALLBACK_EXT: Self = Self(1000011000);
 }
 ///Provided by [VK_EXT_debug_report](crate::ext::debug_report)
@@ -69,31 +73,29 @@ impl DebugReportFlagBitsEXT {
     pub const ERROR: Self = Self(1 << 3);
     pub const DEBUG: Self = Self(1 << 4);
 }
+pub const SPEC_VERSION: u32 = 10;
+pub const NAME: &CStr = c"VK_EXT_debug_report";
 #[derive(Clone)]
 pub struct InstanceFn {
-    pub create_debug_report_callback: crate::vk::PFN_vkCreateDebugReportCallbackEXT,
-    pub destroy_debug_report_callback: crate::vk::PFN_vkDestroyDebugReportCallbackEXT,
-    pub debug_report_message: crate::vk::PFN_vkDebugReportMessageEXT,
+    pub create_debug_report_callback: vk::PFN_vkCreateDebugReportCallbackEXT,
+    pub destroy_debug_report_callback: vk::PFN_vkDestroyDebugReportCallbackEXT,
+    pub debug_report_message: vk::PFN_vkDebugReportMessageEXT,
 }
 unsafe impl Send for InstanceFn {}
 unsafe impl Sync for InstanceFn {}
 impl InstanceFn {
-    pub fn load<F: FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void>(
-        mut f: F,
-    ) -> Self {
+    pub fn load<F: FnMut(&CStr) -> *const c_void>(mut f: F) -> Self {
         Self::load_erased(&mut f)
     }
-    fn load_erased(
-        _f: &mut dyn FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void,
-    ) -> Self {
+    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const c_void) -> Self {
         Self {
             create_debug_report_callback: unsafe {
                 unsafe extern "system" fn create_debug_report_callback(
-                    _: crate::vk::Instance,
-                    _: *const crate::vk::DebugReportCallbackCreateInfoEXT<'_>,
-                    _: *const crate::vk::AllocationCallbacks<'_>,
-                    _: *mut crate::vk::DebugReportCallbackEXT,
-                ) -> crate::vk::Result {
+                    _: vk::Instance,
+                    _: *const vk::DebugReportCallbackCreateInfoEXT<'_>,
+                    _: *const vk::AllocationCallbacks<'_>,
+                    _: *mut vk::DebugReportCallbackEXT,
+                ) -> vk::Result {
                     panic!("unable to load vkCreateDebugReportCallbackEXT")
                 }
                 let val = _f(c"vkCreateDebugReportCallbackEXT");
@@ -105,9 +107,9 @@ impl InstanceFn {
             },
             destroy_debug_report_callback: unsafe {
                 unsafe extern "system" fn destroy_debug_report_callback(
-                    _: crate::vk::Instance,
-                    _: crate::vk::DebugReportCallbackEXT,
-                    _: *const crate::vk::AllocationCallbacks<'_>,
+                    _: vk::Instance,
+                    _: vk::DebugReportCallbackEXT,
+                    _: *const vk::AllocationCallbacks<'_>,
                 ) {
                     panic!("unable to load vkDestroyDebugReportCallbackEXT")
                 }
@@ -120,9 +122,9 @@ impl InstanceFn {
             },
             debug_report_message: unsafe {
                 unsafe extern "system" fn debug_report_message(
-                    _: crate::vk::Instance,
-                    _: crate::vk::DebugReportFlagsEXT,
-                    _: crate::vk::DebugReportObjectTypeEXT,
+                    _: vk::Instance,
+                    _: vk::DebugReportFlagsEXT,
+                    _: vk::DebugReportObjectTypeEXT,
                     _: u64,
                     _: usize,
                     _: i32,
@@ -166,9 +168,9 @@ impl Instance {
     #[inline]
     pub unsafe fn create_debug_report_callback(
         &self,
-        create_info: &crate::vk::DebugReportCallbackCreateInfoEXT<'_>,
-        allocator: Option<&crate::vk::AllocationCallbacks<'_>>,
-    ) -> crate::VkResult<crate::vk::DebugReportCallbackEXT> {
+        create_info: &vk::DebugReportCallbackCreateInfoEXT<'_>,
+        allocator: Option<&vk::AllocationCallbacks<'_>>,
+    ) -> VkResult<vk::DebugReportCallbackEXT> {
         let mut callback = core::mem::MaybeUninit::uninit();
         (self
             .fp
@@ -187,8 +189,8 @@ impl Instance {
     #[inline]
     pub unsafe fn destroy_debug_report_callback(
         &self,
-        callback: crate::vk::DebugReportCallbackEXT,
-        allocator: Option<&crate::vk::AllocationCallbacks<'_>>,
+        callback: vk::DebugReportCallbackEXT,
+        allocator: Option<&vk::AllocationCallbacks<'_>>,
     ) {
         (self
             .fp
@@ -205,13 +207,13 @@ impl Instance {
     #[inline]
     pub unsafe fn debug_report_message(
         &self,
-        flags: crate::vk::DebugReportFlagsEXT,
-        object_type: crate::vk::DebugReportObjectTypeEXT,
+        flags: vk::DebugReportFlagsEXT,
+        object_type: vk::DebugReportObjectTypeEXT,
         object: u64,
         location: usize,
         message_code: i32,
-        layer_prefix: Option<&core::ffi::CStr>,
-        message: Option<&core::ffi::CStr>,
+        layer_prefix: Option<&CStr>,
+        message: Option<&CStr>,
     ) {
         (self
             .fp
@@ -227,26 +229,30 @@ impl Instance {
         )
     }
 }
-pub const SPEC_VERSION: u32 = 10;
-pub const NAME: &core::ffi::CStr = c"VK_EXT_debug_report";
 pub(crate) mod items {
+    use core::marker::PhantomData;
+    use crate::vk;
+    use crate::Handle;
+    use core::fmt;
+    #[cfg(feature = "debug")]
+    use core::fmt as fmtdebug;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct DebugReportCallbackCreateInfoEXT<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *const core::ffi::c_void,
-        pub flags: crate::vk::DebugReportFlagsEXT,
-        pub pfn_callback: crate::vk::PFN_vkDebugReportCallbackEXT,
+        pub flags: vk::DebugReportFlagsEXT,
+        pub pfn_callback: vk::PFN_vkDebugReportCallbackEXT,
         pub p_user_data: *mut core::ffi::c_void,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for DebugReportCallbackCreateInfoEXT<'_> {}
     unsafe impl Sync for DebugReportCallbackCreateInfoEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for DebugReportCallbackCreateInfoEXT<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::DEBUG_REPORT_CALLBACK_CREATE_INFO_EXT;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::DEBUG_REPORT_CALLBACK_CREATE_INFO_EXT;
     }
-    unsafe impl<'a> crate::Extends<crate::vk::InstanceCreateInfo<'_>>
+    unsafe impl<'a> crate::Extends<vk::InstanceCreateInfo<'_>>
     for DebugReportCallbackCreateInfoEXT<'a> {}
     impl<'a> Default for DebugReportCallbackCreateInfoEXT<'a> {
         fn default() -> Self {
@@ -256,18 +262,18 @@ pub(crate) mod items {
                 flags: Default::default(),
                 pfn_callback: Default::default(),
                 p_user_data: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
     impl<'a> DebugReportCallbackCreateInfoEXT<'a> {
-        pub fn flags(mut self, flags: crate::vk::DebugReportFlagsEXT) -> Self {
+        pub fn flags(mut self, flags: vk::DebugReportFlagsEXT) -> Self {
             self.flags = flags;
             self
         }
         pub fn pfn_callback(
             mut self,
-            pfn_callback: crate::vk::PFN_vkDebugReportCallbackEXT,
+            pfn_callback: vk::PFN_vkDebugReportCallbackEXT,
         ) -> Self {
             self.pfn_callback = pfn_callback;
             self
@@ -450,8 +456,8 @@ pub(crate) mod items {
     #[repr(transparent)]
     #[derive(Eq, PartialEq, Ord, PartialOrd, Clone, Copy, Hash, Default)]
     pub struct DebugReportCallbackEXT(u64);
-    impl crate::Handle for DebugReportCallbackEXT {
-        const TYPE: crate::vk::ObjectType = crate::vk::ObjectType::DEBUG_REPORT_CALLBACK_EXT;
+    impl Handle for DebugReportCallbackEXT {
+        const TYPE: vk::ObjectType = vk::ObjectType::DEBUG_REPORT_CALLBACK_EXT;
         fn as_raw(self) -> u64 {
             self.0
         }
@@ -464,43 +470,44 @@ pub(crate) mod items {
             Self(0)
         }
     }
-    impl core::fmt::Pointer for DebugReportCallbackEXT {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+    impl fmt::Pointer for DebugReportCallbackEXT {
+        fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
             write!(f, "0x{:x}", self.0)
         }
     }
-    impl core::fmt::Debug for DebugReportCallbackEXT {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+    #[cfg(feature = "debug")]
+    impl fmtdebug::Debug for DebugReportCallbackEXT {
+        fn fmt(&self, f: &mut fmtdebug::Formatter) -> fmtdebug::Result {
             write!(f, "0x{:x}", self.0)
         }
     }
     pub type PFN_vkDebugReportCallbackEXT = Option<
         unsafe extern "system" fn(
-            flags: crate::vk::DebugReportFlagsEXT,
-            object_type: crate::vk::DebugReportObjectTypeEXT,
+            flags: vk::DebugReportFlagsEXT,
+            object_type: vk::DebugReportObjectTypeEXT,
             object: u64,
             location: usize,
             message_code: i32,
             p_layer_prefix: *const core::ffi::c_char,
             p_message: *const core::ffi::c_char,
             p_user_data: *mut core::ffi::c_void,
-        ) -> crate::vk::Bool32,
+        ) -> vk::Bool32,
     >;
     pub type PFN_vkCreateDebugReportCallbackEXT = unsafe extern "system" fn(
-        instance: crate::vk::Instance,
-        p_create_info: *const crate::vk::DebugReportCallbackCreateInfoEXT<'_>,
-        p_allocator: *const crate::vk::AllocationCallbacks<'_>,
-        p_callback: *mut crate::vk::DebugReportCallbackEXT,
-    ) -> crate::vk::Result;
+        instance: vk::Instance,
+        p_create_info: *const vk::DebugReportCallbackCreateInfoEXT<'_>,
+        p_allocator: *const vk::AllocationCallbacks<'_>,
+        p_callback: *mut vk::DebugReportCallbackEXT,
+    ) -> vk::Result;
     pub type PFN_vkDestroyDebugReportCallbackEXT = unsafe extern "system" fn(
-        instance: crate::vk::Instance,
-        callback: crate::vk::DebugReportCallbackEXT,
-        p_allocator: *const crate::vk::AllocationCallbacks<'_>,
+        instance: vk::Instance,
+        callback: vk::DebugReportCallbackEXT,
+        p_allocator: *const vk::AllocationCallbacks<'_>,
     );
     pub type PFN_vkDebugReportMessageEXT = unsafe extern "system" fn(
-        instance: crate::vk::Instance,
-        flags: crate::vk::DebugReportFlagsEXT,
-        object_type: crate::vk::DebugReportObjectTypeEXT,
+        instance: vk::Instance,
+        flags: vk::DebugReportFlagsEXT,
+        object_type: vk::DebugReportObjectTypeEXT,
         object: u64,
         location: usize,
         message_code: i32,

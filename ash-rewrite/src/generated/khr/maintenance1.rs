@@ -2,55 +2,56 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_maintenance1.html) · Extension `VK_KHR_maintenance1`
 #![doc(alias = "VK_KHR_maintenance1")]
+use crate::vk;
+use core::ffi::CStr;
+use core::ffi::c_void;
 ///Provided by [VK_KHR_maintenance1](crate::khr::maintenance1)
-impl crate::vk::Result {
+impl vk::Result {
     pub const ERROR_OUT_OF_POOL_MEMORY_KHR: Self = Self::ERROR_OUT_OF_POOL_MEMORY;
 }
-///Provided by [VK_KHR_maintenance1](crate::khr::maintenance1)
-impl crate::vk::ImageCreateFlags {
+///Provided by [Vulkan 1.0](crate::vk1_0)
+impl vk::ImageCreateFlags {
     pub const TYPE_2D_ARRAY_COMPATIBLE_KHR: Self = Self(
-        crate::vk::ImageCreateFlagBits::TYPE_2D_ARRAY_COMPATIBLE_KHR.0,
+        vk::ImageCreateFlagBits::TYPE_2D_ARRAY_COMPATIBLE_KHR.0,
     );
 }
-///Provided by [VK_KHR_maintenance1](crate::khr::maintenance1)
-impl crate::vk::ImageCreateFlagBits {
+///Provided by [Vulkan 1.0](crate::vk1_0)
+impl vk::ImageCreateFlagBits {
     pub const TYPE_2D_ARRAY_COMPATIBLE_KHR: Self = Self::TYPE_2D_ARRAY_COMPATIBLE;
 }
-///Provided by [VK_KHR_maintenance1](crate::khr::maintenance1)
-impl crate::vk::FormatFeatureFlags {
+///Provided by [Vulkan 1.0](crate::vk1_0)
+impl vk::FormatFeatureFlags {
     pub const TRANSFER_SRC_KHR: Self = Self(
-        crate::vk::FormatFeatureFlagBits::TRANSFER_SRC_KHR.0,
+        vk::FormatFeatureFlagBits::TRANSFER_SRC_KHR.0,
     );
     pub const TRANSFER_DST_KHR: Self = Self(
-        crate::vk::FormatFeatureFlagBits::TRANSFER_DST_KHR.0,
+        vk::FormatFeatureFlagBits::TRANSFER_DST_KHR.0,
     );
 }
-///Provided by [VK_KHR_maintenance1](crate::khr::maintenance1)
-impl crate::vk::FormatFeatureFlagBits {
+///Provided by [Vulkan 1.0](crate::vk1_0)
+impl vk::FormatFeatureFlagBits {
     pub const TRANSFER_SRC_KHR: Self = Self::TRANSFER_SRC;
     pub const TRANSFER_DST_KHR: Self = Self::TRANSFER_DST;
 }
+pub const SPEC_VERSION: u32 = 2;
+pub const NAME: &CStr = c"VK_KHR_maintenance1";
 #[derive(Clone)]
 pub struct DeviceFn {
-    pub trim_command_pool: crate::vk::PFN_vkTrimCommandPoolKHR,
+    pub trim_command_pool: vk::PFN_vkTrimCommandPoolKHR,
 }
 unsafe impl Send for DeviceFn {}
 unsafe impl Sync for DeviceFn {}
 impl DeviceFn {
-    pub fn load<F: FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void>(
-        mut f: F,
-    ) -> Self {
+    pub fn load<F: FnMut(&CStr) -> *const c_void>(mut f: F) -> Self {
         Self::load_erased(&mut f)
     }
-    fn load_erased(
-        _f: &mut dyn FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void,
-    ) -> Self {
+    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const c_void) -> Self {
         Self {
             trim_command_pool: unsafe {
                 unsafe extern "system" fn trim_command_pool(
-                    _: crate::vk::Device,
-                    _: crate::vk::CommandPool,
-                    _: crate::vk::CommandPoolTrimFlags,
+                    _: vk::Device,
+                    _: vk::CommandPool,
+                    _: vk::CommandPoolTrimFlags,
                 ) {
                     panic!("unable to load vkTrimCommandPoolKHR")
                 }
@@ -89,16 +90,15 @@ impl Device {
     #[inline]
     pub unsafe fn trim_command_pool(
         &self,
-        command_pool: crate::vk::CommandPool,
-        flags: crate::vk::CommandPoolTrimFlags,
+        command_pool: vk::CommandPool,
+        flags: vk::CommandPoolTrimFlags,
     ) {
         (self.fp.trim_command_pool)(self.handle, command_pool, flags)
     }
 }
-pub const SPEC_VERSION: u32 = 2;
-pub const NAME: &core::ffi::CStr = c"VK_KHR_maintenance1";
 pub(crate) mod items {
-    pub type CommandPoolTrimFlagsKHR = crate::vk::CommandPoolTrimFlags;
-    pub type PFN_vkTrimCommandPoolKHR = crate::vk::PFN_vkTrimCommandPool;
+    use crate::vk;
+    pub type CommandPoolTrimFlagsKHR = vk::CommandPoolTrimFlags;
+    pub type PFN_vkTrimCommandPoolKHR = vk::PFN_vkTrimCommandPool;
 }
 pub use items::*;

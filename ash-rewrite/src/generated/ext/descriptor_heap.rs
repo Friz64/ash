@@ -2,8 +2,12 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_descriptor_heap.html) · Extension `VK_EXT_descriptor_heap`
 #![doc(alias = "VK_EXT_descriptor_heap")]
+use crate::vk;
+use core::ffi::CStr;
+use crate::VkResult;
+use core::ffi::c_void;
 ///Provided by [VK_EXT_descriptor_heap](crate::ext::descriptor_heap)
-impl crate::vk::StructureType {
+impl vk::StructureType {
     pub const TEXEL_BUFFER_DESCRIPTOR_INFO_EXT: Self = Self(1000135000);
     pub const IMAGE_DESCRIPTOR_INFO_EXT: Self = Self(1000135001);
     pub const RESOURCE_DESCRIPTOR_INFO_EXT: Self = Self(1000135002);
@@ -27,11 +31,11 @@ impl crate::vk::StructureType {
     );
 }
 ///Provided by [VK_EXT_descriptor_heap](crate::ext::descriptor_heap)
-impl crate::vk::IndirectCommandsTokenTypeNV {
+impl vk::IndirectCommandsTokenTypeNV {
     pub const PUSH_DATA: Self = Self(1000135000);
 }
 ///Provided by [VK_EXT_descriptor_heap](crate::ext::descriptor_heap)
-impl crate::vk::IndirectCommandsTokenTypeEXT {
+impl vk::IndirectCommandsTokenTypeEXT {
     pub const PUSH_DATA: Self = Self(1000135000);
     pub const PUSH_DATA_SEQUENCE_INDEX: Self = Self(1000135001);
 }
@@ -49,68 +53,68 @@ impl DescriptorMappingSourceEXT {
     pub const SHADER_RECORD_DATA: Self = Self(9);
     pub const SHADER_RECORD_ADDRESS: Self = Self(10);
 }
-///Provided by [VK_EXT_descriptor_heap](crate::ext::descriptor_heap)
-impl crate::vk::BufferUsageFlags {
+///Provided by [Vulkan 1.0](crate::vk1_0)
+impl vk::BufferUsageFlags {
     pub const DESCRIPTOR_HEAP_EXT: Self = Self(
-        crate::vk::BufferUsageFlagBits::DESCRIPTOR_HEAP_EXT.0,
+        vk::BufferUsageFlagBits::DESCRIPTOR_HEAP_EXT.0,
     );
 }
-///Provided by [VK_EXT_descriptor_heap](crate::ext::descriptor_heap)
-impl crate::vk::BufferUsageFlagBits {
+///Provided by [Vulkan 1.0](crate::vk1_0)
+impl vk::BufferUsageFlagBits {
     pub const DESCRIPTOR_HEAP_EXT: Self = Self(1 << 28);
 }
-///Provided by [VK_EXT_descriptor_heap](crate::ext::descriptor_heap)
-impl crate::vk::ImageCreateFlags {
+///Provided by [Vulkan 1.0](crate::vk1_0)
+impl vk::ImageCreateFlags {
     pub const DESCRIPTOR_HEAP_CAPTURE_REPLAY_EXT: Self = Self(
-        crate::vk::ImageCreateFlagBits::DESCRIPTOR_HEAP_CAPTURE_REPLAY_EXT.0,
+        vk::ImageCreateFlagBits::DESCRIPTOR_HEAP_CAPTURE_REPLAY_EXT.0,
     );
 }
-///Provided by [VK_EXT_descriptor_heap](crate::ext::descriptor_heap)
-impl crate::vk::ImageCreateFlagBits {
+///Provided by [Vulkan 1.0](crate::vk1_0)
+impl vk::ImageCreateFlagBits {
     pub const DESCRIPTOR_HEAP_CAPTURE_REPLAY_EXT: Self = Self(1 << 16);
 }
-///Provided by [VK_EXT_descriptor_heap](crate::ext::descriptor_heap)
-impl crate::vk::AccessFlags2 {
+///Provided by [Vulkan 1.3](crate::vk1_3)
+impl vk::AccessFlags2 {
     pub const SAMPLER_HEAP_READ_EXT: Self = Self(
-        crate::vk::AccessFlagBits2::SAMPLER_HEAP_READ_EXT.0,
+        vk::AccessFlagBits2::SAMPLER_HEAP_READ_EXT.0,
     );
     pub const RESOURCE_HEAP_READ_EXT: Self = Self(
-        crate::vk::AccessFlagBits2::RESOURCE_HEAP_READ_EXT.0,
+        vk::AccessFlagBits2::RESOURCE_HEAP_READ_EXT.0,
     );
 }
-///Provided by [VK_EXT_descriptor_heap](crate::ext::descriptor_heap)
-impl crate::vk::AccessFlagBits2 {
+///Provided by [Vulkan 1.3](crate::vk1_3)
+impl vk::AccessFlagBits2 {
     pub const SAMPLER_HEAP_READ_EXT: Self = Self(1 << 57);
     pub const RESOURCE_HEAP_READ_EXT: Self = Self(1 << 58);
 }
-///Provided by [VK_EXT_descriptor_heap](crate::ext::descriptor_heap)
-impl crate::vk::PipelineCreateFlags2 {
+///Provided by [Vulkan 1.4](crate::vk1_4)
+impl vk::PipelineCreateFlags2 {
     pub const DESCRIPTOR_HEAP_EXT: Self = Self(
-        crate::vk::PipelineCreateFlagBits2::DESCRIPTOR_HEAP_EXT.0,
+        vk::PipelineCreateFlagBits2::DESCRIPTOR_HEAP_EXT.0,
     );
 }
-///Provided by [VK_EXT_descriptor_heap](crate::ext::descriptor_heap)
-impl crate::vk::PipelineCreateFlagBits2 {
+///Provided by [Vulkan 1.4](crate::vk1_4)
+impl vk::PipelineCreateFlagBits2 {
     pub const DESCRIPTOR_HEAP_EXT: Self = Self(1 << 36);
 }
-///Provided by [VK_EXT_descriptor_heap](crate::ext::descriptor_heap)
-impl crate::vk::BufferUsageFlags2 {
+///Provided by [Vulkan 1.4](crate::vk1_4)
+impl vk::BufferUsageFlags2 {
     pub const DESCRIPTOR_HEAP_EXT: Self = Self(
-        crate::vk::BufferUsageFlagBits2::DESCRIPTOR_HEAP_EXT.0,
+        vk::BufferUsageFlagBits2::DESCRIPTOR_HEAP_EXT.0,
     );
 }
-///Provided by [VK_EXT_descriptor_heap](crate::ext::descriptor_heap)
-impl crate::vk::BufferUsageFlagBits2 {
+///Provided by [Vulkan 1.4](crate::vk1_4)
+impl vk::BufferUsageFlagBits2 {
     pub const DESCRIPTOR_HEAP_EXT: Self = Self(1 << 28);
 }
-///Provided by [VK_EXT_descriptor_heap](crate::ext::descriptor_heap)
-impl crate::vk::TensorCreateFlagsARM {
+///Provided by [VK_ARM_tensors](crate::arm::tensors)
+impl vk::TensorCreateFlagsARM {
     pub const DESCRIPTOR_HEAP_CAPTURE_REPLAY: Self = Self(
-        crate::vk::TensorCreateFlagBitsARM::DESCRIPTOR_HEAP_CAPTURE_REPLAY.0,
+        vk::TensorCreateFlagBitsARM::DESCRIPTOR_HEAP_CAPTURE_REPLAY.0,
     );
 }
-///Provided by [VK_EXT_descriptor_heap](crate::ext::descriptor_heap)
-impl crate::vk::TensorCreateFlagBitsARM {
+///Provided by [VK_ARM_tensors](crate::arm::tensors)
+impl vk::TensorCreateFlagBitsARM {
     pub const DESCRIPTOR_HEAP_CAPTURE_REPLAY: Self = Self(1 << 3);
 }
 ///Provided by [VK_EXT_descriptor_heap](crate::ext::descriptor_heap)
@@ -155,47 +159,45 @@ impl SpirvResourceTypeFlagBitsEXT {
     pub const ACCELERATION_STRUCTURE: Self = Self(1 << 8);
     pub const TENSOR_ARM: Self = Self(1 << 9);
 }
-///Provided by [VK_EXT_descriptor_heap](crate::ext::descriptor_heap)
-impl crate::vk::ShaderCreateFlagsEXT {
+///Provided by [VK_EXT_shader_object](crate::ext::shader_object)
+impl vk::ShaderCreateFlagsEXT {
     pub const DESCRIPTOR_HEAP: Self = Self(
-        crate::vk::ShaderCreateFlagBitsEXT::DESCRIPTOR_HEAP.0,
+        vk::ShaderCreateFlagBitsEXT::DESCRIPTOR_HEAP.0,
     );
 }
-///Provided by [VK_EXT_descriptor_heap](crate::ext::descriptor_heap)
-impl crate::vk::ShaderCreateFlagBitsEXT {
+///Provided by [VK_EXT_shader_object](crate::ext::shader_object)
+impl vk::ShaderCreateFlagBitsEXT {
     pub const DESCRIPTOR_HEAP: Self = Self(1 << 10);
 }
+pub const SPEC_VERSION: u32 = 1;
+pub const NAME: &CStr = c"VK_EXT_descriptor_heap";
 #[derive(Clone)]
 pub struct DeviceFn {
-    pub write_sampler_descriptors: crate::vk::PFN_vkWriteSamplerDescriptorsEXT,
-    pub write_resource_descriptors: crate::vk::PFN_vkWriteResourceDescriptorsEXT,
-    pub cmd_bind_sampler_heap: crate::vk::PFN_vkCmdBindSamplerHeapEXT,
-    pub cmd_bind_resource_heap: crate::vk::PFN_vkCmdBindResourceHeapEXT,
-    pub cmd_push_data: crate::vk::PFN_vkCmdPushDataEXT,
-    pub register_custom_border_color: crate::vk::PFN_vkRegisterCustomBorderColorEXT,
-    pub unregister_custom_border_color: crate::vk::PFN_vkUnregisterCustomBorderColorEXT,
-    pub get_image_opaque_capture_data: crate::vk::PFN_vkGetImageOpaqueCaptureDataEXT,
-    pub get_tensor_opaque_capture_data: crate::vk::PFN_vkGetTensorOpaqueCaptureDataARM,
+    pub write_sampler_descriptors: vk::PFN_vkWriteSamplerDescriptorsEXT,
+    pub write_resource_descriptors: vk::PFN_vkWriteResourceDescriptorsEXT,
+    pub cmd_bind_sampler_heap: vk::PFN_vkCmdBindSamplerHeapEXT,
+    pub cmd_bind_resource_heap: vk::PFN_vkCmdBindResourceHeapEXT,
+    pub cmd_push_data: vk::PFN_vkCmdPushDataEXT,
+    pub register_custom_border_color: vk::PFN_vkRegisterCustomBorderColorEXT,
+    pub unregister_custom_border_color: vk::PFN_vkUnregisterCustomBorderColorEXT,
+    pub get_image_opaque_capture_data: vk::PFN_vkGetImageOpaqueCaptureDataEXT,
+    pub get_tensor_opaque_capture_data: vk::PFN_vkGetTensorOpaqueCaptureDataARM,
 }
 unsafe impl Send for DeviceFn {}
 unsafe impl Sync for DeviceFn {}
 impl DeviceFn {
-    pub fn load<F: FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void>(
-        mut f: F,
-    ) -> Self {
+    pub fn load<F: FnMut(&CStr) -> *const c_void>(mut f: F) -> Self {
         Self::load_erased(&mut f)
     }
-    fn load_erased(
-        _f: &mut dyn FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void,
-    ) -> Self {
+    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const c_void) -> Self {
         Self {
             write_sampler_descriptors: unsafe {
                 unsafe extern "system" fn write_sampler_descriptors(
-                    _: crate::vk::Device,
+                    _: vk::Device,
                     _: u32,
-                    _: *const crate::vk::SamplerCreateInfo<'_>,
-                    _: *const crate::vk::HostAddressRangeEXT<'_>,
-                ) -> crate::vk::Result {
+                    _: *const vk::SamplerCreateInfo<'_>,
+                    _: *const vk::HostAddressRangeEXT<'_>,
+                ) -> vk::Result {
                     panic!("unable to load vkWriteSamplerDescriptorsEXT")
                 }
                 let val = _f(c"vkWriteSamplerDescriptorsEXT");
@@ -207,11 +209,11 @@ impl DeviceFn {
             },
             write_resource_descriptors: unsafe {
                 unsafe extern "system" fn write_resource_descriptors(
-                    _: crate::vk::Device,
+                    _: vk::Device,
                     _: u32,
-                    _: *const crate::vk::ResourceDescriptorInfoEXT<'_>,
-                    _: *const crate::vk::HostAddressRangeEXT<'_>,
-                ) -> crate::vk::Result {
+                    _: *const vk::ResourceDescriptorInfoEXT<'_>,
+                    _: *const vk::HostAddressRangeEXT<'_>,
+                ) -> vk::Result {
                     panic!("unable to load vkWriteResourceDescriptorsEXT")
                 }
                 let val = _f(c"vkWriteResourceDescriptorsEXT");
@@ -223,8 +225,8 @@ impl DeviceFn {
             },
             cmd_bind_sampler_heap: unsafe {
                 unsafe extern "system" fn cmd_bind_sampler_heap(
-                    _: crate::vk::CommandBuffer,
-                    _: *const crate::vk::BindHeapInfoEXT<'_>,
+                    _: vk::CommandBuffer,
+                    _: *const vk::BindHeapInfoEXT<'_>,
                 ) {
                     panic!("unable to load vkCmdBindSamplerHeapEXT")
                 }
@@ -237,8 +239,8 @@ impl DeviceFn {
             },
             cmd_bind_resource_heap: unsafe {
                 unsafe extern "system" fn cmd_bind_resource_heap(
-                    _: crate::vk::CommandBuffer,
-                    _: *const crate::vk::BindHeapInfoEXT<'_>,
+                    _: vk::CommandBuffer,
+                    _: *const vk::BindHeapInfoEXT<'_>,
                 ) {
                     panic!("unable to load vkCmdBindResourceHeapEXT")
                 }
@@ -251,8 +253,8 @@ impl DeviceFn {
             },
             cmd_push_data: unsafe {
                 unsafe extern "system" fn cmd_push_data(
-                    _: crate::vk::CommandBuffer,
-                    _: *const crate::vk::PushDataInfoEXT<'_>,
+                    _: vk::CommandBuffer,
+                    _: *const vk::PushDataInfoEXT<'_>,
                 ) {
                     panic!("unable to load vkCmdPushDataEXT")
                 }
@@ -261,11 +263,11 @@ impl DeviceFn {
             },
             register_custom_border_color: unsafe {
                 unsafe extern "system" fn register_custom_border_color(
-                    _: crate::vk::Device,
-                    _: *const crate::vk::SamplerCustomBorderColorCreateInfoEXT<'_>,
-                    _: crate::vk::Bool32,
+                    _: vk::Device,
+                    _: *const vk::SamplerCustomBorderColorCreateInfoEXT<'_>,
+                    _: vk::Bool32,
                     _: *mut u32,
-                ) -> crate::vk::Result {
+                ) -> vk::Result {
                     panic!("unable to load vkRegisterCustomBorderColorEXT")
                 }
                 let val = _f(c"vkRegisterCustomBorderColorEXT");
@@ -277,7 +279,7 @@ impl DeviceFn {
             },
             unregister_custom_border_color: unsafe {
                 unsafe extern "system" fn unregister_custom_border_color(
-                    _: crate::vk::Device,
+                    _: vk::Device,
                     _: u32,
                 ) {
                     panic!("unable to load vkUnregisterCustomBorderColorEXT")
@@ -291,11 +293,11 @@ impl DeviceFn {
             },
             get_image_opaque_capture_data: unsafe {
                 unsafe extern "system" fn get_image_opaque_capture_data(
-                    _: crate::vk::Device,
+                    _: vk::Device,
                     _: u32,
-                    _: *const crate::vk::Image,
-                    _: *mut crate::vk::HostAddressRangeEXT<'_>,
-                ) -> crate::vk::Result {
+                    _: *const vk::Image,
+                    _: *mut vk::HostAddressRangeEXT<'_>,
+                ) -> vk::Result {
                     panic!("unable to load vkGetImageOpaqueCaptureDataEXT")
                 }
                 let val = _f(c"vkGetImageOpaqueCaptureDataEXT");
@@ -307,11 +309,11 @@ impl DeviceFn {
             },
             get_tensor_opaque_capture_data: unsafe {
                 unsafe extern "system" fn get_tensor_opaque_capture_data(
-                    _: crate::vk::Device,
+                    _: vk::Device,
                     _: u32,
-                    _: *const crate::vk::TensorARM,
-                    _: *mut crate::vk::HostAddressRangeEXT<'_>,
-                ) -> crate::vk::Result {
+                    _: *const vk::TensorARM,
+                    _: *mut vk::HostAddressRangeEXT<'_>,
+                ) -> vk::Result {
                     panic!("unable to load vkGetTensorOpaqueCaptureDataARM")
                 }
                 let val = _f(c"vkGetTensorOpaqueCaptureDataARM");
@@ -349,9 +351,9 @@ impl Device {
     #[inline]
     pub unsafe fn write_sampler_descriptors(
         &self,
-        samplers: &[crate::vk::SamplerCreateInfo<'_>],
-        descriptors: &[crate::vk::HostAddressRangeEXT<'_>],
-    ) -> crate::VkResult<()> {
+        samplers: &[vk::SamplerCreateInfo<'_>],
+        descriptors: &[vk::HostAddressRangeEXT<'_>],
+    ) -> VkResult<()> {
         assert_eq!(samplers.len(), descriptors.len());
         (self
             .fp
@@ -367,9 +369,9 @@ impl Device {
     #[inline]
     pub unsafe fn write_resource_descriptors(
         &self,
-        resources: &[crate::vk::ResourceDescriptorInfoEXT<'_>],
-        descriptors: &[crate::vk::HostAddressRangeEXT<'_>],
-    ) -> crate::VkResult<()> {
+        resources: &[vk::ResourceDescriptorInfoEXT<'_>],
+        descriptors: &[vk::HostAddressRangeEXT<'_>],
+    ) -> VkResult<()> {
         assert_eq!(resources.len(), descriptors.len());
         (self
             .fp
@@ -385,8 +387,8 @@ impl Device {
     #[inline]
     pub unsafe fn cmd_bind_sampler_heap(
         &self,
-        command_buffer: crate::vk::CommandBuffer,
-        bind_info: &crate::vk::BindHeapInfoEXT<'_>,
+        command_buffer: vk::CommandBuffer,
+        bind_info: &vk::BindHeapInfoEXT<'_>,
     ) {
         (self.fp.cmd_bind_sampler_heap)(command_buffer, bind_info)
     }
@@ -394,8 +396,8 @@ impl Device {
     #[inline]
     pub unsafe fn cmd_bind_resource_heap(
         &self,
-        command_buffer: crate::vk::CommandBuffer,
-        bind_info: &crate::vk::BindHeapInfoEXT<'_>,
+        command_buffer: vk::CommandBuffer,
+        bind_info: &vk::BindHeapInfoEXT<'_>,
     ) {
         (self.fp.cmd_bind_resource_heap)(command_buffer, bind_info)
     }
@@ -403,8 +405,8 @@ impl Device {
     #[inline]
     pub unsafe fn cmd_push_data(
         &self,
-        command_buffer: crate::vk::CommandBuffer,
-        push_data_info: &crate::vk::PushDataInfoEXT<'_>,
+        command_buffer: vk::CommandBuffer,
+        push_data_info: &vk::PushDataInfoEXT<'_>,
     ) {
         (self.fp.cmd_push_data)(command_buffer, push_data_info)
     }
@@ -412,9 +414,9 @@ impl Device {
     #[inline]
     pub unsafe fn register_custom_border_color(
         &self,
-        border_color: &crate::vk::SamplerCustomBorderColorCreateInfoEXT<'_>,
-        request_index: crate::vk::Bool32,
-    ) -> crate::VkResult<u32> {
+        border_color: &vk::SamplerCustomBorderColorCreateInfoEXT<'_>,
+        request_index: vk::Bool32,
+    ) -> VkResult<u32> {
         let mut index = core::mem::MaybeUninit::uninit();
         (self
             .fp
@@ -435,9 +437,9 @@ impl Device {
     #[inline]
     pub unsafe fn get_image_opaque_capture_data(
         &self,
-        images: &[crate::vk::Image],
-        datas: &mut [crate::vk::HostAddressRangeEXT<'_>],
-    ) -> crate::VkResult<()> {
+        images: &[vk::Image],
+        datas: &mut [vk::HostAddressRangeEXT<'_>],
+    ) -> VkResult<()> {
         assert_eq!(images.len(), datas.len());
         (self
             .fp
@@ -453,9 +455,9 @@ impl Device {
     #[inline]
     pub unsafe fn get_tensor_opaque_capture_data(
         &self,
-        tensors: &[crate::vk::TensorARM],
-        datas: &mut [crate::vk::HostAddressRangeEXT<'_>],
-    ) -> crate::VkResult<()> {
+        tensors: &[vk::TensorARM],
+        datas: &mut [vk::HostAddressRangeEXT<'_>],
+    ) -> VkResult<()> {
         assert_eq!(tensors.len(), datas.len());
         (self
             .fp
@@ -470,25 +472,21 @@ impl Device {
 }
 #[derive(Clone)]
 pub struct InstanceFn {
-    pub get_physical_device_descriptor_size: crate::vk::PFN_vkGetPhysicalDeviceDescriptorSizeEXT,
+    pub get_physical_device_descriptor_size: vk::PFN_vkGetPhysicalDeviceDescriptorSizeEXT,
 }
 unsafe impl Send for InstanceFn {}
 unsafe impl Sync for InstanceFn {}
 impl InstanceFn {
-    pub fn load<F: FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void>(
-        mut f: F,
-    ) -> Self {
+    pub fn load<F: FnMut(&CStr) -> *const c_void>(mut f: F) -> Self {
         Self::load_erased(&mut f)
     }
-    fn load_erased(
-        _f: &mut dyn FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void,
-    ) -> Self {
+    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const c_void) -> Self {
         Self {
             get_physical_device_descriptor_size: unsafe {
                 unsafe extern "system" fn get_physical_device_descriptor_size(
-                    _: crate::vk::PhysicalDevice,
-                    _: crate::vk::DescriptorType,
-                ) -> crate::vk::DeviceSize {
+                    _: vk::PhysicalDevice,
+                    _: vk::DescriptorType,
+                ) -> vk::DeviceSize {
                     panic!("unable to load vkGetPhysicalDeviceDescriptorSizeEXT")
                 }
                 let val = _f(c"vkGetPhysicalDeviceDescriptorSizeEXT");
@@ -526,30 +524,34 @@ impl Instance {
     #[inline]
     pub unsafe fn get_physical_device_descriptor_size(
         &self,
-        physical_device: crate::vk::PhysicalDevice,
-        descriptor_type: crate::vk::DescriptorType,
-    ) -> crate::vk::DeviceSize {
+        physical_device: vk::PhysicalDevice,
+        descriptor_type: vk::DescriptorType,
+    ) -> vk::DeviceSize {
         (self.fp.get_physical_device_descriptor_size)(physical_device, descriptor_type)
     }
 }
-pub const SPEC_VERSION: u32 = 1;
-pub const NAME: &core::ffi::CStr = c"VK_EXT_descriptor_heap";
 pub(crate) mod items {
+    use core::marker::PhantomData;
+    use crate::vk;
+    use crate::Handle;
+    use core::fmt;
+    #[cfg(feature = "debug")]
+    use core::fmt as fmtdebug;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct TensorViewCreateInfoARM<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *const core::ffi::c_void,
-        pub flags: crate::vk::TensorViewCreateFlagsARM,
-        pub tensor: crate::vk::TensorARM,
-        pub format: crate::vk::Format,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub flags: vk::TensorViewCreateFlagsARM,
+        pub tensor: vk::TensorARM,
+        pub format: vk::Format,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for TensorViewCreateInfoARM<'_> {}
     unsafe impl Sync for TensorViewCreateInfoARM<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for TensorViewCreateInfoARM<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::TENSOR_VIEW_CREATE_INFO_ARM;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::TENSOR_VIEW_CREATE_INFO_ARM;
     }
     impl<'a> Default for TensorViewCreateInfoARM<'a> {
         fn default() -> Self {
@@ -559,20 +561,20 @@ pub(crate) mod items {
                 flags: Default::default(),
                 tensor: Default::default(),
                 format: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
     impl<'a> TensorViewCreateInfoARM<'a> {
-        pub fn flags(mut self, flags: crate::vk::TensorViewCreateFlagsARM) -> Self {
+        pub fn flags(mut self, flags: vk::TensorViewCreateFlagsARM) -> Self {
             self.flags = flags;
             self
         }
-        pub fn tensor(mut self, tensor: crate::vk::TensorARM) -> Self {
+        pub fn tensor(mut self, tensor: vk::TensorARM) -> Self {
             self.tensor = tensor;
             self
         }
-        pub fn format(mut self, format: crate::vk::Format) -> Self {
+        pub fn format(mut self, format: vk::Format) -> Self {
             self.format = format;
             self
         }
@@ -583,7 +585,7 @@ pub(crate) mod items {
     pub struct HostAddressRangeEXT<'a> {
         pub address: *mut core::ffi::c_void,
         pub size: usize,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for HostAddressRangeEXT<'_> {}
     unsafe impl Sync for HostAddressRangeEXT<'_> {}
@@ -600,7 +602,7 @@ pub(crate) mod items {
     pub struct HostAddressRangeConstEXT<'a> {
         pub address: *const core::ffi::c_void,
         pub size: usize,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for HostAddressRangeConstEXT<'_> {}
     unsafe impl Sync for HostAddressRangeConstEXT<'_> {}
@@ -615,16 +617,16 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct TexelBufferDescriptorInfoEXT<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *const core::ffi::c_void,
-        pub format: crate::vk::Format,
-        pub address_range: crate::vk::DeviceAddressRangeEXT,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub format: vk::Format,
+        pub address_range: vk::DeviceAddressRangeEXT,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for TexelBufferDescriptorInfoEXT<'_> {}
     unsafe impl Sync for TexelBufferDescriptorInfoEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for TexelBufferDescriptorInfoEXT<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::TEXEL_BUFFER_DESCRIPTOR_INFO_EXT;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::TEXEL_BUFFER_DESCRIPTOR_INFO_EXT;
     }
     impl<'a> Default for TexelBufferDescriptorInfoEXT<'a> {
         fn default() -> Self {
@@ -633,18 +635,18 @@ pub(crate) mod items {
                 p_next: Default::default(),
                 format: Default::default(),
                 address_range: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
     impl<'a> TexelBufferDescriptorInfoEXT<'a> {
-        pub fn format(mut self, format: crate::vk::Format) -> Self {
+        pub fn format(mut self, format: vk::Format) -> Self {
             self.format = format;
             self
         }
         pub fn address_range(
             mut self,
-            address_range: crate::vk::DeviceAddressRangeEXT,
+            address_range: vk::DeviceAddressRangeEXT,
         ) -> Self {
             self.address_range = address_range;
             self
@@ -654,16 +656,16 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct ImageDescriptorInfoEXT<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *const core::ffi::c_void,
-        pub p_view: *const crate::vk::ImageViewCreateInfo<'a>,
-        pub layout: crate::vk::ImageLayout,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub p_view: *const vk::ImageViewCreateInfo<'a>,
+        pub layout: vk::ImageLayout,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for ImageDescriptorInfoEXT<'_> {}
     unsafe impl Sync for ImageDescriptorInfoEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for ImageDescriptorInfoEXT<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::IMAGE_DESCRIPTOR_INFO_EXT;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::IMAGE_DESCRIPTOR_INFO_EXT;
     }
     impl<'a> Default for ImageDescriptorInfoEXT<'a> {
         fn default() -> Self {
@@ -672,16 +674,16 @@ pub(crate) mod items {
                 p_next: Default::default(),
                 p_view: Default::default(),
                 layout: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
     impl<'a> ImageDescriptorInfoEXT<'a> {
-        pub fn view(mut self, view: &'a crate::vk::ImageViewCreateInfo<'a>) -> Self {
+        pub fn view(mut self, view: &'a vk::ImageViewCreateInfo<'a>) -> Self {
             self.p_view = view;
             self
         }
-        pub fn layout(mut self, layout: crate::vk::ImageLayout) -> Self {
+        pub fn layout(mut self, layout: vk::ImageLayout) -> Self {
             self.layout = layout;
             self
         }
@@ -690,16 +692,16 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct ResourceDescriptorInfoEXT<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *const core::ffi::c_void,
-        pub ty: crate::vk::DescriptorType,
-        pub data: crate::vk::ResourceDescriptorDataEXT<'a>,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub ty: vk::DescriptorType,
+        pub data: vk::ResourceDescriptorDataEXT<'a>,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for ResourceDescriptorInfoEXT<'_> {}
     unsafe impl Sync for ResourceDescriptorInfoEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for ResourceDescriptorInfoEXT<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::RESOURCE_DESCRIPTOR_INFO_EXT;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::RESOURCE_DESCRIPTOR_INFO_EXT;
     }
     impl<'a> Default for ResourceDescriptorInfoEXT<'a> {
         fn default() -> Self {
@@ -708,16 +710,16 @@ pub(crate) mod items {
                 p_next: Default::default(),
                 ty: Default::default(),
                 data: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
     impl<'a> ResourceDescriptorInfoEXT<'a> {
-        pub fn ty(mut self, ty: crate::vk::DescriptorType) -> Self {
+        pub fn ty(mut self, ty: vk::DescriptorType) -> Self {
             self.ty = ty;
             self
         }
-        pub fn data(mut self, data: crate::vk::ResourceDescriptorDataEXT<'a>) -> Self {
+        pub fn data(mut self, data: vk::ResourceDescriptorDataEXT<'a>) -> Self {
             self.data = data;
             self
         }
@@ -726,17 +728,17 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct BindHeapInfoEXT<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *const core::ffi::c_void,
-        pub heap_range: crate::vk::DeviceAddressRangeEXT,
-        pub reserved_range_offset: crate::vk::DeviceSize,
-        pub reserved_range_size: crate::vk::DeviceSize,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub heap_range: vk::DeviceAddressRangeEXT,
+        pub reserved_range_offset: vk::DeviceSize,
+        pub reserved_range_size: vk::DeviceSize,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for BindHeapInfoEXT<'_> {}
     unsafe impl Sync for BindHeapInfoEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for BindHeapInfoEXT<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::BIND_HEAP_INFO_EXT;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::BIND_HEAP_INFO_EXT;
     }
     impl<'a> Default for BindHeapInfoEXT<'a> {
         fn default() -> Self {
@@ -746,28 +748,25 @@ pub(crate) mod items {
                 heap_range: Default::default(),
                 reserved_range_offset: Default::default(),
                 reserved_range_size: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
     impl<'a> BindHeapInfoEXT<'a> {
-        pub fn heap_range(
-            mut self,
-            heap_range: crate::vk::DeviceAddressRangeEXT,
-        ) -> Self {
+        pub fn heap_range(mut self, heap_range: vk::DeviceAddressRangeEXT) -> Self {
             self.heap_range = heap_range;
             self
         }
         pub fn reserved_range_offset(
             mut self,
-            reserved_range_offset: crate::vk::DeviceSize,
+            reserved_range_offset: vk::DeviceSize,
         ) -> Self {
             self.reserved_range_offset = reserved_range_offset;
             self
         }
         pub fn reserved_range_size(
             mut self,
-            reserved_range_size: crate::vk::DeviceSize,
+            reserved_range_size: vk::DeviceSize,
         ) -> Self {
             self.reserved_range_size = reserved_range_size;
             self
@@ -777,16 +776,16 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct PushDataInfoEXT<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *const core::ffi::c_void,
         pub offset: u32,
-        pub data: crate::vk::HostAddressRangeConstEXT<'a>,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub data: vk::HostAddressRangeConstEXT<'a>,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for PushDataInfoEXT<'_> {}
     unsafe impl Sync for PushDataInfoEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for PushDataInfoEXT<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PUSH_DATA_INFO_EXT;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PUSH_DATA_INFO_EXT;
     }
     impl<'a> Default for PushDataInfoEXT<'a> {
         fn default() -> Self {
@@ -795,7 +794,7 @@ pub(crate) mod items {
                 p_next: Default::default(),
                 offset: Default::default(),
                 data: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
@@ -804,7 +803,7 @@ pub(crate) mod items {
             self.offset = offset;
             self
         }
-        pub fn data(mut self, data: crate::vk::HostAddressRangeConstEXT<'a>) -> Self {
+        pub fn data(mut self, data: vk::HostAddressRangeConstEXT<'a>) -> Self {
             self.data = data;
             self
         }
@@ -815,10 +814,10 @@ pub(crate) mod items {
     pub struct DescriptorMappingSourceConstantOffsetEXT<'a> {
         pub heap_offset: u32,
         pub heap_array_stride: u32,
-        pub p_embedded_sampler: *const crate::vk::SamplerCreateInfo<'a>,
+        pub p_embedded_sampler: *const vk::SamplerCreateInfo<'a>,
         pub sampler_heap_offset: u32,
         pub sampler_heap_array_stride: u32,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for DescriptorMappingSourceConstantOffsetEXT<'_> {}
     unsafe impl Sync for DescriptorMappingSourceConstantOffsetEXT<'_> {}
@@ -833,7 +832,7 @@ pub(crate) mod items {
         }
         pub fn embedded_sampler(
             mut self,
-            embedded_sampler: &'a crate::vk::SamplerCreateInfo<'a>,
+            embedded_sampler: &'a vk::SamplerCreateInfo<'a>,
         ) -> Self {
             self.p_embedded_sampler = embedded_sampler;
             self
@@ -858,13 +857,13 @@ pub(crate) mod items {
         pub push_offset: u32,
         pub heap_index_stride: u32,
         pub heap_array_stride: u32,
-        pub p_embedded_sampler: *const crate::vk::SamplerCreateInfo<'a>,
-        pub use_combined_image_sampler_index: crate::vk::Bool32,
+        pub p_embedded_sampler: *const vk::SamplerCreateInfo<'a>,
+        pub use_combined_image_sampler_index: vk::Bool32,
         pub sampler_heap_offset: u32,
         pub sampler_push_offset: u32,
         pub sampler_heap_index_stride: u32,
         pub sampler_heap_array_stride: u32,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for DescriptorMappingSourcePushIndexEXT<'_> {}
     unsafe impl Sync for DescriptorMappingSourcePushIndexEXT<'_> {}
@@ -887,7 +886,7 @@ pub(crate) mod items {
         }
         pub fn embedded_sampler(
             mut self,
-            embedded_sampler: &'a crate::vk::SamplerCreateInfo<'a>,
+            embedded_sampler: &'a vk::SamplerCreateInfo<'a>,
         ) -> Self {
             self.p_embedded_sampler = embedded_sampler;
             self
@@ -932,14 +931,14 @@ pub(crate) mod items {
         pub address_offset: u32,
         pub heap_index_stride: u32,
         pub heap_array_stride: u32,
-        pub p_embedded_sampler: *const crate::vk::SamplerCreateInfo<'a>,
-        pub use_combined_image_sampler_index: crate::vk::Bool32,
+        pub p_embedded_sampler: *const vk::SamplerCreateInfo<'a>,
+        pub use_combined_image_sampler_index: vk::Bool32,
         pub sampler_heap_offset: u32,
         pub sampler_push_offset: u32,
         pub sampler_address_offset: u32,
         pub sampler_heap_index_stride: u32,
         pub sampler_heap_array_stride: u32,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for DescriptorMappingSourceIndirectIndexEXT<'_> {}
     unsafe impl Sync for DescriptorMappingSourceIndirectIndexEXT<'_> {}
@@ -966,7 +965,7 @@ pub(crate) mod items {
         }
         pub fn embedded_sampler(
             mut self,
-            embedded_sampler: &'a crate::vk::SamplerCreateInfo<'a>,
+            embedded_sampler: &'a vk::SamplerCreateInfo<'a>,
         ) -> Self {
             self.p_embedded_sampler = embedded_sampler;
             self
@@ -1014,13 +1013,13 @@ pub(crate) mod items {
         pub push_offset: u32,
         pub address_offset: u32,
         pub heap_index_stride: u32,
-        pub p_embedded_sampler: *const crate::vk::SamplerCreateInfo<'a>,
-        pub use_combined_image_sampler_index: crate::vk::Bool32,
+        pub p_embedded_sampler: *const vk::SamplerCreateInfo<'a>,
+        pub use_combined_image_sampler_index: vk::Bool32,
         pub sampler_heap_offset: u32,
         pub sampler_push_offset: u32,
         pub sampler_address_offset: u32,
         pub sampler_heap_index_stride: u32,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for DescriptorMappingSourceIndirectIndexArrayEXT<'_> {}
     unsafe impl Sync for DescriptorMappingSourceIndirectIndexArrayEXT<'_> {}
@@ -1043,7 +1042,7 @@ pub(crate) mod items {
         }
         pub fn embedded_sampler(
             mut self,
-            embedded_sampler: &'a crate::vk::SamplerCreateInfo<'a>,
+            embedded_sampler: &'a vk::SamplerCreateInfo<'a>,
         ) -> Self {
             self.p_embedded_sampler = embedded_sampler;
             self
@@ -1103,13 +1102,13 @@ pub(crate) mod items {
         pub shader_record_offset: u32,
         pub heap_index_stride: u32,
         pub heap_array_stride: u32,
-        pub p_embedded_sampler: *const crate::vk::SamplerCreateInfo<'a>,
-        pub use_combined_image_sampler_index: crate::vk::Bool32,
+        pub p_embedded_sampler: *const vk::SamplerCreateInfo<'a>,
+        pub use_combined_image_sampler_index: vk::Bool32,
         pub sampler_heap_offset: u32,
         pub sampler_shader_record_offset: u32,
         pub sampler_heap_index_stride: u32,
         pub sampler_heap_array_stride: u32,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for DescriptorMappingSourceShaderRecordIndexEXT<'_> {}
     unsafe impl Sync for DescriptorMappingSourceShaderRecordIndexEXT<'_> {}
@@ -1132,7 +1131,7 @@ pub(crate) mod items {
         }
         pub fn embedded_sampler(
             mut self,
-            embedded_sampler: &'a crate::vk::SamplerCreateInfo<'a>,
+            embedded_sampler: &'a vk::SamplerCreateInfo<'a>,
         ) -> Self {
             self.p_embedded_sampler = embedded_sampler;
             self
@@ -1194,21 +1193,21 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct DescriptorSetAndBindingMappingEXT<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *const core::ffi::c_void,
         pub descriptor_set: u32,
         pub first_binding: u32,
         pub binding_count: u32,
-        pub resource_mask: crate::vk::SpirvResourceTypeFlagsEXT,
-        pub source: crate::vk::DescriptorMappingSourceEXT,
-        pub source_data: crate::vk::DescriptorMappingSourceDataEXT<'a>,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub resource_mask: vk::SpirvResourceTypeFlagsEXT,
+        pub source: vk::DescriptorMappingSourceEXT,
+        pub source_data: vk::DescriptorMappingSourceDataEXT<'a>,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for DescriptorSetAndBindingMappingEXT<'_> {}
     unsafe impl Sync for DescriptorSetAndBindingMappingEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for DescriptorSetAndBindingMappingEXT<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::DESCRIPTOR_SET_AND_BINDING_MAPPING_EXT;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::DESCRIPTOR_SET_AND_BINDING_MAPPING_EXT;
     }
     impl<'a> Default for DescriptorSetAndBindingMappingEXT<'a> {
         fn default() -> Self {
@@ -1221,7 +1220,7 @@ pub(crate) mod items {
                 resource_mask: Default::default(),
                 source: Default::default(),
                 source_data: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
@@ -1240,18 +1239,18 @@ pub(crate) mod items {
         }
         pub fn resource_mask(
             mut self,
-            resource_mask: crate::vk::SpirvResourceTypeFlagsEXT,
+            resource_mask: vk::SpirvResourceTypeFlagsEXT,
         ) -> Self {
             self.resource_mask = resource_mask;
             self
         }
-        pub fn source(mut self, source: crate::vk::DescriptorMappingSourceEXT) -> Self {
+        pub fn source(mut self, source: vk::DescriptorMappingSourceEXT) -> Self {
             self.source = source;
             self
         }
         pub fn source_data(
             mut self,
-            source_data: crate::vk::DescriptorMappingSourceDataEXT<'a>,
+            source_data: vk::DescriptorMappingSourceDataEXT<'a>,
         ) -> Self {
             self.source_data = source_data;
             self
@@ -1261,21 +1260,21 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct ShaderDescriptorSetAndBindingMappingInfoEXT<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *const core::ffi::c_void,
         pub mapping_count: u32,
-        pub p_mappings: *const crate::vk::DescriptorSetAndBindingMappingEXT<'a>,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub p_mappings: *const vk::DescriptorSetAndBindingMappingEXT<'a>,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for ShaderDescriptorSetAndBindingMappingInfoEXT<'_> {}
     unsafe impl Sync for ShaderDescriptorSetAndBindingMappingInfoEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for ShaderDescriptorSetAndBindingMappingInfoEXT<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::SHADER_DESCRIPTOR_SET_AND_BINDING_MAPPING_INFO_EXT;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::SHADER_DESCRIPTOR_SET_AND_BINDING_MAPPING_INFO_EXT;
     }
-    unsafe impl<'a> crate::Extends<crate::vk::PipelineShaderStageCreateInfo<'_>>
+    unsafe impl<'a> crate::Extends<vk::PipelineShaderStageCreateInfo<'_>>
     for ShaderDescriptorSetAndBindingMappingInfoEXT<'a> {}
-    unsafe impl<'a> crate::Extends<crate::vk::ShaderCreateInfoEXT<'_>>
+    unsafe impl<'a> crate::Extends<vk::ShaderCreateInfoEXT<'_>>
     for ShaderDescriptorSetAndBindingMappingInfoEXT<'a> {}
     impl<'a> Default for ShaderDescriptorSetAndBindingMappingInfoEXT<'a> {
         fn default() -> Self {
@@ -1284,14 +1283,14 @@ pub(crate) mod items {
                 p_next: Default::default(),
                 mapping_count: Default::default(),
                 p_mappings: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
     impl<'a> ShaderDescriptorSetAndBindingMappingInfoEXT<'a> {
         pub fn mappings(
             mut self,
-            mappings: &'a [crate::vk::DescriptorSetAndBindingMappingEXT<'a>],
+            mappings: &'a [vk::DescriptorSetAndBindingMappingEXT<'a>],
         ) -> Self {
             self.mapping_count = mappings.len() as _;
             self.p_mappings = mappings.as_ptr();
@@ -1302,18 +1301,18 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct SamplerCustomBorderColorIndexCreateInfoEXT<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *const core::ffi::c_void,
         pub index: u32,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for SamplerCustomBorderColorIndexCreateInfoEXT<'_> {}
     unsafe impl Sync for SamplerCustomBorderColorIndexCreateInfoEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for SamplerCustomBorderColorIndexCreateInfoEXT<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::SAMPLER_CUSTOM_BORDER_COLOR_INDEX_CREATE_INFO_EXT;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::SAMPLER_CUSTOM_BORDER_COLOR_INDEX_CREATE_INFO_EXT;
     }
-    unsafe impl<'a> crate::Extends<crate::vk::SamplerCreateInfo<'_>>
+    unsafe impl<'a> crate::Extends<vk::SamplerCreateInfo<'_>>
     for SamplerCustomBorderColorIndexCreateInfoEXT<'a> {}
     impl<'a> Default for SamplerCustomBorderColorIndexCreateInfoEXT<'a> {
         fn default() -> Self {
@@ -1321,7 +1320,7 @@ pub(crate) mod items {
                 s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
                 p_next: Default::default(),
                 index: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
@@ -1335,19 +1334,19 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct OpaqueCaptureDataCreateInfoEXT<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *const core::ffi::c_void,
-        pub p_data: *const crate::vk::HostAddressRangeConstEXT<'a>,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub p_data: *const vk::HostAddressRangeConstEXT<'a>,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for OpaqueCaptureDataCreateInfoEXT<'_> {}
     unsafe impl Sync for OpaqueCaptureDataCreateInfoEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for OpaqueCaptureDataCreateInfoEXT<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::OPAQUE_CAPTURE_DATA_CREATE_INFO_EXT;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::OPAQUE_CAPTURE_DATA_CREATE_INFO_EXT;
     }
-    unsafe impl<'a> crate::Extends<crate::vk::ImageCreateInfo<'_>>
+    unsafe impl<'a> crate::Extends<vk::ImageCreateInfo<'_>>
     for OpaqueCaptureDataCreateInfoEXT<'a> {}
-    unsafe impl<'a> crate::Extends<crate::vk::TensorCreateInfoARM<'_>>
+    unsafe impl<'a> crate::Extends<vk::TensorCreateInfoARM<'_>>
     for OpaqueCaptureDataCreateInfoEXT<'a> {}
     impl<'a> Default for OpaqueCaptureDataCreateInfoEXT<'a> {
         fn default() -> Self {
@@ -1355,15 +1354,12 @@ pub(crate) mod items {
                 s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
                 p_next: Default::default(),
                 p_data: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
     impl<'a> OpaqueCaptureDataCreateInfoEXT<'a> {
-        pub fn data(
-            mut self,
-            data: &'a crate::vk::HostAddressRangeConstEXT<'a>,
-        ) -> Self {
+        pub fn data(mut self, data: &'a vk::HostAddressRangeConstEXT<'a>) -> Self {
             self.p_data = data;
             self
         }
@@ -1372,19 +1368,19 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct IndirectCommandsLayoutPushDataTokenNV<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *const core::ffi::c_void,
         pub push_data_offset: u32,
         pub push_data_size: u32,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for IndirectCommandsLayoutPushDataTokenNV<'_> {}
     unsafe impl Sync for IndirectCommandsLayoutPushDataTokenNV<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for IndirectCommandsLayoutPushDataTokenNV<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::INDIRECT_COMMANDS_LAYOUT_PUSH_DATA_TOKEN_NV;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::INDIRECT_COMMANDS_LAYOUT_PUSH_DATA_TOKEN_NV;
     }
-    unsafe impl<'a> crate::Extends<crate::vk::IndirectCommandsLayoutTokenNV<'_>>
+    unsafe impl<'a> crate::Extends<vk::IndirectCommandsLayoutTokenNV<'_>>
     for IndirectCommandsLayoutPushDataTokenNV<'a> {}
     impl<'a> Default for IndirectCommandsLayoutPushDataTokenNV<'a> {
         fn default() -> Self {
@@ -1393,7 +1389,7 @@ pub(crate) mod items {
                 p_next: Default::default(),
                 push_data_offset: Default::default(),
                 push_data_size: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
@@ -1411,18 +1407,18 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct SubsampledImageFormatPropertiesEXT<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *const core::ffi::c_void,
         pub subsampled_image_descriptor_count: u32,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for SubsampledImageFormatPropertiesEXT<'_> {}
     unsafe impl Sync for SubsampledImageFormatPropertiesEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for SubsampledImageFormatPropertiesEXT<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::SUBSAMPLED_IMAGE_FORMAT_PROPERTIES_EXT;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::SUBSAMPLED_IMAGE_FORMAT_PROPERTIES_EXT;
     }
-    unsafe impl<'a> crate::Extends<crate::vk::ImageFormatProperties2<'_>>
+    unsafe impl<'a> crate::Extends<vk::ImageFormatProperties2<'_>>
     for SubsampledImageFormatPropertiesEXT<'a> {}
     impl<'a> Default for SubsampledImageFormatPropertiesEXT<'a> {
         fn default() -> Self {
@@ -1430,7 +1426,7 @@ pub(crate) mod items {
                 s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
                 p_next: Default::default(),
                 subsampled_image_descriptor_count: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
@@ -1447,21 +1443,21 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceDescriptorHeapFeaturesEXT<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
-        pub descriptor_heap: crate::vk::Bool32,
-        pub descriptor_heap_capture_replay: crate::vk::Bool32,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub descriptor_heap: vk::Bool32,
+        pub descriptor_heap_capture_replay: vk::Bool32,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for PhysicalDeviceDescriptorHeapFeaturesEXT<'_> {}
     unsafe impl Sync for PhysicalDeviceDescriptorHeapFeaturesEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceDescriptorHeapFeaturesEXT<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_DESCRIPTOR_HEAP_FEATURES_EXT;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PHYSICAL_DEVICE_DESCRIPTOR_HEAP_FEATURES_EXT;
     }
-    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+    unsafe impl<'a> crate::Extends<vk::PhysicalDeviceFeatures2<'_>>
     for PhysicalDeviceDescriptorHeapFeaturesEXT<'a> {}
-    unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+    unsafe impl<'a> crate::Extends<vk::DeviceCreateInfo<'_>>
     for PhysicalDeviceDescriptorHeapFeaturesEXT<'a> {}
     impl<'a> Default for PhysicalDeviceDescriptorHeapFeaturesEXT<'a> {
         fn default() -> Self {
@@ -1470,7 +1466,7 @@ pub(crate) mod items {
                 p_next: Default::default(),
                 descriptor_heap: Default::default(),
                 descriptor_heap_capture_replay: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
@@ -1491,36 +1487,36 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceDescriptorHeapPropertiesEXT<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
-        pub sampler_heap_alignment: crate::vk::DeviceSize,
-        pub resource_heap_alignment: crate::vk::DeviceSize,
-        pub max_sampler_heap_size: crate::vk::DeviceSize,
-        pub max_resource_heap_size: crate::vk::DeviceSize,
-        pub min_sampler_heap_reserved_range: crate::vk::DeviceSize,
-        pub min_sampler_heap_reserved_range_with_embedded: crate::vk::DeviceSize,
-        pub min_resource_heap_reserved_range: crate::vk::DeviceSize,
-        pub sampler_descriptor_size: crate::vk::DeviceSize,
-        pub image_descriptor_size: crate::vk::DeviceSize,
-        pub buffer_descriptor_size: crate::vk::DeviceSize,
-        pub sampler_descriptor_alignment: crate::vk::DeviceSize,
-        pub image_descriptor_alignment: crate::vk::DeviceSize,
-        pub buffer_descriptor_alignment: crate::vk::DeviceSize,
-        pub max_push_data_size: crate::vk::DeviceSize,
+        pub sampler_heap_alignment: vk::DeviceSize,
+        pub resource_heap_alignment: vk::DeviceSize,
+        pub max_sampler_heap_size: vk::DeviceSize,
+        pub max_resource_heap_size: vk::DeviceSize,
+        pub min_sampler_heap_reserved_range: vk::DeviceSize,
+        pub min_sampler_heap_reserved_range_with_embedded: vk::DeviceSize,
+        pub min_resource_heap_reserved_range: vk::DeviceSize,
+        pub sampler_descriptor_size: vk::DeviceSize,
+        pub image_descriptor_size: vk::DeviceSize,
+        pub buffer_descriptor_size: vk::DeviceSize,
+        pub sampler_descriptor_alignment: vk::DeviceSize,
+        pub image_descriptor_alignment: vk::DeviceSize,
+        pub buffer_descriptor_alignment: vk::DeviceSize,
+        pub max_push_data_size: vk::DeviceSize,
         pub image_capture_replay_opaque_data_size: usize,
         pub max_descriptor_heap_embedded_samplers: u32,
         pub sampler_ycbcr_conversion_count: u32,
-        pub sparse_descriptor_heaps: crate::vk::Bool32,
-        pub protected_descriptor_heaps: crate::vk::Bool32,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub sparse_descriptor_heaps: vk::Bool32,
+        pub protected_descriptor_heaps: vk::Bool32,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for PhysicalDeviceDescriptorHeapPropertiesEXT<'_> {}
     unsafe impl Sync for PhysicalDeviceDescriptorHeapPropertiesEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceDescriptorHeapPropertiesEXT<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_DESCRIPTOR_HEAP_PROPERTIES_EXT;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PHYSICAL_DEVICE_DESCRIPTOR_HEAP_PROPERTIES_EXT;
     }
-    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceProperties2<'_>>
+    unsafe impl<'a> crate::Extends<vk::PhysicalDeviceProperties2<'_>>
     for PhysicalDeviceDescriptorHeapPropertiesEXT<'a> {}
     impl<'a> Default for PhysicalDeviceDescriptorHeapPropertiesEXT<'a> {
         fn default() -> Self {
@@ -1546,106 +1542,103 @@ pub(crate) mod items {
                 sampler_ycbcr_conversion_count: Default::default(),
                 sparse_descriptor_heaps: Default::default(),
                 protected_descriptor_heaps: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
     impl<'a> PhysicalDeviceDescriptorHeapPropertiesEXT<'a> {
         pub fn sampler_heap_alignment(
             mut self,
-            sampler_heap_alignment: crate::vk::DeviceSize,
+            sampler_heap_alignment: vk::DeviceSize,
         ) -> Self {
             self.sampler_heap_alignment = sampler_heap_alignment;
             self
         }
         pub fn resource_heap_alignment(
             mut self,
-            resource_heap_alignment: crate::vk::DeviceSize,
+            resource_heap_alignment: vk::DeviceSize,
         ) -> Self {
             self.resource_heap_alignment = resource_heap_alignment;
             self
         }
         pub fn max_sampler_heap_size(
             mut self,
-            max_sampler_heap_size: crate::vk::DeviceSize,
+            max_sampler_heap_size: vk::DeviceSize,
         ) -> Self {
             self.max_sampler_heap_size = max_sampler_heap_size;
             self
         }
         pub fn max_resource_heap_size(
             mut self,
-            max_resource_heap_size: crate::vk::DeviceSize,
+            max_resource_heap_size: vk::DeviceSize,
         ) -> Self {
             self.max_resource_heap_size = max_resource_heap_size;
             self
         }
         pub fn min_sampler_heap_reserved_range(
             mut self,
-            min_sampler_heap_reserved_range: crate::vk::DeviceSize,
+            min_sampler_heap_reserved_range: vk::DeviceSize,
         ) -> Self {
             self.min_sampler_heap_reserved_range = min_sampler_heap_reserved_range;
             self
         }
         pub fn min_sampler_heap_reserved_range_with_embedded(
             mut self,
-            min_sampler_heap_reserved_range_with_embedded: crate::vk::DeviceSize,
+            min_sampler_heap_reserved_range_with_embedded: vk::DeviceSize,
         ) -> Self {
             self.min_sampler_heap_reserved_range_with_embedded = min_sampler_heap_reserved_range_with_embedded;
             self
         }
         pub fn min_resource_heap_reserved_range(
             mut self,
-            min_resource_heap_reserved_range: crate::vk::DeviceSize,
+            min_resource_heap_reserved_range: vk::DeviceSize,
         ) -> Self {
             self.min_resource_heap_reserved_range = min_resource_heap_reserved_range;
             self
         }
         pub fn sampler_descriptor_size(
             mut self,
-            sampler_descriptor_size: crate::vk::DeviceSize,
+            sampler_descriptor_size: vk::DeviceSize,
         ) -> Self {
             self.sampler_descriptor_size = sampler_descriptor_size;
             self
         }
         pub fn image_descriptor_size(
             mut self,
-            image_descriptor_size: crate::vk::DeviceSize,
+            image_descriptor_size: vk::DeviceSize,
         ) -> Self {
             self.image_descriptor_size = image_descriptor_size;
             self
         }
         pub fn buffer_descriptor_size(
             mut self,
-            buffer_descriptor_size: crate::vk::DeviceSize,
+            buffer_descriptor_size: vk::DeviceSize,
         ) -> Self {
             self.buffer_descriptor_size = buffer_descriptor_size;
             self
         }
         pub fn sampler_descriptor_alignment(
             mut self,
-            sampler_descriptor_alignment: crate::vk::DeviceSize,
+            sampler_descriptor_alignment: vk::DeviceSize,
         ) -> Self {
             self.sampler_descriptor_alignment = sampler_descriptor_alignment;
             self
         }
         pub fn image_descriptor_alignment(
             mut self,
-            image_descriptor_alignment: crate::vk::DeviceSize,
+            image_descriptor_alignment: vk::DeviceSize,
         ) -> Self {
             self.image_descriptor_alignment = image_descriptor_alignment;
             self
         }
         pub fn buffer_descriptor_alignment(
             mut self,
-            buffer_descriptor_alignment: crate::vk::DeviceSize,
+            buffer_descriptor_alignment: vk::DeviceSize,
         ) -> Self {
             self.buffer_descriptor_alignment = buffer_descriptor_alignment;
             self
         }
-        pub fn max_push_data_size(
-            mut self,
-            max_push_data_size: crate::vk::DeviceSize,
-        ) -> Self {
+        pub fn max_push_data_size(mut self, max_push_data_size: vk::DeviceSize) -> Self {
             self.max_push_data_size = max_push_data_size;
             self
         }
@@ -1686,19 +1679,19 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct CommandBufferInheritanceDescriptorHeapInfoEXT<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *const core::ffi::c_void,
-        pub p_sampler_heap_bind_info: *const crate::vk::BindHeapInfoEXT<'a>,
-        pub p_resource_heap_bind_info: *const crate::vk::BindHeapInfoEXT<'a>,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub p_sampler_heap_bind_info: *const vk::BindHeapInfoEXT<'a>,
+        pub p_resource_heap_bind_info: *const vk::BindHeapInfoEXT<'a>,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for CommandBufferInheritanceDescriptorHeapInfoEXT<'_> {}
     unsafe impl Sync for CommandBufferInheritanceDescriptorHeapInfoEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for CommandBufferInheritanceDescriptorHeapInfoEXT<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::COMMAND_BUFFER_INHERITANCE_DESCRIPTOR_HEAP_INFO_EXT;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::COMMAND_BUFFER_INHERITANCE_DESCRIPTOR_HEAP_INFO_EXT;
     }
-    unsafe impl<'a> crate::Extends<crate::vk::CommandBufferInheritanceInfo<'_>>
+    unsafe impl<'a> crate::Extends<vk::CommandBufferInheritanceInfo<'_>>
     for CommandBufferInheritanceDescriptorHeapInfoEXT<'a> {}
     impl<'a> Default for CommandBufferInheritanceDescriptorHeapInfoEXT<'a> {
         fn default() -> Self {
@@ -1707,21 +1700,21 @@ pub(crate) mod items {
                 p_next: Default::default(),
                 p_sampler_heap_bind_info: Default::default(),
                 p_resource_heap_bind_info: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
     impl<'a> CommandBufferInheritanceDescriptorHeapInfoEXT<'a> {
         pub fn sampler_heap_bind_info(
             mut self,
-            sampler_heap_bind_info: &'a crate::vk::BindHeapInfoEXT<'a>,
+            sampler_heap_bind_info: &'a vk::BindHeapInfoEXT<'a>,
         ) -> Self {
             self.p_sampler_heap_bind_info = sampler_heap_bind_info;
             self
         }
         pub fn resource_heap_bind_info(
             mut self,
-            resource_heap_bind_info: &'a crate::vk::BindHeapInfoEXT<'a>,
+            resource_heap_bind_info: &'a vk::BindHeapInfoEXT<'a>,
         ) -> Self {
             self.p_resource_heap_bind_info = resource_heap_bind_info;
             self
@@ -1731,20 +1724,20 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceDescriptorHeapTensorPropertiesARM<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
-        pub tensor_descriptor_size: crate::vk::DeviceSize,
-        pub tensor_descriptor_alignment: crate::vk::DeviceSize,
+        pub tensor_descriptor_size: vk::DeviceSize,
+        pub tensor_descriptor_alignment: vk::DeviceSize,
         pub tensor_capture_replay_opaque_data_size: usize,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for PhysicalDeviceDescriptorHeapTensorPropertiesARM<'_> {}
     unsafe impl Sync for PhysicalDeviceDescriptorHeapTensorPropertiesARM<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceDescriptorHeapTensorPropertiesARM<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_DESCRIPTOR_HEAP_TENSOR_PROPERTIES_ARM;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PHYSICAL_DEVICE_DESCRIPTOR_HEAP_TENSOR_PROPERTIES_ARM;
     }
-    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceProperties2<'_>>
+    unsafe impl<'a> crate::Extends<vk::PhysicalDeviceProperties2<'_>>
     for PhysicalDeviceDescriptorHeapTensorPropertiesARM<'a> {}
     impl<'a> Default for PhysicalDeviceDescriptorHeapTensorPropertiesARM<'a> {
         fn default() -> Self {
@@ -1754,21 +1747,21 @@ pub(crate) mod items {
                 tensor_descriptor_size: Default::default(),
                 tensor_descriptor_alignment: Default::default(),
                 tensor_capture_replay_opaque_data_size: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
     impl<'a> PhysicalDeviceDescriptorHeapTensorPropertiesARM<'a> {
         pub fn tensor_descriptor_size(
             mut self,
-            tensor_descriptor_size: crate::vk::DeviceSize,
+            tensor_descriptor_size: vk::DeviceSize,
         ) -> Self {
             self.tensor_descriptor_size = tensor_descriptor_size;
             self
         }
         pub fn tensor_descriptor_alignment(
             mut self,
-            tensor_descriptor_alignment: crate::vk::DeviceSize,
+            tensor_descriptor_alignment: vk::DeviceSize,
         ) -> Self {
             self.tensor_descriptor_alignment = tensor_descriptor_alignment;
             self
@@ -1781,14 +1774,14 @@ pub(crate) mod items {
             self
         }
     }
-    pub type DeviceAddressRangeEXT = crate::vk::DeviceAddressRangeKHR;
+    pub type DeviceAddressRangeEXT = vk::DeviceAddressRangeKHR;
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub union ResourceDescriptorDataEXT<'a> {
-        pub p_image: *const crate::vk::ImageDescriptorInfoEXT<'a>,
-        pub p_texel_buffer: *const crate::vk::TexelBufferDescriptorInfoEXT<'a>,
-        pub p_address_range: *const crate::vk::DeviceAddressRangeEXT,
-        pub p_tensor_arm: *const crate::vk::TensorViewCreateInfoARM<'a>,
+        pub p_image: *const vk::ImageDescriptorInfoEXT<'a>,
+        pub p_texel_buffer: *const vk::TexelBufferDescriptorInfoEXT<'a>,
+        pub p_address_range: *const vk::DeviceAddressRangeEXT,
+        pub p_tensor_arm: *const vk::TensorViewCreateInfoARM<'a>,
     }
     impl<'a> Default for ResourceDescriptorDataEXT<'a> {
         fn default() -> Self {
@@ -1804,19 +1797,15 @@ pub(crate) mod items {
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub union DescriptorMappingSourceDataEXT<'a> {
-        pub constant_offset: crate::vk::DescriptorMappingSourceConstantOffsetEXT<'a>,
-        pub push_index: crate::vk::DescriptorMappingSourcePushIndexEXT<'a>,
-        pub indirect_index: crate::vk::DescriptorMappingSourceIndirectIndexEXT<'a>,
-        pub indirect_index_array: crate::vk::DescriptorMappingSourceIndirectIndexArrayEXT<
-            'a,
-        >,
-        pub heap_data: crate::vk::DescriptorMappingSourceHeapDataEXT,
+        pub constant_offset: vk::DescriptorMappingSourceConstantOffsetEXT<'a>,
+        pub push_index: vk::DescriptorMappingSourcePushIndexEXT<'a>,
+        pub indirect_index: vk::DescriptorMappingSourceIndirectIndexEXT<'a>,
+        pub indirect_index_array: vk::DescriptorMappingSourceIndirectIndexArrayEXT<'a>,
+        pub heap_data: vk::DescriptorMappingSourceHeapDataEXT,
         pub push_data_offset: u32,
         pub push_address_offset: u32,
-        pub indirect_address: crate::vk::DescriptorMappingSourceIndirectAddressEXT,
-        pub shader_record_index: crate::vk::DescriptorMappingSourceShaderRecordIndexEXT<
-            'a,
-        >,
+        pub indirect_address: vk::DescriptorMappingSourceIndirectAddressEXT,
+        pub shader_record_index: vk::DescriptorMappingSourceShaderRecordIndexEXT<'a>,
         pub shader_record_data_offset: u32,
         pub shader_record_address_offset: u32,
     }
@@ -2083,8 +2072,8 @@ pub(crate) mod items {
     #[repr(transparent)]
     #[derive(Eq, PartialEq, Ord, PartialOrd, Clone, Copy, Hash, Default)]
     pub struct TensorARM(u64);
-    impl crate::Handle for TensorARM {
-        const TYPE: crate::vk::ObjectType = crate::vk::ObjectType::TENSOR_ARM;
+    impl Handle for TensorARM {
+        const TYPE: vk::ObjectType = vk::ObjectType::TENSOR_ARM;
         fn as_raw(self) -> u64 {
             self.0
         }
@@ -2097,65 +2086,66 @@ pub(crate) mod items {
             Self(0)
         }
     }
-    impl core::fmt::Pointer for TensorARM {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+    impl fmt::Pointer for TensorARM {
+        fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
             write!(f, "0x{:x}", self.0)
         }
     }
-    impl core::fmt::Debug for TensorARM {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+    #[cfg(feature = "debug")]
+    impl fmtdebug::Debug for TensorARM {
+        fn fmt(&self, f: &mut fmtdebug::Formatter) -> fmtdebug::Result {
             write!(f, "0x{:x}", self.0)
         }
     }
     pub type PFN_vkWriteSamplerDescriptorsEXT = unsafe extern "system" fn(
-        device: crate::vk::Device,
+        device: vk::Device,
         sampler_count: u32,
-        p_samplers: *const crate::vk::SamplerCreateInfo<'_>,
-        p_descriptors: *const crate::vk::HostAddressRangeEXT<'_>,
-    ) -> crate::vk::Result;
+        p_samplers: *const vk::SamplerCreateInfo<'_>,
+        p_descriptors: *const vk::HostAddressRangeEXT<'_>,
+    ) -> vk::Result;
     pub type PFN_vkWriteResourceDescriptorsEXT = unsafe extern "system" fn(
-        device: crate::vk::Device,
+        device: vk::Device,
         resource_count: u32,
-        p_resources: *const crate::vk::ResourceDescriptorInfoEXT<'_>,
-        p_descriptors: *const crate::vk::HostAddressRangeEXT<'_>,
-    ) -> crate::vk::Result;
+        p_resources: *const vk::ResourceDescriptorInfoEXT<'_>,
+        p_descriptors: *const vk::HostAddressRangeEXT<'_>,
+    ) -> vk::Result;
     pub type PFN_vkCmdBindSamplerHeapEXT = unsafe extern "system" fn(
-        command_buffer: crate::vk::CommandBuffer,
-        p_bind_info: *const crate::vk::BindHeapInfoEXT<'_>,
+        command_buffer: vk::CommandBuffer,
+        p_bind_info: *const vk::BindHeapInfoEXT<'_>,
     );
     pub type PFN_vkCmdBindResourceHeapEXT = unsafe extern "system" fn(
-        command_buffer: crate::vk::CommandBuffer,
-        p_bind_info: *const crate::vk::BindHeapInfoEXT<'_>,
+        command_buffer: vk::CommandBuffer,
+        p_bind_info: *const vk::BindHeapInfoEXT<'_>,
     );
     pub type PFN_vkCmdPushDataEXT = unsafe extern "system" fn(
-        command_buffer: crate::vk::CommandBuffer,
-        p_push_data_info: *const crate::vk::PushDataInfoEXT<'_>,
+        command_buffer: vk::CommandBuffer,
+        p_push_data_info: *const vk::PushDataInfoEXT<'_>,
     );
     pub type PFN_vkRegisterCustomBorderColorEXT = unsafe extern "system" fn(
-        device: crate::vk::Device,
-        p_border_color: *const crate::vk::SamplerCustomBorderColorCreateInfoEXT<'_>,
-        request_index: crate::vk::Bool32,
+        device: vk::Device,
+        p_border_color: *const vk::SamplerCustomBorderColorCreateInfoEXT<'_>,
+        request_index: vk::Bool32,
         p_index: *mut u32,
-    ) -> crate::vk::Result;
+    ) -> vk::Result;
     pub type PFN_vkUnregisterCustomBorderColorEXT = unsafe extern "system" fn(
-        device: crate::vk::Device,
+        device: vk::Device,
         index: u32,
     );
     pub type PFN_vkGetImageOpaqueCaptureDataEXT = unsafe extern "system" fn(
-        device: crate::vk::Device,
+        device: vk::Device,
         image_count: u32,
-        p_images: *const crate::vk::Image,
-        p_datas: *mut crate::vk::HostAddressRangeEXT<'_>,
-    ) -> crate::vk::Result;
+        p_images: *const vk::Image,
+        p_datas: *mut vk::HostAddressRangeEXT<'_>,
+    ) -> vk::Result;
     pub type PFN_vkGetPhysicalDeviceDescriptorSizeEXT = unsafe extern "system" fn(
-        physical_device: crate::vk::PhysicalDevice,
-        descriptor_type: crate::vk::DescriptorType,
-    ) -> crate::vk::DeviceSize;
+        physical_device: vk::PhysicalDevice,
+        descriptor_type: vk::DescriptorType,
+    ) -> vk::DeviceSize;
     pub type PFN_vkGetTensorOpaqueCaptureDataARM = unsafe extern "system" fn(
-        device: crate::vk::Device,
+        device: vk::Device,
         tensor_count: u32,
-        p_tensors: *const crate::vk::TensorARM,
-        p_datas: *mut crate::vk::HostAddressRangeEXT<'_>,
-    ) -> crate::vk::Result;
+        p_tensors: *const vk::TensorARM,
+        p_datas: *mut vk::HostAddressRangeEXT<'_>,
+    ) -> vk::Result;
 }
 pub use items::*;

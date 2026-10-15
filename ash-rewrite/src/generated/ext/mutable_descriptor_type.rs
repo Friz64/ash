@@ -2,58 +2,62 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_mutable_descriptor_type.html) · Extension `VK_EXT_mutable_descriptor_type`
 #![doc(alias = "VK_EXT_mutable_descriptor_type")]
+use crate::vk;
+use core::ffi::CStr;
 ///Provided by [VK_EXT_mutable_descriptor_type](crate::ext::mutable_descriptor_type)
-impl crate::vk::DescriptorType {
+impl vk::DescriptorType {
     pub const MUTABLE_EXT: Self = Self(1000351000);
 }
 ///Provided by [VK_EXT_mutable_descriptor_type](crate::ext::mutable_descriptor_type)
-impl crate::vk::StructureType {
+impl vk::StructureType {
     pub const PHYSICAL_DEVICE_MUTABLE_DESCRIPTOR_TYPE_FEATURES_EXT: Self = Self(
         1000351000,
     );
     pub const MUTABLE_DESCRIPTOR_TYPE_CREATE_INFO_EXT: Self = Self(1000351002);
 }
-///Provided by [VK_EXT_mutable_descriptor_type](crate::ext::mutable_descriptor_type)
-impl crate::vk::DescriptorSetLayoutCreateFlags {
+///Provided by [Vulkan 1.0](crate::vk1_0)
+impl vk::DescriptorSetLayoutCreateFlags {
     pub const HOST_ONLY_POOL_EXT: Self = Self(
-        crate::vk::DescriptorSetLayoutCreateFlagBits::HOST_ONLY_POOL_EXT.0,
+        vk::DescriptorSetLayoutCreateFlagBits::HOST_ONLY_POOL_EXT.0,
     );
 }
-///Provided by [VK_EXT_mutable_descriptor_type](crate::ext::mutable_descriptor_type)
-impl crate::vk::DescriptorSetLayoutCreateFlagBits {
+///Provided by [Vulkan 1.0](crate::vk1_0)
+impl vk::DescriptorSetLayoutCreateFlagBits {
     pub const HOST_ONLY_POOL_EXT: Self = Self(1 << 2);
 }
-///Provided by [VK_EXT_mutable_descriptor_type](crate::ext::mutable_descriptor_type)
-impl crate::vk::DescriptorPoolCreateFlags {
+///Provided by [Vulkan 1.0](crate::vk1_0)
+impl vk::DescriptorPoolCreateFlags {
     pub const HOST_ONLY_EXT: Self = Self(
-        crate::vk::DescriptorPoolCreateFlagBits::HOST_ONLY_EXT.0,
+        vk::DescriptorPoolCreateFlagBits::HOST_ONLY_EXT.0,
     );
 }
-///Provided by [VK_EXT_mutable_descriptor_type](crate::ext::mutable_descriptor_type)
-impl crate::vk::DescriptorPoolCreateFlagBits {
+///Provided by [Vulkan 1.0](crate::vk1_0)
+impl vk::DescriptorPoolCreateFlagBits {
     pub const HOST_ONLY_EXT: Self = Self(1 << 2);
 }
 pub const SPEC_VERSION: u32 = 1;
-pub const NAME: &core::ffi::CStr = c"VK_EXT_mutable_descriptor_type";
+pub const NAME: &CStr = c"VK_EXT_mutable_descriptor_type";
 pub(crate) mod items {
+    use core::marker::PhantomData;
+    use crate::vk;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceMutableDescriptorTypeFeaturesEXT<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
-        pub mutable_descriptor_type: crate::vk::Bool32,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub mutable_descriptor_type: vk::Bool32,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for PhysicalDeviceMutableDescriptorTypeFeaturesEXT<'_> {}
     unsafe impl Sync for PhysicalDeviceMutableDescriptorTypeFeaturesEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceMutableDescriptorTypeFeaturesEXT<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_MUTABLE_DESCRIPTOR_TYPE_FEATURES_EXT;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PHYSICAL_DEVICE_MUTABLE_DESCRIPTOR_TYPE_FEATURES_EXT;
     }
-    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+    unsafe impl<'a> crate::Extends<vk::PhysicalDeviceFeatures2<'_>>
     for PhysicalDeviceMutableDescriptorTypeFeaturesEXT<'a> {}
-    unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+    unsafe impl<'a> crate::Extends<vk::DeviceCreateInfo<'_>>
     for PhysicalDeviceMutableDescriptorTypeFeaturesEXT<'a> {}
     impl<'a> Default for PhysicalDeviceMutableDescriptorTypeFeaturesEXT<'a> {
         fn default() -> Self {
@@ -61,7 +65,7 @@ pub(crate) mod items {
                 s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
                 p_next: Default::default(),
                 mutable_descriptor_type: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
@@ -76,15 +80,15 @@ pub(crate) mod items {
     #[derive(Clone, Copy, Default)]
     pub struct MutableDescriptorTypeListEXT<'a> {
         pub descriptor_type_count: u32,
-        pub p_descriptor_types: *const crate::vk::DescriptorType,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub p_descriptor_types: *const vk::DescriptorType,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for MutableDescriptorTypeListEXT<'_> {}
     unsafe impl Sync for MutableDescriptorTypeListEXT<'_> {}
     impl<'a> MutableDescriptorTypeListEXT<'a> {
         pub fn descriptor_types(
             mut self,
-            descriptor_types: &'a [crate::vk::DescriptorType],
+            descriptor_types: &'a [vk::DescriptorType],
         ) -> Self {
             self.descriptor_type_count = descriptor_types.len() as _;
             self.p_descriptor_types = descriptor_types.as_ptr();
@@ -95,23 +99,21 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct MutableDescriptorTypeCreateInfoEXT<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *const core::ffi::c_void,
         pub mutable_descriptor_type_list_count: u32,
-        pub p_mutable_descriptor_type_lists: *const crate::vk::MutableDescriptorTypeListEXT<
-            'a,
-        >,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub p_mutable_descriptor_type_lists: *const vk::MutableDescriptorTypeListEXT<'a>,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for MutableDescriptorTypeCreateInfoEXT<'_> {}
     unsafe impl Sync for MutableDescriptorTypeCreateInfoEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for MutableDescriptorTypeCreateInfoEXT<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::MUTABLE_DESCRIPTOR_TYPE_CREATE_INFO_EXT;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::MUTABLE_DESCRIPTOR_TYPE_CREATE_INFO_EXT;
     }
-    unsafe impl<'a> crate::Extends<crate::vk::DescriptorSetLayoutCreateInfo<'_>>
+    unsafe impl<'a> crate::Extends<vk::DescriptorSetLayoutCreateInfo<'_>>
     for MutableDescriptorTypeCreateInfoEXT<'a> {}
-    unsafe impl<'a> crate::Extends<crate::vk::DescriptorPoolCreateInfo<'_>>
+    unsafe impl<'a> crate::Extends<vk::DescriptorPoolCreateInfo<'_>>
     for MutableDescriptorTypeCreateInfoEXT<'a> {}
     impl<'a> Default for MutableDescriptorTypeCreateInfoEXT<'a> {
         fn default() -> Self {
@@ -120,16 +122,14 @@ pub(crate) mod items {
                 p_next: Default::default(),
                 mutable_descriptor_type_list_count: Default::default(),
                 p_mutable_descriptor_type_lists: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
     impl<'a> MutableDescriptorTypeCreateInfoEXT<'a> {
         pub fn mutable_descriptor_type_lists(
             mut self,
-            mutable_descriptor_type_lists: &'a [crate::vk::MutableDescriptorTypeListEXT<
-                'a,
-            >],
+            mutable_descriptor_type_lists: &'a [vk::MutableDescriptorTypeListEXT<'a>],
         ) -> Self {
             self.mutable_descriptor_type_list_count = mutable_descriptor_type_lists.len()
                 as _;

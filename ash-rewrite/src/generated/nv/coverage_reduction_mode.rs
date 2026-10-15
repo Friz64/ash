@@ -2,8 +2,12 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_NV_coverage_reduction_mode.html) · Extension `VK_NV_coverage_reduction_mode`
 #![doc(alias = "VK_NV_coverage_reduction_mode")]
+use crate::vk;
+use core::ffi::CStr;
+use crate::VkResult;
+use core::ffi::c_void;
 ///Provided by [VK_NV_coverage_reduction_mode](crate::nv::coverage_reduction_mode)
-impl crate::vk::StructureType {
+impl vk::StructureType {
     pub const PHYSICAL_DEVICE_COVERAGE_REDUCTION_MODE_FEATURES_NV: Self = Self(
         1000250000,
     );
@@ -15,28 +19,26 @@ impl CoverageReductionModeNV {
     pub const MERGE: Self = Self(0);
     pub const TRUNCATE: Self = Self(1);
 }
+pub const SPEC_VERSION: u32 = 1;
+pub const NAME: &CStr = c"VK_NV_coverage_reduction_mode";
 #[derive(Clone)]
 pub struct InstanceFn {
-    pub get_physical_device_supported_framebuffer_mixed_samples_combinations: crate::vk::PFN_vkGetPhysicalDeviceSupportedFramebufferMixedSamplesCombinationsNV,
+    pub get_physical_device_supported_framebuffer_mixed_samples_combinations: vk::PFN_vkGetPhysicalDeviceSupportedFramebufferMixedSamplesCombinationsNV,
 }
 unsafe impl Send for InstanceFn {}
 unsafe impl Sync for InstanceFn {}
 impl InstanceFn {
-    pub fn load<F: FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void>(
-        mut f: F,
-    ) -> Self {
+    pub fn load<F: FnMut(&CStr) -> *const c_void>(mut f: F) -> Self {
         Self::load_erased(&mut f)
     }
-    fn load_erased(
-        _f: &mut dyn FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void,
-    ) -> Self {
+    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const c_void) -> Self {
         Self {
             get_physical_device_supported_framebuffer_mixed_samples_combinations: unsafe {
                 unsafe extern "system" fn get_physical_device_supported_framebuffer_mixed_samples_combinations(
-                    _: crate::vk::PhysicalDevice,
+                    _: vk::PhysicalDevice,
                     _: *mut u32,
-                    _: *mut crate::vk::FramebufferMixedSamplesCombinationNV<'_>,
-                ) -> crate::vk::Result {
+                    _: *mut vk::FramebufferMixedSamplesCombinationNV<'_>,
+                ) -> vk::Result {
                     panic!(
                         "unable to load vkGetPhysicalDeviceSupportedFramebufferMixedSamplesCombinationsNV"
                     )
@@ -78,8 +80,8 @@ impl Instance {
     #[inline]
     pub unsafe fn get_physical_device_supported_framebuffer_mixed_samples_combinations_len(
         &self,
-        physical_device: crate::vk::PhysicalDevice,
-    ) -> crate::VkResult<usize> {
+        physical_device: vk::PhysicalDevice,
+    ) -> VkResult<usize> {
         let mut combination_count = core::mem::MaybeUninit::uninit();
         (self
             .fp
@@ -95,8 +97,8 @@ impl Instance {
     #[inline]
     pub unsafe fn get_physical_device_supported_framebuffer_mixed_samples_combinations(
         &self,
-        physical_device: crate::vk::PhysicalDevice,
-        combinations: &mut [crate::vk::FramebufferMixedSamplesCombinationNV<'_>],
+        physical_device: vk::PhysicalDevice,
+        combinations: &mut [vk::FramebufferMixedSamplesCombinationNV<'_>],
     ) -> crate::VkResult<()> {
         let mut combination_count = combinations.len() as _;
         (self
@@ -111,27 +113,27 @@ impl Instance {
         Ok(())
     }
 }
-pub const SPEC_VERSION: u32 = 1;
-pub const NAME: &core::ffi::CStr = c"VK_NV_coverage_reduction_mode";
 pub(crate) mod items {
+    use core::marker::PhantomData;
+    use crate::vk;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceCoverageReductionModeFeaturesNV<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
-        pub coverage_reduction_mode: crate::vk::Bool32,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub coverage_reduction_mode: vk::Bool32,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for PhysicalDeviceCoverageReductionModeFeaturesNV<'_> {}
     unsafe impl Sync for PhysicalDeviceCoverageReductionModeFeaturesNV<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceCoverageReductionModeFeaturesNV<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_COVERAGE_REDUCTION_MODE_FEATURES_NV;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PHYSICAL_DEVICE_COVERAGE_REDUCTION_MODE_FEATURES_NV;
     }
-    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+    unsafe impl<'a> crate::Extends<vk::PhysicalDeviceFeatures2<'_>>
     for PhysicalDeviceCoverageReductionModeFeaturesNV<'a> {}
-    unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+    unsafe impl<'a> crate::Extends<vk::DeviceCreateInfo<'_>>
     for PhysicalDeviceCoverageReductionModeFeaturesNV<'a> {}
     impl<'a> Default for PhysicalDeviceCoverageReductionModeFeaturesNV<'a> {
         fn default() -> Self {
@@ -139,7 +141,7 @@ pub(crate) mod items {
                 s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
                 p_next: Default::default(),
                 coverage_reduction_mode: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
@@ -153,19 +155,19 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct PipelineCoverageReductionStateCreateInfoNV<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *const core::ffi::c_void,
-        pub flags: crate::vk::PipelineCoverageReductionStateCreateFlagsNV,
-        pub coverage_reduction_mode: crate::vk::CoverageReductionModeNV,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub flags: vk::PipelineCoverageReductionStateCreateFlagsNV,
+        pub coverage_reduction_mode: vk::CoverageReductionModeNV,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for PipelineCoverageReductionStateCreateInfoNV<'_> {}
     unsafe impl Sync for PipelineCoverageReductionStateCreateInfoNV<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PipelineCoverageReductionStateCreateInfoNV<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PIPELINE_COVERAGE_REDUCTION_STATE_CREATE_INFO_NV;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PIPELINE_COVERAGE_REDUCTION_STATE_CREATE_INFO_NV;
     }
-    unsafe impl<'a> crate::Extends<crate::vk::PipelineMultisampleStateCreateInfo<'_>>
+    unsafe impl<'a> crate::Extends<vk::PipelineMultisampleStateCreateInfo<'_>>
     for PipelineCoverageReductionStateCreateInfoNV<'a> {}
     impl<'a> Default for PipelineCoverageReductionStateCreateInfoNV<'a> {
         fn default() -> Self {
@@ -174,21 +176,21 @@ pub(crate) mod items {
                 p_next: Default::default(),
                 flags: Default::default(),
                 coverage_reduction_mode: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
     impl<'a> PipelineCoverageReductionStateCreateInfoNV<'a> {
         pub fn flags(
             mut self,
-            flags: crate::vk::PipelineCoverageReductionStateCreateFlagsNV,
+            flags: vk::PipelineCoverageReductionStateCreateFlagsNV,
         ) -> Self {
             self.flags = flags;
             self
         }
         pub fn coverage_reduction_mode(
             mut self,
-            coverage_reduction_mode: crate::vk::CoverageReductionModeNV,
+            coverage_reduction_mode: vk::CoverageReductionModeNV,
         ) -> Self {
             self.coverage_reduction_mode = coverage_reduction_mode;
             self
@@ -198,19 +200,19 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct FramebufferMixedSamplesCombinationNV<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
-        pub coverage_reduction_mode: crate::vk::CoverageReductionModeNV,
-        pub rasterization_samples: crate::vk::SampleCountFlagBits,
-        pub depth_stencil_samples: crate::vk::SampleCountFlags,
-        pub color_samples: crate::vk::SampleCountFlags,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub coverage_reduction_mode: vk::CoverageReductionModeNV,
+        pub rasterization_samples: vk::SampleCountFlagBits,
+        pub depth_stencil_samples: vk::SampleCountFlags,
+        pub color_samples: vk::SampleCountFlags,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for FramebufferMixedSamplesCombinationNV<'_> {}
     unsafe impl Sync for FramebufferMixedSamplesCombinationNV<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for FramebufferMixedSamplesCombinationNV<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::FRAMEBUFFER_MIXED_SAMPLES_COMBINATION_NV;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::FRAMEBUFFER_MIXED_SAMPLES_COMBINATION_NV;
     }
     impl<'a> Default for FramebufferMixedSamplesCombinationNV<'a> {
         fn default() -> Self {
@@ -221,36 +223,33 @@ pub(crate) mod items {
                 rasterization_samples: Default::default(),
                 depth_stencil_samples: Default::default(),
                 color_samples: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
     impl<'a> FramebufferMixedSamplesCombinationNV<'a> {
         pub fn coverage_reduction_mode(
             mut self,
-            coverage_reduction_mode: crate::vk::CoverageReductionModeNV,
+            coverage_reduction_mode: vk::CoverageReductionModeNV,
         ) -> Self {
             self.coverage_reduction_mode = coverage_reduction_mode;
             self
         }
         pub fn rasterization_samples(
             mut self,
-            rasterization_samples: crate::vk::SampleCountFlagBits,
+            rasterization_samples: vk::SampleCountFlagBits,
         ) -> Self {
             self.rasterization_samples = rasterization_samples;
             self
         }
         pub fn depth_stencil_samples(
             mut self,
-            depth_stencil_samples: crate::vk::SampleCountFlags,
+            depth_stencil_samples: vk::SampleCountFlags,
         ) -> Self {
             self.depth_stencil_samples = depth_stencil_samples;
             self
         }
-        pub fn color_samples(
-            mut self,
-            color_samples: crate::vk::SampleCountFlags,
-        ) -> Self {
+        pub fn color_samples(mut self, color_samples: vk::SampleCountFlags) -> Self {
             self.color_samples = color_samples;
             self
         }
@@ -351,9 +350,9 @@ pub(crate) mod items {
         }
     }
     pub type PFN_vkGetPhysicalDeviceSupportedFramebufferMixedSamplesCombinationsNV = unsafe extern "system" fn(
-        physical_device: crate::vk::PhysicalDevice,
+        physical_device: vk::PhysicalDevice,
         p_combination_count: *mut u32,
-        p_combinations: *mut crate::vk::FramebufferMixedSamplesCombinationNV<'_>,
-    ) -> crate::vk::Result;
+        p_combinations: *mut vk::FramebufferMixedSamplesCombinationNV<'_>,
+    ) -> vk::Result;
 }
 pub use items::*;

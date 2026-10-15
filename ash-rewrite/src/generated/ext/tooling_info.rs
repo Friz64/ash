@@ -2,34 +2,34 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_tooling_info.html) · Extension `VK_EXT_tooling_info`
 #![doc(alias = "VK_EXT_tooling_info")]
+use crate::vk;
+use core::ffi::CStr;
+use crate::VkResult;
+use core::ffi::c_void;
 ///Provided by [VK_EXT_tooling_info](crate::ext::tooling_info)
-impl crate::vk::StructureType {
+impl vk::StructureType {
     pub const PHYSICAL_DEVICE_TOOL_PROPERTIES_EXT: Self = Self::PHYSICAL_DEVICE_TOOL_PROPERTIES;
 }
-///Provided by [VK_EXT_tooling_info](crate::ext::tooling_info)
-impl crate::vk::ToolPurposeFlags {
-    pub const VALIDATION_EXT: Self = Self(
-        crate::vk::ToolPurposeFlagBits::VALIDATION_EXT.0,
-    );
-    pub const PROFILING_EXT: Self = Self(
-        crate::vk::ToolPurposeFlagBits::PROFILING_EXT.0,
-    );
-    pub const TRACING_EXT: Self = Self(crate::vk::ToolPurposeFlagBits::TRACING_EXT.0);
+///Provided by [Vulkan 1.3](crate::vk1_3)
+impl vk::ToolPurposeFlags {
+    pub const VALIDATION_EXT: Self = Self(vk::ToolPurposeFlagBits::VALIDATION_EXT.0);
+    pub const PROFILING_EXT: Self = Self(vk::ToolPurposeFlagBits::PROFILING_EXT.0);
+    pub const TRACING_EXT: Self = Self(vk::ToolPurposeFlagBits::TRACING_EXT.0);
     pub const ADDITIONAL_FEATURES_EXT: Self = Self(
-        crate::vk::ToolPurposeFlagBits::ADDITIONAL_FEATURES_EXT.0,
+        vk::ToolPurposeFlagBits::ADDITIONAL_FEATURES_EXT.0,
     );
     pub const MODIFYING_FEATURES_EXT: Self = Self(
-        crate::vk::ToolPurposeFlagBits::MODIFYING_FEATURES_EXT.0,
+        vk::ToolPurposeFlagBits::MODIFYING_FEATURES_EXT.0,
     );
     pub const DEBUG_REPORTING_EXT: Self = Self(
-        crate::vk::ToolPurposeFlagBits::DEBUG_REPORTING_EXT.0,
+        vk::ToolPurposeFlagBits::DEBUG_REPORTING_EXT.0,
     );
     pub const DEBUG_MARKERS_EXT: Self = Self(
-        crate::vk::ToolPurposeFlagBits::DEBUG_MARKERS_EXT.0,
+        vk::ToolPurposeFlagBits::DEBUG_MARKERS_EXT.0,
     );
 }
-///Provided by [VK_EXT_tooling_info](crate::ext::tooling_info)
-impl crate::vk::ToolPurposeFlagBits {
+///Provided by [Vulkan 1.3](crate::vk1_3)
+impl vk::ToolPurposeFlagBits {
     pub const VALIDATION_EXT: Self = Self::VALIDATION;
     pub const PROFILING_EXT: Self = Self::PROFILING;
     pub const TRACING_EXT: Self = Self::TRACING;
@@ -38,28 +38,26 @@ impl crate::vk::ToolPurposeFlagBits {
     pub const DEBUG_REPORTING_EXT: Self = Self(1 << 5);
     pub const DEBUG_MARKERS_EXT: Self = Self(1 << 6);
 }
+pub const SPEC_VERSION: u32 = 1;
+pub const NAME: &CStr = c"VK_EXT_tooling_info";
 #[derive(Clone)]
 pub struct InstanceFn {
-    pub get_physical_device_tool_properties: crate::vk::PFN_vkGetPhysicalDeviceToolPropertiesEXT,
+    pub get_physical_device_tool_properties: vk::PFN_vkGetPhysicalDeviceToolPropertiesEXT,
 }
 unsafe impl Send for InstanceFn {}
 unsafe impl Sync for InstanceFn {}
 impl InstanceFn {
-    pub fn load<F: FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void>(
-        mut f: F,
-    ) -> Self {
+    pub fn load<F: FnMut(&CStr) -> *const c_void>(mut f: F) -> Self {
         Self::load_erased(&mut f)
     }
-    fn load_erased(
-        _f: &mut dyn FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void,
-    ) -> Self {
+    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const c_void) -> Self {
         Self {
             get_physical_device_tool_properties: unsafe {
                 unsafe extern "system" fn get_physical_device_tool_properties(
-                    _: crate::vk::PhysicalDevice,
+                    _: vk::PhysicalDevice,
                     _: *mut u32,
-                    _: *mut crate::vk::PhysicalDeviceToolProperties<'_>,
-                ) -> crate::vk::Result {
+                    _: *mut vk::PhysicalDeviceToolProperties<'_>,
+                ) -> vk::Result {
                     panic!("unable to load vkGetPhysicalDeviceToolPropertiesEXT")
                 }
                 let val = _f(c"vkGetPhysicalDeviceToolPropertiesEXT");
@@ -97,8 +95,8 @@ impl Instance {
     #[inline]
     pub unsafe fn get_physical_device_tool_properties_len(
         &self,
-        physical_device: crate::vk::PhysicalDevice,
-    ) -> crate::VkResult<usize> {
+        physical_device: vk::PhysicalDevice,
+    ) -> VkResult<usize> {
         let mut tool_count = core::mem::MaybeUninit::uninit();
         (self
             .fp
@@ -114,8 +112,8 @@ impl Instance {
     #[inline]
     pub unsafe fn get_physical_device_tool_properties(
         &self,
-        physical_device: crate::vk::PhysicalDevice,
-        tool_properties: &mut [crate::vk::PhysicalDeviceToolProperties<'_>],
+        physical_device: vk::PhysicalDevice,
+        tool_properties: &mut [vk::PhysicalDeviceToolProperties<'_>],
     ) -> crate::VkResult<()> {
         let mut tool_count = tool_properties.len() as _;
         (self
@@ -130,14 +128,11 @@ impl Instance {
         Ok(())
     }
 }
-pub const SPEC_VERSION: u32 = 1;
-pub const NAME: &core::ffi::CStr = c"VK_EXT_tooling_info";
 pub(crate) mod items {
-    pub type PhysicalDeviceToolPropertiesEXT<'a> = crate::vk::PhysicalDeviceToolProperties<
-        'a,
-    >;
-    pub type ToolPurposeFlagBitsEXT = crate::vk::ToolPurposeFlagBits;
-    pub type ToolPurposeFlagsEXT = crate::vk::ToolPurposeFlags;
-    pub type PFN_vkGetPhysicalDeviceToolPropertiesEXT = crate::vk::PFN_vkGetPhysicalDeviceToolProperties;
+    use crate::vk;
+    pub type PhysicalDeviceToolPropertiesEXT<'a> = vk::PhysicalDeviceToolProperties<'a>;
+    pub type ToolPurposeFlagBitsEXT = vk::ToolPurposeFlagBits;
+    pub type ToolPurposeFlagsEXT = vk::ToolPurposeFlags;
+    pub type PFN_vkGetPhysicalDeviceToolPropertiesEXT = vk::PFN_vkGetPhysicalDeviceToolProperties;
 }
 pub use items::*;

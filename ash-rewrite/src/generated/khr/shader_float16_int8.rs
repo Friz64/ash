@@ -2,18 +2,21 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_shader_float16_int8.html) · Extension `VK_KHR_shader_float16_int8`
 #![doc(alias = "VK_KHR_shader_float16_int8")]
+use crate::vk;
+use core::ffi::CStr;
 ///Provided by [VK_KHR_shader_float16_int8](crate::khr::shader_float16_int8)
-impl crate::vk::StructureType {
+impl vk::StructureType {
     pub const PHYSICAL_DEVICE_SHADER_FLOAT16_INT8_FEATURES_KHR: Self = Self::PHYSICAL_DEVICE_SHADER_FLOAT16_INT8_FEATURES;
     pub const PHYSICAL_DEVICE_FLOAT16_INT8_FEATURES_KHR: Self = Self::PHYSICAL_DEVICE_SHADER_FLOAT16_INT8_FEATURES;
 }
 pub const SPEC_VERSION: u32 = 1;
-pub const NAME: &core::ffi::CStr = c"VK_KHR_shader_float16_int8";
+pub const NAME: &CStr = c"VK_KHR_shader_float16_int8";
 pub(crate) mod items {
-    pub type PhysicalDeviceShaderFloat16Int8FeaturesKHR<'a> = crate::vk::PhysicalDeviceShaderFloat16Int8Features<
+    use crate::vk;
+    pub type PhysicalDeviceShaderFloat16Int8FeaturesKHR<'a> = vk::PhysicalDeviceShaderFloat16Int8Features<
         'a,
     >;
-    pub type PhysicalDeviceFloat16Int8FeaturesKHR<'a> = crate::vk::PhysicalDeviceShaderFloat16Int8Features<
+    pub type PhysicalDeviceFloat16Int8FeaturesKHR<'a> = vk::PhysicalDeviceShaderFloat16Int8Features<
         'a,
     >;
 }

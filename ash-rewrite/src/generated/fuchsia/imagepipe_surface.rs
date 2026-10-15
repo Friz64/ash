@@ -2,33 +2,35 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_FUCHSIA_imagepipe_surface.html) · Extension `VK_FUCHSIA_imagepipe_surface`
 #![doc(alias = "VK_FUCHSIA_imagepipe_surface")]
+use crate::vk;
+use core::ffi::CStr;
+use crate::VkResult;
+use core::ffi::c_void;
 ///Provided by [VK_FUCHSIA_imagepipe_surface](crate::fuchsia::imagepipe_surface)
-impl crate::vk::StructureType {
+impl vk::StructureType {
     pub const IMAGEPIPE_SURFACE_CREATE_INFO_FUCHSIA: Self = Self(1000214000);
 }
+pub const SPEC_VERSION: u32 = 1;
+pub const NAME: &CStr = c"VK_FUCHSIA_imagepipe_surface";
 #[derive(Clone)]
 pub struct InstanceFn {
-    pub create_image_pipe_surface: crate::vk::PFN_vkCreateImagePipeSurfaceFUCHSIA,
+    pub create_image_pipe_surface: vk::PFN_vkCreateImagePipeSurfaceFUCHSIA,
 }
 unsafe impl Send for InstanceFn {}
 unsafe impl Sync for InstanceFn {}
 impl InstanceFn {
-    pub fn load<F: FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void>(
-        mut f: F,
-    ) -> Self {
+    pub fn load<F: FnMut(&CStr) -> *const c_void>(mut f: F) -> Self {
         Self::load_erased(&mut f)
     }
-    fn load_erased(
-        _f: &mut dyn FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void,
-    ) -> Self {
+    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const c_void) -> Self {
         Self {
             create_image_pipe_surface: unsafe {
                 unsafe extern "system" fn create_image_pipe_surface(
-                    _: crate::vk::Instance,
-                    _: *const crate::vk::ImagePipeSurfaceCreateInfoFUCHSIA<'_>,
-                    _: *const crate::vk::AllocationCallbacks<'_>,
-                    _: *mut crate::vk::SurfaceKHR,
-                ) -> crate::vk::Result {
+                    _: vk::Instance,
+                    _: *const vk::ImagePipeSurfaceCreateInfoFUCHSIA<'_>,
+                    _: *const vk::AllocationCallbacks<'_>,
+                    _: *mut vk::SurfaceKHR,
+                ) -> vk::Result {
                     panic!("unable to load vkCreateImagePipeSurfaceFUCHSIA")
                 }
                 let val = _f(c"vkCreateImagePipeSurfaceFUCHSIA");
@@ -66,9 +68,9 @@ impl Instance {
     #[inline]
     pub unsafe fn create_image_pipe_surface(
         &self,
-        create_info: &crate::vk::ImagePipeSurfaceCreateInfoFUCHSIA<'_>,
-        allocator: Option<&crate::vk::AllocationCallbacks<'_>>,
-    ) -> crate::VkResult<crate::vk::SurfaceKHR> {
+        create_info: &vk::ImagePipeSurfaceCreateInfoFUCHSIA<'_>,
+        allocator: Option<&vk::AllocationCallbacks<'_>>,
+    ) -> VkResult<vk::SurfaceKHR> {
         let mut surface = core::mem::MaybeUninit::uninit();
         (self
             .fp
@@ -84,24 +86,24 @@ impl Instance {
             .assume_init_on_success(surface)
     }
 }
-pub const SPEC_VERSION: u32 = 1;
-pub const NAME: &core::ffi::CStr = c"VK_FUCHSIA_imagepipe_surface";
 pub(crate) mod items {
+    use core::marker::PhantomData;
+    use crate::vk;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct ImagePipeSurfaceCreateInfoFUCHSIA<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *const core::ffi::c_void,
-        pub flags: crate::vk::ImagePipeSurfaceCreateFlagsFUCHSIA,
+        pub flags: vk::ImagePipeSurfaceCreateFlagsFUCHSIA,
         pub image_pipe_handle: crate::platform_types::zx_handle_t,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for ImagePipeSurfaceCreateInfoFUCHSIA<'_> {}
     unsafe impl Sync for ImagePipeSurfaceCreateInfoFUCHSIA<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for ImagePipeSurfaceCreateInfoFUCHSIA<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::IMAGEPIPE_SURFACE_CREATE_INFO_FUCHSIA;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::IMAGEPIPE_SURFACE_CREATE_INFO_FUCHSIA;
     }
     impl<'a> Default for ImagePipeSurfaceCreateInfoFUCHSIA<'a> {
         fn default() -> Self {
@@ -110,15 +112,12 @@ pub(crate) mod items {
                 p_next: Default::default(),
                 flags: Default::default(),
                 image_pipe_handle: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
     impl<'a> ImagePipeSurfaceCreateInfoFUCHSIA<'a> {
-        pub fn flags(
-            mut self,
-            flags: crate::vk::ImagePipeSurfaceCreateFlagsFUCHSIA,
-        ) -> Self {
+        pub fn flags(mut self, flags: vk::ImagePipeSurfaceCreateFlagsFUCHSIA) -> Self {
             self.flags = flags;
             self
         }
@@ -199,10 +198,10 @@ pub(crate) mod items {
         }
     }
     pub type PFN_vkCreateImagePipeSurfaceFUCHSIA = unsafe extern "system" fn(
-        instance: crate::vk::Instance,
-        p_create_info: *const crate::vk::ImagePipeSurfaceCreateInfoFUCHSIA<'_>,
-        p_allocator: *const crate::vk::AllocationCallbacks<'_>,
-        p_surface: *mut crate::vk::SurfaceKHR,
-    ) -> crate::vk::Result;
+        instance: vk::Instance,
+        p_create_info: *const vk::ImagePipeSurfaceCreateInfoFUCHSIA<'_>,
+        p_allocator: *const vk::AllocationCallbacks<'_>,
+        p_surface: *mut vk::SurfaceKHR,
+    ) -> vk::Result;
 }
 pub use items::*;

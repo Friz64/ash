@@ -2,25 +2,28 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_surface_maintenance1.html) · Extension `VK_EXT_surface_maintenance1`
 #![doc(alias = "VK_EXT_surface_maintenance1")]
+use crate::vk;
+use core::ffi::CStr;
 ///Provided by [VK_EXT_surface_maintenance1](crate::ext::surface_maintenance1)
-impl crate::vk::StructureType {
+impl vk::StructureType {
     pub const SURFACE_PRESENT_MODE_EXT: Self = Self::SURFACE_PRESENT_MODE_KHR;
     pub const SURFACE_PRESENT_SCALING_CAPABILITIES_EXT: Self = Self::SURFACE_PRESENT_SCALING_CAPABILITIES_KHR;
     pub const SURFACE_PRESENT_MODE_COMPATIBILITY_EXT: Self = Self::SURFACE_PRESENT_MODE_COMPATIBILITY_KHR;
 }
 pub const SPEC_VERSION: u32 = 1;
-pub const NAME: &core::ffi::CStr = c"VK_EXT_surface_maintenance1";
+pub const NAME: &CStr = c"VK_EXT_surface_maintenance1";
 pub(crate) mod items {
-    pub type SurfacePresentModeEXT<'a> = crate::vk::SurfacePresentModeKHR<'a>;
-    pub type SurfacePresentScalingCapabilitiesEXT<'a> = crate::vk::SurfacePresentScalingCapabilitiesKHR<
+    use crate::vk;
+    pub type SurfacePresentModeEXT<'a> = vk::SurfacePresentModeKHR<'a>;
+    pub type SurfacePresentScalingCapabilitiesEXT<'a> = vk::SurfacePresentScalingCapabilitiesKHR<
         'a,
     >;
-    pub type SurfacePresentModeCompatibilityEXT<'a> = crate::vk::SurfacePresentModeCompatibilityKHR<
+    pub type SurfacePresentModeCompatibilityEXT<'a> = vk::SurfacePresentModeCompatibilityKHR<
         'a,
     >;
-    pub type PresentScalingFlagBitsEXT = crate::vk::PresentScalingFlagBitsKHR;
-    pub type PresentGravityFlagBitsEXT = crate::vk::PresentGravityFlagBitsKHR;
-    pub type PresentScalingFlagsEXT = crate::vk::PresentScalingFlagsKHR;
-    pub type PresentGravityFlagsEXT = crate::vk::PresentGravityFlagsKHR;
+    pub type PresentScalingFlagBitsEXT = vk::PresentScalingFlagBitsKHR;
+    pub type PresentGravityFlagBitsEXT = vk::PresentGravityFlagBitsKHR;
+    pub type PresentScalingFlagsEXT = vk::PresentScalingFlagsKHR;
+    pub type PresentGravityFlagsEXT = vk::PresentGravityFlagsKHR;
 }
 pub use items::*;

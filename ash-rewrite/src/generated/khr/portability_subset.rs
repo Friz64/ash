@@ -3,46 +3,50 @@
 #![cfg(feature = "provisional")]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_portability_subset.html) · Extension `VK_KHR_portability_subset`
 #![doc(alias = "VK_KHR_portability_subset")]
+use crate::vk;
+use core::ffi::CStr;
 ///Provided by [VK_KHR_portability_subset](crate::khr::portability_subset)
-impl crate::vk::StructureType {
+impl vk::StructureType {
     pub const PHYSICAL_DEVICE_PORTABILITY_SUBSET_FEATURES_KHR: Self = Self(1000163000);
     pub const PHYSICAL_DEVICE_PORTABILITY_SUBSET_PROPERTIES_KHR: Self = Self(1000163001);
 }
 pub const SPEC_VERSION: u32 = 1;
-pub const NAME: &core::ffi::CStr = c"VK_KHR_portability_subset";
+pub const NAME: &CStr = c"VK_KHR_portability_subset";
 pub(crate) mod items {
+    use core::marker::PhantomData;
+    use crate::vk;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct PhysicalDevicePortabilitySubsetFeaturesKHR<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
-        pub constant_alpha_color_blend_factors: crate::vk::Bool32,
-        pub events: crate::vk::Bool32,
-        pub image_view_format_reinterpretation: crate::vk::Bool32,
-        pub image_view_format_swizzle: crate::vk::Bool32,
-        pub image_view2_d_on3_d_image: crate::vk::Bool32,
-        pub multisample_array_image: crate::vk::Bool32,
-        pub mutable_comparison_samplers: crate::vk::Bool32,
-        pub point_polygons: crate::vk::Bool32,
-        pub sampler_mip_lod_bias: crate::vk::Bool32,
-        pub separate_stencil_mask_ref: crate::vk::Bool32,
-        pub shader_sample_rate_interpolation_functions: crate::vk::Bool32,
-        pub tessellation_isolines: crate::vk::Bool32,
-        pub tessellation_point_mode: crate::vk::Bool32,
-        pub triangle_fans: crate::vk::Bool32,
-        pub vertex_attribute_access_beyond_stride: crate::vk::Bool32,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub constant_alpha_color_blend_factors: vk::Bool32,
+        pub events: vk::Bool32,
+        pub image_view_format_reinterpretation: vk::Bool32,
+        pub image_view_format_swizzle: vk::Bool32,
+        pub image_view2_d_on3_d_image: vk::Bool32,
+        pub multisample_array_image: vk::Bool32,
+        pub mutable_comparison_samplers: vk::Bool32,
+        pub point_polygons: vk::Bool32,
+        pub sampler_mip_lod_bias: vk::Bool32,
+        pub separate_stencil_mask_ref: vk::Bool32,
+        pub shader_sample_rate_interpolation_functions: vk::Bool32,
+        pub tessellation_isolines: vk::Bool32,
+        pub tessellation_point_mode: vk::Bool32,
+        pub triangle_fans: vk::Bool32,
+        pub vertex_attribute_access_beyond_stride: vk::Bool32,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for PhysicalDevicePortabilitySubsetFeaturesKHR<'_> {}
     unsafe impl Sync for PhysicalDevicePortabilitySubsetFeaturesKHR<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDevicePortabilitySubsetFeaturesKHR<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_PORTABILITY_SUBSET_FEATURES_KHR;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PHYSICAL_DEVICE_PORTABILITY_SUBSET_FEATURES_KHR;
     }
-    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+    unsafe impl<'a> crate::Extends<vk::PhysicalDeviceFeatures2<'_>>
     for PhysicalDevicePortabilitySubsetFeaturesKHR<'a> {}
-    unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+    unsafe impl<'a> crate::Extends<vk::DeviceCreateInfo<'_>>
     for PhysicalDevicePortabilitySubsetFeaturesKHR<'a> {}
     impl<'a> Default for PhysicalDevicePortabilitySubsetFeaturesKHR<'a> {
         fn default() -> Self {
@@ -64,7 +68,7 @@ pub(crate) mod items {
                 tessellation_point_mode: Default::default(),
                 triangle_fans: Default::default(),
                 vertex_attribute_access_beyond_stride: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
@@ -162,18 +166,18 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct PhysicalDevicePortabilitySubsetPropertiesKHR<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
         pub min_vertex_input_binding_stride_alignment: u32,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for PhysicalDevicePortabilitySubsetPropertiesKHR<'_> {}
     unsafe impl Sync for PhysicalDevicePortabilitySubsetPropertiesKHR<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDevicePortabilitySubsetPropertiesKHR<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_PORTABILITY_SUBSET_PROPERTIES_KHR;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PHYSICAL_DEVICE_PORTABILITY_SUBSET_PROPERTIES_KHR;
     }
-    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceProperties2<'_>>
+    unsafe impl<'a> crate::Extends<vk::PhysicalDeviceProperties2<'_>>
     for PhysicalDevicePortabilitySubsetPropertiesKHR<'a> {}
     impl<'a> Default for PhysicalDevicePortabilitySubsetPropertiesKHR<'a> {
         fn default() -> Self {
@@ -181,7 +185,7 @@ pub(crate) mod items {
                 s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
                 p_next: Default::default(),
                 min_vertex_input_binding_stride_alignment: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }

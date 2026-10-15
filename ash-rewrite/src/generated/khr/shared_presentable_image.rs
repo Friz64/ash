@@ -2,40 +2,42 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_shared_presentable_image.html) · Extension `VK_KHR_shared_presentable_image`
 #![doc(alias = "VK_KHR_shared_presentable_image")]
+use crate::vk;
+use core::ffi::CStr;
+use crate::VkResult;
+use core::ffi::c_void;
 ///Provided by [VK_KHR_shared_presentable_image](crate::khr::shared_presentable_image)
-impl crate::vk::ImageLayout {
+impl vk::ImageLayout {
     pub const SHARED_PRESENT_KHR: Self = Self(1000111000);
 }
 ///Provided by [VK_KHR_shared_presentable_image](crate::khr::shared_presentable_image)
-impl crate::vk::StructureType {
+impl vk::StructureType {
     pub const SHARED_PRESENT_SURFACE_CAPABILITIES_KHR: Self = Self(1000111000);
 }
 ///Provided by [VK_KHR_shared_presentable_image](crate::khr::shared_presentable_image)
-impl crate::vk::PresentModeKHR {
+impl vk::PresentModeKHR {
     pub const SHARED_DEMAND_REFRESH: Self = Self(1000111000);
     pub const SHARED_CONTINUOUS_REFRESH: Self = Self(1000111001);
 }
+pub const SPEC_VERSION: u32 = 1;
+pub const NAME: &CStr = c"VK_KHR_shared_presentable_image";
 #[derive(Clone)]
 pub struct DeviceFn {
-    pub get_swapchain_status: crate::vk::PFN_vkGetSwapchainStatusKHR,
+    pub get_swapchain_status: vk::PFN_vkGetSwapchainStatusKHR,
 }
 unsafe impl Send for DeviceFn {}
 unsafe impl Sync for DeviceFn {}
 impl DeviceFn {
-    pub fn load<F: FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void>(
-        mut f: F,
-    ) -> Self {
+    pub fn load<F: FnMut(&CStr) -> *const c_void>(mut f: F) -> Self {
         Self::load_erased(&mut f)
     }
-    fn load_erased(
-        _f: &mut dyn FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void,
-    ) -> Self {
+    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const c_void) -> Self {
         Self {
             get_swapchain_status: unsafe {
                 unsafe extern "system" fn get_swapchain_status(
-                    _: crate::vk::Device,
-                    _: crate::vk::SwapchainKHR,
-                ) -> crate::vk::Result {
+                    _: vk::Device,
+                    _: vk::SwapchainKHR,
+                ) -> vk::Result {
                     panic!("unable to load vkGetSwapchainStatusKHR")
                 }
                 let val = _f(c"vkGetSwapchainStatusKHR");
@@ -73,30 +75,30 @@ impl Device {
     #[inline]
     pub unsafe fn get_swapchain_status(
         &self,
-        swapchain: crate::vk::SwapchainKHR,
-    ) -> crate::VkResult<()> {
+        swapchain: vk::SwapchainKHR,
+    ) -> VkResult<()> {
         (self.fp.get_swapchain_status)(self.handle, swapchain).result()
     }
 }
-pub const SPEC_VERSION: u32 = 1;
-pub const NAME: &core::ffi::CStr = c"VK_KHR_shared_presentable_image";
 pub(crate) mod items {
+    use core::marker::PhantomData;
+    use crate::vk;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct SharedPresentSurfaceCapabilitiesKHR<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
-        pub shared_present_supported_usage_flags: crate::vk::ImageUsageFlags,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub shared_present_supported_usage_flags: vk::ImageUsageFlags,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for SharedPresentSurfaceCapabilitiesKHR<'_> {}
     unsafe impl Sync for SharedPresentSurfaceCapabilitiesKHR<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for SharedPresentSurfaceCapabilitiesKHR<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::SHARED_PRESENT_SURFACE_CAPABILITIES_KHR;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::SHARED_PRESENT_SURFACE_CAPABILITIES_KHR;
     }
-    unsafe impl<'a> crate::Extends<crate::vk::SurfaceCapabilities2KHR<'_>>
+    unsafe impl<'a> crate::Extends<vk::SurfaceCapabilities2KHR<'_>>
     for SharedPresentSurfaceCapabilitiesKHR<'a> {}
     impl<'a> Default for SharedPresentSurfaceCapabilitiesKHR<'a> {
         fn default() -> Self {
@@ -104,22 +106,22 @@ pub(crate) mod items {
                 s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
                 p_next: Default::default(),
                 shared_present_supported_usage_flags: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
     impl<'a> SharedPresentSurfaceCapabilitiesKHR<'a> {
         pub fn shared_present_supported_usage_flags(
             mut self,
-            shared_present_supported_usage_flags: crate::vk::ImageUsageFlags,
+            shared_present_supported_usage_flags: vk::ImageUsageFlags,
         ) -> Self {
             self.shared_present_supported_usage_flags = shared_present_supported_usage_flags;
             self
         }
     }
     pub type PFN_vkGetSwapchainStatusKHR = unsafe extern "system" fn(
-        device: crate::vk::Device,
-        swapchain: crate::vk::SwapchainKHR,
-    ) -> crate::vk::Result;
+        device: vk::Device,
+        swapchain: vk::SwapchainKHR,
+    ) -> vk::Result;
 }
 pub use items::*;

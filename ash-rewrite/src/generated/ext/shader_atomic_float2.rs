@@ -2,44 +2,48 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_shader_atomic_float2.html) · Extension `VK_EXT_shader_atomic_float2`
 #![doc(alias = "VK_EXT_shader_atomic_float2")]
+use crate::vk;
+use core::ffi::CStr;
 ///Provided by [VK_EXT_shader_atomic_float2](crate::ext::shader_atomic_float2)
-impl crate::vk::StructureType {
+impl vk::StructureType {
     pub const PHYSICAL_DEVICE_SHADER_ATOMIC_FLOAT_2_FEATURES_EXT: Self = Self(
         1000273000,
     );
 }
 pub const SPEC_VERSION: u32 = 1;
-pub const NAME: &core::ffi::CStr = c"VK_EXT_shader_atomic_float2";
+pub const NAME: &CStr = c"VK_EXT_shader_atomic_float2";
 pub(crate) mod items {
+    use core::marker::PhantomData;
+    use crate::vk;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceShaderAtomicFloat2FeaturesEXT<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
-        pub shader_buffer_float16_atomics: crate::vk::Bool32,
-        pub shader_buffer_float16_atomic_add: crate::vk::Bool32,
-        pub shader_buffer_float16_atomic_min_max: crate::vk::Bool32,
-        pub shader_buffer_float32_atomic_min_max: crate::vk::Bool32,
-        pub shader_buffer_float64_atomic_min_max: crate::vk::Bool32,
-        pub shader_shared_float16_atomics: crate::vk::Bool32,
-        pub shader_shared_float16_atomic_add: crate::vk::Bool32,
-        pub shader_shared_float16_atomic_min_max: crate::vk::Bool32,
-        pub shader_shared_float32_atomic_min_max: crate::vk::Bool32,
-        pub shader_shared_float64_atomic_min_max: crate::vk::Bool32,
-        pub shader_image_float32_atomic_min_max: crate::vk::Bool32,
-        pub sparse_image_float32_atomic_min_max: crate::vk::Bool32,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub shader_buffer_float16_atomics: vk::Bool32,
+        pub shader_buffer_float16_atomic_add: vk::Bool32,
+        pub shader_buffer_float16_atomic_min_max: vk::Bool32,
+        pub shader_buffer_float32_atomic_min_max: vk::Bool32,
+        pub shader_buffer_float64_atomic_min_max: vk::Bool32,
+        pub shader_shared_float16_atomics: vk::Bool32,
+        pub shader_shared_float16_atomic_add: vk::Bool32,
+        pub shader_shared_float16_atomic_min_max: vk::Bool32,
+        pub shader_shared_float32_atomic_min_max: vk::Bool32,
+        pub shader_shared_float64_atomic_min_max: vk::Bool32,
+        pub shader_image_float32_atomic_min_max: vk::Bool32,
+        pub sparse_image_float32_atomic_min_max: vk::Bool32,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for PhysicalDeviceShaderAtomicFloat2FeaturesEXT<'_> {}
     unsafe impl Sync for PhysicalDeviceShaderAtomicFloat2FeaturesEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceShaderAtomicFloat2FeaturesEXT<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_SHADER_ATOMIC_FLOAT_2_FEATURES_EXT;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PHYSICAL_DEVICE_SHADER_ATOMIC_FLOAT_2_FEATURES_EXT;
     }
-    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+    unsafe impl<'a> crate::Extends<vk::PhysicalDeviceFeatures2<'_>>
     for PhysicalDeviceShaderAtomicFloat2FeaturesEXT<'a> {}
-    unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+    unsafe impl<'a> crate::Extends<vk::DeviceCreateInfo<'_>>
     for PhysicalDeviceShaderAtomicFloat2FeaturesEXT<'a> {}
     impl<'a> Default for PhysicalDeviceShaderAtomicFloat2FeaturesEXT<'a> {
         fn default() -> Self {
@@ -58,7 +62,7 @@ pub(crate) mod items {
                 shader_shared_float64_atomic_min_max: Default::default(),
                 shader_image_float32_atomic_min_max: Default::default(),
                 sparse_image_float32_atomic_min_max: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }

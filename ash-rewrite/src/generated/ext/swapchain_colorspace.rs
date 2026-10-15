@@ -2,8 +2,10 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_swapchain_colorspace.html) · Extension `VK_EXT_swapchain_colorspace`
 #![doc(alias = "VK_EXT_swapchain_colorspace")]
+use crate::vk;
+use core::ffi::CStr;
 ///Provided by [VK_EXT_swapchain_colorspace](crate::ext::swapchain_colorspace)
-impl crate::vk::ColorSpaceKHR {
+impl vk::ColorSpaceKHR {
     pub const DISPLAY_P3_NONLINEAR_EXT: Self = Self(1000104001);
     pub const EXTENDED_SRGB_LINEAR_EXT: Self = Self(1000104002);
     pub const DISPLAY_P3_LINEAR_EXT: Self = Self(1000104003);
@@ -20,4 +22,4 @@ impl crate::vk::ColorSpaceKHR {
     pub const EXTENDED_SRGB_NONLINEAR_EXT: Self = Self(1000104014);
 }
 pub const SPEC_VERSION: u32 = 5;
-pub const NAME: &core::ffi::CStr = c"VK_EXT_swapchain_colorspace";
+pub const NAME: &CStr = c"VK_EXT_swapchain_colorspace";

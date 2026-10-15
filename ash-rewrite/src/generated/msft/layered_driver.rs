@@ -2,8 +2,10 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_MSFT_layered_driver.html) · Extension `VK_MSFT_layered_driver`
 #![doc(alias = "VK_MSFT_layered_driver")]
+use crate::vk;
+use core::ffi::CStr;
 ///Provided by [VK_MSFT_layered_driver](crate::msft::layered_driver)
-impl crate::vk::StructureType {
+impl vk::StructureType {
     pub const PHYSICAL_DEVICE_LAYERED_DRIVER_PROPERTIES_MSFT: Self = Self(1000530000);
 }
 ///Provided by [VK_MSFT_layered_driver](crate::msft::layered_driver)
@@ -12,24 +14,26 @@ impl LayeredDriverUnderlyingApiMSFT {
     pub const D3D12: Self = Self(1);
 }
 pub const SPEC_VERSION: u32 = 1;
-pub const NAME: &core::ffi::CStr = c"VK_MSFT_layered_driver";
+pub const NAME: &CStr = c"VK_MSFT_layered_driver";
 pub(crate) mod items {
+    use core::marker::PhantomData;
+    use crate::vk;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceLayeredDriverPropertiesMSFT<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
-        pub underlying_api: crate::vk::LayeredDriverUnderlyingApiMSFT,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub underlying_api: vk::LayeredDriverUnderlyingApiMSFT,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for PhysicalDeviceLayeredDriverPropertiesMSFT<'_> {}
     unsafe impl Sync for PhysicalDeviceLayeredDriverPropertiesMSFT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceLayeredDriverPropertiesMSFT<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_LAYERED_DRIVER_PROPERTIES_MSFT;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PHYSICAL_DEVICE_LAYERED_DRIVER_PROPERTIES_MSFT;
     }
-    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceProperties2<'_>>
+    unsafe impl<'a> crate::Extends<vk::PhysicalDeviceProperties2<'_>>
     for PhysicalDeviceLayeredDriverPropertiesMSFT<'a> {}
     impl<'a> Default for PhysicalDeviceLayeredDriverPropertiesMSFT<'a> {
         fn default() -> Self {
@@ -37,14 +41,14 @@ pub(crate) mod items {
                 s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
                 p_next: Default::default(),
                 underlying_api: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
     impl<'a> PhysicalDeviceLayeredDriverPropertiesMSFT<'a> {
         pub fn underlying_api(
             mut self,
-            underlying_api: crate::vk::LayeredDriverUnderlyingApiMSFT,
+            underlying_api: vk::LayeredDriverUnderlyingApiMSFT,
         ) -> Self {
             self.underlying_api = underlying_api;
             self

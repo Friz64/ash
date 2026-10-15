@@ -3,8 +3,10 @@
 #![cfg(feature = "provisional")]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_AMDX_dense_geometry_format.html) · Extension `VK_AMDX_dense_geometry_format`
 #![doc(alias = "VK_AMDX_dense_geometry_format")]
+use crate::vk;
+use core::ffi::CStr;
 ///Provided by [VK_AMDX_dense_geometry_format](crate::amdx::dense_geometry_format)
-impl crate::vk::StructureType {
+impl vk::StructureType {
     pub const PHYSICAL_DEVICE_DENSE_GEOMETRY_FORMAT_FEATURES_AMDX: Self = Self(
         1000478000,
     );
@@ -13,44 +15,46 @@ impl crate::vk::StructureType {
     );
 }
 ///Provided by [VK_AMDX_dense_geometry_format](crate::amdx::dense_geometry_format)
-impl crate::vk::GeometryTypeKHR {
+impl vk::GeometryTypeKHR {
     pub const DENSE_GEOMETRY_FORMAT_TRIANGLES_AMDX: Self = Self(1000478000);
 }
 ///Provided by [VK_AMDX_dense_geometry_format](crate::amdx::dense_geometry_format)
 impl CompressedTriangleFormatAMDX {
     pub const DGF1: Self = Self(0);
 }
-///Provided by [VK_AMDX_dense_geometry_format](crate::amdx::dense_geometry_format)
-impl crate::vk::BufferUsageFlags2 {
+///Provided by [Vulkan 1.4](crate::vk1_4)
+impl vk::BufferUsageFlags2 {
     pub const COMPRESSED_DATA_DGF1_AMDX: Self = Self(
-        crate::vk::BufferUsageFlagBits2::COMPRESSED_DATA_DGF1_AMDX.0,
+        vk::BufferUsageFlagBits2::COMPRESSED_DATA_DGF1_AMDX.0,
     );
 }
-///Provided by [VK_AMDX_dense_geometry_format](crate::amdx::dense_geometry_format)
-impl crate::vk::BufferUsageFlagBits2 {
+///Provided by [Vulkan 1.4](crate::vk1_4)
+impl vk::BufferUsageFlagBits2 {
     pub const COMPRESSED_DATA_DGF1_AMDX: Self = Self(1 << 33);
 }
 pub const SPEC_VERSION: u32 = 1;
-pub const NAME: &core::ffi::CStr = c"VK_AMDX_dense_geometry_format";
+pub const NAME: &CStr = c"VK_AMDX_dense_geometry_format";
 pub(crate) mod items {
+    use core::marker::PhantomData;
+    use crate::vk;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceDenseGeometryFormatFeaturesAMDX<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
-        pub dense_geometry_format: crate::vk::Bool32,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub dense_geometry_format: vk::Bool32,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for PhysicalDeviceDenseGeometryFormatFeaturesAMDX<'_> {}
     unsafe impl Sync for PhysicalDeviceDenseGeometryFormatFeaturesAMDX<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceDenseGeometryFormatFeaturesAMDX<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_DENSE_GEOMETRY_FORMAT_FEATURES_AMDX;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PHYSICAL_DEVICE_DENSE_GEOMETRY_FORMAT_FEATURES_AMDX;
     }
-    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+    unsafe impl<'a> crate::Extends<vk::PhysicalDeviceFeatures2<'_>>
     for PhysicalDeviceDenseGeometryFormatFeaturesAMDX<'a> {}
-    unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+    unsafe impl<'a> crate::Extends<vk::DeviceCreateInfo<'_>>
     for PhysicalDeviceDenseGeometryFormatFeaturesAMDX<'a> {}
     impl<'a> Default for PhysicalDeviceDenseGeometryFormatFeaturesAMDX<'a> {
         fn default() -> Self {
@@ -58,7 +62,7 @@ pub(crate) mod items {
                 s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
                 p_next: Default::default(),
                 dense_geometry_format: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
@@ -72,24 +76,24 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct AccelerationStructureDenseGeometryFormatTrianglesDataAMDX<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *const core::ffi::c_void,
-        pub compressed_data: crate::vk::DeviceOrHostAddressConstKHR,
-        pub data_size: crate::vk::DeviceSize,
+        pub compressed_data: vk::DeviceOrHostAddressConstKHR,
+        pub data_size: vk::DeviceSize,
         pub num_triangles: u32,
         pub num_vertices: u32,
         pub max_primitive_index: u32,
         pub max_geometry_index: u32,
-        pub format: crate::vk::CompressedTriangleFormatAMDX,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub format: vk::CompressedTriangleFormatAMDX,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for AccelerationStructureDenseGeometryFormatTrianglesDataAMDX<'_> {}
     unsafe impl Sync for AccelerationStructureDenseGeometryFormatTrianglesDataAMDX<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for AccelerationStructureDenseGeometryFormatTrianglesDataAMDX<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::ACCELERATION_STRUCTURE_DENSE_GEOMETRY_FORMAT_TRIANGLES_DATA_AMDX;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::ACCELERATION_STRUCTURE_DENSE_GEOMETRY_FORMAT_TRIANGLES_DATA_AMDX;
     }
-    unsafe impl<'a> crate::Extends<crate::vk::AccelerationStructureGeometryKHR<'_>>
+    unsafe impl<'a> crate::Extends<vk::AccelerationStructureGeometryKHR<'_>>
     for AccelerationStructureDenseGeometryFormatTrianglesDataAMDX<'a> {}
     impl<'a> Default for AccelerationStructureDenseGeometryFormatTrianglesDataAMDX<'a> {
         fn default() -> Self {
@@ -103,19 +107,19 @@ pub(crate) mod items {
                 max_primitive_index: Default::default(),
                 max_geometry_index: Default::default(),
                 format: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
     impl<'a> AccelerationStructureDenseGeometryFormatTrianglesDataAMDX<'a> {
         pub fn compressed_data(
             mut self,
-            compressed_data: crate::vk::DeviceOrHostAddressConstKHR,
+            compressed_data: vk::DeviceOrHostAddressConstKHR,
         ) -> Self {
             self.compressed_data = compressed_data;
             self
         }
-        pub fn data_size(mut self, data_size: crate::vk::DeviceSize) -> Self {
+        pub fn data_size(mut self, data_size: vk::DeviceSize) -> Self {
             self.data_size = data_size;
             self
         }
@@ -135,10 +139,7 @@ pub(crate) mod items {
             self.max_geometry_index = max_geometry_index;
             self
         }
-        pub fn format(
-            mut self,
-            format: crate::vk::CompressedTriangleFormatAMDX,
-        ) -> Self {
+        pub fn format(mut self, format: vk::CompressedTriangleFormatAMDX) -> Self {
             self.format = format;
             self
         }

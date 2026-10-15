@@ -2,72 +2,73 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_external_semaphore_capabilities.html) · Extension `VK_KHR_external_semaphore_capabilities`
 #![doc(alias = "VK_KHR_external_semaphore_capabilities")]
+use crate::vk;
+use core::ffi::CStr;
+use core::ffi::c_void;
 ///Provided by [VK_KHR_external_semaphore_capabilities](crate::khr::external_semaphore_capabilities)
-impl crate::vk::StructureType {
+impl vk::StructureType {
     pub const PHYSICAL_DEVICE_EXTERNAL_SEMAPHORE_INFO_KHR: Self = Self::PHYSICAL_DEVICE_EXTERNAL_SEMAPHORE_INFO;
     pub const EXTERNAL_SEMAPHORE_PROPERTIES_KHR: Self = Self::EXTERNAL_SEMAPHORE_PROPERTIES;
 }
-///Provided by [VK_KHR_external_semaphore_capabilities](crate::khr::external_semaphore_capabilities)
-impl crate::vk::ExternalSemaphoreHandleTypeFlags {
+///Provided by [Vulkan 1.1](crate::vk1_1)
+impl vk::ExternalSemaphoreHandleTypeFlags {
     pub const OPAQUE_FD_KHR: Self = Self(
-        crate::vk::ExternalSemaphoreHandleTypeFlagBits::OPAQUE_FD_KHR.0,
+        vk::ExternalSemaphoreHandleTypeFlagBits::OPAQUE_FD_KHR.0,
     );
     pub const OPAQUE_WIN32_KHR: Self = Self(
-        crate::vk::ExternalSemaphoreHandleTypeFlagBits::OPAQUE_WIN32_KHR.0,
+        vk::ExternalSemaphoreHandleTypeFlagBits::OPAQUE_WIN32_KHR.0,
     );
     pub const OPAQUE_WIN32_KMT_KHR: Self = Self(
-        crate::vk::ExternalSemaphoreHandleTypeFlagBits::OPAQUE_WIN32_KMT_KHR.0,
+        vk::ExternalSemaphoreHandleTypeFlagBits::OPAQUE_WIN32_KMT_KHR.0,
     );
     pub const D3D12_FENCE_KHR: Self = Self(
-        crate::vk::ExternalSemaphoreHandleTypeFlagBits::D3D12_FENCE_KHR.0,
+        vk::ExternalSemaphoreHandleTypeFlagBits::D3D12_FENCE_KHR.0,
     );
     pub const SYNC_FD_KHR: Self = Self(
-        crate::vk::ExternalSemaphoreHandleTypeFlagBits::SYNC_FD_KHR.0,
+        vk::ExternalSemaphoreHandleTypeFlagBits::SYNC_FD_KHR.0,
     );
 }
-///Provided by [VK_KHR_external_semaphore_capabilities](crate::khr::external_semaphore_capabilities)
-impl crate::vk::ExternalSemaphoreHandleTypeFlagBits {
+///Provided by [Vulkan 1.1](crate::vk1_1)
+impl vk::ExternalSemaphoreHandleTypeFlagBits {
     pub const OPAQUE_FD_KHR: Self = Self::OPAQUE_FD;
     pub const OPAQUE_WIN32_KHR: Self = Self::OPAQUE_WIN32;
     pub const OPAQUE_WIN32_KMT_KHR: Self = Self::OPAQUE_WIN32_KMT;
     pub const D3D12_FENCE_KHR: Self = Self::D3D12_FENCE;
     pub const SYNC_FD_KHR: Self = Self::SYNC_FD;
 }
-///Provided by [VK_KHR_external_semaphore_capabilities](crate::khr::external_semaphore_capabilities)
-impl crate::vk::ExternalSemaphoreFeatureFlags {
+///Provided by [Vulkan 1.1](crate::vk1_1)
+impl vk::ExternalSemaphoreFeatureFlags {
     pub const EXPORTABLE_KHR: Self = Self(
-        crate::vk::ExternalSemaphoreFeatureFlagBits::EXPORTABLE_KHR.0,
+        vk::ExternalSemaphoreFeatureFlagBits::EXPORTABLE_KHR.0,
     );
     pub const IMPORTABLE_KHR: Self = Self(
-        crate::vk::ExternalSemaphoreFeatureFlagBits::IMPORTABLE_KHR.0,
+        vk::ExternalSemaphoreFeatureFlagBits::IMPORTABLE_KHR.0,
     );
 }
-///Provided by [VK_KHR_external_semaphore_capabilities](crate::khr::external_semaphore_capabilities)
-impl crate::vk::ExternalSemaphoreFeatureFlagBits {
+///Provided by [Vulkan 1.1](crate::vk1_1)
+impl vk::ExternalSemaphoreFeatureFlagBits {
     pub const EXPORTABLE_KHR: Self = Self::EXPORTABLE;
     pub const IMPORTABLE_KHR: Self = Self::IMPORTABLE;
 }
+pub const SPEC_VERSION: u32 = 1;
+pub const NAME: &CStr = c"VK_KHR_external_semaphore_capabilities";
 #[derive(Clone)]
 pub struct InstanceFn {
-    pub get_physical_device_external_semaphore_properties: crate::vk::PFN_vkGetPhysicalDeviceExternalSemaphorePropertiesKHR,
+    pub get_physical_device_external_semaphore_properties: vk::PFN_vkGetPhysicalDeviceExternalSemaphorePropertiesKHR,
 }
 unsafe impl Send for InstanceFn {}
 unsafe impl Sync for InstanceFn {}
 impl InstanceFn {
-    pub fn load<F: FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void>(
-        mut f: F,
-    ) -> Self {
+    pub fn load<F: FnMut(&CStr) -> *const c_void>(mut f: F) -> Self {
         Self::load_erased(&mut f)
     }
-    fn load_erased(
-        _f: &mut dyn FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void,
-    ) -> Self {
+    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const c_void) -> Self {
         Self {
             get_physical_device_external_semaphore_properties: unsafe {
                 unsafe extern "system" fn get_physical_device_external_semaphore_properties(
-                    _: crate::vk::PhysicalDevice,
-                    _: *const crate::vk::PhysicalDeviceExternalSemaphoreInfo<'_>,
-                    _: *mut crate::vk::ExternalSemaphoreProperties<'_>,
+                    _: vk::PhysicalDevice,
+                    _: *const vk::PhysicalDeviceExternalSemaphoreInfo<'_>,
+                    _: *mut vk::ExternalSemaphoreProperties<'_>,
                 ) {
                     panic!(
                         "unable to load vkGetPhysicalDeviceExternalSemaphorePropertiesKHR"
@@ -108,9 +109,9 @@ impl Instance {
     #[inline]
     pub unsafe fn get_physical_device_external_semaphore_properties(
         &self,
-        physical_device: crate::vk::PhysicalDevice,
-        external_semaphore_info: &crate::vk::PhysicalDeviceExternalSemaphoreInfo<'_>,
-    ) -> crate::vk::ExternalSemaphoreProperties<'_> {
+        physical_device: vk::PhysicalDevice,
+        external_semaphore_info: &vk::PhysicalDeviceExternalSemaphoreInfo<'_>,
+    ) -> vk::ExternalSemaphoreProperties<'_> {
         let mut external_semaphore_properties = core::mem::MaybeUninit::uninit();
         (self
             .fp
@@ -122,19 +123,16 @@ impl Instance {
         external_semaphore_properties.assume_init()
     }
 }
-pub const SPEC_VERSION: u32 = 1;
-pub const NAME: &core::ffi::CStr = c"VK_KHR_external_semaphore_capabilities";
 pub(crate) mod items {
-    pub type PhysicalDeviceExternalSemaphoreInfoKHR<'a> = crate::vk::PhysicalDeviceExternalSemaphoreInfo<
+    use crate::vk;
+    pub type PhysicalDeviceExternalSemaphoreInfoKHR<'a> = vk::PhysicalDeviceExternalSemaphoreInfo<
         'a,
     >;
-    pub type ExternalSemaphorePropertiesKHR<'a> = crate::vk::ExternalSemaphoreProperties<
-        'a,
-    >;
-    pub type ExternalSemaphoreHandleTypeFlagBitsKHR = crate::vk::ExternalSemaphoreHandleTypeFlagBits;
-    pub type ExternalSemaphoreFeatureFlagBitsKHR = crate::vk::ExternalSemaphoreFeatureFlagBits;
-    pub type ExternalSemaphoreHandleTypeFlagsKHR = crate::vk::ExternalSemaphoreHandleTypeFlags;
-    pub type ExternalSemaphoreFeatureFlagsKHR = crate::vk::ExternalSemaphoreFeatureFlags;
-    pub type PFN_vkGetPhysicalDeviceExternalSemaphorePropertiesKHR = crate::vk::PFN_vkGetPhysicalDeviceExternalSemaphoreProperties;
+    pub type ExternalSemaphorePropertiesKHR<'a> = vk::ExternalSemaphoreProperties<'a>;
+    pub type ExternalSemaphoreHandleTypeFlagBitsKHR = vk::ExternalSemaphoreHandleTypeFlagBits;
+    pub type ExternalSemaphoreFeatureFlagBitsKHR = vk::ExternalSemaphoreFeatureFlagBits;
+    pub type ExternalSemaphoreHandleTypeFlagsKHR = vk::ExternalSemaphoreHandleTypeFlags;
+    pub type ExternalSemaphoreFeatureFlagsKHR = vk::ExternalSemaphoreFeatureFlags;
+    pub type PFN_vkGetPhysicalDeviceExternalSemaphorePropertiesKHR = vk::PFN_vkGetPhysicalDeviceExternalSemaphoreProperties;
 }
 pub use items::*;

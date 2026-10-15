@@ -1,5 +1,5 @@
 use super::{Code, Context};
-use crate::output::{CodeMap, Destination, Reexport};
+use crate::output::{CodeMap, GlobExport, OutputLocation};
 use analysis::{
     item::bitmask::{BitMask, BitWidth, Item, Value},
     rust::RustTokens,
@@ -7,14 +7,15 @@ use analysis::{
 };
 use proc_macro2::{Literal, TokenStream};
 use quote::quote;
-use std::iter;
 use tracing::{instrument, trace};
 
 impl Code for BitMask {
-    #[instrument(skip(ctx))]
-    fn code(&self, ctx: &Context) -> CodeMap {
+    #[instrument(skip(ctx, codemap))]
+    fn code(&self, ctx: &Context, codemap: &mut CodeMap) {
         trace!("generating");
-        let name_tokens = ctx.type_tokens(self.bitmask_name, false, None);
+        let output = OutputLocation::primary_location(self.required_by, GlobExport::Yes);
+        let octx = codemap.octx(output, ctx);
+        let name_tokens = octx.type_tokens(self.bitmask_name, false, None);
         let base_ty = match self.bitwidth {
             BitWidth::Bits32 => quote! { u32 },
             BitWidth::Bits64 => quote! { u64 },
@@ -25,7 +26,7 @@ impl Code for BitMask {
         let mut bits_impl_map = CodeMap::default();
         let mut debug_items = Vec::new();
         if let Some(bits_name) = self.bits_name {
-            let bits_name_tokens = ctx.type_tokens(bits_name, false, None);
+            let bits_name_tokens = octx.type_tokens(bits_name, false, None);
             bits_definition = quote! {
                 #[repr(transparent)]
                 #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
@@ -68,38 +69,36 @@ impl Code for BitMask {
                     continue;
                 };
 
-                let name = ctx.enumerator_tokens(name, bits_name, false);
-                let dest = Destination::primary_location(*required_by);
+                let name = octx.enumerator_tokens(name, bits_name, false);
+                let output = OutputLocation::primary_location(*required_by, GlobExport::No);
                 let value_tokens = match &value {
                     Value::BitPos(bitpos) => {
                         let literal = Literal::u8_unsuffixed(*bitpos);
                         quote! { Self(1 << #literal) }
                     }
                     Value::Expr(cexpr_items) => {
-                        let expr = CExprItem::tokens(cexpr_items.iter(), ctx);
+                        let expr = CExprItem::tokens(cexpr_items.iter(), &octx);
                         quote! { Self(#expr) }
                     }
                     Value::Alias(enumerator_name) => {
-                        let en = ctx.enumerator_tokens(*enumerator_name, bits_name, false);
+                        let en = octx.enumerator_tokens(*enumerator_name, bits_name, false);
                         quote! { Self::#en }
                     }
                 };
 
-                bits_impl_map.extend(CodeMap::new(
-                    dest.clone(),
-                    quote! { pub const #name: Self = #value_tokens; },
-                ));
+                bits_impl_map
+                    .octx(output, ctx)
+                    .insert_tokens(quote! { pub const #name: Self = #value_tokens; });
 
-                let bits_path = ctx.type_tokens(
+                let bits_path = octx.type_tokens(
                     bits_name,
-                    dest != Destination::primary_location(self.required_by),
+                    output.require != self.required_by.primary_location(),
                     None,
                 );
 
-                bitmask_impl_map.extend(CodeMap::new(
-                    dest,
-                    quote! { pub const #name: Self = Self(#bits_path::#name.0); },
-                ));
+                bitmask_impl_map
+                    .octx(output, ctx)
+                    .insert_tokens(quote! { pub const #name: Self = Self(#bits_path::#name.0); });
 
                 if !matches!(value, Value::Alias(..)) {
                     let is_provisional = required_by.primary_location().is_provisional(ctx);
@@ -120,7 +119,7 @@ impl Code for BitMask {
             debug_items => quote! { crate::debug_flags(f, &[ #( #debug_items, )* ], self.0) },
         };
 
-        let code = quote! {
+        octx.insert_tokens(quote! {
             #[repr(transparent)]
             #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
             pub struct #name_tokens(pub(crate) #base_ty);
@@ -209,32 +208,27 @@ impl Code for BitMask {
             }
 
             #bits_definition
-        };
+        });
 
-        let mut codemap = CodeMap::new(Destination::primary_location(self.required_by), code);
         if let Some(bits_name) = self.bits_name {
-            let bitmask_impls = iter::repeat(self.bitmask_name).zip(bitmask_impl_map.into_iter());
-            let bits_impls = iter::repeat(bits_name).zip(bits_impl_map.into_iter());
+            for (type_name, impl_map) in [
+                (self.bitmask_name, bitmask_impl_map),
+                (bits_name, bits_impl_map),
+            ] {
+                codemap.extend_mapped(impl_map, ctx, |octx, impl_tokens| {
+                    let bits_path = octx.type_tokens(
+                        type_name,
+                        octx.output().require != self.required_by.primary_location(),
+                        None,
+                    );
 
-            for (type_name, (mut dest, impl_tokens)) in bitmask_impls.chain(bits_impls) {
-                let bits_path = ctx.type_tokens(
-                    type_name,
-                    dest != Destination::primary_location(self.required_by),
-                    None,
-                );
-
-                dest.reexport = Reexport::No;
-                let doc = dest.provided_by_doc_comment();
-                codemap.extend(CodeMap::new(
-                    dest,
+                    let doc = output.provided_by_doc_comment();
                     quote! {
                         #[doc = #doc]
                         impl #bits_path { #impl_tokens }
-                    },
-                ));
+                    }
+                });
             }
         }
-
-        codemap
     }
 }

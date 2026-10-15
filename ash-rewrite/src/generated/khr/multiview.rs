@@ -2,32 +2,33 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_multiview.html) · Extension `VK_KHR_multiview`
 #![doc(alias = "VK_KHR_multiview")]
+use crate::vk;
+use core::ffi::CStr;
 ///Provided by [VK_KHR_multiview](crate::khr::multiview)
-impl crate::vk::StructureType {
+impl vk::StructureType {
     pub const RENDER_PASS_MULTIVIEW_CREATE_INFO_KHR: Self = Self::RENDER_PASS_MULTIVIEW_CREATE_INFO;
     pub const PHYSICAL_DEVICE_MULTIVIEW_FEATURES_KHR: Self = Self::PHYSICAL_DEVICE_MULTIVIEW_FEATURES;
     pub const PHYSICAL_DEVICE_MULTIVIEW_PROPERTIES_KHR: Self = Self::PHYSICAL_DEVICE_MULTIVIEW_PROPERTIES;
 }
-///Provided by [VK_KHR_multiview](crate::khr::multiview)
-impl crate::vk::DependencyFlags {
-    pub const VIEW_LOCAL_KHR: Self = Self(
-        crate::vk::DependencyFlagBits::VIEW_LOCAL_KHR.0,
-    );
+///Provided by [Vulkan 1.0](crate::vk1_0)
+impl vk::DependencyFlags {
+    pub const VIEW_LOCAL_KHR: Self = Self(vk::DependencyFlagBits::VIEW_LOCAL_KHR.0);
 }
-///Provided by [VK_KHR_multiview](crate::khr::multiview)
-impl crate::vk::DependencyFlagBits {
+///Provided by [Vulkan 1.0](crate::vk1_0)
+impl vk::DependencyFlagBits {
     pub const VIEW_LOCAL_KHR: Self = Self::VIEW_LOCAL;
 }
 pub const SPEC_VERSION: u32 = 1;
-pub const NAME: &core::ffi::CStr = c"VK_KHR_multiview";
+pub const NAME: &CStr = c"VK_KHR_multiview";
 pub(crate) mod items {
-    pub type PhysicalDeviceMultiviewFeaturesKHR<'a> = crate::vk::PhysicalDeviceMultiviewFeatures<
+    use crate::vk;
+    pub type PhysicalDeviceMultiviewFeaturesKHR<'a> = vk::PhysicalDeviceMultiviewFeatures<
         'a,
     >;
-    pub type PhysicalDeviceMultiviewPropertiesKHR<'a> = crate::vk::PhysicalDeviceMultiviewProperties<
+    pub type PhysicalDeviceMultiviewPropertiesKHR<'a> = vk::PhysicalDeviceMultiviewProperties<
         'a,
     >;
-    pub type RenderPassMultiviewCreateInfoKHR<'a> = crate::vk::RenderPassMultiviewCreateInfo<
+    pub type RenderPassMultiviewCreateInfoKHR<'a> = vk::RenderPassMultiviewCreateInfo<
         'a,
     >;
 }

@@ -2,8 +2,12 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_NV_low_latency2.html) · Extension `VK_NV_low_latency2`
 #![doc(alias = "VK_NV_low_latency2")]
+use crate::vk;
+use core::ffi::CStr;
+use crate::VkResult;
+use core::ffi::c_void;
 ///Provided by [VK_NV_low_latency2](crate::nv::low_latency2)
-impl crate::vk::StructureType {
+impl vk::StructureType {
     pub const LATENCY_SLEEP_MODE_INFO_NV: Self = Self(1000505000);
     pub const LATENCY_SLEEP_INFO_NV: Self = Self(1000505001);
     pub const SET_LATENCY_MARKER_INFO_NV: Self = Self(1000505002);
@@ -34,32 +38,30 @@ impl OutOfBandQueueTypeNV {
     pub const RENDER: Self = Self(0);
     pub const PRESENT: Self = Self(1);
 }
+pub const SPEC_VERSION: u32 = 3;
+pub const NAME: &CStr = c"VK_NV_low_latency2";
 #[derive(Clone)]
 pub struct DeviceFn {
-    pub set_latency_sleep_mode: crate::vk::PFN_vkSetLatencySleepModeNV,
-    pub latency_sleep: crate::vk::PFN_vkLatencySleepNV,
-    pub set_latency_marker: crate::vk::PFN_vkSetLatencyMarkerNV,
-    pub get_latency_timings: crate::vk::PFN_vkGetLatencyTimingsNV,
-    pub queue_notify_out_of_band: crate::vk::PFN_vkQueueNotifyOutOfBandNV,
+    pub set_latency_sleep_mode: vk::PFN_vkSetLatencySleepModeNV,
+    pub latency_sleep: vk::PFN_vkLatencySleepNV,
+    pub set_latency_marker: vk::PFN_vkSetLatencyMarkerNV,
+    pub get_latency_timings: vk::PFN_vkGetLatencyTimingsNV,
+    pub queue_notify_out_of_band: vk::PFN_vkQueueNotifyOutOfBandNV,
 }
 unsafe impl Send for DeviceFn {}
 unsafe impl Sync for DeviceFn {}
 impl DeviceFn {
-    pub fn load<F: FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void>(
-        mut f: F,
-    ) -> Self {
+    pub fn load<F: FnMut(&CStr) -> *const c_void>(mut f: F) -> Self {
         Self::load_erased(&mut f)
     }
-    fn load_erased(
-        _f: &mut dyn FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void,
-    ) -> Self {
+    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const c_void) -> Self {
         Self {
             set_latency_sleep_mode: unsafe {
                 unsafe extern "system" fn set_latency_sleep_mode(
-                    _: crate::vk::Device,
-                    _: crate::vk::SwapchainKHR,
-                    _: *const crate::vk::LatencySleepModeInfoNV<'_>,
-                ) -> crate::vk::Result {
+                    _: vk::Device,
+                    _: vk::SwapchainKHR,
+                    _: *const vk::LatencySleepModeInfoNV<'_>,
+                ) -> vk::Result {
                     panic!("unable to load vkSetLatencySleepModeNV")
                 }
                 let val = _f(c"vkSetLatencySleepModeNV");
@@ -71,10 +73,10 @@ impl DeviceFn {
             },
             latency_sleep: unsafe {
                 unsafe extern "system" fn latency_sleep(
-                    _: crate::vk::Device,
-                    _: crate::vk::SwapchainKHR,
-                    _: *const crate::vk::LatencySleepInfoNV<'_>,
-                ) -> crate::vk::Result {
+                    _: vk::Device,
+                    _: vk::SwapchainKHR,
+                    _: *const vk::LatencySleepInfoNV<'_>,
+                ) -> vk::Result {
                     panic!("unable to load vkLatencySleepNV")
                 }
                 let val = _f(c"vkLatencySleepNV");
@@ -82,9 +84,9 @@ impl DeviceFn {
             },
             set_latency_marker: unsafe {
                 unsafe extern "system" fn set_latency_marker(
-                    _: crate::vk::Device,
-                    _: crate::vk::SwapchainKHR,
-                    _: *const crate::vk::SetLatencyMarkerInfoNV<'_>,
+                    _: vk::Device,
+                    _: vk::SwapchainKHR,
+                    _: *const vk::SetLatencyMarkerInfoNV<'_>,
                 ) {
                     panic!("unable to load vkSetLatencyMarkerNV")
                 }
@@ -97,9 +99,9 @@ impl DeviceFn {
             },
             get_latency_timings: unsafe {
                 unsafe extern "system" fn get_latency_timings(
-                    _: crate::vk::Device,
-                    _: crate::vk::SwapchainKHR,
-                    _: *mut crate::vk::GetLatencyMarkerInfoNV<'_>,
+                    _: vk::Device,
+                    _: vk::SwapchainKHR,
+                    _: *mut vk::GetLatencyMarkerInfoNV<'_>,
                 ) {
                     panic!("unable to load vkGetLatencyTimingsNV")
                 }
@@ -112,8 +114,8 @@ impl DeviceFn {
             },
             queue_notify_out_of_band: unsafe {
                 unsafe extern "system" fn queue_notify_out_of_band(
-                    _: crate::vk::Queue,
-                    _: *const crate::vk::OutOfBandQueueTypeInfoNV<'_>,
+                    _: vk::Queue,
+                    _: *const vk::OutOfBandQueueTypeInfoNV<'_>,
                 ) {
                     panic!("unable to load vkQueueNotifyOutOfBandNV")
                 }
@@ -152,9 +154,9 @@ impl Device {
     #[inline]
     pub unsafe fn set_latency_sleep_mode(
         &self,
-        swapchain: crate::vk::SwapchainKHR,
-        sleep_mode_info: &crate::vk::LatencySleepModeInfoNV<'_>,
-    ) -> crate::VkResult<()> {
+        swapchain: vk::SwapchainKHR,
+        sleep_mode_info: &vk::LatencySleepModeInfoNV<'_>,
+    ) -> VkResult<()> {
         (self.fp.set_latency_sleep_mode)(self.handle, swapchain, sleep_mode_info)
             .result()
     }
@@ -162,17 +164,17 @@ impl Device {
     #[inline]
     pub unsafe fn latency_sleep(
         &self,
-        swapchain: crate::vk::SwapchainKHR,
-        sleep_info: &crate::vk::LatencySleepInfoNV<'_>,
-    ) -> crate::VkResult<()> {
+        swapchain: vk::SwapchainKHR,
+        sleep_info: &vk::LatencySleepInfoNV<'_>,
+    ) -> VkResult<()> {
         (self.fp.latency_sleep)(self.handle, swapchain, sleep_info).result()
     }
     ///vkSetLatencyMarkerNV
     #[inline]
     pub unsafe fn set_latency_marker(
         &self,
-        swapchain: crate::vk::SwapchainKHR,
-        latency_marker_info: &crate::vk::SetLatencyMarkerInfoNV<'_>,
+        swapchain: vk::SwapchainKHR,
+        latency_marker_info: &vk::SetLatencyMarkerInfoNV<'_>,
     ) {
         (self.fp.set_latency_marker)(self.handle, swapchain, latency_marker_info)
     }
@@ -180,8 +182,8 @@ impl Device {
     #[inline]
     pub unsafe fn get_latency_timings(
         &self,
-        swapchain: crate::vk::SwapchainKHR,
-    ) -> crate::vk::GetLatencyMarkerInfoNV<'_> {
+        swapchain: vk::SwapchainKHR,
+    ) -> vk::GetLatencyMarkerInfoNV<'_> {
         let mut latency_marker_info = core::mem::MaybeUninit::uninit();
         (self
             .fp
@@ -196,30 +198,30 @@ impl Device {
     #[inline]
     pub unsafe fn queue_notify_out_of_band(
         &self,
-        queue: crate::vk::Queue,
-        queue_type_info: &crate::vk::OutOfBandQueueTypeInfoNV<'_>,
+        queue: vk::Queue,
+        queue_type_info: &vk::OutOfBandQueueTypeInfoNV<'_>,
     ) {
         (self.fp.queue_notify_out_of_band)(queue, queue_type_info)
     }
 }
-pub const SPEC_VERSION: u32 = 3;
-pub const NAME: &core::ffi::CStr = c"VK_NV_low_latency2";
 pub(crate) mod items {
+    use core::marker::PhantomData;
+    use crate::vk;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct LatencySleepModeInfoNV<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *const core::ffi::c_void,
-        pub low_latency_mode: crate::vk::Bool32,
-        pub low_latency_boost: crate::vk::Bool32,
+        pub low_latency_mode: vk::Bool32,
+        pub low_latency_boost: vk::Bool32,
         pub minimum_interval_us: u32,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for LatencySleepModeInfoNV<'_> {}
     unsafe impl Sync for LatencySleepModeInfoNV<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for LatencySleepModeInfoNV<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::LATENCY_SLEEP_MODE_INFO_NV;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::LATENCY_SLEEP_MODE_INFO_NV;
     }
     impl<'a> Default for LatencySleepModeInfoNV<'a> {
         fn default() -> Self {
@@ -229,7 +231,7 @@ pub(crate) mod items {
                 low_latency_mode: Default::default(),
                 low_latency_boost: Default::default(),
                 minimum_interval_us: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
@@ -251,16 +253,16 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct LatencySleepInfoNV<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *const core::ffi::c_void,
-        pub signal_semaphore: crate::vk::Semaphore,
+        pub signal_semaphore: vk::Semaphore,
         pub value: u64,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for LatencySleepInfoNV<'_> {}
     unsafe impl Sync for LatencySleepInfoNV<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for LatencySleepInfoNV<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::LATENCY_SLEEP_INFO_NV;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::LATENCY_SLEEP_INFO_NV;
     }
     impl<'a> Default for LatencySleepInfoNV<'a> {
         fn default() -> Self {
@@ -269,15 +271,12 @@ pub(crate) mod items {
                 p_next: Default::default(),
                 signal_semaphore: Default::default(),
                 value: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
     impl<'a> LatencySleepInfoNV<'a> {
-        pub fn signal_semaphore(
-            mut self,
-            signal_semaphore: crate::vk::Semaphore,
-        ) -> Self {
+        pub fn signal_semaphore(mut self, signal_semaphore: vk::Semaphore) -> Self {
             self.signal_semaphore = signal_semaphore;
             self
         }
@@ -290,16 +289,16 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct SetLatencyMarkerInfoNV<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *const core::ffi::c_void,
         pub present_id: u64,
-        pub marker: crate::vk::LatencyMarkerNV,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub marker: vk::LatencyMarkerNV,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for SetLatencyMarkerInfoNV<'_> {}
     unsafe impl Sync for SetLatencyMarkerInfoNV<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for SetLatencyMarkerInfoNV<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::SET_LATENCY_MARKER_INFO_NV;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::SET_LATENCY_MARKER_INFO_NV;
     }
     impl<'a> Default for SetLatencyMarkerInfoNV<'a> {
         fn default() -> Self {
@@ -308,7 +307,7 @@ pub(crate) mod items {
                 p_next: Default::default(),
                 present_id: Default::default(),
                 marker: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
@@ -317,7 +316,7 @@ pub(crate) mod items {
             self.present_id = present_id;
             self
         }
-        pub fn marker(mut self, marker: crate::vk::LatencyMarkerNV) -> Self {
+        pub fn marker(mut self, marker: vk::LatencyMarkerNV) -> Self {
             self.marker = marker;
             self
         }
@@ -326,16 +325,16 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct GetLatencyMarkerInfoNV<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *const core::ffi::c_void,
         pub timing_count: u32,
-        pub p_timings: *mut crate::vk::LatencyTimingsFrameReportNV<'a>,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub p_timings: *mut vk::LatencyTimingsFrameReportNV<'a>,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for GetLatencyMarkerInfoNV<'_> {}
     unsafe impl Sync for GetLatencyMarkerInfoNV<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for GetLatencyMarkerInfoNV<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::GET_LATENCY_MARKER_INFO_NV;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::GET_LATENCY_MARKER_INFO_NV;
     }
     impl<'a> Default for GetLatencyMarkerInfoNV<'a> {
         fn default() -> Self {
@@ -344,14 +343,14 @@ pub(crate) mod items {
                 p_next: Default::default(),
                 timing_count: Default::default(),
                 p_timings: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
     impl<'a> GetLatencyMarkerInfoNV<'a> {
         pub fn timings(
             mut self,
-            timings: &'a mut [crate::vk::LatencyTimingsFrameReportNV<'a>],
+            timings: &'a mut [vk::LatencyTimingsFrameReportNV<'a>],
         ) -> Self {
             self.timing_count = timings.len() as _;
             self.p_timings = timings.as_mut_ptr();
@@ -362,7 +361,7 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct LatencyTimingsFrameReportNV<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
         pub present_id: u64,
         pub input_sample_time_us: u64,
@@ -378,12 +377,12 @@ pub(crate) mod items {
         pub os_render_queue_end_time_us: u64,
         pub gpu_render_start_time_us: u64,
         pub gpu_render_end_time_us: u64,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for LatencyTimingsFrameReportNV<'_> {}
     unsafe impl Sync for LatencyTimingsFrameReportNV<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for LatencyTimingsFrameReportNV<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::LATENCY_TIMINGS_FRAME_REPORT_NV;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::LATENCY_TIMINGS_FRAME_REPORT_NV;
     }
     impl<'a> Default for LatencyTimingsFrameReportNV<'a> {
         fn default() -> Self {
@@ -404,7 +403,7 @@ pub(crate) mod items {
                 os_render_queue_end_time_us: Default::default(),
                 gpu_render_start_time_us: Default::default(),
                 gpu_render_end_time_us: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
@@ -485,15 +484,15 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct OutOfBandQueueTypeInfoNV<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *const core::ffi::c_void,
-        pub queue_type: crate::vk::OutOfBandQueueTypeNV,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub queue_type: vk::OutOfBandQueueTypeNV,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for OutOfBandQueueTypeInfoNV<'_> {}
     unsafe impl Sync for OutOfBandQueueTypeInfoNV<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for OutOfBandQueueTypeInfoNV<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::OUT_OF_BAND_QUEUE_TYPE_INFO_NV;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::OUT_OF_BAND_QUEUE_TYPE_INFO_NV;
     }
     impl<'a> Default for OutOfBandQueueTypeInfoNV<'a> {
         fn default() -> Self {
@@ -501,15 +500,12 @@ pub(crate) mod items {
                 s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
                 p_next: Default::default(),
                 queue_type: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
     impl<'a> OutOfBandQueueTypeInfoNV<'a> {
-        pub fn queue_type(
-            mut self,
-            queue_type: crate::vk::OutOfBandQueueTypeNV,
-        ) -> Self {
+        pub fn queue_type(mut self, queue_type: vk::OutOfBandQueueTypeNV) -> Self {
             self.queue_type = queue_type;
             self
         }
@@ -518,19 +514,19 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct LatencySubmissionPresentIdNV<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *const core::ffi::c_void,
         pub present_id: u64,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for LatencySubmissionPresentIdNV<'_> {}
     unsafe impl Sync for LatencySubmissionPresentIdNV<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for LatencySubmissionPresentIdNV<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::LATENCY_SUBMISSION_PRESENT_ID_NV;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::LATENCY_SUBMISSION_PRESENT_ID_NV;
     }
-    unsafe impl<'a> crate::Extends<crate::vk::SubmitInfo<'_>>
+    unsafe impl<'a> crate::Extends<vk::SubmitInfo<'_>>
     for LatencySubmissionPresentIdNV<'a> {}
-    unsafe impl<'a> crate::Extends<crate::vk::SubmitInfo2<'_>>
+    unsafe impl<'a> crate::Extends<vk::SubmitInfo2<'_>>
     for LatencySubmissionPresentIdNV<'a> {}
     impl<'a> Default for LatencySubmissionPresentIdNV<'a> {
         fn default() -> Self {
@@ -538,7 +534,7 @@ pub(crate) mod items {
                 s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
                 p_next: Default::default(),
                 present_id: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
@@ -552,17 +548,17 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct SwapchainLatencyCreateInfoNV<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *const core::ffi::c_void,
-        pub latency_mode_enable: crate::vk::Bool32,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub latency_mode_enable: vk::Bool32,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for SwapchainLatencyCreateInfoNV<'_> {}
     unsafe impl Sync for SwapchainLatencyCreateInfoNV<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for SwapchainLatencyCreateInfoNV<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::SWAPCHAIN_LATENCY_CREATE_INFO_NV;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::SWAPCHAIN_LATENCY_CREATE_INFO_NV;
     }
-    unsafe impl<'a> crate::Extends<crate::vk::SwapchainCreateInfoKHR<'_>>
+    unsafe impl<'a> crate::Extends<vk::SwapchainCreateInfoKHR<'_>>
     for SwapchainLatencyCreateInfoNV<'a> {}
     impl<'a> Default for SwapchainLatencyCreateInfoNV<'a> {
         fn default() -> Self {
@@ -570,7 +566,7 @@ pub(crate) mod items {
                 s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
                 p_next: Default::default(),
                 latency_mode_enable: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
@@ -584,18 +580,18 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct LatencySurfaceCapabilitiesNV<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *const core::ffi::c_void,
         pub present_mode_count: u32,
-        pub p_present_modes: *mut crate::vk::PresentModeKHR,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub p_present_modes: *mut vk::PresentModeKHR,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for LatencySurfaceCapabilitiesNV<'_> {}
     unsafe impl Sync for LatencySurfaceCapabilitiesNV<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for LatencySurfaceCapabilitiesNV<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::LATENCY_SURFACE_CAPABILITIES_NV;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::LATENCY_SURFACE_CAPABILITIES_NV;
     }
-    unsafe impl<'a> crate::Extends<crate::vk::SurfaceCapabilities2KHR<'_>>
+    unsafe impl<'a> crate::Extends<vk::SurfaceCapabilities2KHR<'_>>
     for LatencySurfaceCapabilitiesNV<'a> {}
     impl<'a> Default for LatencySurfaceCapabilitiesNV<'a> {
         fn default() -> Self {
@@ -604,14 +600,14 @@ pub(crate) mod items {
                 p_next: Default::default(),
                 present_mode_count: Default::default(),
                 p_present_modes: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
     impl<'a> LatencySurfaceCapabilitiesNV<'a> {
         pub fn present_modes(
             mut self,
-            present_modes: &'a mut [crate::vk::PresentModeKHR],
+            present_modes: &'a mut [vk::PresentModeKHR],
         ) -> Self {
             self.present_mode_count = present_modes.len() as _;
             self.p_present_modes = present_modes.as_mut_ptr();
@@ -687,28 +683,28 @@ pub(crate) mod items {
         }
     }
     pub type PFN_vkSetLatencySleepModeNV = unsafe extern "system" fn(
-        device: crate::vk::Device,
-        swapchain: crate::vk::SwapchainKHR,
-        p_sleep_mode_info: *const crate::vk::LatencySleepModeInfoNV<'_>,
-    ) -> crate::vk::Result;
+        device: vk::Device,
+        swapchain: vk::SwapchainKHR,
+        p_sleep_mode_info: *const vk::LatencySleepModeInfoNV<'_>,
+    ) -> vk::Result;
     pub type PFN_vkLatencySleepNV = unsafe extern "system" fn(
-        device: crate::vk::Device,
-        swapchain: crate::vk::SwapchainKHR,
-        p_sleep_info: *const crate::vk::LatencySleepInfoNV<'_>,
-    ) -> crate::vk::Result;
+        device: vk::Device,
+        swapchain: vk::SwapchainKHR,
+        p_sleep_info: *const vk::LatencySleepInfoNV<'_>,
+    ) -> vk::Result;
     pub type PFN_vkSetLatencyMarkerNV = unsafe extern "system" fn(
-        device: crate::vk::Device,
-        swapchain: crate::vk::SwapchainKHR,
-        p_latency_marker_info: *const crate::vk::SetLatencyMarkerInfoNV<'_>,
+        device: vk::Device,
+        swapchain: vk::SwapchainKHR,
+        p_latency_marker_info: *const vk::SetLatencyMarkerInfoNV<'_>,
     );
     pub type PFN_vkGetLatencyTimingsNV = unsafe extern "system" fn(
-        device: crate::vk::Device,
-        swapchain: crate::vk::SwapchainKHR,
-        p_latency_marker_info: *mut crate::vk::GetLatencyMarkerInfoNV<'_>,
+        device: vk::Device,
+        swapchain: vk::SwapchainKHR,
+        p_latency_marker_info: *mut vk::GetLatencyMarkerInfoNV<'_>,
     );
     pub type PFN_vkQueueNotifyOutOfBandNV = unsafe extern "system" fn(
-        queue: crate::vk::Queue,
-        p_queue_type_info: *const crate::vk::OutOfBandQueueTypeInfoNV<'_>,
+        queue: vk::Queue,
+        p_queue_type_info: *const vk::OutOfBandQueueTypeInfoNV<'_>,
     );
 }
 pub use items::*;

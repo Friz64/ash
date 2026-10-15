@@ -2,33 +2,35 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_android_surface.html) · Extension `VK_KHR_android_surface`
 #![doc(alias = "VK_KHR_android_surface")]
+use crate::vk;
+use core::ffi::CStr;
+use crate::VkResult;
+use core::ffi::c_void;
 ///Provided by [VK_KHR_android_surface](crate::khr::android_surface)
-impl crate::vk::StructureType {
+impl vk::StructureType {
     pub const ANDROID_SURFACE_CREATE_INFO_KHR: Self = Self(1000008000);
 }
+pub const SPEC_VERSION: u32 = 6;
+pub const NAME: &CStr = c"VK_KHR_android_surface";
 #[derive(Clone)]
 pub struct InstanceFn {
-    pub create_android_surface: crate::vk::PFN_vkCreateAndroidSurfaceKHR,
+    pub create_android_surface: vk::PFN_vkCreateAndroidSurfaceKHR,
 }
 unsafe impl Send for InstanceFn {}
 unsafe impl Sync for InstanceFn {}
 impl InstanceFn {
-    pub fn load<F: FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void>(
-        mut f: F,
-    ) -> Self {
+    pub fn load<F: FnMut(&CStr) -> *const c_void>(mut f: F) -> Self {
         Self::load_erased(&mut f)
     }
-    fn load_erased(
-        _f: &mut dyn FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void,
-    ) -> Self {
+    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const c_void) -> Self {
         Self {
             create_android_surface: unsafe {
                 unsafe extern "system" fn create_android_surface(
-                    _: crate::vk::Instance,
-                    _: *const crate::vk::AndroidSurfaceCreateInfoKHR<'_>,
-                    _: *const crate::vk::AllocationCallbacks<'_>,
-                    _: *mut crate::vk::SurfaceKHR,
-                ) -> crate::vk::Result {
+                    _: vk::Instance,
+                    _: *const vk::AndroidSurfaceCreateInfoKHR<'_>,
+                    _: *const vk::AllocationCallbacks<'_>,
+                    _: *mut vk::SurfaceKHR,
+                ) -> vk::Result {
                     panic!("unable to load vkCreateAndroidSurfaceKHR")
                 }
                 let val = _f(c"vkCreateAndroidSurfaceKHR");
@@ -66,9 +68,9 @@ impl Instance {
     #[inline]
     pub unsafe fn create_android_surface(
         &self,
-        create_info: &crate::vk::AndroidSurfaceCreateInfoKHR<'_>,
-        allocator: Option<&crate::vk::AllocationCallbacks<'_>>,
-    ) -> crate::VkResult<crate::vk::SurfaceKHR> {
+        create_info: &vk::AndroidSurfaceCreateInfoKHR<'_>,
+        allocator: Option<&vk::AllocationCallbacks<'_>>,
+    ) -> VkResult<vk::SurfaceKHR> {
         let mut surface = core::mem::MaybeUninit::uninit();
         (self
             .fp
@@ -84,23 +86,23 @@ impl Instance {
             .assume_init_on_success(surface)
     }
 }
-pub const SPEC_VERSION: u32 = 6;
-pub const NAME: &core::ffi::CStr = c"VK_KHR_android_surface";
 pub(crate) mod items {
+    use core::marker::PhantomData;
+    use crate::vk;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct AndroidSurfaceCreateInfoKHR<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *const core::ffi::c_void,
-        pub flags: crate::vk::AndroidSurfaceCreateFlagsKHR,
+        pub flags: vk::AndroidSurfaceCreateFlagsKHR,
         pub window: *mut crate::platform_types::ANativeWindow,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for AndroidSurfaceCreateInfoKHR<'_> {}
     unsafe impl Sync for AndroidSurfaceCreateInfoKHR<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for AndroidSurfaceCreateInfoKHR<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::ANDROID_SURFACE_CREATE_INFO_KHR;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::ANDROID_SURFACE_CREATE_INFO_KHR;
     }
     impl<'a> Default for AndroidSurfaceCreateInfoKHR<'a> {
         fn default() -> Self {
@@ -109,12 +111,12 @@ pub(crate) mod items {
                 p_next: Default::default(),
                 flags: Default::default(),
                 window: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
     impl<'a> AndroidSurfaceCreateInfoKHR<'a> {
-        pub fn flags(mut self, flags: crate::vk::AndroidSurfaceCreateFlagsKHR) -> Self {
+        pub fn flags(mut self, flags: vk::AndroidSurfaceCreateFlagsKHR) -> Self {
             self.flags = flags;
             self
         }
@@ -195,10 +197,10 @@ pub(crate) mod items {
         }
     }
     pub type PFN_vkCreateAndroidSurfaceKHR = unsafe extern "system" fn(
-        instance: crate::vk::Instance,
-        p_create_info: *const crate::vk::AndroidSurfaceCreateInfoKHR<'_>,
-        p_allocator: *const crate::vk::AllocationCallbacks<'_>,
-        p_surface: *mut crate::vk::SurfaceKHR,
-    ) -> crate::vk::Result;
+        instance: vk::Instance,
+        p_create_info: *const vk::AndroidSurfaceCreateInfoKHR<'_>,
+        p_allocator: *const vk::AllocationCallbacks<'_>,
+        p_surface: *mut vk::SurfaceKHR,
+    ) -> vk::Result;
 }
 pub use items::*;

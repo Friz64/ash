@@ -2,36 +2,40 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_workgroup_memory_explicit_layout.html) · Extension `VK_KHR_workgroup_memory_explicit_layout`
 #![doc(alias = "VK_KHR_workgroup_memory_explicit_layout")]
+use crate::vk;
+use core::ffi::CStr;
 ///Provided by [VK_KHR_workgroup_memory_explicit_layout](crate::khr::workgroup_memory_explicit_layout)
-impl crate::vk::StructureType {
+impl vk::StructureType {
     pub const PHYSICAL_DEVICE_WORKGROUP_MEMORY_EXPLICIT_LAYOUT_FEATURES_KHR: Self = Self(
         1000336000,
     );
 }
 pub const SPEC_VERSION: u32 = 1;
-pub const NAME: &core::ffi::CStr = c"VK_KHR_workgroup_memory_explicit_layout";
+pub const NAME: &CStr = c"VK_KHR_workgroup_memory_explicit_layout";
 pub(crate) mod items {
+    use core::marker::PhantomData;
+    use crate::vk;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceWorkgroupMemoryExplicitLayoutFeaturesKHR<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
-        pub workgroup_memory_explicit_layout: crate::vk::Bool32,
-        pub workgroup_memory_explicit_layout_scalar_block_layout: crate::vk::Bool32,
-        pub workgroup_memory_explicit_layout8_bit_access: crate::vk::Bool32,
-        pub workgroup_memory_explicit_layout16_bit_access: crate::vk::Bool32,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub workgroup_memory_explicit_layout: vk::Bool32,
+        pub workgroup_memory_explicit_layout_scalar_block_layout: vk::Bool32,
+        pub workgroup_memory_explicit_layout8_bit_access: vk::Bool32,
+        pub workgroup_memory_explicit_layout16_bit_access: vk::Bool32,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for PhysicalDeviceWorkgroupMemoryExplicitLayoutFeaturesKHR<'_> {}
     unsafe impl Sync for PhysicalDeviceWorkgroupMemoryExplicitLayoutFeaturesKHR<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceWorkgroupMemoryExplicitLayoutFeaturesKHR<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_WORKGROUP_MEMORY_EXPLICIT_LAYOUT_FEATURES_KHR;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PHYSICAL_DEVICE_WORKGROUP_MEMORY_EXPLICIT_LAYOUT_FEATURES_KHR;
     }
-    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+    unsafe impl<'a> crate::Extends<vk::PhysicalDeviceFeatures2<'_>>
     for PhysicalDeviceWorkgroupMemoryExplicitLayoutFeaturesKHR<'a> {}
-    unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+    unsafe impl<'a> crate::Extends<vk::DeviceCreateInfo<'_>>
     for PhysicalDeviceWorkgroupMemoryExplicitLayoutFeaturesKHR<'a> {}
     impl<'a> Default for PhysicalDeviceWorkgroupMemoryExplicitLayoutFeaturesKHR<'a> {
         fn default() -> Self {
@@ -42,7 +46,7 @@ pub(crate) mod items {
                 workgroup_memory_explicit_layout_scalar_block_layout: Default::default(),
                 workgroup_memory_explicit_layout8_bit_access: Default::default(),
                 workgroup_memory_explicit_layout16_bit_access: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }

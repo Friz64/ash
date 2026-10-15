@@ -2,14 +2,16 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_shader_ocp_microscaling_types.html) · Extension `VK_EXT_shader_ocp_microscaling_types`
 #![doc(alias = "VK_EXT_shader_ocp_microscaling_types")]
+use crate::vk;
+use core::ffi::CStr;
 ///Provided by [VK_EXT_shader_ocp_microscaling_types](crate::ext::shader_ocp_microscaling_types)
-impl crate::vk::StructureType {
+impl vk::StructureType {
     pub const PHYSICAL_DEVICE_SHADER_OCP_MICROSCALING_TYPES_FEATURES_EXT: Self = Self(
         1000672000,
     );
 }
 ///Provided by [VK_EXT_shader_ocp_microscaling_types](crate::ext::shader_ocp_microscaling_types)
-impl crate::vk::ComponentTypeKHR {
+impl vk::ComponentTypeKHR {
     pub const FLOAT6_E2M3_EXT: Self = Self(1000672000);
     pub const FLOAT6_E3M2_EXT: Self = Self(1000672001);
     pub const FLOAT4_E2M1_EXT: Self = Self(1000672002);
@@ -17,29 +19,31 @@ impl crate::vk::ComponentTypeKHR {
     pub const MXINT8_EXT: Self = Self(1000672004);
 }
 pub const SPEC_VERSION: u32 = 1;
-pub const NAME: &core::ffi::CStr = c"VK_EXT_shader_ocp_microscaling_types";
+pub const NAME: &CStr = c"VK_EXT_shader_ocp_microscaling_types";
 pub(crate) mod items {
+    use core::marker::PhantomData;
+    use crate::vk;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceShaderOCPMicroscalingTypesFeaturesEXT<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
-        pub shader_float4: crate::vk::Bool32,
-        pub shader_float6: crate::vk::Bool32,
-        pub shader_float8_unsigned_e8m0: crate::vk::Bool32,
-        pub shader_mx_int8: crate::vk::Bool32,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub shader_float4: vk::Bool32,
+        pub shader_float6: vk::Bool32,
+        pub shader_float8_unsigned_e8m0: vk::Bool32,
+        pub shader_mx_int8: vk::Bool32,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for PhysicalDeviceShaderOCPMicroscalingTypesFeaturesEXT<'_> {}
     unsafe impl Sync for PhysicalDeviceShaderOCPMicroscalingTypesFeaturesEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceShaderOCPMicroscalingTypesFeaturesEXT<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_SHADER_OCP_MICROSCALING_TYPES_FEATURES_EXT;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PHYSICAL_DEVICE_SHADER_OCP_MICROSCALING_TYPES_FEATURES_EXT;
     }
-    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+    unsafe impl<'a> crate::Extends<vk::PhysicalDeviceFeatures2<'_>>
     for PhysicalDeviceShaderOCPMicroscalingTypesFeaturesEXT<'a> {}
-    unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+    unsafe impl<'a> crate::Extends<vk::DeviceCreateInfo<'_>>
     for PhysicalDeviceShaderOCPMicroscalingTypesFeaturesEXT<'a> {}
     impl<'a> Default for PhysicalDeviceShaderOCPMicroscalingTypesFeaturesEXT<'a> {
         fn default() -> Self {
@@ -50,7 +54,7 @@ pub(crate) mod items {
                 shader_float6: Default::default(),
                 shader_float8_unsigned_e8m0: Default::default(),
                 shader_mx_int8: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }

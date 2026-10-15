@@ -2,8 +2,11 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_ARM_scheduling_controls.html) · Extension `VK_ARM_scheduling_controls`
 #![doc(alias = "VK_ARM_scheduling_controls")]
+use crate::vk;
+use core::ffi::CStr;
+use core::ffi::c_void;
 ///Provided by [VK_ARM_scheduling_controls](crate::arm::scheduling_controls)
-impl crate::vk::StructureType {
+impl vk::StructureType {
     pub const DEVICE_QUEUE_SHADER_CORE_CONTROL_CREATE_INFO_ARM: Self = Self(1000417000);
     pub const PHYSICAL_DEVICE_SCHEDULING_CONTROLS_FEATURES_ARM: Self = Self(1000417001);
     pub const PHYSICAL_DEVICE_SCHEDULING_CONTROLS_PROPERTIES_ARM: Self = Self(
@@ -28,26 +31,24 @@ impl PhysicalDeviceSchedulingControlsFlagBitsARM {
     pub const SHADER_CORE_COUNT: Self = Self(1 << 0);
     pub const DISPATCH_PARAMETERS: Self = Self(1 << 1);
 }
+pub const SPEC_VERSION: u32 = 2;
+pub const NAME: &CStr = c"VK_ARM_scheduling_controls";
 #[derive(Clone)]
 pub struct DeviceFn {
-    pub cmd_set_dispatch_parameters: crate::vk::PFN_vkCmdSetDispatchParametersARM,
+    pub cmd_set_dispatch_parameters: vk::PFN_vkCmdSetDispatchParametersARM,
 }
 unsafe impl Send for DeviceFn {}
 unsafe impl Sync for DeviceFn {}
 impl DeviceFn {
-    pub fn load<F: FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void>(
-        mut f: F,
-    ) -> Self {
+    pub fn load<F: FnMut(&CStr) -> *const c_void>(mut f: F) -> Self {
         Self::load_erased(&mut f)
     }
-    fn load_erased(
-        _f: &mut dyn FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void,
-    ) -> Self {
+    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const c_void) -> Self {
         Self {
             cmd_set_dispatch_parameters: unsafe {
                 unsafe extern "system" fn cmd_set_dispatch_parameters(
-                    _: crate::vk::CommandBuffer,
-                    _: *const crate::vk::DispatchParametersARM<'_>,
+                    _: vk::CommandBuffer,
+                    _: *const vk::DispatchParametersARM<'_>,
                 ) {
                     panic!("unable to load vkCmdSetDispatchParametersARM")
                 }
@@ -86,33 +87,33 @@ impl Device {
     #[inline]
     pub unsafe fn cmd_set_dispatch_parameters(
         &self,
-        command_buffer: crate::vk::CommandBuffer,
-        dispatch_parameters: &crate::vk::DispatchParametersARM<'_>,
+        command_buffer: vk::CommandBuffer,
+        dispatch_parameters: &vk::DispatchParametersARM<'_>,
     ) {
         (self.fp.cmd_set_dispatch_parameters)(command_buffer, dispatch_parameters)
     }
 }
-pub const SPEC_VERSION: u32 = 2;
-pub const NAME: &core::ffi::CStr = c"VK_ARM_scheduling_controls";
 pub(crate) mod items {
+    use core::marker::PhantomData;
+    use crate::vk;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct DeviceQueueShaderCoreControlCreateInfoARM<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
         pub shader_core_count: u32,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for DeviceQueueShaderCoreControlCreateInfoARM<'_> {}
     unsafe impl Sync for DeviceQueueShaderCoreControlCreateInfoARM<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for DeviceQueueShaderCoreControlCreateInfoARM<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::DEVICE_QUEUE_SHADER_CORE_CONTROL_CREATE_INFO_ARM;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::DEVICE_QUEUE_SHADER_CORE_CONTROL_CREATE_INFO_ARM;
     }
-    unsafe impl<'a> crate::Extends<crate::vk::DeviceQueueCreateInfo<'_>>
+    unsafe impl<'a> crate::Extends<vk::DeviceQueueCreateInfo<'_>>
     for DeviceQueueShaderCoreControlCreateInfoARM<'a> {}
-    unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+    unsafe impl<'a> crate::Extends<vk::DeviceCreateInfo<'_>>
     for DeviceQueueShaderCoreControlCreateInfoARM<'a> {}
     impl<'a> Default for DeviceQueueShaderCoreControlCreateInfoARM<'a> {
         fn default() -> Self {
@@ -120,7 +121,7 @@ pub(crate) mod items {
                 s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
                 p_next: Default::default(),
                 shader_core_count: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
@@ -134,20 +135,20 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceSchedulingControlsFeaturesARM<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
-        pub scheduling_controls: crate::vk::Bool32,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub scheduling_controls: vk::Bool32,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for PhysicalDeviceSchedulingControlsFeaturesARM<'_> {}
     unsafe impl Sync for PhysicalDeviceSchedulingControlsFeaturesARM<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceSchedulingControlsFeaturesARM<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_SCHEDULING_CONTROLS_FEATURES_ARM;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PHYSICAL_DEVICE_SCHEDULING_CONTROLS_FEATURES_ARM;
     }
-    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+    unsafe impl<'a> crate::Extends<vk::PhysicalDeviceFeatures2<'_>>
     for PhysicalDeviceSchedulingControlsFeaturesARM<'a> {}
-    unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+    unsafe impl<'a> crate::Extends<vk::DeviceCreateInfo<'_>>
     for PhysicalDeviceSchedulingControlsFeaturesARM<'a> {}
     impl<'a> Default for PhysicalDeviceSchedulingControlsFeaturesARM<'a> {
         fn default() -> Self {
@@ -155,7 +156,7 @@ pub(crate) mod items {
                 s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
                 p_next: Default::default(),
                 scheduling_controls: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
@@ -169,18 +170,18 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceSchedulingControlsPropertiesARM<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
-        pub scheduling_controls_flags: crate::vk::PhysicalDeviceSchedulingControlsFlagsARM,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub scheduling_controls_flags: vk::PhysicalDeviceSchedulingControlsFlagsARM,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for PhysicalDeviceSchedulingControlsPropertiesARM<'_> {}
     unsafe impl Sync for PhysicalDeviceSchedulingControlsPropertiesARM<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceSchedulingControlsPropertiesARM<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_SCHEDULING_CONTROLS_PROPERTIES_ARM;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PHYSICAL_DEVICE_SCHEDULING_CONTROLS_PROPERTIES_ARM;
     }
-    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceProperties2<'_>>
+    unsafe impl<'a> crate::Extends<vk::PhysicalDeviceProperties2<'_>>
     for PhysicalDeviceSchedulingControlsPropertiesARM<'a> {}
     impl<'a> Default for PhysicalDeviceSchedulingControlsPropertiesARM<'a> {
         fn default() -> Self {
@@ -188,14 +189,14 @@ pub(crate) mod items {
                 s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
                 p_next: Default::default(),
                 scheduling_controls_flags: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
     impl<'a> PhysicalDeviceSchedulingControlsPropertiesARM<'a> {
         pub fn scheduling_controls_flags(
             mut self,
-            scheduling_controls_flags: crate::vk::PhysicalDeviceSchedulingControlsFlagsARM,
+            scheduling_controls_flags: vk::PhysicalDeviceSchedulingControlsFlagsARM,
         ) -> Self {
             self.scheduling_controls_flags = scheduling_controls_flags;
             self
@@ -205,12 +206,12 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceSchedulingControlsDispatchParametersPropertiesARM<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
         pub scheduling_controls_max_warps_count: u32,
         pub scheduling_controls_max_queued_batches_count: u32,
         pub scheduling_controls_max_work_group_batch_size: u32,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send
     for PhysicalDeviceSchedulingControlsDispatchParametersPropertiesARM<'_> {}
@@ -218,9 +219,9 @@ pub(crate) mod items {
     for PhysicalDeviceSchedulingControlsDispatchParametersPropertiesARM<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceSchedulingControlsDispatchParametersPropertiesARM<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_SCHEDULING_CONTROLS_DISPATCH_PARAMETERS_PROPERTIES_ARM;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PHYSICAL_DEVICE_SCHEDULING_CONTROLS_DISPATCH_PARAMETERS_PROPERTIES_ARM;
     }
-    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceProperties2<'_>>
+    unsafe impl<'a> crate::Extends<vk::PhysicalDeviceProperties2<'_>>
     for PhysicalDeviceSchedulingControlsDispatchParametersPropertiesARM<'a> {}
     impl<'a> Default
     for PhysicalDeviceSchedulingControlsDispatchParametersPropertiesARM<'a> {
@@ -231,7 +232,7 @@ pub(crate) mod items {
                 scheduling_controls_max_warps_count: Default::default(),
                 scheduling_controls_max_queued_batches_count: Default::default(),
                 scheduling_controls_max_work_group_batch_size: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
@@ -262,17 +263,17 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct DispatchParametersARM<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
         pub work_group_batch_size: u32,
         pub max_queued_work_group_batches: u32,
         pub max_warps_per_shader_core: u32,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for DispatchParametersARM<'_> {}
     unsafe impl Sync for DispatchParametersARM<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for DispatchParametersARM<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::DISPATCH_PARAMETERS_ARM;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::DISPATCH_PARAMETERS_ARM;
     }
     impl<'a> Default for DispatchParametersARM<'a> {
         fn default() -> Self {
@@ -282,7 +283,7 @@ pub(crate) mod items {
                 work_group_batch_size: Default::default(),
                 max_queued_work_group_batches: Default::default(),
                 max_warps_per_shader_core: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
@@ -406,8 +407,8 @@ pub(crate) mod items {
         }
     }
     pub type PFN_vkCmdSetDispatchParametersARM = unsafe extern "system" fn(
-        command_buffer: crate::vk::CommandBuffer,
-        p_dispatch_parameters: *const crate::vk::DispatchParametersARM<'_>,
+        command_buffer: vk::CommandBuffer,
+        p_dispatch_parameters: *const vk::DispatchParametersARM<'_>,
     );
 }
 pub use items::*;

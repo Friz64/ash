@@ -2,51 +2,55 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_map_memory_placed.html) · Extension `VK_EXT_map_memory_placed`
 #![doc(alias = "VK_EXT_map_memory_placed")]
+use crate::vk;
+use core::ffi::CStr;
 ///Provided by [VK_EXT_map_memory_placed](crate::ext::map_memory_placed)
-impl crate::vk::StructureType {
+impl vk::StructureType {
     pub const PHYSICAL_DEVICE_MAP_MEMORY_PLACED_FEATURES_EXT: Self = Self(1000272000);
     pub const PHYSICAL_DEVICE_MAP_MEMORY_PLACED_PROPERTIES_EXT: Self = Self(1000272001);
     pub const MEMORY_MAP_PLACED_INFO_EXT: Self = Self(1000272002);
 }
-///Provided by [VK_EXT_map_memory_placed](crate::ext::map_memory_placed)
-impl crate::vk::MemoryMapFlags {
-    pub const PLACED_EXT: Self = Self(crate::vk::MemoryMapFlagBits::PLACED_EXT.0);
+///Provided by [Vulkan 1.0](crate::vk1_0)
+impl vk::MemoryMapFlags {
+    pub const PLACED_EXT: Self = Self(vk::MemoryMapFlagBits::PLACED_EXT.0);
 }
-///Provided by [VK_EXT_map_memory_placed](crate::ext::map_memory_placed)
-impl crate::vk::MemoryMapFlagBits {
+///Provided by [Vulkan 1.0](crate::vk1_0)
+impl vk::MemoryMapFlagBits {
     pub const PLACED_EXT: Self = Self(1 << 0);
 }
-///Provided by [VK_EXT_map_memory_placed](crate::ext::map_memory_placed)
-impl crate::vk::MemoryUnmapFlags {
-    pub const RESERVE_EXT: Self = Self(crate::vk::MemoryUnmapFlagBits::RESERVE_EXT.0);
+///Provided by [Vulkan 1.4](crate::vk1_4)
+impl vk::MemoryUnmapFlags {
+    pub const RESERVE_EXT: Self = Self(vk::MemoryUnmapFlagBits::RESERVE_EXT.0);
 }
-///Provided by [VK_EXT_map_memory_placed](crate::ext::map_memory_placed)
-impl crate::vk::MemoryUnmapFlagBits {
+///Provided by [Vulkan 1.4](crate::vk1_4)
+impl vk::MemoryUnmapFlagBits {
     pub const RESERVE_EXT: Self = Self(1 << 0);
 }
 pub const SPEC_VERSION: u32 = 1;
-pub const NAME: &core::ffi::CStr = c"VK_EXT_map_memory_placed";
+pub const NAME: &CStr = c"VK_EXT_map_memory_placed";
 pub(crate) mod items {
+    use core::marker::PhantomData;
+    use crate::vk;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceMapMemoryPlacedFeaturesEXT<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
-        pub memory_map_placed: crate::vk::Bool32,
-        pub memory_map_range_placed: crate::vk::Bool32,
-        pub memory_unmap_reserve: crate::vk::Bool32,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub memory_map_placed: vk::Bool32,
+        pub memory_map_range_placed: vk::Bool32,
+        pub memory_unmap_reserve: vk::Bool32,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for PhysicalDeviceMapMemoryPlacedFeaturesEXT<'_> {}
     unsafe impl Sync for PhysicalDeviceMapMemoryPlacedFeaturesEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceMapMemoryPlacedFeaturesEXT<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_MAP_MEMORY_PLACED_FEATURES_EXT;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PHYSICAL_DEVICE_MAP_MEMORY_PLACED_FEATURES_EXT;
     }
-    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+    unsafe impl<'a> crate::Extends<vk::PhysicalDeviceFeatures2<'_>>
     for PhysicalDeviceMapMemoryPlacedFeaturesEXT<'a> {}
-    unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+    unsafe impl<'a> crate::Extends<vk::DeviceCreateInfo<'_>>
     for PhysicalDeviceMapMemoryPlacedFeaturesEXT<'a> {}
     impl<'a> Default for PhysicalDeviceMapMemoryPlacedFeaturesEXT<'a> {
         fn default() -> Self {
@@ -56,7 +60,7 @@ pub(crate) mod items {
                 memory_map_placed: Default::default(),
                 memory_map_range_placed: Default::default(),
                 memory_unmap_reserve: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
@@ -78,18 +82,18 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceMapMemoryPlacedPropertiesEXT<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
-        pub min_placed_memory_map_alignment: crate::vk::DeviceSize,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub min_placed_memory_map_alignment: vk::DeviceSize,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for PhysicalDeviceMapMemoryPlacedPropertiesEXT<'_> {}
     unsafe impl Sync for PhysicalDeviceMapMemoryPlacedPropertiesEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceMapMemoryPlacedPropertiesEXT<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_MAP_MEMORY_PLACED_PROPERTIES_EXT;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PHYSICAL_DEVICE_MAP_MEMORY_PLACED_PROPERTIES_EXT;
     }
-    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceProperties2<'_>>
+    unsafe impl<'a> crate::Extends<vk::PhysicalDeviceProperties2<'_>>
     for PhysicalDeviceMapMemoryPlacedPropertiesEXT<'a> {}
     impl<'a> Default for PhysicalDeviceMapMemoryPlacedPropertiesEXT<'a> {
         fn default() -> Self {
@@ -97,14 +101,14 @@ pub(crate) mod items {
                 s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
                 p_next: Default::default(),
                 min_placed_memory_map_alignment: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
     impl<'a> PhysicalDeviceMapMemoryPlacedPropertiesEXT<'a> {
         pub fn min_placed_memory_map_alignment(
             mut self,
-            min_placed_memory_map_alignment: crate::vk::DeviceSize,
+            min_placed_memory_map_alignment: vk::DeviceSize,
         ) -> Self {
             self.min_placed_memory_map_alignment = min_placed_memory_map_alignment;
             self
@@ -114,17 +118,17 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct MemoryMapPlacedInfoEXT<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *const core::ffi::c_void,
         pub p_placed_address: *mut core::ffi::c_void,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for MemoryMapPlacedInfoEXT<'_> {}
     unsafe impl Sync for MemoryMapPlacedInfoEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for MemoryMapPlacedInfoEXT<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::MEMORY_MAP_PLACED_INFO_EXT;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::MEMORY_MAP_PLACED_INFO_EXT;
     }
-    unsafe impl<'a> crate::Extends<crate::vk::MemoryMapInfo<'_>>
+    unsafe impl<'a> crate::Extends<vk::MemoryMapInfo<'_>>
     for MemoryMapPlacedInfoEXT<'a> {}
     impl<'a> Default for MemoryMapPlacedInfoEXT<'a> {
         fn default() -> Self {
@@ -132,7 +136,7 @@ pub(crate) mod items {
                 s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
                 p_next: Default::default(),
                 p_placed_address: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }

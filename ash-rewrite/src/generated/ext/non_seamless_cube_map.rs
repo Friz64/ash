@@ -2,43 +2,47 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_non_seamless_cube_map.html) · Extension `VK_EXT_non_seamless_cube_map`
 #![doc(alias = "VK_EXT_non_seamless_cube_map")]
+use crate::vk;
+use core::ffi::CStr;
 ///Provided by [VK_EXT_non_seamless_cube_map](crate::ext::non_seamless_cube_map)
-impl crate::vk::StructureType {
+impl vk::StructureType {
     pub const PHYSICAL_DEVICE_NON_SEAMLESS_CUBE_MAP_FEATURES_EXT: Self = Self(
         1000422000,
     );
 }
-///Provided by [VK_EXT_non_seamless_cube_map](crate::ext::non_seamless_cube_map)
-impl crate::vk::SamplerCreateFlags {
+///Provided by [Vulkan 1.0](crate::vk1_0)
+impl vk::SamplerCreateFlags {
     pub const NON_SEAMLESS_CUBE_MAP_EXT: Self = Self(
-        crate::vk::SamplerCreateFlagBits::NON_SEAMLESS_CUBE_MAP_EXT.0,
+        vk::SamplerCreateFlagBits::NON_SEAMLESS_CUBE_MAP_EXT.0,
     );
 }
-///Provided by [VK_EXT_non_seamless_cube_map](crate::ext::non_seamless_cube_map)
-impl crate::vk::SamplerCreateFlagBits {
+///Provided by [Vulkan 1.0](crate::vk1_0)
+impl vk::SamplerCreateFlagBits {
     pub const NON_SEAMLESS_CUBE_MAP_EXT: Self = Self(1 << 2);
 }
 pub const SPEC_VERSION: u32 = 1;
-pub const NAME: &core::ffi::CStr = c"VK_EXT_non_seamless_cube_map";
+pub const NAME: &CStr = c"VK_EXT_non_seamless_cube_map";
 pub(crate) mod items {
+    use core::marker::PhantomData;
+    use crate::vk;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceNonSeamlessCubeMapFeaturesEXT<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
-        pub non_seamless_cube_map: crate::vk::Bool32,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub non_seamless_cube_map: vk::Bool32,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for PhysicalDeviceNonSeamlessCubeMapFeaturesEXT<'_> {}
     unsafe impl Sync for PhysicalDeviceNonSeamlessCubeMapFeaturesEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceNonSeamlessCubeMapFeaturesEXT<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_NON_SEAMLESS_CUBE_MAP_FEATURES_EXT;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PHYSICAL_DEVICE_NON_SEAMLESS_CUBE_MAP_FEATURES_EXT;
     }
-    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+    unsafe impl<'a> crate::Extends<vk::PhysicalDeviceFeatures2<'_>>
     for PhysicalDeviceNonSeamlessCubeMapFeaturesEXT<'a> {}
-    unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+    unsafe impl<'a> crate::Extends<vk::DeviceCreateInfo<'_>>
     for PhysicalDeviceNonSeamlessCubeMapFeaturesEXT<'a> {}
     impl<'a> Default for PhysicalDeviceNonSeamlessCubeMapFeaturesEXT<'a> {
         fn default() -> Self {
@@ -46,7 +50,7 @@ pub(crate) mod items {
                 s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
                 p_next: Default::default(),
                 non_seamless_cube_map: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }

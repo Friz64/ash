@@ -1,17 +1,24 @@
 use super::{Code, Context};
-use crate::output::{CodeMap, Destination};
+use crate::output::{CodeMap, GlobExport, Import, OutputLocation};
 use analysis::{item::handle::Handle, name::TypeName, rust::RustTokens};
 use quote::quote;
 use tracing::{instrument, trace};
 
 impl Code for Handle {
-    #[instrument(skip(ctx))]
-    fn code(&self, ctx: &Context) -> CodeMap {
+    #[instrument(skip(ctx, codemap))]
+    fn code(&self, ctx: &Context, codemap: &mut CodeMap) {
         trace!("generating");
-        let name = ctx.type_tokens(self.name, false, None);
-        let ty = ctx.enumerator_tokens(self.object_type, TypeName::VK_OBJECT_TYPE, true);
+        let output = OutputLocation::primary_location(self.required_by, GlobExport::Yes);
+        let octx = codemap.octx(output, ctx);
+        let name = octx.type_tokens(self.name, false, None);
+        let ty = octx.enumerator_tokens(self.object_type, TypeName::VK_OBJECT_TYPE, true);
 
+        octx.insert_import(Import::CrateVk);
+        octx.insert_import(Import::CrateHandle);
+        octx.insert_import(Import::CoreFmt);
+        octx.insert_import(Import::DebugCoreFmt);
         let code = if self.dispatchable {
+            octx.insert_import(Import::CorePtr);
             quote! {
                 #[repr(transparent)]
                 #[derive(Eq, PartialEq, Ord, PartialOrd, Clone, Copy, Hash)]
@@ -23,8 +30,8 @@ impl Code for Handle {
                     }
                 }
 
-                impl crate::Handle for #name {
-                    const TYPE: crate::vk::ObjectType = #ty;
+                impl Handle for #name {
+                    const TYPE: vk::ObjectType = #ty;
 
                     fn as_raw(self) -> u64 {
                         self.0 as u64
@@ -40,19 +47,20 @@ impl Code for Handle {
 
                 impl #name {
                     pub const fn null() -> Self {
-                        Self(::core::ptr::null_mut())
+                        Self(ptr::null_mut())
                     }
                 }
 
-                impl core::fmt::Pointer for #name {
-                    fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
-                        core::fmt::Pointer::fmt(&self.0, f)
+                impl fmt::Pointer for #name {
+                    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+                        fmt::Pointer::fmt(&self.0, f)
                     }
                 }
 
-                impl core::fmt::Debug for #name {
-                    fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
-                        core::fmt::Debug::fmt(&self.0, f)
+                #[cfg(feature = "debug")]
+                impl fmtdebug::Debug for #name {
+                    fn fmt(&self, f: &mut fmtdebug::Formatter) -> fmtdebug::Result {
+                        fmtdebug::Debug::fmt(&self.0, f)
                     }
                 }
             }
@@ -62,8 +70,8 @@ impl Code for Handle {
                 #[derive(Eq, PartialEq, Ord, PartialOrd, Clone, Copy, Hash, Default)]
                 pub struct #name(u64);
 
-                impl crate::Handle for #name {
-                    const TYPE: crate::vk::ObjectType = #ty;
+                impl Handle for #name {
+                    const TYPE: vk::ObjectType = #ty;
 
                     fn as_raw(self) -> u64 {
                         self.0
@@ -80,20 +88,21 @@ impl Code for Handle {
                     }
                 }
 
-                impl core::fmt::Pointer for #name {
-                    fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+                impl fmt::Pointer for #name {
+                    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
                         write!(f, "0x{:x}", self.0)
                     }
                 }
 
-                impl core::fmt::Debug for #name {
-                    fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+                #[cfg(feature = "debug")]
+                impl fmtdebug::Debug for #name {
+                    fn fmt(&self, f: &mut fmtdebug::Formatter) -> fmtdebug::Result {
                         write!(f, "0x{:x}", self.0)
                     }
                 }
             }
         };
 
-        CodeMap::new(Destination::primary_location(self.required_by), code)
+        octx.insert_tokens(code)
     }
 }

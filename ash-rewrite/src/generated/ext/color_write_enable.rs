@@ -2,36 +2,37 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_color_write_enable.html) · Extension `VK_EXT_color_write_enable`
 #![doc(alias = "VK_EXT_color_write_enable")]
+use crate::vk;
+use core::ffi::CStr;
+use core::ffi::c_void;
 ///Provided by [VK_EXT_color_write_enable](crate::ext::color_write_enable)
-impl crate::vk::StructureType {
+impl vk::StructureType {
     pub const PHYSICAL_DEVICE_COLOR_WRITE_ENABLE_FEATURES_EXT: Self = Self(1000381000);
     pub const PIPELINE_COLOR_WRITE_CREATE_INFO_EXT: Self = Self(1000381001);
 }
 ///Provided by [VK_EXT_color_write_enable](crate::ext::color_write_enable)
-impl crate::vk::DynamicState {
+impl vk::DynamicState {
     pub const COLOR_WRITE_ENABLE_EXT: Self = Self(1000381000);
 }
+pub const SPEC_VERSION: u32 = 1;
+pub const NAME: &CStr = c"VK_EXT_color_write_enable";
 #[derive(Clone)]
 pub struct DeviceFn {
-    pub cmd_set_color_write_enable: crate::vk::PFN_vkCmdSetColorWriteEnableEXT,
+    pub cmd_set_color_write_enable: vk::PFN_vkCmdSetColorWriteEnableEXT,
 }
 unsafe impl Send for DeviceFn {}
 unsafe impl Sync for DeviceFn {}
 impl DeviceFn {
-    pub fn load<F: FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void>(
-        mut f: F,
-    ) -> Self {
+    pub fn load<F: FnMut(&CStr) -> *const c_void>(mut f: F) -> Self {
         Self::load_erased(&mut f)
     }
-    fn load_erased(
-        _f: &mut dyn FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void,
-    ) -> Self {
+    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const c_void) -> Self {
         Self {
             cmd_set_color_write_enable: unsafe {
                 unsafe extern "system" fn cmd_set_color_write_enable(
-                    _: crate::vk::CommandBuffer,
+                    _: vk::CommandBuffer,
                     _: u32,
-                    _: *const crate::vk::Bool32,
+                    _: *const vk::Bool32,
                 ) {
                     panic!("unable to load vkCmdSetColorWriteEnableEXT")
                 }
@@ -70,8 +71,8 @@ impl Device {
     #[inline]
     pub unsafe fn cmd_set_color_write_enable(
         &self,
-        command_buffer: crate::vk::CommandBuffer,
-        color_write_enables: &[crate::vk::Bool32],
+        command_buffer: vk::CommandBuffer,
+        color_write_enables: &[vk::Bool32],
     ) {
         (self
             .fp
@@ -82,27 +83,27 @@ impl Device {
         )
     }
 }
-pub const SPEC_VERSION: u32 = 1;
-pub const NAME: &core::ffi::CStr = c"VK_EXT_color_write_enable";
 pub(crate) mod items {
+    use core::marker::PhantomData;
+    use crate::vk;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceColorWriteEnableFeaturesEXT<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
-        pub color_write_enable: crate::vk::Bool32,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub color_write_enable: vk::Bool32,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for PhysicalDeviceColorWriteEnableFeaturesEXT<'_> {}
     unsafe impl Sync for PhysicalDeviceColorWriteEnableFeaturesEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceColorWriteEnableFeaturesEXT<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_COLOR_WRITE_ENABLE_FEATURES_EXT;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PHYSICAL_DEVICE_COLOR_WRITE_ENABLE_FEATURES_EXT;
     }
-    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+    unsafe impl<'a> crate::Extends<vk::PhysicalDeviceFeatures2<'_>>
     for PhysicalDeviceColorWriteEnableFeaturesEXT<'a> {}
-    unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+    unsafe impl<'a> crate::Extends<vk::DeviceCreateInfo<'_>>
     for PhysicalDeviceColorWriteEnableFeaturesEXT<'a> {}
     impl<'a> Default for PhysicalDeviceColorWriteEnableFeaturesEXT<'a> {
         fn default() -> Self {
@@ -110,7 +111,7 @@ pub(crate) mod items {
                 s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
                 p_next: Default::default(),
                 color_write_enable: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
@@ -124,18 +125,18 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct PipelineColorWriteCreateInfoEXT<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *const core::ffi::c_void,
         pub attachment_count: u32,
-        pub p_color_write_enables: *const crate::vk::Bool32,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub p_color_write_enables: *const vk::Bool32,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for PipelineColorWriteCreateInfoEXT<'_> {}
     unsafe impl Sync for PipelineColorWriteCreateInfoEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for PipelineColorWriteCreateInfoEXT<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PIPELINE_COLOR_WRITE_CREATE_INFO_EXT;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PIPELINE_COLOR_WRITE_CREATE_INFO_EXT;
     }
-    unsafe impl<'a> crate::Extends<crate::vk::PipelineColorBlendStateCreateInfo<'_>>
+    unsafe impl<'a> crate::Extends<vk::PipelineColorBlendStateCreateInfo<'_>>
     for PipelineColorWriteCreateInfoEXT<'a> {}
     impl<'a> Default for PipelineColorWriteCreateInfoEXT<'a> {
         fn default() -> Self {
@@ -144,14 +145,14 @@ pub(crate) mod items {
                 p_next: Default::default(),
                 attachment_count: Default::default(),
                 p_color_write_enables: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
     impl<'a> PipelineColorWriteCreateInfoEXT<'a> {
         pub fn color_write_enables(
             mut self,
-            color_write_enables: &'a [crate::vk::Bool32],
+            color_write_enables: &'a [vk::Bool32],
         ) -> Self {
             self.attachment_count = color_write_enables.len() as _;
             self.p_color_write_enables = color_write_enables.as_ptr();
@@ -159,9 +160,9 @@ pub(crate) mod items {
         }
     }
     pub type PFN_vkCmdSetColorWriteEnableEXT = unsafe extern "system" fn(
-        command_buffer: crate::vk::CommandBuffer,
+        command_buffer: vk::CommandBuffer,
         attachment_count: u32,
-        p_color_write_enables: *const crate::vk::Bool32,
+        p_color_write_enables: *const vk::Bool32,
     );
 }
 pub use items::*;

@@ -2,55 +2,54 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_dynamic_rendering.html) · Extension `VK_KHR_dynamic_rendering`
 #![doc(alias = "VK_KHR_dynamic_rendering")]
+use crate::vk;
+use core::ffi::CStr;
+use core::ffi::c_void;
 ///Provided by [VK_KHR_dynamic_rendering](crate::khr::dynamic_rendering)
-impl crate::vk::AttachmentStoreOp {
+impl vk::AttachmentStoreOp {
     pub const NONE_KHR: Self = Self::NONE;
 }
 ///Provided by [VK_KHR_dynamic_rendering](crate::khr::dynamic_rendering)
-impl crate::vk::StructureType {
+impl vk::StructureType {
     pub const RENDERING_INFO_KHR: Self = Self::RENDERING_INFO;
     pub const RENDERING_ATTACHMENT_INFO_KHR: Self = Self::RENDERING_ATTACHMENT_INFO;
     pub const PIPELINE_RENDERING_CREATE_INFO_KHR: Self = Self::PIPELINE_RENDERING_CREATE_INFO;
     pub const PHYSICAL_DEVICE_DYNAMIC_RENDERING_FEATURES_KHR: Self = Self::PHYSICAL_DEVICE_DYNAMIC_RENDERING_FEATURES;
     pub const COMMAND_BUFFER_INHERITANCE_RENDERING_INFO_KHR: Self = Self::COMMAND_BUFFER_INHERITANCE_RENDERING_INFO;
 }
-///Provided by [VK_KHR_dynamic_rendering](crate::khr::dynamic_rendering)
-impl crate::vk::RenderingFlags {
+///Provided by [Vulkan 1.3](crate::vk1_3)
+impl vk::RenderingFlags {
     pub const CONTENTS_SECONDARY_COMMAND_BUFFERS_KHR: Self = Self(
-        crate::vk::RenderingFlagBits::CONTENTS_SECONDARY_COMMAND_BUFFERS_KHR.0,
+        vk::RenderingFlagBits::CONTENTS_SECONDARY_COMMAND_BUFFERS_KHR.0,
     );
-    pub const SUSPENDING_KHR: Self = Self(
-        crate::vk::RenderingFlagBits::SUSPENDING_KHR.0,
-    );
-    pub const RESUMING_KHR: Self = Self(crate::vk::RenderingFlagBits::RESUMING_KHR.0);
+    pub const SUSPENDING_KHR: Self = Self(vk::RenderingFlagBits::SUSPENDING_KHR.0);
+    pub const RESUMING_KHR: Self = Self(vk::RenderingFlagBits::RESUMING_KHR.0);
 }
-///Provided by [VK_KHR_dynamic_rendering](crate::khr::dynamic_rendering)
-impl crate::vk::RenderingFlagBits {
+///Provided by [Vulkan 1.3](crate::vk1_3)
+impl vk::RenderingFlagBits {
     pub const CONTENTS_SECONDARY_COMMAND_BUFFERS_KHR: Self = Self::CONTENTS_SECONDARY_COMMAND_BUFFERS;
     pub const SUSPENDING_KHR: Self = Self::SUSPENDING;
     pub const RESUMING_KHR: Self = Self::RESUMING;
 }
+pub const SPEC_VERSION: u32 = 1;
+pub const NAME: &CStr = c"VK_KHR_dynamic_rendering";
 #[derive(Clone)]
 pub struct DeviceFn {
-    pub cmd_begin_rendering: crate::vk::PFN_vkCmdBeginRenderingKHR,
-    pub cmd_end_rendering: crate::vk::PFN_vkCmdEndRenderingKHR,
+    pub cmd_begin_rendering: vk::PFN_vkCmdBeginRenderingKHR,
+    pub cmd_end_rendering: vk::PFN_vkCmdEndRenderingKHR,
 }
 unsafe impl Send for DeviceFn {}
 unsafe impl Sync for DeviceFn {}
 impl DeviceFn {
-    pub fn load<F: FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void>(
-        mut f: F,
-    ) -> Self {
+    pub fn load<F: FnMut(&CStr) -> *const c_void>(mut f: F) -> Self {
         Self::load_erased(&mut f)
     }
-    fn load_erased(
-        _f: &mut dyn FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void,
-    ) -> Self {
+    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const c_void) -> Self {
         Self {
             cmd_begin_rendering: unsafe {
                 unsafe extern "system" fn cmd_begin_rendering(
-                    _: crate::vk::CommandBuffer,
-                    _: *const crate::vk::RenderingInfo<'_>,
+                    _: vk::CommandBuffer,
+                    _: *const vk::RenderingInfo<'_>,
                 ) {
                     panic!("unable to load vkCmdBeginRenderingKHR")
                 }
@@ -62,9 +61,7 @@ impl DeviceFn {
                 }
             },
             cmd_end_rendering: unsafe {
-                unsafe extern "system" fn cmd_end_rendering(
-                    _: crate::vk::CommandBuffer,
-                ) {
+                unsafe extern "system" fn cmd_end_rendering(_: vk::CommandBuffer) {
                     panic!("unable to load vkCmdEndRenderingKHR")
                 }
                 let val = _f(c"vkCmdEndRenderingKHR");
@@ -102,34 +99,31 @@ impl Device {
     #[inline]
     pub unsafe fn cmd_begin_rendering(
         &self,
-        command_buffer: crate::vk::CommandBuffer,
-        rendering_info: &crate::vk::RenderingInfo<'_>,
+        command_buffer: vk::CommandBuffer,
+        rendering_info: &vk::RenderingInfo<'_>,
     ) {
         (self.fp.cmd_begin_rendering)(command_buffer, rendering_info)
     }
     ///vkCmdEndRendering
     #[inline]
-    pub unsafe fn cmd_end_rendering(&self, command_buffer: crate::vk::CommandBuffer) {
+    pub unsafe fn cmd_end_rendering(&self, command_buffer: vk::CommandBuffer) {
         (self.fp.cmd_end_rendering)(command_buffer)
     }
 }
-pub const SPEC_VERSION: u32 = 1;
-pub const NAME: &core::ffi::CStr = c"VK_KHR_dynamic_rendering";
 pub(crate) mod items {
-    pub type PipelineRenderingCreateInfoKHR<'a> = crate::vk::PipelineRenderingCreateInfo<
+    use crate::vk;
+    pub type PipelineRenderingCreateInfoKHR<'a> = vk::PipelineRenderingCreateInfo<'a>;
+    pub type RenderingInfoKHR<'a> = vk::RenderingInfo<'a>;
+    pub type RenderingAttachmentInfoKHR<'a> = vk::RenderingAttachmentInfo<'a>;
+    pub type PhysicalDeviceDynamicRenderingFeaturesKHR<'a> = vk::PhysicalDeviceDynamicRenderingFeatures<
         'a,
     >;
-    pub type RenderingInfoKHR<'a> = crate::vk::RenderingInfo<'a>;
-    pub type RenderingAttachmentInfoKHR<'a> = crate::vk::RenderingAttachmentInfo<'a>;
-    pub type PhysicalDeviceDynamicRenderingFeaturesKHR<'a> = crate::vk::PhysicalDeviceDynamicRenderingFeatures<
+    pub type CommandBufferInheritanceRenderingInfoKHR<'a> = vk::CommandBufferInheritanceRenderingInfo<
         'a,
     >;
-    pub type CommandBufferInheritanceRenderingInfoKHR<'a> = crate::vk::CommandBufferInheritanceRenderingInfo<
-        'a,
-    >;
-    pub type RenderingFlagBitsKHR = crate::vk::RenderingFlagBits;
-    pub type RenderingFlagsKHR = crate::vk::RenderingFlags;
-    pub type PFN_vkCmdBeginRenderingKHR = crate::vk::PFN_vkCmdBeginRendering;
-    pub type PFN_vkCmdEndRenderingKHR = crate::vk::PFN_vkCmdEndRendering;
+    pub type RenderingFlagBitsKHR = vk::RenderingFlagBits;
+    pub type RenderingFlagsKHR = vk::RenderingFlags;
+    pub type PFN_vkCmdBeginRenderingKHR = vk::PFN_vkCmdBeginRendering;
+    pub type PFN_vkCmdEndRenderingKHR = vk::PFN_vkCmdEndRendering;
 }
 pub use items::*;

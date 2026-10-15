@@ -2,35 +2,39 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_QCOM_filter_cubic_clamp.html) · Extension `VK_QCOM_filter_cubic_clamp`
 #![doc(alias = "VK_QCOM_filter_cubic_clamp")]
+use crate::vk;
+use core::ffi::CStr;
 ///Provided by [VK_QCOM_filter_cubic_clamp](crate::qcom::filter_cubic_clamp)
-impl crate::vk::StructureType {
+impl vk::StructureType {
     pub const PHYSICAL_DEVICE_CUBIC_CLAMP_FEATURES_QCOM: Self = Self(1000521000);
 }
 ///Provided by [VK_QCOM_filter_cubic_clamp](crate::qcom::filter_cubic_clamp)
-impl crate::vk::SamplerReductionMode {
+impl vk::SamplerReductionMode {
     pub const WEIGHTED_AVERAGE_RANGECLAMP_QCOM: Self = Self(1000521000);
 }
 pub const SPEC_VERSION: u32 = 1;
-pub const NAME: &core::ffi::CStr = c"VK_QCOM_filter_cubic_clamp";
+pub const NAME: &CStr = c"VK_QCOM_filter_cubic_clamp";
 pub(crate) mod items {
+    use core::marker::PhantomData;
+    use crate::vk;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceCubicClampFeaturesQCOM<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
-        pub cubic_range_clamp: crate::vk::Bool32,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub cubic_range_clamp: vk::Bool32,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for PhysicalDeviceCubicClampFeaturesQCOM<'_> {}
     unsafe impl Sync for PhysicalDeviceCubicClampFeaturesQCOM<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceCubicClampFeaturesQCOM<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_CUBIC_CLAMP_FEATURES_QCOM;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PHYSICAL_DEVICE_CUBIC_CLAMP_FEATURES_QCOM;
     }
-    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+    unsafe impl<'a> crate::Extends<vk::PhysicalDeviceFeatures2<'_>>
     for PhysicalDeviceCubicClampFeaturesQCOM<'a> {}
-    unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+    unsafe impl<'a> crate::Extends<vk::DeviceCreateInfo<'_>>
     for PhysicalDeviceCubicClampFeaturesQCOM<'a> {}
     impl<'a> Default for PhysicalDeviceCubicClampFeaturesQCOM<'a> {
         fn default() -> Self {
@@ -38,7 +42,7 @@ pub(crate) mod items {
                 s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
                 p_next: Default::default(),
                 cubic_range_clamp: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }

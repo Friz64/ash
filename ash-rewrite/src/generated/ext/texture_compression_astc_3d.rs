@@ -2,8 +2,10 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_texture_compression_astc_3d.html) · Extension `VK_EXT_texture_compression_astc_3d`
 #![doc(alias = "VK_EXT_texture_compression_astc_3d")]
+use crate::vk;
+use core::ffi::CStr;
 ///Provided by [VK_EXT_texture_compression_astc_3d](crate::ext::texture_compression_astc_3d)
-impl crate::vk::Format {
+impl vk::Format {
     pub const ASTC_3X3X3_UNORM_BLOCK_EXT: Self = Self(1000288000);
     pub const ASTC_3X3X3_SRGB_BLOCK_EXT: Self = Self(1000288001);
     pub const ASTC_3X3X3_SFLOAT_BLOCK_EXT: Self = Self(1000288002);
@@ -36,32 +38,34 @@ impl crate::vk::Format {
     pub const ASTC_6X6X6_SFLOAT_BLOCK_EXT: Self = Self(1000288029);
 }
 ///Provided by [VK_EXT_texture_compression_astc_3d](crate::ext::texture_compression_astc_3d)
-impl crate::vk::StructureType {
+impl vk::StructureType {
     pub const PHYSICAL_DEVICE_TEXTURE_COMPRESSION_ASTC_3D_FEATURES_EXT: Self = Self(
         1000288000,
     );
 }
 pub const SPEC_VERSION: u32 = 1;
-pub const NAME: &core::ffi::CStr = c"VK_EXT_texture_compression_astc_3d";
+pub const NAME: &CStr = c"VK_EXT_texture_compression_astc_3d";
 pub(crate) mod items {
+    use core::marker::PhantomData;
+    use crate::vk;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceTextureCompressionASTC3DFeaturesEXT<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
-        pub texture_compression_astc_3d: crate::vk::Bool32,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub texture_compression_astc_3d: vk::Bool32,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for PhysicalDeviceTextureCompressionASTC3DFeaturesEXT<'_> {}
     unsafe impl Sync for PhysicalDeviceTextureCompressionASTC3DFeaturesEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceTextureCompressionASTC3DFeaturesEXT<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_TEXTURE_COMPRESSION_ASTC_3D_FEATURES_EXT;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PHYSICAL_DEVICE_TEXTURE_COMPRESSION_ASTC_3D_FEATURES_EXT;
     }
-    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+    unsafe impl<'a> crate::Extends<vk::PhysicalDeviceFeatures2<'_>>
     for PhysicalDeviceTextureCompressionASTC3DFeaturesEXT<'a> {}
-    unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+    unsafe impl<'a> crate::Extends<vk::DeviceCreateInfo<'_>>
     for PhysicalDeviceTextureCompressionASTC3DFeaturesEXT<'a> {}
     impl<'a> Default for PhysicalDeviceTextureCompressionASTC3DFeaturesEXT<'a> {
         fn default() -> Self {
@@ -69,7 +73,7 @@ pub(crate) mod items {
                 s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
                 p_next: Default::default(),
                 texture_compression_astc_3d: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }

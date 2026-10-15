@@ -2,8 +2,12 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_ARM_data_graph_instruction_set_tosa.html) · Extension `VK_ARM_data_graph_instruction_set_tosa`
 #![doc(alias = "VK_ARM_data_graph_instruction_set_tosa")]
+use crate::vk;
+use core::ffi::CStr;
+use crate::VkResult;
+use core::ffi::c_void;
 ///Provided by [VK_ARM_data_graph_instruction_set_tosa](crate::arm::data_graph_instruction_set_tosa)
-impl crate::vk::StructureType {
+impl vk::StructureType {
     pub const QUEUE_FAMILY_DATA_GRAPH_TOSA_PROPERTIES_ARM: Self = Self(1000508000);
 }
 ///Provided by [VK_ARM_data_graph_instruction_set_tosa](crate::arm::data_graph_instruction_set_tosa)
@@ -25,29 +29,27 @@ impl DataGraphTOSAQualityFlagBitsARM {
     pub const EXPERIMENTAL: Self = Self(1 << 2);
     pub const DEPRECATED: Self = Self(1 << 3);
 }
+pub const SPEC_VERSION: u32 = 1;
+pub const NAME: &CStr = c"VK_ARM_data_graph_instruction_set_tosa";
 #[derive(Clone)]
 pub struct InstanceFn {
-    pub get_physical_device_queue_family_data_graph_engine_operation_properties: crate::vk::PFN_vkGetPhysicalDeviceQueueFamilyDataGraphEngineOperationPropertiesARM,
+    pub get_physical_device_queue_family_data_graph_engine_operation_properties: vk::PFN_vkGetPhysicalDeviceQueueFamilyDataGraphEngineOperationPropertiesARM,
 }
 unsafe impl Send for InstanceFn {}
 unsafe impl Sync for InstanceFn {}
 impl InstanceFn {
-    pub fn load<F: FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void>(
-        mut f: F,
-    ) -> Self {
+    pub fn load<F: FnMut(&CStr) -> *const c_void>(mut f: F) -> Self {
         Self::load_erased(&mut f)
     }
-    fn load_erased(
-        _f: &mut dyn FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void,
-    ) -> Self {
+    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const c_void) -> Self {
         Self {
             get_physical_device_queue_family_data_graph_engine_operation_properties: unsafe {
                 unsafe extern "system" fn get_physical_device_queue_family_data_graph_engine_operation_properties(
-                    _: crate::vk::PhysicalDevice,
+                    _: vk::PhysicalDevice,
                     _: u32,
-                    _: *const crate::vk::QueueFamilyDataGraphPropertiesARM<'_>,
-                    _: *mut crate::vk::BaseOutStructure<'_>,
-                ) -> crate::vk::Result {
+                    _: *const vk::QueueFamilyDataGraphPropertiesARM<'_>,
+                    _: *mut vk::BaseOutStructure<'_>,
+                ) -> vk::Result {
                     panic!(
                         "unable to load vkGetPhysicalDeviceQueueFamilyDataGraphEngineOperationPropertiesARM"
                     )
@@ -89,12 +91,10 @@ impl Instance {
     #[inline]
     pub unsafe fn get_physical_device_queue_family_data_graph_engine_operation_properties(
         &self,
-        physical_device: crate::vk::PhysicalDevice,
+        physical_device: vk::PhysicalDevice,
         queue_family_index: u32,
-        queue_family_data_graph_properties: &crate::vk::QueueFamilyDataGraphPropertiesARM<
-            '_,
-        >,
-    ) -> crate::VkResult<crate::vk::BaseOutStructure<'_>> {
+        queue_family_data_graph_properties: &vk::QueueFamilyDataGraphPropertiesARM<'_>,
+    ) -> VkResult<vk::BaseOutStructure<'_>> {
         let mut properties = core::mem::MaybeUninit::uninit();
         (self
             .fp
@@ -107,14 +107,16 @@ impl Instance {
             .assume_init_on_success(properties)
     }
 }
-pub const SPEC_VERSION: u32 = 1;
-pub const NAME: &core::ffi::CStr = c"VK_ARM_data_graph_instruction_set_tosa";
 pub(crate) mod items {
+    use crate::vk;
+    use core::ffi::CStr;
+    use core::ffi;
+    use core::marker::PhantomData;
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct DataGraphTOSANameQualityARM {
-        pub name: [core::ffi::c_char; crate::vk::MAX_DATA_GRAPH_TOSA_NAME_SIZE_ARM as _],
-        pub quality_flags: crate::vk::DataGraphTOSAQualityFlagsARM,
+        pub name: [core::ffi::c_char; vk::MAX_DATA_GRAPH_TOSA_NAME_SIZE_ARM as _],
+        pub quality_flags: vk::DataGraphTOSAQualityFlagsARM,
     }
     unsafe impl Send for DataGraphTOSANameQualityARM {}
     unsafe impl Sync for DataGraphTOSANameQualityARM {}
@@ -138,18 +140,18 @@ pub(crate) mod items {
     impl DataGraphTOSANameQualityARM {
         pub fn name(
             mut self,
-            name: &core::ffi::CStr,
+            name: &CStr,
         ) -> core::result::Result<Self, crate::CStrTooLargeForStaticArray> {
             crate::write_c_str_slice_with_nul(&mut self.name, name).map(|_| self)
         }
         pub fn name_as_c_str(
             &self,
-        ) -> core::result::Result<&core::ffi::CStr, core::ffi::FromBytesUntilNulError> {
+        ) -> core::result::Result<&CStr, ffi::FromBytesUntilNulError> {
             crate::wrap_c_str_slice_until_nul(&self.name)
         }
         pub fn quality_flags(
             mut self,
-            quality_flags: crate::vk::DataGraphTOSAQualityFlagsARM,
+            quality_flags: vk::DataGraphTOSAQualityFlagsARM,
         ) -> Self {
             self.quality_flags = quality_flags;
             self
@@ -159,20 +161,20 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct QueueFamilyDataGraphTOSAPropertiesARM<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
         pub profile_count: u32,
-        pub p_profiles: *const crate::vk::DataGraphTOSANameQualityARM,
+        pub p_profiles: *const vk::DataGraphTOSANameQualityARM,
         pub extension_count: u32,
-        pub p_extensions: *const crate::vk::DataGraphTOSANameQualityARM,
-        pub level: crate::vk::DataGraphTOSALevelARM,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub p_extensions: *const vk::DataGraphTOSANameQualityARM,
+        pub level: vk::DataGraphTOSALevelARM,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for QueueFamilyDataGraphTOSAPropertiesARM<'_> {}
     unsafe impl Sync for QueueFamilyDataGraphTOSAPropertiesARM<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for QueueFamilyDataGraphTOSAPropertiesARM<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::QUEUE_FAMILY_DATA_GRAPH_TOSA_PROPERTIES_ARM;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::QUEUE_FAMILY_DATA_GRAPH_TOSA_PROPERTIES_ARM;
     }
     impl<'a> Default for QueueFamilyDataGraphTOSAPropertiesARM<'a> {
         fn default() -> Self {
@@ -184,14 +186,14 @@ pub(crate) mod items {
                 extension_count: Default::default(),
                 p_extensions: Default::default(),
                 level: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
     impl<'a> QueueFamilyDataGraphTOSAPropertiesARM<'a> {
         pub fn profiles(
             mut self,
-            profiles: &'a [crate::vk::DataGraphTOSANameQualityARM],
+            profiles: &'a [vk::DataGraphTOSANameQualityARM],
         ) -> Self {
             self.profile_count = profiles.len() as _;
             self.p_profiles = profiles.as_ptr();
@@ -199,13 +201,13 @@ pub(crate) mod items {
         }
         pub fn extensions(
             mut self,
-            extensions: &'a [crate::vk::DataGraphTOSANameQualityARM],
+            extensions: &'a [vk::DataGraphTOSANameQualityARM],
         ) -> Self {
             self.extension_count = extensions.len() as _;
             self.p_extensions = extensions.as_ptr();
             self
         }
-        pub fn level(mut self, level: crate::vk::DataGraphTOSALevelARM) -> Self {
+        pub fn level(mut self, level: vk::DataGraphTOSALevelARM) -> Self {
             self.level = level;
             self
         }
@@ -339,13 +341,13 @@ pub(crate) mod items {
         }
     }
     pub type PFN_vkGetPhysicalDeviceQueueFamilyDataGraphEngineOperationPropertiesARM = unsafe extern "system" fn(
-        physical_device: crate::vk::PhysicalDevice,
+        physical_device: vk::PhysicalDevice,
         queue_family_index: u32,
-        p_queue_family_data_graph_properties: *const crate::vk::QueueFamilyDataGraphPropertiesARM<
+        p_queue_family_data_graph_properties: *const vk::QueueFamilyDataGraphPropertiesARM<
             '_,
         >,
-        p_properties: *mut crate::vk::BaseOutStructure<'_>,
-    ) -> crate::vk::Result;
+        p_properties: *mut vk::BaseOutStructure<'_>,
+    ) -> vk::Result;
     pub const MAX_DATA_GRAPH_TOSA_NAME_SIZE_ARM: u32 = 128;
 }
 pub use items::*;

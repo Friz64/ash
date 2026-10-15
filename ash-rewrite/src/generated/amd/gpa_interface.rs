@@ -2,8 +2,12 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_AMD_gpa_interface.html) · Extension `VK_AMD_gpa_interface`
 #![doc(alias = "VK_AMD_gpa_interface")]
+use crate::vk;
+use core::ffi::CStr;
+use crate::VkResult;
+use core::ffi::c_void;
 ///Provided by [VK_AMD_gpa_interface](crate::amd::gpa_interface)
-impl crate::vk::StructureType {
+impl vk::StructureType {
     pub const PHYSICAL_DEVICE_GPA_FEATURES_AMD: Self = Self(1000133000);
     pub const PHYSICAL_DEVICE_GPA_PROPERTIES_AMD: Self = Self(1000133001);
     pub const GPA_SAMPLE_BEGIN_INFO_AMD: Self = Self(1000133002);
@@ -13,7 +17,7 @@ impl crate::vk::StructureType {
     pub const GPA_DEVICE_GET_CLOCK_INFO_AMD: Self = Self(1000133006);
 }
 ///Provided by [VK_AMD_gpa_interface](crate::amd::gpa_interface)
-impl crate::vk::ObjectType {
+impl vk::ObjectType {
     pub const GPA_SESSION_AMD: Self = Self(1000133000);
 }
 ///Provided by [VK_AMD_gpa_interface](crate::amd::gpa_interface)
@@ -113,40 +117,38 @@ impl GpaSqShaderStageFlagBitsAMD {
     pub const LS: Self = Self(1 << 5);
     pub const CS: Self = Self(1 << 6);
 }
+pub const SPEC_VERSION: u32 = 1;
+pub const NAME: &CStr = c"VK_AMD_gpa_interface";
 #[derive(Clone)]
 pub struct DeviceFn {
-    pub create_gpa_session: crate::vk::PFN_vkCreateGpaSessionAMD,
-    pub destroy_gpa_session: crate::vk::PFN_vkDestroyGpaSessionAMD,
-    pub set_gpa_device_clock_mode: crate::vk::PFN_vkSetGpaDeviceClockModeAMD,
-    pub get_gpa_device_clock_info: crate::vk::PFN_vkGetGpaDeviceClockInfoAMD,
-    pub cmd_begin_gpa_session: crate::vk::PFN_vkCmdBeginGpaSessionAMD,
-    pub cmd_end_gpa_session: crate::vk::PFN_vkCmdEndGpaSessionAMD,
-    pub cmd_begin_gpa_sample: crate::vk::PFN_vkCmdBeginGpaSampleAMD,
-    pub cmd_end_gpa_sample: crate::vk::PFN_vkCmdEndGpaSampleAMD,
-    pub get_gpa_session_status: crate::vk::PFN_vkGetGpaSessionStatusAMD,
-    pub get_gpa_session_results: crate::vk::PFN_vkGetGpaSessionResultsAMD,
-    pub reset_gpa_session: crate::vk::PFN_vkResetGpaSessionAMD,
-    pub cmd_copy_gpa_session_results: crate::vk::PFN_vkCmdCopyGpaSessionResultsAMD,
+    pub create_gpa_session: vk::PFN_vkCreateGpaSessionAMD,
+    pub destroy_gpa_session: vk::PFN_vkDestroyGpaSessionAMD,
+    pub set_gpa_device_clock_mode: vk::PFN_vkSetGpaDeviceClockModeAMD,
+    pub get_gpa_device_clock_info: vk::PFN_vkGetGpaDeviceClockInfoAMD,
+    pub cmd_begin_gpa_session: vk::PFN_vkCmdBeginGpaSessionAMD,
+    pub cmd_end_gpa_session: vk::PFN_vkCmdEndGpaSessionAMD,
+    pub cmd_begin_gpa_sample: vk::PFN_vkCmdBeginGpaSampleAMD,
+    pub cmd_end_gpa_sample: vk::PFN_vkCmdEndGpaSampleAMD,
+    pub get_gpa_session_status: vk::PFN_vkGetGpaSessionStatusAMD,
+    pub get_gpa_session_results: vk::PFN_vkGetGpaSessionResultsAMD,
+    pub reset_gpa_session: vk::PFN_vkResetGpaSessionAMD,
+    pub cmd_copy_gpa_session_results: vk::PFN_vkCmdCopyGpaSessionResultsAMD,
 }
 unsafe impl Send for DeviceFn {}
 unsafe impl Sync for DeviceFn {}
 impl DeviceFn {
-    pub fn load<F: FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void>(
-        mut f: F,
-    ) -> Self {
+    pub fn load<F: FnMut(&CStr) -> *const c_void>(mut f: F) -> Self {
         Self::load_erased(&mut f)
     }
-    fn load_erased(
-        _f: &mut dyn FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void,
-    ) -> Self {
+    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const c_void) -> Self {
         Self {
             create_gpa_session: unsafe {
                 unsafe extern "system" fn create_gpa_session(
-                    _: crate::vk::Device,
-                    _: *const crate::vk::GpaSessionCreateInfoAMD<'_>,
-                    _: *const crate::vk::AllocationCallbacks<'_>,
-                    _: *mut crate::vk::GpaSessionAMD,
-                ) -> crate::vk::Result {
+                    _: vk::Device,
+                    _: *const vk::GpaSessionCreateInfoAMD<'_>,
+                    _: *const vk::AllocationCallbacks<'_>,
+                    _: *mut vk::GpaSessionAMD,
+                ) -> vk::Result {
                     panic!("unable to load vkCreateGpaSessionAMD")
                 }
                 let val = _f(c"vkCreateGpaSessionAMD");
@@ -158,9 +160,9 @@ impl DeviceFn {
             },
             destroy_gpa_session: unsafe {
                 unsafe extern "system" fn destroy_gpa_session(
-                    _: crate::vk::Device,
-                    _: crate::vk::GpaSessionAMD,
-                    _: *const crate::vk::AllocationCallbacks<'_>,
+                    _: vk::Device,
+                    _: vk::GpaSessionAMD,
+                    _: *const vk::AllocationCallbacks<'_>,
                 ) {
                     panic!("unable to load vkDestroyGpaSessionAMD")
                 }
@@ -173,9 +175,9 @@ impl DeviceFn {
             },
             set_gpa_device_clock_mode: unsafe {
                 unsafe extern "system" fn set_gpa_device_clock_mode(
-                    _: crate::vk::Device,
-                    _: *mut crate::vk::GpaDeviceClockModeInfoAMD<'_>,
-                ) -> crate::vk::Result {
+                    _: vk::Device,
+                    _: *mut vk::GpaDeviceClockModeInfoAMD<'_>,
+                ) -> vk::Result {
                     panic!("unable to load vkSetGpaDeviceClockModeAMD")
                 }
                 let val = _f(c"vkSetGpaDeviceClockModeAMD");
@@ -187,9 +189,9 @@ impl DeviceFn {
             },
             get_gpa_device_clock_info: unsafe {
                 unsafe extern "system" fn get_gpa_device_clock_info(
-                    _: crate::vk::Device,
-                    _: *mut crate::vk::GpaDeviceGetClockInfoAMD<'_>,
-                ) -> crate::vk::Result {
+                    _: vk::Device,
+                    _: *mut vk::GpaDeviceGetClockInfoAMD<'_>,
+                ) -> vk::Result {
                     panic!("unable to load vkGetGpaDeviceClockInfoAMD")
                 }
                 let val = _f(c"vkGetGpaDeviceClockInfoAMD");
@@ -201,9 +203,9 @@ impl DeviceFn {
             },
             cmd_begin_gpa_session: unsafe {
                 unsafe extern "system" fn cmd_begin_gpa_session(
-                    _: crate::vk::CommandBuffer,
-                    _: crate::vk::GpaSessionAMD,
-                ) -> crate::vk::Result {
+                    _: vk::CommandBuffer,
+                    _: vk::GpaSessionAMD,
+                ) -> vk::Result {
                     panic!("unable to load vkCmdBeginGpaSessionAMD")
                 }
                 let val = _f(c"vkCmdBeginGpaSessionAMD");
@@ -215,9 +217,9 @@ impl DeviceFn {
             },
             cmd_end_gpa_session: unsafe {
                 unsafe extern "system" fn cmd_end_gpa_session(
-                    _: crate::vk::CommandBuffer,
-                    _: crate::vk::GpaSessionAMD,
-                ) -> crate::vk::Result {
+                    _: vk::CommandBuffer,
+                    _: vk::GpaSessionAMD,
+                ) -> vk::Result {
                     panic!("unable to load vkCmdEndGpaSessionAMD")
                 }
                 let val = _f(c"vkCmdEndGpaSessionAMD");
@@ -229,11 +231,11 @@ impl DeviceFn {
             },
             cmd_begin_gpa_sample: unsafe {
                 unsafe extern "system" fn cmd_begin_gpa_sample(
-                    _: crate::vk::CommandBuffer,
-                    _: crate::vk::GpaSessionAMD,
-                    _: *const crate::vk::GpaSampleBeginInfoAMD<'_>,
+                    _: vk::CommandBuffer,
+                    _: vk::GpaSessionAMD,
+                    _: *const vk::GpaSampleBeginInfoAMD<'_>,
                     _: *mut u32,
-                ) -> crate::vk::Result {
+                ) -> vk::Result {
                     panic!("unable to load vkCmdBeginGpaSampleAMD")
                 }
                 let val = _f(c"vkCmdBeginGpaSampleAMD");
@@ -245,8 +247,8 @@ impl DeviceFn {
             },
             cmd_end_gpa_sample: unsafe {
                 unsafe extern "system" fn cmd_end_gpa_sample(
-                    _: crate::vk::CommandBuffer,
-                    _: crate::vk::GpaSessionAMD,
+                    _: vk::CommandBuffer,
+                    _: vk::GpaSessionAMD,
                     _: u32,
                 ) {
                     panic!("unable to load vkCmdEndGpaSampleAMD")
@@ -260,9 +262,9 @@ impl DeviceFn {
             },
             get_gpa_session_status: unsafe {
                 unsafe extern "system" fn get_gpa_session_status(
-                    _: crate::vk::Device,
-                    _: crate::vk::GpaSessionAMD,
-                ) -> crate::vk::Result {
+                    _: vk::Device,
+                    _: vk::GpaSessionAMD,
+                ) -> vk::Result {
                     panic!("unable to load vkGetGpaSessionStatusAMD")
                 }
                 let val = _f(c"vkGetGpaSessionStatusAMD");
@@ -274,12 +276,12 @@ impl DeviceFn {
             },
             get_gpa_session_results: unsafe {
                 unsafe extern "system" fn get_gpa_session_results(
-                    _: crate::vk::Device,
-                    _: crate::vk::GpaSessionAMD,
+                    _: vk::Device,
+                    _: vk::GpaSessionAMD,
                     _: u32,
                     _: *mut usize,
                     _: *mut core::ffi::c_void,
-                ) -> crate::vk::Result {
+                ) -> vk::Result {
                     panic!("unable to load vkGetGpaSessionResultsAMD")
                 }
                 let val = _f(c"vkGetGpaSessionResultsAMD");
@@ -291,9 +293,9 @@ impl DeviceFn {
             },
             reset_gpa_session: unsafe {
                 unsafe extern "system" fn reset_gpa_session(
-                    _: crate::vk::Device,
-                    _: crate::vk::GpaSessionAMD,
-                ) -> crate::vk::Result {
+                    _: vk::Device,
+                    _: vk::GpaSessionAMD,
+                ) -> vk::Result {
                     panic!("unable to load vkResetGpaSessionAMD")
                 }
                 let val = _f(c"vkResetGpaSessionAMD");
@@ -305,8 +307,8 @@ impl DeviceFn {
             },
             cmd_copy_gpa_session_results: unsafe {
                 unsafe extern "system" fn cmd_copy_gpa_session_results(
-                    _: crate::vk::CommandBuffer,
-                    _: crate::vk::GpaSessionAMD,
+                    _: vk::CommandBuffer,
+                    _: vk::GpaSessionAMD,
                 ) {
                     panic!("unable to load vkCmdCopyGpaSessionResultsAMD")
                 }
@@ -345,9 +347,9 @@ impl Device {
     #[inline]
     pub unsafe fn create_gpa_session(
         &self,
-        create_info: &crate::vk::GpaSessionCreateInfoAMD<'_>,
-        allocator: Option<&crate::vk::AllocationCallbacks<'_>>,
-    ) -> crate::VkResult<crate::vk::GpaSessionAMD> {
+        create_info: &vk::GpaSessionCreateInfoAMD<'_>,
+        allocator: Option<&vk::AllocationCallbacks<'_>>,
+    ) -> VkResult<vk::GpaSessionAMD> {
         let mut gpa_session = core::mem::MaybeUninit::uninit();
         (self
             .fp
@@ -366,8 +368,8 @@ impl Device {
     #[inline]
     pub unsafe fn destroy_gpa_session(
         &self,
-        gpa_session: crate::vk::GpaSessionAMD,
-        allocator: Option<&crate::vk::AllocationCallbacks<'_>>,
+        gpa_session: vk::GpaSessionAMD,
+        allocator: Option<&vk::AllocationCallbacks<'_>>,
     ) {
         (self
             .fp
@@ -384,7 +386,7 @@ impl Device {
     #[inline]
     pub unsafe fn set_gpa_device_clock_mode(
         &self,
-    ) -> crate::VkResult<crate::vk::GpaDeviceClockModeInfoAMD<'_>> {
+    ) -> VkResult<vk::GpaDeviceClockModeInfoAMD<'_>> {
         let mut info = core::mem::MaybeUninit::uninit();
         (self.fp.set_gpa_device_clock_mode)(self.handle, info.as_mut_ptr())
             .assume_init_on_success(info)
@@ -393,7 +395,7 @@ impl Device {
     #[inline]
     pub unsafe fn get_gpa_device_clock_info(
         &self,
-    ) -> crate::VkResult<crate::vk::GpaDeviceGetClockInfoAMD<'_>> {
+    ) -> VkResult<vk::GpaDeviceGetClockInfoAMD<'_>> {
         let mut info = core::mem::MaybeUninit::uninit();
         (self.fp.get_gpa_device_clock_info)(self.handle, info.as_mut_ptr())
             .assume_init_on_success(info)
@@ -402,28 +404,28 @@ impl Device {
     #[inline]
     pub unsafe fn cmd_begin_gpa_session(
         &self,
-        command_buffer: crate::vk::CommandBuffer,
-        gpa_session: crate::vk::GpaSessionAMD,
-    ) -> crate::VkResult<()> {
+        command_buffer: vk::CommandBuffer,
+        gpa_session: vk::GpaSessionAMD,
+    ) -> VkResult<()> {
         (self.fp.cmd_begin_gpa_session)(command_buffer, gpa_session).result()
     }
     ///vkCmdEndGpaSessionAMD
     #[inline]
     pub unsafe fn cmd_end_gpa_session(
         &self,
-        command_buffer: crate::vk::CommandBuffer,
-        gpa_session: crate::vk::GpaSessionAMD,
-    ) -> crate::VkResult<()> {
+        command_buffer: vk::CommandBuffer,
+        gpa_session: vk::GpaSessionAMD,
+    ) -> VkResult<()> {
         (self.fp.cmd_end_gpa_session)(command_buffer, gpa_session).result()
     }
     ///vkCmdBeginGpaSampleAMD
     #[inline]
     pub unsafe fn cmd_begin_gpa_sample(
         &self,
-        command_buffer: crate::vk::CommandBuffer,
-        gpa_session: crate::vk::GpaSessionAMD,
-        gpa_sample_begin_info: &crate::vk::GpaSampleBeginInfoAMD<'_>,
-    ) -> crate::VkResult<u32> {
+        command_buffer: vk::CommandBuffer,
+        gpa_session: vk::GpaSessionAMD,
+        gpa_sample_begin_info: &vk::GpaSampleBeginInfoAMD<'_>,
+    ) -> VkResult<u32> {
         let mut sample_id = core::mem::MaybeUninit::uninit();
         (self
             .fp
@@ -439,8 +441,8 @@ impl Device {
     #[inline]
     pub unsafe fn cmd_end_gpa_sample(
         &self,
-        command_buffer: crate::vk::CommandBuffer,
-        gpa_session: crate::vk::GpaSessionAMD,
+        command_buffer: vk::CommandBuffer,
+        gpa_session: vk::GpaSessionAMD,
         sample_id: u32,
     ) {
         (self.fp.cmd_end_gpa_sample)(command_buffer, gpa_session, sample_id)
@@ -449,15 +451,15 @@ impl Device {
     #[inline]
     pub unsafe fn get_gpa_session_status(
         &self,
-        gpa_session: crate::vk::GpaSessionAMD,
-    ) -> crate::VkResult<()> {
+        gpa_session: vk::GpaSessionAMD,
+    ) -> VkResult<()> {
         (self.fp.get_gpa_session_status)(self.handle, gpa_session).result()
     }
     ///vkGetGpaSessionResultsAMD
     #[inline]
     pub unsafe fn get_gpa_session_results(
         &self,
-        gpa_session: crate::vk::GpaSessionAMD,
+        gpa_session: vk::GpaSessionAMD,
         sample_id: u32,
     ) -> crate::VkResult<Vec<core::ffi::c_void>> {
         crate::read_into_uninitialized_vector(|size_in_bytes, data| (self
@@ -474,29 +476,33 @@ impl Device {
     #[inline]
     pub unsafe fn reset_gpa_session(
         &self,
-        gpa_session: crate::vk::GpaSessionAMD,
-    ) -> crate::VkResult<()> {
+        gpa_session: vk::GpaSessionAMD,
+    ) -> VkResult<()> {
         (self.fp.reset_gpa_session)(self.handle, gpa_session).result()
     }
     ///vkCmdCopyGpaSessionResultsAMD
     #[inline]
     pub unsafe fn cmd_copy_gpa_session_results(
         &self,
-        command_buffer: crate::vk::CommandBuffer,
-        gpa_session: crate::vk::GpaSessionAMD,
+        command_buffer: vk::CommandBuffer,
+        gpa_session: vk::GpaSessionAMD,
     ) {
         (self.fp.cmd_copy_gpa_session_results)(command_buffer, gpa_session)
     }
 }
-pub const SPEC_VERSION: u32 = 1;
-pub const NAME: &core::ffi::CStr = c"VK_AMD_gpa_interface";
 pub(crate) mod items {
+    use crate::vk;
+    use core::marker::PhantomData;
+    use crate::Handle;
+    use core::fmt;
+    #[cfg(feature = "debug")]
+    use core::fmt as fmtdebug;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy, Default)]
     pub struct GpaPerfBlockPropertiesAMD {
-        pub block_type: crate::vk::GpaPerfBlockAMD,
-        pub flags: crate::vk::GpaPerfBlockPropertiesFlagsAMD,
+        pub block_type: vk::GpaPerfBlockAMD,
+        pub flags: vk::GpaPerfBlockPropertiesFlagsAMD,
         pub instance_count: u32,
         pub max_event_id: u32,
         pub max_global_only_counters: u32,
@@ -506,14 +512,11 @@ pub(crate) mod items {
     unsafe impl Send for GpaPerfBlockPropertiesAMD {}
     unsafe impl Sync for GpaPerfBlockPropertiesAMD {}
     impl GpaPerfBlockPropertiesAMD {
-        pub fn block_type(mut self, block_type: crate::vk::GpaPerfBlockAMD) -> Self {
+        pub fn block_type(mut self, block_type: vk::GpaPerfBlockAMD) -> Self {
             self.block_type = block_type;
             self
         }
-        pub fn flags(
-            mut self,
-            flags: crate::vk::GpaPerfBlockPropertiesFlagsAMD,
-        ) -> Self {
+        pub fn flags(mut self, flags: vk::GpaPerfBlockPropertiesFlagsAMD) -> Self {
             self.flags = flags;
             self
         }
@@ -548,22 +551,22 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceGpaFeaturesAMD<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
-        pub perf_counters: crate::vk::Bool32,
-        pub streaming_perf_counters: crate::vk::Bool32,
-        pub sq_thread_tracing: crate::vk::Bool32,
-        pub clock_modes: crate::vk::Bool32,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub perf_counters: vk::Bool32,
+        pub streaming_perf_counters: vk::Bool32,
+        pub sq_thread_tracing: vk::Bool32,
+        pub clock_modes: vk::Bool32,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for PhysicalDeviceGpaFeaturesAMD<'_> {}
     unsafe impl Sync for PhysicalDeviceGpaFeaturesAMD<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for PhysicalDeviceGpaFeaturesAMD<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_GPA_FEATURES_AMD;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PHYSICAL_DEVICE_GPA_FEATURES_AMD;
     }
-    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+    unsafe impl<'a> crate::Extends<vk::PhysicalDeviceFeatures2<'_>>
     for PhysicalDeviceGpaFeaturesAMD<'a> {}
-    unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+    unsafe impl<'a> crate::Extends<vk::DeviceCreateInfo<'_>>
     for PhysicalDeviceGpaFeaturesAMD<'a> {}
     impl<'a> Default for PhysicalDeviceGpaFeaturesAMD<'a> {
         fn default() -> Self {
@@ -574,7 +577,7 @@ pub(crate) mod items {
                 streaming_perf_counters: Default::default(),
                 sq_thread_tracing: Default::default(),
                 clock_modes: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
@@ -600,21 +603,21 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceGpaPropertiesAMD<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
-        pub flags: crate::vk::PhysicalDeviceGpaPropertiesFlagsAMD,
-        pub max_sqtt_se_buffer_size: crate::vk::DeviceSize,
+        pub flags: vk::PhysicalDeviceGpaPropertiesFlagsAMD,
+        pub max_sqtt_se_buffer_size: vk::DeviceSize,
         pub shader_engine_count: u32,
         pub perf_block_count: u32,
-        pub p_perf_blocks: *mut crate::vk::GpaPerfBlockPropertiesAMD,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub p_perf_blocks: *mut vk::GpaPerfBlockPropertiesAMD,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for PhysicalDeviceGpaPropertiesAMD<'_> {}
     unsafe impl Sync for PhysicalDeviceGpaPropertiesAMD<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for PhysicalDeviceGpaPropertiesAMD<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_GPA_PROPERTIES_AMD;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PHYSICAL_DEVICE_GPA_PROPERTIES_AMD;
     }
-    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceProperties2<'_>>
+    unsafe impl<'a> crate::Extends<vk::PhysicalDeviceProperties2<'_>>
     for PhysicalDeviceGpaPropertiesAMD<'a> {}
     impl<'a> Default for PhysicalDeviceGpaPropertiesAMD<'a> {
         fn default() -> Self {
@@ -626,21 +629,18 @@ pub(crate) mod items {
                 shader_engine_count: Default::default(),
                 perf_block_count: Default::default(),
                 p_perf_blocks: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
     impl<'a> PhysicalDeviceGpaPropertiesAMD<'a> {
-        pub fn flags(
-            mut self,
-            flags: crate::vk::PhysicalDeviceGpaPropertiesFlagsAMD,
-        ) -> Self {
+        pub fn flags(mut self, flags: vk::PhysicalDeviceGpaPropertiesFlagsAMD) -> Self {
             self.flags = flags;
             self
         }
         pub fn max_sqtt_se_buffer_size(
             mut self,
-            max_sqtt_se_buffer_size: crate::vk::DeviceSize,
+            max_sqtt_se_buffer_size: vk::DeviceSize,
         ) -> Self {
             self.max_sqtt_se_buffer_size = max_sqtt_se_buffer_size;
             self
@@ -651,7 +651,7 @@ pub(crate) mod items {
         }
         pub fn perf_blocks(
             mut self,
-            perf_blocks: &'a mut [crate::vk::GpaPerfBlockPropertiesAMD],
+            perf_blocks: &'a mut [vk::GpaPerfBlockPropertiesAMD],
         ) -> Self {
             self.perf_block_count = perf_blocks.len() as _;
             self.p_perf_blocks = perf_blocks.as_mut_ptr();
@@ -662,17 +662,17 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceGpaProperties2AMD<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
         pub revision_id: u32,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for PhysicalDeviceGpaProperties2AMD<'_> {}
     unsafe impl Sync for PhysicalDeviceGpaProperties2AMD<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for PhysicalDeviceGpaProperties2AMD<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_GPA_PROPERTIES_2_AMD;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PHYSICAL_DEVICE_GPA_PROPERTIES_2_AMD;
     }
-    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceProperties2<'_>>
+    unsafe impl<'a> crate::Extends<vk::PhysicalDeviceProperties2<'_>>
     for PhysicalDeviceGpaProperties2AMD<'a> {}
     impl<'a> Default for PhysicalDeviceGpaProperties2AMD<'a> {
         fn default() -> Self {
@@ -680,7 +680,7 @@ pub(crate) mod items {
                 s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
                 p_next: Default::default(),
                 revision_id: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
@@ -694,14 +694,14 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy, Default)]
     pub struct GpaPerfCounterAMD {
-        pub block_type: crate::vk::GpaPerfBlockAMD,
+        pub block_type: vk::GpaPerfBlockAMD,
         pub block_instance: u32,
         pub event_id: u32,
     }
     unsafe impl Send for GpaPerfCounterAMD {}
     unsafe impl Sync for GpaPerfCounterAMD {}
     impl GpaPerfCounterAMD {
-        pub fn block_type(mut self, block_type: crate::vk::GpaPerfBlockAMD) -> Self {
+        pub fn block_type(mut self, block_type: vk::GpaPerfBlockAMD) -> Self {
             self.block_type = block_type;
             self
         }
@@ -718,28 +718,28 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct GpaSampleBeginInfoAMD<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *const core::ffi::c_void,
-        pub sample_type: crate::vk::GpaSampleTypeAMD,
-        pub sample_internal_operations: crate::vk::Bool32,
-        pub cache_flush_on_counter_collection: crate::vk::Bool32,
-        pub sq_shader_mask_enable: crate::vk::Bool32,
-        pub sq_shader_mask: crate::vk::GpaSqShaderStageFlagsAMD,
+        pub sample_type: vk::GpaSampleTypeAMD,
+        pub sample_internal_operations: vk::Bool32,
+        pub cache_flush_on_counter_collection: vk::Bool32,
+        pub sq_shader_mask_enable: vk::Bool32,
+        pub sq_shader_mask: vk::GpaSqShaderStageFlagsAMD,
         pub perf_counter_count: u32,
-        pub p_perf_counters: *const crate::vk::GpaPerfCounterAMD,
+        pub p_perf_counters: *const vk::GpaPerfCounterAMD,
         pub streaming_perf_trace_sample_interval: u32,
-        pub perf_counter_device_memory_limit: crate::vk::DeviceSize,
-        pub sq_thread_trace_enable: crate::vk::Bool32,
-        pub sq_thread_trace_suppress_instruction_tokens: crate::vk::Bool32,
-        pub sq_thread_trace_device_memory_limit: crate::vk::DeviceSize,
-        pub timing_pre_sample: crate::vk::PipelineStageFlags,
-        pub timing_post_sample: crate::vk::PipelineStageFlags,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub perf_counter_device_memory_limit: vk::DeviceSize,
+        pub sq_thread_trace_enable: vk::Bool32,
+        pub sq_thread_trace_suppress_instruction_tokens: vk::Bool32,
+        pub sq_thread_trace_device_memory_limit: vk::DeviceSize,
+        pub timing_pre_sample: vk::PipelineStageFlags,
+        pub timing_post_sample: vk::PipelineStageFlags,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for GpaSampleBeginInfoAMD<'_> {}
     unsafe impl Sync for GpaSampleBeginInfoAMD<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for GpaSampleBeginInfoAMD<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::GPA_SAMPLE_BEGIN_INFO_AMD;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::GPA_SAMPLE_BEGIN_INFO_AMD;
     }
     impl<'a> Default for GpaSampleBeginInfoAMD<'a> {
         fn default() -> Self {
@@ -760,12 +760,12 @@ pub(crate) mod items {
                 sq_thread_trace_device_memory_limit: Default::default(),
                 timing_pre_sample: Default::default(),
                 timing_post_sample: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
     impl<'a> GpaSampleBeginInfoAMD<'a> {
-        pub fn sample_type(mut self, sample_type: crate::vk::GpaSampleTypeAMD) -> Self {
+        pub fn sample_type(mut self, sample_type: vk::GpaSampleTypeAMD) -> Self {
             self.sample_type = sample_type;
             self
         }
@@ -790,14 +790,14 @@ pub(crate) mod items {
         }
         pub fn sq_shader_mask(
             mut self,
-            sq_shader_mask: crate::vk::GpaSqShaderStageFlagsAMD,
+            sq_shader_mask: vk::GpaSqShaderStageFlagsAMD,
         ) -> Self {
             self.sq_shader_mask = sq_shader_mask;
             self
         }
         pub fn perf_counters(
             mut self,
-            perf_counters: &'a [crate::vk::GpaPerfCounterAMD],
+            perf_counters: &'a [vk::GpaPerfCounterAMD],
         ) -> Self {
             self.perf_counter_count = perf_counters.len() as _;
             self.p_perf_counters = perf_counters.as_ptr();
@@ -812,7 +812,7 @@ pub(crate) mod items {
         }
         pub fn perf_counter_device_memory_limit(
             mut self,
-            perf_counter_device_memory_limit: crate::vk::DeviceSize,
+            perf_counter_device_memory_limit: vk::DeviceSize,
         ) -> Self {
             self.perf_counter_device_memory_limit = perf_counter_device_memory_limit;
             self
@@ -831,21 +831,21 @@ pub(crate) mod items {
         }
         pub fn sq_thread_trace_device_memory_limit(
             mut self,
-            sq_thread_trace_device_memory_limit: crate::vk::DeviceSize,
+            sq_thread_trace_device_memory_limit: vk::DeviceSize,
         ) -> Self {
             self.sq_thread_trace_device_memory_limit = sq_thread_trace_device_memory_limit;
             self
         }
         pub fn timing_pre_sample(
             mut self,
-            timing_pre_sample: crate::vk::PipelineStageFlags,
+            timing_pre_sample: vk::PipelineStageFlags,
         ) -> Self {
             self.timing_pre_sample = timing_pre_sample;
             self
         }
         pub fn timing_post_sample(
             mut self,
-            timing_post_sample: crate::vk::PipelineStageFlags,
+            timing_post_sample: vk::PipelineStageFlags,
         ) -> Self {
             self.timing_post_sample = timing_post_sample;
             self
@@ -855,17 +855,17 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct GpaDeviceClockModeInfoAMD<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *const core::ffi::c_void,
-        pub clock_mode: crate::vk::GpaDeviceClockModeAMD,
+        pub clock_mode: vk::GpaDeviceClockModeAMD,
         pub memory_clock_ratio_to_peak: core::ffi::c_float,
         pub engine_clock_ratio_to_peak: core::ffi::c_float,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for GpaDeviceClockModeInfoAMD<'_> {}
     unsafe impl Sync for GpaDeviceClockModeInfoAMD<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for GpaDeviceClockModeInfoAMD<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::GPA_DEVICE_CLOCK_MODE_INFO_AMD;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::GPA_DEVICE_CLOCK_MODE_INFO_AMD;
     }
     impl<'a> Default for GpaDeviceClockModeInfoAMD<'a> {
         fn default() -> Self {
@@ -875,15 +875,12 @@ pub(crate) mod items {
                 clock_mode: Default::default(),
                 memory_clock_ratio_to_peak: Default::default(),
                 engine_clock_ratio_to_peak: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
     impl<'a> GpaDeviceClockModeInfoAMD<'a> {
-        pub fn clock_mode(
-            mut self,
-            clock_mode: crate::vk::GpaDeviceClockModeAMD,
-        ) -> Self {
+        pub fn clock_mode(mut self, clock_mode: vk::GpaDeviceClockModeAMD) -> Self {
             self.clock_mode = clock_mode;
             self
         }
@@ -906,18 +903,18 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct GpaDeviceGetClockInfoAMD<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
         pub memory_clock_ratio_to_peak: core::ffi::c_float,
         pub engine_clock_ratio_to_peak: core::ffi::c_float,
         pub memory_clock_frequency: u32,
         pub engine_clock_frequency: u32,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for GpaDeviceGetClockInfoAMD<'_> {}
     unsafe impl Sync for GpaDeviceGetClockInfoAMD<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for GpaDeviceGetClockInfoAMD<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::GPA_DEVICE_GET_CLOCK_INFO_AMD;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::GPA_DEVICE_GET_CLOCK_INFO_AMD;
     }
     impl<'a> Default for GpaDeviceGetClockInfoAMD<'a> {
         fn default() -> Self {
@@ -928,7 +925,7 @@ pub(crate) mod items {
                 engine_clock_ratio_to_peak: Default::default(),
                 memory_clock_frequency: Default::default(),
                 engine_clock_frequency: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
@@ -960,15 +957,15 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct GpaSessionCreateInfoAMD<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *const core::ffi::c_void,
-        pub secondary_copy_source: crate::vk::GpaSessionAMD,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub secondary_copy_source: vk::GpaSessionAMD,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for GpaSessionCreateInfoAMD<'_> {}
     unsafe impl Sync for GpaSessionCreateInfoAMD<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for GpaSessionCreateInfoAMD<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::GPA_SESSION_CREATE_INFO_AMD;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::GPA_SESSION_CREATE_INFO_AMD;
     }
     impl<'a> Default for GpaSessionCreateInfoAMD<'a> {
         fn default() -> Self {
@@ -976,14 +973,14 @@ pub(crate) mod items {
                 s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
                 p_next: Default::default(),
                 secondary_copy_source: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
     impl<'a> GpaSessionCreateInfoAMD<'a> {
         pub fn secondary_copy_source(
             mut self,
-            secondary_copy_source: crate::vk::GpaSessionAMD,
+            secondary_copy_source: vk::GpaSessionAMD,
         ) -> Self {
             self.secondary_copy_source = secondary_copy_source;
             self
@@ -1373,8 +1370,8 @@ pub(crate) mod items {
     #[repr(transparent)]
     #[derive(Eq, PartialEq, Ord, PartialOrd, Clone, Copy, Hash, Default)]
     pub struct GpaSessionAMD(u64);
-    impl crate::Handle for GpaSessionAMD {
-        const TYPE: crate::vk::ObjectType = crate::vk::ObjectType::GPA_SESSION_AMD;
+    impl Handle for GpaSessionAMD {
+        const TYPE: vk::ObjectType = vk::ObjectType::GPA_SESSION_AMD;
         fn as_raw(self) -> u64 {
             self.0
         }
@@ -1387,72 +1384,73 @@ pub(crate) mod items {
             Self(0)
         }
     }
-    impl core::fmt::Pointer for GpaSessionAMD {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+    impl fmt::Pointer for GpaSessionAMD {
+        fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
             write!(f, "0x{:x}", self.0)
         }
     }
-    impl core::fmt::Debug for GpaSessionAMD {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+    #[cfg(feature = "debug")]
+    impl fmtdebug::Debug for GpaSessionAMD {
+        fn fmt(&self, f: &mut fmtdebug::Formatter) -> fmtdebug::Result {
             write!(f, "0x{:x}", self.0)
         }
     }
     pub type PFN_vkCreateGpaSessionAMD = unsafe extern "system" fn(
-        device: crate::vk::Device,
-        p_create_info: *const crate::vk::GpaSessionCreateInfoAMD<'_>,
-        p_allocator: *const crate::vk::AllocationCallbacks<'_>,
-        p_gpa_session: *mut crate::vk::GpaSessionAMD,
-    ) -> crate::vk::Result;
+        device: vk::Device,
+        p_create_info: *const vk::GpaSessionCreateInfoAMD<'_>,
+        p_allocator: *const vk::AllocationCallbacks<'_>,
+        p_gpa_session: *mut vk::GpaSessionAMD,
+    ) -> vk::Result;
     pub type PFN_vkDestroyGpaSessionAMD = unsafe extern "system" fn(
-        device: crate::vk::Device,
-        gpa_session: crate::vk::GpaSessionAMD,
-        p_allocator: *const crate::vk::AllocationCallbacks<'_>,
+        device: vk::Device,
+        gpa_session: vk::GpaSessionAMD,
+        p_allocator: *const vk::AllocationCallbacks<'_>,
     );
     pub type PFN_vkSetGpaDeviceClockModeAMD = unsafe extern "system" fn(
-        device: crate::vk::Device,
-        p_info: *mut crate::vk::GpaDeviceClockModeInfoAMD<'_>,
-    ) -> crate::vk::Result;
+        device: vk::Device,
+        p_info: *mut vk::GpaDeviceClockModeInfoAMD<'_>,
+    ) -> vk::Result;
     pub type PFN_vkGetGpaDeviceClockInfoAMD = unsafe extern "system" fn(
-        device: crate::vk::Device,
-        p_info: *mut crate::vk::GpaDeviceGetClockInfoAMD<'_>,
-    ) -> crate::vk::Result;
+        device: vk::Device,
+        p_info: *mut vk::GpaDeviceGetClockInfoAMD<'_>,
+    ) -> vk::Result;
     pub type PFN_vkCmdBeginGpaSessionAMD = unsafe extern "system" fn(
-        command_buffer: crate::vk::CommandBuffer,
-        gpa_session: crate::vk::GpaSessionAMD,
-    ) -> crate::vk::Result;
+        command_buffer: vk::CommandBuffer,
+        gpa_session: vk::GpaSessionAMD,
+    ) -> vk::Result;
     pub type PFN_vkCmdEndGpaSessionAMD = unsafe extern "system" fn(
-        command_buffer: crate::vk::CommandBuffer,
-        gpa_session: crate::vk::GpaSessionAMD,
-    ) -> crate::vk::Result;
+        command_buffer: vk::CommandBuffer,
+        gpa_session: vk::GpaSessionAMD,
+    ) -> vk::Result;
     pub type PFN_vkCmdBeginGpaSampleAMD = unsafe extern "system" fn(
-        command_buffer: crate::vk::CommandBuffer,
-        gpa_session: crate::vk::GpaSessionAMD,
-        p_gpa_sample_begin_info: *const crate::vk::GpaSampleBeginInfoAMD<'_>,
+        command_buffer: vk::CommandBuffer,
+        gpa_session: vk::GpaSessionAMD,
+        p_gpa_sample_begin_info: *const vk::GpaSampleBeginInfoAMD<'_>,
         p_sample_id: *mut u32,
-    ) -> crate::vk::Result;
+    ) -> vk::Result;
     pub type PFN_vkCmdEndGpaSampleAMD = unsafe extern "system" fn(
-        command_buffer: crate::vk::CommandBuffer,
-        gpa_session: crate::vk::GpaSessionAMD,
+        command_buffer: vk::CommandBuffer,
+        gpa_session: vk::GpaSessionAMD,
         sample_id: u32,
     );
     pub type PFN_vkGetGpaSessionStatusAMD = unsafe extern "system" fn(
-        device: crate::vk::Device,
-        gpa_session: crate::vk::GpaSessionAMD,
-    ) -> crate::vk::Result;
+        device: vk::Device,
+        gpa_session: vk::GpaSessionAMD,
+    ) -> vk::Result;
     pub type PFN_vkGetGpaSessionResultsAMD = unsafe extern "system" fn(
-        device: crate::vk::Device,
-        gpa_session: crate::vk::GpaSessionAMD,
+        device: vk::Device,
+        gpa_session: vk::GpaSessionAMD,
         sample_id: u32,
         p_size_in_bytes: *mut usize,
         p_data: *mut core::ffi::c_void,
-    ) -> crate::vk::Result;
+    ) -> vk::Result;
     pub type PFN_vkResetGpaSessionAMD = unsafe extern "system" fn(
-        device: crate::vk::Device,
-        gpa_session: crate::vk::GpaSessionAMD,
-    ) -> crate::vk::Result;
+        device: vk::Device,
+        gpa_session: vk::GpaSessionAMD,
+    ) -> vk::Result;
     pub type PFN_vkCmdCopyGpaSessionResultsAMD = unsafe extern "system" fn(
-        command_buffer: crate::vk::CommandBuffer,
-        gpa_session: crate::vk::GpaSessionAMD,
+        command_buffer: vk::CommandBuffer,
+        gpa_session: vk::GpaSessionAMD,
     );
 }
 pub use items::*;

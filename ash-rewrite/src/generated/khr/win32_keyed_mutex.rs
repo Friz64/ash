@@ -2,37 +2,41 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_win32_keyed_mutex.html) · Extension `VK_KHR_win32_keyed_mutex`
 #![doc(alias = "VK_KHR_win32_keyed_mutex")]
+use crate::vk;
+use core::ffi::CStr;
 ///Provided by [VK_KHR_win32_keyed_mutex](crate::khr::win32_keyed_mutex)
-impl crate::vk::StructureType {
+impl vk::StructureType {
     pub const WIN32_KEYED_MUTEX_ACQUIRE_RELEASE_INFO_KHR: Self = Self(1000075000);
 }
 pub const SPEC_VERSION: u32 = 1;
-pub const NAME: &core::ffi::CStr = c"VK_KHR_win32_keyed_mutex";
+pub const NAME: &CStr = c"VK_KHR_win32_keyed_mutex";
 pub(crate) mod items {
+    use core::marker::PhantomData;
+    use crate::vk;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct Win32KeyedMutexAcquireReleaseInfoKHR<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *const core::ffi::c_void,
         pub acquire_count: u32,
-        pub p_acquire_syncs: *const crate::vk::DeviceMemory,
+        pub p_acquire_syncs: *const vk::DeviceMemory,
         pub p_acquire_keys: *const u64,
         pub p_acquire_timeouts: *const u32,
         pub release_count: u32,
-        pub p_release_syncs: *const crate::vk::DeviceMemory,
+        pub p_release_syncs: *const vk::DeviceMemory,
         pub p_release_keys: *const u64,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for Win32KeyedMutexAcquireReleaseInfoKHR<'_> {}
     unsafe impl Sync for Win32KeyedMutexAcquireReleaseInfoKHR<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for Win32KeyedMutexAcquireReleaseInfoKHR<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::WIN32_KEYED_MUTEX_ACQUIRE_RELEASE_INFO_KHR;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::WIN32_KEYED_MUTEX_ACQUIRE_RELEASE_INFO_KHR;
     }
-    unsafe impl<'a> crate::Extends<crate::vk::SubmitInfo<'_>>
+    unsafe impl<'a> crate::Extends<vk::SubmitInfo<'_>>
     for Win32KeyedMutexAcquireReleaseInfoKHR<'a> {}
-    unsafe impl<'a> crate::Extends<crate::vk::SubmitInfo2<'_>>
+    unsafe impl<'a> crate::Extends<vk::SubmitInfo2<'_>>
     for Win32KeyedMutexAcquireReleaseInfoKHR<'a> {}
     impl<'a> Default for Win32KeyedMutexAcquireReleaseInfoKHR<'a> {
         fn default() -> Self {
@@ -46,15 +50,12 @@ pub(crate) mod items {
                 release_count: Default::default(),
                 p_release_syncs: Default::default(),
                 p_release_keys: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
     impl<'a> Win32KeyedMutexAcquireReleaseInfoKHR<'a> {
-        pub fn acquire_syncs(
-            mut self,
-            acquire_syncs: &'a [crate::vk::DeviceMemory],
-        ) -> Self {
+        pub fn acquire_syncs(mut self, acquire_syncs: &'a [vk::DeviceMemory]) -> Self {
             self.acquire_count = acquire_syncs.len() as _;
             self.p_acquire_syncs = acquire_syncs.as_ptr();
             self
@@ -69,10 +70,7 @@ pub(crate) mod items {
             self.p_acquire_timeouts = acquire_timeouts.as_ptr();
             self
         }
-        pub fn release_syncs(
-            mut self,
-            release_syncs: &'a [crate::vk::DeviceMemory],
-        ) -> Self {
+        pub fn release_syncs(mut self, release_syncs: &'a [vk::DeviceMemory]) -> Self {
             self.release_count = release_syncs.len() as _;
             self.p_release_syncs = release_syncs.as_ptr();
             self

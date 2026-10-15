@@ -2,8 +2,12 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_timeline_semaphore.html) · Extension `VK_KHR_timeline_semaphore`
 #![doc(alias = "VK_KHR_timeline_semaphore")]
+use crate::vk;
+use core::ffi::CStr;
+use crate::VkResult;
+use core::ffi::c_void;
 ///Provided by [VK_KHR_timeline_semaphore](crate::khr::timeline_semaphore)
-impl crate::vk::StructureType {
+impl vk::StructureType {
     pub const PHYSICAL_DEVICE_TIMELINE_SEMAPHORE_FEATURES_KHR: Self = Self::PHYSICAL_DEVICE_TIMELINE_SEMAPHORE_FEATURES;
     pub const PHYSICAL_DEVICE_TIMELINE_SEMAPHORE_PROPERTIES_KHR: Self = Self::PHYSICAL_DEVICE_TIMELINE_SEMAPHORE_PROPERTIES;
     pub const SEMAPHORE_TYPE_CREATE_INFO_KHR: Self = Self::SEMAPHORE_TYPE_CREATE_INFO;
@@ -12,42 +16,40 @@ impl crate::vk::StructureType {
     pub const SEMAPHORE_SIGNAL_INFO_KHR: Self = Self::SEMAPHORE_SIGNAL_INFO;
 }
 ///Provided by [VK_KHR_timeline_semaphore](crate::khr::timeline_semaphore)
-impl crate::vk::SemaphoreType {
+impl vk::SemaphoreType {
     pub const BINARY_KHR: Self = Self::BINARY;
     pub const TIMELINE_KHR: Self = Self::TIMELINE;
 }
-///Provided by [VK_KHR_timeline_semaphore](crate::khr::timeline_semaphore)
-impl crate::vk::SemaphoreWaitFlags {
-    pub const ANY_KHR: Self = Self(crate::vk::SemaphoreWaitFlagBits::ANY_KHR.0);
+///Provided by [Vulkan 1.2](crate::vk1_2)
+impl vk::SemaphoreWaitFlags {
+    pub const ANY_KHR: Self = Self(vk::SemaphoreWaitFlagBits::ANY_KHR.0);
 }
-///Provided by [VK_KHR_timeline_semaphore](crate::khr::timeline_semaphore)
-impl crate::vk::SemaphoreWaitFlagBits {
+///Provided by [Vulkan 1.2](crate::vk1_2)
+impl vk::SemaphoreWaitFlagBits {
     pub const ANY_KHR: Self = Self::ANY;
 }
+pub const SPEC_VERSION: u32 = 2;
+pub const NAME: &CStr = c"VK_KHR_timeline_semaphore";
 #[derive(Clone)]
 pub struct DeviceFn {
-    pub get_semaphore_counter_value: crate::vk::PFN_vkGetSemaphoreCounterValueKHR,
-    pub wait_semaphores: crate::vk::PFN_vkWaitSemaphoresKHR,
-    pub signal_semaphore: crate::vk::PFN_vkSignalSemaphoreKHR,
+    pub get_semaphore_counter_value: vk::PFN_vkGetSemaphoreCounterValueKHR,
+    pub wait_semaphores: vk::PFN_vkWaitSemaphoresKHR,
+    pub signal_semaphore: vk::PFN_vkSignalSemaphoreKHR,
 }
 unsafe impl Send for DeviceFn {}
 unsafe impl Sync for DeviceFn {}
 impl DeviceFn {
-    pub fn load<F: FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void>(
-        mut f: F,
-    ) -> Self {
+    pub fn load<F: FnMut(&CStr) -> *const c_void>(mut f: F) -> Self {
         Self::load_erased(&mut f)
     }
-    fn load_erased(
-        _f: &mut dyn FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void,
-    ) -> Self {
+    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const c_void) -> Self {
         Self {
             get_semaphore_counter_value: unsafe {
                 unsafe extern "system" fn get_semaphore_counter_value(
-                    _: crate::vk::Device,
-                    _: crate::vk::Semaphore,
+                    _: vk::Device,
+                    _: vk::Semaphore,
                     _: *mut u64,
-                ) -> crate::vk::Result {
+                ) -> vk::Result {
                     panic!("unable to load vkGetSemaphoreCounterValueKHR")
                 }
                 let val = _f(c"vkGetSemaphoreCounterValueKHR");
@@ -59,10 +61,10 @@ impl DeviceFn {
             },
             wait_semaphores: unsafe {
                 unsafe extern "system" fn wait_semaphores(
-                    _: crate::vk::Device,
-                    _: *const crate::vk::SemaphoreWaitInfo<'_>,
+                    _: vk::Device,
+                    _: *const vk::SemaphoreWaitInfo<'_>,
                     _: u64,
-                ) -> crate::vk::Result {
+                ) -> vk::Result {
                     panic!("unable to load vkWaitSemaphoresKHR")
                 }
                 let val = _f(c"vkWaitSemaphoresKHR");
@@ -70,9 +72,9 @@ impl DeviceFn {
             },
             signal_semaphore: unsafe {
                 unsafe extern "system" fn signal_semaphore(
-                    _: crate::vk::Device,
-                    _: *const crate::vk::SemaphoreSignalInfo<'_>,
-                ) -> crate::vk::Result {
+                    _: vk::Device,
+                    _: *const vk::SemaphoreSignalInfo<'_>,
+                ) -> vk::Result {
                     panic!("unable to load vkSignalSemaphoreKHR")
                 }
                 let val = _f(c"vkSignalSemaphoreKHR");
@@ -110,8 +112,8 @@ impl Device {
     #[inline]
     pub unsafe fn get_semaphore_counter_value(
         &self,
-        semaphore: crate::vk::Semaphore,
-    ) -> crate::VkResult<u64> {
+        semaphore: vk::Semaphore,
+    ) -> VkResult<u64> {
         let mut value = core::mem::MaybeUninit::uninit();
         (self.fp.get_semaphore_counter_value)(self.handle, semaphore, value.as_mut_ptr())
             .assume_init_on_success(value)
@@ -120,40 +122,37 @@ impl Device {
     #[inline]
     pub unsafe fn wait_semaphores(
         &self,
-        wait_info: &crate::vk::SemaphoreWaitInfo<'_>,
+        wait_info: &vk::SemaphoreWaitInfo<'_>,
         timeout: u64,
-    ) -> crate::VkResult<()> {
+    ) -> VkResult<()> {
         (self.fp.wait_semaphores)(self.handle, wait_info, timeout).result()
     }
     ///vkSignalSemaphore
     #[inline]
     pub unsafe fn signal_semaphore(
         &self,
-        signal_info: &crate::vk::SemaphoreSignalInfo<'_>,
-    ) -> crate::VkResult<()> {
+        signal_info: &vk::SemaphoreSignalInfo<'_>,
+    ) -> VkResult<()> {
         (self.fp.signal_semaphore)(self.handle, signal_info).result()
     }
 }
-pub const SPEC_VERSION: u32 = 2;
-pub const NAME: &core::ffi::CStr = c"VK_KHR_timeline_semaphore";
 pub(crate) mod items {
-    pub type PhysicalDeviceTimelineSemaphoreFeaturesKHR<'a> = crate::vk::PhysicalDeviceTimelineSemaphoreFeatures<
+    use crate::vk;
+    pub type PhysicalDeviceTimelineSemaphoreFeaturesKHR<'a> = vk::PhysicalDeviceTimelineSemaphoreFeatures<
         'a,
     >;
-    pub type PhysicalDeviceTimelineSemaphorePropertiesKHR<'a> = crate::vk::PhysicalDeviceTimelineSemaphoreProperties<
+    pub type PhysicalDeviceTimelineSemaphorePropertiesKHR<'a> = vk::PhysicalDeviceTimelineSemaphoreProperties<
         'a,
     >;
-    pub type SemaphoreTypeCreateInfoKHR<'a> = crate::vk::SemaphoreTypeCreateInfo<'a>;
-    pub type TimelineSemaphoreSubmitInfoKHR<'a> = crate::vk::TimelineSemaphoreSubmitInfo<
-        'a,
-    >;
-    pub type SemaphoreWaitInfoKHR<'a> = crate::vk::SemaphoreWaitInfo<'a>;
-    pub type SemaphoreSignalInfoKHR<'a> = crate::vk::SemaphoreSignalInfo<'a>;
-    pub type SemaphoreTypeKHR = crate::vk::SemaphoreType;
-    pub type SemaphoreWaitFlagBitsKHR = crate::vk::SemaphoreWaitFlagBits;
-    pub type SemaphoreWaitFlagsKHR = crate::vk::SemaphoreWaitFlags;
-    pub type PFN_vkGetSemaphoreCounterValueKHR = crate::vk::PFN_vkGetSemaphoreCounterValue;
-    pub type PFN_vkWaitSemaphoresKHR = crate::vk::PFN_vkWaitSemaphores;
-    pub type PFN_vkSignalSemaphoreKHR = crate::vk::PFN_vkSignalSemaphore;
+    pub type SemaphoreTypeCreateInfoKHR<'a> = vk::SemaphoreTypeCreateInfo<'a>;
+    pub type TimelineSemaphoreSubmitInfoKHR<'a> = vk::TimelineSemaphoreSubmitInfo<'a>;
+    pub type SemaphoreWaitInfoKHR<'a> = vk::SemaphoreWaitInfo<'a>;
+    pub type SemaphoreSignalInfoKHR<'a> = vk::SemaphoreSignalInfo<'a>;
+    pub type SemaphoreTypeKHR = vk::SemaphoreType;
+    pub type SemaphoreWaitFlagBitsKHR = vk::SemaphoreWaitFlagBits;
+    pub type SemaphoreWaitFlagsKHR = vk::SemaphoreWaitFlags;
+    pub type PFN_vkGetSemaphoreCounterValueKHR = vk::PFN_vkGetSemaphoreCounterValue;
+    pub type PFN_vkWaitSemaphoresKHR = vk::PFN_vkWaitSemaphores;
+    pub type PFN_vkSignalSemaphoreKHR = vk::PFN_vkSignalSemaphore;
 }
 pub use items::*;

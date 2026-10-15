@@ -2,34 +2,36 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_map_memory2.html) · Extension `VK_KHR_map_memory2`
 #![doc(alias = "VK_KHR_map_memory2")]
+use crate::vk;
+use core::ffi::CStr;
+use crate::VkResult;
+use core::ffi::c_void;
 ///Provided by [VK_KHR_map_memory2](crate::khr::map_memory2)
-impl crate::vk::StructureType {
+impl vk::StructureType {
     pub const MEMORY_MAP_INFO_KHR: Self = Self::MEMORY_MAP_INFO;
     pub const MEMORY_UNMAP_INFO_KHR: Self = Self::MEMORY_UNMAP_INFO;
 }
+pub const SPEC_VERSION: u32 = 1;
+pub const NAME: &CStr = c"VK_KHR_map_memory2";
 #[derive(Clone)]
 pub struct DeviceFn {
-    pub map_memory2: crate::vk::PFN_vkMapMemory2KHR,
-    pub unmap_memory2: crate::vk::PFN_vkUnmapMemory2KHR,
+    pub map_memory2: vk::PFN_vkMapMemory2KHR,
+    pub unmap_memory2: vk::PFN_vkUnmapMemory2KHR,
 }
 unsafe impl Send for DeviceFn {}
 unsafe impl Sync for DeviceFn {}
 impl DeviceFn {
-    pub fn load<F: FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void>(
-        mut f: F,
-    ) -> Self {
+    pub fn load<F: FnMut(&CStr) -> *const c_void>(mut f: F) -> Self {
         Self::load_erased(&mut f)
     }
-    fn load_erased(
-        _f: &mut dyn FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void,
-    ) -> Self {
+    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const c_void) -> Self {
         Self {
             map_memory2: unsafe {
                 unsafe extern "system" fn map_memory2(
-                    _: crate::vk::Device,
-                    _: *const crate::vk::MemoryMapInfo<'_>,
+                    _: vk::Device,
+                    _: *const vk::MemoryMapInfo<'_>,
                     _: *mut *mut core::ffi::c_void,
-                ) -> crate::vk::Result {
+                ) -> vk::Result {
                     panic!("unable to load vkMapMemory2KHR")
                 }
                 let val = _f(c"vkMapMemory2KHR");
@@ -37,9 +39,9 @@ impl DeviceFn {
             },
             unmap_memory2: unsafe {
                 unsafe extern "system" fn unmap_memory2(
-                    _: crate::vk::Device,
-                    _: *const crate::vk::MemoryUnmapInfo<'_>,
-                ) -> crate::vk::Result {
+                    _: vk::Device,
+                    _: *const vk::MemoryUnmapInfo<'_>,
+                ) -> vk::Result {
                     panic!("unable to load vkUnmapMemory2KHR")
                 }
                 let val = _f(c"vkUnmapMemory2KHR");
@@ -73,8 +75,8 @@ impl Device {
     #[inline]
     pub unsafe fn map_memory2(
         &self,
-        memory_map_info: &crate::vk::MemoryMapInfo<'_>,
-    ) -> crate::VkResult<*mut core::ffi::c_void> {
+        memory_map_info: &vk::MemoryMapInfo<'_>,
+    ) -> VkResult<*mut core::ffi::c_void> {
         let mut data = core::mem::MaybeUninit::uninit();
         (self.fp.map_memory2)(self.handle, memory_map_info, data.as_mut_ptr())
             .assume_init_on_success(data)
@@ -83,19 +85,18 @@ impl Device {
     #[inline]
     pub unsafe fn unmap_memory2(
         &self,
-        memory_unmap_info: &crate::vk::MemoryUnmapInfo<'_>,
-    ) -> crate::VkResult<()> {
+        memory_unmap_info: &vk::MemoryUnmapInfo<'_>,
+    ) -> VkResult<()> {
         (self.fp.unmap_memory2)(self.handle, memory_unmap_info).result()
     }
 }
-pub const SPEC_VERSION: u32 = 1;
-pub const NAME: &core::ffi::CStr = c"VK_KHR_map_memory2";
 pub(crate) mod items {
-    pub type MemoryMapInfoKHR<'a> = crate::vk::MemoryMapInfo<'a>;
-    pub type MemoryUnmapInfoKHR<'a> = crate::vk::MemoryUnmapInfo<'a>;
-    pub type MemoryUnmapFlagBitsKHR = crate::vk::MemoryUnmapFlagBits;
-    pub type MemoryUnmapFlagsKHR = crate::vk::MemoryUnmapFlags;
-    pub type PFN_vkMapMemory2KHR = crate::vk::PFN_vkMapMemory2;
-    pub type PFN_vkUnmapMemory2KHR = crate::vk::PFN_vkUnmapMemory2;
+    use crate::vk;
+    pub type MemoryMapInfoKHR<'a> = vk::MemoryMapInfo<'a>;
+    pub type MemoryUnmapInfoKHR<'a> = vk::MemoryUnmapInfo<'a>;
+    pub type MemoryUnmapFlagBitsKHR = vk::MemoryUnmapFlagBits;
+    pub type MemoryUnmapFlagsKHR = vk::MemoryUnmapFlags;
+    pub type PFN_vkMapMemory2KHR = vk::PFN_vkMapMemory2;
+    pub type PFN_vkUnmapMemory2KHR = vk::PFN_vkUnmapMemory2;
 }
 pub use items::*;

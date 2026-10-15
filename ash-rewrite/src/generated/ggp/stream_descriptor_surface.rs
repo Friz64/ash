@@ -2,33 +2,35 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_GGP_stream_descriptor_surface.html) · Extension `VK_GGP_stream_descriptor_surface`
 #![doc(alias = "VK_GGP_stream_descriptor_surface")]
+use crate::vk;
+use core::ffi::CStr;
+use crate::VkResult;
+use core::ffi::c_void;
 ///Provided by [VK_GGP_stream_descriptor_surface](crate::ggp::stream_descriptor_surface)
-impl crate::vk::StructureType {
+impl vk::StructureType {
     pub const STREAM_DESCRIPTOR_SURFACE_CREATE_INFO_GGP: Self = Self(1000049000);
 }
+pub const SPEC_VERSION: u32 = 1;
+pub const NAME: &CStr = c"VK_GGP_stream_descriptor_surface";
 #[derive(Clone)]
 pub struct InstanceFn {
-    pub create_stream_descriptor_surface: crate::vk::PFN_vkCreateStreamDescriptorSurfaceGGP,
+    pub create_stream_descriptor_surface: vk::PFN_vkCreateStreamDescriptorSurfaceGGP,
 }
 unsafe impl Send for InstanceFn {}
 unsafe impl Sync for InstanceFn {}
 impl InstanceFn {
-    pub fn load<F: FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void>(
-        mut f: F,
-    ) -> Self {
+    pub fn load<F: FnMut(&CStr) -> *const c_void>(mut f: F) -> Self {
         Self::load_erased(&mut f)
     }
-    fn load_erased(
-        _f: &mut dyn FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void,
-    ) -> Self {
+    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const c_void) -> Self {
         Self {
             create_stream_descriptor_surface: unsafe {
                 unsafe extern "system" fn create_stream_descriptor_surface(
-                    _: crate::vk::Instance,
-                    _: *const crate::vk::StreamDescriptorSurfaceCreateInfoGGP<'_>,
-                    _: *const crate::vk::AllocationCallbacks<'_>,
-                    _: *mut crate::vk::SurfaceKHR,
-                ) -> crate::vk::Result {
+                    _: vk::Instance,
+                    _: *const vk::StreamDescriptorSurfaceCreateInfoGGP<'_>,
+                    _: *const vk::AllocationCallbacks<'_>,
+                    _: *mut vk::SurfaceKHR,
+                ) -> vk::Result {
                     panic!("unable to load vkCreateStreamDescriptorSurfaceGGP")
                 }
                 let val = _f(c"vkCreateStreamDescriptorSurfaceGGP");
@@ -66,9 +68,9 @@ impl Instance {
     #[inline]
     pub unsafe fn create_stream_descriptor_surface(
         &self,
-        create_info: &crate::vk::StreamDescriptorSurfaceCreateInfoGGP<'_>,
-        allocator: Option<&crate::vk::AllocationCallbacks<'_>>,
-    ) -> crate::VkResult<crate::vk::SurfaceKHR> {
+        create_info: &vk::StreamDescriptorSurfaceCreateInfoGGP<'_>,
+        allocator: Option<&vk::AllocationCallbacks<'_>>,
+    ) -> VkResult<vk::SurfaceKHR> {
         let mut surface = core::mem::MaybeUninit::uninit();
         (self
             .fp
@@ -84,24 +86,24 @@ impl Instance {
             .assume_init_on_success(surface)
     }
 }
-pub const SPEC_VERSION: u32 = 1;
-pub const NAME: &core::ffi::CStr = c"VK_GGP_stream_descriptor_surface";
 pub(crate) mod items {
+    use core::marker::PhantomData;
+    use crate::vk;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct StreamDescriptorSurfaceCreateInfoGGP<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *const core::ffi::c_void,
-        pub flags: crate::vk::StreamDescriptorSurfaceCreateFlagsGGP,
+        pub flags: vk::StreamDescriptorSurfaceCreateFlagsGGP,
         pub stream_descriptor: crate::platform_types::GgpStreamDescriptor,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for StreamDescriptorSurfaceCreateInfoGGP<'_> {}
     unsafe impl Sync for StreamDescriptorSurfaceCreateInfoGGP<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for StreamDescriptorSurfaceCreateInfoGGP<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::STREAM_DESCRIPTOR_SURFACE_CREATE_INFO_GGP;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::STREAM_DESCRIPTOR_SURFACE_CREATE_INFO_GGP;
     }
     impl<'a> Default for StreamDescriptorSurfaceCreateInfoGGP<'a> {
         fn default() -> Self {
@@ -110,14 +112,14 @@ pub(crate) mod items {
                 p_next: Default::default(),
                 flags: Default::default(),
                 stream_descriptor: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
     impl<'a> StreamDescriptorSurfaceCreateInfoGGP<'a> {
         pub fn flags(
             mut self,
-            flags: crate::vk::StreamDescriptorSurfaceCreateFlagsGGP,
+            flags: vk::StreamDescriptorSurfaceCreateFlagsGGP,
         ) -> Self {
             self.flags = flags;
             self
@@ -199,10 +201,10 @@ pub(crate) mod items {
         }
     }
     pub type PFN_vkCreateStreamDescriptorSurfaceGGP = unsafe extern "system" fn(
-        instance: crate::vk::Instance,
-        p_create_info: *const crate::vk::StreamDescriptorSurfaceCreateInfoGGP<'_>,
-        p_allocator: *const crate::vk::AllocationCallbacks<'_>,
-        p_surface: *mut crate::vk::SurfaceKHR,
-    ) -> crate::vk::Result;
+        instance: vk::Instance,
+        p_create_info: *const vk::StreamDescriptorSurfaceCreateInfoGGP<'_>,
+        p_allocator: *const vk::AllocationCallbacks<'_>,
+        p_surface: *mut vk::SurfaceKHR,
+    ) -> vk::Result;
 }
 pub use items::*;

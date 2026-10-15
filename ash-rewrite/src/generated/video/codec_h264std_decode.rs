@@ -2,15 +2,18 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //!Items provided by `vulkan_video_codec_h264std_decode`
 #![doc(alias = "vulkan_video_codec_h264std_decode")]
+use crate::vk;
+use core::ffi::CStr;
 ///Provided by [vulkan_video_codec_h264std_decode](crate::video::codec_h264std_decode)
 impl DecodeH264FieldOrderCount {
     pub const TOP: Self = Self(0);
     pub const BOTTOM: Self = Self(1);
     pub const INVALID: Self = Self(0x7FFFFFFF);
 }
-pub const SPEC_VERSION: u32 = crate::vk::STD_VULKAN_VIDEO_CODEC_H264_DECODE_API_VERSION_1_0_0;
-pub const NAME: &core::ffi::CStr = c"VK_STD_vulkan_video_codec_h264_decode";
+pub const SPEC_VERSION: u32 = vk::STD_VULKAN_VIDEO_CODEC_H264_DECODE_API_VERSION_1_0_0;
+pub const NAME: &CStr = c"VK_STD_vulkan_video_codec_h264_decode";
 pub(crate) mod items {
+    use crate::vk;
     #[repr(C)]
     #[derive(Clone, Copy, Default)]
     pub struct DecodeH264PictureInfoFlags {
@@ -94,15 +97,14 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct DecodeH264PictureInfo {
-        pub flags: crate::vk::DecodeH264PictureInfoFlags,
+        pub flags: vk::DecodeH264PictureInfoFlags,
         pub seq_parameter_set_id: u8,
         pub pic_parameter_set_id: u8,
         pub reserved1: u8,
         pub reserved2: u8,
         pub frame_num: u16,
         pub idr_pic_id: u16,
-        pub pic_order_cnt: [i32; crate::vk::DECODE_H264_FIELD_ORDER_COUNT_LIST_SIZE
-            as _],
+        pub pic_order_cnt: [i32; vk::DECODE_H264_FIELD_ORDER_COUNT_LIST_SIZE as _],
     }
     unsafe impl Send for DecodeH264PictureInfo {}
     unsafe impl Sync for DecodeH264PictureInfo {}
@@ -121,7 +123,7 @@ pub(crate) mod items {
         }
     }
     impl DecodeH264PictureInfo {
-        pub fn flags(mut self, flags: crate::vk::DecodeH264PictureInfoFlags) -> Self {
+        pub fn flags(mut self, flags: vk::DecodeH264PictureInfoFlags) -> Self {
             self.flags = flags;
             self
         }
@@ -151,7 +153,7 @@ pub(crate) mod items {
         }
         pub fn pic_order_cnt(
             mut self,
-            pic_order_cnt: [i32; crate::vk::DECODE_H264_FIELD_ORDER_COUNT_LIST_SIZE as _],
+            pic_order_cnt: [i32; vk::DECODE_H264_FIELD_ORDER_COUNT_LIST_SIZE as _],
         ) -> Self {
             self.pic_order_cnt = pic_order_cnt;
             self
@@ -224,11 +226,10 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct DecodeH264ReferenceInfo {
-        pub flags: crate::vk::DecodeH264ReferenceInfoFlags,
+        pub flags: vk::DecodeH264ReferenceInfoFlags,
         pub frame_num: u16,
         pub reserved: u16,
-        pub pic_order_cnt: [i32; crate::vk::DECODE_H264_FIELD_ORDER_COUNT_LIST_SIZE
-            as _],
+        pub pic_order_cnt: [i32; vk::DECODE_H264_FIELD_ORDER_COUNT_LIST_SIZE as _],
     }
     unsafe impl Send for DecodeH264ReferenceInfo {}
     unsafe impl Sync for DecodeH264ReferenceInfo {}
@@ -243,7 +244,7 @@ pub(crate) mod items {
         }
     }
     impl DecodeH264ReferenceInfo {
-        pub fn flags(mut self, flags: crate::vk::DecodeH264ReferenceInfoFlags) -> Self {
+        pub fn flags(mut self, flags: vk::DecodeH264ReferenceInfoFlags) -> Self {
             self.flags = flags;
             self
         }
@@ -257,7 +258,7 @@ pub(crate) mod items {
         }
         pub fn pic_order_cnt(
             mut self,
-            pic_order_cnt: [i32; crate::vk::DECODE_H264_FIELD_ORDER_COUNT_LIST_SIZE as _],
+            pic_order_cnt: [i32; vk::DECODE_H264_FIELD_ORDER_COUNT_LIST_SIZE as _],
         ) -> Self {
             self.pic_order_cnt = pic_order_cnt;
             self
@@ -292,7 +293,7 @@ pub(crate) mod items {
         }
     }
     pub const DECODE_H264_FIELD_ORDER_COUNT_LIST_SIZE: u32 = 2;
-    pub const STD_VULKAN_VIDEO_CODEC_H264_DECODE_API_VERSION_1_0_0: u32 = crate::vk::make_video_std_version(
+    pub const STD_VULKAN_VIDEO_CODEC_H264_DECODE_API_VERSION_1_0_0: u32 = vk::make_video_std_version(
         1,
         0,
         0,

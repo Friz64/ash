@@ -2,8 +2,12 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_ANDROID_external_memory_android_hardware_buffer.html) · Extension `VK_ANDROID_external_memory_android_hardware_buffer`
 #![doc(alias = "VK_ANDROID_external_memory_android_hardware_buffer")]
+use crate::vk;
+use core::ffi::CStr;
+use crate::VkResult;
+use core::ffi::c_void;
 ///Provided by [VK_ANDROID_external_memory_android_hardware_buffer](crate::android::external_memory_android_hardware_buffer)
-impl crate::vk::StructureType {
+impl vk::StructureType {
     pub const ANDROID_HARDWARE_BUFFER_USAGE_ANDROID: Self = Self(1000129000);
     pub const ANDROID_HARDWARE_BUFFER_PROPERTIES_ANDROID: Self = Self(1000129001);
     pub const ANDROID_HARDWARE_BUFFER_FORMAT_PROPERTIES_ANDROID: Self = Self(1000129002);
@@ -14,39 +18,37 @@ impl crate::vk::StructureType {
         1000129006,
     );
 }
-///Provided by [VK_ANDROID_external_memory_android_hardware_buffer](crate::android::external_memory_android_hardware_buffer)
-impl crate::vk::ExternalMemoryHandleTypeFlags {
+///Provided by [Vulkan 1.1](crate::vk1_1)
+impl vk::ExternalMemoryHandleTypeFlags {
     pub const ANDROID_HARDWARE_BUFFER_ANDROID: Self = Self(
-        crate::vk::ExternalMemoryHandleTypeFlagBits::ANDROID_HARDWARE_BUFFER_ANDROID.0,
+        vk::ExternalMemoryHandleTypeFlagBits::ANDROID_HARDWARE_BUFFER_ANDROID.0,
     );
 }
-///Provided by [VK_ANDROID_external_memory_android_hardware_buffer](crate::android::external_memory_android_hardware_buffer)
-impl crate::vk::ExternalMemoryHandleTypeFlagBits {
+///Provided by [Vulkan 1.1](crate::vk1_1)
+impl vk::ExternalMemoryHandleTypeFlagBits {
     pub const ANDROID_HARDWARE_BUFFER_ANDROID: Self = Self(1 << 10);
 }
+pub const SPEC_VERSION: u32 = 5;
+pub const NAME: &CStr = c"VK_ANDROID_external_memory_android_hardware_buffer";
 #[derive(Clone)]
 pub struct DeviceFn {
-    pub get_android_hardware_buffer_properties: crate::vk::PFN_vkGetAndroidHardwareBufferPropertiesANDROID,
-    pub get_memory_android_hardware_buffer: crate::vk::PFN_vkGetMemoryAndroidHardwareBufferANDROID,
+    pub get_android_hardware_buffer_properties: vk::PFN_vkGetAndroidHardwareBufferPropertiesANDROID,
+    pub get_memory_android_hardware_buffer: vk::PFN_vkGetMemoryAndroidHardwareBufferANDROID,
 }
 unsafe impl Send for DeviceFn {}
 unsafe impl Sync for DeviceFn {}
 impl DeviceFn {
-    pub fn load<F: FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void>(
-        mut f: F,
-    ) -> Self {
+    pub fn load<F: FnMut(&CStr) -> *const c_void>(mut f: F) -> Self {
         Self::load_erased(&mut f)
     }
-    fn load_erased(
-        _f: &mut dyn FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void,
-    ) -> Self {
+    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const c_void) -> Self {
         Self {
             get_android_hardware_buffer_properties: unsafe {
                 unsafe extern "system" fn get_android_hardware_buffer_properties(
-                    _: crate::vk::Device,
+                    _: vk::Device,
                     _: *const crate::platform_types::AHardwareBuffer,
-                    _: *mut crate::vk::AndroidHardwareBufferPropertiesANDROID<'_>,
-                ) -> crate::vk::Result {
+                    _: *mut vk::AndroidHardwareBufferPropertiesANDROID<'_>,
+                ) -> vk::Result {
                     panic!("unable to load vkGetAndroidHardwareBufferPropertiesANDROID")
                 }
                 let val = _f(c"vkGetAndroidHardwareBufferPropertiesANDROID");
@@ -58,10 +60,10 @@ impl DeviceFn {
             },
             get_memory_android_hardware_buffer: unsafe {
                 unsafe extern "system" fn get_memory_android_hardware_buffer(
-                    _: crate::vk::Device,
-                    _: *const crate::vk::MemoryGetAndroidHardwareBufferInfoANDROID<'_>,
+                    _: vk::Device,
+                    _: *const vk::MemoryGetAndroidHardwareBufferInfoANDROID<'_>,
                     _: *mut *mut crate::platform_types::AHardwareBuffer,
-                ) -> crate::vk::Result {
+                ) -> vk::Result {
                     panic!("unable to load vkGetMemoryAndroidHardwareBufferANDROID")
                 }
                 let val = _f(c"vkGetMemoryAndroidHardwareBufferANDROID");
@@ -100,7 +102,7 @@ impl Device {
     pub unsafe fn get_android_hardware_buffer_properties(
         &self,
         buffer: &crate::platform_types::AHardwareBuffer,
-    ) -> crate::VkResult<crate::vk::AndroidHardwareBufferPropertiesANDROID<'_>> {
+    ) -> VkResult<vk::AndroidHardwareBufferPropertiesANDROID<'_>> {
         let mut properties = core::mem::MaybeUninit::uninit();
         (self
             .fp
@@ -115,8 +117,8 @@ impl Device {
     #[inline]
     pub unsafe fn get_memory_android_hardware_buffer(
         &self,
-        info: &crate::vk::MemoryGetAndroidHardwareBufferInfoANDROID<'_>,
-    ) -> crate::VkResult<*mut crate::platform_types::AHardwareBuffer> {
+        info: &vk::MemoryGetAndroidHardwareBufferInfoANDROID<'_>,
+    ) -> VkResult<*mut crate::platform_types::AHardwareBuffer> {
         let mut buffer = core::mem::MaybeUninit::uninit();
         (self
             .fp
@@ -124,25 +126,25 @@ impl Device {
             .assume_init_on_success(buffer)
     }
 }
-pub const SPEC_VERSION: u32 = 5;
-pub const NAME: &core::ffi::CStr = c"VK_ANDROID_external_memory_android_hardware_buffer";
 pub(crate) mod items {
+    use core::marker::PhantomData;
+    use crate::vk;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct ImportAndroidHardwareBufferInfoANDROID<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *const core::ffi::c_void,
         pub buffer: *mut crate::platform_types::AHardwareBuffer,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for ImportAndroidHardwareBufferInfoANDROID<'_> {}
     unsafe impl Sync for ImportAndroidHardwareBufferInfoANDROID<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for ImportAndroidHardwareBufferInfoANDROID<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::IMPORT_ANDROID_HARDWARE_BUFFER_INFO_ANDROID;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::IMPORT_ANDROID_HARDWARE_BUFFER_INFO_ANDROID;
     }
-    unsafe impl<'a> crate::Extends<crate::vk::MemoryAllocateInfo<'_>>
+    unsafe impl<'a> crate::Extends<vk::MemoryAllocateInfo<'_>>
     for ImportAndroidHardwareBufferInfoANDROID<'a> {}
     impl<'a> Default for ImportAndroidHardwareBufferInfoANDROID<'a> {
         fn default() -> Self {
@@ -150,7 +152,7 @@ pub(crate) mod items {
                 s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
                 p_next: Default::default(),
                 buffer: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
@@ -167,18 +169,18 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct AndroidHardwareBufferUsageANDROID<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
         pub android_hardware_buffer_usage: u64,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for AndroidHardwareBufferUsageANDROID<'_> {}
     unsafe impl Sync for AndroidHardwareBufferUsageANDROID<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for AndroidHardwareBufferUsageANDROID<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::ANDROID_HARDWARE_BUFFER_USAGE_ANDROID;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::ANDROID_HARDWARE_BUFFER_USAGE_ANDROID;
     }
-    unsafe impl<'a> crate::Extends<crate::vk::ImageFormatProperties2<'_>>
+    unsafe impl<'a> crate::Extends<vk::ImageFormatProperties2<'_>>
     for AndroidHardwareBufferUsageANDROID<'a> {}
     impl<'a> Default for AndroidHardwareBufferUsageANDROID<'a> {
         fn default() -> Self {
@@ -186,7 +188,7 @@ pub(crate) mod items {
                 s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
                 p_next: Default::default(),
                 android_hardware_buffer_usage: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
@@ -203,17 +205,17 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct AndroidHardwareBufferPropertiesANDROID<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
-        pub allocation_size: crate::vk::DeviceSize,
+        pub allocation_size: vk::DeviceSize,
         pub memory_type_bits: u32,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for AndroidHardwareBufferPropertiesANDROID<'_> {}
     unsafe impl Sync for AndroidHardwareBufferPropertiesANDROID<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for AndroidHardwareBufferPropertiesANDROID<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::ANDROID_HARDWARE_BUFFER_PROPERTIES_ANDROID;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::ANDROID_HARDWARE_BUFFER_PROPERTIES_ANDROID;
     }
     impl<'a> Default for AndroidHardwareBufferPropertiesANDROID<'a> {
         fn default() -> Self {
@@ -222,15 +224,12 @@ pub(crate) mod items {
                 p_next: Default::default(),
                 allocation_size: Default::default(),
                 memory_type_bits: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
     impl<'a> AndroidHardwareBufferPropertiesANDROID<'a> {
-        pub fn allocation_size(
-            mut self,
-            allocation_size: crate::vk::DeviceSize,
-        ) -> Self {
+        pub fn allocation_size(mut self, allocation_size: vk::DeviceSize) -> Self {
             self.allocation_size = allocation_size;
             self
         }
@@ -243,16 +242,16 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct MemoryGetAndroidHardwareBufferInfoANDROID<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *const core::ffi::c_void,
-        pub memory: crate::vk::DeviceMemory,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub memory: vk::DeviceMemory,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for MemoryGetAndroidHardwareBufferInfoANDROID<'_> {}
     unsafe impl Sync for MemoryGetAndroidHardwareBufferInfoANDROID<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for MemoryGetAndroidHardwareBufferInfoANDROID<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::MEMORY_GET_ANDROID_HARDWARE_BUFFER_INFO_ANDROID;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::MEMORY_GET_ANDROID_HARDWARE_BUFFER_INFO_ANDROID;
     }
     impl<'a> Default for MemoryGetAndroidHardwareBufferInfoANDROID<'a> {
         fn default() -> Self {
@@ -260,12 +259,12 @@ pub(crate) mod items {
                 s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
                 p_next: Default::default(),
                 memory: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
     impl<'a> MemoryGetAndroidHardwareBufferInfoANDROID<'a> {
-        pub fn memory(mut self, memory: crate::vk::DeviceMemory) -> Self {
+        pub fn memory(mut self, memory: vk::DeviceMemory) -> Self {
             self.memory = memory;
             self
         }
@@ -274,25 +273,25 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct AndroidHardwareBufferFormatPropertiesANDROID<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
-        pub format: crate::vk::Format,
+        pub format: vk::Format,
         pub external_format: u64,
-        pub format_features: crate::vk::FormatFeatureFlags,
-        pub sampler_ycbcr_conversion_components: crate::vk::ComponentMapping,
-        pub suggested_ycbcr_model: crate::vk::SamplerYcbcrModelConversion,
-        pub suggested_ycbcr_range: crate::vk::SamplerYcbcrRange,
-        pub suggested_x_chroma_offset: crate::vk::ChromaLocation,
-        pub suggested_y_chroma_offset: crate::vk::ChromaLocation,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub format_features: vk::FormatFeatureFlags,
+        pub sampler_ycbcr_conversion_components: vk::ComponentMapping,
+        pub suggested_ycbcr_model: vk::SamplerYcbcrModelConversion,
+        pub suggested_ycbcr_range: vk::SamplerYcbcrRange,
+        pub suggested_x_chroma_offset: vk::ChromaLocation,
+        pub suggested_y_chroma_offset: vk::ChromaLocation,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for AndroidHardwareBufferFormatPropertiesANDROID<'_> {}
     unsafe impl Sync for AndroidHardwareBufferFormatPropertiesANDROID<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for AndroidHardwareBufferFormatPropertiesANDROID<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::ANDROID_HARDWARE_BUFFER_FORMAT_PROPERTIES_ANDROID;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::ANDROID_HARDWARE_BUFFER_FORMAT_PROPERTIES_ANDROID;
     }
-    unsafe impl<'a> crate::Extends<crate::vk::AndroidHardwareBufferPropertiesANDROID<'_>>
+    unsafe impl<'a> crate::Extends<vk::AndroidHardwareBufferPropertiesANDROID<'_>>
     for AndroidHardwareBufferFormatPropertiesANDROID<'a> {}
     impl<'a> Default for AndroidHardwareBufferFormatPropertiesANDROID<'a> {
         fn default() -> Self {
@@ -307,12 +306,12 @@ pub(crate) mod items {
                 suggested_ycbcr_range: Default::default(),
                 suggested_x_chroma_offset: Default::default(),
                 suggested_y_chroma_offset: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
     impl<'a> AndroidHardwareBufferFormatPropertiesANDROID<'a> {
-        pub fn format(mut self, format: crate::vk::Format) -> Self {
+        pub fn format(mut self, format: vk::Format) -> Self {
             self.format = format;
             self
         }
@@ -322,42 +321,42 @@ pub(crate) mod items {
         }
         pub fn format_features(
             mut self,
-            format_features: crate::vk::FormatFeatureFlags,
+            format_features: vk::FormatFeatureFlags,
         ) -> Self {
             self.format_features = format_features;
             self
         }
         pub fn sampler_ycbcr_conversion_components(
             mut self,
-            sampler_ycbcr_conversion_components: crate::vk::ComponentMapping,
+            sampler_ycbcr_conversion_components: vk::ComponentMapping,
         ) -> Self {
             self.sampler_ycbcr_conversion_components = sampler_ycbcr_conversion_components;
             self
         }
         pub fn suggested_ycbcr_model(
             mut self,
-            suggested_ycbcr_model: crate::vk::SamplerYcbcrModelConversion,
+            suggested_ycbcr_model: vk::SamplerYcbcrModelConversion,
         ) -> Self {
             self.suggested_ycbcr_model = suggested_ycbcr_model;
             self
         }
         pub fn suggested_ycbcr_range(
             mut self,
-            suggested_ycbcr_range: crate::vk::SamplerYcbcrRange,
+            suggested_ycbcr_range: vk::SamplerYcbcrRange,
         ) -> Self {
             self.suggested_ycbcr_range = suggested_ycbcr_range;
             self
         }
         pub fn suggested_x_chroma_offset(
             mut self,
-            suggested_x_chroma_offset: crate::vk::ChromaLocation,
+            suggested_x_chroma_offset: vk::ChromaLocation,
         ) -> Self {
             self.suggested_x_chroma_offset = suggested_x_chroma_offset;
             self
         }
         pub fn suggested_y_chroma_offset(
             mut self,
-            suggested_y_chroma_offset: crate::vk::ChromaLocation,
+            suggested_y_chroma_offset: vk::ChromaLocation,
         ) -> Self {
             self.suggested_y_chroma_offset = suggested_y_chroma_offset;
             self
@@ -367,25 +366,25 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct ExternalFormatANDROID<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
         pub external_format: u64,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for ExternalFormatANDROID<'_> {}
     unsafe impl Sync for ExternalFormatANDROID<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for ExternalFormatANDROID<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::EXTERNAL_FORMAT_ANDROID;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::EXTERNAL_FORMAT_ANDROID;
     }
-    unsafe impl<'a> crate::Extends<crate::vk::ImageCreateInfo<'_>>
+    unsafe impl<'a> crate::Extends<vk::ImageCreateInfo<'_>>
     for ExternalFormatANDROID<'a> {}
-    unsafe impl<'a> crate::Extends<crate::vk::SamplerYcbcrConversionCreateInfo<'_>>
+    unsafe impl<'a> crate::Extends<vk::SamplerYcbcrConversionCreateInfo<'_>>
     for ExternalFormatANDROID<'a> {}
-    unsafe impl<'a> crate::Extends<crate::vk::AttachmentDescription2<'_>>
+    unsafe impl<'a> crate::Extends<vk::AttachmentDescription2<'_>>
     for ExternalFormatANDROID<'a> {}
-    unsafe impl<'a> crate::Extends<crate::vk::GraphicsPipelineCreateInfo<'_>>
+    unsafe impl<'a> crate::Extends<vk::GraphicsPipelineCreateInfo<'_>>
     for ExternalFormatANDROID<'a> {}
-    unsafe impl<'a> crate::Extends<crate::vk::CommandBufferInheritanceInfo<'_>>
+    unsafe impl<'a> crate::Extends<vk::CommandBufferInheritanceInfo<'_>>
     for ExternalFormatANDROID<'a> {}
     impl<'a> Default for ExternalFormatANDROID<'a> {
         fn default() -> Self {
@@ -393,7 +392,7 @@ pub(crate) mod items {
                 s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
                 p_next: Default::default(),
                 external_format: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
@@ -407,25 +406,25 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct AndroidHardwareBufferFormatProperties2ANDROID<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
-        pub format: crate::vk::Format,
+        pub format: vk::Format,
         pub external_format: u64,
-        pub format_features: crate::vk::FormatFeatureFlags2,
-        pub sampler_ycbcr_conversion_components: crate::vk::ComponentMapping,
-        pub suggested_ycbcr_model: crate::vk::SamplerYcbcrModelConversion,
-        pub suggested_ycbcr_range: crate::vk::SamplerYcbcrRange,
-        pub suggested_x_chroma_offset: crate::vk::ChromaLocation,
-        pub suggested_y_chroma_offset: crate::vk::ChromaLocation,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub format_features: vk::FormatFeatureFlags2,
+        pub sampler_ycbcr_conversion_components: vk::ComponentMapping,
+        pub suggested_ycbcr_model: vk::SamplerYcbcrModelConversion,
+        pub suggested_ycbcr_range: vk::SamplerYcbcrRange,
+        pub suggested_x_chroma_offset: vk::ChromaLocation,
+        pub suggested_y_chroma_offset: vk::ChromaLocation,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for AndroidHardwareBufferFormatProperties2ANDROID<'_> {}
     unsafe impl Sync for AndroidHardwareBufferFormatProperties2ANDROID<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for AndroidHardwareBufferFormatProperties2ANDROID<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::ANDROID_HARDWARE_BUFFER_FORMAT_PROPERTIES_2_ANDROID;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::ANDROID_HARDWARE_BUFFER_FORMAT_PROPERTIES_2_ANDROID;
     }
-    unsafe impl<'a> crate::Extends<crate::vk::AndroidHardwareBufferPropertiesANDROID<'_>>
+    unsafe impl<'a> crate::Extends<vk::AndroidHardwareBufferPropertiesANDROID<'_>>
     for AndroidHardwareBufferFormatProperties2ANDROID<'a> {}
     impl<'a> Default for AndroidHardwareBufferFormatProperties2ANDROID<'a> {
         fn default() -> Self {
@@ -440,12 +439,12 @@ pub(crate) mod items {
                 suggested_ycbcr_range: Default::default(),
                 suggested_x_chroma_offset: Default::default(),
                 suggested_y_chroma_offset: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
     impl<'a> AndroidHardwareBufferFormatProperties2ANDROID<'a> {
-        pub fn format(mut self, format: crate::vk::Format) -> Self {
+        pub fn format(mut self, format: vk::Format) -> Self {
             self.format = format;
             self
         }
@@ -455,56 +454,56 @@ pub(crate) mod items {
         }
         pub fn format_features(
             mut self,
-            format_features: crate::vk::FormatFeatureFlags2,
+            format_features: vk::FormatFeatureFlags2,
         ) -> Self {
             self.format_features = format_features;
             self
         }
         pub fn sampler_ycbcr_conversion_components(
             mut self,
-            sampler_ycbcr_conversion_components: crate::vk::ComponentMapping,
+            sampler_ycbcr_conversion_components: vk::ComponentMapping,
         ) -> Self {
             self.sampler_ycbcr_conversion_components = sampler_ycbcr_conversion_components;
             self
         }
         pub fn suggested_ycbcr_model(
             mut self,
-            suggested_ycbcr_model: crate::vk::SamplerYcbcrModelConversion,
+            suggested_ycbcr_model: vk::SamplerYcbcrModelConversion,
         ) -> Self {
             self.suggested_ycbcr_model = suggested_ycbcr_model;
             self
         }
         pub fn suggested_ycbcr_range(
             mut self,
-            suggested_ycbcr_range: crate::vk::SamplerYcbcrRange,
+            suggested_ycbcr_range: vk::SamplerYcbcrRange,
         ) -> Self {
             self.suggested_ycbcr_range = suggested_ycbcr_range;
             self
         }
         pub fn suggested_x_chroma_offset(
             mut self,
-            suggested_x_chroma_offset: crate::vk::ChromaLocation,
+            suggested_x_chroma_offset: vk::ChromaLocation,
         ) -> Self {
             self.suggested_x_chroma_offset = suggested_x_chroma_offset;
             self
         }
         pub fn suggested_y_chroma_offset(
             mut self,
-            suggested_y_chroma_offset: crate::vk::ChromaLocation,
+            suggested_y_chroma_offset: vk::ChromaLocation,
         ) -> Self {
             self.suggested_y_chroma_offset = suggested_y_chroma_offset;
             self
         }
     }
     pub type PFN_vkGetAndroidHardwareBufferPropertiesANDROID = unsafe extern "system" fn(
-        device: crate::vk::Device,
+        device: vk::Device,
         buffer: *const crate::platform_types::AHardwareBuffer,
-        p_properties: *mut crate::vk::AndroidHardwareBufferPropertiesANDROID<'_>,
-    ) -> crate::vk::Result;
+        p_properties: *mut vk::AndroidHardwareBufferPropertiesANDROID<'_>,
+    ) -> vk::Result;
     pub type PFN_vkGetMemoryAndroidHardwareBufferANDROID = unsafe extern "system" fn(
-        device: crate::vk::Device,
-        p_info: *const crate::vk::MemoryGetAndroidHardwareBufferInfoANDROID<'_>,
+        device: vk::Device,
+        p_info: *const vk::MemoryGetAndroidHardwareBufferInfoANDROID<'_>,
         p_buffer: *mut *mut crate::platform_types::AHardwareBuffer,
-    ) -> crate::vk::Result;
+    ) -> vk::Result;
 }
 pub use items::*;

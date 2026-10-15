@@ -2,8 +2,9 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_queue_family_foreign.html) · Extension `VK_EXT_queue_family_foreign`
 #![doc(alias = "VK_EXT_queue_family_foreign")]
+use core::ffi::CStr;
 pub const SPEC_VERSION: u32 = 1;
-pub const NAME: &core::ffi::CStr = c"VK_EXT_queue_family_foreign";
+pub const NAME: &CStr = c"VK_EXT_queue_family_foreign";
 pub(crate) mod items {
     pub const QUEUE_FAMILY_FOREIGN_EXT: u32 = (!2);
 }

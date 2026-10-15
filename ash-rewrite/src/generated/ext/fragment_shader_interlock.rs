@@ -2,35 +2,39 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_fragment_shader_interlock.html) · Extension `VK_EXT_fragment_shader_interlock`
 #![doc(alias = "VK_EXT_fragment_shader_interlock")]
+use crate::vk;
+use core::ffi::CStr;
 ///Provided by [VK_EXT_fragment_shader_interlock](crate::ext::fragment_shader_interlock)
-impl crate::vk::StructureType {
+impl vk::StructureType {
     pub const PHYSICAL_DEVICE_FRAGMENT_SHADER_INTERLOCK_FEATURES_EXT: Self = Self(
         1000251000,
     );
 }
 pub const SPEC_VERSION: u32 = 1;
-pub const NAME: &core::ffi::CStr = c"VK_EXT_fragment_shader_interlock";
+pub const NAME: &CStr = c"VK_EXT_fragment_shader_interlock";
 pub(crate) mod items {
+    use core::marker::PhantomData;
+    use crate::vk;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceFragmentShaderInterlockFeaturesEXT<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
-        pub fragment_shader_sample_interlock: crate::vk::Bool32,
-        pub fragment_shader_pixel_interlock: crate::vk::Bool32,
-        pub fragment_shader_shading_rate_interlock: crate::vk::Bool32,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub fragment_shader_sample_interlock: vk::Bool32,
+        pub fragment_shader_pixel_interlock: vk::Bool32,
+        pub fragment_shader_shading_rate_interlock: vk::Bool32,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for PhysicalDeviceFragmentShaderInterlockFeaturesEXT<'_> {}
     unsafe impl Sync for PhysicalDeviceFragmentShaderInterlockFeaturesEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceFragmentShaderInterlockFeaturesEXT<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_FRAGMENT_SHADER_INTERLOCK_FEATURES_EXT;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PHYSICAL_DEVICE_FRAGMENT_SHADER_INTERLOCK_FEATURES_EXT;
     }
-    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+    unsafe impl<'a> crate::Extends<vk::PhysicalDeviceFeatures2<'_>>
     for PhysicalDeviceFragmentShaderInterlockFeaturesEXT<'a> {}
-    unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+    unsafe impl<'a> crate::Extends<vk::DeviceCreateInfo<'_>>
     for PhysicalDeviceFragmentShaderInterlockFeaturesEXT<'a> {}
     impl<'a> Default for PhysicalDeviceFragmentShaderInterlockFeaturesEXT<'a> {
         fn default() -> Self {
@@ -40,7 +44,7 @@ pub(crate) mod items {
                 fragment_shader_sample_interlock: Default::default(),
                 fragment_shader_pixel_interlock: Default::default(),
                 fragment_shader_shading_rate_interlock: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }

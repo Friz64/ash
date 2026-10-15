@@ -2,8 +2,10 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_VALVE_buffer_device_address_allocation_alignment.html) · Extension `VK_VALVE_buffer_device_address_allocation_alignment`
 #![doc(alias = "VK_VALVE_buffer_device_address_allocation_alignment")]
+use crate::vk;
+use core::ffi::CStr;
 ///Provided by [VK_VALVE_buffer_device_address_allocation_alignment](crate::valve::buffer_device_address_allocation_alignment)
-impl crate::vk::StructureType {
+impl vk::StructureType {
     pub const PHYSICAL_DEVICE_BUFFER_DEVICE_ADDRESS_ALLOCATION_ALIGNMENT_FEATURES_VALVE: Self = Self(
         1000709000,
     );
@@ -15,16 +17,18 @@ impl crate::vk::StructureType {
     );
 }
 pub const SPEC_VERSION: u32 = 1;
-pub const NAME: &core::ffi::CStr = c"VK_VALVE_buffer_device_address_allocation_alignment";
+pub const NAME: &CStr = c"VK_VALVE_buffer_device_address_allocation_alignment";
 pub(crate) mod items {
+    use core::marker::PhantomData;
+    use crate::vk;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceBufferDeviceAddressAllocationAlignmentFeaturesVALVE<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
-        pub buffer_device_address_allocation_alignment: crate::vk::Bool32,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub buffer_device_address_allocation_alignment: vk::Bool32,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send
     for PhysicalDeviceBufferDeviceAddressAllocationAlignmentFeaturesVALVE<'_> {}
@@ -32,11 +36,11 @@ pub(crate) mod items {
     for PhysicalDeviceBufferDeviceAddressAllocationAlignmentFeaturesVALVE<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceBufferDeviceAddressAllocationAlignmentFeaturesVALVE<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_BUFFER_DEVICE_ADDRESS_ALLOCATION_ALIGNMENT_FEATURES_VALVE;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PHYSICAL_DEVICE_BUFFER_DEVICE_ADDRESS_ALLOCATION_ALIGNMENT_FEATURES_VALVE;
     }
-    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+    unsafe impl<'a> crate::Extends<vk::PhysicalDeviceFeatures2<'_>>
     for PhysicalDeviceBufferDeviceAddressAllocationAlignmentFeaturesVALVE<'a> {}
-    unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+    unsafe impl<'a> crate::Extends<vk::DeviceCreateInfo<'_>>
     for PhysicalDeviceBufferDeviceAddressAllocationAlignmentFeaturesVALVE<'a> {}
     impl<'a> Default
     for PhysicalDeviceBufferDeviceAddressAllocationAlignmentFeaturesVALVE<'a> {
@@ -45,7 +49,7 @@ pub(crate) mod items {
                 s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
                 p_next: Default::default(),
                 buffer_device_address_allocation_alignment: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
@@ -63,10 +67,10 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceBufferDeviceAddressAllocationAlignmentPropertiesVALVE<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
         pub max_buffer_device_address_allocation_alignment: u32,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send
     for PhysicalDeviceBufferDeviceAddressAllocationAlignmentPropertiesVALVE<'_> {}
@@ -74,9 +78,9 @@ pub(crate) mod items {
     for PhysicalDeviceBufferDeviceAddressAllocationAlignmentPropertiesVALVE<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceBufferDeviceAddressAllocationAlignmentPropertiesVALVE<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_BUFFER_DEVICE_ADDRESS_ALLOCATION_ALIGNMENT_PROPERTIES_VALVE;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PHYSICAL_DEVICE_BUFFER_DEVICE_ADDRESS_ALLOCATION_ALIGNMENT_PROPERTIES_VALVE;
     }
-    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceProperties2<'_>>
+    unsafe impl<'a> crate::Extends<vk::PhysicalDeviceProperties2<'_>>
     for PhysicalDeviceBufferDeviceAddressAllocationAlignmentPropertiesVALVE<'a> {}
     impl<'a> Default
     for PhysicalDeviceBufferDeviceAddressAllocationAlignmentPropertiesVALVE<'a> {
@@ -85,7 +89,7 @@ pub(crate) mod items {
                 s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
                 p_next: Default::default(),
                 max_buffer_device_address_allocation_alignment: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
@@ -102,20 +106,20 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct BufferDeviceAddressAlignmentAllocateInfoVALVE<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
         pub alignment: u32,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for BufferDeviceAddressAlignmentAllocateInfoVALVE<'_> {}
     unsafe impl Sync for BufferDeviceAddressAlignmentAllocateInfoVALVE<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for BufferDeviceAddressAlignmentAllocateInfoVALVE<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::BUFFER_DEVICE_ADDRESS_ALIGNMENT_ALLOCATE_INFO_VALVE;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::BUFFER_DEVICE_ADDRESS_ALIGNMENT_ALLOCATE_INFO_VALVE;
     }
-    unsafe impl<'a> crate::Extends<crate::vk::BufferCreateInfo<'_>>
+    unsafe impl<'a> crate::Extends<vk::BufferCreateInfo<'_>>
     for BufferDeviceAddressAlignmentAllocateInfoVALVE<'a> {}
-    unsafe impl<'a> crate::Extends<crate::vk::MemoryAllocateInfo<'_>>
+    unsafe impl<'a> crate::Extends<vk::MemoryAllocateInfo<'_>>
     for BufferDeviceAddressAlignmentAllocateInfoVALVE<'a> {}
     impl<'a> Default for BufferDeviceAddressAlignmentAllocateInfoVALVE<'a> {
         fn default() -> Self {
@@ -123,7 +127,7 @@ pub(crate) mod items {
                 s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
                 p_next: Default::default(),
                 alignment: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }

@@ -2,22 +2,25 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_shader_float_controls.html) · Extension `VK_KHR_shader_float_controls`
 #![doc(alias = "VK_KHR_shader_float_controls")]
+use crate::vk;
+use core::ffi::CStr;
 ///Provided by [VK_KHR_shader_float_controls](crate::khr::shader_float_controls)
-impl crate::vk::StructureType {
+impl vk::StructureType {
     pub const PHYSICAL_DEVICE_FLOAT_CONTROLS_PROPERTIES_KHR: Self = Self::PHYSICAL_DEVICE_FLOAT_CONTROLS_PROPERTIES;
 }
 ///Provided by [VK_KHR_shader_float_controls](crate::khr::shader_float_controls)
-impl crate::vk::ShaderFloatControlsIndependence {
+impl vk::ShaderFloatControlsIndependence {
     pub const TYPE_32_ONLY_KHR: Self = Self::TYPE_32_ONLY;
     pub const ALL_KHR: Self = Self::ALL;
     pub const NONE_KHR: Self = Self::NONE;
 }
 pub const SPEC_VERSION: u32 = 4;
-pub const NAME: &core::ffi::CStr = c"VK_KHR_shader_float_controls";
+pub const NAME: &CStr = c"VK_KHR_shader_float_controls";
 pub(crate) mod items {
-    pub type PhysicalDeviceFloatControlsPropertiesKHR<'a> = crate::vk::PhysicalDeviceFloatControlsProperties<
+    use crate::vk;
+    pub type PhysicalDeviceFloatControlsPropertiesKHR<'a> = vk::PhysicalDeviceFloatControlsProperties<
         'a,
     >;
-    pub type ShaderFloatControlsIndependenceKHR = crate::vk::ShaderFloatControlsIndependence;
+    pub type ShaderFloatControlsIndependenceKHR = vk::ShaderFloatControlsIndependence;
 }
 pub use items::*;

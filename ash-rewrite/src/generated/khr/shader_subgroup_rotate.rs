@@ -2,26 +2,29 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_shader_subgroup_rotate.html) · Extension `VK_KHR_shader_subgroup_rotate`
 #![doc(alias = "VK_KHR_shader_subgroup_rotate")]
+use crate::vk;
+use core::ffi::CStr;
 ///Provided by [VK_KHR_shader_subgroup_rotate](crate::khr::shader_subgroup_rotate)
-impl crate::vk::StructureType {
+impl vk::StructureType {
     pub const PHYSICAL_DEVICE_SHADER_SUBGROUP_ROTATE_FEATURES_KHR: Self = Self::PHYSICAL_DEVICE_SHADER_SUBGROUP_ROTATE_FEATURES;
 }
-///Provided by [VK_KHR_shader_subgroup_rotate](crate::khr::shader_subgroup_rotate)
-impl crate::vk::SubgroupFeatureFlags {
-    pub const ROTATE_KHR: Self = Self(crate::vk::SubgroupFeatureFlagBits::ROTATE_KHR.0);
+///Provided by [Vulkan 1.1](crate::vk1_1)
+impl vk::SubgroupFeatureFlags {
+    pub const ROTATE_KHR: Self = Self(vk::SubgroupFeatureFlagBits::ROTATE_KHR.0);
     pub const ROTATE_CLUSTERED_KHR: Self = Self(
-        crate::vk::SubgroupFeatureFlagBits::ROTATE_CLUSTERED_KHR.0,
+        vk::SubgroupFeatureFlagBits::ROTATE_CLUSTERED_KHR.0,
     );
 }
-///Provided by [VK_KHR_shader_subgroup_rotate](crate::khr::shader_subgroup_rotate)
-impl crate::vk::SubgroupFeatureFlagBits {
+///Provided by [Vulkan 1.1](crate::vk1_1)
+impl vk::SubgroupFeatureFlagBits {
     pub const ROTATE_KHR: Self = Self::ROTATE;
     pub const ROTATE_CLUSTERED_KHR: Self = Self::ROTATE_CLUSTERED;
 }
 pub const SPEC_VERSION: u32 = 2;
-pub const NAME: &core::ffi::CStr = c"VK_KHR_shader_subgroup_rotate";
+pub const NAME: &CStr = c"VK_KHR_shader_subgroup_rotate";
 pub(crate) mod items {
-    pub type PhysicalDeviceShaderSubgroupRotateFeaturesKHR<'a> = crate::vk::PhysicalDeviceShaderSubgroupRotateFeatures<
+    use crate::vk;
+    pub type PhysicalDeviceShaderSubgroupRotateFeaturesKHR<'a> = vk::PhysicalDeviceShaderSubgroupRotateFeatures<
         'a,
     >;
 }

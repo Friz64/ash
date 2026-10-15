@@ -2,27 +2,30 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_global_priority.html) · Extension `VK_EXT_global_priority`
 #![doc(alias = "VK_EXT_global_priority")]
+use crate::vk;
+use core::ffi::CStr;
 ///Provided by [VK_EXT_global_priority](crate::ext::global_priority)
-impl crate::vk::StructureType {
+impl vk::StructureType {
     pub const DEVICE_QUEUE_GLOBAL_PRIORITY_CREATE_INFO_EXT: Self = Self::DEVICE_QUEUE_GLOBAL_PRIORITY_CREATE_INFO;
 }
 ///Provided by [VK_EXT_global_priority](crate::ext::global_priority)
-impl crate::vk::Result {
+impl vk::Result {
     pub const ERROR_NOT_PERMITTED_EXT: Self = Self::ERROR_NOT_PERMITTED;
 }
 ///Provided by [VK_EXT_global_priority](crate::ext::global_priority)
-impl crate::vk::QueueGlobalPriority {
+impl vk::QueueGlobalPriority {
     pub const LOW_EXT: Self = Self::LOW;
     pub const MEDIUM_EXT: Self = Self::MEDIUM;
     pub const HIGH_EXT: Self = Self::HIGH;
     pub const REALTIME_EXT: Self = Self::REALTIME;
 }
 pub const SPEC_VERSION: u32 = 2;
-pub const NAME: &core::ffi::CStr = c"VK_EXT_global_priority";
+pub const NAME: &CStr = c"VK_EXT_global_priority";
 pub(crate) mod items {
-    pub type DeviceQueueGlobalPriorityCreateInfoEXT<'a> = crate::vk::DeviceQueueGlobalPriorityCreateInfo<
+    use crate::vk;
+    pub type DeviceQueueGlobalPriorityCreateInfoEXT<'a> = vk::DeviceQueueGlobalPriorityCreateInfo<
         'a,
     >;
-    pub type QueueGlobalPriorityEXT = crate::vk::QueueGlobalPriority;
+    pub type QueueGlobalPriorityEXT = vk::QueueGlobalPriority;
 }
 pub use items::*;

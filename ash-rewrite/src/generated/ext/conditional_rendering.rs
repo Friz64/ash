@@ -2,8 +2,11 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_conditional_rendering.html) · Extension `VK_EXT_conditional_rendering`
 #![doc(alias = "VK_EXT_conditional_rendering")]
+use crate::vk;
+use core::ffi::CStr;
+use core::ffi::c_void;
 ///Provided by [VK_EXT_conditional_rendering](crate::ext::conditional_rendering)
-impl crate::vk::StructureType {
+impl vk::StructureType {
     pub const COMMAND_BUFFER_INHERITANCE_CONDITIONAL_RENDERING_INFO_EXT: Self = Self(
         1000081000,
     );
@@ -12,34 +15,34 @@ impl crate::vk::StructureType {
     );
     pub const CONDITIONAL_RENDERING_BEGIN_INFO_EXT: Self = Self(1000081002);
 }
-///Provided by [VK_EXT_conditional_rendering](crate::ext::conditional_rendering)
-impl crate::vk::AccessFlags {
+///Provided by [Vulkan 1.0](crate::vk1_0)
+impl vk::AccessFlags {
     pub const CONDITIONAL_RENDERING_READ_EXT: Self = Self(
-        crate::vk::AccessFlagBits::CONDITIONAL_RENDERING_READ_EXT.0,
+        vk::AccessFlagBits::CONDITIONAL_RENDERING_READ_EXT.0,
     );
 }
-///Provided by [VK_EXT_conditional_rendering](crate::ext::conditional_rendering)
-impl crate::vk::AccessFlagBits {
+///Provided by [Vulkan 1.0](crate::vk1_0)
+impl vk::AccessFlagBits {
     pub const CONDITIONAL_RENDERING_READ_EXT: Self = Self(1 << 20);
 }
-///Provided by [VK_EXT_conditional_rendering](crate::ext::conditional_rendering)
-impl crate::vk::BufferUsageFlags {
+///Provided by [Vulkan 1.0](crate::vk1_0)
+impl vk::BufferUsageFlags {
     pub const CONDITIONAL_RENDERING_EXT: Self = Self(
-        crate::vk::BufferUsageFlagBits::CONDITIONAL_RENDERING_EXT.0,
+        vk::BufferUsageFlagBits::CONDITIONAL_RENDERING_EXT.0,
     );
 }
-///Provided by [VK_EXT_conditional_rendering](crate::ext::conditional_rendering)
-impl crate::vk::BufferUsageFlagBits {
+///Provided by [Vulkan 1.0](crate::vk1_0)
+impl vk::BufferUsageFlagBits {
     pub const CONDITIONAL_RENDERING_EXT: Self = Self(1 << 9);
 }
-///Provided by [VK_EXT_conditional_rendering](crate::ext::conditional_rendering)
-impl crate::vk::PipelineStageFlags {
+///Provided by [Vulkan 1.0](crate::vk1_0)
+impl vk::PipelineStageFlags {
     pub const CONDITIONAL_RENDERING_EXT: Self = Self(
-        crate::vk::PipelineStageFlagBits::CONDITIONAL_RENDERING_EXT.0,
+        vk::PipelineStageFlagBits::CONDITIONAL_RENDERING_EXT.0,
     );
 }
-///Provided by [VK_EXT_conditional_rendering](crate::ext::conditional_rendering)
-impl crate::vk::PipelineStageFlagBits {
+///Provided by [Vulkan 1.0](crate::vk1_0)
+impl vk::PipelineStageFlagBits {
     pub const CONDITIONAL_RENDERING_EXT: Self = Self(1 << 18);
 }
 ///Provided by [VK_EXT_conditional_rendering](crate::ext::conditional_rendering)
@@ -50,27 +53,25 @@ impl ConditionalRenderingFlagsEXT {
 impl ConditionalRenderingFlagBitsEXT {
     pub const INVERTED: Self = Self(1 << 0);
 }
+pub const SPEC_VERSION: u32 = 2;
+pub const NAME: &CStr = c"VK_EXT_conditional_rendering";
 #[derive(Clone)]
 pub struct DeviceFn {
-    pub cmd_begin_conditional_rendering: crate::vk::PFN_vkCmdBeginConditionalRenderingEXT,
-    pub cmd_end_conditional_rendering: crate::vk::PFN_vkCmdEndConditionalRenderingEXT,
+    pub cmd_begin_conditional_rendering: vk::PFN_vkCmdBeginConditionalRenderingEXT,
+    pub cmd_end_conditional_rendering: vk::PFN_vkCmdEndConditionalRenderingEXT,
 }
 unsafe impl Send for DeviceFn {}
 unsafe impl Sync for DeviceFn {}
 impl DeviceFn {
-    pub fn load<F: FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void>(
-        mut f: F,
-    ) -> Self {
+    pub fn load<F: FnMut(&CStr) -> *const c_void>(mut f: F) -> Self {
         Self::load_erased(&mut f)
     }
-    fn load_erased(
-        _f: &mut dyn FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void,
-    ) -> Self {
+    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const c_void) -> Self {
         Self {
             cmd_begin_conditional_rendering: unsafe {
                 unsafe extern "system" fn cmd_begin_conditional_rendering(
-                    _: crate::vk::CommandBuffer,
-                    _: *const crate::vk::ConditionalRenderingBeginInfoEXT<'_>,
+                    _: vk::CommandBuffer,
+                    _: *const vk::ConditionalRenderingBeginInfoEXT<'_>,
                 ) {
                     panic!("unable to load vkCmdBeginConditionalRenderingEXT")
                 }
@@ -83,7 +84,7 @@ impl DeviceFn {
             },
             cmd_end_conditional_rendering: unsafe {
                 unsafe extern "system" fn cmd_end_conditional_rendering(
-                    _: crate::vk::CommandBuffer,
+                    _: vk::CommandBuffer,
                 ) {
                     panic!("unable to load vkCmdEndConditionalRenderingEXT")
                 }
@@ -122,8 +123,8 @@ impl Device {
     #[inline]
     pub unsafe fn cmd_begin_conditional_rendering(
         &self,
-        command_buffer: crate::vk::CommandBuffer,
-        conditional_rendering_begin: &crate::vk::ConditionalRenderingBeginInfoEXT<'_>,
+        command_buffer: vk::CommandBuffer,
+        conditional_rendering_begin: &vk::ConditionalRenderingBeginInfoEXT<'_>,
     ) {
         (self
             .fp
@@ -136,29 +137,29 @@ impl Device {
     #[inline]
     pub unsafe fn cmd_end_conditional_rendering(
         &self,
-        command_buffer: crate::vk::CommandBuffer,
+        command_buffer: vk::CommandBuffer,
     ) {
         (self.fp.cmd_end_conditional_rendering)(command_buffer)
     }
 }
-pub const SPEC_VERSION: u32 = 2;
-pub const NAME: &core::ffi::CStr = c"VK_EXT_conditional_rendering";
 pub(crate) mod items {
+    use core::marker::PhantomData;
+    use crate::vk;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct ConditionalRenderingBeginInfoEXT<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *const core::ffi::c_void,
-        pub buffer: crate::vk::Buffer,
-        pub offset: crate::vk::DeviceSize,
-        pub flags: crate::vk::ConditionalRenderingFlagsEXT,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub buffer: vk::Buffer,
+        pub offset: vk::DeviceSize,
+        pub flags: vk::ConditionalRenderingFlagsEXT,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for ConditionalRenderingBeginInfoEXT<'_> {}
     unsafe impl Sync for ConditionalRenderingBeginInfoEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for ConditionalRenderingBeginInfoEXT<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::CONDITIONAL_RENDERING_BEGIN_INFO_EXT;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::CONDITIONAL_RENDERING_BEGIN_INFO_EXT;
     }
     impl<'a> Default for ConditionalRenderingBeginInfoEXT<'a> {
         fn default() -> Self {
@@ -168,20 +169,20 @@ pub(crate) mod items {
                 buffer: Default::default(),
                 offset: Default::default(),
                 flags: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
     impl<'a> ConditionalRenderingBeginInfoEXT<'a> {
-        pub fn buffer(mut self, buffer: crate::vk::Buffer) -> Self {
+        pub fn buffer(mut self, buffer: vk::Buffer) -> Self {
             self.buffer = buffer;
             self
         }
-        pub fn offset(mut self, offset: crate::vk::DeviceSize) -> Self {
+        pub fn offset(mut self, offset: vk::DeviceSize) -> Self {
             self.offset = offset;
             self
         }
-        pub fn flags(mut self, flags: crate::vk::ConditionalRenderingFlagsEXT) -> Self {
+        pub fn flags(mut self, flags: vk::ConditionalRenderingFlagsEXT) -> Self {
             self.flags = flags;
             self
         }
@@ -190,18 +191,18 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct CommandBufferInheritanceConditionalRenderingInfoEXT<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *const core::ffi::c_void,
-        pub conditional_rendering_enable: crate::vk::Bool32,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub conditional_rendering_enable: vk::Bool32,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for CommandBufferInheritanceConditionalRenderingInfoEXT<'_> {}
     unsafe impl Sync for CommandBufferInheritanceConditionalRenderingInfoEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for CommandBufferInheritanceConditionalRenderingInfoEXT<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::COMMAND_BUFFER_INHERITANCE_CONDITIONAL_RENDERING_INFO_EXT;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::COMMAND_BUFFER_INHERITANCE_CONDITIONAL_RENDERING_INFO_EXT;
     }
-    unsafe impl<'a> crate::Extends<crate::vk::CommandBufferInheritanceInfo<'_>>
+    unsafe impl<'a> crate::Extends<vk::CommandBufferInheritanceInfo<'_>>
     for CommandBufferInheritanceConditionalRenderingInfoEXT<'a> {}
     impl<'a> Default for CommandBufferInheritanceConditionalRenderingInfoEXT<'a> {
         fn default() -> Self {
@@ -209,7 +210,7 @@ pub(crate) mod items {
                 s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
                 p_next: Default::default(),
                 conditional_rendering_enable: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
@@ -226,21 +227,21 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceConditionalRenderingFeaturesEXT<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
-        pub conditional_rendering: crate::vk::Bool32,
-        pub inherited_conditional_rendering: crate::vk::Bool32,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub conditional_rendering: vk::Bool32,
+        pub inherited_conditional_rendering: vk::Bool32,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for PhysicalDeviceConditionalRenderingFeaturesEXT<'_> {}
     unsafe impl Sync for PhysicalDeviceConditionalRenderingFeaturesEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceConditionalRenderingFeaturesEXT<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_CONDITIONAL_RENDERING_FEATURES_EXT;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PHYSICAL_DEVICE_CONDITIONAL_RENDERING_FEATURES_EXT;
     }
-    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+    unsafe impl<'a> crate::Extends<vk::PhysicalDeviceFeatures2<'_>>
     for PhysicalDeviceConditionalRenderingFeaturesEXT<'a> {}
-    unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+    unsafe impl<'a> crate::Extends<vk::DeviceCreateInfo<'_>>
     for PhysicalDeviceConditionalRenderingFeaturesEXT<'a> {}
     impl<'a> Default for PhysicalDeviceConditionalRenderingFeaturesEXT<'a> {
         fn default() -> Self {
@@ -249,7 +250,7 @@ pub(crate) mod items {
                 p_next: Default::default(),
                 conditional_rendering: Default::default(),
                 inherited_conditional_rendering: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
@@ -360,13 +361,11 @@ pub(crate) mod items {
         }
     }
     pub type PFN_vkCmdBeginConditionalRenderingEXT = unsafe extern "system" fn(
-        command_buffer: crate::vk::CommandBuffer,
-        p_conditional_rendering_begin: *const crate::vk::ConditionalRenderingBeginInfoEXT<
-            '_,
-        >,
+        command_buffer: vk::CommandBuffer,
+        p_conditional_rendering_begin: *const vk::ConditionalRenderingBeginInfoEXT<'_>,
     );
     pub type PFN_vkCmdEndConditionalRenderingEXT = unsafe extern "system" fn(
-        command_buffer: crate::vk::CommandBuffer,
+        command_buffer: vk::CommandBuffer,
     );
 }
 pub use items::*;

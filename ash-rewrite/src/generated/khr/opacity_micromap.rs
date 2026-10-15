@@ -2,8 +2,10 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_opacity_micromap.html) · Extension `VK_KHR_opacity_micromap`
 #![doc(alias = "VK_KHR_opacity_micromap")]
+use crate::vk;
+use core::ffi::CStr;
 ///Provided by [VK_KHR_opacity_micromap](crate::khr::opacity_micromap)
-impl crate::vk::StructureType {
+impl vk::StructureType {
     pub const PHYSICAL_DEVICE_OPACITY_MICROMAP_FEATURES_KHR: Self = Self(1000623000);
     pub const PHYSICAL_DEVICE_OPACITY_MICROMAP_PROPERTIES_KHR: Self = Self(1000623001);
     pub const ACCELERATION_STRUCTURE_GEOMETRY_MICROMAP_DATA_KHR: Self = Self(1000623002);
@@ -12,11 +14,11 @@ impl crate::vk::StructureType {
     );
 }
 ///Provided by [VK_KHR_opacity_micromap](crate::khr::opacity_micromap)
-impl crate::vk::AccelerationStructureTypeKHR {
+impl vk::AccelerationStructureTypeKHR {
     pub const OPACITY_MICROMAP: Self = Self(1000623000);
 }
 ///Provided by [VK_KHR_opacity_micromap](crate::khr::opacity_micromap)
-impl crate::vk::GeometryTypeKHR {
+impl vk::GeometryTypeKHR {
     pub const MICROMAP: Self = Self(1000623000);
 }
 ///Provided by [VK_KHR_opacity_micromap](crate::khr::opacity_micromap)
@@ -35,99 +37,98 @@ impl OpacityMicromapSpecialIndexKHR {
 impl AccelerationStructureSerializedBlockTypeKHR {
     pub const OPACITY_MICROMAP: Self = Self(0);
 }
-///Provided by [VK_KHR_opacity_micromap](crate::khr::opacity_micromap)
-impl crate::vk::PipelineCreateFlags {
+///Provided by [Vulkan 1.0](crate::vk1_0)
+impl vk::PipelineCreateFlags {
     pub const RAY_TRACING_OPACITY_MICROMAP_KHR: Self = Self(
-        crate::vk::PipelineCreateFlagBits::RAY_TRACING_OPACITY_MICROMAP_KHR.0,
+        vk::PipelineCreateFlagBits::RAY_TRACING_OPACITY_MICROMAP_KHR.0,
     );
 }
-///Provided by [VK_KHR_opacity_micromap](crate::khr::opacity_micromap)
-impl crate::vk::PipelineCreateFlagBits {
+///Provided by [Vulkan 1.0](crate::vk1_0)
+impl vk::PipelineCreateFlagBits {
     pub const RAY_TRACING_OPACITY_MICROMAP_KHR: Self = Self(1 << 24);
 }
-///Provided by [VK_KHR_opacity_micromap](crate::khr::opacity_micromap)
-impl crate::vk::GeometryInstanceFlagsKHR {
+///Provided by [VK_KHR_acceleration_structure](crate::khr::acceleration_structure)
+impl vk::GeometryInstanceFlagsKHR {
     pub const FORCE_OPACITY_MICROMAP_2_STATE: Self = Self(
-        crate::vk::GeometryInstanceFlagBitsKHR::FORCE_OPACITY_MICROMAP_2_STATE.0,
+        vk::GeometryInstanceFlagBitsKHR::FORCE_OPACITY_MICROMAP_2_STATE.0,
     );
     pub const DISABLE_OPACITY_MICROMAPS: Self = Self(
-        crate::vk::GeometryInstanceFlagBitsKHR::DISABLE_OPACITY_MICROMAPS.0,
+        vk::GeometryInstanceFlagBitsKHR::DISABLE_OPACITY_MICROMAPS.0,
     );
 }
-///Provided by [VK_KHR_opacity_micromap](crate::khr::opacity_micromap)
-impl crate::vk::GeometryInstanceFlagBitsKHR {
+///Provided by [VK_KHR_acceleration_structure](crate::khr::acceleration_structure)
+impl vk::GeometryInstanceFlagBitsKHR {
     pub const FORCE_OPACITY_MICROMAP_2_STATE: Self = Self(1 << 4);
     pub const DISABLE_OPACITY_MICROMAPS: Self = Self(1 << 5);
 }
-///Provided by [VK_KHR_opacity_micromap](crate::khr::opacity_micromap)
-impl crate::vk::BuildAccelerationStructureFlagsKHR {
+///Provided by [VK_KHR_acceleration_structure](crate::khr::acceleration_structure)
+impl vk::BuildAccelerationStructureFlagsKHR {
     pub const ALLOW_OPACITY_MICROMAP_UPDATE: Self = Self(
-        crate::vk::BuildAccelerationStructureFlagBitsKHR::ALLOW_OPACITY_MICROMAP_UPDATE.0,
+        vk::BuildAccelerationStructureFlagBitsKHR::ALLOW_OPACITY_MICROMAP_UPDATE.0,
     );
     pub const ALLOW_DISABLE_OPACITY_MICROMAPS: Self = Self(
-        crate::vk::BuildAccelerationStructureFlagBitsKHR::ALLOW_DISABLE_OPACITY_MICROMAPS
-            .0,
+        vk::BuildAccelerationStructureFlagBitsKHR::ALLOW_DISABLE_OPACITY_MICROMAPS.0,
     );
     pub const MICROMAP_LOSSY: Self = Self(
-        crate::vk::BuildAccelerationStructureFlagBitsKHR::MICROMAP_LOSSY.0,
+        vk::BuildAccelerationStructureFlagBitsKHR::MICROMAP_LOSSY.0,
     );
 }
-///Provided by [VK_KHR_opacity_micromap](crate::khr::opacity_micromap)
-impl crate::vk::BuildAccelerationStructureFlagBitsKHR {
+///Provided by [VK_KHR_acceleration_structure](crate::khr::acceleration_structure)
+impl vk::BuildAccelerationStructureFlagBitsKHR {
     pub const ALLOW_OPACITY_MICROMAP_UPDATE: Self = Self(1 << 6);
     pub const ALLOW_DISABLE_OPACITY_MICROMAPS: Self = Self(1 << 7);
     pub const MICROMAP_LOSSY: Self = Self(1 << 10);
 }
-///Provided by [VK_KHR_opacity_micromap](crate::khr::opacity_micromap)
-impl crate::vk::PipelineCreateFlags2 {
+///Provided by [Vulkan 1.4](crate::vk1_4)
+impl vk::PipelineCreateFlags2 {
     pub const RAY_TRACING_OPACITY_MICROMAP_KHR: Self = Self(
-        crate::vk::PipelineCreateFlagBits2::RAY_TRACING_OPACITY_MICROMAP_KHR.0,
+        vk::PipelineCreateFlagBits2::RAY_TRACING_OPACITY_MICROMAP_KHR.0,
     );
     pub const OPACITY_MICROMAP_DISALLOW_MIXED_SPECIAL_INDEX_KHR: Self = Self(
-        crate::vk::PipelineCreateFlagBits2::OPACITY_MICROMAP_DISALLOW_MIXED_SPECIAL_INDEX_KHR
-            .0,
+        vk::PipelineCreateFlagBits2::OPACITY_MICROMAP_DISALLOW_MIXED_SPECIAL_INDEX_KHR.0,
     );
 }
-///Provided by [VK_KHR_opacity_micromap](crate::khr::opacity_micromap)
-impl crate::vk::PipelineCreateFlagBits2 {
+///Provided by [Vulkan 1.4](crate::vk1_4)
+impl vk::PipelineCreateFlagBits2 {
     pub const RAY_TRACING_OPACITY_MICROMAP_KHR: Self = Self(1 << 24);
     pub const OPACITY_MICROMAP_DISALLOW_MIXED_SPECIAL_INDEX_KHR: Self = Self(1 << 41);
 }
-///Provided by [VK_KHR_opacity_micromap](crate::khr::opacity_micromap)
-impl crate::vk::ShaderCreateFlagsEXT {
+///Provided by [VK_EXT_shader_object](crate::ext::shader_object)
+impl vk::ShaderCreateFlagsEXT {
     pub const OPACITY_MICROMAP_DISALLOW_MIXED_SPECIAL_INDEX: Self = Self(
-        crate::vk::ShaderCreateFlagBitsEXT::OPACITY_MICROMAP_DISALLOW_MIXED_SPECIAL_INDEX
-            .0,
+        vk::ShaderCreateFlagBitsEXT::OPACITY_MICROMAP_DISALLOW_MIXED_SPECIAL_INDEX.0,
     );
 }
-///Provided by [VK_KHR_opacity_micromap](crate::khr::opacity_micromap)
-impl crate::vk::ShaderCreateFlagBitsEXT {
+///Provided by [VK_EXT_shader_object](crate::ext::shader_object)
+impl vk::ShaderCreateFlagBitsEXT {
     pub const OPACITY_MICROMAP_DISALLOW_MIXED_SPECIAL_INDEX: Self = Self(1 << 12);
 }
 pub const SPEC_VERSION: u32 = 1;
-pub const NAME: &core::ffi::CStr = c"VK_KHR_opacity_micromap";
+pub const NAME: &CStr = c"VK_KHR_opacity_micromap";
 pub(crate) mod items {
+    use core::marker::PhantomData;
+    use crate::vk;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct AccelerationStructureGeometryMicromapDataKHR<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *const core::ffi::c_void,
         pub usage_counts_count: u32,
-        pub p_usage_counts: *const crate::vk::MicromapUsageKHR,
-        pub pp_usage_counts: *const *const crate::vk::MicromapUsageKHR,
-        pub data: crate::vk::DeviceAddress,
-        pub triangle_array: crate::vk::DeviceAddress,
-        pub triangle_array_stride: crate::vk::DeviceSize,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub p_usage_counts: *const vk::MicromapUsageKHR,
+        pub pp_usage_counts: *const *const vk::MicromapUsageKHR,
+        pub data: vk::DeviceAddress,
+        pub triangle_array: vk::DeviceAddress,
+        pub triangle_array_stride: vk::DeviceSize,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for AccelerationStructureGeometryMicromapDataKHR<'_> {}
     unsafe impl Sync for AccelerationStructureGeometryMicromapDataKHR<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for AccelerationStructureGeometryMicromapDataKHR<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::ACCELERATION_STRUCTURE_GEOMETRY_MICROMAP_DATA_KHR;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::ACCELERATION_STRUCTURE_GEOMETRY_MICROMAP_DATA_KHR;
     }
-    unsafe impl<'a> crate::Extends<crate::vk::AccelerationStructureGeometryKHR<'_>>
+    unsafe impl<'a> crate::Extends<vk::AccelerationStructureGeometryKHR<'_>>
     for AccelerationStructureGeometryMicromapDataKHR<'a> {}
     impl<'a> Default for AccelerationStructureGeometryMicromapDataKHR<'a> {
         fn default() -> Self {
@@ -140,41 +141,35 @@ pub(crate) mod items {
                 data: Default::default(),
                 triangle_array: Default::default(),
                 triangle_array_stride: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
     impl<'a> AccelerationStructureGeometryMicromapDataKHR<'a> {
-        pub fn usage_counts(
-            mut self,
-            usage_counts: &'a [crate::vk::MicromapUsageKHR],
-        ) -> Self {
+        pub fn usage_counts(mut self, usage_counts: &'a [vk::MicromapUsageKHR]) -> Self {
             self.usage_counts_count = usage_counts.len() as _;
             self.p_usage_counts = usage_counts.as_ptr();
             self
         }
         pub fn usage_counts_ptrs(
             mut self,
-            usage_counts_ptrs: &'a [&'a crate::vk::MicromapUsageKHR],
+            usage_counts_ptrs: &'a [&'a vk::MicromapUsageKHR],
         ) -> Self {
             self.usage_counts_count = usage_counts_ptrs.len() as _;
             self.pp_usage_counts = usage_counts_ptrs.as_ptr().cast();
             self
         }
-        pub fn data(mut self, data: crate::vk::DeviceAddress) -> Self {
+        pub fn data(mut self, data: vk::DeviceAddress) -> Self {
             self.data = data;
             self
         }
-        pub fn triangle_array(
-            mut self,
-            triangle_array: crate::vk::DeviceAddress,
-        ) -> Self {
+        pub fn triangle_array(mut self, triangle_array: vk::DeviceAddress) -> Self {
             self.triangle_array = triangle_array;
             self
         }
         pub fn triangle_array_stride(
             mut self,
-            triangle_array_stride: crate::vk::DeviceSize,
+            triangle_array_stride: vk::DeviceSize,
         ) -> Self {
             self.triangle_array_stride = triangle_array_stride;
             self
@@ -186,7 +181,7 @@ pub(crate) mod items {
     pub struct MicromapUsageKHR {
         pub count: u32,
         pub subdivision_level: u32,
-        pub format: crate::vk::OpacityMicromapFormatKHR,
+        pub format: vk::OpacityMicromapFormatKHR,
     }
     unsafe impl Send for MicromapUsageKHR {}
     unsafe impl Sync for MicromapUsageKHR {}
@@ -199,7 +194,7 @@ pub(crate) mod items {
             self.subdivision_level = subdivision_level;
             self
         }
-        pub fn format(mut self, format: crate::vk::OpacityMicromapFormatKHR) -> Self {
+        pub fn format(mut self, format: vk::OpacityMicromapFormatKHR) -> Self {
             self.format = format;
             self
         }
@@ -232,20 +227,20 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceOpacityMicromapFeaturesKHR<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
-        pub micromap: crate::vk::Bool32,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub micromap: vk::Bool32,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for PhysicalDeviceOpacityMicromapFeaturesKHR<'_> {}
     unsafe impl Sync for PhysicalDeviceOpacityMicromapFeaturesKHR<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceOpacityMicromapFeaturesKHR<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_OPACITY_MICROMAP_FEATURES_KHR;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PHYSICAL_DEVICE_OPACITY_MICROMAP_FEATURES_KHR;
     }
-    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+    unsafe impl<'a> crate::Extends<vk::PhysicalDeviceFeatures2<'_>>
     for PhysicalDeviceOpacityMicromapFeaturesKHR<'a> {}
-    unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+    unsafe impl<'a> crate::Extends<vk::DeviceCreateInfo<'_>>
     for PhysicalDeviceOpacityMicromapFeaturesKHR<'a> {}
     impl<'a> Default for PhysicalDeviceOpacityMicromapFeaturesKHR<'a> {
         fn default() -> Self {
@@ -253,7 +248,7 @@ pub(crate) mod items {
                 s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
                 p_next: Default::default(),
                 micromap: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
@@ -267,21 +262,21 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceOpacityMicromapPropertiesKHR<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
         pub max_opacity2_state_subdivision_level: u32,
         pub max_opacity4_state_subdivision_level: u32,
         pub max_opacity_lossy4_state_subdivision_level: u32,
         pub max_micromap_triangles: u64,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for PhysicalDeviceOpacityMicromapPropertiesKHR<'_> {}
     unsafe impl Sync for PhysicalDeviceOpacityMicromapPropertiesKHR<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceOpacityMicromapPropertiesKHR<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_OPACITY_MICROMAP_PROPERTIES_KHR;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PHYSICAL_DEVICE_OPACITY_MICROMAP_PROPERTIES_KHR;
     }
-    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceProperties2<'_>>
+    unsafe impl<'a> crate::Extends<vk::PhysicalDeviceProperties2<'_>>
     for PhysicalDeviceOpacityMicromapPropertiesKHR<'a> {}
     impl<'a> Default for PhysicalDeviceOpacityMicromapPropertiesKHR<'a> {
         fn default() -> Self {
@@ -292,7 +287,7 @@ pub(crate) mod items {
                 max_opacity4_state_subdivision_level: Default::default(),
                 max_opacity_lossy4_state_subdivision_level: Default::default(),
                 max_micromap_triangles: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
@@ -327,31 +322,28 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct AccelerationStructureTrianglesOpacityMicromapKHR<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
-        pub index_type: crate::vk::IndexType,
-        pub index_buffer: crate::vk::DeviceAddress,
-        pub index_stride: crate::vk::DeviceSize,
+        pub index_type: vk::IndexType,
+        pub index_buffer: vk::DeviceAddress,
+        pub index_stride: vk::DeviceSize,
         pub base_triangle: u32,
-        pub micromap: crate::vk::AccelerationStructureKHR,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub micromap: vk::AccelerationStructureKHR,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for AccelerationStructureTrianglesOpacityMicromapKHR<'_> {}
     unsafe impl Sync for AccelerationStructureTrianglesOpacityMicromapKHR<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for AccelerationStructureTrianglesOpacityMicromapKHR<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::ACCELERATION_STRUCTURE_TRIANGLES_OPACITY_MICROMAP_KHR;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::ACCELERATION_STRUCTURE_TRIANGLES_OPACITY_MICROMAP_KHR;
     }
-    unsafe impl<
-        'a,
-    > crate::Extends<crate::vk::AccelerationStructureGeometryTrianglesDataKHR<'_>>
+    unsafe impl<'a> crate::Extends<vk::AccelerationStructureGeometryTrianglesDataKHR<'_>>
     for AccelerationStructureTrianglesOpacityMicromapKHR<'a> {}
     #[cfg(feature = "provisional")]
     unsafe impl<
         'a,
-    > crate::Extends<
-        crate::vk::AccelerationStructureDenseGeometryFormatTrianglesDataAMDX<'_>,
-    > for AccelerationStructureTrianglesOpacityMicromapKHR<'a> {}
+    > crate::Extends<vk::AccelerationStructureDenseGeometryFormatTrianglesDataAMDX<'_>>
+    for AccelerationStructureTrianglesOpacityMicromapKHR<'a> {}
     impl<'a> Default for AccelerationStructureTrianglesOpacityMicromapKHR<'a> {
         fn default() -> Self {
             Self {
@@ -362,20 +354,20 @@ pub(crate) mod items {
                 index_stride: Default::default(),
                 base_triangle: Default::default(),
                 micromap: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
     impl<'a> AccelerationStructureTrianglesOpacityMicromapKHR<'a> {
-        pub fn index_type(mut self, index_type: crate::vk::IndexType) -> Self {
+        pub fn index_type(mut self, index_type: vk::IndexType) -> Self {
             self.index_type = index_type;
             self
         }
-        pub fn index_buffer(mut self, index_buffer: crate::vk::DeviceAddress) -> Self {
+        pub fn index_buffer(mut self, index_buffer: vk::DeviceAddress) -> Self {
             self.index_buffer = index_buffer;
             self
         }
-        pub fn index_stride(mut self, index_stride: crate::vk::DeviceSize) -> Self {
+        pub fn index_stride(mut self, index_stride: vk::DeviceSize) -> Self {
             self.index_stride = index_stride;
             self
         }
@@ -383,10 +375,7 @@ pub(crate) mod items {
             self.base_triangle = base_triangle;
             self
         }
-        pub fn micromap(
-            mut self,
-            micromap: crate::vk::AccelerationStructureKHR,
-        ) -> Self {
+        pub fn micromap(mut self, micromap: vk::AccelerationStructureKHR) -> Self {
             self.micromap = micromap;
             self
         }

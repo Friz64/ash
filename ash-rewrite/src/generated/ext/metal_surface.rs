@@ -2,33 +2,35 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_metal_surface.html) · Extension `VK_EXT_metal_surface`
 #![doc(alias = "VK_EXT_metal_surface")]
+use crate::vk;
+use core::ffi::CStr;
+use crate::VkResult;
+use core::ffi::c_void;
 ///Provided by [VK_EXT_metal_surface](crate::ext::metal_surface)
-impl crate::vk::StructureType {
+impl vk::StructureType {
     pub const METAL_SURFACE_CREATE_INFO_EXT: Self = Self(1000217000);
 }
+pub const SPEC_VERSION: u32 = 1;
+pub const NAME: &CStr = c"VK_EXT_metal_surface";
 #[derive(Clone)]
 pub struct InstanceFn {
-    pub create_metal_surface: crate::vk::PFN_vkCreateMetalSurfaceEXT,
+    pub create_metal_surface: vk::PFN_vkCreateMetalSurfaceEXT,
 }
 unsafe impl Send for InstanceFn {}
 unsafe impl Sync for InstanceFn {}
 impl InstanceFn {
-    pub fn load<F: FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void>(
-        mut f: F,
-    ) -> Self {
+    pub fn load<F: FnMut(&CStr) -> *const c_void>(mut f: F) -> Self {
         Self::load_erased(&mut f)
     }
-    fn load_erased(
-        _f: &mut dyn FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void,
-    ) -> Self {
+    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const c_void) -> Self {
         Self {
             create_metal_surface: unsafe {
                 unsafe extern "system" fn create_metal_surface(
-                    _: crate::vk::Instance,
-                    _: *const crate::vk::MetalSurfaceCreateInfoEXT<'_>,
-                    _: *const crate::vk::AllocationCallbacks<'_>,
-                    _: *mut crate::vk::SurfaceKHR,
-                ) -> crate::vk::Result {
+                    _: vk::Instance,
+                    _: *const vk::MetalSurfaceCreateInfoEXT<'_>,
+                    _: *const vk::AllocationCallbacks<'_>,
+                    _: *mut vk::SurfaceKHR,
+                ) -> vk::Result {
                     panic!("unable to load vkCreateMetalSurfaceEXT")
                 }
                 let val = _f(c"vkCreateMetalSurfaceEXT");
@@ -66,9 +68,9 @@ impl Instance {
     #[inline]
     pub unsafe fn create_metal_surface(
         &self,
-        create_info: &crate::vk::MetalSurfaceCreateInfoEXT<'_>,
-        allocator: Option<&crate::vk::AllocationCallbacks<'_>>,
-    ) -> crate::VkResult<crate::vk::SurfaceKHR> {
+        create_info: &vk::MetalSurfaceCreateInfoEXT<'_>,
+        allocator: Option<&vk::AllocationCallbacks<'_>>,
+    ) -> VkResult<vk::SurfaceKHR> {
         let mut surface = core::mem::MaybeUninit::uninit();
         (self
             .fp
@@ -84,23 +86,23 @@ impl Instance {
             .assume_init_on_success(surface)
     }
 }
-pub const SPEC_VERSION: u32 = 1;
-pub const NAME: &core::ffi::CStr = c"VK_EXT_metal_surface";
 pub(crate) mod items {
+    use core::marker::PhantomData;
+    use crate::vk;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct MetalSurfaceCreateInfoEXT<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *const core::ffi::c_void,
-        pub flags: crate::vk::MetalSurfaceCreateFlagsEXT,
+        pub flags: vk::MetalSurfaceCreateFlagsEXT,
         pub p_layer: *const crate::platform_types::CAMetalLayer,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for MetalSurfaceCreateInfoEXT<'_> {}
     unsafe impl Sync for MetalSurfaceCreateInfoEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for MetalSurfaceCreateInfoEXT<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::METAL_SURFACE_CREATE_INFO_EXT;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::METAL_SURFACE_CREATE_INFO_EXT;
     }
     impl<'a> Default for MetalSurfaceCreateInfoEXT<'a> {
         fn default() -> Self {
@@ -109,12 +111,12 @@ pub(crate) mod items {
                 p_next: Default::default(),
                 flags: Default::default(),
                 p_layer: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
     impl<'a> MetalSurfaceCreateInfoEXT<'a> {
-        pub fn flags(mut self, flags: crate::vk::MetalSurfaceCreateFlagsEXT) -> Self {
+        pub fn flags(mut self, flags: vk::MetalSurfaceCreateFlagsEXT) -> Self {
             self.flags = flags;
             self
         }
@@ -192,10 +194,10 @@ pub(crate) mod items {
         }
     }
     pub type PFN_vkCreateMetalSurfaceEXT = unsafe extern "system" fn(
-        instance: crate::vk::Instance,
-        p_create_info: *const crate::vk::MetalSurfaceCreateInfoEXT<'_>,
-        p_allocator: *const crate::vk::AllocationCallbacks<'_>,
-        p_surface: *mut crate::vk::SurfaceKHR,
-    ) -> crate::vk::Result;
+        instance: vk::Instance,
+        p_create_info: *const vk::MetalSurfaceCreateInfoEXT<'_>,
+        p_allocator: *const vk::AllocationCallbacks<'_>,
+        p_surface: *mut vk::SurfaceKHR,
+    ) -> vk::Result;
 }
 pub use items::*;

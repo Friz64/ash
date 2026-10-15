@@ -2,8 +2,12 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_sampler_ycbcr_conversion.html) · Extension `VK_KHR_sampler_ycbcr_conversion`
 #![doc(alias = "VK_KHR_sampler_ycbcr_conversion")]
+use crate::vk;
+use core::ffi::CStr;
+use crate::VkResult;
+use core::ffi::c_void;
 ///Provided by [VK_KHR_sampler_ycbcr_conversion](crate::khr::sampler_ycbcr_conversion)
-impl crate::vk::Format {
+impl vk::Format {
     pub const G8B8G8R8_422_UNORM_KHR: Self = Self::G8B8G8R8_422_UNORM;
     pub const B8G8R8G8_422_UNORM_KHR: Self = Self::B8G8R8G8_422_UNORM;
     pub const G8_B8_R8_3PLANE_420_UNORM_KHR: Self = Self::G8_B8_R8_3PLANE_420_UNORM;
@@ -40,7 +44,7 @@ impl crate::vk::Format {
     pub const G16_B16_R16_3PLANE_444_UNORM_KHR: Self = Self::G16_B16_R16_3PLANE_444_UNORM;
 }
 ///Provided by [VK_KHR_sampler_ycbcr_conversion](crate::khr::sampler_ycbcr_conversion)
-impl crate::vk::StructureType {
+impl vk::StructureType {
     pub const SAMPLER_YCBCR_CONVERSION_CREATE_INFO_KHR: Self = Self::SAMPLER_YCBCR_CONVERSION_CREATE_INFO;
     pub const SAMPLER_YCBCR_CONVERSION_INFO_KHR: Self = Self::SAMPLER_YCBCR_CONVERSION_INFO;
     pub const BIND_IMAGE_PLANE_MEMORY_INFO_KHR: Self = Self::BIND_IMAGE_PLANE_MEMORY_INFO;
@@ -49,15 +53,15 @@ impl crate::vk::StructureType {
     pub const SAMPLER_YCBCR_CONVERSION_IMAGE_FORMAT_PROPERTIES_KHR: Self = Self::SAMPLER_YCBCR_CONVERSION_IMAGE_FORMAT_PROPERTIES;
 }
 ///Provided by [VK_KHR_sampler_ycbcr_conversion](crate::khr::sampler_ycbcr_conversion)
-impl crate::vk::ObjectType {
+impl vk::ObjectType {
     pub const SAMPLER_YCBCR_CONVERSION_KHR: Self = Self::SAMPLER_YCBCR_CONVERSION;
 }
 ///Provided by [VK_KHR_sampler_ycbcr_conversion](crate::khr::sampler_ycbcr_conversion)
-impl crate::vk::DebugReportObjectTypeEXT {
+impl vk::DebugReportObjectTypeEXT {
     pub const SAMPLER_YCBCR_CONVERSION_KHR: Self = Self::SAMPLER_YCBCR_CONVERSION;
 }
 ///Provided by [VK_KHR_sampler_ycbcr_conversion](crate::khr::sampler_ycbcr_conversion)
-impl crate::vk::SamplerYcbcrModelConversion {
+impl vk::SamplerYcbcrModelConversion {
     pub const RGB_IDENTITY_KHR: Self = Self::RGB_IDENTITY;
     pub const YCBCR_IDENTITY_KHR: Self = Self::YCBCR_IDENTITY;
     pub const YCBCR_709_KHR: Self = Self::YCBCR_709;
@@ -65,53 +69,50 @@ impl crate::vk::SamplerYcbcrModelConversion {
     pub const YCBCR_2020_KHR: Self = Self::YCBCR_2020;
 }
 ///Provided by [VK_KHR_sampler_ycbcr_conversion](crate::khr::sampler_ycbcr_conversion)
-impl crate::vk::SamplerYcbcrRange {
+impl vk::SamplerYcbcrRange {
     pub const ITU_FULL_KHR: Self = Self::ITU_FULL;
     pub const ITU_NARROW_KHR: Self = Self::ITU_NARROW;
 }
 ///Provided by [VK_KHR_sampler_ycbcr_conversion](crate::khr::sampler_ycbcr_conversion)
-impl crate::vk::ChromaLocation {
+impl vk::ChromaLocation {
     pub const COSITED_EVEN_KHR: Self = Self::COSITED_EVEN;
     pub const MIDPOINT_KHR: Self = Self::MIDPOINT;
 }
-///Provided by [VK_KHR_sampler_ycbcr_conversion](crate::khr::sampler_ycbcr_conversion)
-impl crate::vk::ImageCreateFlags {
-    pub const DISJOINT_KHR: Self = Self(crate::vk::ImageCreateFlagBits::DISJOINT_KHR.0);
+///Provided by [Vulkan 1.0](crate::vk1_0)
+impl vk::ImageCreateFlags {
+    pub const DISJOINT_KHR: Self = Self(vk::ImageCreateFlagBits::DISJOINT_KHR.0);
 }
-///Provided by [VK_KHR_sampler_ycbcr_conversion](crate::khr::sampler_ycbcr_conversion)
-impl crate::vk::ImageCreateFlagBits {
+///Provided by [Vulkan 1.0](crate::vk1_0)
+impl vk::ImageCreateFlagBits {
     pub const DISJOINT_KHR: Self = Self::DISJOINT;
 }
-///Provided by [VK_KHR_sampler_ycbcr_conversion](crate::khr::sampler_ycbcr_conversion)
-impl crate::vk::FormatFeatureFlags {
+///Provided by [Vulkan 1.0](crate::vk1_0)
+impl vk::FormatFeatureFlags {
     pub const MIDPOINT_CHROMA_SAMPLES_KHR: Self = Self(
-        crate::vk::FormatFeatureFlagBits::MIDPOINT_CHROMA_SAMPLES_KHR.0,
+        vk::FormatFeatureFlagBits::MIDPOINT_CHROMA_SAMPLES_KHR.0,
     );
     pub const SAMPLED_IMAGE_YCBCR_CONVERSION_LINEAR_FILTER_KHR: Self = Self(
-        crate::vk::FormatFeatureFlagBits::SAMPLED_IMAGE_YCBCR_CONVERSION_LINEAR_FILTER_KHR
-            .0,
+        vk::FormatFeatureFlagBits::SAMPLED_IMAGE_YCBCR_CONVERSION_LINEAR_FILTER_KHR.0,
     );
     pub const SAMPLED_IMAGE_YCBCR_CONVERSION_SEPARATE_RECONSTRUCTION_FILTER_KHR: Self = Self(
-        crate::vk::FormatFeatureFlagBits::SAMPLED_IMAGE_YCBCR_CONVERSION_SEPARATE_RECONSTRUCTION_FILTER_KHR
+        vk::FormatFeatureFlagBits::SAMPLED_IMAGE_YCBCR_CONVERSION_SEPARATE_RECONSTRUCTION_FILTER_KHR
             .0,
     );
     pub const SAMPLED_IMAGE_YCBCR_CONVERSION_CHROMA_RECONSTRUCTION_EXPLICIT_KHR: Self = Self(
-        crate::vk::FormatFeatureFlagBits::SAMPLED_IMAGE_YCBCR_CONVERSION_CHROMA_RECONSTRUCTION_EXPLICIT_KHR
+        vk::FormatFeatureFlagBits::SAMPLED_IMAGE_YCBCR_CONVERSION_CHROMA_RECONSTRUCTION_EXPLICIT_KHR
             .0,
     );
     pub const SAMPLED_IMAGE_YCBCR_CONVERSION_CHROMA_RECONSTRUCTION_EXPLICIT_FORCEABLE_KHR: Self = Self(
-        crate::vk::FormatFeatureFlagBits::SAMPLED_IMAGE_YCBCR_CONVERSION_CHROMA_RECONSTRUCTION_EXPLICIT_FORCEABLE_KHR
+        vk::FormatFeatureFlagBits::SAMPLED_IMAGE_YCBCR_CONVERSION_CHROMA_RECONSTRUCTION_EXPLICIT_FORCEABLE_KHR
             .0,
     );
-    pub const DISJOINT_KHR: Self = Self(
-        crate::vk::FormatFeatureFlagBits::DISJOINT_KHR.0,
-    );
+    pub const DISJOINT_KHR: Self = Self(vk::FormatFeatureFlagBits::DISJOINT_KHR.0);
     pub const COSITED_CHROMA_SAMPLES_KHR: Self = Self(
-        crate::vk::FormatFeatureFlagBits::COSITED_CHROMA_SAMPLES_KHR.0,
+        vk::FormatFeatureFlagBits::COSITED_CHROMA_SAMPLES_KHR.0,
     );
 }
-///Provided by [VK_KHR_sampler_ycbcr_conversion](crate::khr::sampler_ycbcr_conversion)
-impl crate::vk::FormatFeatureFlagBits {
+///Provided by [Vulkan 1.0](crate::vk1_0)
+impl vk::FormatFeatureFlagBits {
     pub const MIDPOINT_CHROMA_SAMPLES_KHR: Self = Self::MIDPOINT_CHROMA_SAMPLES;
     pub const SAMPLED_IMAGE_YCBCR_CONVERSION_LINEAR_FILTER_KHR: Self = Self::SAMPLED_IMAGE_YCBCR_CONVERSION_LINEAR_FILTER;
     pub const SAMPLED_IMAGE_YCBCR_CONVERSION_SEPARATE_RECONSTRUCTION_FILTER_KHR: Self = Self::SAMPLED_IMAGE_YCBCR_CONVERSION_SEPARATE_RECONSTRUCTION_FILTER;
@@ -120,42 +121,40 @@ impl crate::vk::FormatFeatureFlagBits {
     pub const DISJOINT_KHR: Self = Self::DISJOINT;
     pub const COSITED_CHROMA_SAMPLES_KHR: Self = Self::COSITED_CHROMA_SAMPLES;
 }
-///Provided by [VK_KHR_sampler_ycbcr_conversion](crate::khr::sampler_ycbcr_conversion)
-impl crate::vk::ImageAspectFlags {
-    pub const PLANE_0_KHR: Self = Self(crate::vk::ImageAspectFlagBits::PLANE_0_KHR.0);
-    pub const PLANE_1_KHR: Self = Self(crate::vk::ImageAspectFlagBits::PLANE_1_KHR.0);
-    pub const PLANE_2_KHR: Self = Self(crate::vk::ImageAspectFlagBits::PLANE_2_KHR.0);
+///Provided by [Vulkan 1.0](crate::vk1_0)
+impl vk::ImageAspectFlags {
+    pub const PLANE_0_KHR: Self = Self(vk::ImageAspectFlagBits::PLANE_0_KHR.0);
+    pub const PLANE_1_KHR: Self = Self(vk::ImageAspectFlagBits::PLANE_1_KHR.0);
+    pub const PLANE_2_KHR: Self = Self(vk::ImageAspectFlagBits::PLANE_2_KHR.0);
 }
-///Provided by [VK_KHR_sampler_ycbcr_conversion](crate::khr::sampler_ycbcr_conversion)
-impl crate::vk::ImageAspectFlagBits {
+///Provided by [Vulkan 1.0](crate::vk1_0)
+impl vk::ImageAspectFlagBits {
     pub const PLANE_0_KHR: Self = Self::PLANE_0;
     pub const PLANE_1_KHR: Self = Self::PLANE_1;
     pub const PLANE_2_KHR: Self = Self::PLANE_2;
 }
+pub const SPEC_VERSION: u32 = 14;
+pub const NAME: &CStr = c"VK_KHR_sampler_ycbcr_conversion";
 #[derive(Clone)]
 pub struct DeviceFn {
-    pub create_sampler_ycbcr_conversion: crate::vk::PFN_vkCreateSamplerYcbcrConversionKHR,
-    pub destroy_sampler_ycbcr_conversion: crate::vk::PFN_vkDestroySamplerYcbcrConversionKHR,
+    pub create_sampler_ycbcr_conversion: vk::PFN_vkCreateSamplerYcbcrConversionKHR,
+    pub destroy_sampler_ycbcr_conversion: vk::PFN_vkDestroySamplerYcbcrConversionKHR,
 }
 unsafe impl Send for DeviceFn {}
 unsafe impl Sync for DeviceFn {}
 impl DeviceFn {
-    pub fn load<F: FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void>(
-        mut f: F,
-    ) -> Self {
+    pub fn load<F: FnMut(&CStr) -> *const c_void>(mut f: F) -> Self {
         Self::load_erased(&mut f)
     }
-    fn load_erased(
-        _f: &mut dyn FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void,
-    ) -> Self {
+    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const c_void) -> Self {
         Self {
             create_sampler_ycbcr_conversion: unsafe {
                 unsafe extern "system" fn create_sampler_ycbcr_conversion(
-                    _: crate::vk::Device,
-                    _: *const crate::vk::SamplerYcbcrConversionCreateInfo<'_>,
-                    _: *const crate::vk::AllocationCallbacks<'_>,
-                    _: *mut crate::vk::SamplerYcbcrConversion,
-                ) -> crate::vk::Result {
+                    _: vk::Device,
+                    _: *const vk::SamplerYcbcrConversionCreateInfo<'_>,
+                    _: *const vk::AllocationCallbacks<'_>,
+                    _: *mut vk::SamplerYcbcrConversion,
+                ) -> vk::Result {
                     panic!("unable to load vkCreateSamplerYcbcrConversionKHR")
                 }
                 let val = _f(c"vkCreateSamplerYcbcrConversionKHR");
@@ -167,9 +166,9 @@ impl DeviceFn {
             },
             destroy_sampler_ycbcr_conversion: unsafe {
                 unsafe extern "system" fn destroy_sampler_ycbcr_conversion(
-                    _: crate::vk::Device,
-                    _: crate::vk::SamplerYcbcrConversion,
-                    _: *const crate::vk::AllocationCallbacks<'_>,
+                    _: vk::Device,
+                    _: vk::SamplerYcbcrConversion,
+                    _: *const vk::AllocationCallbacks<'_>,
                 ) {
                     panic!("unable to load vkDestroySamplerYcbcrConversionKHR")
                 }
@@ -208,9 +207,9 @@ impl Device {
     #[inline]
     pub unsafe fn create_sampler_ycbcr_conversion(
         &self,
-        create_info: &crate::vk::SamplerYcbcrConversionCreateInfo<'_>,
-        allocator: Option<&crate::vk::AllocationCallbacks<'_>>,
-    ) -> crate::VkResult<crate::vk::SamplerYcbcrConversion> {
+        create_info: &vk::SamplerYcbcrConversionCreateInfo<'_>,
+        allocator: Option<&vk::AllocationCallbacks<'_>>,
+    ) -> VkResult<vk::SamplerYcbcrConversion> {
         let mut ycbcr_conversion = core::mem::MaybeUninit::uninit();
         (self
             .fp
@@ -229,8 +228,8 @@ impl Device {
     #[inline]
     pub unsafe fn destroy_sampler_ycbcr_conversion(
         &self,
-        ycbcr_conversion: crate::vk::SamplerYcbcrConversion,
-        allocator: Option<&crate::vk::AllocationCallbacks<'_>>,
+        ycbcr_conversion: vk::SamplerYcbcrConversion,
+        allocator: Option<&vk::AllocationCallbacks<'_>>,
     ) {
         (self
             .fp
@@ -244,30 +243,27 @@ impl Device {
         )
     }
 }
-pub const SPEC_VERSION: u32 = 14;
-pub const NAME: &core::ffi::CStr = c"VK_KHR_sampler_ycbcr_conversion";
 pub(crate) mod items {
-    pub type SamplerYcbcrConversionInfoKHR<'a> = crate::vk::SamplerYcbcrConversionInfo<
+    use crate::vk;
+    pub type SamplerYcbcrConversionInfoKHR<'a> = vk::SamplerYcbcrConversionInfo<'a>;
+    pub type SamplerYcbcrConversionCreateInfoKHR<'a> = vk::SamplerYcbcrConversionCreateInfo<
         'a,
     >;
-    pub type SamplerYcbcrConversionCreateInfoKHR<'a> = crate::vk::SamplerYcbcrConversionCreateInfo<
+    pub type BindImagePlaneMemoryInfoKHR<'a> = vk::BindImagePlaneMemoryInfo<'a>;
+    pub type ImagePlaneMemoryRequirementsInfoKHR<'a> = vk::ImagePlaneMemoryRequirementsInfo<
         'a,
     >;
-    pub type BindImagePlaneMemoryInfoKHR<'a> = crate::vk::BindImagePlaneMemoryInfo<'a>;
-    pub type ImagePlaneMemoryRequirementsInfoKHR<'a> = crate::vk::ImagePlaneMemoryRequirementsInfo<
+    pub type PhysicalDeviceSamplerYcbcrConversionFeaturesKHR<'a> = vk::PhysicalDeviceSamplerYcbcrConversionFeatures<
         'a,
     >;
-    pub type PhysicalDeviceSamplerYcbcrConversionFeaturesKHR<'a> = crate::vk::PhysicalDeviceSamplerYcbcrConversionFeatures<
+    pub type SamplerYcbcrConversionImageFormatPropertiesKHR<'a> = vk::SamplerYcbcrConversionImageFormatProperties<
         'a,
     >;
-    pub type SamplerYcbcrConversionImageFormatPropertiesKHR<'a> = crate::vk::SamplerYcbcrConversionImageFormatProperties<
-        'a,
-    >;
-    pub type SamplerYcbcrModelConversionKHR = crate::vk::SamplerYcbcrModelConversion;
-    pub type SamplerYcbcrRangeKHR = crate::vk::SamplerYcbcrRange;
-    pub type ChromaLocationKHR = crate::vk::ChromaLocation;
-    pub type SamplerYcbcrConversionKHR = crate::vk::SamplerYcbcrConversion;
-    pub type PFN_vkCreateSamplerYcbcrConversionKHR = crate::vk::PFN_vkCreateSamplerYcbcrConversion;
-    pub type PFN_vkDestroySamplerYcbcrConversionKHR = crate::vk::PFN_vkDestroySamplerYcbcrConversion;
+    pub type SamplerYcbcrModelConversionKHR = vk::SamplerYcbcrModelConversion;
+    pub type SamplerYcbcrRangeKHR = vk::SamplerYcbcrRange;
+    pub type ChromaLocationKHR = vk::ChromaLocation;
+    pub type SamplerYcbcrConversionKHR = vk::SamplerYcbcrConversion;
+    pub type PFN_vkCreateSamplerYcbcrConversionKHR = vk::PFN_vkCreateSamplerYcbcrConversion;
+    pub type PFN_vkDestroySamplerYcbcrConversionKHR = vk::PFN_vkDestroySamplerYcbcrConversion;
 }
 pub use items::*;

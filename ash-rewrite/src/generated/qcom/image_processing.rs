@@ -2,84 +2,88 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_QCOM_image_processing.html) · Extension `VK_QCOM_image_processing`
 #![doc(alias = "VK_QCOM_image_processing")]
+use crate::vk;
+use core::ffi::CStr;
 ///Provided by [VK_QCOM_image_processing](crate::qcom::image_processing)
-impl crate::vk::DescriptorType {
+impl vk::DescriptorType {
     pub const SAMPLE_WEIGHT_IMAGE_QCOM: Self = Self(1000440000);
     pub const BLOCK_MATCH_IMAGE_QCOM: Self = Self(1000440001);
 }
 ///Provided by [VK_QCOM_image_processing](crate::qcom::image_processing)
-impl crate::vk::StructureType {
+impl vk::StructureType {
     pub const PHYSICAL_DEVICE_IMAGE_PROCESSING_FEATURES_QCOM: Self = Self(1000440000);
     pub const PHYSICAL_DEVICE_IMAGE_PROCESSING_PROPERTIES_QCOM: Self = Self(1000440001);
     pub const IMAGE_VIEW_SAMPLE_WEIGHT_CREATE_INFO_QCOM: Self = Self(1000440002);
 }
-///Provided by [VK_QCOM_image_processing](crate::qcom::image_processing)
-impl crate::vk::SamplerCreateFlags {
+///Provided by [Vulkan 1.0](crate::vk1_0)
+impl vk::SamplerCreateFlags {
     pub const IMAGE_PROCESSING_QCOM: Self = Self(
-        crate::vk::SamplerCreateFlagBits::IMAGE_PROCESSING_QCOM.0,
+        vk::SamplerCreateFlagBits::IMAGE_PROCESSING_QCOM.0,
     );
 }
-///Provided by [VK_QCOM_image_processing](crate::qcom::image_processing)
-impl crate::vk::SamplerCreateFlagBits {
+///Provided by [Vulkan 1.0](crate::vk1_0)
+impl vk::SamplerCreateFlagBits {
     pub const IMAGE_PROCESSING_QCOM: Self = Self(1 << 4);
 }
-///Provided by [VK_QCOM_image_processing](crate::qcom::image_processing)
-impl crate::vk::ImageUsageFlags {
+///Provided by [Vulkan 1.0](crate::vk1_0)
+impl vk::ImageUsageFlags {
     pub const SAMPLE_WEIGHT_QCOM: Self = Self(
-        crate::vk::ImageUsageFlagBits::SAMPLE_WEIGHT_QCOM.0,
+        vk::ImageUsageFlagBits::SAMPLE_WEIGHT_QCOM.0,
     );
     pub const SAMPLE_BLOCK_MATCH_QCOM: Self = Self(
-        crate::vk::ImageUsageFlagBits::SAMPLE_BLOCK_MATCH_QCOM.0,
+        vk::ImageUsageFlagBits::SAMPLE_BLOCK_MATCH_QCOM.0,
     );
 }
-///Provided by [VK_QCOM_image_processing](crate::qcom::image_processing)
-impl crate::vk::ImageUsageFlagBits {
+///Provided by [Vulkan 1.0](crate::vk1_0)
+impl vk::ImageUsageFlagBits {
     pub const SAMPLE_WEIGHT_QCOM: Self = Self(1 << 20);
     pub const SAMPLE_BLOCK_MATCH_QCOM: Self = Self(1 << 21);
 }
-///Provided by [VK_QCOM_image_processing](crate::qcom::image_processing)
-impl crate::vk::FormatFeatureFlags2 {
+///Provided by [Vulkan 1.3](crate::vk1_3)
+impl vk::FormatFeatureFlags2 {
     pub const WEIGHT_IMAGE_QCOM: Self = Self(
-        crate::vk::FormatFeatureFlagBits2::WEIGHT_IMAGE_QCOM.0,
+        vk::FormatFeatureFlagBits2::WEIGHT_IMAGE_QCOM.0,
     );
     pub const WEIGHT_SAMPLED_IMAGE_QCOM: Self = Self(
-        crate::vk::FormatFeatureFlagBits2::WEIGHT_SAMPLED_IMAGE_QCOM.0,
+        vk::FormatFeatureFlagBits2::WEIGHT_SAMPLED_IMAGE_QCOM.0,
     );
     pub const BLOCK_MATCHING_QCOM: Self = Self(
-        crate::vk::FormatFeatureFlagBits2::BLOCK_MATCHING_QCOM.0,
+        vk::FormatFeatureFlagBits2::BLOCK_MATCHING_QCOM.0,
     );
     pub const BOX_FILTER_SAMPLED_QCOM: Self = Self(
-        crate::vk::FormatFeatureFlagBits2::BOX_FILTER_SAMPLED_QCOM.0,
+        vk::FormatFeatureFlagBits2::BOX_FILTER_SAMPLED_QCOM.0,
     );
 }
-///Provided by [VK_QCOM_image_processing](crate::qcom::image_processing)
-impl crate::vk::FormatFeatureFlagBits2 {
+///Provided by [Vulkan 1.3](crate::vk1_3)
+impl vk::FormatFeatureFlagBits2 {
     pub const WEIGHT_IMAGE_QCOM: Self = Self(1 << 34);
     pub const WEIGHT_SAMPLED_IMAGE_QCOM: Self = Self(1 << 35);
     pub const BLOCK_MATCHING_QCOM: Self = Self(1 << 36);
     pub const BOX_FILTER_SAMPLED_QCOM: Self = Self(1 << 37);
 }
 pub const SPEC_VERSION: u32 = 1;
-pub const NAME: &core::ffi::CStr = c"VK_QCOM_image_processing";
+pub const NAME: &CStr = c"VK_QCOM_image_processing";
 pub(crate) mod items {
+    use core::marker::PhantomData;
+    use crate::vk;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct ImageViewSampleWeightCreateInfoQCOM<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *const core::ffi::c_void,
-        pub filter_center: crate::vk::Offset2D,
-        pub filter_size: crate::vk::Extent2D,
+        pub filter_center: vk::Offset2D,
+        pub filter_size: vk::Extent2D,
         pub num_phases: u32,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for ImageViewSampleWeightCreateInfoQCOM<'_> {}
     unsafe impl Sync for ImageViewSampleWeightCreateInfoQCOM<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for ImageViewSampleWeightCreateInfoQCOM<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::IMAGE_VIEW_SAMPLE_WEIGHT_CREATE_INFO_QCOM;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::IMAGE_VIEW_SAMPLE_WEIGHT_CREATE_INFO_QCOM;
     }
-    unsafe impl<'a> crate::Extends<crate::vk::ImageViewCreateInfo<'_>>
+    unsafe impl<'a> crate::Extends<vk::ImageViewCreateInfo<'_>>
     for ImageViewSampleWeightCreateInfoQCOM<'a> {}
     impl<'a> Default for ImageViewSampleWeightCreateInfoQCOM<'a> {
         fn default() -> Self {
@@ -89,16 +93,16 @@ pub(crate) mod items {
                 filter_center: Default::default(),
                 filter_size: Default::default(),
                 num_phases: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
     impl<'a> ImageViewSampleWeightCreateInfoQCOM<'a> {
-        pub fn filter_center(mut self, filter_center: crate::vk::Offset2D) -> Self {
+        pub fn filter_center(mut self, filter_center: vk::Offset2D) -> Self {
             self.filter_center = filter_center;
             self
         }
-        pub fn filter_size(mut self, filter_size: crate::vk::Extent2D) -> Self {
+        pub fn filter_size(mut self, filter_size: vk::Extent2D) -> Self {
             self.filter_size = filter_size;
             self
         }
@@ -111,22 +115,22 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceImageProcessingFeaturesQCOM<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
-        pub texture_sample_weighted: crate::vk::Bool32,
-        pub texture_box_filter: crate::vk::Bool32,
-        pub texture_block_match: crate::vk::Bool32,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub texture_sample_weighted: vk::Bool32,
+        pub texture_box_filter: vk::Bool32,
+        pub texture_block_match: vk::Bool32,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for PhysicalDeviceImageProcessingFeaturesQCOM<'_> {}
     unsafe impl Sync for PhysicalDeviceImageProcessingFeaturesQCOM<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceImageProcessingFeaturesQCOM<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_IMAGE_PROCESSING_FEATURES_QCOM;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PHYSICAL_DEVICE_IMAGE_PROCESSING_FEATURES_QCOM;
     }
-    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+    unsafe impl<'a> crate::Extends<vk::PhysicalDeviceFeatures2<'_>>
     for PhysicalDeviceImageProcessingFeaturesQCOM<'a> {}
-    unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+    unsafe impl<'a> crate::Extends<vk::DeviceCreateInfo<'_>>
     for PhysicalDeviceImageProcessingFeaturesQCOM<'a> {}
     impl<'a> Default for PhysicalDeviceImageProcessingFeaturesQCOM<'a> {
         fn default() -> Self {
@@ -136,7 +140,7 @@ pub(crate) mod items {
                 texture_sample_weighted: Default::default(),
                 texture_box_filter: Default::default(),
                 texture_block_match: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
@@ -158,21 +162,21 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceImageProcessingPropertiesQCOM<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
         pub max_weight_filter_phases: u32,
-        pub max_weight_filter_dimension: crate::vk::Extent2D,
-        pub max_block_match_region: crate::vk::Extent2D,
-        pub max_box_filter_block_size: crate::vk::Extent2D,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub max_weight_filter_dimension: vk::Extent2D,
+        pub max_block_match_region: vk::Extent2D,
+        pub max_box_filter_block_size: vk::Extent2D,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for PhysicalDeviceImageProcessingPropertiesQCOM<'_> {}
     unsafe impl Sync for PhysicalDeviceImageProcessingPropertiesQCOM<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceImageProcessingPropertiesQCOM<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_IMAGE_PROCESSING_PROPERTIES_QCOM;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PHYSICAL_DEVICE_IMAGE_PROCESSING_PROPERTIES_QCOM;
     }
-    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceProperties2<'_>>
+    unsafe impl<'a> crate::Extends<vk::PhysicalDeviceProperties2<'_>>
     for PhysicalDeviceImageProcessingPropertiesQCOM<'a> {}
     impl<'a> Default for PhysicalDeviceImageProcessingPropertiesQCOM<'a> {
         fn default() -> Self {
@@ -183,7 +187,7 @@ pub(crate) mod items {
                 max_weight_filter_dimension: Default::default(),
                 max_block_match_region: Default::default(),
                 max_box_filter_block_size: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
@@ -197,21 +201,21 @@ pub(crate) mod items {
         }
         pub fn max_weight_filter_dimension(
             mut self,
-            max_weight_filter_dimension: crate::vk::Extent2D,
+            max_weight_filter_dimension: vk::Extent2D,
         ) -> Self {
             self.max_weight_filter_dimension = max_weight_filter_dimension;
             self
         }
         pub fn max_block_match_region(
             mut self,
-            max_block_match_region: crate::vk::Extent2D,
+            max_block_match_region: vk::Extent2D,
         ) -> Self {
             self.max_block_match_region = max_block_match_region;
             self
         }
         pub fn max_box_filter_block_size(
             mut self,
-            max_box_filter_block_size: crate::vk::Extent2D,
+            max_box_filter_block_size: vk::Extent2D,
         ) -> Self {
             self.max_box_filter_block_size = max_box_filter_block_size;
             self

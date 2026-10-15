@@ -2,8 +2,10 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_NV_extended_sparse_address_space.html) · Extension `VK_NV_extended_sparse_address_space`
 #![doc(alias = "VK_NV_extended_sparse_address_space")]
+use crate::vk;
+use core::ffi::CStr;
 ///Provided by [VK_NV_extended_sparse_address_space](crate::nv::extended_sparse_address_space)
-impl crate::vk::StructureType {
+impl vk::StructureType {
     pub const PHYSICAL_DEVICE_EXTENDED_SPARSE_ADDRESS_SPACE_FEATURES_NV: Self = Self(
         1000492000,
     );
@@ -12,26 +14,28 @@ impl crate::vk::StructureType {
     );
 }
 pub const SPEC_VERSION: u32 = 1;
-pub const NAME: &core::ffi::CStr = c"VK_NV_extended_sparse_address_space";
+pub const NAME: &CStr = c"VK_NV_extended_sparse_address_space";
 pub(crate) mod items {
+    use core::marker::PhantomData;
+    use crate::vk;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceExtendedSparseAddressSpaceFeaturesNV<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
-        pub extended_sparse_address_space: crate::vk::Bool32,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub extended_sparse_address_space: vk::Bool32,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for PhysicalDeviceExtendedSparseAddressSpaceFeaturesNV<'_> {}
     unsafe impl Sync for PhysicalDeviceExtendedSparseAddressSpaceFeaturesNV<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceExtendedSparseAddressSpaceFeaturesNV<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_EXTENDED_SPARSE_ADDRESS_SPACE_FEATURES_NV;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PHYSICAL_DEVICE_EXTENDED_SPARSE_ADDRESS_SPACE_FEATURES_NV;
     }
-    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+    unsafe impl<'a> crate::Extends<vk::PhysicalDeviceFeatures2<'_>>
     for PhysicalDeviceExtendedSparseAddressSpaceFeaturesNV<'a> {}
-    unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+    unsafe impl<'a> crate::Extends<vk::DeviceCreateInfo<'_>>
     for PhysicalDeviceExtendedSparseAddressSpaceFeaturesNV<'a> {}
     impl<'a> Default for PhysicalDeviceExtendedSparseAddressSpaceFeaturesNV<'a> {
         fn default() -> Self {
@@ -39,7 +43,7 @@ pub(crate) mod items {
                 s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
                 p_next: Default::default(),
                 extended_sparse_address_space: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
@@ -56,20 +60,20 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceExtendedSparseAddressSpacePropertiesNV<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
-        pub extended_sparse_address_space_size: crate::vk::DeviceSize,
-        pub extended_sparse_image_usage_flags: crate::vk::ImageUsageFlags,
-        pub extended_sparse_buffer_usage_flags: crate::vk::BufferUsageFlags,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub extended_sparse_address_space_size: vk::DeviceSize,
+        pub extended_sparse_image_usage_flags: vk::ImageUsageFlags,
+        pub extended_sparse_buffer_usage_flags: vk::BufferUsageFlags,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for PhysicalDeviceExtendedSparseAddressSpacePropertiesNV<'_> {}
     unsafe impl Sync for PhysicalDeviceExtendedSparseAddressSpacePropertiesNV<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceExtendedSparseAddressSpacePropertiesNV<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_EXTENDED_SPARSE_ADDRESS_SPACE_PROPERTIES_NV;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PHYSICAL_DEVICE_EXTENDED_SPARSE_ADDRESS_SPACE_PROPERTIES_NV;
     }
-    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceProperties2<'_>>
+    unsafe impl<'a> crate::Extends<vk::PhysicalDeviceProperties2<'_>>
     for PhysicalDeviceExtendedSparseAddressSpacePropertiesNV<'a> {}
     impl<'a> Default for PhysicalDeviceExtendedSparseAddressSpacePropertiesNV<'a> {
         fn default() -> Self {
@@ -79,28 +83,28 @@ pub(crate) mod items {
                 extended_sparse_address_space_size: Default::default(),
                 extended_sparse_image_usage_flags: Default::default(),
                 extended_sparse_buffer_usage_flags: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
     impl<'a> PhysicalDeviceExtendedSparseAddressSpacePropertiesNV<'a> {
         pub fn extended_sparse_address_space_size(
             mut self,
-            extended_sparse_address_space_size: crate::vk::DeviceSize,
+            extended_sparse_address_space_size: vk::DeviceSize,
         ) -> Self {
             self.extended_sparse_address_space_size = extended_sparse_address_space_size;
             self
         }
         pub fn extended_sparse_image_usage_flags(
             mut self,
-            extended_sparse_image_usage_flags: crate::vk::ImageUsageFlags,
+            extended_sparse_image_usage_flags: vk::ImageUsageFlags,
         ) -> Self {
             self.extended_sparse_image_usage_flags = extended_sparse_image_usage_flags;
             self
         }
         pub fn extended_sparse_buffer_usage_flags(
             mut self,
-            extended_sparse_buffer_usage_flags: crate::vk::BufferUsageFlags,
+            extended_sparse_buffer_usage_flags: vk::BufferUsageFlags,
         ) -> Self {
             self.extended_sparse_buffer_usage_flags = extended_sparse_buffer_usage_flags;
             self

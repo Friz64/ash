@@ -2,32 +2,36 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_QCOM_rotated_copy_commands.html) · Extension `VK_QCOM_rotated_copy_commands`
 #![doc(alias = "VK_QCOM_rotated_copy_commands")]
+use crate::vk;
+use core::ffi::CStr;
 ///Provided by [VK_QCOM_rotated_copy_commands](crate::qcom::rotated_copy_commands)
-impl crate::vk::StructureType {
+impl vk::StructureType {
     pub const COPY_COMMAND_TRANSFORM_INFO_QCOM: Self = Self(1000333000);
 }
 pub const SPEC_VERSION: u32 = 2;
-pub const NAME: &core::ffi::CStr = c"VK_QCOM_rotated_copy_commands";
+pub const NAME: &CStr = c"VK_QCOM_rotated_copy_commands";
 pub(crate) mod items {
+    use core::marker::PhantomData;
+    use crate::vk;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct CopyCommandTransformInfoQCOM<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *const core::ffi::c_void,
-        pub transform: crate::vk::SurfaceTransformFlagBitsKHR,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub transform: vk::SurfaceTransformFlagBitsKHR,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for CopyCommandTransformInfoQCOM<'_> {}
     unsafe impl Sync for CopyCommandTransformInfoQCOM<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for CopyCommandTransformInfoQCOM<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::COPY_COMMAND_TRANSFORM_INFO_QCOM;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::COPY_COMMAND_TRANSFORM_INFO_QCOM;
     }
-    unsafe impl<'a> crate::Extends<crate::vk::BufferImageCopy2<'_>>
+    unsafe impl<'a> crate::Extends<vk::BufferImageCopy2<'_>>
     for CopyCommandTransformInfoQCOM<'a> {}
-    unsafe impl<'a> crate::Extends<crate::vk::ImageBlit2<'_>>
+    unsafe impl<'a> crate::Extends<vk::ImageBlit2<'_>>
     for CopyCommandTransformInfoQCOM<'a> {}
-    unsafe impl<'a> crate::Extends<crate::vk::DeviceMemoryImageCopyKHR<'_>>
+    unsafe impl<'a> crate::Extends<vk::DeviceMemoryImageCopyKHR<'_>>
     for CopyCommandTransformInfoQCOM<'a> {}
     impl<'a> Default for CopyCommandTransformInfoQCOM<'a> {
         fn default() -> Self {
@@ -35,15 +39,12 @@ pub(crate) mod items {
                 s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
                 p_next: Default::default(),
                 transform: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
     impl<'a> CopyCommandTransformInfoQCOM<'a> {
-        pub fn transform(
-            mut self,
-            transform: crate::vk::SurfaceTransformFlagBitsKHR,
-        ) -> Self {
+        pub fn transform(mut self, transform: vk::SurfaceTransformFlagBitsKHR) -> Self {
             self.transform = transform;
             self
         }

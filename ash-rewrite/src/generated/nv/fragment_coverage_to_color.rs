@@ -2,31 +2,35 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_NV_fragment_coverage_to_color.html) · Extension `VK_NV_fragment_coverage_to_color`
 #![doc(alias = "VK_NV_fragment_coverage_to_color")]
+use crate::vk;
+use core::ffi::CStr;
 ///Provided by [VK_NV_fragment_coverage_to_color](crate::nv::fragment_coverage_to_color)
-impl crate::vk::StructureType {
+impl vk::StructureType {
     pub const PIPELINE_COVERAGE_TO_COLOR_STATE_CREATE_INFO_NV: Self = Self(1000149000);
 }
 pub const SPEC_VERSION: u32 = 1;
-pub const NAME: &core::ffi::CStr = c"VK_NV_fragment_coverage_to_color";
+pub const NAME: &CStr = c"VK_NV_fragment_coverage_to_color";
 pub(crate) mod items {
+    use core::marker::PhantomData;
+    use crate::vk;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct PipelineCoverageToColorStateCreateInfoNV<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *const core::ffi::c_void,
-        pub flags: crate::vk::PipelineCoverageToColorStateCreateFlagsNV,
-        pub coverage_to_color_enable: crate::vk::Bool32,
+        pub flags: vk::PipelineCoverageToColorStateCreateFlagsNV,
+        pub coverage_to_color_enable: vk::Bool32,
         pub coverage_to_color_location: u32,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for PipelineCoverageToColorStateCreateInfoNV<'_> {}
     unsafe impl Sync for PipelineCoverageToColorStateCreateInfoNV<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PipelineCoverageToColorStateCreateInfoNV<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PIPELINE_COVERAGE_TO_COLOR_STATE_CREATE_INFO_NV;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PIPELINE_COVERAGE_TO_COLOR_STATE_CREATE_INFO_NV;
     }
-    unsafe impl<'a> crate::Extends<crate::vk::PipelineMultisampleStateCreateInfo<'_>>
+    unsafe impl<'a> crate::Extends<vk::PipelineMultisampleStateCreateInfo<'_>>
     for PipelineCoverageToColorStateCreateInfoNV<'a> {}
     impl<'a> Default for PipelineCoverageToColorStateCreateInfoNV<'a> {
         fn default() -> Self {
@@ -36,14 +40,14 @@ pub(crate) mod items {
                 flags: Default::default(),
                 coverage_to_color_enable: Default::default(),
                 coverage_to_color_location: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
     impl<'a> PipelineCoverageToColorStateCreateInfoNV<'a> {
         pub fn flags(
             mut self,
-            flags: crate::vk::PipelineCoverageToColorStateCreateFlagsNV,
+            flags: vk::PipelineCoverageToColorStateCreateFlagsNV,
         ) -> Self {
             self.flags = flags;
             self

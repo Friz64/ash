@@ -2,30 +2,34 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_HUAWEI_hdr_vivid.html) · Extension `VK_HUAWEI_hdr_vivid`
 #![doc(alias = "VK_HUAWEI_hdr_vivid")]
+use crate::vk;
+use core::ffi::CStr;
 ///Provided by [VK_HUAWEI_hdr_vivid](crate::huawei::hdr_vivid)
-impl crate::vk::StructureType {
+impl vk::StructureType {
     pub const PHYSICAL_DEVICE_HDR_VIVID_FEATURES_HUAWEI: Self = Self(1000590000);
     pub const HDR_VIVID_DYNAMIC_METADATA_HUAWEI: Self = Self(1000590001);
 }
 pub const SPEC_VERSION: u32 = 1;
-pub const NAME: &core::ffi::CStr = c"VK_HUAWEI_hdr_vivid";
+pub const NAME: &CStr = c"VK_HUAWEI_hdr_vivid";
 pub(crate) mod items {
+    use core::marker::PhantomData;
+    use crate::vk;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct HdrVividDynamicMetadataHUAWEI<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *const core::ffi::c_void,
         pub dynamic_metadata_size: usize,
         pub p_dynamic_metadata: *const core::ffi::c_void,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for HdrVividDynamicMetadataHUAWEI<'_> {}
     unsafe impl Sync for HdrVividDynamicMetadataHUAWEI<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for HdrVividDynamicMetadataHUAWEI<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::HDR_VIVID_DYNAMIC_METADATA_HUAWEI;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::HDR_VIVID_DYNAMIC_METADATA_HUAWEI;
     }
-    unsafe impl<'a> crate::Extends<crate::vk::HdrMetadataEXT<'_>>
+    unsafe impl<'a> crate::Extends<vk::HdrMetadataEXT<'_>>
     for HdrVividDynamicMetadataHUAWEI<'a> {}
     impl<'a> Default for HdrVividDynamicMetadataHUAWEI<'a> {
         fn default() -> Self {
@@ -34,7 +38,7 @@ pub(crate) mod items {
                 p_next: Default::default(),
                 dynamic_metadata_size: Default::default(),
                 p_dynamic_metadata: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
@@ -49,20 +53,20 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceHdrVividFeaturesHUAWEI<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
-        pub hdr_vivid: crate::vk::Bool32,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub hdr_vivid: vk::Bool32,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for PhysicalDeviceHdrVividFeaturesHUAWEI<'_> {}
     unsafe impl Sync for PhysicalDeviceHdrVividFeaturesHUAWEI<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceHdrVividFeaturesHUAWEI<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_HDR_VIVID_FEATURES_HUAWEI;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PHYSICAL_DEVICE_HDR_VIVID_FEATURES_HUAWEI;
     }
-    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+    unsafe impl<'a> crate::Extends<vk::PhysicalDeviceFeatures2<'_>>
     for PhysicalDeviceHdrVividFeaturesHUAWEI<'a> {}
-    unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+    unsafe impl<'a> crate::Extends<vk::DeviceCreateInfo<'_>>
     for PhysicalDeviceHdrVividFeaturesHUAWEI<'a> {}
     impl<'a> Default for PhysicalDeviceHdrVividFeaturesHUAWEI<'a> {
         fn default() -> Self {
@@ -70,7 +74,7 @@ pub(crate) mod items {
                 s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
                 p_next: Default::default(),
                 hdr_vivid: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }

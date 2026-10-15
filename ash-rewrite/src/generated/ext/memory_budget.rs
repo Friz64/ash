@@ -2,30 +2,34 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_memory_budget.html) · Extension `VK_EXT_memory_budget`
 #![doc(alias = "VK_EXT_memory_budget")]
+use crate::vk;
+use core::ffi::CStr;
 ///Provided by [VK_EXT_memory_budget](crate::ext::memory_budget)
-impl crate::vk::StructureType {
+impl vk::StructureType {
     pub const PHYSICAL_DEVICE_MEMORY_BUDGET_PROPERTIES_EXT: Self = Self(1000237000);
 }
 pub const SPEC_VERSION: u32 = 1;
-pub const NAME: &core::ffi::CStr = c"VK_EXT_memory_budget";
+pub const NAME: &CStr = c"VK_EXT_memory_budget";
 pub(crate) mod items {
+    use core::marker::PhantomData;
+    use crate::vk;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceMemoryBudgetPropertiesEXT<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
-        pub heap_budget: [crate::vk::DeviceSize; crate::vk::MAX_MEMORY_HEAPS as _],
-        pub heap_usage: [crate::vk::DeviceSize; crate::vk::MAX_MEMORY_HEAPS as _],
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub heap_budget: [vk::DeviceSize; vk::MAX_MEMORY_HEAPS as _],
+        pub heap_usage: [vk::DeviceSize; vk::MAX_MEMORY_HEAPS as _],
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for PhysicalDeviceMemoryBudgetPropertiesEXT<'_> {}
     unsafe impl Sync for PhysicalDeviceMemoryBudgetPropertiesEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceMemoryBudgetPropertiesEXT<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_MEMORY_BUDGET_PROPERTIES_EXT;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PHYSICAL_DEVICE_MEMORY_BUDGET_PROPERTIES_EXT;
     }
-    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceMemoryProperties2<'_>>
+    unsafe impl<'a> crate::Extends<vk::PhysicalDeviceMemoryProperties2<'_>>
     for PhysicalDeviceMemoryBudgetPropertiesEXT<'a> {}
     impl<'a> Default for PhysicalDeviceMemoryBudgetPropertiesEXT<'a> {
         fn default() -> Self {
@@ -34,21 +38,21 @@ pub(crate) mod items {
                 p_next: Default::default(),
                 heap_budget: unsafe { core::mem::zeroed() },
                 heap_usage: unsafe { core::mem::zeroed() },
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
     impl<'a> PhysicalDeviceMemoryBudgetPropertiesEXT<'a> {
         pub fn heap_budget(
             mut self,
-            heap_budget: [crate::vk::DeviceSize; crate::vk::MAX_MEMORY_HEAPS as _],
+            heap_budget: [vk::DeviceSize; vk::MAX_MEMORY_HEAPS as _],
         ) -> Self {
             self.heap_budget = heap_budget;
             self
         }
         pub fn heap_usage(
             mut self,
-            heap_usage: [crate::vk::DeviceSize; crate::vk::MAX_MEMORY_HEAPS as _],
+            heap_usage: [vk::DeviceSize; vk::MAX_MEMORY_HEAPS as _],
         ) -> Self {
             self.heap_usage = heap_usage;
             self

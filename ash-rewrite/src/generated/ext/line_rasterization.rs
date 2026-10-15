@@ -2,42 +2,43 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_line_rasterization.html) · Extension `VK_EXT_line_rasterization`
 #![doc(alias = "VK_EXT_line_rasterization")]
+use crate::vk;
+use core::ffi::CStr;
+use core::ffi::c_void;
 ///Provided by [VK_EXT_line_rasterization](crate::ext::line_rasterization)
-impl crate::vk::StructureType {
+impl vk::StructureType {
     pub const PHYSICAL_DEVICE_LINE_RASTERIZATION_FEATURES_EXT: Self = Self::PHYSICAL_DEVICE_LINE_RASTERIZATION_FEATURES;
     pub const PIPELINE_RASTERIZATION_LINE_STATE_CREATE_INFO_EXT: Self = Self::PIPELINE_RASTERIZATION_LINE_STATE_CREATE_INFO;
     pub const PHYSICAL_DEVICE_LINE_RASTERIZATION_PROPERTIES_EXT: Self = Self::PHYSICAL_DEVICE_LINE_RASTERIZATION_PROPERTIES;
 }
 ///Provided by [VK_EXT_line_rasterization](crate::ext::line_rasterization)
-impl crate::vk::DynamicState {
+impl vk::DynamicState {
     pub const LINE_STIPPLE_EXT: Self = Self::LINE_STIPPLE;
 }
 ///Provided by [VK_EXT_line_rasterization](crate::ext::line_rasterization)
-impl crate::vk::LineRasterizationMode {
+impl vk::LineRasterizationMode {
     pub const DEFAULT_EXT: Self = Self::DEFAULT;
     pub const RECTANGULAR_EXT: Self = Self::RECTANGULAR;
     pub const BRESENHAM_EXT: Self = Self::BRESENHAM;
     pub const RECTANGULAR_SMOOTH_EXT: Self = Self::RECTANGULAR_SMOOTH;
 }
+pub const SPEC_VERSION: u32 = 1;
+pub const NAME: &CStr = c"VK_EXT_line_rasterization";
 #[derive(Clone)]
 pub struct DeviceFn {
-    pub cmd_set_line_stipple: crate::vk::PFN_vkCmdSetLineStippleEXT,
+    pub cmd_set_line_stipple: vk::PFN_vkCmdSetLineStippleEXT,
 }
 unsafe impl Send for DeviceFn {}
 unsafe impl Sync for DeviceFn {}
 impl DeviceFn {
-    pub fn load<F: FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void>(
-        mut f: F,
-    ) -> Self {
+    pub fn load<F: FnMut(&CStr) -> *const c_void>(mut f: F) -> Self {
         Self::load_erased(&mut f)
     }
-    fn load_erased(
-        _f: &mut dyn FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void,
-    ) -> Self {
+    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const c_void) -> Self {
         Self {
             cmd_set_line_stipple: unsafe {
                 unsafe extern "system" fn cmd_set_line_stipple(
-                    _: crate::vk::CommandBuffer,
+                    _: vk::CommandBuffer,
                     _: u32,
                     _: u16,
                 ) {
@@ -78,7 +79,7 @@ impl Device {
     #[inline]
     pub unsafe fn cmd_set_line_stipple(
         &self,
-        command_buffer: crate::vk::CommandBuffer,
+        command_buffer: vk::CommandBuffer,
         line_stipple_factor: u32,
         line_stipple_pattern: u16,
     ) {
@@ -91,19 +92,18 @@ impl Device {
         )
     }
 }
-pub const SPEC_VERSION: u32 = 1;
-pub const NAME: &core::ffi::CStr = c"VK_EXT_line_rasterization";
 pub(crate) mod items {
-    pub type PhysicalDeviceLineRasterizationFeaturesEXT<'a> = crate::vk::PhysicalDeviceLineRasterizationFeatures<
+    use crate::vk;
+    pub type PhysicalDeviceLineRasterizationFeaturesEXT<'a> = vk::PhysicalDeviceLineRasterizationFeatures<
         'a,
     >;
-    pub type PhysicalDeviceLineRasterizationPropertiesEXT<'a> = crate::vk::PhysicalDeviceLineRasterizationProperties<
+    pub type PhysicalDeviceLineRasterizationPropertiesEXT<'a> = vk::PhysicalDeviceLineRasterizationProperties<
         'a,
     >;
-    pub type PipelineRasterizationLineStateCreateInfoEXT<'a> = crate::vk::PipelineRasterizationLineStateCreateInfo<
+    pub type PipelineRasterizationLineStateCreateInfoEXT<'a> = vk::PipelineRasterizationLineStateCreateInfo<
         'a,
     >;
-    pub type LineRasterizationModeEXT = crate::vk::LineRasterizationMode;
-    pub type PFN_vkCmdSetLineStippleEXT = crate::vk::PFN_vkCmdSetLineStipple;
+    pub type LineRasterizationModeEXT = vk::LineRasterizationMode;
+    pub type PFN_vkCmdSetLineStippleEXT = vk::PFN_vkCmdSetLineStipple;
 }
 pub use items::*;

@@ -2,83 +2,80 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_mesh_shader.html) · Extension `VK_EXT_mesh_shader`
 #![doc(alias = "VK_EXT_mesh_shader")]
+use crate::vk;
+use core::ffi::CStr;
+use core::ffi::c_void;
 ///Provided by [VK_EXT_mesh_shader](crate::ext::mesh_shader)
-impl crate::vk::QueryType {
+impl vk::QueryType {
     pub const MESH_PRIMITIVES_GENERATED_EXT: Self = Self(1000328000);
 }
 ///Provided by [VK_EXT_mesh_shader](crate::ext::mesh_shader)
-impl crate::vk::StructureType {
+impl vk::StructureType {
     pub const PHYSICAL_DEVICE_MESH_SHADER_FEATURES_EXT: Self = Self(1000328000);
     pub const PHYSICAL_DEVICE_MESH_SHADER_PROPERTIES_EXT: Self = Self(1000328001);
 }
 ///Provided by [VK_EXT_mesh_shader](crate::ext::mesh_shader)
-impl crate::vk::IndirectCommandsTokenTypeNV {
+impl vk::IndirectCommandsTokenTypeNV {
     pub const DRAW_MESH_TASKS: Self = Self(1000328000);
 }
 ///Provided by [VK_EXT_mesh_shader](crate::ext::mesh_shader)
-impl crate::vk::IndirectCommandsTokenTypeEXT {
+impl vk::IndirectCommandsTokenTypeEXT {
     pub const DRAW_MESH_TASKS: Self = Self(1000328000);
     pub const DRAW_MESH_TASKS_COUNT: Self = Self(1000328001);
 }
-///Provided by [VK_EXT_mesh_shader](crate::ext::mesh_shader)
-impl crate::vk::ShaderStageFlags {
-    pub const TASK_EXT: Self = Self(crate::vk::ShaderStageFlagBits::TASK_EXT.0);
-    pub const MESH_EXT: Self = Self(crate::vk::ShaderStageFlagBits::MESH_EXT.0);
+///Provided by [Vulkan 1.0](crate::vk1_0)
+impl vk::ShaderStageFlags {
+    pub const TASK_EXT: Self = Self(vk::ShaderStageFlagBits::TASK_EXT.0);
+    pub const MESH_EXT: Self = Self(vk::ShaderStageFlagBits::MESH_EXT.0);
 }
-///Provided by [VK_EXT_mesh_shader](crate::ext::mesh_shader)
-impl crate::vk::ShaderStageFlagBits {
+///Provided by [Vulkan 1.0](crate::vk1_0)
+impl vk::ShaderStageFlagBits {
     pub const TASK_EXT: Self = Self(1 << 6);
     pub const MESH_EXT: Self = Self(1 << 7);
 }
-///Provided by [VK_EXT_mesh_shader](crate::ext::mesh_shader)
-impl crate::vk::QueryPipelineStatisticFlags {
+///Provided by [Vulkan 1.0](crate::vk1_0)
+impl vk::QueryPipelineStatisticFlags {
     pub const TASK_SHADER_INVOCATIONS_EXT: Self = Self(
-        crate::vk::QueryPipelineStatisticFlagBits::TASK_SHADER_INVOCATIONS_EXT.0,
+        vk::QueryPipelineStatisticFlagBits::TASK_SHADER_INVOCATIONS_EXT.0,
     );
     pub const MESH_SHADER_INVOCATIONS_EXT: Self = Self(
-        crate::vk::QueryPipelineStatisticFlagBits::MESH_SHADER_INVOCATIONS_EXT.0,
+        vk::QueryPipelineStatisticFlagBits::MESH_SHADER_INVOCATIONS_EXT.0,
     );
 }
-///Provided by [VK_EXT_mesh_shader](crate::ext::mesh_shader)
-impl crate::vk::QueryPipelineStatisticFlagBits {
+///Provided by [Vulkan 1.0](crate::vk1_0)
+impl vk::QueryPipelineStatisticFlagBits {
     pub const TASK_SHADER_INVOCATIONS_EXT: Self = Self(1 << 11);
     pub const MESH_SHADER_INVOCATIONS_EXT: Self = Self(1 << 12);
 }
-///Provided by [VK_EXT_mesh_shader](crate::ext::mesh_shader)
-impl crate::vk::PipelineStageFlags {
-    pub const TASK_SHADER_EXT: Self = Self(
-        crate::vk::PipelineStageFlagBits::TASK_SHADER_EXT.0,
-    );
-    pub const MESH_SHADER_EXT: Self = Self(
-        crate::vk::PipelineStageFlagBits::MESH_SHADER_EXT.0,
-    );
+///Provided by [Vulkan 1.0](crate::vk1_0)
+impl vk::PipelineStageFlags {
+    pub const TASK_SHADER_EXT: Self = Self(vk::PipelineStageFlagBits::TASK_SHADER_EXT.0);
+    pub const MESH_SHADER_EXT: Self = Self(vk::PipelineStageFlagBits::MESH_SHADER_EXT.0);
 }
-///Provided by [VK_EXT_mesh_shader](crate::ext::mesh_shader)
-impl crate::vk::PipelineStageFlagBits {
+///Provided by [Vulkan 1.0](crate::vk1_0)
+impl vk::PipelineStageFlagBits {
     pub const TASK_SHADER_EXT: Self = Self(1 << 19);
     pub const MESH_SHADER_EXT: Self = Self(1 << 20);
 }
+pub const SPEC_VERSION: u32 = 1;
+pub const NAME: &CStr = c"VK_EXT_mesh_shader";
 #[derive(Clone)]
 pub struct DeviceFn {
-    pub cmd_draw_mesh_tasks: crate::vk::PFN_vkCmdDrawMeshTasksEXT,
-    pub cmd_draw_mesh_tasks_indirect: crate::vk::PFN_vkCmdDrawMeshTasksIndirectEXT,
-    pub cmd_draw_mesh_tasks_indirect_count: crate::vk::PFN_vkCmdDrawMeshTasksIndirectCountEXT,
+    pub cmd_draw_mesh_tasks: vk::PFN_vkCmdDrawMeshTasksEXT,
+    pub cmd_draw_mesh_tasks_indirect: vk::PFN_vkCmdDrawMeshTasksIndirectEXT,
+    pub cmd_draw_mesh_tasks_indirect_count: vk::PFN_vkCmdDrawMeshTasksIndirectCountEXT,
 }
 unsafe impl Send for DeviceFn {}
 unsafe impl Sync for DeviceFn {}
 impl DeviceFn {
-    pub fn load<F: FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void>(
-        mut f: F,
-    ) -> Self {
+    pub fn load<F: FnMut(&CStr) -> *const c_void>(mut f: F) -> Self {
         Self::load_erased(&mut f)
     }
-    fn load_erased(
-        _f: &mut dyn FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void,
-    ) -> Self {
+    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const c_void) -> Self {
         Self {
             cmd_draw_mesh_tasks: unsafe {
                 unsafe extern "system" fn cmd_draw_mesh_tasks(
-                    _: crate::vk::CommandBuffer,
+                    _: vk::CommandBuffer,
                     _: u32,
                     _: u32,
                     _: u32,
@@ -94,9 +91,9 @@ impl DeviceFn {
             },
             cmd_draw_mesh_tasks_indirect: unsafe {
                 unsafe extern "system" fn cmd_draw_mesh_tasks_indirect(
-                    _: crate::vk::CommandBuffer,
-                    _: crate::vk::Buffer,
-                    _: crate::vk::DeviceSize,
+                    _: vk::CommandBuffer,
+                    _: vk::Buffer,
+                    _: vk::DeviceSize,
                     _: u32,
                     _: u32,
                 ) {
@@ -111,11 +108,11 @@ impl DeviceFn {
             },
             cmd_draw_mesh_tasks_indirect_count: unsafe {
                 unsafe extern "system" fn cmd_draw_mesh_tasks_indirect_count(
-                    _: crate::vk::CommandBuffer,
-                    _: crate::vk::Buffer,
-                    _: crate::vk::DeviceSize,
-                    _: crate::vk::Buffer,
-                    _: crate::vk::DeviceSize,
+                    _: vk::CommandBuffer,
+                    _: vk::Buffer,
+                    _: vk::DeviceSize,
+                    _: vk::Buffer,
+                    _: vk::DeviceSize,
                     _: u32,
                     _: u32,
                 ) {
@@ -156,7 +153,7 @@ impl Device {
     #[inline]
     pub unsafe fn cmd_draw_mesh_tasks(
         &self,
-        command_buffer: crate::vk::CommandBuffer,
+        command_buffer: vk::CommandBuffer,
         group_count_x: u32,
         group_count_y: u32,
         group_count_z: u32,
@@ -174,9 +171,9 @@ impl Device {
     #[inline]
     pub unsafe fn cmd_draw_mesh_tasks_indirect(
         &self,
-        command_buffer: crate::vk::CommandBuffer,
-        buffer: crate::vk::Buffer,
-        offset: crate::vk::DeviceSize,
+        command_buffer: vk::CommandBuffer,
+        buffer: vk::Buffer,
+        offset: vk::DeviceSize,
         draw_count: u32,
         stride: u32,
     ) {
@@ -194,11 +191,11 @@ impl Device {
     #[inline]
     pub unsafe fn cmd_draw_mesh_tasks_indirect_count(
         &self,
-        command_buffer: crate::vk::CommandBuffer,
-        buffer: crate::vk::Buffer,
-        offset: crate::vk::DeviceSize,
-        count_buffer: crate::vk::Buffer,
-        count_buffer_offset: crate::vk::DeviceSize,
+        command_buffer: vk::CommandBuffer,
+        buffer: vk::Buffer,
+        offset: vk::DeviceSize,
+        count_buffer: vk::Buffer,
+        count_buffer_offset: vk::DeviceSize,
         max_draw_count: u32,
         stride: u32,
     ) {
@@ -215,31 +212,31 @@ impl Device {
         )
     }
 }
-pub const SPEC_VERSION: u32 = 1;
-pub const NAME: &core::ffi::CStr = c"VK_EXT_mesh_shader";
 pub(crate) mod items {
+    use core::marker::PhantomData;
+    use crate::vk;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceMeshShaderFeaturesEXT<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
-        pub task_shader: crate::vk::Bool32,
-        pub mesh_shader: crate::vk::Bool32,
-        pub multiview_mesh_shader: crate::vk::Bool32,
-        pub primitive_fragment_shading_rate_mesh_shader: crate::vk::Bool32,
-        pub mesh_shader_queries: crate::vk::Bool32,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub task_shader: vk::Bool32,
+        pub mesh_shader: vk::Bool32,
+        pub multiview_mesh_shader: vk::Bool32,
+        pub primitive_fragment_shading_rate_mesh_shader: vk::Bool32,
+        pub mesh_shader_queries: vk::Bool32,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for PhysicalDeviceMeshShaderFeaturesEXT<'_> {}
     unsafe impl Sync for PhysicalDeviceMeshShaderFeaturesEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceMeshShaderFeaturesEXT<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_MESH_SHADER_FEATURES_EXT;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PHYSICAL_DEVICE_MESH_SHADER_FEATURES_EXT;
     }
-    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+    unsafe impl<'a> crate::Extends<vk::PhysicalDeviceFeatures2<'_>>
     for PhysicalDeviceMeshShaderFeaturesEXT<'a> {}
-    unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+    unsafe impl<'a> crate::Extends<vk::DeviceCreateInfo<'_>>
     for PhysicalDeviceMeshShaderFeaturesEXT<'a> {}
     impl<'a> Default for PhysicalDeviceMeshShaderFeaturesEXT<'a> {
         fn default() -> Self {
@@ -251,7 +248,7 @@ pub(crate) mod items {
                 multiview_mesh_shader: Default::default(),
                 primitive_fragment_shading_rate_mesh_shader: Default::default(),
                 mesh_shader_queries: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
@@ -285,7 +282,7 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceMeshShaderPropertiesEXT<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
         pub max_task_work_group_total_count: u32,
         pub max_task_work_group_count: [u32; 3 as _],
@@ -311,19 +308,19 @@ pub(crate) mod items {
         pub mesh_output_per_primitive_granularity: u32,
         pub max_preferred_task_work_group_invocations: u32,
         pub max_preferred_mesh_work_group_invocations: u32,
-        pub prefers_local_invocation_vertex_output: crate::vk::Bool32,
-        pub prefers_local_invocation_primitive_output: crate::vk::Bool32,
-        pub prefers_compact_vertex_output: crate::vk::Bool32,
-        pub prefers_compact_primitive_output: crate::vk::Bool32,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub prefers_local_invocation_vertex_output: vk::Bool32,
+        pub prefers_local_invocation_primitive_output: vk::Bool32,
+        pub prefers_compact_vertex_output: vk::Bool32,
+        pub prefers_compact_primitive_output: vk::Bool32,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for PhysicalDeviceMeshShaderPropertiesEXT<'_> {}
     unsafe impl Sync for PhysicalDeviceMeshShaderPropertiesEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceMeshShaderPropertiesEXT<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_MESH_SHADER_PROPERTIES_EXT;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PHYSICAL_DEVICE_MESH_SHADER_PROPERTIES_EXT;
     }
-    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceProperties2<'_>>
+    unsafe impl<'a> crate::Extends<vk::PhysicalDeviceProperties2<'_>>
     for PhysicalDeviceMeshShaderPropertiesEXT<'a> {}
     impl<'a> Default for PhysicalDeviceMeshShaderPropertiesEXT<'a> {
         fn default() -> Self {
@@ -358,7 +355,7 @@ pub(crate) mod items {
                 prefers_local_invocation_primitive_output: Default::default(),
                 prefers_compact_vertex_output: Default::default(),
                 prefers_compact_primitive_output: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
@@ -582,24 +579,24 @@ pub(crate) mod items {
         }
     }
     pub type PFN_vkCmdDrawMeshTasksEXT = unsafe extern "system" fn(
-        command_buffer: crate::vk::CommandBuffer,
+        command_buffer: vk::CommandBuffer,
         group_count_x: u32,
         group_count_y: u32,
         group_count_z: u32,
     );
     pub type PFN_vkCmdDrawMeshTasksIndirectEXT = unsafe extern "system" fn(
-        command_buffer: crate::vk::CommandBuffer,
-        buffer: crate::vk::Buffer,
-        offset: crate::vk::DeviceSize,
+        command_buffer: vk::CommandBuffer,
+        buffer: vk::Buffer,
+        offset: vk::DeviceSize,
         draw_count: u32,
         stride: u32,
     );
     pub type PFN_vkCmdDrawMeshTasksIndirectCountEXT = unsafe extern "system" fn(
-        command_buffer: crate::vk::CommandBuffer,
-        buffer: crate::vk::Buffer,
-        offset: crate::vk::DeviceSize,
-        count_buffer: crate::vk::Buffer,
-        count_buffer_offset: crate::vk::DeviceSize,
+        command_buffer: vk::CommandBuffer,
+        buffer: vk::Buffer,
+        offset: vk::DeviceSize,
+        count_buffer: vk::Buffer,
+        count_buffer_offset: vk::DeviceSize,
         max_draw_count: u32,
         stride: u32,
     );

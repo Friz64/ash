@@ -2,30 +2,33 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_inline_uniform_block.html) · Extension `VK_EXT_inline_uniform_block`
 #![doc(alias = "VK_EXT_inline_uniform_block")]
+use crate::vk;
+use core::ffi::CStr;
 ///Provided by [VK_EXT_inline_uniform_block](crate::ext::inline_uniform_block)
-impl crate::vk::DescriptorType {
+impl vk::DescriptorType {
     pub const INLINE_UNIFORM_BLOCK_EXT: Self = Self::INLINE_UNIFORM_BLOCK;
 }
 ///Provided by [VK_EXT_inline_uniform_block](crate::ext::inline_uniform_block)
-impl crate::vk::StructureType {
+impl vk::StructureType {
     pub const PHYSICAL_DEVICE_INLINE_UNIFORM_BLOCK_FEATURES_EXT: Self = Self::PHYSICAL_DEVICE_INLINE_UNIFORM_BLOCK_FEATURES;
     pub const PHYSICAL_DEVICE_INLINE_UNIFORM_BLOCK_PROPERTIES_EXT: Self = Self::PHYSICAL_DEVICE_INLINE_UNIFORM_BLOCK_PROPERTIES;
     pub const WRITE_DESCRIPTOR_SET_INLINE_UNIFORM_BLOCK_EXT: Self = Self::WRITE_DESCRIPTOR_SET_INLINE_UNIFORM_BLOCK;
     pub const DESCRIPTOR_POOL_INLINE_UNIFORM_BLOCK_CREATE_INFO_EXT: Self = Self::DESCRIPTOR_POOL_INLINE_UNIFORM_BLOCK_CREATE_INFO;
 }
 pub const SPEC_VERSION: u32 = 1;
-pub const NAME: &core::ffi::CStr = c"VK_EXT_inline_uniform_block";
+pub const NAME: &CStr = c"VK_EXT_inline_uniform_block";
 pub(crate) mod items {
-    pub type PhysicalDeviceInlineUniformBlockFeaturesEXT<'a> = crate::vk::PhysicalDeviceInlineUniformBlockFeatures<
+    use crate::vk;
+    pub type PhysicalDeviceInlineUniformBlockFeaturesEXT<'a> = vk::PhysicalDeviceInlineUniformBlockFeatures<
         'a,
     >;
-    pub type PhysicalDeviceInlineUniformBlockPropertiesEXT<'a> = crate::vk::PhysicalDeviceInlineUniformBlockProperties<
+    pub type PhysicalDeviceInlineUniformBlockPropertiesEXT<'a> = vk::PhysicalDeviceInlineUniformBlockProperties<
         'a,
     >;
-    pub type WriteDescriptorSetInlineUniformBlockEXT<'a> = crate::vk::WriteDescriptorSetInlineUniformBlock<
+    pub type WriteDescriptorSetInlineUniformBlockEXT<'a> = vk::WriteDescriptorSetInlineUniformBlock<
         'a,
     >;
-    pub type DescriptorPoolInlineUniformBlockCreateInfoEXT<'a> = crate::vk::DescriptorPoolInlineUniformBlockCreateInfo<
+    pub type DescriptorPoolInlineUniformBlockCreateInfoEXT<'a> = vk::DescriptorPoolInlineUniformBlockCreateInfo<
         'a,
     >;
 }

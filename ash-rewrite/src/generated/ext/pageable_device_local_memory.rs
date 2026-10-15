@@ -2,32 +2,33 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_pageable_device_local_memory.html) · Extension `VK_EXT_pageable_device_local_memory`
 #![doc(alias = "VK_EXT_pageable_device_local_memory")]
+use crate::vk;
+use core::ffi::CStr;
+use core::ffi::c_void;
 ///Provided by [VK_EXT_pageable_device_local_memory](crate::ext::pageable_device_local_memory)
-impl crate::vk::StructureType {
+impl vk::StructureType {
     pub const PHYSICAL_DEVICE_PAGEABLE_DEVICE_LOCAL_MEMORY_FEATURES_EXT: Self = Self(
         1000412000,
     );
 }
+pub const SPEC_VERSION: u32 = 1;
+pub const NAME: &CStr = c"VK_EXT_pageable_device_local_memory";
 #[derive(Clone)]
 pub struct DeviceFn {
-    pub set_device_memory_priority: crate::vk::PFN_vkSetDeviceMemoryPriorityEXT,
+    pub set_device_memory_priority: vk::PFN_vkSetDeviceMemoryPriorityEXT,
 }
 unsafe impl Send for DeviceFn {}
 unsafe impl Sync for DeviceFn {}
 impl DeviceFn {
-    pub fn load<F: FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void>(
-        mut f: F,
-    ) -> Self {
+    pub fn load<F: FnMut(&CStr) -> *const c_void>(mut f: F) -> Self {
         Self::load_erased(&mut f)
     }
-    fn load_erased(
-        _f: &mut dyn FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void,
-    ) -> Self {
+    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const c_void) -> Self {
         Self {
             set_device_memory_priority: unsafe {
                 unsafe extern "system" fn set_device_memory_priority(
-                    _: crate::vk::Device,
-                    _: crate::vk::DeviceMemory,
+                    _: vk::Device,
+                    _: vk::DeviceMemory,
                     _: core::ffi::c_float,
                 ) {
                     panic!("unable to load vkSetDeviceMemoryPriorityEXT")
@@ -67,33 +68,33 @@ impl Device {
     #[inline]
     pub unsafe fn set_device_memory_priority(
         &self,
-        memory: crate::vk::DeviceMemory,
+        memory: vk::DeviceMemory,
         priority: core::ffi::c_float,
     ) {
         (self.fp.set_device_memory_priority)(self.handle, memory, priority)
     }
 }
-pub const SPEC_VERSION: u32 = 1;
-pub const NAME: &core::ffi::CStr = c"VK_EXT_pageable_device_local_memory";
 pub(crate) mod items {
+    use core::marker::PhantomData;
+    use crate::vk;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct PhysicalDevicePageableDeviceLocalMemoryFeaturesEXT<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
-        pub pageable_device_local_memory: crate::vk::Bool32,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub pageable_device_local_memory: vk::Bool32,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for PhysicalDevicePageableDeviceLocalMemoryFeaturesEXT<'_> {}
     unsafe impl Sync for PhysicalDevicePageableDeviceLocalMemoryFeaturesEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDevicePageableDeviceLocalMemoryFeaturesEXT<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_PAGEABLE_DEVICE_LOCAL_MEMORY_FEATURES_EXT;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PHYSICAL_DEVICE_PAGEABLE_DEVICE_LOCAL_MEMORY_FEATURES_EXT;
     }
-    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+    unsafe impl<'a> crate::Extends<vk::PhysicalDeviceFeatures2<'_>>
     for PhysicalDevicePageableDeviceLocalMemoryFeaturesEXT<'a> {}
-    unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+    unsafe impl<'a> crate::Extends<vk::DeviceCreateInfo<'_>>
     for PhysicalDevicePageableDeviceLocalMemoryFeaturesEXT<'a> {}
     impl<'a> Default for PhysicalDevicePageableDeviceLocalMemoryFeaturesEXT<'a> {
         fn default() -> Self {
@@ -101,7 +102,7 @@ pub(crate) mod items {
                 s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
                 p_next: Default::default(),
                 pageable_device_local_memory: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
@@ -115,8 +116,8 @@ pub(crate) mod items {
         }
     }
     pub type PFN_vkSetDeviceMemoryPriorityEXT = unsafe extern "system" fn(
-        device: crate::vk::Device,
-        memory: crate::vk::DeviceMemory,
+        device: vk::Device,
+        memory: vk::DeviceMemory,
         priority: core::ffi::c_float,
     );
 }

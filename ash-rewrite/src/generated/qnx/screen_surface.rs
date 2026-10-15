@@ -2,34 +2,36 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_QNX_screen_surface.html) · Extension `VK_QNX_screen_surface`
 #![doc(alias = "VK_QNX_screen_surface")]
+use crate::vk;
+use core::ffi::CStr;
+use crate::VkResult;
+use core::ffi::c_void;
 ///Provided by [VK_QNX_screen_surface](crate::qnx::screen_surface)
-impl crate::vk::StructureType {
+impl vk::StructureType {
     pub const SCREEN_SURFACE_CREATE_INFO_QNX: Self = Self(1000378000);
 }
+pub const SPEC_VERSION: u32 = 1;
+pub const NAME: &CStr = c"VK_QNX_screen_surface";
 #[derive(Clone)]
 pub struct InstanceFn {
-    pub create_screen_surface: crate::vk::PFN_vkCreateScreenSurfaceQNX,
-    pub get_physical_device_screen_presentation_support: crate::vk::PFN_vkGetPhysicalDeviceScreenPresentationSupportQNX,
+    pub create_screen_surface: vk::PFN_vkCreateScreenSurfaceQNX,
+    pub get_physical_device_screen_presentation_support: vk::PFN_vkGetPhysicalDeviceScreenPresentationSupportQNX,
 }
 unsafe impl Send for InstanceFn {}
 unsafe impl Sync for InstanceFn {}
 impl InstanceFn {
-    pub fn load<F: FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void>(
-        mut f: F,
-    ) -> Self {
+    pub fn load<F: FnMut(&CStr) -> *const c_void>(mut f: F) -> Self {
         Self::load_erased(&mut f)
     }
-    fn load_erased(
-        _f: &mut dyn FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void,
-    ) -> Self {
+    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const c_void) -> Self {
         Self {
             create_screen_surface: unsafe {
                 unsafe extern "system" fn create_screen_surface(
-                    _: crate::vk::Instance,
-                    _: *const crate::vk::ScreenSurfaceCreateInfoQNX<'_>,
-                    _: *const crate::vk::AllocationCallbacks<'_>,
-                    _: *mut crate::vk::SurfaceKHR,
-                ) -> crate::vk::Result {
+                    _: vk::Instance,
+                    _: *const vk::ScreenSurfaceCreateInfoQNX<'_>,
+                    _: *const vk::AllocationCallbacks<'_>,
+                    _: *mut vk::SurfaceKHR,
+                ) -> vk::Result {
                     panic!("unable to load vkCreateScreenSurfaceQNX")
                 }
                 let val = _f(c"vkCreateScreenSurfaceQNX");
@@ -41,10 +43,10 @@ impl InstanceFn {
             },
             get_physical_device_screen_presentation_support: unsafe {
                 unsafe extern "system" fn get_physical_device_screen_presentation_support(
-                    _: crate::vk::PhysicalDevice,
+                    _: vk::PhysicalDevice,
                     _: u32,
                     _: *mut crate::platform_types::_screen_window,
-                ) -> crate::vk::Bool32 {
+                ) -> vk::Bool32 {
                     panic!(
                         "unable to load vkGetPhysicalDeviceScreenPresentationSupportQNX"
                     )
@@ -84,9 +86,9 @@ impl Instance {
     #[inline]
     pub unsafe fn create_screen_surface(
         &self,
-        create_info: &crate::vk::ScreenSurfaceCreateInfoQNX<'_>,
-        allocator: Option<&crate::vk::AllocationCallbacks<'_>>,
-    ) -> crate::VkResult<crate::vk::SurfaceKHR> {
+        create_info: &vk::ScreenSurfaceCreateInfoQNX<'_>,
+        allocator: Option<&vk::AllocationCallbacks<'_>>,
+    ) -> VkResult<vk::SurfaceKHR> {
         let mut surface = core::mem::MaybeUninit::uninit();
         (self
             .fp
@@ -105,7 +107,7 @@ impl Instance {
     #[inline]
     pub unsafe fn get_physical_device_screen_presentation_support(
         &self,
-        physical_device: crate::vk::PhysicalDevice,
+        physical_device: vk::PhysicalDevice,
         queue_family_index: u32,
     ) -> crate::platform_types::_screen_window {
         let mut window = core::mem::MaybeUninit::uninit();
@@ -119,24 +121,24 @@ impl Instance {
         window.assume_init()
     }
 }
-pub const SPEC_VERSION: u32 = 1;
-pub const NAME: &core::ffi::CStr = c"VK_QNX_screen_surface";
 pub(crate) mod items {
+    use core::marker::PhantomData;
+    use crate::vk;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct ScreenSurfaceCreateInfoQNX<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *const core::ffi::c_void,
-        pub flags: crate::vk::ScreenSurfaceCreateFlagsQNX,
+        pub flags: vk::ScreenSurfaceCreateFlagsQNX,
         pub context: *mut crate::platform_types::_screen_context,
         pub window: *mut crate::platform_types::_screen_window,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for ScreenSurfaceCreateInfoQNX<'_> {}
     unsafe impl Sync for ScreenSurfaceCreateInfoQNX<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for ScreenSurfaceCreateInfoQNX<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::SCREEN_SURFACE_CREATE_INFO_QNX;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::SCREEN_SURFACE_CREATE_INFO_QNX;
     }
     impl<'a> Default for ScreenSurfaceCreateInfoQNX<'a> {
         fn default() -> Self {
@@ -146,12 +148,12 @@ pub(crate) mod items {
                 flags: Default::default(),
                 context: Default::default(),
                 window: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
     impl<'a> ScreenSurfaceCreateInfoQNX<'a> {
-        pub fn flags(mut self, flags: crate::vk::ScreenSurfaceCreateFlagsQNX) -> Self {
+        pub fn flags(mut self, flags: vk::ScreenSurfaceCreateFlagsQNX) -> Self {
             self.flags = flags;
             self
         }
@@ -239,15 +241,15 @@ pub(crate) mod items {
         }
     }
     pub type PFN_vkCreateScreenSurfaceQNX = unsafe extern "system" fn(
-        instance: crate::vk::Instance,
-        p_create_info: *const crate::vk::ScreenSurfaceCreateInfoQNX<'_>,
-        p_allocator: *const crate::vk::AllocationCallbacks<'_>,
-        p_surface: *mut crate::vk::SurfaceKHR,
-    ) -> crate::vk::Result;
+        instance: vk::Instance,
+        p_create_info: *const vk::ScreenSurfaceCreateInfoQNX<'_>,
+        p_allocator: *const vk::AllocationCallbacks<'_>,
+        p_surface: *mut vk::SurfaceKHR,
+    ) -> vk::Result;
     pub type PFN_vkGetPhysicalDeviceScreenPresentationSupportQNX = unsafe extern "system" fn(
-        physical_device: crate::vk::PhysicalDevice,
+        physical_device: vk::PhysicalDevice,
         queue_family_index: u32,
         window: *mut crate::platform_types::_screen_window,
-    ) -> crate::vk::Bool32;
+    ) -> vk::Bool32;
 }
 pub use items::*;

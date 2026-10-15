@@ -2,38 +2,40 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_display_swapchain.html) · Extension `VK_KHR_display_swapchain`
 #![doc(alias = "VK_KHR_display_swapchain")]
+use crate::vk;
+use core::ffi::CStr;
+use crate::VkResult;
+use core::ffi::c_void;
 ///Provided by [VK_KHR_display_swapchain](crate::khr::display_swapchain)
-impl crate::vk::StructureType {
+impl vk::StructureType {
     pub const DISPLAY_PRESENT_INFO_KHR: Self = Self(1000003000);
 }
 ///Provided by [VK_KHR_display_swapchain](crate::khr::display_swapchain)
-impl crate::vk::Result {
+impl vk::Result {
     pub const ERROR_INCOMPATIBLE_DISPLAY_KHR: Self = Self(-1000003001);
 }
+pub const SPEC_VERSION: u32 = 10;
+pub const NAME: &CStr = c"VK_KHR_display_swapchain";
 #[derive(Clone)]
 pub struct DeviceFn {
-    pub create_shared_swapchains: crate::vk::PFN_vkCreateSharedSwapchainsKHR,
+    pub create_shared_swapchains: vk::PFN_vkCreateSharedSwapchainsKHR,
 }
 unsafe impl Send for DeviceFn {}
 unsafe impl Sync for DeviceFn {}
 impl DeviceFn {
-    pub fn load<F: FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void>(
-        mut f: F,
-    ) -> Self {
+    pub fn load<F: FnMut(&CStr) -> *const c_void>(mut f: F) -> Self {
         Self::load_erased(&mut f)
     }
-    fn load_erased(
-        _f: &mut dyn FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void,
-    ) -> Self {
+    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const c_void) -> Self {
         Self {
             create_shared_swapchains: unsafe {
                 unsafe extern "system" fn create_shared_swapchains(
-                    _: crate::vk::Device,
+                    _: vk::Device,
                     _: u32,
-                    _: *const crate::vk::SwapchainCreateInfoKHR<'_>,
-                    _: *const crate::vk::AllocationCallbacks<'_>,
-                    _: *mut crate::vk::SwapchainKHR,
-                ) -> crate::vk::Result {
+                    _: *const vk::SwapchainCreateInfoKHR<'_>,
+                    _: *const vk::AllocationCallbacks<'_>,
+                    _: *mut vk::SwapchainKHR,
+                ) -> vk::Result {
                     panic!("unable to load vkCreateSharedSwapchainsKHR")
                 }
                 let val = _f(c"vkCreateSharedSwapchainsKHR");
@@ -71,10 +73,10 @@ impl Device {
     #[inline]
     pub unsafe fn create_shared_swapchains(
         &self,
-        create_infos: &[crate::vk::SwapchainCreateInfoKHR<'_>],
-        allocator: Option<&crate::vk::AllocationCallbacks<'_>>,
-        swapchains: &mut [crate::vk::SwapchainKHR],
-    ) -> crate::VkResult<()> {
+        create_infos: &[vk::SwapchainCreateInfoKHR<'_>],
+        allocator: Option<&vk::AllocationCallbacks<'_>>,
+        swapchains: &mut [vk::SwapchainKHR],
+    ) -> VkResult<()> {
         assert_eq!(create_infos.len(), swapchains.len());
         (self
             .fp
@@ -91,26 +93,26 @@ impl Device {
             .result()
     }
 }
-pub const SPEC_VERSION: u32 = 10;
-pub const NAME: &core::ffi::CStr = c"VK_KHR_display_swapchain";
 pub(crate) mod items {
+    use core::marker::PhantomData;
+    use crate::vk;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct DisplayPresentInfoKHR<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *const core::ffi::c_void,
-        pub src_rect: crate::vk::Rect2D,
-        pub dst_rect: crate::vk::Rect2D,
-        pub persistent: crate::vk::Bool32,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub src_rect: vk::Rect2D,
+        pub dst_rect: vk::Rect2D,
+        pub persistent: vk::Bool32,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for DisplayPresentInfoKHR<'_> {}
     unsafe impl Sync for DisplayPresentInfoKHR<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for DisplayPresentInfoKHR<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::DISPLAY_PRESENT_INFO_KHR;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::DISPLAY_PRESENT_INFO_KHR;
     }
-    unsafe impl<'a> crate::Extends<crate::vk::PresentInfoKHR<'_>>
+    unsafe impl<'a> crate::Extends<vk::PresentInfoKHR<'_>>
     for DisplayPresentInfoKHR<'a> {}
     impl<'a> Default for DisplayPresentInfoKHR<'a> {
         fn default() -> Self {
@@ -120,16 +122,16 @@ pub(crate) mod items {
                 src_rect: Default::default(),
                 dst_rect: Default::default(),
                 persistent: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
     impl<'a> DisplayPresentInfoKHR<'a> {
-        pub fn src_rect(mut self, src_rect: crate::vk::Rect2D) -> Self {
+        pub fn src_rect(mut self, src_rect: vk::Rect2D) -> Self {
             self.src_rect = src_rect;
             self
         }
-        pub fn dst_rect(mut self, dst_rect: crate::vk::Rect2D) -> Self {
+        pub fn dst_rect(mut self, dst_rect: vk::Rect2D) -> Self {
             self.dst_rect = dst_rect;
             self
         }
@@ -139,11 +141,11 @@ pub(crate) mod items {
         }
     }
     pub type PFN_vkCreateSharedSwapchainsKHR = unsafe extern "system" fn(
-        device: crate::vk::Device,
+        device: vk::Device,
         swapchain_count: u32,
-        p_create_infos: *const crate::vk::SwapchainCreateInfoKHR<'_>,
-        p_allocator: *const crate::vk::AllocationCallbacks<'_>,
-        p_swapchains: *mut crate::vk::SwapchainKHR,
-    ) -> crate::vk::Result;
+        p_create_infos: *const vk::SwapchainCreateInfoKHR<'_>,
+        p_allocator: *const vk::AllocationCallbacks<'_>,
+        p_swapchains: *mut vk::SwapchainKHR,
+    ) -> vk::Result;
 }
 pub use items::*;

@@ -2,8 +2,10 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_extended_flags.html) · Extension `VK_KHR_extended_flags`
 #![doc(alias = "VK_KHR_extended_flags")]
+use crate::vk;
+use core::ffi::CStr;
 ///Provided by [VK_KHR_extended_flags](crate::khr::extended_flags)
-impl crate::vk::StructureType {
+impl vk::StructureType {
     pub const FORMAT_PROPERTIES_4_KHR: Self = Self(1000668000);
     pub const IMAGE_CREATE_FLAGS_2_CREATE_INFO_KHR: Self = Self(1000668001);
     pub const IMAGE_USAGE_FLAGS_2_CREATE_INFO_KHR: Self = Self(1000668002);
@@ -157,29 +159,31 @@ impl ImageCreateFlagBits2KHR {
     pub const VIDEO_PROFILE_INDEPENDENT: Self = Self(1 << 20);
 }
 pub const SPEC_VERSION: u32 = 1;
-pub const NAME: &core::ffi::CStr = c"VK_KHR_extended_flags";
+pub const NAME: &CStr = c"VK_KHR_extended_flags";
 pub(crate) mod items {
+    use core::marker::PhantomData;
+    use crate::vk;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct ImageCreateFlags2CreateInfoKHR<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
-        pub flags: crate::vk::ImageCreateFlags2KHR,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub flags: vk::ImageCreateFlags2KHR,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for ImageCreateFlags2CreateInfoKHR<'_> {}
     unsafe impl Sync for ImageCreateFlags2CreateInfoKHR<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for ImageCreateFlags2CreateInfoKHR<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::IMAGE_CREATE_FLAGS_2_CREATE_INFO_KHR;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::IMAGE_CREATE_FLAGS_2_CREATE_INFO_KHR;
     }
-    unsafe impl<'a> crate::Extends<crate::vk::ImageCreateInfo<'_>>
+    unsafe impl<'a> crate::Extends<vk::ImageCreateInfo<'_>>
     for ImageCreateFlags2CreateInfoKHR<'a> {}
-    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceImageFormatInfo2<'_>>
+    unsafe impl<'a> crate::Extends<vk::PhysicalDeviceImageFormatInfo2<'_>>
     for ImageCreateFlags2CreateInfoKHR<'a> {}
-    unsafe impl<'a> crate::Extends<crate::vk::FramebufferAttachmentImageInfo<'_>>
+    unsafe impl<'a> crate::Extends<vk::FramebufferAttachmentImageInfo<'_>>
     for ImageCreateFlags2CreateInfoKHR<'a> {}
-    unsafe impl<'a> crate::Extends<crate::vk::VideoFormatPropertiesKHR<'_>>
+    unsafe impl<'a> crate::Extends<vk::VideoFormatPropertiesKHR<'_>>
     for ImageCreateFlags2CreateInfoKHR<'a> {}
     impl<'a> Default for ImageCreateFlags2CreateInfoKHR<'a> {
         fn default() -> Self {
@@ -187,12 +191,12 @@ pub(crate) mod items {
                 s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
                 p_next: Default::default(),
                 flags: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
     impl<'a> ImageCreateFlags2CreateInfoKHR<'a> {
-        pub fn flags(mut self, flags: crate::vk::ImageCreateFlags2KHR) -> Self {
+        pub fn flags(mut self, flags: vk::ImageCreateFlags2KHR) -> Self {
             self.flags = flags;
             self
         }
@@ -201,31 +205,31 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct ImageUsageFlags2CreateInfoKHR<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
-        pub usage: crate::vk::ImageUsageFlags2KHR,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub usage: vk::ImageUsageFlags2KHR,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for ImageUsageFlags2CreateInfoKHR<'_> {}
     unsafe impl Sync for ImageUsageFlags2CreateInfoKHR<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for ImageUsageFlags2CreateInfoKHR<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::IMAGE_USAGE_FLAGS_2_CREATE_INFO_KHR;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::IMAGE_USAGE_FLAGS_2_CREATE_INFO_KHR;
     }
-    unsafe impl<'a> crate::Extends<crate::vk::FramebufferAttachmentImageInfo<'_>>
+    unsafe impl<'a> crate::Extends<vk::FramebufferAttachmentImageInfo<'_>>
     for ImageUsageFlags2CreateInfoKHR<'a> {}
-    unsafe impl<'a> crate::Extends<crate::vk::ImageCreateInfo<'_>>
+    unsafe impl<'a> crate::Extends<vk::ImageCreateInfo<'_>>
     for ImageUsageFlags2CreateInfoKHR<'a> {}
-    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceImageFormatInfo2<'_>>
+    unsafe impl<'a> crate::Extends<vk::PhysicalDeviceImageFormatInfo2<'_>>
     for ImageUsageFlags2CreateInfoKHR<'a> {}
-    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceSparseImageFormatInfo2<'_>>
+    unsafe impl<'a> crate::Extends<vk::PhysicalDeviceSparseImageFormatInfo2<'_>>
     for ImageUsageFlags2CreateInfoKHR<'a> {}
-    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceVideoFormatInfoKHR<'_>>
+    unsafe impl<'a> crate::Extends<vk::PhysicalDeviceVideoFormatInfoKHR<'_>>
     for ImageUsageFlags2CreateInfoKHR<'a> {}
-    unsafe impl<'a> crate::Extends<crate::vk::SurfaceCapabilities2KHR<'_>>
+    unsafe impl<'a> crate::Extends<vk::SurfaceCapabilities2KHR<'_>>
     for ImageUsageFlags2CreateInfoKHR<'a> {}
-    unsafe impl<'a> crate::Extends<crate::vk::SwapchainCreateInfoKHR<'_>>
+    unsafe impl<'a> crate::Extends<vk::SwapchainCreateInfoKHR<'_>>
     for ImageUsageFlags2CreateInfoKHR<'a> {}
-    unsafe impl<'a> crate::Extends<crate::vk::VideoFormatPropertiesKHR<'_>>
+    unsafe impl<'a> crate::Extends<vk::VideoFormatPropertiesKHR<'_>>
     for ImageUsageFlags2CreateInfoKHR<'a> {}
     impl<'a> Default for ImageUsageFlags2CreateInfoKHR<'a> {
         fn default() -> Self {
@@ -233,12 +237,12 @@ pub(crate) mod items {
                 s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
                 p_next: Default::default(),
                 usage: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
     impl<'a> ImageUsageFlags2CreateInfoKHR<'a> {
-        pub fn usage(mut self, usage: crate::vk::ImageUsageFlags2KHR) -> Self {
+        pub fn usage(mut self, usage: vk::ImageUsageFlags2KHR) -> Self {
             self.usage = usage;
             self
         }
@@ -247,18 +251,18 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct SharedPresentSurfaceCapabilities2KHR<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
-        pub shared_present_supported_usage_flags: crate::vk::ImageUsageFlags2KHR,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub shared_present_supported_usage_flags: vk::ImageUsageFlags2KHR,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for SharedPresentSurfaceCapabilities2KHR<'_> {}
     unsafe impl Sync for SharedPresentSurfaceCapabilities2KHR<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for SharedPresentSurfaceCapabilities2KHR<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::SHARED_PRESENT_SURFACE_CAPABILITIES_2_KHR;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::SHARED_PRESENT_SURFACE_CAPABILITIES_2_KHR;
     }
-    unsafe impl<'a> crate::Extends<crate::vk::SurfaceCapabilities2KHR<'_>>
+    unsafe impl<'a> crate::Extends<vk::SurfaceCapabilities2KHR<'_>>
     for SharedPresentSurfaceCapabilities2KHR<'a> {}
     impl<'a> Default for SharedPresentSurfaceCapabilities2KHR<'a> {
         fn default() -> Self {
@@ -266,14 +270,14 @@ pub(crate) mod items {
                 s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
                 p_next: Default::default(),
                 shared_present_supported_usage_flags: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
     impl<'a> SharedPresentSurfaceCapabilities2KHR<'a> {
         pub fn shared_present_supported_usage_flags(
             mut self,
-            shared_present_supported_usage_flags: crate::vk::ImageUsageFlags2KHR,
+            shared_present_supported_usage_flags: vk::ImageUsageFlags2KHR,
         ) -> Self {
             self.shared_present_supported_usage_flags = shared_present_supported_usage_flags;
             self
@@ -283,17 +287,17 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct ImageViewUsage2CreateInfoKHR<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
-        pub usage: crate::vk::ImageUsageFlags2KHR,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub usage: vk::ImageUsageFlags2KHR,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for ImageViewUsage2CreateInfoKHR<'_> {}
     unsafe impl Sync for ImageViewUsage2CreateInfoKHR<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for ImageViewUsage2CreateInfoKHR<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::IMAGE_VIEW_USAGE_2_CREATE_INFO_KHR;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::IMAGE_VIEW_USAGE_2_CREATE_INFO_KHR;
     }
-    unsafe impl<'a> crate::Extends<crate::vk::ImageViewCreateInfo<'_>>
+    unsafe impl<'a> crate::Extends<vk::ImageViewCreateInfo<'_>>
     for ImageViewUsage2CreateInfoKHR<'a> {}
     impl<'a> Default for ImageViewUsage2CreateInfoKHR<'a> {
         fn default() -> Self {
@@ -301,12 +305,12 @@ pub(crate) mod items {
                 s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
                 p_next: Default::default(),
                 usage: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
     impl<'a> ImageViewUsage2CreateInfoKHR<'a> {
-        pub fn usage(mut self, usage: crate::vk::ImageUsageFlags2KHR) -> Self {
+        pub fn usage(mut self, usage: vk::ImageUsageFlags2KHR) -> Self {
             self.usage = usage;
             self
         }
@@ -315,19 +319,19 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct ImageStencilUsage2CreateInfoKHR<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
-        pub stencil_usage: crate::vk::ImageUsageFlags2KHR,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub stencil_usage: vk::ImageUsageFlags2KHR,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for ImageStencilUsage2CreateInfoKHR<'_> {}
     unsafe impl Sync for ImageStencilUsage2CreateInfoKHR<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for ImageStencilUsage2CreateInfoKHR<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::IMAGE_STENCIL_USAGE_2_CREATE_INFO_KHR;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::IMAGE_STENCIL_USAGE_2_CREATE_INFO_KHR;
     }
-    unsafe impl<'a> crate::Extends<crate::vk::ImageCreateInfo<'_>>
+    unsafe impl<'a> crate::Extends<vk::ImageCreateInfo<'_>>
     for ImageStencilUsage2CreateInfoKHR<'a> {}
-    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceImageFormatInfo2<'_>>
+    unsafe impl<'a> crate::Extends<vk::PhysicalDeviceImageFormatInfo2<'_>>
     for ImageStencilUsage2CreateInfoKHR<'a> {}
     impl<'a> Default for ImageStencilUsage2CreateInfoKHR<'a> {
         fn default() -> Self {
@@ -335,15 +339,12 @@ pub(crate) mod items {
                 s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
                 p_next: Default::default(),
                 stencil_usage: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
     impl<'a> ImageStencilUsage2CreateInfoKHR<'a> {
-        pub fn stencil_usage(
-            mut self,
-            stencil_usage: crate::vk::ImageUsageFlags2KHR,
-        ) -> Self {
+        pub fn stencil_usage(mut self, stencil_usage: vk::ImageUsageFlags2KHR) -> Self {
             self.stencil_usage = stencil_usage;
             self
         }
@@ -352,20 +353,20 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceExtendedFlagsFeaturesKHR<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
-        pub extended_flags: crate::vk::Bool32,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub extended_flags: vk::Bool32,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for PhysicalDeviceExtendedFlagsFeaturesKHR<'_> {}
     unsafe impl Sync for PhysicalDeviceExtendedFlagsFeaturesKHR<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceExtendedFlagsFeaturesKHR<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_EXTENDED_FLAGS_FEATURES_KHR;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PHYSICAL_DEVICE_EXTENDED_FLAGS_FEATURES_KHR;
     }
-    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+    unsafe impl<'a> crate::Extends<vk::PhysicalDeviceFeatures2<'_>>
     for PhysicalDeviceExtendedFlagsFeaturesKHR<'a> {}
-    unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+    unsafe impl<'a> crate::Extends<vk::DeviceCreateInfo<'_>>
     for PhysicalDeviceExtendedFlagsFeaturesKHR<'a> {}
     impl<'a> Default for PhysicalDeviceExtendedFlagsFeaturesKHR<'a> {
         fn default() -> Self {
@@ -373,7 +374,7 @@ pub(crate) mod items {
                 s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
                 p_next: Default::default(),
                 extended_flags: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
@@ -387,19 +388,19 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct FormatProperties4KHR<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
-        pub linear_tiling_features: crate::vk::FormatFeatureFlags4KHR,
-        pub optimal_tiling_features: crate::vk::FormatFeatureFlags4KHR,
-        pub buffer_features: crate::vk::FormatFeatureFlags4KHR,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub linear_tiling_features: vk::FormatFeatureFlags4KHR,
+        pub optimal_tiling_features: vk::FormatFeatureFlags4KHR,
+        pub buffer_features: vk::FormatFeatureFlags4KHR,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for FormatProperties4KHR<'_> {}
     unsafe impl Sync for FormatProperties4KHR<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for FormatProperties4KHR<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::FORMAT_PROPERTIES_4_KHR;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::FORMAT_PROPERTIES_4_KHR;
     }
-    unsafe impl<'a> crate::Extends<crate::vk::FormatProperties2<'_>>
+    unsafe impl<'a> crate::Extends<vk::FormatProperties2<'_>>
     for FormatProperties4KHR<'a> {}
     impl<'a> Default for FormatProperties4KHR<'a> {
         fn default() -> Self {
@@ -409,28 +410,28 @@ pub(crate) mod items {
                 linear_tiling_features: Default::default(),
                 optimal_tiling_features: Default::default(),
                 buffer_features: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
     impl<'a> FormatProperties4KHR<'a> {
         pub fn linear_tiling_features(
             mut self,
-            linear_tiling_features: crate::vk::FormatFeatureFlags4KHR,
+            linear_tiling_features: vk::FormatFeatureFlags4KHR,
         ) -> Self {
             self.linear_tiling_features = linear_tiling_features;
             self
         }
         pub fn optimal_tiling_features(
             mut self,
-            optimal_tiling_features: crate::vk::FormatFeatureFlags4KHR,
+            optimal_tiling_features: vk::FormatFeatureFlags4KHR,
         ) -> Self {
             self.optimal_tiling_features = optimal_tiling_features;
             self
         }
         pub fn buffer_features(
             mut self,
-            buffer_features: crate::vk::FormatFeatureFlags4KHR,
+            buffer_features: vk::FormatFeatureFlags4KHR,
         ) -> Self {
             self.buffer_features = buffer_features;
             self

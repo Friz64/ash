@@ -2,8 +2,12 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_swapchain_maintenance1.html) · Extension `VK_EXT_swapchain_maintenance1`
 #![doc(alias = "VK_EXT_swapchain_maintenance1")]
+use crate::vk;
+use core::ffi::CStr;
+use crate::VkResult;
+use core::ffi::c_void;
 ///Provided by [VK_EXT_swapchain_maintenance1](crate::ext::swapchain_maintenance1)
-impl crate::vk::StructureType {
+impl vk::StructureType {
     pub const PHYSICAL_DEVICE_SWAPCHAIN_MAINTENANCE_1_FEATURES_EXT: Self = Self::PHYSICAL_DEVICE_SWAPCHAIN_MAINTENANCE_1_FEATURES_KHR;
     pub const SWAPCHAIN_PRESENT_FENCE_INFO_EXT: Self = Self::SWAPCHAIN_PRESENT_FENCE_INFO_KHR;
     pub const SWAPCHAIN_PRESENT_MODES_CREATE_INFO_EXT: Self = Self::SWAPCHAIN_PRESENT_MODES_CREATE_INFO_KHR;
@@ -11,37 +15,35 @@ impl crate::vk::StructureType {
     pub const SWAPCHAIN_PRESENT_SCALING_CREATE_INFO_EXT: Self = Self::SWAPCHAIN_PRESENT_SCALING_CREATE_INFO_KHR;
     pub const RELEASE_SWAPCHAIN_IMAGES_INFO_EXT: Self = Self::RELEASE_SWAPCHAIN_IMAGES_INFO_KHR;
 }
-///Provided by [VK_EXT_swapchain_maintenance1](crate::ext::swapchain_maintenance1)
-impl crate::vk::SwapchainCreateFlagsKHR {
+///Provided by [VK_KHR_swapchain](crate::khr::swapchain)
+impl vk::SwapchainCreateFlagsKHR {
     pub const DEFERRED_MEMORY_ALLOCATION_EXT: Self = Self(
-        crate::vk::SwapchainCreateFlagBitsKHR::DEFERRED_MEMORY_ALLOCATION_EXT.0,
+        vk::SwapchainCreateFlagBitsKHR::DEFERRED_MEMORY_ALLOCATION_EXT.0,
     );
 }
-///Provided by [VK_EXT_swapchain_maintenance1](crate::ext::swapchain_maintenance1)
-impl crate::vk::SwapchainCreateFlagBitsKHR {
+///Provided by [VK_KHR_swapchain](crate::khr::swapchain)
+impl vk::SwapchainCreateFlagBitsKHR {
     pub const DEFERRED_MEMORY_ALLOCATION_EXT: Self = Self::DEFERRED_MEMORY_ALLOCATION;
 }
+pub const SPEC_VERSION: u32 = 1;
+pub const NAME: &CStr = c"VK_EXT_swapchain_maintenance1";
 #[derive(Clone)]
 pub struct DeviceFn {
-    pub release_swapchain_images: crate::vk::PFN_vkReleaseSwapchainImagesEXT,
+    pub release_swapchain_images: vk::PFN_vkReleaseSwapchainImagesEXT,
 }
 unsafe impl Send for DeviceFn {}
 unsafe impl Sync for DeviceFn {}
 impl DeviceFn {
-    pub fn load<F: FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void>(
-        mut f: F,
-    ) -> Self {
+    pub fn load<F: FnMut(&CStr) -> *const c_void>(mut f: F) -> Self {
         Self::load_erased(&mut f)
     }
-    fn load_erased(
-        _f: &mut dyn FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void,
-    ) -> Self {
+    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const c_void) -> Self {
         Self {
             release_swapchain_images: unsafe {
                 unsafe extern "system" fn release_swapchain_images(
-                    _: crate::vk::Device,
-                    _: *const crate::vk::ReleaseSwapchainImagesInfoKHR<'_>,
-                ) -> crate::vk::Result {
+                    _: vk::Device,
+                    _: *const vk::ReleaseSwapchainImagesInfoKHR<'_>,
+                ) -> vk::Result {
                     panic!("unable to load vkReleaseSwapchainImagesEXT")
                 }
                 let val = _f(c"vkReleaseSwapchainImagesEXT");
@@ -79,32 +81,25 @@ impl Device {
     #[inline]
     pub unsafe fn release_swapchain_images(
         &self,
-        release_info: &crate::vk::ReleaseSwapchainImagesInfoKHR<'_>,
-    ) -> crate::VkResult<()> {
+        release_info: &vk::ReleaseSwapchainImagesInfoKHR<'_>,
+    ) -> VkResult<()> {
         (self.fp.release_swapchain_images)(self.handle, release_info).result()
     }
 }
-pub const SPEC_VERSION: u32 = 1;
-pub const NAME: &core::ffi::CStr = c"VK_EXT_swapchain_maintenance1";
 pub(crate) mod items {
-    pub type PhysicalDeviceSwapchainMaintenance1FeaturesEXT<'a> = crate::vk::PhysicalDeviceSwapchainMaintenance1FeaturesKHR<
+    use crate::vk;
+    pub type PhysicalDeviceSwapchainMaintenance1FeaturesEXT<'a> = vk::PhysicalDeviceSwapchainMaintenance1FeaturesKHR<
         'a,
     >;
-    pub type SwapchainPresentFenceInfoEXT<'a> = crate::vk::SwapchainPresentFenceInfoKHR<
+    pub type SwapchainPresentFenceInfoEXT<'a> = vk::SwapchainPresentFenceInfoKHR<'a>;
+    pub type SwapchainPresentModesCreateInfoEXT<'a> = vk::SwapchainPresentModesCreateInfoKHR<
         'a,
     >;
-    pub type SwapchainPresentModesCreateInfoEXT<'a> = crate::vk::SwapchainPresentModesCreateInfoKHR<
+    pub type SwapchainPresentModeInfoEXT<'a> = vk::SwapchainPresentModeInfoKHR<'a>;
+    pub type SwapchainPresentScalingCreateInfoEXT<'a> = vk::SwapchainPresentScalingCreateInfoKHR<
         'a,
     >;
-    pub type SwapchainPresentModeInfoEXT<'a> = crate::vk::SwapchainPresentModeInfoKHR<
-        'a,
-    >;
-    pub type SwapchainPresentScalingCreateInfoEXT<'a> = crate::vk::SwapchainPresentScalingCreateInfoKHR<
-        'a,
-    >;
-    pub type ReleaseSwapchainImagesInfoEXT<'a> = crate::vk::ReleaseSwapchainImagesInfoKHR<
-        'a,
-    >;
-    pub type PFN_vkReleaseSwapchainImagesEXT = crate::vk::PFN_vkReleaseSwapchainImagesKHR;
+    pub type ReleaseSwapchainImagesInfoEXT<'a> = vk::ReleaseSwapchainImagesInfoKHR<'a>;
+    pub type PFN_vkReleaseSwapchainImagesEXT = vk::PFN_vkReleaseSwapchainImagesKHR;
 }
 pub use items::*;

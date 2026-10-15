@@ -2,14 +2,17 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_vulkan_memory_model.html) · Extension `VK_KHR_vulkan_memory_model`
 #![doc(alias = "VK_KHR_vulkan_memory_model")]
+use crate::vk;
+use core::ffi::CStr;
 ///Provided by [VK_KHR_vulkan_memory_model](crate::khr::vulkan_memory_model)
-impl crate::vk::StructureType {
+impl vk::StructureType {
     pub const PHYSICAL_DEVICE_VULKAN_MEMORY_MODEL_FEATURES_KHR: Self = Self::PHYSICAL_DEVICE_VULKAN_MEMORY_MODEL_FEATURES;
 }
 pub const SPEC_VERSION: u32 = 3;
-pub const NAME: &core::ffi::CStr = c"VK_KHR_vulkan_memory_model";
+pub const NAME: &CStr = c"VK_KHR_vulkan_memory_model";
 pub(crate) mod items {
-    pub type PhysicalDeviceVulkanMemoryModelFeaturesKHR<'a> = crate::vk::PhysicalDeviceVulkanMemoryModelFeatures<
+    use crate::vk;
+    pub type PhysicalDeviceVulkanMemoryModelFeaturesKHR<'a> = vk::PhysicalDeviceVulkanMemoryModelFeatures<
         'a,
     >;
 }

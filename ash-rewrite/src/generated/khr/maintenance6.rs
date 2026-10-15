@@ -2,8 +2,11 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_maintenance6.html) · Extension `VK_KHR_maintenance6`
 #![doc(alias = "VK_KHR_maintenance6")]
+use crate::vk;
+use core::ffi::CStr;
+use core::ffi::c_void;
 ///Provided by [VK_KHR_maintenance6](crate::khr::maintenance6)
-impl crate::vk::StructureType {
+impl vk::StructureType {
     pub const PHYSICAL_DEVICE_MAINTENANCE_6_FEATURES_KHR: Self = Self::PHYSICAL_DEVICE_MAINTENANCE_6_FEATURES;
     pub const PHYSICAL_DEVICE_MAINTENANCE_6_PROPERTIES_KHR: Self = Self::PHYSICAL_DEVICE_MAINTENANCE_6_PROPERTIES;
     pub const BIND_MEMORY_STATUS_KHR: Self = Self::BIND_MEMORY_STATUS;
@@ -14,31 +17,29 @@ impl crate::vk::StructureType {
     pub const SET_DESCRIPTOR_BUFFER_OFFSETS_INFO_EXT: Self = Self(1000545007);
     pub const BIND_DESCRIPTOR_BUFFER_EMBEDDED_SAMPLERS_INFO_EXT: Self = Self(1000545008);
 }
+pub const SPEC_VERSION: u32 = 1;
+pub const NAME: &CStr = c"VK_KHR_maintenance6";
 #[derive(Clone)]
 pub struct DeviceFn {
-    pub cmd_set_descriptor_buffer_offsets2: crate::vk::PFN_vkCmdSetDescriptorBufferOffsets2EXT,
-    pub cmd_bind_descriptor_buffer_embedded_samplers2: crate::vk::PFN_vkCmdBindDescriptorBufferEmbeddedSamplers2EXT,
-    pub cmd_bind_descriptor_sets2: crate::vk::PFN_vkCmdBindDescriptorSets2KHR,
-    pub cmd_push_constants2: crate::vk::PFN_vkCmdPushConstants2KHR,
-    pub cmd_push_descriptor_set2: crate::vk::PFN_vkCmdPushDescriptorSet2KHR,
-    pub cmd_push_descriptor_set_with_template2: crate::vk::PFN_vkCmdPushDescriptorSetWithTemplate2KHR,
+    pub cmd_set_descriptor_buffer_offsets2: vk::PFN_vkCmdSetDescriptorBufferOffsets2EXT,
+    pub cmd_bind_descriptor_buffer_embedded_samplers2: vk::PFN_vkCmdBindDescriptorBufferEmbeddedSamplers2EXT,
+    pub cmd_bind_descriptor_sets2: vk::PFN_vkCmdBindDescriptorSets2KHR,
+    pub cmd_push_constants2: vk::PFN_vkCmdPushConstants2KHR,
+    pub cmd_push_descriptor_set2: vk::PFN_vkCmdPushDescriptorSet2KHR,
+    pub cmd_push_descriptor_set_with_template2: vk::PFN_vkCmdPushDescriptorSetWithTemplate2KHR,
 }
 unsafe impl Send for DeviceFn {}
 unsafe impl Sync for DeviceFn {}
 impl DeviceFn {
-    pub fn load<F: FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void>(
-        mut f: F,
-    ) -> Self {
+    pub fn load<F: FnMut(&CStr) -> *const c_void>(mut f: F) -> Self {
         Self::load_erased(&mut f)
     }
-    fn load_erased(
-        _f: &mut dyn FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void,
-    ) -> Self {
+    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const c_void) -> Self {
         Self {
             cmd_set_descriptor_buffer_offsets2: unsafe {
                 unsafe extern "system" fn cmd_set_descriptor_buffer_offsets2(
-                    _: crate::vk::CommandBuffer,
-                    _: *const crate::vk::SetDescriptorBufferOffsetsInfoEXT<'_>,
+                    _: vk::CommandBuffer,
+                    _: *const vk::SetDescriptorBufferOffsetsInfoEXT<'_>,
                 ) {
                     panic!("unable to load vkCmdSetDescriptorBufferOffsets2EXT")
                 }
@@ -51,8 +52,8 @@ impl DeviceFn {
             },
             cmd_bind_descriptor_buffer_embedded_samplers2: unsafe {
                 unsafe extern "system" fn cmd_bind_descriptor_buffer_embedded_samplers2(
-                    _: crate::vk::CommandBuffer,
-                    _: *const crate::vk::BindDescriptorBufferEmbeddedSamplersInfoEXT<'_>,
+                    _: vk::CommandBuffer,
+                    _: *const vk::BindDescriptorBufferEmbeddedSamplersInfoEXT<'_>,
                 ) {
                     panic!(
                         "unable to load vkCmdBindDescriptorBufferEmbeddedSamplers2EXT"
@@ -67,8 +68,8 @@ impl DeviceFn {
             },
             cmd_bind_descriptor_sets2: unsafe {
                 unsafe extern "system" fn cmd_bind_descriptor_sets2(
-                    _: crate::vk::CommandBuffer,
-                    _: *const crate::vk::BindDescriptorSetsInfo<'_>,
+                    _: vk::CommandBuffer,
+                    _: *const vk::BindDescriptorSetsInfo<'_>,
                 ) {
                     panic!("unable to load vkCmdBindDescriptorSets2KHR")
                 }
@@ -81,8 +82,8 @@ impl DeviceFn {
             },
             cmd_push_constants2: unsafe {
                 unsafe extern "system" fn cmd_push_constants2(
-                    _: crate::vk::CommandBuffer,
-                    _: *const crate::vk::PushConstantsInfo<'_>,
+                    _: vk::CommandBuffer,
+                    _: *const vk::PushConstantsInfo<'_>,
                 ) {
                     panic!("unable to load vkCmdPushConstants2KHR")
                 }
@@ -95,8 +96,8 @@ impl DeviceFn {
             },
             cmd_push_descriptor_set2: unsafe {
                 unsafe extern "system" fn cmd_push_descriptor_set2(
-                    _: crate::vk::CommandBuffer,
-                    _: *const crate::vk::PushDescriptorSetInfo<'_>,
+                    _: vk::CommandBuffer,
+                    _: *const vk::PushDescriptorSetInfo<'_>,
                 ) {
                     panic!("unable to load vkCmdPushDescriptorSet2KHR")
                 }
@@ -109,8 +110,8 @@ impl DeviceFn {
             },
             cmd_push_descriptor_set_with_template2: unsafe {
                 unsafe extern "system" fn cmd_push_descriptor_set_with_template2(
-                    _: crate::vk::CommandBuffer,
-                    _: *const crate::vk::PushDescriptorSetWithTemplateInfo<'_>,
+                    _: vk::CommandBuffer,
+                    _: *const vk::PushDescriptorSetWithTemplateInfo<'_>,
                 ) {
                     panic!("unable to load vkCmdPushDescriptorSetWithTemplate2KHR")
                 }
@@ -149,10 +150,8 @@ impl Device {
     #[inline]
     pub unsafe fn cmd_set_descriptor_buffer_offsets2(
         &self,
-        command_buffer: crate::vk::CommandBuffer,
-        set_descriptor_buffer_offsets_info: &crate::vk::SetDescriptorBufferOffsetsInfoEXT<
-            '_,
-        >,
+        command_buffer: vk::CommandBuffer,
+        set_descriptor_buffer_offsets_info: &vk::SetDescriptorBufferOffsetsInfoEXT<'_>,
     ) {
         (self
             .fp
@@ -165,8 +164,8 @@ impl Device {
     #[inline]
     pub unsafe fn cmd_bind_descriptor_buffer_embedded_samplers2(
         &self,
-        command_buffer: crate::vk::CommandBuffer,
-        bind_descriptor_buffer_embedded_samplers_info: &crate::vk::BindDescriptorBufferEmbeddedSamplersInfoEXT<
+        command_buffer: vk::CommandBuffer,
+        bind_descriptor_buffer_embedded_samplers_info: &vk::BindDescriptorBufferEmbeddedSamplersInfoEXT<
             '_,
         >,
     ) {
@@ -181,8 +180,8 @@ impl Device {
     #[inline]
     pub unsafe fn cmd_bind_descriptor_sets2(
         &self,
-        command_buffer: crate::vk::CommandBuffer,
-        bind_descriptor_sets_info: &crate::vk::BindDescriptorSetsInfo<'_>,
+        command_buffer: vk::CommandBuffer,
+        bind_descriptor_sets_info: &vk::BindDescriptorSetsInfo<'_>,
     ) {
         (self.fp.cmd_bind_descriptor_sets2)(command_buffer, bind_descriptor_sets_info)
     }
@@ -190,8 +189,8 @@ impl Device {
     #[inline]
     pub unsafe fn cmd_push_constants2(
         &self,
-        command_buffer: crate::vk::CommandBuffer,
-        push_constants_info: &crate::vk::PushConstantsInfo<'_>,
+        command_buffer: vk::CommandBuffer,
+        push_constants_info: &vk::PushConstantsInfo<'_>,
     ) {
         (self.fp.cmd_push_constants2)(command_buffer, push_constants_info)
     }
@@ -199,8 +198,8 @@ impl Device {
     #[inline]
     pub unsafe fn cmd_push_descriptor_set2(
         &self,
-        command_buffer: crate::vk::CommandBuffer,
-        push_descriptor_set_info: &crate::vk::PushDescriptorSetInfo<'_>,
+        command_buffer: vk::CommandBuffer,
+        push_descriptor_set_info: &vk::PushDescriptorSetInfo<'_>,
     ) {
         (self.fp.cmd_push_descriptor_set2)(command_buffer, push_descriptor_set_info)
     }
@@ -208,8 +207,8 @@ impl Device {
     #[inline]
     pub unsafe fn cmd_push_descriptor_set_with_template2(
         &self,
-        command_buffer: crate::vk::CommandBuffer,
-        push_descriptor_set_with_template_info: &crate::vk::PushDescriptorSetWithTemplateInfo<
+        command_buffer: vk::CommandBuffer,
+        push_descriptor_set_with_template_info: &vk::PushDescriptorSetWithTemplateInfo<
             '_,
         >,
     ) {
@@ -221,28 +220,28 @@ impl Device {
         )
     }
 }
-pub const SPEC_VERSION: u32 = 1;
-pub const NAME: &core::ffi::CStr = c"VK_KHR_maintenance6";
 pub(crate) mod items {
+    use core::marker::PhantomData;
+    use crate::vk;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct SetDescriptorBufferOffsetsInfoEXT<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *const core::ffi::c_void,
-        pub stage_flags: crate::vk::ShaderStageFlags,
-        pub layout: crate::vk::PipelineLayout,
+        pub stage_flags: vk::ShaderStageFlags,
+        pub layout: vk::PipelineLayout,
         pub first_set: u32,
         pub set_count: u32,
         pub p_buffer_indices: *const u32,
-        pub p_offsets: *const crate::vk::DeviceSize,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub p_offsets: *const vk::DeviceSize,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for SetDescriptorBufferOffsetsInfoEXT<'_> {}
     unsafe impl Sync for SetDescriptorBufferOffsetsInfoEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for SetDescriptorBufferOffsetsInfoEXT<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::SET_DESCRIPTOR_BUFFER_OFFSETS_INFO_EXT;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::SET_DESCRIPTOR_BUFFER_OFFSETS_INFO_EXT;
     }
     impl<'a> Default for SetDescriptorBufferOffsetsInfoEXT<'a> {
         fn default() -> Self {
@@ -255,16 +254,16 @@ pub(crate) mod items {
                 set_count: Default::default(),
                 p_buffer_indices: Default::default(),
                 p_offsets: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
     impl<'a> SetDescriptorBufferOffsetsInfoEXT<'a> {
-        pub fn stage_flags(mut self, stage_flags: crate::vk::ShaderStageFlags) -> Self {
+        pub fn stage_flags(mut self, stage_flags: vk::ShaderStageFlags) -> Self {
             self.stage_flags = stage_flags;
             self
         }
-        pub fn layout(mut self, layout: crate::vk::PipelineLayout) -> Self {
+        pub fn layout(mut self, layout: vk::PipelineLayout) -> Self {
             self.layout = layout;
             self
         }
@@ -277,7 +276,7 @@ pub(crate) mod items {
             self.p_buffer_indices = buffer_indices.as_ptr();
             self
         }
-        pub fn offsets(mut self, offsets: &'a [crate::vk::DeviceSize]) -> Self {
+        pub fn offsets(mut self, offsets: &'a [vk::DeviceSize]) -> Self {
             self.set_count = offsets.len() as _;
             self.p_offsets = offsets.as_ptr();
             self
@@ -287,18 +286,18 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct BindDescriptorBufferEmbeddedSamplersInfoEXT<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *const core::ffi::c_void,
-        pub stage_flags: crate::vk::ShaderStageFlags,
-        pub layout: crate::vk::PipelineLayout,
+        pub stage_flags: vk::ShaderStageFlags,
+        pub layout: vk::PipelineLayout,
         pub set: u32,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for BindDescriptorBufferEmbeddedSamplersInfoEXT<'_> {}
     unsafe impl Sync for BindDescriptorBufferEmbeddedSamplersInfoEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for BindDescriptorBufferEmbeddedSamplersInfoEXT<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::BIND_DESCRIPTOR_BUFFER_EMBEDDED_SAMPLERS_INFO_EXT;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::BIND_DESCRIPTOR_BUFFER_EMBEDDED_SAMPLERS_INFO_EXT;
     }
     impl<'a> Default for BindDescriptorBufferEmbeddedSamplersInfoEXT<'a> {
         fn default() -> Self {
@@ -308,16 +307,16 @@ pub(crate) mod items {
                 stage_flags: Default::default(),
                 layout: Default::default(),
                 set: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
     impl<'a> BindDescriptorBufferEmbeddedSamplersInfoEXT<'a> {
-        pub fn stage_flags(mut self, stage_flags: crate::vk::ShaderStageFlags) -> Self {
+        pub fn stage_flags(mut self, stage_flags: vk::ShaderStageFlags) -> Self {
             self.stage_flags = stage_flags;
             self
         }
-        pub fn layout(mut self, layout: crate::vk::PipelineLayout) -> Self {
+        pub fn layout(mut self, layout: vk::PipelineLayout) -> Self {
             self.layout = layout;
             self
         }
@@ -326,34 +325,34 @@ pub(crate) mod items {
             self
         }
     }
-    pub type PhysicalDeviceMaintenance6FeaturesKHR<'a> = crate::vk::PhysicalDeviceMaintenance6Features<
+    pub type PhysicalDeviceMaintenance6FeaturesKHR<'a> = vk::PhysicalDeviceMaintenance6Features<
         'a,
     >;
-    pub type PhysicalDeviceMaintenance6PropertiesKHR<'a> = crate::vk::PhysicalDeviceMaintenance6Properties<
+    pub type PhysicalDeviceMaintenance6PropertiesKHR<'a> = vk::PhysicalDeviceMaintenance6Properties<
         'a,
     >;
-    pub type BindMemoryStatusKHR<'a> = crate::vk::BindMemoryStatus<'a>;
-    pub type BindDescriptorSetsInfoKHR<'a> = crate::vk::BindDescriptorSetsInfo<'a>;
-    pub type PushConstantsInfoKHR<'a> = crate::vk::PushConstantsInfo<'a>;
-    pub type PushDescriptorSetInfoKHR<'a> = crate::vk::PushDescriptorSetInfo<'a>;
-    pub type PushDescriptorSetWithTemplateInfoKHR<'a> = crate::vk::PushDescriptorSetWithTemplateInfo<
+    pub type BindMemoryStatusKHR<'a> = vk::BindMemoryStatus<'a>;
+    pub type BindDescriptorSetsInfoKHR<'a> = vk::BindDescriptorSetsInfo<'a>;
+    pub type PushConstantsInfoKHR<'a> = vk::PushConstantsInfo<'a>;
+    pub type PushDescriptorSetInfoKHR<'a> = vk::PushDescriptorSetInfo<'a>;
+    pub type PushDescriptorSetWithTemplateInfoKHR<'a> = vk::PushDescriptorSetWithTemplateInfo<
         'a,
     >;
     pub type PFN_vkCmdSetDescriptorBufferOffsets2EXT = unsafe extern "system" fn(
-        command_buffer: crate::vk::CommandBuffer,
-        p_set_descriptor_buffer_offsets_info: *const crate::vk::SetDescriptorBufferOffsetsInfoEXT<
+        command_buffer: vk::CommandBuffer,
+        p_set_descriptor_buffer_offsets_info: *const vk::SetDescriptorBufferOffsetsInfoEXT<
             '_,
         >,
     );
     pub type PFN_vkCmdBindDescriptorBufferEmbeddedSamplers2EXT = unsafe extern "system" fn(
-        command_buffer: crate::vk::CommandBuffer,
-        p_bind_descriptor_buffer_embedded_samplers_info: *const crate::vk::BindDescriptorBufferEmbeddedSamplersInfoEXT<
+        command_buffer: vk::CommandBuffer,
+        p_bind_descriptor_buffer_embedded_samplers_info: *const vk::BindDescriptorBufferEmbeddedSamplersInfoEXT<
             '_,
         >,
     );
-    pub type PFN_vkCmdBindDescriptorSets2KHR = crate::vk::PFN_vkCmdBindDescriptorSets2;
-    pub type PFN_vkCmdPushConstants2KHR = crate::vk::PFN_vkCmdPushConstants2;
-    pub type PFN_vkCmdPushDescriptorSet2KHR = crate::vk::PFN_vkCmdPushDescriptorSet2;
-    pub type PFN_vkCmdPushDescriptorSetWithTemplate2KHR = crate::vk::PFN_vkCmdPushDescriptorSetWithTemplate2;
+    pub type PFN_vkCmdBindDescriptorSets2KHR = vk::PFN_vkCmdBindDescriptorSets2;
+    pub type PFN_vkCmdPushConstants2KHR = vk::PFN_vkCmdPushConstants2;
+    pub type PFN_vkCmdPushDescriptorSet2KHR = vk::PFN_vkCmdPushDescriptorSet2;
+    pub type PFN_vkCmdPushDescriptorSetWithTemplate2KHR = vk::PFN_vkCmdPushDescriptorSetWithTemplate2;
 }
 pub use items::*;

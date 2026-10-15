@@ -2,13 +2,15 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_load_store_op_none.html) · Extension `VK_EXT_load_store_op_none`
 #![doc(alias = "VK_EXT_load_store_op_none")]
+use crate::vk;
+use core::ffi::CStr;
 ///Provided by [VK_EXT_load_store_op_none](crate::ext::load_store_op_none)
-impl crate::vk::AttachmentLoadOp {
+impl vk::AttachmentLoadOp {
     pub const NONE_EXT: Self = Self::NONE;
 }
 ///Provided by [VK_EXT_load_store_op_none](crate::ext::load_store_op_none)
-impl crate::vk::AttachmentStoreOp {
+impl vk::AttachmentStoreOp {
     pub const NONE_EXT: Self = Self::NONE;
 }
 pub const SPEC_VERSION: u32 = 1;
-pub const NAME: &core::ffi::CStr = c"VK_EXT_load_store_op_none";
+pub const NAME: &CStr = c"VK_EXT_load_store_op_none";

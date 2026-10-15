@@ -2,5 +2,6 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_NV_geometry_shader_passthrough.html) · Extension `VK_NV_geometry_shader_passthrough`
 #![doc(alias = "VK_NV_geometry_shader_passthrough")]
+use core::ffi::CStr;
 pub const SPEC_VERSION: u32 = 1;
-pub const NAME: &core::ffi::CStr = c"VK_NV_geometry_shader_passthrough";
+pub const NAME: &CStr = c"VK_NV_geometry_shader_passthrough";

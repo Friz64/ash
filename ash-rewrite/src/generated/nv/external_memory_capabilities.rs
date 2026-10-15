@@ -2,6 +2,10 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_NV_external_memory_capabilities.html) · Extension `VK_NV_external_memory_capabilities`
 #![doc(alias = "VK_NV_external_memory_capabilities")]
+use core::ffi::CStr;
+use crate::vk;
+use crate::VkResult;
+use core::ffi::c_void;
 ///Provided by [VK_NV_external_memory_capabilities](crate::nv::external_memory_capabilities)
 impl ExternalMemoryHandleTypeFlagsNV {
     pub const OPAQUE_WIN32: Self = Self(
@@ -38,33 +42,31 @@ impl ExternalMemoryFeatureFlagBitsNV {
     pub const EXPORTABLE: Self = Self(1 << 1);
     pub const IMPORTABLE: Self = Self(1 << 2);
 }
+pub const SPEC_VERSION: u32 = 1;
+pub const NAME: &CStr = c"VK_NV_external_memory_capabilities";
 #[derive(Clone)]
 pub struct InstanceFn {
-    pub get_physical_device_external_image_format_properties: crate::vk::PFN_vkGetPhysicalDeviceExternalImageFormatPropertiesNV,
+    pub get_physical_device_external_image_format_properties: vk::PFN_vkGetPhysicalDeviceExternalImageFormatPropertiesNV,
 }
 unsafe impl Send for InstanceFn {}
 unsafe impl Sync for InstanceFn {}
 impl InstanceFn {
-    pub fn load<F: FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void>(
-        mut f: F,
-    ) -> Self {
+    pub fn load<F: FnMut(&CStr) -> *const c_void>(mut f: F) -> Self {
         Self::load_erased(&mut f)
     }
-    fn load_erased(
-        _f: &mut dyn FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void,
-    ) -> Self {
+    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const c_void) -> Self {
         Self {
             get_physical_device_external_image_format_properties: unsafe {
                 unsafe extern "system" fn get_physical_device_external_image_format_properties(
-                    _: crate::vk::PhysicalDevice,
-                    _: crate::vk::Format,
-                    _: crate::vk::ImageType,
-                    _: crate::vk::ImageTiling,
-                    _: crate::vk::ImageUsageFlags,
-                    _: crate::vk::ImageCreateFlags,
-                    _: crate::vk::ExternalMemoryHandleTypeFlagsNV,
-                    _: *mut crate::vk::ExternalImageFormatPropertiesNV,
-                ) -> crate::vk::Result {
+                    _: vk::PhysicalDevice,
+                    _: vk::Format,
+                    _: vk::ImageType,
+                    _: vk::ImageTiling,
+                    _: vk::ImageUsageFlags,
+                    _: vk::ImageCreateFlags,
+                    _: vk::ExternalMemoryHandleTypeFlagsNV,
+                    _: *mut vk::ExternalImageFormatPropertiesNV,
+                ) -> vk::Result {
                     panic!(
                         "unable to load vkGetPhysicalDeviceExternalImageFormatPropertiesNV"
                     )
@@ -104,14 +106,14 @@ impl Instance {
     #[inline]
     pub unsafe fn get_physical_device_external_image_format_properties(
         &self,
-        physical_device: crate::vk::PhysicalDevice,
-        format: crate::vk::Format,
-        ty: crate::vk::ImageType,
-        tiling: crate::vk::ImageTiling,
-        usage: crate::vk::ImageUsageFlags,
-        flags: crate::vk::ImageCreateFlags,
-        external_handle_type: crate::vk::ExternalMemoryHandleTypeFlagsNV,
-    ) -> crate::VkResult<crate::vk::ExternalImageFormatPropertiesNV> {
+        physical_device: vk::PhysicalDevice,
+        format: vk::Format,
+        ty: vk::ImageType,
+        tiling: vk::ImageTiling,
+        usage: vk::ImageUsageFlags,
+        flags: vk::ImageCreateFlags,
+        external_handle_type: vk::ExternalMemoryHandleTypeFlagsNV,
+    ) -> VkResult<vk::ExternalImageFormatPropertiesNV> {
         let mut external_image_format_properties = core::mem::MaybeUninit::uninit();
         (self
             .fp
@@ -128,45 +130,44 @@ impl Instance {
             .assume_init_on_success(external_image_format_properties)
     }
 }
-pub const SPEC_VERSION: u32 = 1;
-pub const NAME: &core::ffi::CStr = c"VK_NV_external_memory_capabilities";
 pub(crate) mod items {
+    use crate::vk;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy, Default)]
     pub struct ExternalImageFormatPropertiesNV {
-        pub image_format_properties: crate::vk::ImageFormatProperties,
-        pub external_memory_features: crate::vk::ExternalMemoryFeatureFlagsNV,
-        pub export_from_imported_handle_types: crate::vk::ExternalMemoryHandleTypeFlagsNV,
-        pub compatible_handle_types: crate::vk::ExternalMemoryHandleTypeFlagsNV,
+        pub image_format_properties: vk::ImageFormatProperties,
+        pub external_memory_features: vk::ExternalMemoryFeatureFlagsNV,
+        pub export_from_imported_handle_types: vk::ExternalMemoryHandleTypeFlagsNV,
+        pub compatible_handle_types: vk::ExternalMemoryHandleTypeFlagsNV,
     }
     unsafe impl Send for ExternalImageFormatPropertiesNV {}
     unsafe impl Sync for ExternalImageFormatPropertiesNV {}
     impl ExternalImageFormatPropertiesNV {
         pub fn image_format_properties(
             mut self,
-            image_format_properties: crate::vk::ImageFormatProperties,
+            image_format_properties: vk::ImageFormatProperties,
         ) -> Self {
             self.image_format_properties = image_format_properties;
             self
         }
         pub fn external_memory_features(
             mut self,
-            external_memory_features: crate::vk::ExternalMemoryFeatureFlagsNV,
+            external_memory_features: vk::ExternalMemoryFeatureFlagsNV,
         ) -> Self {
             self.external_memory_features = external_memory_features;
             self
         }
         pub fn export_from_imported_handle_types(
             mut self,
-            export_from_imported_handle_types: crate::vk::ExternalMemoryHandleTypeFlagsNV,
+            export_from_imported_handle_types: vk::ExternalMemoryHandleTypeFlagsNV,
         ) -> Self {
             self.export_from_imported_handle_types = export_from_imported_handle_types;
             self
         }
         pub fn compatible_handle_types(
             mut self,
-            compatible_handle_types: crate::vk::ExternalMemoryHandleTypeFlagsNV,
+            compatible_handle_types: vk::ExternalMemoryHandleTypeFlagsNV,
         ) -> Self {
             self.compatible_handle_types = compatible_handle_types;
             self
@@ -374,14 +375,14 @@ pub(crate) mod items {
         }
     }
     pub type PFN_vkGetPhysicalDeviceExternalImageFormatPropertiesNV = unsafe extern "system" fn(
-        physical_device: crate::vk::PhysicalDevice,
-        format: crate::vk::Format,
-        ty: crate::vk::ImageType,
-        tiling: crate::vk::ImageTiling,
-        usage: crate::vk::ImageUsageFlags,
-        flags: crate::vk::ImageCreateFlags,
-        external_handle_type: crate::vk::ExternalMemoryHandleTypeFlagsNV,
-        p_external_image_format_properties: *mut crate::vk::ExternalImageFormatPropertiesNV,
-    ) -> crate::vk::Result;
+        physical_device: vk::PhysicalDevice,
+        format: vk::Format,
+        ty: vk::ImageType,
+        tiling: vk::ImageTiling,
+        usage: vk::ImageUsageFlags,
+        flags: vk::ImageCreateFlags,
+        external_handle_type: vk::ExternalMemoryHandleTypeFlagsNV,
+        p_external_image_format_properties: *mut vk::ExternalImageFormatPropertiesNV,
+    ) -> vk::Result;
 }
 pub use items::*;

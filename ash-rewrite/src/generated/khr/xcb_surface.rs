@@ -2,34 +2,36 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_xcb_surface.html) · Extension `VK_KHR_xcb_surface`
 #![doc(alias = "VK_KHR_xcb_surface")]
+use crate::vk;
+use core::ffi::CStr;
+use crate::VkResult;
+use core::ffi::c_void;
 ///Provided by [VK_KHR_xcb_surface](crate::khr::xcb_surface)
-impl crate::vk::StructureType {
+impl vk::StructureType {
     pub const XCB_SURFACE_CREATE_INFO_KHR: Self = Self(1000005000);
 }
+pub const SPEC_VERSION: u32 = 6;
+pub const NAME: &CStr = c"VK_KHR_xcb_surface";
 #[derive(Clone)]
 pub struct InstanceFn {
-    pub create_xcb_surface: crate::vk::PFN_vkCreateXcbSurfaceKHR,
-    pub get_physical_device_xcb_presentation_support: crate::vk::PFN_vkGetPhysicalDeviceXcbPresentationSupportKHR,
+    pub create_xcb_surface: vk::PFN_vkCreateXcbSurfaceKHR,
+    pub get_physical_device_xcb_presentation_support: vk::PFN_vkGetPhysicalDeviceXcbPresentationSupportKHR,
 }
 unsafe impl Send for InstanceFn {}
 unsafe impl Sync for InstanceFn {}
 impl InstanceFn {
-    pub fn load<F: FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void>(
-        mut f: F,
-    ) -> Self {
+    pub fn load<F: FnMut(&CStr) -> *const c_void>(mut f: F) -> Self {
         Self::load_erased(&mut f)
     }
-    fn load_erased(
-        _f: &mut dyn FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void,
-    ) -> Self {
+    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const c_void) -> Self {
         Self {
             create_xcb_surface: unsafe {
                 unsafe extern "system" fn create_xcb_surface(
-                    _: crate::vk::Instance,
-                    _: *const crate::vk::XcbSurfaceCreateInfoKHR<'_>,
-                    _: *const crate::vk::AllocationCallbacks<'_>,
-                    _: *mut crate::vk::SurfaceKHR,
-                ) -> crate::vk::Result {
+                    _: vk::Instance,
+                    _: *const vk::XcbSurfaceCreateInfoKHR<'_>,
+                    _: *const vk::AllocationCallbacks<'_>,
+                    _: *mut vk::SurfaceKHR,
+                ) -> vk::Result {
                     panic!("unable to load vkCreateXcbSurfaceKHR")
                 }
                 let val = _f(c"vkCreateXcbSurfaceKHR");
@@ -41,11 +43,11 @@ impl InstanceFn {
             },
             get_physical_device_xcb_presentation_support: unsafe {
                 unsafe extern "system" fn get_physical_device_xcb_presentation_support(
-                    _: crate::vk::PhysicalDevice,
+                    _: vk::PhysicalDevice,
                     _: u32,
                     _: *mut crate::platform_types::xcb_connection_t,
                     _: crate::platform_types::xcb_visualid_t,
-                ) -> crate::vk::Bool32 {
+                ) -> vk::Bool32 {
                     panic!("unable to load vkGetPhysicalDeviceXcbPresentationSupportKHR")
                 }
                 let val = _f(c"vkGetPhysicalDeviceXcbPresentationSupportKHR");
@@ -83,9 +85,9 @@ impl Instance {
     #[inline]
     pub unsafe fn create_xcb_surface(
         &self,
-        create_info: &crate::vk::XcbSurfaceCreateInfoKHR<'_>,
-        allocator: Option<&crate::vk::AllocationCallbacks<'_>>,
-    ) -> crate::VkResult<crate::vk::SurfaceKHR> {
+        create_info: &vk::XcbSurfaceCreateInfoKHR<'_>,
+        allocator: Option<&vk::AllocationCallbacks<'_>>,
+    ) -> VkResult<vk::SurfaceKHR> {
         let mut surface = core::mem::MaybeUninit::uninit();
         (self
             .fp
@@ -104,7 +106,7 @@ impl Instance {
     #[inline]
     pub unsafe fn get_physical_device_xcb_presentation_support(
         &self,
-        physical_device: crate::vk::PhysicalDevice,
+        physical_device: vk::PhysicalDevice,
         queue_family_index: u32,
         visual_id: crate::platform_types::xcb_visualid_t,
     ) -> crate::platform_types::xcb_connection_t {
@@ -120,24 +122,24 @@ impl Instance {
         connection.assume_init()
     }
 }
-pub const SPEC_VERSION: u32 = 6;
-pub const NAME: &core::ffi::CStr = c"VK_KHR_xcb_surface";
 pub(crate) mod items {
+    use core::marker::PhantomData;
+    use crate::vk;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct XcbSurfaceCreateInfoKHR<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *const core::ffi::c_void,
-        pub flags: crate::vk::XcbSurfaceCreateFlagsKHR,
+        pub flags: vk::XcbSurfaceCreateFlagsKHR,
         pub connection: *mut crate::platform_types::xcb_connection_t,
         pub window: crate::platform_types::xcb_window_t,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for XcbSurfaceCreateInfoKHR<'_> {}
     unsafe impl Sync for XcbSurfaceCreateInfoKHR<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for XcbSurfaceCreateInfoKHR<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::XCB_SURFACE_CREATE_INFO_KHR;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::XCB_SURFACE_CREATE_INFO_KHR;
     }
     impl<'a> Default for XcbSurfaceCreateInfoKHR<'a> {
         fn default() -> Self {
@@ -147,12 +149,12 @@ pub(crate) mod items {
                 flags: Default::default(),
                 connection: Default::default(),
                 window: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
     impl<'a> XcbSurfaceCreateInfoKHR<'a> {
-        pub fn flags(mut self, flags: crate::vk::XcbSurfaceCreateFlagsKHR) -> Self {
+        pub fn flags(mut self, flags: vk::XcbSurfaceCreateFlagsKHR) -> Self {
             self.flags = flags;
             self
         }
@@ -237,16 +239,16 @@ pub(crate) mod items {
         }
     }
     pub type PFN_vkCreateXcbSurfaceKHR = unsafe extern "system" fn(
-        instance: crate::vk::Instance,
-        p_create_info: *const crate::vk::XcbSurfaceCreateInfoKHR<'_>,
-        p_allocator: *const crate::vk::AllocationCallbacks<'_>,
-        p_surface: *mut crate::vk::SurfaceKHR,
-    ) -> crate::vk::Result;
+        instance: vk::Instance,
+        p_create_info: *const vk::XcbSurfaceCreateInfoKHR<'_>,
+        p_allocator: *const vk::AllocationCallbacks<'_>,
+        p_surface: *mut vk::SurfaceKHR,
+    ) -> vk::Result;
     pub type PFN_vkGetPhysicalDeviceXcbPresentationSupportKHR = unsafe extern "system" fn(
-        physical_device: crate::vk::PhysicalDevice,
+        physical_device: vk::PhysicalDevice,
         queue_family_index: u32,
         connection: *mut crate::platform_types::xcb_connection_t,
         visual_id: crate::platform_types::xcb_visualid_t,
-    ) -> crate::vk::Bool32;
+    ) -> vk::Bool32;
 }
 pub use items::*;

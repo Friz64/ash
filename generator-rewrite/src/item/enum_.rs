@@ -1,5 +1,5 @@
 use super::{Code, Context};
-use crate::output::{CodeMap, Destination, Reexport};
+use crate::output::{CodeMap, GlobExport, OutputLocation};
 use analysis::{
     item::enum_::{Enum, Value},
     name::TypeName,
@@ -11,10 +11,12 @@ use quote::quote;
 use tracing::{instrument, trace};
 
 impl Code for Enum {
-    #[instrument(skip(ctx))]
-    fn code(&self, ctx: &Context) -> CodeMap {
+    #[instrument(skip(ctx, codemap))]
+    fn code(&self, ctx: &Context, codemap: &mut CodeMap) {
         trace!("generating");
-        let name = ctx.type_tokens(self.name, false, None);
+        let output = OutputLocation::primary_location(self.required_by, GlobExport::Yes);
+        let octx = codemap.octx(output, ctx);
+        let name = octx.type_tokens(self.name, false, None);
 
         let filtered_items: Vec<_> = self
             .items
@@ -28,7 +30,7 @@ impl Code for Enum {
                 .iter()
                 .filter(|(_name, item)| !matches!(item.value, Value::Alias(..)))
                 .map(|(name, item)| {
-                    let name = ctx.enumerator_tokens(**name, self.name, false);
+                    let name = octx.enumerator_tokens(**name, self.name, false);
                     let name_string = name.to_string();
 
                     let is_provisional = item.required_by.primary_location().is_provisional(ctx);
@@ -71,7 +73,7 @@ impl Code for Enum {
                     _ => None,
                 })
                 .map(|(name, comment)| {
-                    let name = ctx.enumerator_tokens(**name, self.name, false);
+                    let name = octx.enumerator_tokens(**name, self.name, false);
                     quote! { Self::#name => Some(#comment), }
                 });
 
@@ -91,7 +93,7 @@ impl Code for Enum {
             }
         });
 
-        let code = quote! {
+        octx.insert_tokens(quote! {
             #[repr(transparent)]
             #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
             pub struct #name(pub(crate) i32);
@@ -110,22 +112,25 @@ impl Code for Enum {
                     self.0
                 }
             }
-        };
+        });
 
         let mut impl_map = CodeMap::default();
         for (&name, item) in filtered_items {
-            let name = ctx.enumerator_tokens(name, self.name, false);
+            let output = OutputLocation::primary_location(item.required_by, GlobExport::No);
+            let octx = impl_map.octx(output, ctx);
+
+            let name = octx.enumerator_tokens(name, self.name, false);
             let value = match &item.value {
                 Value::Variant(variant) => {
                     let literal = Literal::i32_unsuffixed(*variant);
                     quote! { Self(#literal) }
                 }
                 Value::Expr(cexpr_items) => {
-                    let expr = CExprItem::tokens(cexpr_items.iter(), ctx);
+                    let expr = CExprItem::tokens(cexpr_items.iter(), &octx);
                     quote! { Self(#expr) }
                 }
                 Value::Alias(enumerator_name) => {
-                    let alias = ctx.enumerator_tokens(*enumerator_name, self.name, false);
+                    let alias = octx.enumerator_tokens(*enumerator_name, self.name, false);
                     quote! { Self::#alias }
                 }
             };
@@ -135,36 +140,26 @@ impl Code for Enum {
                 quote! { #[doc = #expanded] }
             });
 
-            impl_map.extend(CodeMap::new(
-                Destination::primary_location(item.required_by),
-                quote! {
-                   #comment
-                   pub const #name: Self = #value;
-                },
-            ));
+            octx.insert_tokens(quote! {
+               #comment
+               pub const #name: Self = #value;
+            });
         }
 
-        let mut codemap = CodeMap::new(Destination::primary_location(self.required_by), code);
-        for (mut dest, impl_tokens) in impl_map.into_iter() {
-            let name = ctx.type_tokens(
+        codemap.extend_mapped(impl_map, ctx, |octx, impl_tokens| {
+            let doc = octx.output().provided_by_doc_comment();
+            let name = octx.type_tokens(
                 self.name,
-                dest != Destination::primary_location(self.required_by),
+                octx.output().require != self.required_by.primary_location(),
                 None,
             );
 
-            dest.reexport = Reexport::No;
-            let doc = dest.provided_by_doc_comment();
-            codemap.extend(CodeMap::new(
-                dest,
-                quote! {
-                    #[doc = #doc]
-                    impl #name {
-                        #impl_tokens
-                    }
-                },
-            ));
-        }
-
-        codemap
+            quote! {
+                #[doc = #doc]
+                impl #name {
+                    #impl_tokens
+                }
+            }
+        });
     }
 }

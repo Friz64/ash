@@ -2,29 +2,33 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_NV_external_memory.html) · Extension `VK_NV_external_memory`
 #![doc(alias = "VK_NV_external_memory")]
+use crate::vk;
+use core::ffi::CStr;
 ///Provided by [VK_NV_external_memory](crate::nv::external_memory)
-impl crate::vk::StructureType {
+impl vk::StructureType {
     pub const EXTERNAL_MEMORY_IMAGE_CREATE_INFO_NV: Self = Self(1000056000);
     pub const EXPORT_MEMORY_ALLOCATE_INFO_NV: Self = Self(1000056001);
 }
 pub const SPEC_VERSION: u32 = 1;
-pub const NAME: &core::ffi::CStr = c"VK_NV_external_memory";
+pub const NAME: &CStr = c"VK_NV_external_memory";
 pub(crate) mod items {
+    use core::marker::PhantomData;
+    use crate::vk;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct ExternalMemoryImageCreateInfoNV<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *const core::ffi::c_void,
-        pub handle_types: crate::vk::ExternalMemoryHandleTypeFlagsNV,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub handle_types: vk::ExternalMemoryHandleTypeFlagsNV,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for ExternalMemoryImageCreateInfoNV<'_> {}
     unsafe impl Sync for ExternalMemoryImageCreateInfoNV<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for ExternalMemoryImageCreateInfoNV<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::EXTERNAL_MEMORY_IMAGE_CREATE_INFO_NV;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::EXTERNAL_MEMORY_IMAGE_CREATE_INFO_NV;
     }
-    unsafe impl<'a> crate::Extends<crate::vk::ImageCreateInfo<'_>>
+    unsafe impl<'a> crate::Extends<vk::ImageCreateInfo<'_>>
     for ExternalMemoryImageCreateInfoNV<'a> {}
     impl<'a> Default for ExternalMemoryImageCreateInfoNV<'a> {
         fn default() -> Self {
@@ -32,14 +36,14 @@ pub(crate) mod items {
                 s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
                 p_next: Default::default(),
                 handle_types: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
     impl<'a> ExternalMemoryImageCreateInfoNV<'a> {
         pub fn handle_types(
             mut self,
-            handle_types: crate::vk::ExternalMemoryHandleTypeFlagsNV,
+            handle_types: vk::ExternalMemoryHandleTypeFlagsNV,
         ) -> Self {
             self.handle_types = handle_types;
             self
@@ -49,17 +53,17 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct ExportMemoryAllocateInfoNV<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *const core::ffi::c_void,
-        pub handle_types: crate::vk::ExternalMemoryHandleTypeFlagsNV,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub handle_types: vk::ExternalMemoryHandleTypeFlagsNV,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for ExportMemoryAllocateInfoNV<'_> {}
     unsafe impl Sync for ExportMemoryAllocateInfoNV<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for ExportMemoryAllocateInfoNV<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::EXPORT_MEMORY_ALLOCATE_INFO_NV;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::EXPORT_MEMORY_ALLOCATE_INFO_NV;
     }
-    unsafe impl<'a> crate::Extends<crate::vk::MemoryAllocateInfo<'_>>
+    unsafe impl<'a> crate::Extends<vk::MemoryAllocateInfo<'_>>
     for ExportMemoryAllocateInfoNV<'a> {}
     impl<'a> Default for ExportMemoryAllocateInfoNV<'a> {
         fn default() -> Self {
@@ -67,14 +71,14 @@ pub(crate) mod items {
                 s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
                 p_next: Default::default(),
                 handle_types: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
     impl<'a> ExportMemoryAllocateInfoNV<'a> {
         pub fn handle_types(
             mut self,
-            handle_types: crate::vk::ExternalMemoryHandleTypeFlagsNV,
+            handle_types: vk::ExternalMemoryHandleTypeFlagsNV,
         ) -> Self {
             self.handle_types = handle_types;
             self

@@ -2,8 +2,10 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_image_tiling_control.html) · Extension `VK_EXT_image_tiling_control`
 #![doc(alias = "VK_EXT_image_tiling_control")]
+use crate::vk;
+use core::ffi::CStr;
 ///Provided by [VK_EXT_image_tiling_control](crate::ext::image_tiling_control)
-impl crate::vk::StructureType {
+impl vk::StructureType {
     pub const PHYSICAL_DEVICE_IMAGE_TILING_CONTROL_FEATURES_EXT: Self = Self(1000687000);
     pub const IMAGE_TILING_CONTROL_CREATE_INFO_EXT: Self = Self(1000687001);
 }
@@ -14,26 +16,28 @@ impl ImageTilingControlEXT {
     pub const MAX_PERFORMANCE: Self = Self(2);
 }
 pub const SPEC_VERSION: u32 = 1;
-pub const NAME: &core::ffi::CStr = c"VK_EXT_image_tiling_control";
+pub const NAME: &CStr = c"VK_EXT_image_tiling_control";
 pub(crate) mod items {
+    use core::marker::PhantomData;
+    use crate::vk;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceImageTilingControlFeaturesEXT<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
-        pub image_tiling_control: crate::vk::Bool32,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub image_tiling_control: vk::Bool32,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for PhysicalDeviceImageTilingControlFeaturesEXT<'_> {}
     unsafe impl Sync for PhysicalDeviceImageTilingControlFeaturesEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceImageTilingControlFeaturesEXT<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_IMAGE_TILING_CONTROL_FEATURES_EXT;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PHYSICAL_DEVICE_IMAGE_TILING_CONTROL_FEATURES_EXT;
     }
-    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+    unsafe impl<'a> crate::Extends<vk::PhysicalDeviceFeatures2<'_>>
     for PhysicalDeviceImageTilingControlFeaturesEXT<'a> {}
-    unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+    unsafe impl<'a> crate::Extends<vk::DeviceCreateInfo<'_>>
     for PhysicalDeviceImageTilingControlFeaturesEXT<'a> {}
     impl<'a> Default for PhysicalDeviceImageTilingControlFeaturesEXT<'a> {
         fn default() -> Self {
@@ -41,7 +45,7 @@ pub(crate) mod items {
                 s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
                 p_next: Default::default(),
                 image_tiling_control: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
@@ -55,17 +59,17 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct ImageTilingControlCreateInfoEXT<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *const core::ffi::c_void,
-        pub tiling_control: crate::vk::ImageTilingControlEXT,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub tiling_control: vk::ImageTilingControlEXT,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for ImageTilingControlCreateInfoEXT<'_> {}
     unsafe impl Sync for ImageTilingControlCreateInfoEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for ImageTilingControlCreateInfoEXT<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::IMAGE_TILING_CONTROL_CREATE_INFO_EXT;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::IMAGE_TILING_CONTROL_CREATE_INFO_EXT;
     }
-    unsafe impl<'a> crate::Extends<crate::vk::ImageCreateInfo<'_>>
+    unsafe impl<'a> crate::Extends<vk::ImageCreateInfo<'_>>
     for ImageTilingControlCreateInfoEXT<'a> {}
     impl<'a> Default for ImageTilingControlCreateInfoEXT<'a> {
         fn default() -> Self {
@@ -73,14 +77,14 @@ pub(crate) mod items {
                 s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
                 p_next: Default::default(),
                 tiling_control: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
     impl<'a> ImageTilingControlCreateInfoEXT<'a> {
         pub fn tiling_control(
             mut self,
-            tiling_control: crate::vk::ImageTilingControlEXT,
+            tiling_control: vk::ImageTilingControlEXT,
         ) -> Self {
             self.tiling_control = tiling_control;
             self

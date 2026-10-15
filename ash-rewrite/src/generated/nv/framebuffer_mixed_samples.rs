@@ -2,8 +2,10 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_NV_framebuffer_mixed_samples.html) · Extension `VK_NV_framebuffer_mixed_samples`
 #![doc(alias = "VK_NV_framebuffer_mixed_samples")]
+use crate::vk;
+use core::ffi::CStr;
 ///Provided by [VK_NV_framebuffer_mixed_samples](crate::nv::framebuffer_mixed_samples)
-impl crate::vk::StructureType {
+impl vk::StructureType {
     pub const PIPELINE_COVERAGE_MODULATION_STATE_CREATE_INFO_NV: Self = Self(1000152000);
     pub const ATTACHMENT_SAMPLE_COUNT_INFO_NV: Self = Self::ATTACHMENT_SAMPLE_COUNT_INFO_AMD;
 }
@@ -15,28 +17,30 @@ impl CoverageModulationModeNV {
     pub const RGBA: Self = Self(3);
 }
 pub const SPEC_VERSION: u32 = 1;
-pub const NAME: &core::ffi::CStr = c"VK_NV_framebuffer_mixed_samples";
+pub const NAME: &CStr = c"VK_NV_framebuffer_mixed_samples";
 pub(crate) mod items {
+    use core::marker::PhantomData;
+    use crate::vk;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct PipelineCoverageModulationStateCreateInfoNV<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *const core::ffi::c_void,
-        pub flags: crate::vk::PipelineCoverageModulationStateCreateFlagsNV,
-        pub coverage_modulation_mode: crate::vk::CoverageModulationModeNV,
-        pub coverage_modulation_table_enable: crate::vk::Bool32,
+        pub flags: vk::PipelineCoverageModulationStateCreateFlagsNV,
+        pub coverage_modulation_mode: vk::CoverageModulationModeNV,
+        pub coverage_modulation_table_enable: vk::Bool32,
         pub coverage_modulation_table_count: u32,
         pub p_coverage_modulation_table: *const core::ffi::c_float,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for PipelineCoverageModulationStateCreateInfoNV<'_> {}
     unsafe impl Sync for PipelineCoverageModulationStateCreateInfoNV<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PipelineCoverageModulationStateCreateInfoNV<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PIPELINE_COVERAGE_MODULATION_STATE_CREATE_INFO_NV;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PIPELINE_COVERAGE_MODULATION_STATE_CREATE_INFO_NV;
     }
-    unsafe impl<'a> crate::Extends<crate::vk::PipelineMultisampleStateCreateInfo<'_>>
+    unsafe impl<'a> crate::Extends<vk::PipelineMultisampleStateCreateInfo<'_>>
     for PipelineCoverageModulationStateCreateInfoNV<'a> {}
     impl<'a> Default for PipelineCoverageModulationStateCreateInfoNV<'a> {
         fn default() -> Self {
@@ -48,21 +52,21 @@ pub(crate) mod items {
                 coverage_modulation_table_enable: Default::default(),
                 coverage_modulation_table_count: Default::default(),
                 p_coverage_modulation_table: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
     impl<'a> PipelineCoverageModulationStateCreateInfoNV<'a> {
         pub fn flags(
             mut self,
-            flags: crate::vk::PipelineCoverageModulationStateCreateFlagsNV,
+            flags: vk::PipelineCoverageModulationStateCreateFlagsNV,
         ) -> Self {
             self.flags = flags;
             self
         }
         pub fn coverage_modulation_mode(
             mut self,
-            coverage_modulation_mode: crate::vk::CoverageModulationModeNV,
+            coverage_modulation_mode: vk::CoverageModulationModeNV,
         ) -> Self {
             self.coverage_modulation_mode = coverage_modulation_mode;
             self
@@ -84,9 +88,7 @@ pub(crate) mod items {
             self
         }
     }
-    pub type AttachmentSampleCountInfoNV<'a> = crate::vk::AttachmentSampleCountInfoAMD<
-        'a,
-    >;
+    pub type AttachmentSampleCountInfoNV<'a> = vk::AttachmentSampleCountInfoAMD<'a>;
     #[repr(transparent)]
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
     pub struct CoverageModulationModeNV(pub(crate) i32);

@@ -2,31 +2,31 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_acquire_xlib_display.html) · Extension `VK_EXT_acquire_xlib_display`
 #![doc(alias = "VK_EXT_acquire_xlib_display")]
+use core::ffi::CStr;
+use crate::vk;
+use crate::VkResult;
+use core::ffi::c_void;
 pub const SPEC_VERSION: u32 = 1;
-pub const NAME: &core::ffi::CStr = c"VK_EXT_acquire_xlib_display";
+pub const NAME: &CStr = c"VK_EXT_acquire_xlib_display";
 #[derive(Clone)]
 pub struct InstanceFn {
-    pub acquire_xlib_display: crate::vk::PFN_vkAcquireXlibDisplayEXT,
-    pub get_rand_r_output_display: crate::vk::PFN_vkGetRandROutputDisplayEXT,
+    pub acquire_xlib_display: vk::PFN_vkAcquireXlibDisplayEXT,
+    pub get_rand_r_output_display: vk::PFN_vkGetRandROutputDisplayEXT,
 }
 unsafe impl Send for InstanceFn {}
 unsafe impl Sync for InstanceFn {}
 impl InstanceFn {
-    pub fn load<F: FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void>(
-        mut f: F,
-    ) -> Self {
+    pub fn load<F: FnMut(&CStr) -> *const c_void>(mut f: F) -> Self {
         Self::load_erased(&mut f)
     }
-    fn load_erased(
-        _f: &mut dyn FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void,
-    ) -> Self {
+    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const c_void) -> Self {
         Self {
             acquire_xlib_display: unsafe {
                 unsafe extern "system" fn acquire_xlib_display(
-                    _: crate::vk::PhysicalDevice,
+                    _: vk::PhysicalDevice,
                     _: *mut crate::platform_types::Display,
-                    _: crate::vk::DisplayKHR,
-                ) -> crate::vk::Result {
+                    _: vk::DisplayKHR,
+                ) -> vk::Result {
                     panic!("unable to load vkAcquireXlibDisplayEXT")
                 }
                 let val = _f(c"vkAcquireXlibDisplayEXT");
@@ -38,11 +38,11 @@ impl InstanceFn {
             },
             get_rand_r_output_display: unsafe {
                 unsafe extern "system" fn get_rand_r_output_display(
-                    _: crate::vk::PhysicalDevice,
+                    _: vk::PhysicalDevice,
                     _: *mut crate::platform_types::Display,
                     _: crate::platform_types::RROutput,
-                    _: *mut crate::vk::DisplayKHR,
-                ) -> crate::vk::Result {
+                    _: *mut vk::DisplayKHR,
+                ) -> vk::Result {
                     panic!("unable to load vkGetRandROutputDisplayEXT")
                 }
                 let val = _f(c"vkGetRandROutputDisplayEXT");
@@ -80,9 +80,9 @@ impl Instance {
     #[inline]
     pub unsafe fn acquire_xlib_display(
         &self,
-        physical_device: crate::vk::PhysicalDevice,
-        display: crate::vk::DisplayKHR,
-    ) -> crate::VkResult<crate::platform_types::Display> {
+        physical_device: vk::PhysicalDevice,
+        display: vk::DisplayKHR,
+    ) -> VkResult<crate::platform_types::Display> {
         let mut dpy = core::mem::MaybeUninit::uninit();
         (self.fp.acquire_xlib_display)(physical_device, dpy.as_mut_ptr(), display)
             .assume_init_on_success(dpy)
@@ -91,26 +91,27 @@ impl Instance {
     #[inline]
     pub unsafe fn get_rand_r_output_display(
         &self,
-        physical_device: crate::vk::PhysicalDevice,
+        physical_device: vk::PhysicalDevice,
         dpy: &mut crate::platform_types::Display,
         rr_output: crate::platform_types::RROutput,
-        display: &mut crate::vk::DisplayKHR,
-    ) -> crate::VkResult<()> {
+        display: &mut vk::DisplayKHR,
+    ) -> VkResult<()> {
         (self.fp.get_rand_r_output_display)(physical_device, dpy, rr_output, display)
             .result()
     }
 }
 pub(crate) mod items {
+    use crate::vk;
     pub type PFN_vkAcquireXlibDisplayEXT = unsafe extern "system" fn(
-        physical_device: crate::vk::PhysicalDevice,
+        physical_device: vk::PhysicalDevice,
         dpy: *mut crate::platform_types::Display,
-        display: crate::vk::DisplayKHR,
-    ) -> crate::vk::Result;
+        display: vk::DisplayKHR,
+    ) -> vk::Result;
     pub type PFN_vkGetRandROutputDisplayEXT = unsafe extern "system" fn(
-        physical_device: crate::vk::PhysicalDevice,
+        physical_device: vk::PhysicalDevice,
         dpy: *mut crate::platform_types::Display,
         rr_output: crate::platform_types::RROutput,
-        p_display: *mut crate::vk::DisplayKHR,
-    ) -> crate::vk::Result;
+        p_display: *mut vk::DisplayKHR,
+    ) -> vk::Result;
 }
 pub use items::*;

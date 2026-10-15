@@ -2,35 +2,37 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_QCOM_tile_properties.html) · Extension `VK_QCOM_tile_properties`
 #![doc(alias = "VK_QCOM_tile_properties")]
+use crate::vk;
+use core::ffi::CStr;
+use crate::VkResult;
+use core::ffi::c_void;
 ///Provided by [VK_QCOM_tile_properties](crate::qcom::tile_properties)
-impl crate::vk::StructureType {
+impl vk::StructureType {
     pub const PHYSICAL_DEVICE_TILE_PROPERTIES_FEATURES_QCOM: Self = Self(1000484000);
     pub const TILE_PROPERTIES_QCOM: Self = Self(1000484001);
 }
+pub const SPEC_VERSION: u32 = 1;
+pub const NAME: &CStr = c"VK_QCOM_tile_properties";
 #[derive(Clone)]
 pub struct DeviceFn {
-    pub get_framebuffer_tile_properties: crate::vk::PFN_vkGetFramebufferTilePropertiesQCOM,
-    pub get_dynamic_rendering_tile_properties: crate::vk::PFN_vkGetDynamicRenderingTilePropertiesQCOM,
+    pub get_framebuffer_tile_properties: vk::PFN_vkGetFramebufferTilePropertiesQCOM,
+    pub get_dynamic_rendering_tile_properties: vk::PFN_vkGetDynamicRenderingTilePropertiesQCOM,
 }
 unsafe impl Send for DeviceFn {}
 unsafe impl Sync for DeviceFn {}
 impl DeviceFn {
-    pub fn load<F: FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void>(
-        mut f: F,
-    ) -> Self {
+    pub fn load<F: FnMut(&CStr) -> *const c_void>(mut f: F) -> Self {
         Self::load_erased(&mut f)
     }
-    fn load_erased(
-        _f: &mut dyn FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void,
-    ) -> Self {
+    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const c_void) -> Self {
         Self {
             get_framebuffer_tile_properties: unsafe {
                 unsafe extern "system" fn get_framebuffer_tile_properties(
-                    _: crate::vk::Device,
-                    _: crate::vk::Framebuffer,
+                    _: vk::Device,
+                    _: vk::Framebuffer,
                     _: *mut u32,
-                    _: *mut crate::vk::TilePropertiesQCOM<'_>,
-                ) -> crate::vk::Result {
+                    _: *mut vk::TilePropertiesQCOM<'_>,
+                ) -> vk::Result {
                     panic!("unable to load vkGetFramebufferTilePropertiesQCOM")
                 }
                 let val = _f(c"vkGetFramebufferTilePropertiesQCOM");
@@ -42,10 +44,10 @@ impl DeviceFn {
             },
             get_dynamic_rendering_tile_properties: unsafe {
                 unsafe extern "system" fn get_dynamic_rendering_tile_properties(
-                    _: crate::vk::Device,
-                    _: *const crate::vk::RenderingInfo<'_>,
-                    _: *mut crate::vk::TilePropertiesQCOM<'_>,
-                ) -> crate::vk::Result {
+                    _: vk::Device,
+                    _: *const vk::RenderingInfo<'_>,
+                    _: *mut vk::TilePropertiesQCOM<'_>,
+                ) -> vk::Result {
                     panic!("unable to load vkGetDynamicRenderingTilePropertiesQCOM")
                 }
                 let val = _f(c"vkGetDynamicRenderingTilePropertiesQCOM");
@@ -83,8 +85,8 @@ impl Device {
     #[inline]
     pub unsafe fn get_framebuffer_tile_properties_len(
         &self,
-        framebuffer: crate::vk::Framebuffer,
-    ) -> crate::VkResult<usize> {
+        framebuffer: vk::Framebuffer,
+    ) -> VkResult<usize> {
         let mut properties_count = core::mem::MaybeUninit::uninit();
         (self
             .fp
@@ -101,8 +103,8 @@ impl Device {
     #[inline]
     pub unsafe fn get_framebuffer_tile_properties(
         &self,
-        framebuffer: crate::vk::Framebuffer,
-        properties: &mut [crate::vk::TilePropertiesQCOM<'_>],
+        framebuffer: vk::Framebuffer,
+        properties: &mut [vk::TilePropertiesQCOM<'_>],
     ) -> crate::VkResult<()> {
         let mut properties_count = properties.len() as _;
         (self
@@ -121,8 +123,8 @@ impl Device {
     #[inline]
     pub unsafe fn get_dynamic_rendering_tile_properties(
         &self,
-        rendering_info: &crate::vk::RenderingInfo<'_>,
-    ) -> crate::VkResult<crate::vk::TilePropertiesQCOM<'_>> {
+        rendering_info: &vk::RenderingInfo<'_>,
+    ) -> VkResult<vk::TilePropertiesQCOM<'_>> {
         let mut properties = core::mem::MaybeUninit::uninit();
         (self
             .fp
@@ -134,27 +136,27 @@ impl Device {
             .assume_init_on_success(properties)
     }
 }
-pub const SPEC_VERSION: u32 = 1;
-pub const NAME: &core::ffi::CStr = c"VK_QCOM_tile_properties";
 pub(crate) mod items {
+    use core::marker::PhantomData;
+    use crate::vk;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceTilePropertiesFeaturesQCOM<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
-        pub tile_properties: crate::vk::Bool32,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub tile_properties: vk::Bool32,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for PhysicalDeviceTilePropertiesFeaturesQCOM<'_> {}
     unsafe impl Sync for PhysicalDeviceTilePropertiesFeaturesQCOM<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceTilePropertiesFeaturesQCOM<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_TILE_PROPERTIES_FEATURES_QCOM;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PHYSICAL_DEVICE_TILE_PROPERTIES_FEATURES_QCOM;
     }
-    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+    unsafe impl<'a> crate::Extends<vk::PhysicalDeviceFeatures2<'_>>
     for PhysicalDeviceTilePropertiesFeaturesQCOM<'a> {}
-    unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+    unsafe impl<'a> crate::Extends<vk::DeviceCreateInfo<'_>>
     for PhysicalDeviceTilePropertiesFeaturesQCOM<'a> {}
     impl<'a> Default for PhysicalDeviceTilePropertiesFeaturesQCOM<'a> {
         fn default() -> Self {
@@ -162,7 +164,7 @@ pub(crate) mod items {
                 s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
                 p_next: Default::default(),
                 tile_properties: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
@@ -176,17 +178,17 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct TilePropertiesQCOM<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
-        pub tile_size: crate::vk::Extent3D,
-        pub apron_size: crate::vk::Extent2D,
-        pub origin: crate::vk::Offset2D,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub tile_size: vk::Extent3D,
+        pub apron_size: vk::Extent2D,
+        pub origin: vk::Offset2D,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for TilePropertiesQCOM<'_> {}
     unsafe impl Sync for TilePropertiesQCOM<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for TilePropertiesQCOM<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::TILE_PROPERTIES_QCOM;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::TILE_PROPERTIES_QCOM;
     }
     impl<'a> Default for TilePropertiesQCOM<'a> {
         fn default() -> Self {
@@ -196,34 +198,34 @@ pub(crate) mod items {
                 tile_size: Default::default(),
                 apron_size: Default::default(),
                 origin: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
     impl<'a> TilePropertiesQCOM<'a> {
-        pub fn tile_size(mut self, tile_size: crate::vk::Extent3D) -> Self {
+        pub fn tile_size(mut self, tile_size: vk::Extent3D) -> Self {
             self.tile_size = tile_size;
             self
         }
-        pub fn apron_size(mut self, apron_size: crate::vk::Extent2D) -> Self {
+        pub fn apron_size(mut self, apron_size: vk::Extent2D) -> Self {
             self.apron_size = apron_size;
             self
         }
-        pub fn origin(mut self, origin: crate::vk::Offset2D) -> Self {
+        pub fn origin(mut self, origin: vk::Offset2D) -> Self {
             self.origin = origin;
             self
         }
     }
     pub type PFN_vkGetFramebufferTilePropertiesQCOM = unsafe extern "system" fn(
-        device: crate::vk::Device,
-        framebuffer: crate::vk::Framebuffer,
+        device: vk::Device,
+        framebuffer: vk::Framebuffer,
         p_properties_count: *mut u32,
-        p_properties: *mut crate::vk::TilePropertiesQCOM<'_>,
-    ) -> crate::vk::Result;
+        p_properties: *mut vk::TilePropertiesQCOM<'_>,
+    ) -> vk::Result;
     pub type PFN_vkGetDynamicRenderingTilePropertiesQCOM = unsafe extern "system" fn(
-        device: crate::vk::Device,
-        p_rendering_info: *const crate::vk::RenderingInfo<'_>,
-        p_properties: *mut crate::vk::TilePropertiesQCOM<'_>,
-    ) -> crate::vk::Result;
+        device: vk::Device,
+        p_rendering_info: *const vk::RenderingInfo<'_>,
+        p_properties: *mut vk::TilePropertiesQCOM<'_>,
+    ) -> vk::Result;
 }
 pub use items::*;

@@ -2,44 +2,46 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_present_wait2.html) · Extension `VK_KHR_present_wait2`
 #![doc(alias = "VK_KHR_present_wait2")]
+use crate::vk;
+use core::ffi::CStr;
+use crate::VkResult;
+use core::ffi::c_void;
 ///Provided by [VK_KHR_present_wait2](crate::khr::present_wait2)
-impl crate::vk::StructureType {
+impl vk::StructureType {
     pub const SURFACE_CAPABILITIES_PRESENT_WAIT_2_KHR: Self = Self(1000480000);
     pub const PHYSICAL_DEVICE_PRESENT_WAIT_2_FEATURES_KHR: Self = Self(1000480001);
     pub const PRESENT_WAIT_2_INFO_KHR: Self = Self(1000480002);
 }
-///Provided by [VK_KHR_present_wait2](crate::khr::present_wait2)
-impl crate::vk::SwapchainCreateFlagsKHR {
+///Provided by [VK_KHR_swapchain](crate::khr::swapchain)
+impl vk::SwapchainCreateFlagsKHR {
     pub const PRESENT_WAIT_2: Self = Self(
-        crate::vk::SwapchainCreateFlagBitsKHR::PRESENT_WAIT_2.0,
+        vk::SwapchainCreateFlagBitsKHR::PRESENT_WAIT_2.0,
     );
 }
-///Provided by [VK_KHR_present_wait2](crate::khr::present_wait2)
-impl crate::vk::SwapchainCreateFlagBitsKHR {
+///Provided by [VK_KHR_swapchain](crate::khr::swapchain)
+impl vk::SwapchainCreateFlagBitsKHR {
     pub const PRESENT_WAIT_2: Self = Self(1 << 7);
 }
+pub const SPEC_VERSION: u32 = 1;
+pub const NAME: &CStr = c"VK_KHR_present_wait2";
 #[derive(Clone)]
 pub struct DeviceFn {
-    pub wait_for_present2: crate::vk::PFN_vkWaitForPresent2KHR,
+    pub wait_for_present2: vk::PFN_vkWaitForPresent2KHR,
 }
 unsafe impl Send for DeviceFn {}
 unsafe impl Sync for DeviceFn {}
 impl DeviceFn {
-    pub fn load<F: FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void>(
-        mut f: F,
-    ) -> Self {
+    pub fn load<F: FnMut(&CStr) -> *const c_void>(mut f: F) -> Self {
         Self::load_erased(&mut f)
     }
-    fn load_erased(
-        _f: &mut dyn FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void,
-    ) -> Self {
+    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const c_void) -> Self {
         Self {
             wait_for_present2: unsafe {
                 unsafe extern "system" fn wait_for_present2(
-                    _: crate::vk::Device,
-                    _: crate::vk::SwapchainKHR,
-                    _: *const crate::vk::PresentWait2InfoKHR<'_>,
-                ) -> crate::vk::Result {
+                    _: vk::Device,
+                    _: vk::SwapchainKHR,
+                    _: *const vk::PresentWait2InfoKHR<'_>,
+                ) -> vk::Result {
                     panic!("unable to load vkWaitForPresent2KHR")
                 }
                 let val = _f(c"vkWaitForPresent2KHR");
@@ -77,29 +79,29 @@ impl Device {
     #[inline]
     pub unsafe fn wait_for_present2(
         &self,
-        swapchain: crate::vk::SwapchainKHR,
-        present_wait2_info: &crate::vk::PresentWait2InfoKHR<'_>,
-    ) -> crate::VkResult<()> {
+        swapchain: vk::SwapchainKHR,
+        present_wait2_info: &vk::PresentWait2InfoKHR<'_>,
+    ) -> VkResult<()> {
         (self.fp.wait_for_present2)(self.handle, swapchain, present_wait2_info).result()
     }
 }
-pub const SPEC_VERSION: u32 = 1;
-pub const NAME: &core::ffi::CStr = c"VK_KHR_present_wait2";
 pub(crate) mod items {
+    use core::marker::PhantomData;
+    use crate::vk;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct PresentWait2InfoKHR<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *const core::ffi::c_void,
         pub present_id: u64,
         pub timeout: u64,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for PresentWait2InfoKHR<'_> {}
     unsafe impl Sync for PresentWait2InfoKHR<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for PresentWait2InfoKHR<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PRESENT_WAIT_2_INFO_KHR;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PRESENT_WAIT_2_INFO_KHR;
     }
     impl<'a> Default for PresentWait2InfoKHR<'a> {
         fn default() -> Self {
@@ -108,7 +110,7 @@ pub(crate) mod items {
                 p_next: Default::default(),
                 present_id: Default::default(),
                 timeout: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
@@ -126,20 +128,20 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct PhysicalDevicePresentWait2FeaturesKHR<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
-        pub present_wait2: crate::vk::Bool32,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub present_wait2: vk::Bool32,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for PhysicalDevicePresentWait2FeaturesKHR<'_> {}
     unsafe impl Sync for PhysicalDevicePresentWait2FeaturesKHR<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDevicePresentWait2FeaturesKHR<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_PRESENT_WAIT_2_FEATURES_KHR;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PHYSICAL_DEVICE_PRESENT_WAIT_2_FEATURES_KHR;
     }
-    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+    unsafe impl<'a> crate::Extends<vk::PhysicalDeviceFeatures2<'_>>
     for PhysicalDevicePresentWait2FeaturesKHR<'a> {}
-    unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+    unsafe impl<'a> crate::Extends<vk::DeviceCreateInfo<'_>>
     for PhysicalDevicePresentWait2FeaturesKHR<'a> {}
     impl<'a> Default for PhysicalDevicePresentWait2FeaturesKHR<'a> {
         fn default() -> Self {
@@ -147,7 +149,7 @@ pub(crate) mod items {
                 s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
                 p_next: Default::default(),
                 present_wait2: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
@@ -161,18 +163,18 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct SurfaceCapabilitiesPresentWait2KHR<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
-        pub present_wait2_supported: crate::vk::Bool32,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub present_wait2_supported: vk::Bool32,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for SurfaceCapabilitiesPresentWait2KHR<'_> {}
     unsafe impl Sync for SurfaceCapabilitiesPresentWait2KHR<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for SurfaceCapabilitiesPresentWait2KHR<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::SURFACE_CAPABILITIES_PRESENT_WAIT_2_KHR;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::SURFACE_CAPABILITIES_PRESENT_WAIT_2_KHR;
     }
-    unsafe impl<'a> crate::Extends<crate::vk::SurfaceCapabilities2KHR<'_>>
+    unsafe impl<'a> crate::Extends<vk::SurfaceCapabilities2KHR<'_>>
     for SurfaceCapabilitiesPresentWait2KHR<'a> {}
     impl<'a> Default for SurfaceCapabilitiesPresentWait2KHR<'a> {
         fn default() -> Self {
@@ -180,7 +182,7 @@ pub(crate) mod items {
                 s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
                 p_next: Default::default(),
                 present_wait2_supported: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
@@ -191,9 +193,9 @@ pub(crate) mod items {
         }
     }
     pub type PFN_vkWaitForPresent2KHR = unsafe extern "system" fn(
-        device: crate::vk::Device,
-        swapchain: crate::vk::SwapchainKHR,
-        p_present_wait2_info: *const crate::vk::PresentWait2InfoKHR<'_>,
-    ) -> crate::vk::Result;
+        device: vk::Device,
+        swapchain: vk::SwapchainKHR,
+        p_present_wait2_info: *const vk::PresentWait2InfoKHR<'_>,
+    ) -> vk::Result;
 }
 pub use items::*;

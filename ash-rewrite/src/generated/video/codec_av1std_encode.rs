@@ -2,9 +2,13 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //!Items provided by `vulkan_video_codec_av1std_encode`
 #![doc(alias = "vulkan_video_codec_av1std_encode")]
-pub const SPEC_VERSION: u32 = crate::vk::STD_VULKAN_VIDEO_CODEC_AV1_ENCODE_API_VERSION_1_0_0;
-pub const NAME: &core::ffi::CStr = c"VK_STD_vulkan_video_codec_av1_encode";
+use crate::vk;
+use core::ffi::CStr;
+pub const SPEC_VERSION: u32 = vk::STD_VULKAN_VIDEO_CODEC_AV1_ENCODE_API_VERSION_1_0_0;
+pub const NAME: &CStr = c"VK_STD_vulkan_video_codec_av1_encode";
 pub(crate) mod items {
+    use crate::vk;
+    use core::marker::PhantomData;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy, Default)]
@@ -133,7 +137,7 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy, Default)]
     pub struct EncodeAV1OperatingPointInfo {
-        pub flags: crate::vk::EncodeAV1OperatingPointInfoFlags,
+        pub flags: vk::EncodeAV1OperatingPointInfoFlags,
         pub operating_point_idc: u16,
         pub seq_level_idx: u8,
         pub seq_tier: u8,
@@ -144,10 +148,7 @@ pub(crate) mod items {
     unsafe impl Send for EncodeAV1OperatingPointInfo {}
     unsafe impl Sync for EncodeAV1OperatingPointInfo {}
     impl EncodeAV1OperatingPointInfo {
-        pub fn flags(
-            mut self,
-            flags: crate::vk::EncodeAV1OperatingPointInfoFlags,
-        ) -> Self {
+        pub fn flags(mut self, flags: vk::EncodeAV1OperatingPointInfoFlags) -> Self {
             self.flags = flags;
             self
         }
@@ -541,8 +542,8 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct EncodeAV1PictureInfo<'a> {
-        pub flags: crate::vk::EncodeAV1PictureInfoFlags,
-        pub frame_type: crate::vk::AV1FrameType,
+        pub flags: vk::EncodeAV1PictureInfoFlags,
+        pub frame_type: vk::AV1FrameType,
         pub frame_presentation_time: u32,
         pub current_frame_id: u32,
         pub order_hint: u8,
@@ -551,24 +552,24 @@ pub(crate) mod items {
         pub coded_denom: u8,
         pub render_width_minus_1: u16,
         pub render_height_minus_1: u16,
-        pub interpolation_filter: crate::vk::AV1InterpolationFilter,
-        pub tx_mode: crate::vk::AV1TxMode,
+        pub interpolation_filter: vk::AV1InterpolationFilter,
+        pub tx_mode: vk::AV1TxMode,
         pub delta_q_res: u8,
         pub delta_lf_res: u8,
-        pub ref_order_hint: [u8; crate::vk::AV1_NUM_REF_FRAMES as _],
-        pub ref_frame_idx: [i8; crate::vk::AV1_REFS_PER_FRAME as _],
+        pub ref_order_hint: [u8; vk::AV1_NUM_REF_FRAMES as _],
+        pub ref_frame_idx: [i8; vk::AV1_REFS_PER_FRAME as _],
         pub reserved1: [u8; 3 as _],
-        pub delta_frame_id_minus_1: [u32; crate::vk::AV1_REFS_PER_FRAME as _],
-        pub p_tile_info: *const crate::vk::AV1TileInfo<'a>,
-        pub p_quantization: *const crate::vk::AV1Quantization,
-        pub p_segmentation: *const crate::vk::AV1Segmentation,
-        pub p_loop_filter: *const crate::vk::AV1LoopFilter,
-        pub p_cdef: *const crate::vk::AV1CDEF,
-        pub p_loop_restoration: *const crate::vk::AV1LoopRestoration,
-        pub p_global_motion: *const crate::vk::AV1GlobalMotion,
-        pub p_extension_header: *const crate::vk::EncodeAV1ExtensionHeader,
+        pub delta_frame_id_minus_1: [u32; vk::AV1_REFS_PER_FRAME as _],
+        pub p_tile_info: *const vk::AV1TileInfo<'a>,
+        pub p_quantization: *const vk::AV1Quantization,
+        pub p_segmentation: *const vk::AV1Segmentation,
+        pub p_loop_filter: *const vk::AV1LoopFilter,
+        pub p_cdef: *const vk::AV1CDEF,
+        pub p_loop_restoration: *const vk::AV1LoopRestoration,
+        pub p_global_motion: *const vk::AV1GlobalMotion,
+        pub p_extension_header: *const vk::EncodeAV1ExtensionHeader,
         pub p_buffer_removal_times: *const u32,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for EncodeAV1PictureInfo<'_> {}
     unsafe impl Sync for EncodeAV1PictureInfo<'_> {}
@@ -602,16 +603,16 @@ pub(crate) mod items {
                 p_global_motion: Default::default(),
                 p_extension_header: Default::default(),
                 p_buffer_removal_times: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
     impl<'a> EncodeAV1PictureInfo<'a> {
-        pub fn flags(mut self, flags: crate::vk::EncodeAV1PictureInfoFlags) -> Self {
+        pub fn flags(mut self, flags: vk::EncodeAV1PictureInfoFlags) -> Self {
             self.flags = flags;
             self
         }
-        pub fn frame_type(mut self, frame_type: crate::vk::AV1FrameType) -> Self {
+        pub fn frame_type(mut self, frame_type: vk::AV1FrameType) -> Self {
             self.frame_type = frame_type;
             self
         }
@@ -649,12 +650,12 @@ pub(crate) mod items {
         }
         pub fn interpolation_filter(
             mut self,
-            interpolation_filter: crate::vk::AV1InterpolationFilter,
+            interpolation_filter: vk::AV1InterpolationFilter,
         ) -> Self {
             self.interpolation_filter = interpolation_filter;
             self
         }
-        pub fn tx_mode(mut self, tx_mode: crate::vk::AV1TxMode) -> Self {
+        pub fn tx_mode(mut self, tx_mode: vk::AV1TxMode) -> Self {
             self.tx_mode = tx_mode;
             self
         }
@@ -668,14 +669,14 @@ pub(crate) mod items {
         }
         pub fn ref_order_hint(
             mut self,
-            ref_order_hint: [u8; crate::vk::AV1_NUM_REF_FRAMES as _],
+            ref_order_hint: [u8; vk::AV1_NUM_REF_FRAMES as _],
         ) -> Self {
             self.ref_order_hint = ref_order_hint;
             self
         }
         pub fn ref_frame_idx(
             mut self,
-            ref_frame_idx: [i8; crate::vk::AV1_REFS_PER_FRAME as _],
+            ref_frame_idx: [i8; vk::AV1_REFS_PER_FRAME as _],
         ) -> Self {
             self.ref_frame_idx = ref_frame_idx;
             self
@@ -686,54 +687,45 @@ pub(crate) mod items {
         }
         pub fn delta_frame_id_minus_1(
             mut self,
-            delta_frame_id_minus_1: [u32; crate::vk::AV1_REFS_PER_FRAME as _],
+            delta_frame_id_minus_1: [u32; vk::AV1_REFS_PER_FRAME as _],
         ) -> Self {
             self.delta_frame_id_minus_1 = delta_frame_id_minus_1;
             self
         }
-        pub fn tile_info(mut self, tile_info: &'a crate::vk::AV1TileInfo<'a>) -> Self {
+        pub fn tile_info(mut self, tile_info: &'a vk::AV1TileInfo<'a>) -> Self {
             self.p_tile_info = tile_info;
             self
         }
-        pub fn quantization(
-            mut self,
-            quantization: &'a crate::vk::AV1Quantization,
-        ) -> Self {
+        pub fn quantization(mut self, quantization: &'a vk::AV1Quantization) -> Self {
             self.p_quantization = quantization;
             self
         }
-        pub fn segmentation(
-            mut self,
-            segmentation: &'a crate::vk::AV1Segmentation,
-        ) -> Self {
+        pub fn segmentation(mut self, segmentation: &'a vk::AV1Segmentation) -> Self {
             self.p_segmentation = segmentation;
             self
         }
-        pub fn loop_filter(mut self, loop_filter: &'a crate::vk::AV1LoopFilter) -> Self {
+        pub fn loop_filter(mut self, loop_filter: &'a vk::AV1LoopFilter) -> Self {
             self.p_loop_filter = loop_filter;
             self
         }
-        pub fn cdef(mut self, cdef: &'a crate::vk::AV1CDEF) -> Self {
+        pub fn cdef(mut self, cdef: &'a vk::AV1CDEF) -> Self {
             self.p_cdef = cdef;
             self
         }
         pub fn loop_restoration(
             mut self,
-            loop_restoration: &'a crate::vk::AV1LoopRestoration,
+            loop_restoration: &'a vk::AV1LoopRestoration,
         ) -> Self {
             self.p_loop_restoration = loop_restoration;
             self
         }
-        pub fn global_motion(
-            mut self,
-            global_motion: &'a crate::vk::AV1GlobalMotion,
-        ) -> Self {
+        pub fn global_motion(mut self, global_motion: &'a vk::AV1GlobalMotion) -> Self {
             self.p_global_motion = global_motion;
             self
         }
         pub fn extension_header(
             mut self,
-            extension_header: &'a crate::vk::EncodeAV1ExtensionHeader,
+            extension_header: &'a vk::EncodeAV1ExtensionHeader,
         ) -> Self {
             self.p_extension_header = extension_header;
             self
@@ -789,13 +781,13 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct EncodeAV1ReferenceInfo<'a> {
-        pub flags: crate::vk::EncodeAV1ReferenceInfoFlags,
+        pub flags: vk::EncodeAV1ReferenceInfoFlags,
         pub ref_frame_id: u32,
-        pub frame_type: crate::vk::AV1FrameType,
+        pub frame_type: vk::AV1FrameType,
         pub order_hint: u8,
         pub reserved1: [u8; 3 as _],
-        pub p_extension_header: *const crate::vk::EncodeAV1ExtensionHeader,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub p_extension_header: *const vk::EncodeAV1ExtensionHeader,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for EncodeAV1ReferenceInfo<'_> {}
     unsafe impl Sync for EncodeAV1ReferenceInfo<'_> {}
@@ -808,12 +800,12 @@ pub(crate) mod items {
                 order_hint: Default::default(),
                 reserved1: unsafe { core::mem::zeroed() },
                 p_extension_header: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
     impl<'a> EncodeAV1ReferenceInfo<'a> {
-        pub fn flags(mut self, flags: crate::vk::EncodeAV1ReferenceInfoFlags) -> Self {
+        pub fn flags(mut self, flags: vk::EncodeAV1ReferenceInfoFlags) -> Self {
             self.flags = flags;
             self
         }
@@ -821,7 +813,7 @@ pub(crate) mod items {
             self.ref_frame_id = ref_frame_id;
             self
         }
-        pub fn frame_type(mut self, frame_type: crate::vk::AV1FrameType) -> Self {
+        pub fn frame_type(mut self, frame_type: vk::AV1FrameType) -> Self {
             self.frame_type = frame_type;
             self
         }
@@ -835,13 +827,13 @@ pub(crate) mod items {
         }
         pub fn extension_header(
             mut self,
-            extension_header: &'a crate::vk::EncodeAV1ExtensionHeader,
+            extension_header: &'a vk::EncodeAV1ExtensionHeader,
         ) -> Self {
             self.p_extension_header = extension_header;
             self
         }
     }
-    pub const STD_VULKAN_VIDEO_CODEC_AV1_ENCODE_API_VERSION_1_0_0: u32 = crate::vk::make_video_std_version(
+    pub const STD_VULKAN_VIDEO_CODEC_AV1_ENCODE_API_VERSION_1_0_0: u32 = vk::make_video_std_version(
         1,
         0,
         0,

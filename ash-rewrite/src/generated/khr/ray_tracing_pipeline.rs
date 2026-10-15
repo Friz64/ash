@@ -2,12 +2,16 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_ray_tracing_pipeline.html) · Extension `VK_KHR_ray_tracing_pipeline`
 #![doc(alias = "VK_KHR_ray_tracing_pipeline")]
+use crate::vk;
+use core::ffi::CStr;
+use crate::VkResult;
+use core::ffi::c_void;
 ///Provided by [VK_KHR_ray_tracing_pipeline](crate::khr::ray_tracing_pipeline)
-impl crate::vk::PipelineBindPoint {
+impl vk::PipelineBindPoint {
     pub const RAY_TRACING_KHR: Self = Self(1000165000);
 }
 ///Provided by [VK_KHR_ray_tracing_pipeline](crate::khr::ray_tracing_pipeline)
-impl crate::vk::StructureType {
+impl vk::StructureType {
     pub const PHYSICAL_DEVICE_RAY_TRACING_PIPELINE_FEATURES_KHR: Self = Self(1000347000);
     pub const PHYSICAL_DEVICE_RAY_TRACING_PIPELINE_PROPERTIES_KHR: Self = Self(
         1000347001,
@@ -17,7 +21,7 @@ impl crate::vk::StructureType {
     pub const RAY_TRACING_PIPELINE_INTERFACE_CREATE_INFO_KHR: Self = Self(1000150018);
 }
 ///Provided by [VK_KHR_ray_tracing_pipeline](crate::khr::ray_tracing_pipeline)
-impl crate::vk::DynamicState {
+impl vk::DynamicState {
     pub const RAY_TRACING_PIPELINE_STACK_SIZE_KHR: Self = Self(1000347000);
 }
 ///Provided by [VK_KHR_ray_tracing_pipeline](crate::khr::ray_tracing_pipeline)
@@ -33,31 +37,27 @@ impl ShaderGroupShaderKHR {
     pub const ANY_HIT: Self = Self(2);
     pub const INTERSECTION: Self = Self(3);
 }
-///Provided by [VK_KHR_ray_tracing_pipeline](crate::khr::ray_tracing_pipeline)
-impl crate::vk::BufferUsageFlags {
+///Provided by [Vulkan 1.0](crate::vk1_0)
+impl vk::BufferUsageFlags {
     pub const SHADER_BINDING_TABLE_KHR: Self = Self(
-        crate::vk::BufferUsageFlagBits::SHADER_BINDING_TABLE_KHR.0,
+        vk::BufferUsageFlagBits::SHADER_BINDING_TABLE_KHR.0,
     );
 }
-///Provided by [VK_KHR_ray_tracing_pipeline](crate::khr::ray_tracing_pipeline)
-impl crate::vk::BufferUsageFlagBits {
+///Provided by [Vulkan 1.0](crate::vk1_0)
+impl vk::BufferUsageFlagBits {
     pub const SHADER_BINDING_TABLE_KHR: Self = Self(1 << 10);
 }
-///Provided by [VK_KHR_ray_tracing_pipeline](crate::khr::ray_tracing_pipeline)
-impl crate::vk::ShaderStageFlags {
-    pub const RAYGEN_KHR: Self = Self(crate::vk::ShaderStageFlagBits::RAYGEN_KHR.0);
-    pub const ANY_HIT_KHR: Self = Self(crate::vk::ShaderStageFlagBits::ANY_HIT_KHR.0);
-    pub const CLOSEST_HIT_KHR: Self = Self(
-        crate::vk::ShaderStageFlagBits::CLOSEST_HIT_KHR.0,
-    );
-    pub const MISS_KHR: Self = Self(crate::vk::ShaderStageFlagBits::MISS_KHR.0);
-    pub const INTERSECTION_KHR: Self = Self(
-        crate::vk::ShaderStageFlagBits::INTERSECTION_KHR.0,
-    );
-    pub const CALLABLE_KHR: Self = Self(crate::vk::ShaderStageFlagBits::CALLABLE_KHR.0);
+///Provided by [Vulkan 1.0](crate::vk1_0)
+impl vk::ShaderStageFlags {
+    pub const RAYGEN_KHR: Self = Self(vk::ShaderStageFlagBits::RAYGEN_KHR.0);
+    pub const ANY_HIT_KHR: Self = Self(vk::ShaderStageFlagBits::ANY_HIT_KHR.0);
+    pub const CLOSEST_HIT_KHR: Self = Self(vk::ShaderStageFlagBits::CLOSEST_HIT_KHR.0);
+    pub const MISS_KHR: Self = Self(vk::ShaderStageFlagBits::MISS_KHR.0);
+    pub const INTERSECTION_KHR: Self = Self(vk::ShaderStageFlagBits::INTERSECTION_KHR.0);
+    pub const CALLABLE_KHR: Self = Self(vk::ShaderStageFlagBits::CALLABLE_KHR.0);
 }
-///Provided by [VK_KHR_ray_tracing_pipeline](crate::khr::ray_tracing_pipeline)
-impl crate::vk::ShaderStageFlagBits {
+///Provided by [Vulkan 1.0](crate::vk1_0)
+impl vk::ShaderStageFlagBits {
     pub const RAYGEN_KHR: Self = Self(1 << 8);
     pub const ANY_HIT_KHR: Self = Self(1 << 9);
     pub const CLOSEST_HIT_KHR: Self = Self(1 << 10);
@@ -65,33 +65,32 @@ impl crate::vk::ShaderStageFlagBits {
     pub const INTERSECTION_KHR: Self = Self(1 << 12);
     pub const CALLABLE_KHR: Self = Self(1 << 13);
 }
-///Provided by [VK_KHR_ray_tracing_pipeline](crate::khr::ray_tracing_pipeline)
-impl crate::vk::PipelineCreateFlags {
+///Provided by [Vulkan 1.0](crate::vk1_0)
+impl vk::PipelineCreateFlags {
     pub const RAY_TRACING_NO_NULL_ANY_HIT_SHADERS_KHR: Self = Self(
-        crate::vk::PipelineCreateFlagBits::RAY_TRACING_NO_NULL_ANY_HIT_SHADERS_KHR.0,
+        vk::PipelineCreateFlagBits::RAY_TRACING_NO_NULL_ANY_HIT_SHADERS_KHR.0,
     );
     pub const RAY_TRACING_NO_NULL_CLOSEST_HIT_SHADERS_KHR: Self = Self(
-        crate::vk::PipelineCreateFlagBits::RAY_TRACING_NO_NULL_CLOSEST_HIT_SHADERS_KHR.0,
+        vk::PipelineCreateFlagBits::RAY_TRACING_NO_NULL_CLOSEST_HIT_SHADERS_KHR.0,
     );
     pub const RAY_TRACING_NO_NULL_MISS_SHADERS_KHR: Self = Self(
-        crate::vk::PipelineCreateFlagBits::RAY_TRACING_NO_NULL_MISS_SHADERS_KHR.0,
+        vk::PipelineCreateFlagBits::RAY_TRACING_NO_NULL_MISS_SHADERS_KHR.0,
     );
     pub const RAY_TRACING_NO_NULL_INTERSECTION_SHADERS_KHR: Self = Self(
-        crate::vk::PipelineCreateFlagBits::RAY_TRACING_NO_NULL_INTERSECTION_SHADERS_KHR.0,
+        vk::PipelineCreateFlagBits::RAY_TRACING_NO_NULL_INTERSECTION_SHADERS_KHR.0,
     );
     pub const RAY_TRACING_SKIP_TRIANGLES_KHR: Self = Self(
-        crate::vk::PipelineCreateFlagBits::RAY_TRACING_SKIP_TRIANGLES_KHR.0,
+        vk::PipelineCreateFlagBits::RAY_TRACING_SKIP_TRIANGLES_KHR.0,
     );
     pub const RAY_TRACING_SKIP_AABBS_KHR: Self = Self(
-        crate::vk::PipelineCreateFlagBits::RAY_TRACING_SKIP_AABBS_KHR.0,
+        vk::PipelineCreateFlagBits::RAY_TRACING_SKIP_AABBS_KHR.0,
     );
     pub const RAY_TRACING_SHADER_GROUP_HANDLE_CAPTURE_REPLAY_KHR: Self = Self(
-        crate::vk::PipelineCreateFlagBits::RAY_TRACING_SHADER_GROUP_HANDLE_CAPTURE_REPLAY_KHR
-            .0,
+        vk::PipelineCreateFlagBits::RAY_TRACING_SHADER_GROUP_HANDLE_CAPTURE_REPLAY_KHR.0,
     );
 }
-///Provided by [VK_KHR_ray_tracing_pipeline](crate::khr::ray_tracing_pipeline)
-impl crate::vk::PipelineCreateFlagBits {
+///Provided by [Vulkan 1.0](crate::vk1_0)
+impl vk::PipelineCreateFlagBits {
     pub const RAY_TRACING_NO_NULL_ANY_HIT_SHADERS_KHR: Self = Self(1 << 14);
     pub const RAY_TRACING_NO_NULL_CLOSEST_HIT_SHADERS_KHR: Self = Self(1 << 15);
     pub const RAY_TRACING_NO_NULL_MISS_SHADERS_KHR: Self = Self(1 << 16);
@@ -100,55 +99,53 @@ impl crate::vk::PipelineCreateFlagBits {
     pub const RAY_TRACING_SKIP_AABBS_KHR: Self = Self(1 << 13);
     pub const RAY_TRACING_SHADER_GROUP_HANDLE_CAPTURE_REPLAY_KHR: Self = Self(1 << 19);
 }
-///Provided by [VK_KHR_ray_tracing_pipeline](crate::khr::ray_tracing_pipeline)
-impl crate::vk::PipelineStageFlags {
+///Provided by [Vulkan 1.0](crate::vk1_0)
+impl vk::PipelineStageFlags {
     pub const RAY_TRACING_SHADER_KHR: Self = Self(
-        crate::vk::PipelineStageFlagBits::RAY_TRACING_SHADER_KHR.0,
+        vk::PipelineStageFlagBits::RAY_TRACING_SHADER_KHR.0,
     );
 }
-///Provided by [VK_KHR_ray_tracing_pipeline](crate::khr::ray_tracing_pipeline)
-impl crate::vk::PipelineStageFlagBits {
+///Provided by [Vulkan 1.0](crate::vk1_0)
+impl vk::PipelineStageFlagBits {
     pub const RAY_TRACING_SHADER_KHR: Self = Self(1 << 21);
 }
-///Provided by [VK_KHR_ray_tracing_pipeline](crate::khr::ray_tracing_pipeline)
-impl crate::vk::PipelineCreateFlags2 {
+///Provided by [Vulkan 1.4](crate::vk1_4)
+impl vk::PipelineCreateFlags2 {
     pub const RAY_TRACING_SKIP_BUILT_IN_PRIMITIVES_KHR: Self = Self(
-        crate::vk::PipelineCreateFlagBits2::RAY_TRACING_SKIP_BUILT_IN_PRIMITIVES_KHR.0,
+        vk::PipelineCreateFlagBits2::RAY_TRACING_SKIP_BUILT_IN_PRIMITIVES_KHR.0,
     );
 }
-///Provided by [VK_KHR_ray_tracing_pipeline](crate::khr::ray_tracing_pipeline)
-impl crate::vk::PipelineCreateFlagBits2 {
+///Provided by [Vulkan 1.4](crate::vk1_4)
+impl vk::PipelineCreateFlagBits2 {
     pub const RAY_TRACING_SKIP_BUILT_IN_PRIMITIVES_KHR: Self = Self::RAY_TRACING_SKIP_TRIANGLES_KHR;
 }
+pub const SPEC_VERSION: u32 = 1;
+pub const NAME: &CStr = c"VK_KHR_ray_tracing_pipeline";
 #[derive(Clone)]
 pub struct DeviceFn {
-    pub cmd_trace_rays: crate::vk::PFN_vkCmdTraceRaysKHR,
-    pub get_ray_tracing_shader_group_handles: crate::vk::PFN_vkGetRayTracingShaderGroupHandlesKHR,
-    pub get_ray_tracing_capture_replay_shader_group_handles: crate::vk::PFN_vkGetRayTracingCaptureReplayShaderGroupHandlesKHR,
-    pub create_ray_tracing_pipelines: crate::vk::PFN_vkCreateRayTracingPipelinesKHR,
-    pub cmd_trace_rays_indirect: crate::vk::PFN_vkCmdTraceRaysIndirectKHR,
-    pub get_ray_tracing_shader_group_stack_size: crate::vk::PFN_vkGetRayTracingShaderGroupStackSizeKHR,
-    pub cmd_set_ray_tracing_pipeline_stack_size: crate::vk::PFN_vkCmdSetRayTracingPipelineStackSizeKHR,
+    pub cmd_trace_rays: vk::PFN_vkCmdTraceRaysKHR,
+    pub get_ray_tracing_shader_group_handles: vk::PFN_vkGetRayTracingShaderGroupHandlesKHR,
+    pub get_ray_tracing_capture_replay_shader_group_handles: vk::PFN_vkGetRayTracingCaptureReplayShaderGroupHandlesKHR,
+    pub create_ray_tracing_pipelines: vk::PFN_vkCreateRayTracingPipelinesKHR,
+    pub cmd_trace_rays_indirect: vk::PFN_vkCmdTraceRaysIndirectKHR,
+    pub get_ray_tracing_shader_group_stack_size: vk::PFN_vkGetRayTracingShaderGroupStackSizeKHR,
+    pub cmd_set_ray_tracing_pipeline_stack_size: vk::PFN_vkCmdSetRayTracingPipelineStackSizeKHR,
 }
 unsafe impl Send for DeviceFn {}
 unsafe impl Sync for DeviceFn {}
 impl DeviceFn {
-    pub fn load<F: FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void>(
-        mut f: F,
-    ) -> Self {
+    pub fn load<F: FnMut(&CStr) -> *const c_void>(mut f: F) -> Self {
         Self::load_erased(&mut f)
     }
-    fn load_erased(
-        _f: &mut dyn FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void,
-    ) -> Self {
+    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const c_void) -> Self {
         Self {
             cmd_trace_rays: unsafe {
                 unsafe extern "system" fn cmd_trace_rays(
-                    _: crate::vk::CommandBuffer,
-                    _: *const crate::vk::StridedDeviceAddressRegionKHR,
-                    _: *const crate::vk::StridedDeviceAddressRegionKHR,
-                    _: *const crate::vk::StridedDeviceAddressRegionKHR,
-                    _: *const crate::vk::StridedDeviceAddressRegionKHR,
+                    _: vk::CommandBuffer,
+                    _: *const vk::StridedDeviceAddressRegionKHR,
+                    _: *const vk::StridedDeviceAddressRegionKHR,
+                    _: *const vk::StridedDeviceAddressRegionKHR,
+                    _: *const vk::StridedDeviceAddressRegionKHR,
                     _: u32,
                     _: u32,
                     _: u32,
@@ -160,13 +157,13 @@ impl DeviceFn {
             },
             get_ray_tracing_shader_group_handles: unsafe {
                 unsafe extern "system" fn get_ray_tracing_shader_group_handles(
-                    _: crate::vk::Device,
-                    _: crate::vk::Pipeline,
+                    _: vk::Device,
+                    _: vk::Pipeline,
                     _: u32,
                     _: u32,
                     _: usize,
                     _: *mut core::ffi::c_void,
-                ) -> crate::vk::Result {
+                ) -> vk::Result {
                     panic!("unable to load vkGetRayTracingShaderGroupHandlesKHR")
                 }
                 let val = _f(c"vkGetRayTracingShaderGroupHandlesKHR");
@@ -178,13 +175,13 @@ impl DeviceFn {
             },
             get_ray_tracing_capture_replay_shader_group_handles: unsafe {
                 unsafe extern "system" fn get_ray_tracing_capture_replay_shader_group_handles(
-                    _: crate::vk::Device,
-                    _: crate::vk::Pipeline,
+                    _: vk::Device,
+                    _: vk::Pipeline,
                     _: u32,
                     _: u32,
                     _: usize,
                     _: *mut core::ffi::c_void,
-                ) -> crate::vk::Result {
+                ) -> vk::Result {
                     panic!(
                         "unable to load vkGetRayTracingCaptureReplayShaderGroupHandlesKHR"
                     )
@@ -198,14 +195,14 @@ impl DeviceFn {
             },
             create_ray_tracing_pipelines: unsafe {
                 unsafe extern "system" fn create_ray_tracing_pipelines(
-                    _: crate::vk::Device,
-                    _: crate::vk::DeferredOperationKHR,
-                    _: crate::vk::PipelineCache,
+                    _: vk::Device,
+                    _: vk::DeferredOperationKHR,
+                    _: vk::PipelineCache,
                     _: u32,
-                    _: *const crate::vk::RayTracingPipelineCreateInfoKHR<'_>,
-                    _: *const crate::vk::AllocationCallbacks<'_>,
-                    _: *mut crate::vk::Pipeline,
-                ) -> crate::vk::Result {
+                    _: *const vk::RayTracingPipelineCreateInfoKHR<'_>,
+                    _: *const vk::AllocationCallbacks<'_>,
+                    _: *mut vk::Pipeline,
+                ) -> vk::Result {
                     panic!("unable to load vkCreateRayTracingPipelinesKHR")
                 }
                 let val = _f(c"vkCreateRayTracingPipelinesKHR");
@@ -217,12 +214,12 @@ impl DeviceFn {
             },
             cmd_trace_rays_indirect: unsafe {
                 unsafe extern "system" fn cmd_trace_rays_indirect(
-                    _: crate::vk::CommandBuffer,
-                    _: *const crate::vk::StridedDeviceAddressRegionKHR,
-                    _: *const crate::vk::StridedDeviceAddressRegionKHR,
-                    _: *const crate::vk::StridedDeviceAddressRegionKHR,
-                    _: *const crate::vk::StridedDeviceAddressRegionKHR,
-                    _: crate::vk::DeviceAddress,
+                    _: vk::CommandBuffer,
+                    _: *const vk::StridedDeviceAddressRegionKHR,
+                    _: *const vk::StridedDeviceAddressRegionKHR,
+                    _: *const vk::StridedDeviceAddressRegionKHR,
+                    _: *const vk::StridedDeviceAddressRegionKHR,
+                    _: vk::DeviceAddress,
                 ) {
                     panic!("unable to load vkCmdTraceRaysIndirectKHR")
                 }
@@ -235,11 +232,11 @@ impl DeviceFn {
             },
             get_ray_tracing_shader_group_stack_size: unsafe {
                 unsafe extern "system" fn get_ray_tracing_shader_group_stack_size(
-                    _: crate::vk::Device,
-                    _: crate::vk::Pipeline,
+                    _: vk::Device,
+                    _: vk::Pipeline,
                     _: u32,
-                    _: crate::vk::ShaderGroupShaderKHR,
-                ) -> crate::vk::DeviceSize {
+                    _: vk::ShaderGroupShaderKHR,
+                ) -> vk::DeviceSize {
                     panic!("unable to load vkGetRayTracingShaderGroupStackSizeKHR")
                 }
                 let val = _f(c"vkGetRayTracingShaderGroupStackSizeKHR");
@@ -251,7 +248,7 @@ impl DeviceFn {
             },
             cmd_set_ray_tracing_pipeline_stack_size: unsafe {
                 unsafe extern "system" fn cmd_set_ray_tracing_pipeline_stack_size(
-                    _: crate::vk::CommandBuffer,
+                    _: vk::CommandBuffer,
                     _: u32,
                 ) {
                     panic!("unable to load vkCmdSetRayTracingPipelineStackSizeKHR")
@@ -291,11 +288,11 @@ impl Device {
     #[inline]
     pub unsafe fn cmd_trace_rays(
         &self,
-        command_buffer: crate::vk::CommandBuffer,
-        raygen_shader_binding_table: &crate::vk::StridedDeviceAddressRegionKHR,
-        miss_shader_binding_table: &crate::vk::StridedDeviceAddressRegionKHR,
-        hit_shader_binding_table: &crate::vk::StridedDeviceAddressRegionKHR,
-        callable_shader_binding_table: &crate::vk::StridedDeviceAddressRegionKHR,
+        command_buffer: vk::CommandBuffer,
+        raygen_shader_binding_table: &vk::StridedDeviceAddressRegionKHR,
+        miss_shader_binding_table: &vk::StridedDeviceAddressRegionKHR,
+        hit_shader_binding_table: &vk::StridedDeviceAddressRegionKHR,
+        callable_shader_binding_table: &vk::StridedDeviceAddressRegionKHR,
         width: u32,
         height: u32,
         depth: u32,
@@ -317,11 +314,11 @@ impl Device {
     #[inline]
     pub unsafe fn get_ray_tracing_shader_group_handles(
         &self,
-        pipeline: crate::vk::Pipeline,
+        pipeline: vk::Pipeline,
         first_group: u32,
         group_count: u32,
         data: &mut [u8],
-    ) -> crate::VkResult<()> {
+    ) -> VkResult<()> {
         (self
             .fp
             .get_ray_tracing_shader_group_handles)(
@@ -338,11 +335,11 @@ impl Device {
     #[inline]
     pub unsafe fn get_ray_tracing_capture_replay_shader_group_handles(
         &self,
-        pipeline: crate::vk::Pipeline,
+        pipeline: vk::Pipeline,
         first_group: u32,
         group_count: u32,
         data: &mut [u8],
-    ) -> crate::VkResult<()> {
+    ) -> VkResult<()> {
         (self
             .fp
             .get_ray_tracing_capture_replay_shader_group_handles)(
@@ -359,12 +356,12 @@ impl Device {
     #[inline]
     pub unsafe fn create_ray_tracing_pipelines(
         &self,
-        deferred_operation: crate::vk::DeferredOperationKHR,
-        pipeline_cache: crate::vk::PipelineCache,
-        create_infos: &[crate::vk::RayTracingPipelineCreateInfoKHR<'_>],
-        allocator: Option<&crate::vk::AllocationCallbacks<'_>>,
-        pipelines: &mut [crate::vk::Pipeline],
-    ) -> crate::VkResult<()> {
+        deferred_operation: vk::DeferredOperationKHR,
+        pipeline_cache: vk::PipelineCache,
+        create_infos: &[vk::RayTracingPipelineCreateInfoKHR<'_>],
+        allocator: Option<&vk::AllocationCallbacks<'_>>,
+        pipelines: &mut [vk::Pipeline],
+    ) -> VkResult<()> {
         assert_eq!(create_infos.len(), pipelines.len());
         (self
             .fp
@@ -386,12 +383,12 @@ impl Device {
     #[inline]
     pub unsafe fn cmd_trace_rays_indirect(
         &self,
-        command_buffer: crate::vk::CommandBuffer,
-        raygen_shader_binding_table: &crate::vk::StridedDeviceAddressRegionKHR,
-        miss_shader_binding_table: &crate::vk::StridedDeviceAddressRegionKHR,
-        hit_shader_binding_table: &crate::vk::StridedDeviceAddressRegionKHR,
-        callable_shader_binding_table: &crate::vk::StridedDeviceAddressRegionKHR,
-        indirect_device_address: crate::vk::DeviceAddress,
+        command_buffer: vk::CommandBuffer,
+        raygen_shader_binding_table: &vk::StridedDeviceAddressRegionKHR,
+        miss_shader_binding_table: &vk::StridedDeviceAddressRegionKHR,
+        hit_shader_binding_table: &vk::StridedDeviceAddressRegionKHR,
+        callable_shader_binding_table: &vk::StridedDeviceAddressRegionKHR,
+        indirect_device_address: vk::DeviceAddress,
     ) {
         (self
             .fp
@@ -408,10 +405,10 @@ impl Device {
     #[inline]
     pub unsafe fn get_ray_tracing_shader_group_stack_size(
         &self,
-        pipeline: crate::vk::Pipeline,
+        pipeline: vk::Pipeline,
         group: u32,
-        group_shader: crate::vk::ShaderGroupShaderKHR,
-    ) -> crate::vk::DeviceSize {
+        group_shader: vk::ShaderGroupShaderKHR,
+    ) -> vk::DeviceSize {
         (self
             .fp
             .get_ray_tracing_shader_group_stack_size)(
@@ -425,7 +422,7 @@ impl Device {
     #[inline]
     pub unsafe fn cmd_set_ray_tracing_pipeline_stack_size(
         &self,
-        command_buffer: crate::vk::CommandBuffer,
+        command_buffer: vk::CommandBuffer,
         pipeline_stack_size: u32,
     ) {
         (self
@@ -436,28 +433,28 @@ impl Device {
         )
     }
 }
-pub const SPEC_VERSION: u32 = 1;
-pub const NAME: &core::ffi::CStr = c"VK_KHR_ray_tracing_pipeline";
 pub(crate) mod items {
+    use core::marker::PhantomData;
+    use crate::vk;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct RayTracingShaderGroupCreateInfoKHR<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *const core::ffi::c_void,
-        pub ty: crate::vk::RayTracingShaderGroupTypeKHR,
+        pub ty: vk::RayTracingShaderGroupTypeKHR,
         pub general_shader: u32,
         pub closest_hit_shader: u32,
         pub any_hit_shader: u32,
         pub intersection_shader: u32,
         pub p_shader_group_capture_replay_handle: *const core::ffi::c_void,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for RayTracingShaderGroupCreateInfoKHR<'_> {}
     unsafe impl Sync for RayTracingShaderGroupCreateInfoKHR<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for RayTracingShaderGroupCreateInfoKHR<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::RAY_TRACING_SHADER_GROUP_CREATE_INFO_KHR;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::RAY_TRACING_SHADER_GROUP_CREATE_INFO_KHR;
     }
     impl<'a> Default for RayTracingShaderGroupCreateInfoKHR<'a> {
         fn default() -> Self {
@@ -470,12 +467,12 @@ pub(crate) mod items {
                 any_hit_shader: Default::default(),
                 intersection_shader: Default::default(),
                 p_shader_group_capture_replay_handle: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
     impl<'a> RayTracingShaderGroupCreateInfoKHR<'a> {
-        pub fn ty(mut self, ty: crate::vk::RayTracingShaderGroupTypeKHR) -> Self {
+        pub fn ty(mut self, ty: vk::RayTracingShaderGroupTypeKHR) -> Self {
             self.ty = ty;
             self
         }
@@ -507,28 +504,26 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct RayTracingPipelineCreateInfoKHR<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *const core::ffi::c_void,
-        pub flags: crate::vk::PipelineCreateFlags,
+        pub flags: vk::PipelineCreateFlags,
         pub stage_count: u32,
-        pub p_stages: *const crate::vk::PipelineShaderStageCreateInfo<'a>,
+        pub p_stages: *const vk::PipelineShaderStageCreateInfo<'a>,
         pub group_count: u32,
-        pub p_groups: *const crate::vk::RayTracingShaderGroupCreateInfoKHR<'a>,
+        pub p_groups: *const vk::RayTracingShaderGroupCreateInfoKHR<'a>,
         pub max_pipeline_ray_recursion_depth: u32,
-        pub p_library_info: *const crate::vk::PipelineLibraryCreateInfoKHR<'a>,
-        pub p_library_interface: *const crate::vk::RayTracingPipelineInterfaceCreateInfoKHR<
-            'a,
-        >,
-        pub p_dynamic_state: *const crate::vk::PipelineDynamicStateCreateInfo<'a>,
-        pub layout: crate::vk::PipelineLayout,
-        pub base_pipeline_handle: crate::vk::Pipeline,
+        pub p_library_info: *const vk::PipelineLibraryCreateInfoKHR<'a>,
+        pub p_library_interface: *const vk::RayTracingPipelineInterfaceCreateInfoKHR<'a>,
+        pub p_dynamic_state: *const vk::PipelineDynamicStateCreateInfo<'a>,
+        pub layout: vk::PipelineLayout,
+        pub base_pipeline_handle: vk::Pipeline,
         pub base_pipeline_index: i32,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for RayTracingPipelineCreateInfoKHR<'_> {}
     unsafe impl Sync for RayTracingPipelineCreateInfoKHR<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for RayTracingPipelineCreateInfoKHR<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::RAY_TRACING_PIPELINE_CREATE_INFO_KHR;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::RAY_TRACING_PIPELINE_CREATE_INFO_KHR;
     }
     impl<'a> Default for RayTracingPipelineCreateInfoKHR<'a> {
         fn default() -> Self {
@@ -547,18 +542,18 @@ pub(crate) mod items {
                 layout: Default::default(),
                 base_pipeline_handle: Default::default(),
                 base_pipeline_index: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
     impl<'a> RayTracingPipelineCreateInfoKHR<'a> {
-        pub fn flags(mut self, flags: crate::vk::PipelineCreateFlags) -> Self {
+        pub fn flags(mut self, flags: vk::PipelineCreateFlags) -> Self {
             self.flags = flags;
             self
         }
         pub fn stages(
             mut self,
-            stages: &'a [crate::vk::PipelineShaderStageCreateInfo<'a>],
+            stages: &'a [vk::PipelineShaderStageCreateInfo<'a>],
         ) -> Self {
             self.stage_count = stages.len() as _;
             self.p_stages = stages.as_ptr();
@@ -566,7 +561,7 @@ pub(crate) mod items {
         }
         pub fn groups(
             mut self,
-            groups: &'a [crate::vk::RayTracingShaderGroupCreateInfoKHR<'a>],
+            groups: &'a [vk::RayTracingShaderGroupCreateInfoKHR<'a>],
         ) -> Self {
             self.group_count = groups.len() as _;
             self.p_groups = groups.as_ptr();
@@ -581,34 +576,32 @@ pub(crate) mod items {
         }
         pub fn library_info(
             mut self,
-            library_info: &'a crate::vk::PipelineLibraryCreateInfoKHR<'a>,
+            library_info: &'a vk::PipelineLibraryCreateInfoKHR<'a>,
         ) -> Self {
             self.p_library_info = library_info;
             self
         }
         pub fn library_interface(
             mut self,
-            library_interface: &'a crate::vk::RayTracingPipelineInterfaceCreateInfoKHR<
-                'a,
-            >,
+            library_interface: &'a vk::RayTracingPipelineInterfaceCreateInfoKHR<'a>,
         ) -> Self {
             self.p_library_interface = library_interface;
             self
         }
         pub fn dynamic_state(
             mut self,
-            dynamic_state: &'a crate::vk::PipelineDynamicStateCreateInfo<'a>,
+            dynamic_state: &'a vk::PipelineDynamicStateCreateInfo<'a>,
         ) -> Self {
             self.p_dynamic_state = dynamic_state;
             self
         }
-        pub fn layout(mut self, layout: crate::vk::PipelineLayout) -> Self {
+        pub fn layout(mut self, layout: vk::PipelineLayout) -> Self {
             self.layout = layout;
             self
         }
         pub fn base_pipeline_handle(
             mut self,
-            base_pipeline_handle: crate::vk::Pipeline,
+            base_pipeline_handle: vk::Pipeline,
         ) -> Self {
             self.base_pipeline_handle = base_pipeline_handle;
             self
@@ -622,24 +615,24 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceRayTracingPipelineFeaturesKHR<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
-        pub ray_tracing_pipeline: crate::vk::Bool32,
-        pub ray_tracing_pipeline_shader_group_handle_capture_replay: crate::vk::Bool32,
-        pub ray_tracing_pipeline_shader_group_handle_capture_replay_mixed: crate::vk::Bool32,
-        pub ray_tracing_pipeline_trace_rays_indirect: crate::vk::Bool32,
-        pub ray_traversal_primitive_culling: crate::vk::Bool32,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub ray_tracing_pipeline: vk::Bool32,
+        pub ray_tracing_pipeline_shader_group_handle_capture_replay: vk::Bool32,
+        pub ray_tracing_pipeline_shader_group_handle_capture_replay_mixed: vk::Bool32,
+        pub ray_tracing_pipeline_trace_rays_indirect: vk::Bool32,
+        pub ray_traversal_primitive_culling: vk::Bool32,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for PhysicalDeviceRayTracingPipelineFeaturesKHR<'_> {}
     unsafe impl Sync for PhysicalDeviceRayTracingPipelineFeaturesKHR<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceRayTracingPipelineFeaturesKHR<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_RAY_TRACING_PIPELINE_FEATURES_KHR;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PHYSICAL_DEVICE_RAY_TRACING_PIPELINE_FEATURES_KHR;
     }
-    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+    unsafe impl<'a> crate::Extends<vk::PhysicalDeviceFeatures2<'_>>
     for PhysicalDeviceRayTracingPipelineFeaturesKHR<'a> {}
-    unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+    unsafe impl<'a> crate::Extends<vk::DeviceCreateInfo<'_>>
     for PhysicalDeviceRayTracingPipelineFeaturesKHR<'a> {}
     impl<'a> Default for PhysicalDeviceRayTracingPipelineFeaturesKHR<'a> {
         fn default() -> Self {
@@ -651,7 +644,7 @@ pub(crate) mod items {
                 ray_tracing_pipeline_shader_group_handle_capture_replay_mixed: Default::default(),
                 ray_tracing_pipeline_trace_rays_indirect: Default::default(),
                 ray_traversal_primitive_culling: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
@@ -697,7 +690,7 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceRayTracingPipelinePropertiesKHR<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
         pub shader_group_handle_size: u32,
         pub max_ray_recursion_depth: u32,
@@ -707,15 +700,15 @@ pub(crate) mod items {
         pub max_ray_dispatch_invocation_count: u32,
         pub shader_group_handle_alignment: u32,
         pub max_ray_hit_attribute_size: u32,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for PhysicalDeviceRayTracingPipelinePropertiesKHR<'_> {}
     unsafe impl Sync for PhysicalDeviceRayTracingPipelinePropertiesKHR<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceRayTracingPipelinePropertiesKHR<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_RAY_TRACING_PIPELINE_PROPERTIES_KHR;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PHYSICAL_DEVICE_RAY_TRACING_PIPELINE_PROPERTIES_KHR;
     }
-    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceProperties2<'_>>
+    unsafe impl<'a> crate::Extends<vk::PhysicalDeviceProperties2<'_>>
     for PhysicalDeviceRayTracingPipelinePropertiesKHR<'a> {}
     impl<'a> Default for PhysicalDeviceRayTracingPipelinePropertiesKHR<'a> {
         fn default() -> Self {
@@ -730,7 +723,7 @@ pub(crate) mod items {
                 max_ray_dispatch_invocation_count: Default::default(),
                 shader_group_handle_alignment: Default::default(),
                 max_ray_hit_attribute_size: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
@@ -790,25 +783,22 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy, Default)]
     pub struct StridedDeviceAddressRegionKHR {
-        pub device_address: crate::vk::DeviceAddress,
-        pub stride: crate::vk::DeviceSize,
-        pub size: crate::vk::DeviceSize,
+        pub device_address: vk::DeviceAddress,
+        pub stride: vk::DeviceSize,
+        pub size: vk::DeviceSize,
     }
     unsafe impl Send for StridedDeviceAddressRegionKHR {}
     unsafe impl Sync for StridedDeviceAddressRegionKHR {}
     impl StridedDeviceAddressRegionKHR {
-        pub fn device_address(
-            mut self,
-            device_address: crate::vk::DeviceAddress,
-        ) -> Self {
+        pub fn device_address(mut self, device_address: vk::DeviceAddress) -> Self {
             self.device_address = device_address;
             self
         }
-        pub fn stride(mut self, stride: crate::vk::DeviceSize) -> Self {
+        pub fn stride(mut self, stride: vk::DeviceSize) -> Self {
             self.stride = stride;
             self
         }
-        pub fn size(mut self, size: crate::vk::DeviceSize) -> Self {
+        pub fn size(mut self, size: vk::DeviceSize) -> Self {
             self.size = size;
             self
         }
@@ -841,17 +831,17 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct RayTracingPipelineInterfaceCreateInfoKHR<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *const core::ffi::c_void,
         pub max_pipeline_ray_payload_size: u32,
         pub max_pipeline_ray_hit_attribute_size: u32,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for RayTracingPipelineInterfaceCreateInfoKHR<'_> {}
     unsafe impl Sync for RayTracingPipelineInterfaceCreateInfoKHR<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for RayTracingPipelineInterfaceCreateInfoKHR<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::RAY_TRACING_PIPELINE_INTERFACE_CREATE_INFO_KHR;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::RAY_TRACING_PIPELINE_INTERFACE_CREATE_INFO_KHR;
     }
     impl<'a> Default for RayTracingPipelineInterfaceCreateInfoKHR<'a> {
         fn default() -> Self {
@@ -860,7 +850,7 @@ pub(crate) mod items {
                 p_next: Default::default(),
                 max_pipeline_ray_payload_size: Default::default(),
                 max_pipeline_ray_hit_attribute_size: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
@@ -938,56 +928,56 @@ pub(crate) mod items {
         }
     }
     pub type PFN_vkCmdTraceRaysKHR = unsafe extern "system" fn(
-        command_buffer: crate::vk::CommandBuffer,
-        p_raygen_shader_binding_table: *const crate::vk::StridedDeviceAddressRegionKHR,
-        p_miss_shader_binding_table: *const crate::vk::StridedDeviceAddressRegionKHR,
-        p_hit_shader_binding_table: *const crate::vk::StridedDeviceAddressRegionKHR,
-        p_callable_shader_binding_table: *const crate::vk::StridedDeviceAddressRegionKHR,
+        command_buffer: vk::CommandBuffer,
+        p_raygen_shader_binding_table: *const vk::StridedDeviceAddressRegionKHR,
+        p_miss_shader_binding_table: *const vk::StridedDeviceAddressRegionKHR,
+        p_hit_shader_binding_table: *const vk::StridedDeviceAddressRegionKHR,
+        p_callable_shader_binding_table: *const vk::StridedDeviceAddressRegionKHR,
         width: u32,
         height: u32,
         depth: u32,
     );
     pub type PFN_vkGetRayTracingShaderGroupHandlesKHR = unsafe extern "system" fn(
-        device: crate::vk::Device,
-        pipeline: crate::vk::Pipeline,
+        device: vk::Device,
+        pipeline: vk::Pipeline,
         first_group: u32,
         group_count: u32,
         data_size: usize,
         p_data: *mut core::ffi::c_void,
-    ) -> crate::vk::Result;
+    ) -> vk::Result;
     pub type PFN_vkGetRayTracingCaptureReplayShaderGroupHandlesKHR = unsafe extern "system" fn(
-        device: crate::vk::Device,
-        pipeline: crate::vk::Pipeline,
+        device: vk::Device,
+        pipeline: vk::Pipeline,
         first_group: u32,
         group_count: u32,
         data_size: usize,
         p_data: *mut core::ffi::c_void,
-    ) -> crate::vk::Result;
+    ) -> vk::Result;
     pub type PFN_vkCreateRayTracingPipelinesKHR = unsafe extern "system" fn(
-        device: crate::vk::Device,
-        deferred_operation: crate::vk::DeferredOperationKHR,
-        pipeline_cache: crate::vk::PipelineCache,
+        device: vk::Device,
+        deferred_operation: vk::DeferredOperationKHR,
+        pipeline_cache: vk::PipelineCache,
         create_info_count: u32,
-        p_create_infos: *const crate::vk::RayTracingPipelineCreateInfoKHR<'_>,
-        p_allocator: *const crate::vk::AllocationCallbacks<'_>,
-        p_pipelines: *mut crate::vk::Pipeline,
-    ) -> crate::vk::Result;
+        p_create_infos: *const vk::RayTracingPipelineCreateInfoKHR<'_>,
+        p_allocator: *const vk::AllocationCallbacks<'_>,
+        p_pipelines: *mut vk::Pipeline,
+    ) -> vk::Result;
     pub type PFN_vkCmdTraceRaysIndirectKHR = unsafe extern "system" fn(
-        command_buffer: crate::vk::CommandBuffer,
-        p_raygen_shader_binding_table: *const crate::vk::StridedDeviceAddressRegionKHR,
-        p_miss_shader_binding_table: *const crate::vk::StridedDeviceAddressRegionKHR,
-        p_hit_shader_binding_table: *const crate::vk::StridedDeviceAddressRegionKHR,
-        p_callable_shader_binding_table: *const crate::vk::StridedDeviceAddressRegionKHR,
-        indirect_device_address: crate::vk::DeviceAddress,
+        command_buffer: vk::CommandBuffer,
+        p_raygen_shader_binding_table: *const vk::StridedDeviceAddressRegionKHR,
+        p_miss_shader_binding_table: *const vk::StridedDeviceAddressRegionKHR,
+        p_hit_shader_binding_table: *const vk::StridedDeviceAddressRegionKHR,
+        p_callable_shader_binding_table: *const vk::StridedDeviceAddressRegionKHR,
+        indirect_device_address: vk::DeviceAddress,
     );
     pub type PFN_vkGetRayTracingShaderGroupStackSizeKHR = unsafe extern "system" fn(
-        device: crate::vk::Device,
-        pipeline: crate::vk::Pipeline,
+        device: vk::Device,
+        pipeline: vk::Pipeline,
         group: u32,
-        group_shader: crate::vk::ShaderGroupShaderKHR,
-    ) -> crate::vk::DeviceSize;
+        group_shader: vk::ShaderGroupShaderKHR,
+    ) -> vk::DeviceSize;
     pub type PFN_vkCmdSetRayTracingPipelineStackSizeKHR = unsafe extern "system" fn(
-        command_buffer: crate::vk::CommandBuffer,
+        command_buffer: vk::CommandBuffer,
         pipeline_stack_size: u32,
     );
     pub const SHADER_UNUSED_KHR: u32 = (!0);

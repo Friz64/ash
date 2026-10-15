@@ -2,43 +2,45 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_present_id2.html) · Extension `VK_KHR_present_id2`
 #![doc(alias = "VK_KHR_present_id2")]
+use crate::vk;
+use core::ffi::CStr;
 ///Provided by [VK_KHR_present_id2](crate::khr::present_id2)
-impl crate::vk::StructureType {
+impl vk::StructureType {
     pub const SURFACE_CAPABILITIES_PRESENT_ID_2_KHR: Self = Self(1000479000);
     pub const PRESENT_ID_2_KHR: Self = Self(1000479001);
     pub const PHYSICAL_DEVICE_PRESENT_ID_2_FEATURES_KHR: Self = Self(1000479002);
 }
-///Provided by [VK_KHR_present_id2](crate::khr::present_id2)
-impl crate::vk::SwapchainCreateFlagsKHR {
-    pub const PRESENT_ID_2: Self = Self(
-        crate::vk::SwapchainCreateFlagBitsKHR::PRESENT_ID_2.0,
-    );
+///Provided by [VK_KHR_swapchain](crate::khr::swapchain)
+impl vk::SwapchainCreateFlagsKHR {
+    pub const PRESENT_ID_2: Self = Self(vk::SwapchainCreateFlagBitsKHR::PRESENT_ID_2.0);
 }
-///Provided by [VK_KHR_present_id2](crate::khr::present_id2)
-impl crate::vk::SwapchainCreateFlagBitsKHR {
+///Provided by [VK_KHR_swapchain](crate::khr::swapchain)
+impl vk::SwapchainCreateFlagBitsKHR {
     pub const PRESENT_ID_2: Self = Self(1 << 6);
 }
 pub const SPEC_VERSION: u32 = 1;
-pub const NAME: &core::ffi::CStr = c"VK_KHR_present_id2";
+pub const NAME: &CStr = c"VK_KHR_present_id2";
 pub(crate) mod items {
+    use core::marker::PhantomData;
+    use crate::vk;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct PhysicalDevicePresentId2FeaturesKHR<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
-        pub present_id2: crate::vk::Bool32,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub present_id2: vk::Bool32,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for PhysicalDevicePresentId2FeaturesKHR<'_> {}
     unsafe impl Sync for PhysicalDevicePresentId2FeaturesKHR<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDevicePresentId2FeaturesKHR<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_PRESENT_ID_2_FEATURES_KHR;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PHYSICAL_DEVICE_PRESENT_ID_2_FEATURES_KHR;
     }
-    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+    unsafe impl<'a> crate::Extends<vk::PhysicalDeviceFeatures2<'_>>
     for PhysicalDevicePresentId2FeaturesKHR<'a> {}
-    unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+    unsafe impl<'a> crate::Extends<vk::DeviceCreateInfo<'_>>
     for PhysicalDevicePresentId2FeaturesKHR<'a> {}
     impl<'a> Default for PhysicalDevicePresentId2FeaturesKHR<'a> {
         fn default() -> Self {
@@ -46,7 +48,7 @@ pub(crate) mod items {
                 s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
                 p_next: Default::default(),
                 present_id2: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
@@ -60,18 +62,18 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct PresentId2KHR<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *const core::ffi::c_void,
         pub swapchain_count: u32,
         pub p_present_ids: *const u64,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for PresentId2KHR<'_> {}
     unsafe impl Sync for PresentId2KHR<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for PresentId2KHR<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PRESENT_ID_2_KHR;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PRESENT_ID_2_KHR;
     }
-    unsafe impl<'a> crate::Extends<crate::vk::PresentInfoKHR<'_>> for PresentId2KHR<'a> {}
+    unsafe impl<'a> crate::Extends<vk::PresentInfoKHR<'_>> for PresentId2KHR<'a> {}
     impl<'a> Default for PresentId2KHR<'a> {
         fn default() -> Self {
             Self {
@@ -79,7 +81,7 @@ pub(crate) mod items {
                 p_next: Default::default(),
                 swapchain_count: Default::default(),
                 p_present_ids: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
@@ -94,17 +96,17 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct SurfaceCapabilitiesPresentId2KHR<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
-        pub present_id2_supported: crate::vk::Bool32,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub present_id2_supported: vk::Bool32,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for SurfaceCapabilitiesPresentId2KHR<'_> {}
     unsafe impl Sync for SurfaceCapabilitiesPresentId2KHR<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for SurfaceCapabilitiesPresentId2KHR<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::SURFACE_CAPABILITIES_PRESENT_ID_2_KHR;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::SURFACE_CAPABILITIES_PRESENT_ID_2_KHR;
     }
-    unsafe impl<'a> crate::Extends<crate::vk::SurfaceCapabilities2KHR<'_>>
+    unsafe impl<'a> crate::Extends<vk::SurfaceCapabilities2KHR<'_>>
     for SurfaceCapabilitiesPresentId2KHR<'a> {}
     impl<'a> Default for SurfaceCapabilitiesPresentId2KHR<'a> {
         fn default() -> Self {
@@ -112,7 +114,7 @@ pub(crate) mod items {
                 s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
                 p_next: Default::default(),
                 present_id2_supported: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }

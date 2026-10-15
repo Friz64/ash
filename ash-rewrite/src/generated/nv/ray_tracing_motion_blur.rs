@@ -2,8 +2,10 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_NV_ray_tracing_motion_blur.html) · Extension `VK_NV_ray_tracing_motion_blur`
 #![doc(alias = "VK_NV_ray_tracing_motion_blur")]
+use crate::vk;
+use core::ffi::CStr;
 ///Provided by [VK_NV_ray_tracing_motion_blur](crate::nv::ray_tracing_motion_blur)
-impl crate::vk::StructureType {
+impl vk::StructureType {
     pub const ACCELERATION_STRUCTURE_GEOMETRY_MOTION_TRIANGLES_DATA_NV: Self = Self(
         1000327000,
     );
@@ -18,58 +20,60 @@ impl AccelerationStructureMotionInstanceTypeNV {
     pub const MATRIX_MOTION: Self = Self(1);
     pub const SRT_MOTION: Self = Self(2);
 }
-///Provided by [VK_NV_ray_tracing_motion_blur](crate::nv::ray_tracing_motion_blur)
-impl crate::vk::PipelineCreateFlags {
+///Provided by [Vulkan 1.0](crate::vk1_0)
+impl vk::PipelineCreateFlags {
     pub const RAY_TRACING_ALLOW_MOTION_NV: Self = Self(
-        crate::vk::PipelineCreateFlagBits::RAY_TRACING_ALLOW_MOTION_NV.0,
+        vk::PipelineCreateFlagBits::RAY_TRACING_ALLOW_MOTION_NV.0,
     );
 }
-///Provided by [VK_NV_ray_tracing_motion_blur](crate::nv::ray_tracing_motion_blur)
-impl crate::vk::PipelineCreateFlagBits {
+///Provided by [Vulkan 1.0](crate::vk1_0)
+impl vk::PipelineCreateFlagBits {
     pub const RAY_TRACING_ALLOW_MOTION_NV: Self = Self(1 << 20);
 }
-///Provided by [VK_NV_ray_tracing_motion_blur](crate::nv::ray_tracing_motion_blur)
-impl crate::vk::BuildAccelerationStructureFlagsKHR {
+///Provided by [VK_KHR_acceleration_structure](crate::khr::acceleration_structure)
+impl vk::BuildAccelerationStructureFlagsKHR {
     pub const MOTION_NV: Self = Self(
-        crate::vk::BuildAccelerationStructureFlagBitsKHR::MOTION_NV.0,
+        vk::BuildAccelerationStructureFlagBitsKHR::MOTION_NV.0,
     );
 }
-///Provided by [VK_NV_ray_tracing_motion_blur](crate::nv::ray_tracing_motion_blur)
-impl crate::vk::BuildAccelerationStructureFlagBitsKHR {
+///Provided by [VK_KHR_acceleration_structure](crate::khr::acceleration_structure)
+impl vk::BuildAccelerationStructureFlagBitsKHR {
     pub const MOTION_NV: Self = Self(1 << 5);
 }
-///Provided by [VK_NV_ray_tracing_motion_blur](crate::nv::ray_tracing_motion_blur)
-impl crate::vk::AccelerationStructureCreateFlagsKHR {
+///Provided by [VK_KHR_acceleration_structure](crate::khr::acceleration_structure)
+impl vk::AccelerationStructureCreateFlagsKHR {
     pub const MOTION_NV: Self = Self(
-        crate::vk::AccelerationStructureCreateFlagBitsKHR::MOTION_NV.0,
+        vk::AccelerationStructureCreateFlagBitsKHR::MOTION_NV.0,
     );
 }
-///Provided by [VK_NV_ray_tracing_motion_blur](crate::nv::ray_tracing_motion_blur)
-impl crate::vk::AccelerationStructureCreateFlagBitsKHR {
+///Provided by [VK_KHR_acceleration_structure](crate::khr::acceleration_structure)
+impl vk::AccelerationStructureCreateFlagBitsKHR {
     pub const MOTION_NV: Self = Self(1 << 2);
 }
 pub const SPEC_VERSION: u32 = 1;
-pub const NAME: &core::ffi::CStr = c"VK_NV_ray_tracing_motion_blur";
+pub const NAME: &CStr = c"VK_NV_ray_tracing_motion_blur";
 pub(crate) mod items {
+    use core::marker::PhantomData;
+    use crate::vk;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceRayTracingMotionBlurFeaturesNV<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
-        pub ray_tracing_motion_blur: crate::vk::Bool32,
-        pub ray_tracing_motion_blur_pipeline_trace_rays_indirect: crate::vk::Bool32,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub ray_tracing_motion_blur: vk::Bool32,
+        pub ray_tracing_motion_blur_pipeline_trace_rays_indirect: vk::Bool32,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for PhysicalDeviceRayTracingMotionBlurFeaturesNV<'_> {}
     unsafe impl Sync for PhysicalDeviceRayTracingMotionBlurFeaturesNV<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceRayTracingMotionBlurFeaturesNV<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_RAY_TRACING_MOTION_BLUR_FEATURES_NV;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PHYSICAL_DEVICE_RAY_TRACING_MOTION_BLUR_FEATURES_NV;
     }
-    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+    unsafe impl<'a> crate::Extends<vk::PhysicalDeviceFeatures2<'_>>
     for PhysicalDeviceRayTracingMotionBlurFeaturesNV<'a> {}
-    unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+    unsafe impl<'a> crate::Extends<vk::DeviceCreateInfo<'_>>
     for PhysicalDeviceRayTracingMotionBlurFeaturesNV<'a> {}
     impl<'a> Default for PhysicalDeviceRayTracingMotionBlurFeaturesNV<'a> {
         fn default() -> Self {
@@ -78,7 +82,7 @@ pub(crate) mod items {
                 p_next: Default::default(),
                 ray_tracing_motion_blur: Default::default(),
                 ray_tracing_motion_blur_pipeline_trace_rays_indirect: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
@@ -100,20 +104,18 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct AccelerationStructureGeometryMotionTrianglesDataNV<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *const core::ffi::c_void,
-        pub vertex_data: crate::vk::DeviceOrHostAddressConstKHR,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub vertex_data: vk::DeviceOrHostAddressConstKHR,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for AccelerationStructureGeometryMotionTrianglesDataNV<'_> {}
     unsafe impl Sync for AccelerationStructureGeometryMotionTrianglesDataNV<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for AccelerationStructureGeometryMotionTrianglesDataNV<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::ACCELERATION_STRUCTURE_GEOMETRY_MOTION_TRIANGLES_DATA_NV;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::ACCELERATION_STRUCTURE_GEOMETRY_MOTION_TRIANGLES_DATA_NV;
     }
-    unsafe impl<
-        'a,
-    > crate::Extends<crate::vk::AccelerationStructureGeometryTrianglesDataKHR<'_>>
+    unsafe impl<'a> crate::Extends<vk::AccelerationStructureGeometryTrianglesDataKHR<'_>>
     for AccelerationStructureGeometryMotionTrianglesDataNV<'a> {}
     impl<'a> Default for AccelerationStructureGeometryMotionTrianglesDataNV<'a> {
         fn default() -> Self {
@@ -121,14 +123,14 @@ pub(crate) mod items {
                 s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
                 p_next: Default::default(),
                 vertex_data: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
     impl<'a> AccelerationStructureGeometryMotionTrianglesDataNV<'a> {
         pub fn vertex_data(
             mut self,
-            vertex_data: crate::vk::DeviceOrHostAddressConstKHR,
+            vertex_data: vk::DeviceOrHostAddressConstKHR,
         ) -> Self {
             self.vertex_data = vertex_data;
             self
@@ -138,19 +140,19 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct AccelerationStructureMotionInfoNV<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *const core::ffi::c_void,
         pub max_instances: u32,
-        pub flags: crate::vk::AccelerationStructureMotionInfoFlagsNV,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub flags: vk::AccelerationStructureMotionInfoFlagsNV,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for AccelerationStructureMotionInfoNV<'_> {}
     unsafe impl Sync for AccelerationStructureMotionInfoNV<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for AccelerationStructureMotionInfoNV<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::ACCELERATION_STRUCTURE_MOTION_INFO_NV;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::ACCELERATION_STRUCTURE_MOTION_INFO_NV;
     }
-    unsafe impl<'a> crate::Extends<crate::vk::AccelerationStructureCreateInfoKHR<'_>>
+    unsafe impl<'a> crate::Extends<vk::AccelerationStructureCreateInfoKHR<'_>>
     for AccelerationStructureMotionInfoNV<'a> {}
     impl<'a> Default for AccelerationStructureMotionInfoNV<'a> {
         fn default() -> Self {
@@ -159,7 +161,7 @@ pub(crate) mod items {
                 p_next: Default::default(),
                 max_instances: Default::default(),
                 flags: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
@@ -170,7 +172,7 @@ pub(crate) mod items {
         }
         pub fn flags(
             mut self,
-            flags: crate::vk::AccelerationStructureMotionInfoFlagsNV,
+            flags: vk::AccelerationStructureMotionInfoFlagsNV,
         ) -> Self {
             self.flags = flags;
             self
@@ -268,8 +270,8 @@ pub(crate) mod items {
     #[repr(C)]
     #[derive(Clone, Copy, Default)]
     pub struct AccelerationStructureSRTMotionInstanceNV {
-        pub transform_t0: crate::vk::SRTDataNV,
-        pub transform_t1: crate::vk::SRTDataNV,
+        pub transform_t0: vk::SRTDataNV,
+        pub transform_t1: vk::SRTDataNV,
         /**- `instanceCustomIndex` @ `0..24`
 - `mask` @ `24..32`*/
         pub bitfield0: u32,
@@ -301,11 +303,11 @@ pub(crate) mod items {
         }
     }
     impl AccelerationStructureSRTMotionInstanceNV {
-        pub fn transform_t0(mut self, transform_t0: crate::vk::SRTDataNV) -> Self {
+        pub fn transform_t0(mut self, transform_t0: vk::SRTDataNV) -> Self {
             self.transform_t0 = transform_t0;
             self
         }
-        pub fn transform_t1(mut self, transform_t1: crate::vk::SRTDataNV) -> Self {
+        pub fn transform_t1(mut self, transform_t1: vk::SRTDataNV) -> Self {
             self.transform_t1 = transform_t1;
             self
         }
@@ -356,8 +358,8 @@ pub(crate) mod items {
     #[repr(C)]
     #[derive(Clone, Copy, Default)]
     pub struct AccelerationStructureMatrixMotionInstanceNV {
-        pub transform_t0: crate::vk::TransformMatrixKHR,
-        pub transform_t1: crate::vk::TransformMatrixKHR,
+        pub transform_t0: vk::TransformMatrixKHR,
+        pub transform_t1: vk::TransformMatrixKHR,
         /**- `instanceCustomIndex` @ `0..24`
 - `mask` @ `24..32`*/
         pub bitfield0: u32,
@@ -389,17 +391,11 @@ pub(crate) mod items {
         }
     }
     impl AccelerationStructureMatrixMotionInstanceNV {
-        pub fn transform_t0(
-            mut self,
-            transform_t0: crate::vk::TransformMatrixKHR,
-        ) -> Self {
+        pub fn transform_t0(mut self, transform_t0: vk::TransformMatrixKHR) -> Self {
             self.transform_t0 = transform_t0;
             self
         }
-        pub fn transform_t1(
-            mut self,
-            transform_t1: crate::vk::TransformMatrixKHR,
-        ) -> Self {
+        pub fn transform_t1(mut self, transform_t1: vk::TransformMatrixKHR) -> Self {
             self.transform_t1 = transform_t1;
             self
         }
@@ -451,30 +447,27 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy, Default)]
     pub struct AccelerationStructureMotionInstanceNV {
-        pub ty: crate::vk::AccelerationStructureMotionInstanceTypeNV,
-        pub flags: crate::vk::AccelerationStructureMotionInstanceFlagsNV,
-        pub data: crate::vk::AccelerationStructureMotionInstanceDataNV,
+        pub ty: vk::AccelerationStructureMotionInstanceTypeNV,
+        pub flags: vk::AccelerationStructureMotionInstanceFlagsNV,
+        pub data: vk::AccelerationStructureMotionInstanceDataNV,
     }
     unsafe impl Send for AccelerationStructureMotionInstanceNV {}
     unsafe impl Sync for AccelerationStructureMotionInstanceNV {}
     impl AccelerationStructureMotionInstanceNV {
-        pub fn ty(
-            mut self,
-            ty: crate::vk::AccelerationStructureMotionInstanceTypeNV,
-        ) -> Self {
+        pub fn ty(mut self, ty: vk::AccelerationStructureMotionInstanceTypeNV) -> Self {
             self.ty = ty;
             self
         }
         pub fn flags(
             mut self,
-            flags: crate::vk::AccelerationStructureMotionInstanceFlagsNV,
+            flags: vk::AccelerationStructureMotionInstanceFlagsNV,
         ) -> Self {
             self.flags = flags;
             self
         }
         pub fn data(
             mut self,
-            data: crate::vk::AccelerationStructureMotionInstanceDataNV,
+            data: vk::AccelerationStructureMotionInstanceDataNV,
         ) -> Self {
             self.data = data;
             self
@@ -483,9 +476,9 @@ pub(crate) mod items {
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub union AccelerationStructureMotionInstanceDataNV {
-        pub static_instance: crate::vk::AccelerationStructureInstanceKHR,
-        pub matrix_motion_instance: crate::vk::AccelerationStructureMatrixMotionInstanceNV,
-        pub srt_motion_instance: crate::vk::AccelerationStructureSRTMotionInstanceNV,
+        pub static_instance: vk::AccelerationStructureInstanceKHR,
+        pub matrix_motion_instance: vk::AccelerationStructureMatrixMotionInstanceNV,
+        pub srt_motion_instance: vk::AccelerationStructureSRTMotionInstanceNV,
     }
     impl Default for AccelerationStructureMotionInstanceDataNV {
         fn default() -> Self {

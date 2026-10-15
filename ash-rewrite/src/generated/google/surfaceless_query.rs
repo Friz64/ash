@@ -2,5 +2,6 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_GOOGLE_surfaceless_query.html) · Extension `VK_GOOGLE_surfaceless_query`
 #![doc(alias = "VK_GOOGLE_surfaceless_query")]
+use core::ffi::CStr;
 pub const SPEC_VERSION: u32 = 2;
-pub const NAME: &core::ffi::CStr = c"VK_GOOGLE_surfaceless_query";
+pub const NAME: &CStr = c"VK_GOOGLE_surfaceless_query";

@@ -2,18 +2,21 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_robustness2.html) · Extension `VK_EXT_robustness2`
 #![doc(alias = "VK_EXT_robustness2")]
+use crate::vk;
+use core::ffi::CStr;
 ///Provided by [VK_EXT_robustness2](crate::ext::robustness2)
-impl crate::vk::StructureType {
+impl vk::StructureType {
     pub const PHYSICAL_DEVICE_ROBUSTNESS_2_FEATURES_EXT: Self = Self::PHYSICAL_DEVICE_ROBUSTNESS_2_FEATURES_KHR;
     pub const PHYSICAL_DEVICE_ROBUSTNESS_2_PROPERTIES_EXT: Self = Self::PHYSICAL_DEVICE_ROBUSTNESS_2_PROPERTIES_KHR;
 }
 pub const SPEC_VERSION: u32 = 1;
-pub const NAME: &core::ffi::CStr = c"VK_EXT_robustness2";
+pub const NAME: &CStr = c"VK_EXT_robustness2";
 pub(crate) mod items {
-    pub type PhysicalDeviceRobustness2FeaturesEXT<'a> = crate::vk::PhysicalDeviceRobustness2FeaturesKHR<
+    use crate::vk;
+    pub type PhysicalDeviceRobustness2FeaturesEXT<'a> = vk::PhysicalDeviceRobustness2FeaturesKHR<
         'a,
     >;
-    pub type PhysicalDeviceRobustness2PropertiesEXT<'a> = crate::vk::PhysicalDeviceRobustness2PropertiesKHR<
+    pub type PhysicalDeviceRobustness2PropertiesEXT<'a> = vk::PhysicalDeviceRobustness2PropertiesKHR<
         'a,
     >;
 }

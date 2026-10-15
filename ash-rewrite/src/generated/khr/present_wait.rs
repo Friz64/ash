@@ -2,33 +2,35 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_present_wait.html) · Extension `VK_KHR_present_wait`
 #![doc(alias = "VK_KHR_present_wait")]
+use crate::vk;
+use core::ffi::CStr;
+use crate::VkResult;
+use core::ffi::c_void;
 ///Provided by [VK_KHR_present_wait](crate::khr::present_wait)
-impl crate::vk::StructureType {
+impl vk::StructureType {
     pub const PHYSICAL_DEVICE_PRESENT_WAIT_FEATURES_KHR: Self = Self(1000248000);
 }
+pub const SPEC_VERSION: u32 = 1;
+pub const NAME: &CStr = c"VK_KHR_present_wait";
 #[derive(Clone)]
 pub struct DeviceFn {
-    pub wait_for_present: crate::vk::PFN_vkWaitForPresentKHR,
+    pub wait_for_present: vk::PFN_vkWaitForPresentKHR,
 }
 unsafe impl Send for DeviceFn {}
 unsafe impl Sync for DeviceFn {}
 impl DeviceFn {
-    pub fn load<F: FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void>(
-        mut f: F,
-    ) -> Self {
+    pub fn load<F: FnMut(&CStr) -> *const c_void>(mut f: F) -> Self {
         Self::load_erased(&mut f)
     }
-    fn load_erased(
-        _f: &mut dyn FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void,
-    ) -> Self {
+    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const c_void) -> Self {
         Self {
             wait_for_present: unsafe {
                 unsafe extern "system" fn wait_for_present(
-                    _: crate::vk::Device,
-                    _: crate::vk::SwapchainKHR,
+                    _: vk::Device,
+                    _: vk::SwapchainKHR,
                     _: u64,
                     _: u64,
-                ) -> crate::vk::Result {
+                ) -> vk::Result {
                     panic!("unable to load vkWaitForPresentKHR")
                 }
                 let val = _f(c"vkWaitForPresentKHR");
@@ -66,34 +68,34 @@ impl Device {
     #[inline]
     pub unsafe fn wait_for_present(
         &self,
-        swapchain: crate::vk::SwapchainKHR,
+        swapchain: vk::SwapchainKHR,
         present_id: u64,
         timeout: u64,
-    ) -> crate::VkResult<()> {
+    ) -> VkResult<()> {
         (self.fp.wait_for_present)(self.handle, swapchain, present_id, timeout).result()
     }
 }
-pub const SPEC_VERSION: u32 = 1;
-pub const NAME: &core::ffi::CStr = c"VK_KHR_present_wait";
 pub(crate) mod items {
+    use core::marker::PhantomData;
+    use crate::vk;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct PhysicalDevicePresentWaitFeaturesKHR<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
-        pub present_wait: crate::vk::Bool32,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub present_wait: vk::Bool32,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for PhysicalDevicePresentWaitFeaturesKHR<'_> {}
     unsafe impl Sync for PhysicalDevicePresentWaitFeaturesKHR<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDevicePresentWaitFeaturesKHR<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_PRESENT_WAIT_FEATURES_KHR;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PHYSICAL_DEVICE_PRESENT_WAIT_FEATURES_KHR;
     }
-    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+    unsafe impl<'a> crate::Extends<vk::PhysicalDeviceFeatures2<'_>>
     for PhysicalDevicePresentWaitFeaturesKHR<'a> {}
-    unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+    unsafe impl<'a> crate::Extends<vk::DeviceCreateInfo<'_>>
     for PhysicalDevicePresentWaitFeaturesKHR<'a> {}
     impl<'a> Default for PhysicalDevicePresentWaitFeaturesKHR<'a> {
         fn default() -> Self {
@@ -101,7 +103,7 @@ pub(crate) mod items {
                 s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
                 p_next: Default::default(),
                 present_wait: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
@@ -112,10 +114,10 @@ pub(crate) mod items {
         }
     }
     pub type PFN_vkWaitForPresentKHR = unsafe extern "system" fn(
-        device: crate::vk::Device,
-        swapchain: crate::vk::SwapchainKHR,
+        device: vk::Device,
+        swapchain: vk::SwapchainKHR,
         present_id: u64,
         timeout: u64,
-    ) -> crate::vk::Result;
+    ) -> vk::Result;
 }
 pub use items::*;

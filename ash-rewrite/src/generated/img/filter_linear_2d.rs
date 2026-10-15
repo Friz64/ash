@@ -2,15 +2,17 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_IMG_filter_linear_2d.html) · Extension `VK_IMG_filter_linear_2d`
 #![doc(alias = "VK_IMG_filter_linear_2d")]
-///Provided by [VK_IMG_filter_linear_2d](crate::img::filter_linear_2d)
-impl crate::vk::FormatFeatureFlags2 {
+use crate::vk;
+use core::ffi::CStr;
+///Provided by [Vulkan 1.3](crate::vk1_3)
+impl vk::FormatFeatureFlags2 {
     pub const SAMPLED_IMAGE_FILTER_LINEAR_2D_IMG: Self = Self(
-        crate::vk::FormatFeatureFlagBits2::SAMPLED_IMAGE_FILTER_LINEAR_2D_IMG.0,
+        vk::FormatFeatureFlagBits2::SAMPLED_IMAGE_FILTER_LINEAR_2D_IMG.0,
     );
 }
-///Provided by [VK_IMG_filter_linear_2d](crate::img::filter_linear_2d)
-impl crate::vk::FormatFeatureFlagBits2 {
+///Provided by [Vulkan 1.3](crate::vk1_3)
+impl vk::FormatFeatureFlagBits2 {
     pub const SAMPLED_IMAGE_FILTER_LINEAR_2D_IMG: Self = Self(1 << 45);
 }
 pub const SPEC_VERSION: u32 = 1;
-pub const NAME: &core::ffi::CStr = c"VK_IMG_filter_linear_2d";
+pub const NAME: &CStr = c"VK_IMG_filter_linear_2d";

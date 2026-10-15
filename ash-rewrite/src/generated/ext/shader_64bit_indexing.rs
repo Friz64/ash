@@ -2,51 +2,55 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_shader_64bit_indexing.html) · Extension `VK_EXT_shader_64bit_indexing`
 #![doc(alias = "VK_EXT_shader_64bit_indexing")]
+use crate::vk;
+use core::ffi::CStr;
 ///Provided by [VK_EXT_shader_64bit_indexing](crate::ext::shader_64bit_indexing)
-impl crate::vk::StructureType {
+impl vk::StructureType {
     pub const PHYSICAL_DEVICE_SHADER_64_INDEXING_FEATURES_EXT: Self = Self(1000627000);
 }
-///Provided by [VK_EXT_shader_64bit_indexing](crate::ext::shader_64bit_indexing)
-impl crate::vk::PipelineCreateFlags2 {
+///Provided by [Vulkan 1.4](crate::vk1_4)
+impl vk::PipelineCreateFlags2 {
     pub const TYPE_64_INDEXING_EXT: Self = Self(
-        crate::vk::PipelineCreateFlagBits2::TYPE_64_INDEXING_EXT.0,
+        vk::PipelineCreateFlagBits2::TYPE_64_INDEXING_EXT.0,
     );
 }
-///Provided by [VK_EXT_shader_64bit_indexing](crate::ext::shader_64bit_indexing)
-impl crate::vk::PipelineCreateFlagBits2 {
+///Provided by [Vulkan 1.4](crate::vk1_4)
+impl vk::PipelineCreateFlagBits2 {
     pub const TYPE_64_INDEXING_EXT: Self = Self(1 << 43);
 }
-///Provided by [VK_EXT_shader_64bit_indexing](crate::ext::shader_64bit_indexing)
-impl crate::vk::ShaderCreateFlagsEXT {
+///Provided by [VK_EXT_shader_object](crate::ext::shader_object)
+impl vk::ShaderCreateFlagsEXT {
     pub const TYPE_64_INDEXING: Self = Self(
-        crate::vk::ShaderCreateFlagBitsEXT::TYPE_64_INDEXING.0,
+        vk::ShaderCreateFlagBitsEXT::TYPE_64_INDEXING.0,
     );
 }
-///Provided by [VK_EXT_shader_64bit_indexing](crate::ext::shader_64bit_indexing)
-impl crate::vk::ShaderCreateFlagBitsEXT {
+///Provided by [VK_EXT_shader_object](crate::ext::shader_object)
+impl vk::ShaderCreateFlagBitsEXT {
     pub const TYPE_64_INDEXING: Self = Self(1 << 15);
 }
 pub const SPEC_VERSION: u32 = 1;
-pub const NAME: &core::ffi::CStr = c"VK_EXT_shader_64bit_indexing";
+pub const NAME: &CStr = c"VK_EXT_shader_64bit_indexing";
 pub(crate) mod items {
+    use core::marker::PhantomData;
+    use crate::vk;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceShader64BitIndexingFeaturesEXT<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
-        pub shader64_bit_indexing: crate::vk::Bool32,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub shader64_bit_indexing: vk::Bool32,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for PhysicalDeviceShader64BitIndexingFeaturesEXT<'_> {}
     unsafe impl Sync for PhysicalDeviceShader64BitIndexingFeaturesEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceShader64BitIndexingFeaturesEXT<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_SHADER_64_INDEXING_FEATURES_EXT;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PHYSICAL_DEVICE_SHADER_64_INDEXING_FEATURES_EXT;
     }
-    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+    unsafe impl<'a> crate::Extends<vk::PhysicalDeviceFeatures2<'_>>
     for PhysicalDeviceShader64BitIndexingFeaturesEXT<'a> {}
-    unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+    unsafe impl<'a> crate::Extends<vk::DeviceCreateInfo<'_>>
     for PhysicalDeviceShader64BitIndexingFeaturesEXT<'a> {}
     impl<'a> Default for PhysicalDeviceShader64BitIndexingFeaturesEXT<'a> {
         fn default() -> Self {
@@ -54,7 +58,7 @@ pub(crate) mod items {
                 s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
                 p_next: Default::default(),
                 shader64_bit_indexing: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }

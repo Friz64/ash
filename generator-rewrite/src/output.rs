@@ -6,83 +6,93 @@ use analysis::{
     item::{RequireLocation, RequiredBy},
 };
 use heck::ToSnekCase;
-use indexmap::IndexMap;
+use indexmap::{IndexMap, IndexSet};
 use itertools::Itertools;
 use proc_macro2::TokenStream;
-use quote::{format_ident, quote};
+use quote::{ToTokens, TokenStreamExt, format_ident, quote};
 use std::{
+    cell::{Ref, RefCell},
     hash::Hash,
     io, iter,
     path::{Path, PathBuf},
 };
 use syn::Ident;
 
-#[derive(Debug, Clone, PartialEq, Eq, Hash)]
-pub enum Reexport {
+#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
+pub enum GlobExport {
+    Yes,
     No,
-    AsIs,
-    As { original: Ident, alias: Ident },
 }
 
-#[derive(Debug, Clone, PartialEq, Eq, Hash)]
-pub struct Destination {
+#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
+pub struct OutputLocation {
     pub library: LibraryName,
-    pub location: RequireLocation,
-    pub reexport: Reexport,
+    pub require: RequireLocation,
+    pub glob_export: GlobExport,
 }
 
-impl Destination {
-    pub fn primary_location(required_by: RequiredBy) -> Destination {
-        Destination {
+impl OutputLocation {
+    pub fn primary_location(required_by: RequiredBy, glob_export: GlobExport) -> OutputLocation {
+        OutputLocation {
             library: required_by.library,
-            location: required_by.primary_location(),
-            reexport: Reexport::AsIs,
+            require: required_by.primary_location(),
+            glob_export,
         }
     }
 
-    pub fn all_locations(required_by: RequiredBy) -> impl Iterator<Item = Destination> {
+    pub fn all_locations(
+        required_by: RequiredBy,
+        glob_export: GlobExport,
+    ) -> impl Iterator<Item = OutputLocation> {
         (required_by.locations)
             .into_iter()
-            .map(move |location| Destination {
+            .map(move |require| OutputLocation {
                 library: required_by.library,
-                location,
-                reexport: Reexport::AsIs,
+                require,
+                glob_export,
             })
+    }
+
+    pub fn provided_by_doc_comment(&self) -> String {
+        let friendly_name = match self.require {
+            RequireLocation::Core { major, minor } => format!("Vulkan {major}.{minor}"),
+            RequireLocation::Extension { name } => name.original().into(),
+        };
+
+        let components = PathComponent::list(self.library, self.require)
+            .into_iter()
+            .map(|component| component.module_name.to_string())
+            .join("::");
+
+        format!("Provided by [{friendly_name}](crate::{components})")
     }
 }
 
-struct DestinationPathComponent {
+struct PathComponent {
     module_name: Ident,
     doc_comment: String,
 }
 
-impl Destination {
-    fn original_name(&self) -> String {
-        match self.location {
-            RequireLocation::Core { major, minor } => format!("VK_VERSION_{major}_{minor}"),
-            RequireLocation::Extension { name } => name.original().into(),
-        }
-    }
-
-    fn path_components(&self) -> Vec<DestinationPathComponent> {
-        let original_name = self.original_name();
-        match self.location {
-            RequireLocation::Core { major, minor } => vec![DestinationPathComponent {
+impl PathComponent {
+    fn list(library: LibraryName, require_location: RequireLocation) -> Vec<PathComponent> {
+        let original_name = require_location.original_name();
+        match require_location {
+            RequireLocation::Core { major, minor } => vec![PathComponent {
                 module_name: format_ident!("vk{major}_{minor}"),
                 doc_comment: crate::generate_target_doc_comment(
                     &original_name,
                     format!("Vulkan version {major}.{minor}"),
                 ),
             }],
-            RequireLocation::Extension { name } => match self.library {
+            RequireLocation::Extension { name } => match library {
                 LibraryName::Vk => {
-                    let (ext_tag, ext_name) = name.tag_and_name(self.library);
+                    let (ext_tag, ext_name) = name.tag_and_name(library);
                     vec![
-                        DestinationPathComponent {
+                        PathComponent {
                             module_name: format_ident!("{}", ext_tag.to_ascii_lowercase()),
                             doc_comment: format!("Extensions tagged {ext_tag}"),
                         },
-                        DestinationPathComponent {
+                        PathComponent {
                             module_name: crate::escape_ident(&ext_name.to_snek_case()),
                             doc_comment: crate::generate_target_doc_comment(
                                 &original_name,
@@ -92,13 +102,13 @@ impl Destination {
                     ]
                 }
                 LibraryName::Video => {
-                    let prefix_stripped = name.prefix_stripped(self.library);
+                    let prefix_stripped = name.prefix_stripped(library);
                     vec![
-                        DestinationPathComponent {
+                        PathComponent {
                             module_name: format_ident!("video"),
                             doc_comment: "Vulkan Video".into(),
                         },
-                        DestinationPathComponent {
+                        PathComponent {
                             module_name: format_ident!("{prefix_stripped}"),
                             doc_comment: format!("Items provided by `{}`", original_name),
                         },
@@ -107,46 +117,141 @@ impl Destination {
             },
         }
     }
+}
 
-    pub fn provided_by_doc_comment(&self) -> String {
-        let friendly_name = match self.location {
-            RequireLocation::Core { major, minor } => format!("Vulkan {major}.{minor}"),
-            RequireLocation::Extension { name } => name.original().into(),
+struct ReexportAs {
+    original: Ident,
+    alias: Ident,
+}
+
+#[derive(PartialEq, Eq, Hash)]
+pub enum Import {
+    CrateVk,
+    CrateVkResult,
+    CrateHandle,
+    CoreMarkerPhantomData,
+    CoreMemMaybeUninit,
+    CoreFfi,
+    CoreFfiCStr,
+    CoreFfiCVoid,
+    CoreFmt,
+    DebugCoreFmt,
+    CorePtr,
+}
+
+impl ToTokens for Import {
+    fn to_tokens(&self, tokens: &mut TokenStream) {
+        let code = match self {
+            Import::CrateVk => quote! { use crate::vk; },
+            Import::CrateVkResult => quote! { use crate::VkResult; },
+            Import::CrateHandle => quote! { use crate::Handle; },
+            Import::CoreMarkerPhantomData => quote! { use core::marker::PhantomData; },
+            Import::CoreMemMaybeUninit => quote! { use core::mem::MaybeUninit; },
+            Import::CoreFfi => quote! { use core::ffi; },
+            Import::CoreFfiCStr => quote! { use core::ffi::CStr; },
+            Import::CoreFfiCVoid => quote! { use core::ffi::c_void; },
+            Import::CoreFmt => quote! { use core::fmt; },
+            Import::DebugCoreFmt => quote! {
+                #[cfg(feature = "debug")]
+                use core::fmt as fmtdebug;
+            },
+            Import::CorePtr => quote! { use core::ptr; },
         };
 
-        let components = (self.path_components().iter())
-            .map(|component| component.module_name.to_string())
-            .join("::");
-
-        format!("Provided by [{friendly_name}](crate::{components})")
+        tokens.extend(code);
     }
 }
 
 #[derive(Default)]
-pub struct CodeMap(IndexMap<Destination, TokenStream>);
+struct Code {
+    tokens: TokenStream,
+    reexports: Vec<ReexportAs>,
+    imports: IndexSet<Import>,
+}
+
+#[derive(Default)]
+pub struct CodeMap(IndexMap<OutputLocation, Code>);
 
 impl CodeMap {
-    pub fn new(dest: Destination, tokens: TokenStream) -> Self {
-        let mut map = IndexMap::with_capacity(1);
-        map.insert(dest, tokens);
-        CodeMap(map)
+    pub fn octx<'c, 'm>(
+        &'m mut self,
+        output: OutputLocation,
+        ctx: &'c Context<'c>,
+    ) -> OutputContext<'c, 'm> {
+        OutputContext(RefCell::new(OutputContextInner {
+            ctx,
+            codemap: self,
+            output,
+        }))
     }
 
-    pub fn extend(&mut self, other: Self) {
-        for (destination, tokens) in other.0 {
-            self.0.entry(destination).or_default().extend(tokens);
+    // ???????
+    pub fn extend_mapped<'c, 'm, F>(&'m mut self, other: Self, ctx: &'c Context, mut f: F)
+    where
+        F: for<'f> FnMut(OutputContext<'c, 'f>, TokenStream) -> TokenStream,
+    {
+        for (output, code) in other.0 {
+            let octx = self.octx(output, ctx);
+            let tokens = f(octx, code.tokens);
+
+            let entry = self.0.entry(output).or_default();
+            entry.tokens.extend(tokens);
+            entry.imports.extend(code.imports);
         }
     }
 
-    pub fn iter(&self) -> impl Iterator<Item = (&Destination, &TokenStream)> {
-        self.0.iter()
+    // where is this used??
+    pub fn extend(&mut self, other: Self) {
+        for (output, code) in other.0 {
+            let entry = self.0.entry(output).or_default();
+            entry.tokens.extend(code.tokens);
+            entry.imports.extend(code.imports);
+        }
+    }
+}
+
+struct OutputContextInner<'c, 'm> {
+    ctx: &'c Context<'c>,
+    codemap: &'m mut CodeMap,
+    output: OutputLocation,
+}
+
+pub struct OutputContext<'c, 'm>(RefCell<OutputContextInner<'c, 'm>>);
+
+impl<'c, 'm> OutputContext<'c, 'm> {
+    pub fn ctx(&self) -> Ref<'_, Context<'c>> {
+        Ref::map(self.0.borrow(), |inner| inner.ctx)
     }
 
-    pub fn into_iter(self) -> impl Iterator<Item = (Destination, TokenStream)> {
-        self.0.into_iter()
+    pub fn insert_tokens(&self, tokens: TokenStream) {
+        let mut inner = self.0.borrow_mut();
+        let output = inner.output;
+        let entry = inner.codemap.0.entry(output).or_default();
+        entry.tokens.extend(tokens);
     }
 
-    pub fn write(&self, ctx: &Context, output_path: impl AsRef<Path>) -> io::Result<()> {
+    pub fn insert_reexport(&self, original: Ident, alias: Ident) {
+        let mut inner = self.0.borrow_mut();
+        inner.output.glob_export = GlobExport::No;
+        let output = inner.output;
+        let entry = inner.codemap.0.entry(output).or_default();
+        entry.reexports.push(ReexportAs { original, alias });
+    }
+
+    pub fn insert_import(&self, import: Import) {
+        let mut inner = self.0.borrow_mut();
+        let output = inner.output;
+        let entry = inner.codemap.0.entry(output).or_default();
+        entry.imports.insert(import);
+    }
+
+    pub fn output(&self) -> OutputLocation {
+        self.0.borrow().output
+    }
+}
+
+impl CodeMap {
+    pub fn write(self, ctx: &Context, output_path: impl AsRef<Path>) -> io::Result<()> {
         let mut vfs = VirtualRustFs::default();
         vfs.write(
             "mod.rs",
@@ -161,12 +266,13 @@ impl CodeMap {
             child_modules: IndexMap<Ident, RequireLocation>,
         }
 
-        struct SourceFile<'a> {
-            destination: &'a Destination,
+        struct SourceFile {
+            library: LibraryName,
+            require_location: RequireLocation,
             doc_comment: String,
             /// e.g. VK_EXT_FOO for easy lookup
             doc_alias: String,
-            /// [reexport::*, NAME as FOO_NAME, SPEC_VERSION as FOO_SPEC_VERSION]
+            /// e.g. `[NAME as FOO_NAME, SPEC_VERSION as FOO_SPEC_VERSION]`
             reexport_items: Vec<TokenStream>,
             /// items that will be glob-reexported to the vk module
             reexport_content: TokenStream,
@@ -176,12 +282,8 @@ impl CodeMap {
 
         let mut mod_files: IndexMap<PathBuf, ModFile> = Default::default();
         let mut source_files: IndexMap<PathBuf, SourceFile> = Default::default();
-        for (destination, content) in self.iter() {
-            let components = destination.path_components();
-            if components.is_empty() {
-                vfs.write("mod.rs", content.clone());
-                continue;
-            }
+        for (output, code) in self.0 {
+            let components = PathComponent::list(output.library, output.require);
 
             let doc = &components.last().unwrap().doc_comment;
             let mut path = PathBuf::from_iter(
@@ -191,24 +293,28 @@ impl CodeMap {
             path.add_extension("rs");
 
             let source_file = source_files.entry(path).or_insert_with(|| SourceFile {
-                destination,
+                library: output.library,
+                require_location: output.require,
                 doc_comment: doc.into(),
-                doc_alias: destination.original_name(),
+                doc_alias: output.require.original_name(),
                 reexport_items: Vec::new(),
                 reexport_content: TokenStream::new(),
                 content: TokenStream::new(),
             });
 
-            match &destination.reexport {
-                Reexport::No => source_file.content.extend(content.clone()),
-                Reexport::AsIs => source_file.reexport_content.extend(content.clone()),
-                Reexport::As { original, alias } => {
-                    source_file.content.extend(content.clone());
-                    source_file
-                        .reexport_items
-                        .push(quote! { #original as #alias })
-                }
-            }
+            if output.glob_export == GlobExport::Yes {
+                source_file.reexport_content.append_all(code.imports);
+                source_file.reexport_content.extend(code.tokens);
+            } else {
+                source_file.content.append_all(code.imports);
+                source_file.content.extend(code.tokens);
+            };
+
+            source_file.reexport_items.extend(
+                code.reexports
+                    .iter()
+                    .map(|ReexportAs { original, alias }| quote! { #original as #alias }),
+            );
 
             // collect mod.rs files to be created
             for (i, component) in components.iter().enumerate() {
@@ -227,7 +333,7 @@ impl CodeMap {
 
                 (mod_file.child_modules).insert_sorted_by_key(
                     component.module_name.clone(),
-                    destination.location,
+                    output.require,
                     |_k, v| *v,
                 );
             }
@@ -235,7 +341,8 @@ impl CodeMap {
 
         for (source_path, source_file) in source_files {
             let SourceFile {
-                destination,
+                library,
+                require_location,
                 doc_comment,
                 doc_alias,
                 mut reexport_items,
@@ -243,7 +350,7 @@ impl CodeMap {
                 content,
             } = source_file;
 
-            let is_provisional = destination.location.is_provisional(ctx);
+            let is_provisional = require_location.is_provisional(ctx);
             let provisional_mod_guard =
                 is_provisional.then_some(quote! { #![cfg(feature = "provisional")] });
             let provisional_guard =
@@ -258,7 +365,7 @@ impl CodeMap {
                 reexport_items.push(quote! { items::* });
             }
 
-            let components = destination.path_components();
+            let components = PathComponent::list(library, require_location);
             let component_idents: Vec<_> = components
                 .iter()
                 .map(|component| &component.module_name)

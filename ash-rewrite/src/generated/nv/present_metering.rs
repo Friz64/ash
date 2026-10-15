@@ -2,31 +2,34 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_NV_present_metering.html) · Extension `VK_NV_present_metering`
 #![doc(alias = "VK_NV_present_metering")]
+use crate::vk;
+use core::ffi::CStr;
 ///Provided by [VK_NV_present_metering](crate::nv::present_metering)
-impl crate::vk::StructureType {
+impl vk::StructureType {
     pub const SET_PRESENT_CONFIG_NV: Self = Self(1000613000);
     pub const PHYSICAL_DEVICE_PRESENT_METERING_FEATURES_NV: Self = Self(1000613001);
 }
 pub const SPEC_VERSION: u32 = 1;
-pub const NAME: &core::ffi::CStr = c"VK_NV_present_metering";
+pub const NAME: &CStr = c"VK_NV_present_metering";
 pub(crate) mod items {
+    use core::marker::PhantomData;
+    use crate::vk;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct SetPresentConfigNV<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *const core::ffi::c_void,
         pub num_frames_per_batch: u32,
         pub present_config_feedback: u32,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for SetPresentConfigNV<'_> {}
     unsafe impl Sync for SetPresentConfigNV<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for SetPresentConfigNV<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::SET_PRESENT_CONFIG_NV;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::SET_PRESENT_CONFIG_NV;
     }
-    unsafe impl<'a> crate::Extends<crate::vk::PresentInfoKHR<'_>>
-    for SetPresentConfigNV<'a> {}
+    unsafe impl<'a> crate::Extends<vk::PresentInfoKHR<'_>> for SetPresentConfigNV<'a> {}
     impl<'a> Default for SetPresentConfigNV<'a> {
         fn default() -> Self {
             Self {
@@ -34,7 +37,7 @@ pub(crate) mod items {
                 p_next: Default::default(),
                 num_frames_per_batch: Default::default(),
                 present_config_feedback: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
@@ -52,20 +55,20 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct PhysicalDevicePresentMeteringFeaturesNV<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
-        pub present_metering: crate::vk::Bool32,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub present_metering: vk::Bool32,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for PhysicalDevicePresentMeteringFeaturesNV<'_> {}
     unsafe impl Sync for PhysicalDevicePresentMeteringFeaturesNV<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDevicePresentMeteringFeaturesNV<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_PRESENT_METERING_FEATURES_NV;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PHYSICAL_DEVICE_PRESENT_METERING_FEATURES_NV;
     }
-    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+    unsafe impl<'a> crate::Extends<vk::PhysicalDeviceFeatures2<'_>>
     for PhysicalDevicePresentMeteringFeaturesNV<'a> {}
-    unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+    unsafe impl<'a> crate::Extends<vk::DeviceCreateInfo<'_>>
     for PhysicalDevicePresentMeteringFeaturesNV<'a> {}
     impl<'a> Default for PhysicalDevicePresentMeteringFeaturesNV<'a> {
         fn default() -> Self {
@@ -73,7 +76,7 @@ pub(crate) mod items {
                 s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
                 p_next: Default::default(),
                 present_metering: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }

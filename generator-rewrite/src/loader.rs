@@ -1,6 +1,6 @@
 use crate::{
     Context,
-    output::{CodeMap, Destination, Reexport},
+    output::{CodeMap, GlobExport, Import, OutputContext, OutputLocation},
 };
 use analysis::{
     decl::{CPrimaryType, Mutability, Ty},
@@ -46,8 +46,8 @@ impl FunctionType {
         }
     }
 
-    fn table_name(self, dest: &Destination) -> Ident {
-        match (self, dest.location) {
+    fn table_name(self, require: RequireLocation) -> Ident {
+        match (self, require) {
             (FunctionType::Static, _) => format_ident!("StaticFn"),
             (FunctionType::Entry, RequireLocation::Core { major, minor }) => {
                 format_ident!("EntryFnV{major}_{minor}")
@@ -68,8 +68,8 @@ impl FunctionType {
         }
     }
 
-    fn table_field(self, dest: &Destination) -> Ident {
-        match dest.location {
+    fn table_field(self, require: RequireLocation) -> Ident {
+        match require {
             RequireLocation::Core { major, minor } => match self {
                 FunctionType::Static => format_ident!("static_fn"),
                 FunctionType::Entry => format_ident!("entry_fn_{major}_{minor}"),
@@ -99,7 +99,7 @@ pub fn generate_code(ctx: &Context, codemap: &mut CodeMap) {
         wrappers: TokenStream,
     }
 
-    let mut tables: IndexMap<(FunctionType, Destination), Table> = Default::default();
+    let mut tables: IndexMap<(FunctionType, OutputLocation), Table> = Default::default();
     for command_item in ctx.items.commands.values() {
         let (name, required_by, command) = match command_item {
             CommandItem::Alias(alias) => match &ctx.items.commands[&alias.alias] {
@@ -110,14 +110,14 @@ pub fn generate_code(ctx: &Context, codemap: &mut CodeMap) {
         };
 
         let function_type = FunctionType::of_command(command);
-        for mut dest in Destination::all_locations(required_by) {
-            let table_field = function_type.table_field(&dest);
+        for output in OutputLocation::all_locations(required_by, GlobExport::No) {
+            let octx = codemap.octx(output, ctx);
 
-            dest.reexport = Reexport::No;
-            let table = tables.entry((function_type, dest)).or_default();
+            let table_field = function_type.table_field(output.require);
+            let table = tables.entry((function_type, output)).or_default();
 
             let field_name = format_ident!("{}", name.prefix_and_tag_stripped().to_snek_case());
-            let command_ty = ctx.command_tokens(name, true);
+            let command_ty = octx.command_tokens(name, true);
             table.fields.extend(quote! {
                 pub #field_name: #command_ty,
             });
@@ -131,7 +131,7 @@ pub fn generate_code(ctx: &Context, codemap: &mut CodeMap) {
             ]
             .contains(&name)
             {
-                let code = wrapper(ctx, command, &field_name, table_field);
+                let code = wrapper(&octx, command, &field_name, table_field);
                 table.wrappers.extend(code);
             }
 
@@ -139,12 +139,12 @@ pub fn generate_code(ctx: &Context, codemap: &mut CodeMap) {
             let cstr = Literal::c_string(&CString::new(name.original()).unwrap());
 
             let params = command.params.iter().map(|param| {
-                let ty = (param.decl.ty).to_rust().tokens(ctx, None);
+                let ty = (param.decl.ty).to_rust().tokens(&octx, None);
                 quote! { _: #ty }
             });
 
             let ret = command.return_type.as_ref().map(|ty| {
-                let rust_ty = ty.to_rust().tokens(ctx, None);
+                let rust_ty = ty.to_rust().tokens(&octx, None);
                 quote! { -> #rust_ty }
             });
 
@@ -165,14 +165,17 @@ pub fn generate_code(ctx: &Context, codemap: &mut CodeMap) {
         }
     }
 
-    for ((function_type, dest), table) in tables.into_iter() {
+    for ((function_type, output), table) in tables.into_iter() {
+        let octx = codemap.octx(output, ctx);
         let Table {
             fields,
             loaders,
             wrappers,
         } = table;
 
-        let table_name = function_type.table_name(&dest);
+        octx.insert_import(Import::CoreFfiCStr);
+        octx.insert_import(Import::CoreFfiCVoid);
+        let table_name = function_type.table_name(output.require);
         let table_code = quote! {
             #[derive(Clone)]
             pub struct #table_name {
@@ -183,18 +186,19 @@ pub fn generate_code(ctx: &Context, codemap: &mut CodeMap) {
             unsafe impl Sync for #table_name {}
 
             impl #table_name {
-                pub fn load<F: FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void>(mut f: F) -> Self {
+                pub fn load<F: FnMut(&CStr) -> *const c_void>(mut f: F) -> Self {
                     Self::load_erased(&mut f)
                 }
 
-                fn load_erased(_f: &mut dyn FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void) -> Self {
+                fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const c_void) -> Self {
                     Self { #loaders }
                 }
             }
         };
 
+        octx.insert_import(Import::CrateVk);
         let loader_name = function_type.loader_name();
-        let loader_code = match (dest.location, function_type) {
+        let loader_code = match (output.require, function_type) {
             (RequireLocation::Core { major, minor }, _) => {
                 let table_getter = matches!(
                     function_type,
@@ -202,7 +206,7 @@ pub fn generate_code(ctx: &Context, codemap: &mut CodeMap) {
                 )
                 .then(|| {
                     let name = format_ident!("fp_v{major}_{minor}");
-                    let table_field = function_type.table_field(&dest);
+                    let table_field = function_type.table_field(output.require);
                     quote! {
                         #[inline]
                         pub fn #name(&self) -> &crate::#table_name {
@@ -211,7 +215,7 @@ pub fn generate_code(ctx: &Context, codemap: &mut CodeMap) {
                     }
                 });
 
-                let doc = dest.provided_by_doc_comment();
+                let doc = output.provided_by_doc_comment();
                 Some(quote! {
                     #[doc = #doc]
                     impl crate::#loader_name {
@@ -281,12 +285,17 @@ pub fn generate_code(ctx: &Context, codemap: &mut CodeMap) {
             _ => None,
         };
 
-        codemap.extend(CodeMap::new(dest, quote! { #table_code #loader_code }));
+        octx.insert_tokens(quote! { #table_code #loader_code });
     }
 }
 
-#[instrument(skip(ctx))]
-fn wrapper(ctx: &Context, command: &Command, name: &Ident, table_field: Ident) -> TokenStream {
+#[instrument(skip(octx))]
+fn wrapper(
+    octx: &OutputContext,
+    command: &Command,
+    name: &Ident,
+    table_field: Ident,
+) -> TokenStream {
     trace!("generating");
 
     match command.name.original() {
@@ -357,11 +366,12 @@ fn wrapper(ctx: &Context, command: &Command, name: &Ident, table_field: Ident) -
                 if matches!(param.length, Some(Length::NullTerminated)) =>
             {
                 call_arg = quote! { #name.map_or(core::ptr::null(), |s| s.as_ptr()) };
+                octx.insert_import(Import::CoreFfiCStr);
                 public_type = Some(RustTy::Custom {
                     custom_type: quote! { Option },
                     generic_args: vec![RustTy::Ref(
                         Box::new(RustTy::Custom {
-                            custom_type: quote! { core::ffi::CStr },
+                            custom_type: quote! { CStr },
                             generic_args: vec![],
                         }),
                         Mutability::Not,
@@ -387,7 +397,7 @@ fn wrapper(ctx: &Context, command: &Command, name: &Ident, table_field: Ident) -
 
                 let kind = if let Ty::ApiType(element_type) = element
                     && let TypeItem::Struct(struct_) =
-                        ctx.items.types[element_type].resolve_alias(ctx.items)
+                        octx.ctx().items.types[element_type].resolve_alias(octx.ctx().items)
                     && let Some(Mutability::Mut) = struct_.p_next
                 {
                     call_arg = quote! { #name.as_mut_ptr() };
@@ -521,7 +531,7 @@ fn wrapper(ctx: &Context, command: &Command, name: &Ident, table_field: Ident) -
 
             ty.as_ref().map(|ty| {
                 let name = param_ident(param.decl.name);
-                let ty_tokens = ty.tokens(ctx, None);
+                let ty_tokens = ty.tokens(octx, None);
                 (param.decl.name, quote! { #name: #ty_tokens })
             })
         })
@@ -591,6 +601,7 @@ fn wrapper(ctx: &Context, command: &Command, name: &Ident, table_field: Ident) -
                 };
 
                 if returns_result {
+                    octx.insert_import(Import::CrateVkResult);
                     content = quote! { #content Ok(()) }
                 }
 
@@ -617,7 +628,7 @@ fn wrapper(ctx: &Context, command: &Command, name: &Ident, table_field: Ident) -
                             .map(|c| c as usize)
                     };
 
-                    quote! { -> crate::VkResult<usize> }
+                    quote! { -> VkResult<usize> }
                 } else {
                     content = quote! {
                         #content;
@@ -651,8 +662,9 @@ fn wrapper(ctx: &Context, command: &Command, name: &Ident, table_field: Ident) -
             content = quote! { #content.result() };
         }
 
+        octx.insert_import(Import::CrateVkResult);
         ret_ty = Some(RustTy::Custom {
-            custom_type: quote! { crate::VkResult },
+            custom_type: quote! { VkResult },
             generic_args: vec![match single_return {
                 Some((_name, ty)) => ty.to_rust(),
                 _ => RustTy::Unit,
@@ -674,7 +686,7 @@ fn wrapper(ctx: &Context, command: &Command, name: &Ident, table_field: Ident) -
     };
 
     let ret = ret_ty.map(|ty| {
-        let tokens = ty.tokens(ctx, None);
+        let tokens = ty.tokens(octx, None);
         quote! { -> #tokens }
     });
 

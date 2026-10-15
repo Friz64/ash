@@ -2,30 +2,31 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_host_query_reset.html) · Extension `VK_EXT_host_query_reset`
 #![doc(alias = "VK_EXT_host_query_reset")]
+use crate::vk;
+use core::ffi::CStr;
+use core::ffi::c_void;
 ///Provided by [VK_EXT_host_query_reset](crate::ext::host_query_reset)
-impl crate::vk::StructureType {
+impl vk::StructureType {
     pub const PHYSICAL_DEVICE_HOST_QUERY_RESET_FEATURES_EXT: Self = Self::PHYSICAL_DEVICE_HOST_QUERY_RESET_FEATURES;
 }
+pub const SPEC_VERSION: u32 = 1;
+pub const NAME: &CStr = c"VK_EXT_host_query_reset";
 #[derive(Clone)]
 pub struct DeviceFn {
-    pub reset_query_pool: crate::vk::PFN_vkResetQueryPoolEXT,
+    pub reset_query_pool: vk::PFN_vkResetQueryPoolEXT,
 }
 unsafe impl Send for DeviceFn {}
 unsafe impl Sync for DeviceFn {}
 impl DeviceFn {
-    pub fn load<F: FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void>(
-        mut f: F,
-    ) -> Self {
+    pub fn load<F: FnMut(&CStr) -> *const c_void>(mut f: F) -> Self {
         Self::load_erased(&mut f)
     }
-    fn load_erased(
-        _f: &mut dyn FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void,
-    ) -> Self {
+    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const c_void) -> Self {
         Self {
             reset_query_pool: unsafe {
                 unsafe extern "system" fn reset_query_pool(
-                    _: crate::vk::Device,
-                    _: crate::vk::QueryPool,
+                    _: vk::Device,
+                    _: vk::QueryPool,
                     _: u32,
                     _: u32,
                 ) {
@@ -66,19 +67,18 @@ impl Device {
     #[inline]
     pub unsafe fn reset_query_pool(
         &self,
-        query_pool: crate::vk::QueryPool,
+        query_pool: vk::QueryPool,
         first_query: u32,
         query_count: u32,
     ) {
         (self.fp.reset_query_pool)(self.handle, query_pool, first_query, query_count)
     }
 }
-pub const SPEC_VERSION: u32 = 1;
-pub const NAME: &core::ffi::CStr = c"VK_EXT_host_query_reset";
 pub(crate) mod items {
-    pub type PhysicalDeviceHostQueryResetFeaturesEXT<'a> = crate::vk::PhysicalDeviceHostQueryResetFeatures<
+    use crate::vk;
+    pub type PhysicalDeviceHostQueryResetFeaturesEXT<'a> = vk::PhysicalDeviceHostQueryResetFeatures<
         'a,
     >;
-    pub type PFN_vkResetQueryPoolEXT = crate::vk::PFN_vkResetQueryPool;
+    pub type PFN_vkResetQueryPoolEXT = vk::PFN_vkResetQueryPool;
 }
 pub use items::*;

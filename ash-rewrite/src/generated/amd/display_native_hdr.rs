@@ -2,36 +2,37 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_AMD_display_native_hdr.html) · Extension `VK_AMD_display_native_hdr`
 #![doc(alias = "VK_AMD_display_native_hdr")]
+use crate::vk;
+use core::ffi::CStr;
+use core::ffi::c_void;
 ///Provided by [VK_AMD_display_native_hdr](crate::amd::display_native_hdr)
-impl crate::vk::StructureType {
+impl vk::StructureType {
     pub const DISPLAY_NATIVE_HDR_SURFACE_CAPABILITIES_AMD: Self = Self(1000213000);
     pub const SWAPCHAIN_DISPLAY_NATIVE_HDR_CREATE_INFO_AMD: Self = Self(1000213001);
 }
 ///Provided by [VK_AMD_display_native_hdr](crate::amd::display_native_hdr)
-impl crate::vk::ColorSpaceKHR {
+impl vk::ColorSpaceKHR {
     pub const DISPLAY_NATIVE_AMD: Self = Self(1000213000);
 }
+pub const SPEC_VERSION: u32 = 1;
+pub const NAME: &CStr = c"VK_AMD_display_native_hdr";
 #[derive(Clone)]
 pub struct DeviceFn {
-    pub set_local_dimming: crate::vk::PFN_vkSetLocalDimmingAMD,
+    pub set_local_dimming: vk::PFN_vkSetLocalDimmingAMD,
 }
 unsafe impl Send for DeviceFn {}
 unsafe impl Sync for DeviceFn {}
 impl DeviceFn {
-    pub fn load<F: FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void>(
-        mut f: F,
-    ) -> Self {
+    pub fn load<F: FnMut(&CStr) -> *const c_void>(mut f: F) -> Self {
         Self::load_erased(&mut f)
     }
-    fn load_erased(
-        _f: &mut dyn FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void,
-    ) -> Self {
+    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const c_void) -> Self {
         Self {
             set_local_dimming: unsafe {
                 unsafe extern "system" fn set_local_dimming(
-                    _: crate::vk::Device,
-                    _: crate::vk::SwapchainKHR,
-                    _: crate::vk::Bool32,
+                    _: vk::Device,
+                    _: vk::SwapchainKHR,
+                    _: vk::Bool32,
                 ) {
                     panic!("unable to load vkSetLocalDimmingAMD")
                 }
@@ -70,31 +71,31 @@ impl Device {
     #[inline]
     pub unsafe fn set_local_dimming(
         &self,
-        swap_chain: crate::vk::SwapchainKHR,
-        local_dimming_enable: crate::vk::Bool32,
+        swap_chain: vk::SwapchainKHR,
+        local_dimming_enable: vk::Bool32,
     ) {
         (self.fp.set_local_dimming)(self.handle, swap_chain, local_dimming_enable)
     }
 }
-pub const SPEC_VERSION: u32 = 1;
-pub const NAME: &core::ffi::CStr = c"VK_AMD_display_native_hdr";
 pub(crate) mod items {
+    use core::marker::PhantomData;
+    use crate::vk;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct DisplayNativeHdrSurfaceCapabilitiesAMD<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
-        pub local_dimming_support: crate::vk::Bool32,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub local_dimming_support: vk::Bool32,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for DisplayNativeHdrSurfaceCapabilitiesAMD<'_> {}
     unsafe impl Sync for DisplayNativeHdrSurfaceCapabilitiesAMD<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for DisplayNativeHdrSurfaceCapabilitiesAMD<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::DISPLAY_NATIVE_HDR_SURFACE_CAPABILITIES_AMD;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::DISPLAY_NATIVE_HDR_SURFACE_CAPABILITIES_AMD;
     }
-    unsafe impl<'a> crate::Extends<crate::vk::SurfaceCapabilities2KHR<'_>>
+    unsafe impl<'a> crate::Extends<vk::SurfaceCapabilities2KHR<'_>>
     for DisplayNativeHdrSurfaceCapabilitiesAMD<'a> {}
     impl<'a> Default for DisplayNativeHdrSurfaceCapabilitiesAMD<'a> {
         fn default() -> Self {
@@ -102,7 +103,7 @@ pub(crate) mod items {
                 s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
                 p_next: Default::default(),
                 local_dimming_support: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
@@ -116,18 +117,18 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct SwapchainDisplayNativeHdrCreateInfoAMD<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *const core::ffi::c_void,
-        pub local_dimming_enable: crate::vk::Bool32,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub local_dimming_enable: vk::Bool32,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for SwapchainDisplayNativeHdrCreateInfoAMD<'_> {}
     unsafe impl Sync for SwapchainDisplayNativeHdrCreateInfoAMD<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for SwapchainDisplayNativeHdrCreateInfoAMD<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::SWAPCHAIN_DISPLAY_NATIVE_HDR_CREATE_INFO_AMD;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::SWAPCHAIN_DISPLAY_NATIVE_HDR_CREATE_INFO_AMD;
     }
-    unsafe impl<'a> crate::Extends<crate::vk::SwapchainCreateInfoKHR<'_>>
+    unsafe impl<'a> crate::Extends<vk::SwapchainCreateInfoKHR<'_>>
     for SwapchainDisplayNativeHdrCreateInfoAMD<'a> {}
     impl<'a> Default for SwapchainDisplayNativeHdrCreateInfoAMD<'a> {
         fn default() -> Self {
@@ -135,7 +136,7 @@ pub(crate) mod items {
                 s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
                 p_next: Default::default(),
                 local_dimming_enable: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
@@ -146,9 +147,9 @@ pub(crate) mod items {
         }
     }
     pub type PFN_vkSetLocalDimmingAMD = unsafe extern "system" fn(
-        device: crate::vk::Device,
-        swap_chain: crate::vk::SwapchainKHR,
-        local_dimming_enable: crate::vk::Bool32,
+        device: vk::Device,
+        swap_chain: vk::SwapchainKHR,
+        local_dimming_enable: vk::Bool32,
     );
 }
 pub use items::*;

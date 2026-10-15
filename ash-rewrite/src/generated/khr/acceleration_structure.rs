@@ -2,21 +2,25 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_acceleration_structure.html) · Extension `VK_KHR_acceleration_structure`
 #![doc(alias = "VK_KHR_acceleration_structure")]
+use crate::vk;
+use core::ffi::CStr;
+use crate::VkResult;
+use core::ffi::c_void;
 ///Provided by [VK_KHR_acceleration_structure](crate::khr::acceleration_structure)
-impl crate::vk::DescriptorType {
+impl vk::DescriptorType {
     pub const ACCELERATION_STRUCTURE_KHR: Self = Self(1000150000);
 }
 ///Provided by [VK_KHR_acceleration_structure](crate::khr::acceleration_structure)
-impl crate::vk::QueryType {
+impl vk::QueryType {
     pub const ACCELERATION_STRUCTURE_COMPACTED_SIZE_KHR: Self = Self(1000150000);
     pub const ACCELERATION_STRUCTURE_SERIALIZATION_SIZE_KHR: Self = Self(1000150001);
 }
 ///Provided by [VK_KHR_acceleration_structure](crate::khr::acceleration_structure)
-impl crate::vk::IndexType {
+impl vk::IndexType {
     pub const NONE_KHR: Self = Self(1000165000);
 }
 ///Provided by [VK_KHR_acceleration_structure](crate::khr::acceleration_structure)
-impl crate::vk::StructureType {
+impl vk::StructureType {
     pub const WRITE_DESCRIPTOR_SET_ACCELERATION_STRUCTURE_KHR: Self = Self(1000150007);
     pub const ACCELERATION_STRUCTURE_BUILD_GEOMETRY_INFO_KHR: Self = Self(1000150000);
     pub const ACCELERATION_STRUCTURE_DEVICE_ADDRESS_INFO_KHR: Self = Self(1000150002);
@@ -42,11 +46,11 @@ impl crate::vk::StructureType {
     pub const ACCELERATION_STRUCTURE_BUILD_SIZES_INFO_KHR: Self = Self(1000150020);
 }
 ///Provided by [VK_KHR_acceleration_structure](crate::khr::acceleration_structure)
-impl crate::vk::ObjectType {
+impl vk::ObjectType {
     pub const ACCELERATION_STRUCTURE_KHR: Self = Self(1000150000);
 }
 ///Provided by [VK_KHR_acceleration_structure](crate::khr::acceleration_structure)
-impl crate::vk::DebugReportObjectTypeEXT {
+impl vk::DebugReportObjectTypeEXT {
     pub const ACCELERATION_STRUCTURE_KHR: Self = Self(1000150000);
 }
 ///Provided by [VK_KHR_acceleration_structure](crate::khr::acceleration_structure)
@@ -84,53 +88,52 @@ impl AccelerationStructureCompatibilityKHR {
     pub const COMPATIBLE: Self = Self(0);
     pub const INCOMPATIBLE: Self = Self(1);
 }
-///Provided by [VK_KHR_acceleration_structure](crate::khr::acceleration_structure)
-impl crate::vk::AccessFlags {
+///Provided by [Vulkan 1.0](crate::vk1_0)
+impl vk::AccessFlags {
     pub const ACCELERATION_STRUCTURE_READ_KHR: Self = Self(
-        crate::vk::AccessFlagBits::ACCELERATION_STRUCTURE_READ_KHR.0,
+        vk::AccessFlagBits::ACCELERATION_STRUCTURE_READ_KHR.0,
     );
     pub const ACCELERATION_STRUCTURE_WRITE_KHR: Self = Self(
-        crate::vk::AccessFlagBits::ACCELERATION_STRUCTURE_WRITE_KHR.0,
+        vk::AccessFlagBits::ACCELERATION_STRUCTURE_WRITE_KHR.0,
     );
 }
-///Provided by [VK_KHR_acceleration_structure](crate::khr::acceleration_structure)
-impl crate::vk::AccessFlagBits {
+///Provided by [Vulkan 1.0](crate::vk1_0)
+impl vk::AccessFlagBits {
     pub const ACCELERATION_STRUCTURE_READ_KHR: Self = Self(1 << 21);
     pub const ACCELERATION_STRUCTURE_WRITE_KHR: Self = Self(1 << 22);
 }
-///Provided by [VK_KHR_acceleration_structure](crate::khr::acceleration_structure)
-impl crate::vk::BufferUsageFlags {
+///Provided by [Vulkan 1.0](crate::vk1_0)
+impl vk::BufferUsageFlags {
     pub const ACCELERATION_STRUCTURE_BUILD_INPUT_READ_ONLY_KHR: Self = Self(
-        crate::vk::BufferUsageFlagBits::ACCELERATION_STRUCTURE_BUILD_INPUT_READ_ONLY_KHR
-            .0,
+        vk::BufferUsageFlagBits::ACCELERATION_STRUCTURE_BUILD_INPUT_READ_ONLY_KHR.0,
     );
     pub const ACCELERATION_STRUCTURE_STORAGE_KHR: Self = Self(
-        crate::vk::BufferUsageFlagBits::ACCELERATION_STRUCTURE_STORAGE_KHR.0,
+        vk::BufferUsageFlagBits::ACCELERATION_STRUCTURE_STORAGE_KHR.0,
     );
 }
-///Provided by [VK_KHR_acceleration_structure](crate::khr::acceleration_structure)
-impl crate::vk::BufferUsageFlagBits {
+///Provided by [Vulkan 1.0](crate::vk1_0)
+impl vk::BufferUsageFlagBits {
     pub const ACCELERATION_STRUCTURE_BUILD_INPUT_READ_ONLY_KHR: Self = Self(1 << 19);
     pub const ACCELERATION_STRUCTURE_STORAGE_KHR: Self = Self(1 << 20);
 }
-///Provided by [VK_KHR_acceleration_structure](crate::khr::acceleration_structure)
-impl crate::vk::FormatFeatureFlags {
+///Provided by [Vulkan 1.0](crate::vk1_0)
+impl vk::FormatFeatureFlags {
     pub const ACCELERATION_STRUCTURE_VERTEX_BUFFER_KHR: Self = Self(
-        crate::vk::FormatFeatureFlagBits::ACCELERATION_STRUCTURE_VERTEX_BUFFER_KHR.0,
+        vk::FormatFeatureFlagBits::ACCELERATION_STRUCTURE_VERTEX_BUFFER_KHR.0,
     );
 }
-///Provided by [VK_KHR_acceleration_structure](crate::khr::acceleration_structure)
-impl crate::vk::FormatFeatureFlagBits {
+///Provided by [Vulkan 1.0](crate::vk1_0)
+impl vk::FormatFeatureFlagBits {
     pub const ACCELERATION_STRUCTURE_VERTEX_BUFFER_KHR: Self = Self(1 << 29);
 }
-///Provided by [VK_KHR_acceleration_structure](crate::khr::acceleration_structure)
-impl crate::vk::PipelineStageFlags {
+///Provided by [Vulkan 1.0](crate::vk1_0)
+impl vk::PipelineStageFlags {
     pub const ACCELERATION_STRUCTURE_BUILD_KHR: Self = Self(
-        crate::vk::PipelineStageFlagBits::ACCELERATION_STRUCTURE_BUILD_KHR.0,
+        vk::PipelineStageFlagBits::ACCELERATION_STRUCTURE_BUILD_KHR.0,
     );
 }
-///Provided by [VK_KHR_acceleration_structure](crate::khr::acceleration_structure)
-impl crate::vk::PipelineStageFlagBits {
+///Provided by [Vulkan 1.0](crate::vk1_0)
+impl vk::PipelineStageFlagBits {
     pub const ACCELERATION_STRUCTURE_BUILD_KHR: Self = Self(1 << 25);
 }
 ///Provided by [VK_KHR_acceleration_structure](crate::khr::acceleration_structure)
@@ -205,52 +208,50 @@ impl AccelerationStructureCreateFlagsKHR {
 impl AccelerationStructureCreateFlagBitsKHR {
     pub const DEVICE_ADDRESS_CAPTURE_REPLAY: Self = Self(1 << 0);
 }
-///Provided by [VK_KHR_acceleration_structure](crate::khr::acceleration_structure)
-impl crate::vk::FormatFeatureFlags2 {
+///Provided by [Vulkan 1.3](crate::vk1_3)
+impl vk::FormatFeatureFlags2 {
     pub const ACCELERATION_STRUCTURE_VERTEX_BUFFER_KHR: Self = Self(
-        crate::vk::FormatFeatureFlagBits2::ACCELERATION_STRUCTURE_VERTEX_BUFFER_KHR.0,
+        vk::FormatFeatureFlagBits2::ACCELERATION_STRUCTURE_VERTEX_BUFFER_KHR.0,
     );
 }
-///Provided by [VK_KHR_acceleration_structure](crate::khr::acceleration_structure)
-impl crate::vk::FormatFeatureFlagBits2 {
+///Provided by [Vulkan 1.3](crate::vk1_3)
+impl vk::FormatFeatureFlagBits2 {
     pub const ACCELERATION_STRUCTURE_VERTEX_BUFFER_KHR: Self = Self(1 << 29);
 }
+pub const SPEC_VERSION: u32 = 13;
+pub const NAME: &CStr = c"VK_KHR_acceleration_structure";
 #[derive(Clone)]
 pub struct DeviceFn {
-    pub destroy_acceleration_structure: crate::vk::PFN_vkDestroyAccelerationStructureKHR,
-    pub cmd_copy_acceleration_structure: crate::vk::PFN_vkCmdCopyAccelerationStructureKHR,
-    pub copy_acceleration_structure: crate::vk::PFN_vkCopyAccelerationStructureKHR,
-    pub cmd_copy_acceleration_structure_to_memory: crate::vk::PFN_vkCmdCopyAccelerationStructureToMemoryKHR,
-    pub copy_acceleration_structure_to_memory: crate::vk::PFN_vkCopyAccelerationStructureToMemoryKHR,
-    pub cmd_copy_memory_to_acceleration_structure: crate::vk::PFN_vkCmdCopyMemoryToAccelerationStructureKHR,
-    pub copy_memory_to_acceleration_structure: crate::vk::PFN_vkCopyMemoryToAccelerationStructureKHR,
-    pub cmd_write_acceleration_structures_properties: crate::vk::PFN_vkCmdWriteAccelerationStructuresPropertiesKHR,
-    pub write_acceleration_structures_properties: crate::vk::PFN_vkWriteAccelerationStructuresPropertiesKHR,
-    pub get_device_acceleration_structure_compatibility: crate::vk::PFN_vkGetDeviceAccelerationStructureCompatibilityKHR,
-    pub create_acceleration_structure: crate::vk::PFN_vkCreateAccelerationStructureKHR,
-    pub cmd_build_acceleration_structures: crate::vk::PFN_vkCmdBuildAccelerationStructuresKHR,
-    pub cmd_build_acceleration_structures_indirect: crate::vk::PFN_vkCmdBuildAccelerationStructuresIndirectKHR,
-    pub build_acceleration_structures: crate::vk::PFN_vkBuildAccelerationStructuresKHR,
-    pub get_acceleration_structure_device_address: crate::vk::PFN_vkGetAccelerationStructureDeviceAddressKHR,
-    pub get_acceleration_structure_build_sizes: crate::vk::PFN_vkGetAccelerationStructureBuildSizesKHR,
+    pub destroy_acceleration_structure: vk::PFN_vkDestroyAccelerationStructureKHR,
+    pub cmd_copy_acceleration_structure: vk::PFN_vkCmdCopyAccelerationStructureKHR,
+    pub copy_acceleration_structure: vk::PFN_vkCopyAccelerationStructureKHR,
+    pub cmd_copy_acceleration_structure_to_memory: vk::PFN_vkCmdCopyAccelerationStructureToMemoryKHR,
+    pub copy_acceleration_structure_to_memory: vk::PFN_vkCopyAccelerationStructureToMemoryKHR,
+    pub cmd_copy_memory_to_acceleration_structure: vk::PFN_vkCmdCopyMemoryToAccelerationStructureKHR,
+    pub copy_memory_to_acceleration_structure: vk::PFN_vkCopyMemoryToAccelerationStructureKHR,
+    pub cmd_write_acceleration_structures_properties: vk::PFN_vkCmdWriteAccelerationStructuresPropertiesKHR,
+    pub write_acceleration_structures_properties: vk::PFN_vkWriteAccelerationStructuresPropertiesKHR,
+    pub get_device_acceleration_structure_compatibility: vk::PFN_vkGetDeviceAccelerationStructureCompatibilityKHR,
+    pub create_acceleration_structure: vk::PFN_vkCreateAccelerationStructureKHR,
+    pub cmd_build_acceleration_structures: vk::PFN_vkCmdBuildAccelerationStructuresKHR,
+    pub cmd_build_acceleration_structures_indirect: vk::PFN_vkCmdBuildAccelerationStructuresIndirectKHR,
+    pub build_acceleration_structures: vk::PFN_vkBuildAccelerationStructuresKHR,
+    pub get_acceleration_structure_device_address: vk::PFN_vkGetAccelerationStructureDeviceAddressKHR,
+    pub get_acceleration_structure_build_sizes: vk::PFN_vkGetAccelerationStructureBuildSizesKHR,
 }
 unsafe impl Send for DeviceFn {}
 unsafe impl Sync for DeviceFn {}
 impl DeviceFn {
-    pub fn load<F: FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void>(
-        mut f: F,
-    ) -> Self {
+    pub fn load<F: FnMut(&CStr) -> *const c_void>(mut f: F) -> Self {
         Self::load_erased(&mut f)
     }
-    fn load_erased(
-        _f: &mut dyn FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void,
-    ) -> Self {
+    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const c_void) -> Self {
         Self {
             destroy_acceleration_structure: unsafe {
                 unsafe extern "system" fn destroy_acceleration_structure(
-                    _: crate::vk::Device,
-                    _: crate::vk::AccelerationStructureKHR,
-                    _: *const crate::vk::AllocationCallbacks<'_>,
+                    _: vk::Device,
+                    _: vk::AccelerationStructureKHR,
+                    _: *const vk::AllocationCallbacks<'_>,
                 ) {
                     panic!("unable to load vkDestroyAccelerationStructureKHR")
                 }
@@ -263,8 +264,8 @@ impl DeviceFn {
             },
             cmd_copy_acceleration_structure: unsafe {
                 unsafe extern "system" fn cmd_copy_acceleration_structure(
-                    _: crate::vk::CommandBuffer,
-                    _: *const crate::vk::CopyAccelerationStructureInfoKHR<'_>,
+                    _: vk::CommandBuffer,
+                    _: *const vk::CopyAccelerationStructureInfoKHR<'_>,
                 ) {
                     panic!("unable to load vkCmdCopyAccelerationStructureKHR")
                 }
@@ -277,10 +278,10 @@ impl DeviceFn {
             },
             copy_acceleration_structure: unsafe {
                 unsafe extern "system" fn copy_acceleration_structure(
-                    _: crate::vk::Device,
-                    _: crate::vk::DeferredOperationKHR,
-                    _: *const crate::vk::CopyAccelerationStructureInfoKHR<'_>,
-                ) -> crate::vk::Result {
+                    _: vk::Device,
+                    _: vk::DeferredOperationKHR,
+                    _: *const vk::CopyAccelerationStructureInfoKHR<'_>,
+                ) -> vk::Result {
                     panic!("unable to load vkCopyAccelerationStructureKHR")
                 }
                 let val = _f(c"vkCopyAccelerationStructureKHR");
@@ -292,8 +293,8 @@ impl DeviceFn {
             },
             cmd_copy_acceleration_structure_to_memory: unsafe {
                 unsafe extern "system" fn cmd_copy_acceleration_structure_to_memory(
-                    _: crate::vk::CommandBuffer,
-                    _: *const crate::vk::CopyAccelerationStructureToMemoryInfoKHR<'_>,
+                    _: vk::CommandBuffer,
+                    _: *const vk::CopyAccelerationStructureToMemoryInfoKHR<'_>,
                 ) {
                     panic!("unable to load vkCmdCopyAccelerationStructureToMemoryKHR")
                 }
@@ -306,10 +307,10 @@ impl DeviceFn {
             },
             copy_acceleration_structure_to_memory: unsafe {
                 unsafe extern "system" fn copy_acceleration_structure_to_memory(
-                    _: crate::vk::Device,
-                    _: crate::vk::DeferredOperationKHR,
-                    _: *const crate::vk::CopyAccelerationStructureToMemoryInfoKHR<'_>,
-                ) -> crate::vk::Result {
+                    _: vk::Device,
+                    _: vk::DeferredOperationKHR,
+                    _: *const vk::CopyAccelerationStructureToMemoryInfoKHR<'_>,
+                ) -> vk::Result {
                     panic!("unable to load vkCopyAccelerationStructureToMemoryKHR")
                 }
                 let val = _f(c"vkCopyAccelerationStructureToMemoryKHR");
@@ -321,8 +322,8 @@ impl DeviceFn {
             },
             cmd_copy_memory_to_acceleration_structure: unsafe {
                 unsafe extern "system" fn cmd_copy_memory_to_acceleration_structure(
-                    _: crate::vk::CommandBuffer,
-                    _: *const crate::vk::CopyMemoryToAccelerationStructureInfoKHR<'_>,
+                    _: vk::CommandBuffer,
+                    _: *const vk::CopyMemoryToAccelerationStructureInfoKHR<'_>,
                 ) {
                     panic!("unable to load vkCmdCopyMemoryToAccelerationStructureKHR")
                 }
@@ -335,10 +336,10 @@ impl DeviceFn {
             },
             copy_memory_to_acceleration_structure: unsafe {
                 unsafe extern "system" fn copy_memory_to_acceleration_structure(
-                    _: crate::vk::Device,
-                    _: crate::vk::DeferredOperationKHR,
-                    _: *const crate::vk::CopyMemoryToAccelerationStructureInfoKHR<'_>,
-                ) -> crate::vk::Result {
+                    _: vk::Device,
+                    _: vk::DeferredOperationKHR,
+                    _: *const vk::CopyMemoryToAccelerationStructureInfoKHR<'_>,
+                ) -> vk::Result {
                     panic!("unable to load vkCopyMemoryToAccelerationStructureKHR")
                 }
                 let val = _f(c"vkCopyMemoryToAccelerationStructureKHR");
@@ -350,11 +351,11 @@ impl DeviceFn {
             },
             cmd_write_acceleration_structures_properties: unsafe {
                 unsafe extern "system" fn cmd_write_acceleration_structures_properties(
-                    _: crate::vk::CommandBuffer,
+                    _: vk::CommandBuffer,
                     _: u32,
-                    _: *const crate::vk::AccelerationStructureKHR,
-                    _: crate::vk::QueryType,
-                    _: crate::vk::QueryPool,
+                    _: *const vk::AccelerationStructureKHR,
+                    _: vk::QueryType,
+                    _: vk::QueryPool,
                     _: u32,
                 ) {
                     panic!(
@@ -370,14 +371,14 @@ impl DeviceFn {
             },
             write_acceleration_structures_properties: unsafe {
                 unsafe extern "system" fn write_acceleration_structures_properties(
-                    _: crate::vk::Device,
+                    _: vk::Device,
                     _: u32,
-                    _: *const crate::vk::AccelerationStructureKHR,
-                    _: crate::vk::QueryType,
+                    _: *const vk::AccelerationStructureKHR,
+                    _: vk::QueryType,
                     _: usize,
                     _: *mut core::ffi::c_void,
                     _: usize,
-                ) -> crate::vk::Result {
+                ) -> vk::Result {
                     panic!("unable to load vkWriteAccelerationStructuresPropertiesKHR")
                 }
                 let val = _f(c"vkWriteAccelerationStructuresPropertiesKHR");
@@ -389,9 +390,9 @@ impl DeviceFn {
             },
             get_device_acceleration_structure_compatibility: unsafe {
                 unsafe extern "system" fn get_device_acceleration_structure_compatibility(
-                    _: crate::vk::Device,
-                    _: *const crate::vk::AccelerationStructureVersionInfoKHR<'_>,
-                    _: *mut crate::vk::AccelerationStructureCompatibilityKHR,
+                    _: vk::Device,
+                    _: *const vk::AccelerationStructureVersionInfoKHR<'_>,
+                    _: *mut vk::AccelerationStructureCompatibilityKHR,
                 ) {
                     panic!(
                         "unable to load vkGetDeviceAccelerationStructureCompatibilityKHR"
@@ -406,11 +407,11 @@ impl DeviceFn {
             },
             create_acceleration_structure: unsafe {
                 unsafe extern "system" fn create_acceleration_structure(
-                    _: crate::vk::Device,
-                    _: *const crate::vk::AccelerationStructureCreateInfoKHR<'_>,
-                    _: *const crate::vk::AllocationCallbacks<'_>,
-                    _: *mut crate::vk::AccelerationStructureKHR,
-                ) -> crate::vk::Result {
+                    _: vk::Device,
+                    _: *const vk::AccelerationStructureCreateInfoKHR<'_>,
+                    _: *const vk::AllocationCallbacks<'_>,
+                    _: *mut vk::AccelerationStructureKHR,
+                ) -> vk::Result {
                     panic!("unable to load vkCreateAccelerationStructureKHR")
                 }
                 let val = _f(c"vkCreateAccelerationStructureKHR");
@@ -422,10 +423,10 @@ impl DeviceFn {
             },
             cmd_build_acceleration_structures: unsafe {
                 unsafe extern "system" fn cmd_build_acceleration_structures(
-                    _: crate::vk::CommandBuffer,
+                    _: vk::CommandBuffer,
                     _: u32,
-                    _: *const crate::vk::AccelerationStructureBuildGeometryInfoKHR<'_>,
-                    _: *const *const crate::vk::AccelerationStructureBuildRangeInfoKHR,
+                    _: *const vk::AccelerationStructureBuildGeometryInfoKHR<'_>,
+                    _: *const *const vk::AccelerationStructureBuildRangeInfoKHR,
                 ) {
                     panic!("unable to load vkCmdBuildAccelerationStructuresKHR")
                 }
@@ -438,10 +439,10 @@ impl DeviceFn {
             },
             cmd_build_acceleration_structures_indirect: unsafe {
                 unsafe extern "system" fn cmd_build_acceleration_structures_indirect(
-                    _: crate::vk::CommandBuffer,
+                    _: vk::CommandBuffer,
                     _: u32,
-                    _: *const crate::vk::AccelerationStructureBuildGeometryInfoKHR<'_>,
-                    _: *const crate::vk::DeviceAddress,
+                    _: *const vk::AccelerationStructureBuildGeometryInfoKHR<'_>,
+                    _: *const vk::DeviceAddress,
                     _: *const u32,
                     _: *const *const u32,
                 ) {
@@ -456,12 +457,12 @@ impl DeviceFn {
             },
             build_acceleration_structures: unsafe {
                 unsafe extern "system" fn build_acceleration_structures(
-                    _: crate::vk::Device,
-                    _: crate::vk::DeferredOperationKHR,
+                    _: vk::Device,
+                    _: vk::DeferredOperationKHR,
                     _: u32,
-                    _: *const crate::vk::AccelerationStructureBuildGeometryInfoKHR<'_>,
-                    _: *const *const crate::vk::AccelerationStructureBuildRangeInfoKHR,
-                ) -> crate::vk::Result {
+                    _: *const vk::AccelerationStructureBuildGeometryInfoKHR<'_>,
+                    _: *const *const vk::AccelerationStructureBuildRangeInfoKHR,
+                ) -> vk::Result {
                     panic!("unable to load vkBuildAccelerationStructuresKHR")
                 }
                 let val = _f(c"vkBuildAccelerationStructuresKHR");
@@ -473,9 +474,9 @@ impl DeviceFn {
             },
             get_acceleration_structure_device_address: unsafe {
                 unsafe extern "system" fn get_acceleration_structure_device_address(
-                    _: crate::vk::Device,
-                    _: *const crate::vk::AccelerationStructureDeviceAddressInfoKHR<'_>,
-                ) -> crate::vk::DeviceAddress {
+                    _: vk::Device,
+                    _: *const vk::AccelerationStructureDeviceAddressInfoKHR<'_>,
+                ) -> vk::DeviceAddress {
                     panic!("unable to load vkGetAccelerationStructureDeviceAddressKHR")
                 }
                 let val = _f(c"vkGetAccelerationStructureDeviceAddressKHR");
@@ -487,11 +488,11 @@ impl DeviceFn {
             },
             get_acceleration_structure_build_sizes: unsafe {
                 unsafe extern "system" fn get_acceleration_structure_build_sizes(
-                    _: crate::vk::Device,
-                    _: crate::vk::AccelerationStructureBuildTypeKHR,
-                    _: *const crate::vk::AccelerationStructureBuildGeometryInfoKHR<'_>,
+                    _: vk::Device,
+                    _: vk::AccelerationStructureBuildTypeKHR,
+                    _: *const vk::AccelerationStructureBuildGeometryInfoKHR<'_>,
                     _: *const u32,
-                    _: *mut crate::vk::AccelerationStructureBuildSizesInfoKHR<'_>,
+                    _: *mut vk::AccelerationStructureBuildSizesInfoKHR<'_>,
                 ) {
                     panic!("unable to load vkGetAccelerationStructureBuildSizesKHR")
                 }
@@ -530,8 +531,8 @@ impl Device {
     #[inline]
     pub unsafe fn destroy_acceleration_structure(
         &self,
-        acceleration_structure: crate::vk::AccelerationStructureKHR,
-        allocator: Option<&crate::vk::AllocationCallbacks<'_>>,
+        acceleration_structure: vk::AccelerationStructureKHR,
+        allocator: Option<&vk::AllocationCallbacks<'_>>,
     ) {
         (self
             .fp
@@ -548,8 +549,8 @@ impl Device {
     #[inline]
     pub unsafe fn cmd_copy_acceleration_structure(
         &self,
-        command_buffer: crate::vk::CommandBuffer,
-        info: &crate::vk::CopyAccelerationStructureInfoKHR<'_>,
+        command_buffer: vk::CommandBuffer,
+        info: &vk::CopyAccelerationStructureInfoKHR<'_>,
     ) {
         (self.fp.cmd_copy_acceleration_structure)(command_buffer, info)
     }
@@ -557,9 +558,9 @@ impl Device {
     #[inline]
     pub unsafe fn copy_acceleration_structure(
         &self,
-        deferred_operation: crate::vk::DeferredOperationKHR,
-        info: &crate::vk::CopyAccelerationStructureInfoKHR<'_>,
-    ) -> crate::VkResult<()> {
+        deferred_operation: vk::DeferredOperationKHR,
+        info: &vk::CopyAccelerationStructureInfoKHR<'_>,
+    ) -> VkResult<()> {
         (self.fp.copy_acceleration_structure)(self.handle, deferred_operation, info)
             .result()
     }
@@ -567,8 +568,8 @@ impl Device {
     #[inline]
     pub unsafe fn cmd_copy_acceleration_structure_to_memory(
         &self,
-        command_buffer: crate::vk::CommandBuffer,
-        info: &crate::vk::CopyAccelerationStructureToMemoryInfoKHR<'_>,
+        command_buffer: vk::CommandBuffer,
+        info: &vk::CopyAccelerationStructureToMemoryInfoKHR<'_>,
     ) {
         (self.fp.cmd_copy_acceleration_structure_to_memory)(command_buffer, info)
     }
@@ -576,9 +577,9 @@ impl Device {
     #[inline]
     pub unsafe fn copy_acceleration_structure_to_memory(
         &self,
-        deferred_operation: crate::vk::DeferredOperationKHR,
-        info: &crate::vk::CopyAccelerationStructureToMemoryInfoKHR<'_>,
-    ) -> crate::VkResult<()> {
+        deferred_operation: vk::DeferredOperationKHR,
+        info: &vk::CopyAccelerationStructureToMemoryInfoKHR<'_>,
+    ) -> VkResult<()> {
         (self
             .fp
             .copy_acceleration_structure_to_memory)(
@@ -592,8 +593,8 @@ impl Device {
     #[inline]
     pub unsafe fn cmd_copy_memory_to_acceleration_structure(
         &self,
-        command_buffer: crate::vk::CommandBuffer,
-        info: &crate::vk::CopyMemoryToAccelerationStructureInfoKHR<'_>,
+        command_buffer: vk::CommandBuffer,
+        info: &vk::CopyMemoryToAccelerationStructureInfoKHR<'_>,
     ) {
         (self.fp.cmd_copy_memory_to_acceleration_structure)(command_buffer, info)
     }
@@ -601,9 +602,9 @@ impl Device {
     #[inline]
     pub unsafe fn copy_memory_to_acceleration_structure(
         &self,
-        deferred_operation: crate::vk::DeferredOperationKHR,
-        info: &crate::vk::CopyMemoryToAccelerationStructureInfoKHR<'_>,
-    ) -> crate::VkResult<()> {
+        deferred_operation: vk::DeferredOperationKHR,
+        info: &vk::CopyMemoryToAccelerationStructureInfoKHR<'_>,
+    ) -> VkResult<()> {
         (self
             .fp
             .copy_memory_to_acceleration_structure)(
@@ -617,10 +618,10 @@ impl Device {
     #[inline]
     pub unsafe fn cmd_write_acceleration_structures_properties(
         &self,
-        command_buffer: crate::vk::CommandBuffer,
-        acceleration_structures: &[crate::vk::AccelerationStructureKHR],
-        query_type: crate::vk::QueryType,
-        query_pool: crate::vk::QueryPool,
+        command_buffer: vk::CommandBuffer,
+        acceleration_structures: &[vk::AccelerationStructureKHR],
+        query_type: vk::QueryType,
+        query_pool: vk::QueryPool,
         first_query: u32,
     ) {
         (self
@@ -638,11 +639,11 @@ impl Device {
     #[inline]
     pub unsafe fn write_acceleration_structures_properties(
         &self,
-        acceleration_structures: &[crate::vk::AccelerationStructureKHR],
-        query_type: crate::vk::QueryType,
+        acceleration_structures: &[vk::AccelerationStructureKHR],
+        query_type: vk::QueryType,
         data: &mut [u8],
         stride: usize,
-    ) -> crate::VkResult<()> {
+    ) -> VkResult<()> {
         (self
             .fp
             .write_acceleration_structures_properties)(
@@ -660,8 +661,8 @@ impl Device {
     #[inline]
     pub unsafe fn get_device_acceleration_structure_compatibility(
         &self,
-        version_info: &crate::vk::AccelerationStructureVersionInfoKHR<'_>,
-    ) -> crate::vk::AccelerationStructureCompatibilityKHR {
+        version_info: &vk::AccelerationStructureVersionInfoKHR<'_>,
+    ) -> vk::AccelerationStructureCompatibilityKHR {
         let mut compatibility = core::mem::MaybeUninit::uninit();
         (self
             .fp
@@ -676,9 +677,9 @@ impl Device {
     #[inline]
     pub unsafe fn create_acceleration_structure(
         &self,
-        create_info: &crate::vk::AccelerationStructureCreateInfoKHR<'_>,
-        allocator: Option<&crate::vk::AllocationCallbacks<'_>>,
-    ) -> crate::VkResult<crate::vk::AccelerationStructureKHR> {
+        create_info: &vk::AccelerationStructureCreateInfoKHR<'_>,
+        allocator: Option<&vk::AllocationCallbacks<'_>>,
+    ) -> VkResult<vk::AccelerationStructureKHR> {
         let mut acceleration_structure = core::mem::MaybeUninit::uninit();
         (self
             .fp
@@ -697,9 +698,9 @@ impl Device {
     #[inline]
     pub unsafe fn cmd_build_acceleration_structures(
         &self,
-        command_buffer: crate::vk::CommandBuffer,
-        infos: &[crate::vk::AccelerationStructureBuildGeometryInfoKHR<'_>],
-        build_range_infos: &[*const crate::vk::AccelerationStructureBuildRangeInfoKHR],
+        command_buffer: vk::CommandBuffer,
+        infos: &[vk::AccelerationStructureBuildGeometryInfoKHR<'_>],
+        build_range_infos: &[*const vk::AccelerationStructureBuildRangeInfoKHR],
     ) {
         assert_eq!(infos.len(), build_range_infos.len());
         (self
@@ -715,9 +716,9 @@ impl Device {
     #[inline]
     pub unsafe fn cmd_build_acceleration_structures_indirect(
         &self,
-        command_buffer: crate::vk::CommandBuffer,
-        infos: &[crate::vk::AccelerationStructureBuildGeometryInfoKHR<'_>],
-        indirect_device_addresses: &[crate::vk::DeviceAddress],
+        command_buffer: vk::CommandBuffer,
+        infos: &[vk::AccelerationStructureBuildGeometryInfoKHR<'_>],
+        indirect_device_addresses: &[vk::DeviceAddress],
         indirect_strides: &[u32],
         max_primitive_counts: &[*const u32],
     ) {
@@ -739,10 +740,10 @@ impl Device {
     #[inline]
     pub unsafe fn build_acceleration_structures(
         &self,
-        deferred_operation: crate::vk::DeferredOperationKHR,
-        infos: &[crate::vk::AccelerationStructureBuildGeometryInfoKHR<'_>],
-        build_range_infos: &[*const crate::vk::AccelerationStructureBuildRangeInfoKHR],
-    ) -> crate::VkResult<()> {
+        deferred_operation: vk::DeferredOperationKHR,
+        infos: &[vk::AccelerationStructureBuildGeometryInfoKHR<'_>],
+        build_range_infos: &[*const vk::AccelerationStructureBuildRangeInfoKHR],
+    ) -> VkResult<()> {
         assert_eq!(infos.len(), build_range_infos.len());
         (self
             .fp
@@ -759,18 +760,18 @@ impl Device {
     #[inline]
     pub unsafe fn get_acceleration_structure_device_address(
         &self,
-        info: &crate::vk::AccelerationStructureDeviceAddressInfoKHR<'_>,
-    ) -> crate::vk::DeviceAddress {
+        info: &vk::AccelerationStructureDeviceAddressInfoKHR<'_>,
+    ) -> vk::DeviceAddress {
         (self.fp.get_acceleration_structure_device_address)(self.handle, info)
     }
     ///vkGetAccelerationStructureBuildSizesKHR
     #[inline]
     pub unsafe fn get_acceleration_structure_build_sizes(
         &self,
-        build_type: crate::vk::AccelerationStructureBuildTypeKHR,
-        build_info: &crate::vk::AccelerationStructureBuildGeometryInfoKHR<'_>,
+        build_type: vk::AccelerationStructureBuildTypeKHR,
+        build_info: &vk::AccelerationStructureBuildGeometryInfoKHR<'_>,
         max_primitive_counts: Option<&u32>,
-    ) -> crate::vk::AccelerationStructureBuildSizesInfoKHR<'_> {
+    ) -> vk::AccelerationStructureBuildSizesInfoKHR<'_> {
         let mut size_info = core::mem::MaybeUninit::uninit();
         (self
             .fp
@@ -787,26 +788,30 @@ impl Device {
         size_info.assume_init()
     }
 }
-pub const SPEC_VERSION: u32 = 13;
-pub const NAME: &core::ffi::CStr = c"VK_KHR_acceleration_structure";
 pub(crate) mod items {
+    use core::marker::PhantomData;
+    use crate::vk;
+    use crate::Handle;
+    use core::fmt;
+    #[cfg(feature = "debug")]
+    use core::fmt as fmtdebug;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct WriteDescriptorSetAccelerationStructureKHR<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *const core::ffi::c_void,
         pub acceleration_structure_count: u32,
-        pub p_acceleration_structures: *const crate::vk::AccelerationStructureKHR,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub p_acceleration_structures: *const vk::AccelerationStructureKHR,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for WriteDescriptorSetAccelerationStructureKHR<'_> {}
     unsafe impl Sync for WriteDescriptorSetAccelerationStructureKHR<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for WriteDescriptorSetAccelerationStructureKHR<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::WRITE_DESCRIPTOR_SET_ACCELERATION_STRUCTURE_KHR;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::WRITE_DESCRIPTOR_SET_ACCELERATION_STRUCTURE_KHR;
     }
-    unsafe impl<'a> crate::Extends<crate::vk::WriteDescriptorSet<'_>>
+    unsafe impl<'a> crate::Extends<vk::WriteDescriptorSet<'_>>
     for WriteDescriptorSetAccelerationStructureKHR<'a> {}
     impl<'a> Default for WriteDescriptorSetAccelerationStructureKHR<'a> {
         fn default() -> Self {
@@ -815,14 +820,14 @@ pub(crate) mod items {
                 p_next: Default::default(),
                 acceleration_structure_count: Default::default(),
                 p_acceleration_structures: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
     impl<'a> WriteDescriptorSetAccelerationStructureKHR<'a> {
         pub fn acceleration_structures(
             mut self,
-            acceleration_structures: &'a [crate::vk::AccelerationStructureKHR],
+            acceleration_structures: &'a [vk::AccelerationStructureKHR],
         ) -> Self {
             self.acceleration_structure_count = acceleration_structures.len() as _;
             self.p_acceleration_structures = acceleration_structures.as_ptr();
@@ -833,24 +838,24 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceAccelerationStructureFeaturesKHR<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
-        pub acceleration_structure: crate::vk::Bool32,
-        pub acceleration_structure_capture_replay: crate::vk::Bool32,
-        pub acceleration_structure_indirect_build: crate::vk::Bool32,
-        pub acceleration_structure_host_commands: crate::vk::Bool32,
-        pub descriptor_binding_acceleration_structure_update_after_bind: crate::vk::Bool32,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub acceleration_structure: vk::Bool32,
+        pub acceleration_structure_capture_replay: vk::Bool32,
+        pub acceleration_structure_indirect_build: vk::Bool32,
+        pub acceleration_structure_host_commands: vk::Bool32,
+        pub descriptor_binding_acceleration_structure_update_after_bind: vk::Bool32,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for PhysicalDeviceAccelerationStructureFeaturesKHR<'_> {}
     unsafe impl Sync for PhysicalDeviceAccelerationStructureFeaturesKHR<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceAccelerationStructureFeaturesKHR<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_ACCELERATION_STRUCTURE_FEATURES_KHR;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PHYSICAL_DEVICE_ACCELERATION_STRUCTURE_FEATURES_KHR;
     }
-    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+    unsafe impl<'a> crate::Extends<vk::PhysicalDeviceFeatures2<'_>>
     for PhysicalDeviceAccelerationStructureFeaturesKHR<'a> {}
-    unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+    unsafe impl<'a> crate::Extends<vk::DeviceCreateInfo<'_>>
     for PhysicalDeviceAccelerationStructureFeaturesKHR<'a> {}
     impl<'a> Default for PhysicalDeviceAccelerationStructureFeaturesKHR<'a> {
         fn default() -> Self {
@@ -862,7 +867,7 @@ pub(crate) mod items {
                 acceleration_structure_indirect_build: Default::default(),
                 acceleration_structure_host_commands: Default::default(),
                 descriptor_binding_acceleration_structure_update_after_bind: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
@@ -908,7 +913,7 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceAccelerationStructurePropertiesKHR<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
         pub max_geometry_count: u64,
         pub max_instance_count: u64,
@@ -918,15 +923,15 @@ pub(crate) mod items {
         pub max_descriptor_set_acceleration_structures: u32,
         pub max_descriptor_set_update_after_bind_acceleration_structures: u32,
         pub min_acceleration_structure_scratch_offset_alignment: u32,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for PhysicalDeviceAccelerationStructurePropertiesKHR<'_> {}
     unsafe impl Sync for PhysicalDeviceAccelerationStructurePropertiesKHR<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceAccelerationStructurePropertiesKHR<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_ACCELERATION_STRUCTURE_PROPERTIES_KHR;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PHYSICAL_DEVICE_ACCELERATION_STRUCTURE_PROPERTIES_KHR;
     }
-    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceProperties2<'_>>
+    unsafe impl<'a> crate::Extends<vk::PhysicalDeviceProperties2<'_>>
     for PhysicalDeviceAccelerationStructurePropertiesKHR<'a> {}
     impl<'a> Default for PhysicalDeviceAccelerationStructurePropertiesKHR<'a> {
         fn default() -> Self {
@@ -941,7 +946,7 @@ pub(crate) mod items {
                 max_descriptor_set_acceleration_structures: Default::default(),
                 max_descriptor_set_update_after_bind_acceleration_structures: Default::default(),
                 min_acceleration_structure_scratch_offset_alignment: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
@@ -998,22 +1003,22 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct AccelerationStructureGeometryTrianglesDataKHR<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *const core::ffi::c_void,
-        pub vertex_format: crate::vk::Format,
-        pub vertex_data: crate::vk::DeviceOrHostAddressConstKHR,
-        pub vertex_stride: crate::vk::DeviceSize,
+        pub vertex_format: vk::Format,
+        pub vertex_data: vk::DeviceOrHostAddressConstKHR,
+        pub vertex_stride: vk::DeviceSize,
         pub max_vertex: u32,
-        pub index_type: crate::vk::IndexType,
-        pub index_data: crate::vk::DeviceOrHostAddressConstKHR,
-        pub transform_data: crate::vk::DeviceOrHostAddressConstKHR,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub index_type: vk::IndexType,
+        pub index_data: vk::DeviceOrHostAddressConstKHR,
+        pub transform_data: vk::DeviceOrHostAddressConstKHR,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for AccelerationStructureGeometryTrianglesDataKHR<'_> {}
     unsafe impl Sync for AccelerationStructureGeometryTrianglesDataKHR<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for AccelerationStructureGeometryTrianglesDataKHR<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::ACCELERATION_STRUCTURE_GEOMETRY_TRIANGLES_DATA_KHR;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::ACCELERATION_STRUCTURE_GEOMETRY_TRIANGLES_DATA_KHR;
     }
     impl<'a> Default for AccelerationStructureGeometryTrianglesDataKHR<'a> {
         fn default() -> Self {
@@ -1027,23 +1032,23 @@ pub(crate) mod items {
                 index_type: Default::default(),
                 index_data: Default::default(),
                 transform_data: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
     impl<'a> AccelerationStructureGeometryTrianglesDataKHR<'a> {
-        pub fn vertex_format(mut self, vertex_format: crate::vk::Format) -> Self {
+        pub fn vertex_format(mut self, vertex_format: vk::Format) -> Self {
             self.vertex_format = vertex_format;
             self
         }
         pub fn vertex_data(
             mut self,
-            vertex_data: crate::vk::DeviceOrHostAddressConstKHR,
+            vertex_data: vk::DeviceOrHostAddressConstKHR,
         ) -> Self {
             self.vertex_data = vertex_data;
             self
         }
-        pub fn vertex_stride(mut self, vertex_stride: crate::vk::DeviceSize) -> Self {
+        pub fn vertex_stride(mut self, vertex_stride: vk::DeviceSize) -> Self {
             self.vertex_stride = vertex_stride;
             self
         }
@@ -1051,20 +1056,20 @@ pub(crate) mod items {
             self.max_vertex = max_vertex;
             self
         }
-        pub fn index_type(mut self, index_type: crate::vk::IndexType) -> Self {
+        pub fn index_type(mut self, index_type: vk::IndexType) -> Self {
             self.index_type = index_type;
             self
         }
         pub fn index_data(
             mut self,
-            index_data: crate::vk::DeviceOrHostAddressConstKHR,
+            index_data: vk::DeviceOrHostAddressConstKHR,
         ) -> Self {
             self.index_data = index_data;
             self
         }
         pub fn transform_data(
             mut self,
-            transform_data: crate::vk::DeviceOrHostAddressConstKHR,
+            transform_data: vk::DeviceOrHostAddressConstKHR,
         ) -> Self {
             self.transform_data = transform_data;
             self
@@ -1074,17 +1079,17 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct AccelerationStructureGeometryAabbsDataKHR<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *const core::ffi::c_void,
-        pub data: crate::vk::DeviceOrHostAddressConstKHR,
-        pub stride: crate::vk::DeviceSize,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub data: vk::DeviceOrHostAddressConstKHR,
+        pub stride: vk::DeviceSize,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for AccelerationStructureGeometryAabbsDataKHR<'_> {}
     unsafe impl Sync for AccelerationStructureGeometryAabbsDataKHR<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for AccelerationStructureGeometryAabbsDataKHR<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::ACCELERATION_STRUCTURE_GEOMETRY_AABBS_DATA_KHR;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::ACCELERATION_STRUCTURE_GEOMETRY_AABBS_DATA_KHR;
     }
     impl<'a> Default for AccelerationStructureGeometryAabbsDataKHR<'a> {
         fn default() -> Self {
@@ -1093,16 +1098,16 @@ pub(crate) mod items {
                 p_next: Default::default(),
                 data: Default::default(),
                 stride: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
     impl<'a> AccelerationStructureGeometryAabbsDataKHR<'a> {
-        pub fn data(mut self, data: crate::vk::DeviceOrHostAddressConstKHR) -> Self {
+        pub fn data(mut self, data: vk::DeviceOrHostAddressConstKHR) -> Self {
             self.data = data;
             self
         }
-        pub fn stride(mut self, stride: crate::vk::DeviceSize) -> Self {
+        pub fn stride(mut self, stride: vk::DeviceSize) -> Self {
             self.stride = stride;
             self
         }
@@ -1111,17 +1116,17 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct AccelerationStructureGeometryInstancesDataKHR<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *const core::ffi::c_void,
-        pub array_of_pointers: crate::vk::Bool32,
-        pub data: crate::vk::DeviceOrHostAddressConstKHR,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub array_of_pointers: vk::Bool32,
+        pub data: vk::DeviceOrHostAddressConstKHR,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for AccelerationStructureGeometryInstancesDataKHR<'_> {}
     unsafe impl Sync for AccelerationStructureGeometryInstancesDataKHR<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for AccelerationStructureGeometryInstancesDataKHR<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::ACCELERATION_STRUCTURE_GEOMETRY_INSTANCES_DATA_KHR;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::ACCELERATION_STRUCTURE_GEOMETRY_INSTANCES_DATA_KHR;
     }
     impl<'a> Default for AccelerationStructureGeometryInstancesDataKHR<'a> {
         fn default() -> Self {
@@ -1130,7 +1135,7 @@ pub(crate) mod items {
                 p_next: Default::default(),
                 array_of_pointers: Default::default(),
                 data: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
@@ -1139,7 +1144,7 @@ pub(crate) mod items {
             self.array_of_pointers = array_of_pointers.into();
             self
         }
-        pub fn data(mut self, data: crate::vk::DeviceOrHostAddressConstKHR) -> Self {
+        pub fn data(mut self, data: vk::DeviceOrHostAddressConstKHR) -> Self {
             self.data = data;
             self
         }
@@ -1148,17 +1153,17 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct AccelerationStructureGeometryKHR<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *const core::ffi::c_void,
-        pub geometry_type: crate::vk::GeometryTypeKHR,
-        pub geometry: crate::vk::AccelerationStructureGeometryDataKHR<'a>,
-        pub flags: crate::vk::GeometryFlagsKHR,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub geometry_type: vk::GeometryTypeKHR,
+        pub geometry: vk::AccelerationStructureGeometryDataKHR<'a>,
+        pub flags: vk::GeometryFlagsKHR,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for AccelerationStructureGeometryKHR<'_> {}
     unsafe impl Sync for AccelerationStructureGeometryKHR<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for AccelerationStructureGeometryKHR<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::ACCELERATION_STRUCTURE_GEOMETRY_KHR;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::ACCELERATION_STRUCTURE_GEOMETRY_KHR;
     }
     impl<'a> Default for AccelerationStructureGeometryKHR<'a> {
         fn default() -> Self {
@@ -1168,26 +1173,23 @@ pub(crate) mod items {
                 geometry_type: Default::default(),
                 geometry: Default::default(),
                 flags: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
     impl<'a> AccelerationStructureGeometryKHR<'a> {
-        pub fn geometry_type(
-            mut self,
-            geometry_type: crate::vk::GeometryTypeKHR,
-        ) -> Self {
+        pub fn geometry_type(mut self, geometry_type: vk::GeometryTypeKHR) -> Self {
             self.geometry_type = geometry_type;
             self
         }
         pub fn geometry(
             mut self,
-            geometry: crate::vk::AccelerationStructureGeometryDataKHR<'a>,
+            geometry: vk::AccelerationStructureGeometryDataKHR<'a>,
         ) -> Self {
             self.geometry = geometry;
             self
         }
-        pub fn flags(mut self, flags: crate::vk::GeometryFlagsKHR) -> Self {
+        pub fn flags(mut self, flags: vk::GeometryFlagsKHR) -> Self {
             self.flags = flags;
             self
         }
@@ -1196,24 +1198,24 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct AccelerationStructureBuildGeometryInfoKHR<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *const core::ffi::c_void,
-        pub ty: crate::vk::AccelerationStructureTypeKHR,
-        pub flags: crate::vk::BuildAccelerationStructureFlagsKHR,
-        pub mode: crate::vk::BuildAccelerationStructureModeKHR,
-        pub src_acceleration_structure: crate::vk::AccelerationStructureKHR,
-        pub dst_acceleration_structure: crate::vk::AccelerationStructureKHR,
+        pub ty: vk::AccelerationStructureTypeKHR,
+        pub flags: vk::BuildAccelerationStructureFlagsKHR,
+        pub mode: vk::BuildAccelerationStructureModeKHR,
+        pub src_acceleration_structure: vk::AccelerationStructureKHR,
+        pub dst_acceleration_structure: vk::AccelerationStructureKHR,
         pub geometry_count: u32,
-        pub p_geometries: *const crate::vk::AccelerationStructureGeometryKHR<'a>,
-        pub pp_geometries: *const *const crate::vk::AccelerationStructureGeometryKHR<'a>,
-        pub scratch_data: crate::vk::DeviceOrHostAddressKHR,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub p_geometries: *const vk::AccelerationStructureGeometryKHR<'a>,
+        pub pp_geometries: *const *const vk::AccelerationStructureGeometryKHR<'a>,
+        pub scratch_data: vk::DeviceOrHostAddressKHR,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for AccelerationStructureBuildGeometryInfoKHR<'_> {}
     unsafe impl Sync for AccelerationStructureBuildGeometryInfoKHR<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for AccelerationStructureBuildGeometryInfoKHR<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::ACCELERATION_STRUCTURE_BUILD_GEOMETRY_INFO_KHR;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::ACCELERATION_STRUCTURE_BUILD_GEOMETRY_INFO_KHR;
     }
     impl<'a> Default for AccelerationStructureBuildGeometryInfoKHR<'a> {
         fn default() -> Self {
@@ -1229,46 +1231,40 @@ pub(crate) mod items {
                 p_geometries: Default::default(),
                 pp_geometries: Default::default(),
                 scratch_data: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
     impl<'a> AccelerationStructureBuildGeometryInfoKHR<'a> {
-        pub fn ty(mut self, ty: crate::vk::AccelerationStructureTypeKHR) -> Self {
+        pub fn ty(mut self, ty: vk::AccelerationStructureTypeKHR) -> Self {
             self.ty = ty;
             self
         }
-        pub fn flags(
-            mut self,
-            flags: crate::vk::BuildAccelerationStructureFlagsKHR,
-        ) -> Self {
+        pub fn flags(mut self, flags: vk::BuildAccelerationStructureFlagsKHR) -> Self {
             self.flags = flags;
             self
         }
-        pub fn mode(
-            mut self,
-            mode: crate::vk::BuildAccelerationStructureModeKHR,
-        ) -> Self {
+        pub fn mode(mut self, mode: vk::BuildAccelerationStructureModeKHR) -> Self {
             self.mode = mode;
             self
         }
         pub fn src_acceleration_structure(
             mut self,
-            src_acceleration_structure: crate::vk::AccelerationStructureKHR,
+            src_acceleration_structure: vk::AccelerationStructureKHR,
         ) -> Self {
             self.src_acceleration_structure = src_acceleration_structure;
             self
         }
         pub fn dst_acceleration_structure(
             mut self,
-            dst_acceleration_structure: crate::vk::AccelerationStructureKHR,
+            dst_acceleration_structure: vk::AccelerationStructureKHR,
         ) -> Self {
             self.dst_acceleration_structure = dst_acceleration_structure;
             self
         }
         pub fn geometries(
             mut self,
-            geometries: &'a [crate::vk::AccelerationStructureGeometryKHR<'a>],
+            geometries: &'a [vk::AccelerationStructureGeometryKHR<'a>],
         ) -> Self {
             self.geometry_count = geometries.len() as _;
             self.p_geometries = geometries.as_ptr();
@@ -1276,16 +1272,13 @@ pub(crate) mod items {
         }
         pub fn geometries_ptrs(
             mut self,
-            geometries_ptrs: &'a [&'a crate::vk::AccelerationStructureGeometryKHR<'a>],
+            geometries_ptrs: &'a [&'a vk::AccelerationStructureGeometryKHR<'a>],
         ) -> Self {
             self.geometry_count = geometries_ptrs.len() as _;
             self.pp_geometries = geometries_ptrs.as_ptr().cast();
             self
         }
-        pub fn scratch_data(
-            mut self,
-            scratch_data: crate::vk::DeviceOrHostAddressKHR,
-        ) -> Self {
+        pub fn scratch_data(mut self, scratch_data: vk::DeviceOrHostAddressKHR) -> Self {
             self.scratch_data = scratch_data;
             self
         }
@@ -1323,21 +1316,21 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct AccelerationStructureCreateInfoKHR<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *const core::ffi::c_void,
-        pub create_flags: crate::vk::AccelerationStructureCreateFlagsKHR,
-        pub buffer: crate::vk::Buffer,
-        pub offset: crate::vk::DeviceSize,
-        pub size: crate::vk::DeviceSize,
-        pub ty: crate::vk::AccelerationStructureTypeKHR,
-        pub device_address: crate::vk::DeviceAddress,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub create_flags: vk::AccelerationStructureCreateFlagsKHR,
+        pub buffer: vk::Buffer,
+        pub offset: vk::DeviceSize,
+        pub size: vk::DeviceSize,
+        pub ty: vk::AccelerationStructureTypeKHR,
+        pub device_address: vk::DeviceAddress,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for AccelerationStructureCreateInfoKHR<'_> {}
     unsafe impl Sync for AccelerationStructureCreateInfoKHR<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for AccelerationStructureCreateInfoKHR<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::ACCELERATION_STRUCTURE_CREATE_INFO_KHR;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::ACCELERATION_STRUCTURE_CREATE_INFO_KHR;
     }
     impl<'a> Default for AccelerationStructureCreateInfoKHR<'a> {
         fn default() -> Self {
@@ -1350,38 +1343,35 @@ pub(crate) mod items {
                 size: Default::default(),
                 ty: Default::default(),
                 device_address: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
     impl<'a> AccelerationStructureCreateInfoKHR<'a> {
         pub fn create_flags(
             mut self,
-            create_flags: crate::vk::AccelerationStructureCreateFlagsKHR,
+            create_flags: vk::AccelerationStructureCreateFlagsKHR,
         ) -> Self {
             self.create_flags = create_flags;
             self
         }
-        pub fn buffer(mut self, buffer: crate::vk::Buffer) -> Self {
+        pub fn buffer(mut self, buffer: vk::Buffer) -> Self {
             self.buffer = buffer;
             self
         }
-        pub fn offset(mut self, offset: crate::vk::DeviceSize) -> Self {
+        pub fn offset(mut self, offset: vk::DeviceSize) -> Self {
             self.offset = offset;
             self
         }
-        pub fn size(mut self, size: crate::vk::DeviceSize) -> Self {
+        pub fn size(mut self, size: vk::DeviceSize) -> Self {
             self.size = size;
             self
         }
-        pub fn ty(mut self, ty: crate::vk::AccelerationStructureTypeKHR) -> Self {
+        pub fn ty(mut self, ty: vk::AccelerationStructureTypeKHR) -> Self {
             self.ty = ty;
             self
         }
-        pub fn device_address(
-            mut self,
-            device_address: crate::vk::DeviceAddress,
-        ) -> Self {
+        pub fn device_address(mut self, device_address: vk::DeviceAddress) -> Self {
             self.device_address = device_address;
             self
         }
@@ -1449,7 +1439,7 @@ pub(crate) mod items {
     #[repr(C)]
     #[derive(Clone, Copy, Default)]
     pub struct AccelerationStructureInstanceKHR {
-        pub transform: crate::vk::TransformMatrixKHR,
+        pub transform: vk::TransformMatrixKHR,
         /**- `instanceCustomIndex` @ `0..24`
 - `mask` @ `24..32`*/
         pub bitfield0: u32,
@@ -1480,7 +1470,7 @@ pub(crate) mod items {
         }
     }
     impl AccelerationStructureInstanceKHR {
-        pub fn transform(mut self, transform: crate::vk::TransformMatrixKHR) -> Self {
+        pub fn transform(mut self, transform: vk::TransformMatrixKHR) -> Self {
             self.transform = transform;
             self
         }
@@ -1532,16 +1522,16 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct AccelerationStructureDeviceAddressInfoKHR<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *const core::ffi::c_void,
-        pub acceleration_structure: crate::vk::AccelerationStructureKHR,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub acceleration_structure: vk::AccelerationStructureKHR,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for AccelerationStructureDeviceAddressInfoKHR<'_> {}
     unsafe impl Sync for AccelerationStructureDeviceAddressInfoKHR<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for AccelerationStructureDeviceAddressInfoKHR<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::ACCELERATION_STRUCTURE_DEVICE_ADDRESS_INFO_KHR;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::ACCELERATION_STRUCTURE_DEVICE_ADDRESS_INFO_KHR;
     }
     impl<'a> Default for AccelerationStructureDeviceAddressInfoKHR<'a> {
         fn default() -> Self {
@@ -1549,14 +1539,14 @@ pub(crate) mod items {
                 s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
                 p_next: Default::default(),
                 acceleration_structure: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
     impl<'a> AccelerationStructureDeviceAddressInfoKHR<'a> {
         pub fn acceleration_structure(
             mut self,
-            acceleration_structure: crate::vk::AccelerationStructureKHR,
+            acceleration_structure: vk::AccelerationStructureKHR,
         ) -> Self {
             self.acceleration_structure = acceleration_structure;
             self
@@ -1566,16 +1556,16 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct AccelerationStructureVersionInfoKHR<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *const core::ffi::c_void,
         pub p_version_data: *const u8,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for AccelerationStructureVersionInfoKHR<'_> {}
     unsafe impl Sync for AccelerationStructureVersionInfoKHR<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for AccelerationStructureVersionInfoKHR<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::ACCELERATION_STRUCTURE_VERSION_INFO_KHR;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::ACCELERATION_STRUCTURE_VERSION_INFO_KHR;
     }
     impl<'a> Default for AccelerationStructureVersionInfoKHR<'a> {
         fn default() -> Self {
@@ -1583,7 +1573,7 @@ pub(crate) mod items {
                 s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
                 p_next: Default::default(),
                 p_version_data: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
@@ -1600,17 +1590,17 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct CopyAccelerationStructureInfoKHR<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *const core::ffi::c_void,
-        pub src: crate::vk::AccelerationStructureKHR,
-        pub dst: crate::vk::AccelerationStructureKHR,
-        pub mode: crate::vk::CopyAccelerationStructureModeKHR,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub src: vk::AccelerationStructureKHR,
+        pub dst: vk::AccelerationStructureKHR,
+        pub mode: vk::CopyAccelerationStructureModeKHR,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for CopyAccelerationStructureInfoKHR<'_> {}
     unsafe impl Sync for CopyAccelerationStructureInfoKHR<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for CopyAccelerationStructureInfoKHR<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::COPY_ACCELERATION_STRUCTURE_INFO_KHR;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::COPY_ACCELERATION_STRUCTURE_INFO_KHR;
     }
     impl<'a> Default for CopyAccelerationStructureInfoKHR<'a> {
         fn default() -> Self {
@@ -1620,23 +1610,20 @@ pub(crate) mod items {
                 src: Default::default(),
                 dst: Default::default(),
                 mode: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
     impl<'a> CopyAccelerationStructureInfoKHR<'a> {
-        pub fn src(mut self, src: crate::vk::AccelerationStructureKHR) -> Self {
+        pub fn src(mut self, src: vk::AccelerationStructureKHR) -> Self {
             self.src = src;
             self
         }
-        pub fn dst(mut self, dst: crate::vk::AccelerationStructureKHR) -> Self {
+        pub fn dst(mut self, dst: vk::AccelerationStructureKHR) -> Self {
             self.dst = dst;
             self
         }
-        pub fn mode(
-            mut self,
-            mode: crate::vk::CopyAccelerationStructureModeKHR,
-        ) -> Self {
+        pub fn mode(mut self, mode: vk::CopyAccelerationStructureModeKHR) -> Self {
             self.mode = mode;
             self
         }
@@ -1645,18 +1632,18 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct CopyAccelerationStructureToMemoryInfoKHR<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *const core::ffi::c_void,
-        pub src: crate::vk::AccelerationStructureKHR,
-        pub dst: crate::vk::DeviceOrHostAddressKHR,
-        pub mode: crate::vk::CopyAccelerationStructureModeKHR,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub src: vk::AccelerationStructureKHR,
+        pub dst: vk::DeviceOrHostAddressKHR,
+        pub mode: vk::CopyAccelerationStructureModeKHR,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for CopyAccelerationStructureToMemoryInfoKHR<'_> {}
     unsafe impl Sync for CopyAccelerationStructureToMemoryInfoKHR<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for CopyAccelerationStructureToMemoryInfoKHR<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::COPY_ACCELERATION_STRUCTURE_TO_MEMORY_INFO_KHR;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::COPY_ACCELERATION_STRUCTURE_TO_MEMORY_INFO_KHR;
     }
     impl<'a> Default for CopyAccelerationStructureToMemoryInfoKHR<'a> {
         fn default() -> Self {
@@ -1666,23 +1653,20 @@ pub(crate) mod items {
                 src: Default::default(),
                 dst: Default::default(),
                 mode: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
     impl<'a> CopyAccelerationStructureToMemoryInfoKHR<'a> {
-        pub fn src(mut self, src: crate::vk::AccelerationStructureKHR) -> Self {
+        pub fn src(mut self, src: vk::AccelerationStructureKHR) -> Self {
             self.src = src;
             self
         }
-        pub fn dst(mut self, dst: crate::vk::DeviceOrHostAddressKHR) -> Self {
+        pub fn dst(mut self, dst: vk::DeviceOrHostAddressKHR) -> Self {
             self.dst = dst;
             self
         }
-        pub fn mode(
-            mut self,
-            mode: crate::vk::CopyAccelerationStructureModeKHR,
-        ) -> Self {
+        pub fn mode(mut self, mode: vk::CopyAccelerationStructureModeKHR) -> Self {
             self.mode = mode;
             self
         }
@@ -1691,18 +1675,18 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct CopyMemoryToAccelerationStructureInfoKHR<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *const core::ffi::c_void,
-        pub src: crate::vk::DeviceOrHostAddressConstKHR,
-        pub dst: crate::vk::AccelerationStructureKHR,
-        pub mode: crate::vk::CopyAccelerationStructureModeKHR,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub src: vk::DeviceOrHostAddressConstKHR,
+        pub dst: vk::AccelerationStructureKHR,
+        pub mode: vk::CopyAccelerationStructureModeKHR,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for CopyMemoryToAccelerationStructureInfoKHR<'_> {}
     unsafe impl Sync for CopyMemoryToAccelerationStructureInfoKHR<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for CopyMemoryToAccelerationStructureInfoKHR<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::COPY_MEMORY_TO_ACCELERATION_STRUCTURE_INFO_KHR;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::COPY_MEMORY_TO_ACCELERATION_STRUCTURE_INFO_KHR;
     }
     impl<'a> Default for CopyMemoryToAccelerationStructureInfoKHR<'a> {
         fn default() -> Self {
@@ -1712,23 +1696,20 @@ pub(crate) mod items {
                 src: Default::default(),
                 dst: Default::default(),
                 mode: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
     impl<'a> CopyMemoryToAccelerationStructureInfoKHR<'a> {
-        pub fn src(mut self, src: crate::vk::DeviceOrHostAddressConstKHR) -> Self {
+        pub fn src(mut self, src: vk::DeviceOrHostAddressConstKHR) -> Self {
             self.src = src;
             self
         }
-        pub fn dst(mut self, dst: crate::vk::AccelerationStructureKHR) -> Self {
+        pub fn dst(mut self, dst: vk::AccelerationStructureKHR) -> Self {
             self.dst = dst;
             self
         }
-        pub fn mode(
-            mut self,
-            mode: crate::vk::CopyAccelerationStructureModeKHR,
-        ) -> Self {
+        pub fn mode(mut self, mode: vk::CopyAccelerationStructureModeKHR) -> Self {
             self.mode = mode;
             self
         }
@@ -1737,18 +1718,18 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct AccelerationStructureBuildSizesInfoKHR<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
-        pub acceleration_structure_size: crate::vk::DeviceSize,
-        pub update_scratch_size: crate::vk::DeviceSize,
-        pub build_scratch_size: crate::vk::DeviceSize,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub acceleration_structure_size: vk::DeviceSize,
+        pub update_scratch_size: vk::DeviceSize,
+        pub build_scratch_size: vk::DeviceSize,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for AccelerationStructureBuildSizesInfoKHR<'_> {}
     unsafe impl Sync for AccelerationStructureBuildSizesInfoKHR<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for AccelerationStructureBuildSizesInfoKHR<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::ACCELERATION_STRUCTURE_BUILD_SIZES_INFO_KHR;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::ACCELERATION_STRUCTURE_BUILD_SIZES_INFO_KHR;
     }
     impl<'a> Default for AccelerationStructureBuildSizesInfoKHR<'a> {
         fn default() -> Self {
@@ -1758,29 +1739,26 @@ pub(crate) mod items {
                 acceleration_structure_size: Default::default(),
                 update_scratch_size: Default::default(),
                 build_scratch_size: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
     impl<'a> AccelerationStructureBuildSizesInfoKHR<'a> {
         pub fn acceleration_structure_size(
             mut self,
-            acceleration_structure_size: crate::vk::DeviceSize,
+            acceleration_structure_size: vk::DeviceSize,
         ) -> Self {
             self.acceleration_structure_size = acceleration_structure_size;
             self
         }
         pub fn update_scratch_size(
             mut self,
-            update_scratch_size: crate::vk::DeviceSize,
+            update_scratch_size: vk::DeviceSize,
         ) -> Self {
             self.update_scratch_size = update_scratch_size;
             self
         }
-        pub fn build_scratch_size(
-            mut self,
-            build_scratch_size: crate::vk::DeviceSize,
-        ) -> Self {
+        pub fn build_scratch_size(mut self, build_scratch_size: vk::DeviceSize) -> Self {
             self.build_scratch_size = build_scratch_size;
             self
         }
@@ -1788,7 +1766,7 @@ pub(crate) mod items {
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub union DeviceOrHostAddressKHR {
-        pub device_address: crate::vk::DeviceAddress,
+        pub device_address: vk::DeviceAddress,
         pub host_address: *mut core::ffi::c_void,
     }
     impl Default for DeviceOrHostAddressKHR {
@@ -1805,7 +1783,7 @@ pub(crate) mod items {
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub union DeviceOrHostAddressConstKHR {
-        pub device_address: crate::vk::DeviceAddress,
+        pub device_address: vk::DeviceAddress,
         pub host_address: *const core::ffi::c_void,
     }
     impl Default for DeviceOrHostAddressConstKHR {
@@ -1822,9 +1800,9 @@ pub(crate) mod items {
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub union AccelerationStructureGeometryDataKHR<'a> {
-        pub triangles: crate::vk::AccelerationStructureGeometryTrianglesDataKHR<'a>,
-        pub aabbs: crate::vk::AccelerationStructureGeometryAabbsDataKHR<'a>,
-        pub instances: crate::vk::AccelerationStructureGeometryInstancesDataKHR<'a>,
+        pub triangles: vk::AccelerationStructureGeometryTrianglesDataKHR<'a>,
+        pub aabbs: vk::AccelerationStructureGeometryAabbsDataKHR<'a>,
+        pub instances: vk::AccelerationStructureGeometryInstancesDataKHR<'a>,
     }
     impl<'a> Default for AccelerationStructureGeometryDataKHR<'a> {
         fn default() -> Self {
@@ -2458,8 +2436,8 @@ pub(crate) mod items {
     #[repr(transparent)]
     #[derive(Eq, PartialEq, Ord, PartialOrd, Clone, Copy, Hash, Default)]
     pub struct AccelerationStructureKHR(u64);
-    impl crate::Handle for AccelerationStructureKHR {
-        const TYPE: crate::vk::ObjectType = crate::vk::ObjectType::ACCELERATION_STRUCTURE_KHR;
+    impl Handle for AccelerationStructureKHR {
+        const TYPE: vk::ObjectType = vk::ObjectType::ACCELERATION_STRUCTURE_KHR;
         fn as_raw(self) -> u64 {
             self.0
         }
@@ -2472,107 +2450,108 @@ pub(crate) mod items {
             Self(0)
         }
     }
-    impl core::fmt::Pointer for AccelerationStructureKHR {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+    impl fmt::Pointer for AccelerationStructureKHR {
+        fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
             write!(f, "0x{:x}", self.0)
         }
     }
-    impl core::fmt::Debug for AccelerationStructureKHR {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+    #[cfg(feature = "debug")]
+    impl fmtdebug::Debug for AccelerationStructureKHR {
+        fn fmt(&self, f: &mut fmtdebug::Formatter) -> fmtdebug::Result {
             write!(f, "0x{:x}", self.0)
         }
     }
     pub type PFN_vkDestroyAccelerationStructureKHR = unsafe extern "system" fn(
-        device: crate::vk::Device,
-        acceleration_structure: crate::vk::AccelerationStructureKHR,
-        p_allocator: *const crate::vk::AllocationCallbacks<'_>,
+        device: vk::Device,
+        acceleration_structure: vk::AccelerationStructureKHR,
+        p_allocator: *const vk::AllocationCallbacks<'_>,
     );
     pub type PFN_vkCmdCopyAccelerationStructureKHR = unsafe extern "system" fn(
-        command_buffer: crate::vk::CommandBuffer,
-        p_info: *const crate::vk::CopyAccelerationStructureInfoKHR<'_>,
+        command_buffer: vk::CommandBuffer,
+        p_info: *const vk::CopyAccelerationStructureInfoKHR<'_>,
     );
     pub type PFN_vkCopyAccelerationStructureKHR = unsafe extern "system" fn(
-        device: crate::vk::Device,
-        deferred_operation: crate::vk::DeferredOperationKHR,
-        p_info: *const crate::vk::CopyAccelerationStructureInfoKHR<'_>,
-    ) -> crate::vk::Result;
+        device: vk::Device,
+        deferred_operation: vk::DeferredOperationKHR,
+        p_info: *const vk::CopyAccelerationStructureInfoKHR<'_>,
+    ) -> vk::Result;
     pub type PFN_vkCmdCopyAccelerationStructureToMemoryKHR = unsafe extern "system" fn(
-        command_buffer: crate::vk::CommandBuffer,
-        p_info: *const crate::vk::CopyAccelerationStructureToMemoryInfoKHR<'_>,
+        command_buffer: vk::CommandBuffer,
+        p_info: *const vk::CopyAccelerationStructureToMemoryInfoKHR<'_>,
     );
     pub type PFN_vkCopyAccelerationStructureToMemoryKHR = unsafe extern "system" fn(
-        device: crate::vk::Device,
-        deferred_operation: crate::vk::DeferredOperationKHR,
-        p_info: *const crate::vk::CopyAccelerationStructureToMemoryInfoKHR<'_>,
-    ) -> crate::vk::Result;
+        device: vk::Device,
+        deferred_operation: vk::DeferredOperationKHR,
+        p_info: *const vk::CopyAccelerationStructureToMemoryInfoKHR<'_>,
+    ) -> vk::Result;
     pub type PFN_vkCmdCopyMemoryToAccelerationStructureKHR = unsafe extern "system" fn(
-        command_buffer: crate::vk::CommandBuffer,
-        p_info: *const crate::vk::CopyMemoryToAccelerationStructureInfoKHR<'_>,
+        command_buffer: vk::CommandBuffer,
+        p_info: *const vk::CopyMemoryToAccelerationStructureInfoKHR<'_>,
     );
     pub type PFN_vkCopyMemoryToAccelerationStructureKHR = unsafe extern "system" fn(
-        device: crate::vk::Device,
-        deferred_operation: crate::vk::DeferredOperationKHR,
-        p_info: *const crate::vk::CopyMemoryToAccelerationStructureInfoKHR<'_>,
-    ) -> crate::vk::Result;
+        device: vk::Device,
+        deferred_operation: vk::DeferredOperationKHR,
+        p_info: *const vk::CopyMemoryToAccelerationStructureInfoKHR<'_>,
+    ) -> vk::Result;
     pub type PFN_vkCmdWriteAccelerationStructuresPropertiesKHR = unsafe extern "system" fn(
-        command_buffer: crate::vk::CommandBuffer,
+        command_buffer: vk::CommandBuffer,
         acceleration_structure_count: u32,
-        p_acceleration_structures: *const crate::vk::AccelerationStructureKHR,
-        query_type: crate::vk::QueryType,
-        query_pool: crate::vk::QueryPool,
+        p_acceleration_structures: *const vk::AccelerationStructureKHR,
+        query_type: vk::QueryType,
+        query_pool: vk::QueryPool,
         first_query: u32,
     );
     pub type PFN_vkWriteAccelerationStructuresPropertiesKHR = unsafe extern "system" fn(
-        device: crate::vk::Device,
+        device: vk::Device,
         acceleration_structure_count: u32,
-        p_acceleration_structures: *const crate::vk::AccelerationStructureKHR,
-        query_type: crate::vk::QueryType,
+        p_acceleration_structures: *const vk::AccelerationStructureKHR,
+        query_type: vk::QueryType,
         data_size: usize,
         p_data: *mut core::ffi::c_void,
         stride: usize,
-    ) -> crate::vk::Result;
+    ) -> vk::Result;
     pub type PFN_vkGetDeviceAccelerationStructureCompatibilityKHR = unsafe extern "system" fn(
-        device: crate::vk::Device,
-        p_version_info: *const crate::vk::AccelerationStructureVersionInfoKHR<'_>,
-        p_compatibility: *mut crate::vk::AccelerationStructureCompatibilityKHR,
+        device: vk::Device,
+        p_version_info: *const vk::AccelerationStructureVersionInfoKHR<'_>,
+        p_compatibility: *mut vk::AccelerationStructureCompatibilityKHR,
     );
     pub type PFN_vkCreateAccelerationStructureKHR = unsafe extern "system" fn(
-        device: crate::vk::Device,
-        p_create_info: *const crate::vk::AccelerationStructureCreateInfoKHR<'_>,
-        p_allocator: *const crate::vk::AllocationCallbacks<'_>,
-        p_acceleration_structure: *mut crate::vk::AccelerationStructureKHR,
-    ) -> crate::vk::Result;
+        device: vk::Device,
+        p_create_info: *const vk::AccelerationStructureCreateInfoKHR<'_>,
+        p_allocator: *const vk::AllocationCallbacks<'_>,
+        p_acceleration_structure: *mut vk::AccelerationStructureKHR,
+    ) -> vk::Result;
     pub type PFN_vkCmdBuildAccelerationStructuresKHR = unsafe extern "system" fn(
-        command_buffer: crate::vk::CommandBuffer,
+        command_buffer: vk::CommandBuffer,
         info_count: u32,
-        p_infos: *const crate::vk::AccelerationStructureBuildGeometryInfoKHR<'_>,
-        pp_build_range_infos: *const *const crate::vk::AccelerationStructureBuildRangeInfoKHR,
+        p_infos: *const vk::AccelerationStructureBuildGeometryInfoKHR<'_>,
+        pp_build_range_infos: *const *const vk::AccelerationStructureBuildRangeInfoKHR,
     );
     pub type PFN_vkCmdBuildAccelerationStructuresIndirectKHR = unsafe extern "system" fn(
-        command_buffer: crate::vk::CommandBuffer,
+        command_buffer: vk::CommandBuffer,
         info_count: u32,
-        p_infos: *const crate::vk::AccelerationStructureBuildGeometryInfoKHR<'_>,
-        p_indirect_device_addresses: *const crate::vk::DeviceAddress,
+        p_infos: *const vk::AccelerationStructureBuildGeometryInfoKHR<'_>,
+        p_indirect_device_addresses: *const vk::DeviceAddress,
         p_indirect_strides: *const u32,
         pp_max_primitive_counts: *const *const u32,
     );
     pub type PFN_vkBuildAccelerationStructuresKHR = unsafe extern "system" fn(
-        device: crate::vk::Device,
-        deferred_operation: crate::vk::DeferredOperationKHR,
+        device: vk::Device,
+        deferred_operation: vk::DeferredOperationKHR,
         info_count: u32,
-        p_infos: *const crate::vk::AccelerationStructureBuildGeometryInfoKHR<'_>,
-        pp_build_range_infos: *const *const crate::vk::AccelerationStructureBuildRangeInfoKHR,
-    ) -> crate::vk::Result;
+        p_infos: *const vk::AccelerationStructureBuildGeometryInfoKHR<'_>,
+        pp_build_range_infos: *const *const vk::AccelerationStructureBuildRangeInfoKHR,
+    ) -> vk::Result;
     pub type PFN_vkGetAccelerationStructureDeviceAddressKHR = unsafe extern "system" fn(
-        device: crate::vk::Device,
-        p_info: *const crate::vk::AccelerationStructureDeviceAddressInfoKHR<'_>,
-    ) -> crate::vk::DeviceAddress;
+        device: vk::Device,
+        p_info: *const vk::AccelerationStructureDeviceAddressInfoKHR<'_>,
+    ) -> vk::DeviceAddress;
     pub type PFN_vkGetAccelerationStructureBuildSizesKHR = unsafe extern "system" fn(
-        device: crate::vk::Device,
-        build_type: crate::vk::AccelerationStructureBuildTypeKHR,
-        p_build_info: *const crate::vk::AccelerationStructureBuildGeometryInfoKHR<'_>,
+        device: vk::Device,
+        build_type: vk::AccelerationStructureBuildTypeKHR,
+        p_build_info: *const vk::AccelerationStructureBuildGeometryInfoKHR<'_>,
         p_max_primitive_counts: *const u32,
-        p_size_info: *mut crate::vk::AccelerationStructureBuildSizesInfoKHR<'_>,
+        p_size_info: *mut vk::AccelerationStructureBuildSizesInfoKHR<'_>,
     );
 }
 pub use items::*;

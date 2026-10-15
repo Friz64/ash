@@ -2,71 +2,75 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_attachment_feedback_loop_layout.html) · Extension `VK_EXT_attachment_feedback_loop_layout`
 #![doc(alias = "VK_EXT_attachment_feedback_loop_layout")]
+use crate::vk;
+use core::ffi::CStr;
 ///Provided by [VK_EXT_attachment_feedback_loop_layout](crate::ext::attachment_feedback_loop_layout)
-impl crate::vk::ImageLayout {
+impl vk::ImageLayout {
     pub const ATTACHMENT_FEEDBACK_LOOP_OPTIMAL_EXT: Self = Self(1000339000);
 }
 ///Provided by [VK_EXT_attachment_feedback_loop_layout](crate::ext::attachment_feedback_loop_layout)
-impl crate::vk::StructureType {
+impl vk::StructureType {
     pub const PHYSICAL_DEVICE_ATTACHMENT_FEEDBACK_LOOP_LAYOUT_FEATURES_EXT: Self = Self(
         1000339000,
     );
 }
-///Provided by [VK_EXT_attachment_feedback_loop_layout](crate::ext::attachment_feedback_loop_layout)
-impl crate::vk::ImageUsageFlags {
+///Provided by [Vulkan 1.0](crate::vk1_0)
+impl vk::ImageUsageFlags {
     pub const ATTACHMENT_FEEDBACK_LOOP_EXT: Self = Self(
-        crate::vk::ImageUsageFlagBits::ATTACHMENT_FEEDBACK_LOOP_EXT.0,
+        vk::ImageUsageFlagBits::ATTACHMENT_FEEDBACK_LOOP_EXT.0,
     );
 }
-///Provided by [VK_EXT_attachment_feedback_loop_layout](crate::ext::attachment_feedback_loop_layout)
-impl crate::vk::ImageUsageFlagBits {
+///Provided by [Vulkan 1.0](crate::vk1_0)
+impl vk::ImageUsageFlagBits {
     pub const ATTACHMENT_FEEDBACK_LOOP_EXT: Self = Self(1 << 19);
 }
-///Provided by [VK_EXT_attachment_feedback_loop_layout](crate::ext::attachment_feedback_loop_layout)
-impl crate::vk::PipelineCreateFlags {
+///Provided by [Vulkan 1.0](crate::vk1_0)
+impl vk::PipelineCreateFlags {
     pub const COLOR_ATTACHMENT_FEEDBACK_LOOP_EXT: Self = Self(
-        crate::vk::PipelineCreateFlagBits::COLOR_ATTACHMENT_FEEDBACK_LOOP_EXT.0,
+        vk::PipelineCreateFlagBits::COLOR_ATTACHMENT_FEEDBACK_LOOP_EXT.0,
     );
     pub const DEPTH_STENCIL_ATTACHMENT_FEEDBACK_LOOP_EXT: Self = Self(
-        crate::vk::PipelineCreateFlagBits::DEPTH_STENCIL_ATTACHMENT_FEEDBACK_LOOP_EXT.0,
+        vk::PipelineCreateFlagBits::DEPTH_STENCIL_ATTACHMENT_FEEDBACK_LOOP_EXT.0,
     );
 }
-///Provided by [VK_EXT_attachment_feedback_loop_layout](crate::ext::attachment_feedback_loop_layout)
-impl crate::vk::PipelineCreateFlagBits {
+///Provided by [Vulkan 1.0](crate::vk1_0)
+impl vk::PipelineCreateFlagBits {
     pub const COLOR_ATTACHMENT_FEEDBACK_LOOP_EXT: Self = Self(1 << 25);
     pub const DEPTH_STENCIL_ATTACHMENT_FEEDBACK_LOOP_EXT: Self = Self(1 << 26);
 }
-///Provided by [VK_EXT_attachment_feedback_loop_layout](crate::ext::attachment_feedback_loop_layout)
-impl crate::vk::DependencyFlags {
+///Provided by [Vulkan 1.0](crate::vk1_0)
+impl vk::DependencyFlags {
     pub const FEEDBACK_LOOP_EXT: Self = Self(
-        crate::vk::DependencyFlagBits::FEEDBACK_LOOP_EXT.0,
+        vk::DependencyFlagBits::FEEDBACK_LOOP_EXT.0,
     );
 }
-///Provided by [VK_EXT_attachment_feedback_loop_layout](crate::ext::attachment_feedback_loop_layout)
-impl crate::vk::DependencyFlagBits {
+///Provided by [Vulkan 1.0](crate::vk1_0)
+impl vk::DependencyFlagBits {
     pub const FEEDBACK_LOOP_EXT: Self = Self(1 << 3);
 }
 pub const SPEC_VERSION: u32 = 2;
-pub const NAME: &core::ffi::CStr = c"VK_EXT_attachment_feedback_loop_layout";
+pub const NAME: &CStr = c"VK_EXT_attachment_feedback_loop_layout";
 pub(crate) mod items {
+    use core::marker::PhantomData;
+    use crate::vk;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceAttachmentFeedbackLoopLayoutFeaturesEXT<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
-        pub attachment_feedback_loop_layout: crate::vk::Bool32,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub attachment_feedback_loop_layout: vk::Bool32,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for PhysicalDeviceAttachmentFeedbackLoopLayoutFeaturesEXT<'_> {}
     unsafe impl Sync for PhysicalDeviceAttachmentFeedbackLoopLayoutFeaturesEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceAttachmentFeedbackLoopLayoutFeaturesEXT<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_ATTACHMENT_FEEDBACK_LOOP_LAYOUT_FEATURES_EXT;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PHYSICAL_DEVICE_ATTACHMENT_FEEDBACK_LOOP_LAYOUT_FEATURES_EXT;
     }
-    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+    unsafe impl<'a> crate::Extends<vk::PhysicalDeviceFeatures2<'_>>
     for PhysicalDeviceAttachmentFeedbackLoopLayoutFeaturesEXT<'a> {}
-    unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+    unsafe impl<'a> crate::Extends<vk::DeviceCreateInfo<'_>>
     for PhysicalDeviceAttachmentFeedbackLoopLayoutFeaturesEXT<'a> {}
     impl<'a> Default for PhysicalDeviceAttachmentFeedbackLoopLayoutFeaturesEXT<'a> {
         fn default() -> Self {
@@ -74,7 +78,7 @@ pub(crate) mod items {
                 s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
                 p_next: Default::default(),
                 attachment_feedback_loop_layout: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }

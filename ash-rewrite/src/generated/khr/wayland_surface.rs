@@ -2,34 +2,36 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_wayland_surface.html) · Extension `VK_KHR_wayland_surface`
 #![doc(alias = "VK_KHR_wayland_surface")]
+use crate::vk;
+use core::ffi::CStr;
+use crate::VkResult;
+use core::ffi::c_void;
 ///Provided by [VK_KHR_wayland_surface](crate::khr::wayland_surface)
-impl crate::vk::StructureType {
+impl vk::StructureType {
     pub const WAYLAND_SURFACE_CREATE_INFO_KHR: Self = Self(1000006000);
 }
+pub const SPEC_VERSION: u32 = 6;
+pub const NAME: &CStr = c"VK_KHR_wayland_surface";
 #[derive(Clone)]
 pub struct InstanceFn {
-    pub create_wayland_surface: crate::vk::PFN_vkCreateWaylandSurfaceKHR,
-    pub get_physical_device_wayland_presentation_support: crate::vk::PFN_vkGetPhysicalDeviceWaylandPresentationSupportKHR,
+    pub create_wayland_surface: vk::PFN_vkCreateWaylandSurfaceKHR,
+    pub get_physical_device_wayland_presentation_support: vk::PFN_vkGetPhysicalDeviceWaylandPresentationSupportKHR,
 }
 unsafe impl Send for InstanceFn {}
 unsafe impl Sync for InstanceFn {}
 impl InstanceFn {
-    pub fn load<F: FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void>(
-        mut f: F,
-    ) -> Self {
+    pub fn load<F: FnMut(&CStr) -> *const c_void>(mut f: F) -> Self {
         Self::load_erased(&mut f)
     }
-    fn load_erased(
-        _f: &mut dyn FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void,
-    ) -> Self {
+    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const c_void) -> Self {
         Self {
             create_wayland_surface: unsafe {
                 unsafe extern "system" fn create_wayland_surface(
-                    _: crate::vk::Instance,
-                    _: *const crate::vk::WaylandSurfaceCreateInfoKHR<'_>,
-                    _: *const crate::vk::AllocationCallbacks<'_>,
-                    _: *mut crate::vk::SurfaceKHR,
-                ) -> crate::vk::Result {
+                    _: vk::Instance,
+                    _: *const vk::WaylandSurfaceCreateInfoKHR<'_>,
+                    _: *const vk::AllocationCallbacks<'_>,
+                    _: *mut vk::SurfaceKHR,
+                ) -> vk::Result {
                     panic!("unable to load vkCreateWaylandSurfaceKHR")
                 }
                 let val = _f(c"vkCreateWaylandSurfaceKHR");
@@ -41,10 +43,10 @@ impl InstanceFn {
             },
             get_physical_device_wayland_presentation_support: unsafe {
                 unsafe extern "system" fn get_physical_device_wayland_presentation_support(
-                    _: crate::vk::PhysicalDevice,
+                    _: vk::PhysicalDevice,
                     _: u32,
                     _: *mut crate::platform_types::wl_display,
-                ) -> crate::vk::Bool32 {
+                ) -> vk::Bool32 {
                     panic!(
                         "unable to load vkGetPhysicalDeviceWaylandPresentationSupportKHR"
                     )
@@ -84,9 +86,9 @@ impl Instance {
     #[inline]
     pub unsafe fn create_wayland_surface(
         &self,
-        create_info: &crate::vk::WaylandSurfaceCreateInfoKHR<'_>,
-        allocator: Option<&crate::vk::AllocationCallbacks<'_>>,
-    ) -> crate::VkResult<crate::vk::SurfaceKHR> {
+        create_info: &vk::WaylandSurfaceCreateInfoKHR<'_>,
+        allocator: Option<&vk::AllocationCallbacks<'_>>,
+    ) -> VkResult<vk::SurfaceKHR> {
         let mut surface = core::mem::MaybeUninit::uninit();
         (self
             .fp
@@ -105,7 +107,7 @@ impl Instance {
     #[inline]
     pub unsafe fn get_physical_device_wayland_presentation_support(
         &self,
-        physical_device: crate::vk::PhysicalDevice,
+        physical_device: vk::PhysicalDevice,
         queue_family_index: u32,
     ) -> crate::platform_types::wl_display {
         let mut display = core::mem::MaybeUninit::uninit();
@@ -119,24 +121,24 @@ impl Instance {
         display.assume_init()
     }
 }
-pub const SPEC_VERSION: u32 = 6;
-pub const NAME: &core::ffi::CStr = c"VK_KHR_wayland_surface";
 pub(crate) mod items {
+    use core::marker::PhantomData;
+    use crate::vk;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct WaylandSurfaceCreateInfoKHR<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *const core::ffi::c_void,
-        pub flags: crate::vk::WaylandSurfaceCreateFlagsKHR,
+        pub flags: vk::WaylandSurfaceCreateFlagsKHR,
         pub display: *mut crate::platform_types::wl_display,
         pub surface: *mut crate::platform_types::wl_surface,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for WaylandSurfaceCreateInfoKHR<'_> {}
     unsafe impl Sync for WaylandSurfaceCreateInfoKHR<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for WaylandSurfaceCreateInfoKHR<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::WAYLAND_SURFACE_CREATE_INFO_KHR;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::WAYLAND_SURFACE_CREATE_INFO_KHR;
     }
     impl<'a> Default for WaylandSurfaceCreateInfoKHR<'a> {
         fn default() -> Self {
@@ -146,12 +148,12 @@ pub(crate) mod items {
                 flags: Default::default(),
                 display: Default::default(),
                 surface: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
     impl<'a> WaylandSurfaceCreateInfoKHR<'a> {
-        pub fn flags(mut self, flags: crate::vk::WaylandSurfaceCreateFlagsKHR) -> Self {
+        pub fn flags(mut self, flags: vk::WaylandSurfaceCreateFlagsKHR) -> Self {
             self.flags = flags;
             self
         }
@@ -239,15 +241,15 @@ pub(crate) mod items {
         }
     }
     pub type PFN_vkCreateWaylandSurfaceKHR = unsafe extern "system" fn(
-        instance: crate::vk::Instance,
-        p_create_info: *const crate::vk::WaylandSurfaceCreateInfoKHR<'_>,
-        p_allocator: *const crate::vk::AllocationCallbacks<'_>,
-        p_surface: *mut crate::vk::SurfaceKHR,
-    ) -> crate::vk::Result;
+        instance: vk::Instance,
+        p_create_info: *const vk::WaylandSurfaceCreateInfoKHR<'_>,
+        p_allocator: *const vk::AllocationCallbacks<'_>,
+        p_surface: *mut vk::SurfaceKHR,
+    ) -> vk::Result;
     pub type PFN_vkGetPhysicalDeviceWaylandPresentationSupportKHR = unsafe extern "system" fn(
-        physical_device: crate::vk::PhysicalDevice,
+        physical_device: vk::PhysicalDevice,
         queue_family_index: u32,
         display: *mut crate::platform_types::wl_display,
-    ) -> crate::vk::Bool32;
+    ) -> vk::Bool32;
 }
 pub use items::*;

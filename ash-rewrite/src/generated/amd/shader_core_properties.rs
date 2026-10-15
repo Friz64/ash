@@ -2,18 +2,22 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_AMD_shader_core_properties.html) · Extension `VK_AMD_shader_core_properties`
 #![doc(alias = "VK_AMD_shader_core_properties")]
+use crate::vk;
+use core::ffi::CStr;
 ///Provided by [VK_AMD_shader_core_properties](crate::amd::shader_core_properties)
-impl crate::vk::StructureType {
+impl vk::StructureType {
     pub const PHYSICAL_DEVICE_SHADER_CORE_PROPERTIES_AMD: Self = Self(1000185000);
 }
 pub const SPEC_VERSION: u32 = 2;
-pub const NAME: &core::ffi::CStr = c"VK_AMD_shader_core_properties";
+pub const NAME: &CStr = c"VK_AMD_shader_core_properties";
 pub(crate) mod items {
+    use core::marker::PhantomData;
+    use crate::vk;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceShaderCorePropertiesAMD<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
         pub shader_engine_count: u32,
         pub shader_arrays_per_engine_count: u32,
@@ -29,15 +33,15 @@ pub(crate) mod items {
         pub min_vgpr_allocation: u32,
         pub max_vgpr_allocation: u32,
         pub vgpr_allocation_granularity: u32,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for PhysicalDeviceShaderCorePropertiesAMD<'_> {}
     unsafe impl Sync for PhysicalDeviceShaderCorePropertiesAMD<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceShaderCorePropertiesAMD<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_SHADER_CORE_PROPERTIES_AMD;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PHYSICAL_DEVICE_SHADER_CORE_PROPERTIES_AMD;
     }
-    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceProperties2<'_>>
+    unsafe impl<'a> crate::Extends<vk::PhysicalDeviceProperties2<'_>>
     for PhysicalDeviceShaderCorePropertiesAMD<'a> {}
     impl<'a> Default for PhysicalDeviceShaderCorePropertiesAMD<'a> {
         fn default() -> Self {
@@ -58,7 +62,7 @@ pub(crate) mod items {
                 min_vgpr_allocation: Default::default(),
                 max_vgpr_allocation: Default::default(),
                 vgpr_allocation_granularity: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }

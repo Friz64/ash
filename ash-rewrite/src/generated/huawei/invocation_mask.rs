@@ -2,61 +2,62 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_HUAWEI_invocation_mask.html) · Extension `VK_HUAWEI_invocation_mask`
 #![doc(alias = "VK_HUAWEI_invocation_mask")]
+use crate::vk;
+use core::ffi::CStr;
+use core::ffi::c_void;
 ///Provided by [VK_HUAWEI_invocation_mask](crate::huawei::invocation_mask)
-impl crate::vk::StructureType {
+impl vk::StructureType {
     pub const PHYSICAL_DEVICE_INVOCATION_MASK_FEATURES_HUAWEI: Self = Self(1000370000);
 }
-///Provided by [VK_HUAWEI_invocation_mask](crate::huawei::invocation_mask)
-impl crate::vk::ImageUsageFlags {
+///Provided by [Vulkan 1.0](crate::vk1_0)
+impl vk::ImageUsageFlags {
     pub const INVOCATION_MASK_HUAWEI: Self = Self(
-        crate::vk::ImageUsageFlagBits::INVOCATION_MASK_HUAWEI.0,
+        vk::ImageUsageFlagBits::INVOCATION_MASK_HUAWEI.0,
     );
 }
-///Provided by [VK_HUAWEI_invocation_mask](crate::huawei::invocation_mask)
-impl crate::vk::ImageUsageFlagBits {
+///Provided by [Vulkan 1.0](crate::vk1_0)
+impl vk::ImageUsageFlagBits {
     pub const INVOCATION_MASK_HUAWEI: Self = Self(1 << 18);
 }
-///Provided by [VK_HUAWEI_invocation_mask](crate::huawei::invocation_mask)
-impl crate::vk::AccessFlags2 {
+///Provided by [Vulkan 1.3](crate::vk1_3)
+impl vk::AccessFlags2 {
     pub const INVOCATION_MASK_READ_HUAWEI: Self = Self(
-        crate::vk::AccessFlagBits2::INVOCATION_MASK_READ_HUAWEI.0,
+        vk::AccessFlagBits2::INVOCATION_MASK_READ_HUAWEI.0,
     );
 }
-///Provided by [VK_HUAWEI_invocation_mask](crate::huawei::invocation_mask)
-impl crate::vk::AccessFlagBits2 {
+///Provided by [Vulkan 1.3](crate::vk1_3)
+impl vk::AccessFlagBits2 {
     pub const INVOCATION_MASK_READ_HUAWEI: Self = Self(1 << 39);
 }
-///Provided by [VK_HUAWEI_invocation_mask](crate::huawei::invocation_mask)
-impl crate::vk::PipelineStageFlags2 {
+///Provided by [Vulkan 1.3](crate::vk1_3)
+impl vk::PipelineStageFlags2 {
     pub const INVOCATION_MASK_HUAWEI: Self = Self(
-        crate::vk::PipelineStageFlagBits2::INVOCATION_MASK_HUAWEI.0,
+        vk::PipelineStageFlagBits2::INVOCATION_MASK_HUAWEI.0,
     );
 }
-///Provided by [VK_HUAWEI_invocation_mask](crate::huawei::invocation_mask)
-impl crate::vk::PipelineStageFlagBits2 {
+///Provided by [Vulkan 1.3](crate::vk1_3)
+impl vk::PipelineStageFlagBits2 {
     pub const INVOCATION_MASK_HUAWEI: Self = Self(1 << 40);
 }
+pub const SPEC_VERSION: u32 = 1;
+pub const NAME: &CStr = c"VK_HUAWEI_invocation_mask";
 #[derive(Clone)]
 pub struct DeviceFn {
-    pub cmd_bind_invocation_mask: crate::vk::PFN_vkCmdBindInvocationMaskHUAWEI,
+    pub cmd_bind_invocation_mask: vk::PFN_vkCmdBindInvocationMaskHUAWEI,
 }
 unsafe impl Send for DeviceFn {}
 unsafe impl Sync for DeviceFn {}
 impl DeviceFn {
-    pub fn load<F: FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void>(
-        mut f: F,
-    ) -> Self {
+    pub fn load<F: FnMut(&CStr) -> *const c_void>(mut f: F) -> Self {
         Self::load_erased(&mut f)
     }
-    fn load_erased(
-        _f: &mut dyn FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void,
-    ) -> Self {
+    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const c_void) -> Self {
         Self {
             cmd_bind_invocation_mask: unsafe {
                 unsafe extern "system" fn cmd_bind_invocation_mask(
-                    _: crate::vk::CommandBuffer,
-                    _: crate::vk::ImageView,
-                    _: crate::vk::ImageLayout,
+                    _: vk::CommandBuffer,
+                    _: vk::ImageView,
+                    _: vk::ImageLayout,
                 ) {
                     panic!("unable to load vkCmdBindInvocationMaskHUAWEI")
                 }
@@ -95,34 +96,34 @@ impl Device {
     #[inline]
     pub unsafe fn cmd_bind_invocation_mask(
         &self,
-        command_buffer: crate::vk::CommandBuffer,
-        image_view: crate::vk::ImageView,
-        image_layout: crate::vk::ImageLayout,
+        command_buffer: vk::CommandBuffer,
+        image_view: vk::ImageView,
+        image_layout: vk::ImageLayout,
     ) {
         (self.fp.cmd_bind_invocation_mask)(command_buffer, image_view, image_layout)
     }
 }
-pub const SPEC_VERSION: u32 = 1;
-pub const NAME: &core::ffi::CStr = c"VK_HUAWEI_invocation_mask";
 pub(crate) mod items {
+    use core::marker::PhantomData;
+    use crate::vk;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceInvocationMaskFeaturesHUAWEI<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
-        pub invocation_mask: crate::vk::Bool32,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub invocation_mask: vk::Bool32,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for PhysicalDeviceInvocationMaskFeaturesHUAWEI<'_> {}
     unsafe impl Sync for PhysicalDeviceInvocationMaskFeaturesHUAWEI<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceInvocationMaskFeaturesHUAWEI<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_INVOCATION_MASK_FEATURES_HUAWEI;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PHYSICAL_DEVICE_INVOCATION_MASK_FEATURES_HUAWEI;
     }
-    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+    unsafe impl<'a> crate::Extends<vk::PhysicalDeviceFeatures2<'_>>
     for PhysicalDeviceInvocationMaskFeaturesHUAWEI<'a> {}
-    unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+    unsafe impl<'a> crate::Extends<vk::DeviceCreateInfo<'_>>
     for PhysicalDeviceInvocationMaskFeaturesHUAWEI<'a> {}
     impl<'a> Default for PhysicalDeviceInvocationMaskFeaturesHUAWEI<'a> {
         fn default() -> Self {
@@ -130,7 +131,7 @@ pub(crate) mod items {
                 s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
                 p_next: Default::default(),
                 invocation_mask: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
@@ -141,9 +142,9 @@ pub(crate) mod items {
         }
     }
     pub type PFN_vkCmdBindInvocationMaskHUAWEI = unsafe extern "system" fn(
-        command_buffer: crate::vk::CommandBuffer,
-        image_view: crate::vk::ImageView,
-        image_layout: crate::vk::ImageLayout,
+        command_buffer: vk::CommandBuffer,
+        image_view: vk::ImageView,
+        image_layout: vk::ImageLayout,
     );
 }
 pub use items::*;

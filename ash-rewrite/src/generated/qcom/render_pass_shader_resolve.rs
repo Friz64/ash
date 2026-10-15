@@ -2,19 +2,21 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_QCOM_render_pass_shader_resolve.html) · Extension `VK_QCOM_render_pass_shader_resolve`
 #![doc(alias = "VK_QCOM_render_pass_shader_resolve")]
-///Provided by [VK_QCOM_render_pass_shader_resolve](crate::qcom::render_pass_shader_resolve)
-impl crate::vk::SubpassDescriptionFlags {
+use crate::vk;
+use core::ffi::CStr;
+///Provided by [Vulkan 1.0](crate::vk1_0)
+impl vk::SubpassDescriptionFlags {
     pub const FRAGMENT_REGION_QCOM: Self = Self(
-        crate::vk::SubpassDescriptionFlagBits::FRAGMENT_REGION_QCOM.0,
+        vk::SubpassDescriptionFlagBits::FRAGMENT_REGION_QCOM.0,
     );
     pub const SHADER_RESOLVE_QCOM: Self = Self(
-        crate::vk::SubpassDescriptionFlagBits::SHADER_RESOLVE_QCOM.0,
+        vk::SubpassDescriptionFlagBits::SHADER_RESOLVE_QCOM.0,
     );
 }
-///Provided by [VK_QCOM_render_pass_shader_resolve](crate::qcom::render_pass_shader_resolve)
-impl crate::vk::SubpassDescriptionFlagBits {
+///Provided by [Vulkan 1.0](crate::vk1_0)
+impl vk::SubpassDescriptionFlagBits {
     pub const FRAGMENT_REGION_QCOM: Self = Self::FRAGMENT_REGION_EXT;
     pub const SHADER_RESOLVE_QCOM: Self = Self::CUSTOM_RESOLVE_EXT;
 }
 pub const SPEC_VERSION: u32 = 4;
-pub const NAME: &core::ffi::CStr = c"VK_QCOM_render_pass_shader_resolve";
+pub const NAME: &CStr = c"VK_QCOM_render_pass_shader_resolve";

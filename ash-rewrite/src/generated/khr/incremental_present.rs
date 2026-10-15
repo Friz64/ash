@@ -2,30 +2,33 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_incremental_present.html) · Extension `VK_KHR_incremental_present`
 #![doc(alias = "VK_KHR_incremental_present")]
+use crate::vk;
+use core::ffi::CStr;
 ///Provided by [VK_KHR_incremental_present](crate::khr::incremental_present)
-impl crate::vk::StructureType {
+impl vk::StructureType {
     pub const PRESENT_REGIONS_KHR: Self = Self(1000084000);
 }
 pub const SPEC_VERSION: u32 = 2;
-pub const NAME: &core::ffi::CStr = c"VK_KHR_incremental_present";
+pub const NAME: &CStr = c"VK_KHR_incremental_present";
 pub(crate) mod items {
+    use core::marker::PhantomData;
+    use crate::vk;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct PresentRegionsKHR<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *const core::ffi::c_void,
         pub swapchain_count: u32,
-        pub p_regions: *const crate::vk::PresentRegionKHR<'a>,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub p_regions: *const vk::PresentRegionKHR<'a>,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for PresentRegionsKHR<'_> {}
     unsafe impl Sync for PresentRegionsKHR<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for PresentRegionsKHR<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PRESENT_REGIONS_KHR;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PRESENT_REGIONS_KHR;
     }
-    unsafe impl<'a> crate::Extends<crate::vk::PresentInfoKHR<'_>>
-    for PresentRegionsKHR<'a> {}
+    unsafe impl<'a> crate::Extends<vk::PresentInfoKHR<'_>> for PresentRegionsKHR<'a> {}
     impl<'a> Default for PresentRegionsKHR<'a> {
         fn default() -> Self {
             Self {
@@ -33,15 +36,12 @@ pub(crate) mod items {
                 p_next: Default::default(),
                 swapchain_count: Default::default(),
                 p_regions: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
     impl<'a> PresentRegionsKHR<'a> {
-        pub fn regions(
-            mut self,
-            regions: &'a [crate::vk::PresentRegionKHR<'a>],
-        ) -> Self {
+        pub fn regions(mut self, regions: &'a [vk::PresentRegionKHR<'a>]) -> Self {
             self.swapchain_count = regions.len() as _;
             self.p_regions = regions.as_ptr();
             self
@@ -52,13 +52,13 @@ pub(crate) mod items {
     #[derive(Clone, Copy, Default)]
     pub struct PresentRegionKHR<'a> {
         pub rectangle_count: u32,
-        pub p_rectangles: *const crate::vk::RectLayerKHR,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub p_rectangles: *const vk::RectLayerKHR,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for PresentRegionKHR<'_> {}
     unsafe impl Sync for PresentRegionKHR<'_> {}
     impl<'a> PresentRegionKHR<'a> {
-        pub fn rectangles(mut self, rectangles: &'a [crate::vk::RectLayerKHR]) -> Self {
+        pub fn rectangles(mut self, rectangles: &'a [vk::RectLayerKHR]) -> Self {
             self.rectangle_count = rectangles.len() as _;
             self.p_rectangles = rectangles.as_ptr();
             self
@@ -68,18 +68,18 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy, Default)]
     pub struct RectLayerKHR {
-        pub offset: crate::vk::Offset2D,
-        pub extent: crate::vk::Extent2D,
+        pub offset: vk::Offset2D,
+        pub extent: vk::Extent2D,
         pub layer: u32,
     }
     unsafe impl Send for RectLayerKHR {}
     unsafe impl Sync for RectLayerKHR {}
     impl RectLayerKHR {
-        pub fn offset(mut self, offset: crate::vk::Offset2D) -> Self {
+        pub fn offset(mut self, offset: vk::Offset2D) -> Self {
             self.offset = offset;
             self
         }
-        pub fn extent(mut self, extent: crate::vk::Extent2D) -> Self {
+        pub fn extent(mut self, extent: vk::Extent2D) -> Self {
             self.extent = extent;
             self
         }

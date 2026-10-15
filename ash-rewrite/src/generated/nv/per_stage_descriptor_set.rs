@@ -2,44 +2,48 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_NV_per_stage_descriptor_set.html) · Extension `VK_NV_per_stage_descriptor_set`
 #![doc(alias = "VK_NV_per_stage_descriptor_set")]
+use crate::vk;
+use core::ffi::CStr;
 ///Provided by [VK_NV_per_stage_descriptor_set](crate::nv::per_stage_descriptor_set)
-impl crate::vk::StructureType {
+impl vk::StructureType {
     pub const PHYSICAL_DEVICE_PER_STAGE_DESCRIPTOR_SET_FEATURES_NV: Self = Self(
         1000516000,
     );
 }
-///Provided by [VK_NV_per_stage_descriptor_set](crate::nv::per_stage_descriptor_set)
-impl crate::vk::DescriptorSetLayoutCreateFlags {
+///Provided by [Vulkan 1.0](crate::vk1_0)
+impl vk::DescriptorSetLayoutCreateFlags {
     pub const PER_STAGE_NV: Self = Self(
-        crate::vk::DescriptorSetLayoutCreateFlagBits::PER_STAGE_NV.0,
+        vk::DescriptorSetLayoutCreateFlagBits::PER_STAGE_NV.0,
     );
 }
-///Provided by [VK_NV_per_stage_descriptor_set](crate::nv::per_stage_descriptor_set)
-impl crate::vk::DescriptorSetLayoutCreateFlagBits {
+///Provided by [Vulkan 1.0](crate::vk1_0)
+impl vk::DescriptorSetLayoutCreateFlagBits {
     pub const PER_STAGE_NV: Self = Self(1 << 6);
 }
 pub const SPEC_VERSION: u32 = 1;
-pub const NAME: &core::ffi::CStr = c"VK_NV_per_stage_descriptor_set";
+pub const NAME: &CStr = c"VK_NV_per_stage_descriptor_set";
 pub(crate) mod items {
+    use core::marker::PhantomData;
+    use crate::vk;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct PhysicalDevicePerStageDescriptorSetFeaturesNV<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
-        pub per_stage_descriptor_set: crate::vk::Bool32,
-        pub dynamic_pipeline_layout: crate::vk::Bool32,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub per_stage_descriptor_set: vk::Bool32,
+        pub dynamic_pipeline_layout: vk::Bool32,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for PhysicalDevicePerStageDescriptorSetFeaturesNV<'_> {}
     unsafe impl Sync for PhysicalDevicePerStageDescriptorSetFeaturesNV<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDevicePerStageDescriptorSetFeaturesNV<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_PER_STAGE_DESCRIPTOR_SET_FEATURES_NV;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PHYSICAL_DEVICE_PER_STAGE_DESCRIPTOR_SET_FEATURES_NV;
     }
-    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+    unsafe impl<'a> crate::Extends<vk::PhysicalDeviceFeatures2<'_>>
     for PhysicalDevicePerStageDescriptorSetFeaturesNV<'a> {}
-    unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+    unsafe impl<'a> crate::Extends<vk::DeviceCreateInfo<'_>>
     for PhysicalDevicePerStageDescriptorSetFeaturesNV<'a> {}
     impl<'a> Default for PhysicalDevicePerStageDescriptorSetFeaturesNV<'a> {
         fn default() -> Self {
@@ -48,7 +52,7 @@ pub(crate) mod items {
                 p_next: Default::default(),
                 per_stage_descriptor_set: Default::default(),
                 dynamic_pipeline_layout: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }

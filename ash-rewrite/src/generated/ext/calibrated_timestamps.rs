@@ -2,39 +2,41 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_calibrated_timestamps.html) · Extension `VK_EXT_calibrated_timestamps`
 #![doc(alias = "VK_EXT_calibrated_timestamps")]
+use crate::vk;
+use core::ffi::CStr;
+use crate::VkResult;
+use core::ffi::c_void;
 ///Provided by [VK_EXT_calibrated_timestamps](crate::ext::calibrated_timestamps)
-impl crate::vk::StructureType {
+impl vk::StructureType {
     pub const CALIBRATED_TIMESTAMP_INFO_EXT: Self = Self::CALIBRATED_TIMESTAMP_INFO_KHR;
 }
 ///Provided by [VK_EXT_calibrated_timestamps](crate::ext::calibrated_timestamps)
-impl crate::vk::TimeDomainKHR {
+impl vk::TimeDomainKHR {
     pub const DEVICE_EXT: Self = Self::DEVICE;
     pub const CLOCK_MONOTONIC_EXT: Self = Self::CLOCK_MONOTONIC;
     pub const CLOCK_MONOTONIC_RAW_EXT: Self = Self::CLOCK_MONOTONIC_RAW;
     pub const QUERY_PERFORMANCE_COUNTER_EXT: Self = Self::QUERY_PERFORMANCE_COUNTER;
 }
+pub const SPEC_VERSION: u32 = 2;
+pub const NAME: &CStr = c"VK_EXT_calibrated_timestamps";
 #[derive(Clone)]
 pub struct InstanceFn {
-    pub get_physical_device_calibrateable_time_domains: crate::vk::PFN_vkGetPhysicalDeviceCalibrateableTimeDomainsEXT,
+    pub get_physical_device_calibrateable_time_domains: vk::PFN_vkGetPhysicalDeviceCalibrateableTimeDomainsEXT,
 }
 unsafe impl Send for InstanceFn {}
 unsafe impl Sync for InstanceFn {}
 impl InstanceFn {
-    pub fn load<F: FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void>(
-        mut f: F,
-    ) -> Self {
+    pub fn load<F: FnMut(&CStr) -> *const c_void>(mut f: F) -> Self {
         Self::load_erased(&mut f)
     }
-    fn load_erased(
-        _f: &mut dyn FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void,
-    ) -> Self {
+    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const c_void) -> Self {
         Self {
             get_physical_device_calibrateable_time_domains: unsafe {
                 unsafe extern "system" fn get_physical_device_calibrateable_time_domains(
-                    _: crate::vk::PhysicalDevice,
+                    _: vk::PhysicalDevice,
                     _: *mut u32,
-                    _: *mut crate::vk::TimeDomainKHR,
-                ) -> crate::vk::Result {
+                    _: *mut vk::TimeDomainKHR,
+                ) -> vk::Result {
                     panic!(
                         "unable to load vkGetPhysicalDeviceCalibrateableTimeDomainsEXT"
                     )
@@ -74,8 +76,8 @@ impl Instance {
     #[inline]
     pub unsafe fn get_physical_device_calibrateable_time_domains(
         &self,
-        physical_device: crate::vk::PhysicalDevice,
-    ) -> crate::VkResult<Vec<crate::vk::TimeDomainKHR>> {
+        physical_device: vk::PhysicalDevice,
+    ) -> crate::VkResult<Vec<vk::TimeDomainKHR>> {
         crate::read_into_uninitialized_vector(|time_domain_count, time_domains| (self
             .fp
             .get_physical_device_calibrateable_time_domains)(
@@ -87,28 +89,24 @@ impl Instance {
 }
 #[derive(Clone)]
 pub struct DeviceFn {
-    pub get_calibrated_timestamps: crate::vk::PFN_vkGetCalibratedTimestampsEXT,
+    pub get_calibrated_timestamps: vk::PFN_vkGetCalibratedTimestampsEXT,
 }
 unsafe impl Send for DeviceFn {}
 unsafe impl Sync for DeviceFn {}
 impl DeviceFn {
-    pub fn load<F: FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void>(
-        mut f: F,
-    ) -> Self {
+    pub fn load<F: FnMut(&CStr) -> *const c_void>(mut f: F) -> Self {
         Self::load_erased(&mut f)
     }
-    fn load_erased(
-        _f: &mut dyn FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void,
-    ) -> Self {
+    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const c_void) -> Self {
         Self {
             get_calibrated_timestamps: unsafe {
                 unsafe extern "system" fn get_calibrated_timestamps(
-                    _: crate::vk::Device,
+                    _: vk::Device,
                     _: u32,
-                    _: *const crate::vk::CalibratedTimestampInfoKHR<'_>,
+                    _: *const vk::CalibratedTimestampInfoKHR<'_>,
                     _: *mut u64,
                     _: *mut u64,
-                ) -> crate::vk::Result {
+                ) -> vk::Result {
                     panic!("unable to load vkGetCalibratedTimestampsEXT")
                 }
                 let val = _f(c"vkGetCalibratedTimestampsEXT");
@@ -146,9 +144,9 @@ impl Device {
     #[inline]
     pub unsafe fn get_calibrated_timestamps(
         &self,
-        timestamp_infos: &[crate::vk::CalibratedTimestampInfoKHR<'_>],
+        timestamp_infos: &[vk::CalibratedTimestampInfoKHR<'_>],
         timestamps: &mut [u64],
-    ) -> crate::VkResult<u64> {
+    ) -> VkResult<u64> {
         let mut max_deviation = core::mem::MaybeUninit::uninit();
         assert_eq!(timestamp_infos.len(), timestamps.len());
         (self
@@ -163,12 +161,11 @@ impl Device {
             .assume_init_on_success(max_deviation)
     }
 }
-pub const SPEC_VERSION: u32 = 2;
-pub const NAME: &core::ffi::CStr = c"VK_EXT_calibrated_timestamps";
 pub(crate) mod items {
-    pub type CalibratedTimestampInfoEXT<'a> = crate::vk::CalibratedTimestampInfoKHR<'a>;
-    pub type TimeDomainEXT = crate::vk::TimeDomainKHR;
-    pub type PFN_vkGetPhysicalDeviceCalibrateableTimeDomainsEXT = crate::vk::PFN_vkGetPhysicalDeviceCalibrateableTimeDomainsKHR;
-    pub type PFN_vkGetCalibratedTimestampsEXT = crate::vk::PFN_vkGetCalibratedTimestampsKHR;
+    use crate::vk;
+    pub type CalibratedTimestampInfoEXT<'a> = vk::CalibratedTimestampInfoKHR<'a>;
+    pub type TimeDomainEXT = vk::TimeDomainKHR;
+    pub type PFN_vkGetPhysicalDeviceCalibrateableTimeDomainsEXT = vk::PFN_vkGetPhysicalDeviceCalibrateableTimeDomainsKHR;
+    pub type PFN_vkGetCalibratedTimestampsEXT = vk::PFN_vkGetCalibratedTimestampsKHR;
 }
 pub use items::*;

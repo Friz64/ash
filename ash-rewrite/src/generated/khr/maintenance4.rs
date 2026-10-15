@@ -2,44 +2,45 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_maintenance4.html) · Extension `VK_KHR_maintenance4`
 #![doc(alias = "VK_KHR_maintenance4")]
+use crate::vk;
+use core::ffi::CStr;
+use core::ffi::c_void;
 ///Provided by [VK_KHR_maintenance4](crate::khr::maintenance4)
-impl crate::vk::StructureType {
+impl vk::StructureType {
     pub const PHYSICAL_DEVICE_MAINTENANCE_4_FEATURES_KHR: Self = Self::PHYSICAL_DEVICE_MAINTENANCE_4_FEATURES;
     pub const PHYSICAL_DEVICE_MAINTENANCE_4_PROPERTIES_KHR: Self = Self::PHYSICAL_DEVICE_MAINTENANCE_4_PROPERTIES;
     pub const DEVICE_BUFFER_MEMORY_REQUIREMENTS_KHR: Self = Self::DEVICE_BUFFER_MEMORY_REQUIREMENTS;
     pub const DEVICE_IMAGE_MEMORY_REQUIREMENTS_KHR: Self = Self::DEVICE_IMAGE_MEMORY_REQUIREMENTS;
 }
-///Provided by [VK_KHR_maintenance4](crate::khr::maintenance4)
-impl crate::vk::ImageAspectFlags {
-    pub const NONE_KHR: Self = Self(crate::vk::ImageAspectFlagBits::NONE_KHR.0);
+///Provided by [Vulkan 1.0](crate::vk1_0)
+impl vk::ImageAspectFlags {
+    pub const NONE_KHR: Self = Self(vk::ImageAspectFlagBits::NONE_KHR.0);
 }
-///Provided by [VK_KHR_maintenance4](crate::khr::maintenance4)
-impl crate::vk::ImageAspectFlagBits {
+///Provided by [Vulkan 1.0](crate::vk1_0)
+impl vk::ImageAspectFlagBits {
     pub const NONE_KHR: Self = Self::NONE;
 }
+pub const SPEC_VERSION: u32 = 2;
+pub const NAME: &CStr = c"VK_KHR_maintenance4";
 #[derive(Clone)]
 pub struct DeviceFn {
-    pub get_device_buffer_memory_requirements: crate::vk::PFN_vkGetDeviceBufferMemoryRequirementsKHR,
-    pub get_device_image_memory_requirements: crate::vk::PFN_vkGetDeviceImageMemoryRequirementsKHR,
-    pub get_device_image_sparse_memory_requirements: crate::vk::PFN_vkGetDeviceImageSparseMemoryRequirementsKHR,
+    pub get_device_buffer_memory_requirements: vk::PFN_vkGetDeviceBufferMemoryRequirementsKHR,
+    pub get_device_image_memory_requirements: vk::PFN_vkGetDeviceImageMemoryRequirementsKHR,
+    pub get_device_image_sparse_memory_requirements: vk::PFN_vkGetDeviceImageSparseMemoryRequirementsKHR,
 }
 unsafe impl Send for DeviceFn {}
 unsafe impl Sync for DeviceFn {}
 impl DeviceFn {
-    pub fn load<F: FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void>(
-        mut f: F,
-    ) -> Self {
+    pub fn load<F: FnMut(&CStr) -> *const c_void>(mut f: F) -> Self {
         Self::load_erased(&mut f)
     }
-    fn load_erased(
-        _f: &mut dyn FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void,
-    ) -> Self {
+    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const c_void) -> Self {
         Self {
             get_device_buffer_memory_requirements: unsafe {
                 unsafe extern "system" fn get_device_buffer_memory_requirements(
-                    _: crate::vk::Device,
-                    _: *const crate::vk::DeviceBufferMemoryRequirements<'_>,
-                    _: *mut crate::vk::MemoryRequirements2<'_>,
+                    _: vk::Device,
+                    _: *const vk::DeviceBufferMemoryRequirements<'_>,
+                    _: *mut vk::MemoryRequirements2<'_>,
                 ) {
                     panic!("unable to load vkGetDeviceBufferMemoryRequirementsKHR")
                 }
@@ -52,9 +53,9 @@ impl DeviceFn {
             },
             get_device_image_memory_requirements: unsafe {
                 unsafe extern "system" fn get_device_image_memory_requirements(
-                    _: crate::vk::Device,
-                    _: *const crate::vk::DeviceImageMemoryRequirements<'_>,
-                    _: *mut crate::vk::MemoryRequirements2<'_>,
+                    _: vk::Device,
+                    _: *const vk::DeviceImageMemoryRequirements<'_>,
+                    _: *mut vk::MemoryRequirements2<'_>,
                 ) {
                     panic!("unable to load vkGetDeviceImageMemoryRequirementsKHR")
                 }
@@ -67,10 +68,10 @@ impl DeviceFn {
             },
             get_device_image_sparse_memory_requirements: unsafe {
                 unsafe extern "system" fn get_device_image_sparse_memory_requirements(
-                    _: crate::vk::Device,
-                    _: *const crate::vk::DeviceImageMemoryRequirements<'_>,
+                    _: vk::Device,
+                    _: *const vk::DeviceImageMemoryRequirements<'_>,
                     _: *mut u32,
-                    _: *mut crate::vk::SparseImageMemoryRequirements2<'_>,
+                    _: *mut vk::SparseImageMemoryRequirements2<'_>,
                 ) {
                     panic!("unable to load vkGetDeviceImageSparseMemoryRequirementsKHR")
                 }
@@ -109,8 +110,8 @@ impl Device {
     #[inline]
     pub unsafe fn get_device_buffer_memory_requirements(
         &self,
-        info: &crate::vk::DeviceBufferMemoryRequirements<'_>,
-    ) -> crate::vk::MemoryRequirements2<'_> {
+        info: &vk::DeviceBufferMemoryRequirements<'_>,
+    ) -> vk::MemoryRequirements2<'_> {
         let mut memory_requirements = core::mem::MaybeUninit::uninit();
         (self
             .fp
@@ -125,8 +126,8 @@ impl Device {
     #[inline]
     pub unsafe fn get_device_image_memory_requirements(
         &self,
-        info: &crate::vk::DeviceImageMemoryRequirements<'_>,
-    ) -> crate::vk::MemoryRequirements2<'_> {
+        info: &vk::DeviceImageMemoryRequirements<'_>,
+    ) -> vk::MemoryRequirements2<'_> {
         let mut memory_requirements = core::mem::MaybeUninit::uninit();
         (self
             .fp
@@ -141,7 +142,7 @@ impl Device {
     #[inline]
     pub unsafe fn get_device_image_sparse_memory_requirements_len(
         &self,
-        info: &crate::vk::DeviceImageMemoryRequirements<'_>,
+        info: &vk::DeviceImageMemoryRequirements<'_>,
     ) -> usize {
         let mut sparse_memory_requirement_count = core::mem::MaybeUninit::uninit();
         (self
@@ -158,8 +159,8 @@ impl Device {
     #[inline]
     pub unsafe fn get_device_image_sparse_memory_requirements(
         &self,
-        info: &crate::vk::DeviceImageMemoryRequirements<'_>,
-        sparse_memory_requirements: &mut [crate::vk::SparseImageMemoryRequirements2<'_>],
+        info: &vk::DeviceImageMemoryRequirements<'_>,
+        sparse_memory_requirements: &mut [vk::SparseImageMemoryRequirements2<'_>],
     ) {
         let mut sparse_memory_requirement_count = sparse_memory_requirements.len() as _;
         (self
@@ -175,23 +176,22 @@ impl Device {
         );
     }
 }
-pub const SPEC_VERSION: u32 = 2;
-pub const NAME: &core::ffi::CStr = c"VK_KHR_maintenance4";
 pub(crate) mod items {
-    pub type DeviceBufferMemoryRequirementsKHR<'a> = crate::vk::DeviceBufferMemoryRequirements<
+    use crate::vk;
+    pub type DeviceBufferMemoryRequirementsKHR<'a> = vk::DeviceBufferMemoryRequirements<
         'a,
     >;
-    pub type DeviceImageMemoryRequirementsKHR<'a> = crate::vk::DeviceImageMemoryRequirements<
+    pub type DeviceImageMemoryRequirementsKHR<'a> = vk::DeviceImageMemoryRequirements<
         'a,
     >;
-    pub type PhysicalDeviceMaintenance4FeaturesKHR<'a> = crate::vk::PhysicalDeviceMaintenance4Features<
+    pub type PhysicalDeviceMaintenance4FeaturesKHR<'a> = vk::PhysicalDeviceMaintenance4Features<
         'a,
     >;
-    pub type PhysicalDeviceMaintenance4PropertiesKHR<'a> = crate::vk::PhysicalDeviceMaintenance4Properties<
+    pub type PhysicalDeviceMaintenance4PropertiesKHR<'a> = vk::PhysicalDeviceMaintenance4Properties<
         'a,
     >;
-    pub type PFN_vkGetDeviceBufferMemoryRequirementsKHR = crate::vk::PFN_vkGetDeviceBufferMemoryRequirements;
-    pub type PFN_vkGetDeviceImageMemoryRequirementsKHR = crate::vk::PFN_vkGetDeviceImageMemoryRequirements;
-    pub type PFN_vkGetDeviceImageSparseMemoryRequirementsKHR = crate::vk::PFN_vkGetDeviceImageSparseMemoryRequirements;
+    pub type PFN_vkGetDeviceBufferMemoryRequirementsKHR = vk::PFN_vkGetDeviceBufferMemoryRequirements;
+    pub type PFN_vkGetDeviceImageMemoryRequirementsKHR = vk::PFN_vkGetDeviceImageMemoryRequirements;
+    pub type PFN_vkGetDeviceImageSparseMemoryRequirementsKHR = vk::PFN_vkGetDeviceImageSparseMemoryRequirements;
 }
 pub use items::*;

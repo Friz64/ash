@@ -2,48 +2,50 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_descriptor_update_template.html) · Extension `VK_KHR_descriptor_update_template`
 #![doc(alias = "VK_KHR_descriptor_update_template")]
+use crate::vk;
+use core::ffi::CStr;
+use crate::VkResult;
+use core::ffi::c_void;
 ///Provided by [VK_KHR_descriptor_update_template](crate::khr::descriptor_update_template)
-impl crate::vk::StructureType {
+impl vk::StructureType {
     pub const DESCRIPTOR_UPDATE_TEMPLATE_CREATE_INFO_KHR: Self = Self::DESCRIPTOR_UPDATE_TEMPLATE_CREATE_INFO;
 }
 ///Provided by [VK_KHR_descriptor_update_template](crate::khr::descriptor_update_template)
-impl crate::vk::DescriptorUpdateTemplateType {
+impl vk::DescriptorUpdateTemplateType {
     pub const DESCRIPTOR_SET_KHR: Self = Self::DESCRIPTOR_SET;
 }
 ///Provided by [VK_KHR_descriptor_update_template](crate::khr::descriptor_update_template)
-impl crate::vk::ObjectType {
+impl vk::ObjectType {
     pub const DESCRIPTOR_UPDATE_TEMPLATE_KHR: Self = Self::DESCRIPTOR_UPDATE_TEMPLATE;
 }
 ///Provided by [VK_KHR_descriptor_update_template](crate::khr::descriptor_update_template)
-impl crate::vk::DebugReportObjectTypeEXT {
+impl vk::DebugReportObjectTypeEXT {
     pub const DESCRIPTOR_UPDATE_TEMPLATE_KHR: Self = Self::DESCRIPTOR_UPDATE_TEMPLATE;
 }
+pub const SPEC_VERSION: u32 = 1;
+pub const NAME: &CStr = c"VK_KHR_descriptor_update_template";
 #[derive(Clone)]
 pub struct DeviceFn {
-    pub create_descriptor_update_template: crate::vk::PFN_vkCreateDescriptorUpdateTemplateKHR,
-    pub destroy_descriptor_update_template: crate::vk::PFN_vkDestroyDescriptorUpdateTemplateKHR,
-    pub update_descriptor_set_with_template: crate::vk::PFN_vkUpdateDescriptorSetWithTemplateKHR,
-    pub cmd_push_descriptor_set_with_template: crate::vk::PFN_vkCmdPushDescriptorSetWithTemplateKHR,
+    pub create_descriptor_update_template: vk::PFN_vkCreateDescriptorUpdateTemplateKHR,
+    pub destroy_descriptor_update_template: vk::PFN_vkDestroyDescriptorUpdateTemplateKHR,
+    pub update_descriptor_set_with_template: vk::PFN_vkUpdateDescriptorSetWithTemplateKHR,
+    pub cmd_push_descriptor_set_with_template: vk::PFN_vkCmdPushDescriptorSetWithTemplateKHR,
 }
 unsafe impl Send for DeviceFn {}
 unsafe impl Sync for DeviceFn {}
 impl DeviceFn {
-    pub fn load<F: FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void>(
-        mut f: F,
-    ) -> Self {
+    pub fn load<F: FnMut(&CStr) -> *const c_void>(mut f: F) -> Self {
         Self::load_erased(&mut f)
     }
-    fn load_erased(
-        _f: &mut dyn FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void,
-    ) -> Self {
+    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const c_void) -> Self {
         Self {
             create_descriptor_update_template: unsafe {
                 unsafe extern "system" fn create_descriptor_update_template(
-                    _: crate::vk::Device,
-                    _: *const crate::vk::DescriptorUpdateTemplateCreateInfo<'_>,
-                    _: *const crate::vk::AllocationCallbacks<'_>,
-                    _: *mut crate::vk::DescriptorUpdateTemplate,
-                ) -> crate::vk::Result {
+                    _: vk::Device,
+                    _: *const vk::DescriptorUpdateTemplateCreateInfo<'_>,
+                    _: *const vk::AllocationCallbacks<'_>,
+                    _: *mut vk::DescriptorUpdateTemplate,
+                ) -> vk::Result {
                     panic!("unable to load vkCreateDescriptorUpdateTemplateKHR")
                 }
                 let val = _f(c"vkCreateDescriptorUpdateTemplateKHR");
@@ -55,9 +57,9 @@ impl DeviceFn {
             },
             destroy_descriptor_update_template: unsafe {
                 unsafe extern "system" fn destroy_descriptor_update_template(
-                    _: crate::vk::Device,
-                    _: crate::vk::DescriptorUpdateTemplate,
-                    _: *const crate::vk::AllocationCallbacks<'_>,
+                    _: vk::Device,
+                    _: vk::DescriptorUpdateTemplate,
+                    _: *const vk::AllocationCallbacks<'_>,
                 ) {
                     panic!("unable to load vkDestroyDescriptorUpdateTemplateKHR")
                 }
@@ -70,9 +72,9 @@ impl DeviceFn {
             },
             update_descriptor_set_with_template: unsafe {
                 unsafe extern "system" fn update_descriptor_set_with_template(
-                    _: crate::vk::Device,
-                    _: crate::vk::DescriptorSet,
-                    _: crate::vk::DescriptorUpdateTemplate,
+                    _: vk::Device,
+                    _: vk::DescriptorSet,
+                    _: vk::DescriptorUpdateTemplate,
                     _: *const core::ffi::c_void,
                 ) {
                     panic!("unable to load vkUpdateDescriptorSetWithTemplateKHR")
@@ -86,9 +88,9 @@ impl DeviceFn {
             },
             cmd_push_descriptor_set_with_template: unsafe {
                 unsafe extern "system" fn cmd_push_descriptor_set_with_template(
-                    _: crate::vk::CommandBuffer,
-                    _: crate::vk::DescriptorUpdateTemplate,
-                    _: crate::vk::PipelineLayout,
+                    _: vk::CommandBuffer,
+                    _: vk::DescriptorUpdateTemplate,
+                    _: vk::PipelineLayout,
                     _: u32,
                     _: *const core::ffi::c_void,
                 ) {
@@ -129,9 +131,9 @@ impl Device {
     #[inline]
     pub unsafe fn create_descriptor_update_template(
         &self,
-        create_info: &crate::vk::DescriptorUpdateTemplateCreateInfo<'_>,
-        allocator: Option<&crate::vk::AllocationCallbacks<'_>>,
-    ) -> crate::VkResult<crate::vk::DescriptorUpdateTemplate> {
+        create_info: &vk::DescriptorUpdateTemplateCreateInfo<'_>,
+        allocator: Option<&vk::AllocationCallbacks<'_>>,
+    ) -> VkResult<vk::DescriptorUpdateTemplate> {
         let mut descriptor_update_template = core::mem::MaybeUninit::uninit();
         (self
             .fp
@@ -150,8 +152,8 @@ impl Device {
     #[inline]
     pub unsafe fn destroy_descriptor_update_template(
         &self,
-        descriptor_update_template: crate::vk::DescriptorUpdateTemplate,
-        allocator: Option<&crate::vk::AllocationCallbacks<'_>>,
+        descriptor_update_template: vk::DescriptorUpdateTemplate,
+        allocator: Option<&vk::AllocationCallbacks<'_>>,
     ) {
         (self
             .fp
@@ -168,8 +170,8 @@ impl Device {
     #[inline]
     pub unsafe fn update_descriptor_set_with_template(
         &self,
-        descriptor_set: crate::vk::DescriptorSet,
-        descriptor_update_template: crate::vk::DescriptorUpdateTemplate,
+        descriptor_set: vk::DescriptorSet,
+        descriptor_update_template: vk::DescriptorUpdateTemplate,
         data: &core::ffi::c_void,
     ) {
         (self
@@ -185,9 +187,9 @@ impl Device {
     #[inline]
     pub unsafe fn cmd_push_descriptor_set_with_template(
         &self,
-        command_buffer: crate::vk::CommandBuffer,
-        descriptor_update_template: crate::vk::DescriptorUpdateTemplate,
-        layout: crate::vk::PipelineLayout,
+        command_buffer: vk::CommandBuffer,
+        descriptor_update_template: vk::DescriptorUpdateTemplate,
+        layout: vk::PipelineLayout,
         set: u32,
         data: &core::ffi::c_void,
     ) {
@@ -202,18 +204,17 @@ impl Device {
         )
     }
 }
-pub const SPEC_VERSION: u32 = 1;
-pub const NAME: &core::ffi::CStr = c"VK_KHR_descriptor_update_template";
 pub(crate) mod items {
-    pub type DescriptorUpdateTemplateEntryKHR = crate::vk::DescriptorUpdateTemplateEntry;
-    pub type DescriptorUpdateTemplateCreateInfoKHR<'a> = crate::vk::DescriptorUpdateTemplateCreateInfo<
+    use crate::vk;
+    pub type DescriptorUpdateTemplateEntryKHR = vk::DescriptorUpdateTemplateEntry;
+    pub type DescriptorUpdateTemplateCreateInfoKHR<'a> = vk::DescriptorUpdateTemplateCreateInfo<
         'a,
     >;
-    pub type DescriptorUpdateTemplateTypeKHR = crate::vk::DescriptorUpdateTemplateType;
-    pub type DescriptorUpdateTemplateCreateFlagsKHR = crate::vk::DescriptorUpdateTemplateCreateFlags;
-    pub type DescriptorUpdateTemplateKHR = crate::vk::DescriptorUpdateTemplate;
-    pub type PFN_vkCreateDescriptorUpdateTemplateKHR = crate::vk::PFN_vkCreateDescriptorUpdateTemplate;
-    pub type PFN_vkDestroyDescriptorUpdateTemplateKHR = crate::vk::PFN_vkDestroyDescriptorUpdateTemplate;
-    pub type PFN_vkUpdateDescriptorSetWithTemplateKHR = crate::vk::PFN_vkUpdateDescriptorSetWithTemplate;
+    pub type DescriptorUpdateTemplateTypeKHR = vk::DescriptorUpdateTemplateType;
+    pub type DescriptorUpdateTemplateCreateFlagsKHR = vk::DescriptorUpdateTemplateCreateFlags;
+    pub type DescriptorUpdateTemplateKHR = vk::DescriptorUpdateTemplate;
+    pub type PFN_vkCreateDescriptorUpdateTemplateKHR = vk::PFN_vkCreateDescriptorUpdateTemplate;
+    pub type PFN_vkDestroyDescriptorUpdateTemplateKHR = vk::PFN_vkDestroyDescriptorUpdateTemplate;
+    pub type PFN_vkUpdateDescriptorSetWithTemplateKHR = vk::PFN_vkUpdateDescriptorSetWithTemplate;
 }
 pub use items::*;

@@ -2,109 +2,110 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_video_decode_queue.html) · Extension `VK_KHR_video_decode_queue`
 #![doc(alias = "VK_KHR_video_decode_queue")]
+use crate::vk;
+use core::ffi::CStr;
+use core::ffi::c_void;
 ///Provided by [VK_KHR_video_decode_queue](crate::khr::video_decode_queue)
-impl crate::vk::ImageLayout {
+impl vk::ImageLayout {
     pub const VIDEO_DECODE_DST_KHR: Self = Self(1000024000);
     pub const VIDEO_DECODE_SRC_KHR: Self = Self(1000024001);
     pub const VIDEO_DECODE_DPB_KHR: Self = Self(1000024002);
 }
 ///Provided by [VK_KHR_video_decode_queue](crate::khr::video_decode_queue)
-impl crate::vk::StructureType {
+impl vk::StructureType {
     pub const VIDEO_DECODE_INFO_KHR: Self = Self(1000024000);
     pub const VIDEO_DECODE_CAPABILITIES_KHR: Self = Self(1000024001);
     pub const VIDEO_DECODE_USAGE_INFO_KHR: Self = Self(1000024002);
 }
-///Provided by [VK_KHR_video_decode_queue](crate::khr::video_decode_queue)
-impl crate::vk::QueueFlags {
-    pub const VIDEO_DECODE_KHR: Self = Self(
-        crate::vk::QueueFlagBits::VIDEO_DECODE_KHR.0,
-    );
+///Provided by [Vulkan 1.0](crate::vk1_0)
+impl vk::QueueFlags {
+    pub const VIDEO_DECODE_KHR: Self = Self(vk::QueueFlagBits::VIDEO_DECODE_KHR.0);
 }
-///Provided by [VK_KHR_video_decode_queue](crate::khr::video_decode_queue)
-impl crate::vk::QueueFlagBits {
+///Provided by [Vulkan 1.0](crate::vk1_0)
+impl vk::QueueFlagBits {
     pub const VIDEO_DECODE_KHR: Self = Self(1 << 5);
 }
-///Provided by [VK_KHR_video_decode_queue](crate::khr::video_decode_queue)
-impl crate::vk::BufferUsageFlags {
+///Provided by [Vulkan 1.0](crate::vk1_0)
+impl vk::BufferUsageFlags {
     pub const VIDEO_DECODE_SRC_KHR: Self = Self(
-        crate::vk::BufferUsageFlagBits::VIDEO_DECODE_SRC_KHR.0,
+        vk::BufferUsageFlagBits::VIDEO_DECODE_SRC_KHR.0,
     );
     pub const VIDEO_DECODE_DST_KHR: Self = Self(
-        crate::vk::BufferUsageFlagBits::VIDEO_DECODE_DST_KHR.0,
+        vk::BufferUsageFlagBits::VIDEO_DECODE_DST_KHR.0,
     );
 }
-///Provided by [VK_KHR_video_decode_queue](crate::khr::video_decode_queue)
-impl crate::vk::BufferUsageFlagBits {
+///Provided by [Vulkan 1.0](crate::vk1_0)
+impl vk::BufferUsageFlagBits {
     pub const VIDEO_DECODE_SRC_KHR: Self = Self(1 << 13);
     pub const VIDEO_DECODE_DST_KHR: Self = Self(1 << 14);
 }
-///Provided by [VK_KHR_video_decode_queue](crate::khr::video_decode_queue)
-impl crate::vk::ImageUsageFlags {
+///Provided by [Vulkan 1.0](crate::vk1_0)
+impl vk::ImageUsageFlags {
     pub const VIDEO_DECODE_DST_KHR: Self = Self(
-        crate::vk::ImageUsageFlagBits::VIDEO_DECODE_DST_KHR.0,
+        vk::ImageUsageFlagBits::VIDEO_DECODE_DST_KHR.0,
     );
     pub const VIDEO_DECODE_SRC_KHR: Self = Self(
-        crate::vk::ImageUsageFlagBits::VIDEO_DECODE_SRC_KHR.0,
+        vk::ImageUsageFlagBits::VIDEO_DECODE_SRC_KHR.0,
     );
     pub const VIDEO_DECODE_DPB_KHR: Self = Self(
-        crate::vk::ImageUsageFlagBits::VIDEO_DECODE_DPB_KHR.0,
+        vk::ImageUsageFlagBits::VIDEO_DECODE_DPB_KHR.0,
     );
 }
-///Provided by [VK_KHR_video_decode_queue](crate::khr::video_decode_queue)
-impl crate::vk::ImageUsageFlagBits {
+///Provided by [Vulkan 1.0](crate::vk1_0)
+impl vk::ImageUsageFlagBits {
     pub const VIDEO_DECODE_DST_KHR: Self = Self(1 << 10);
     pub const VIDEO_DECODE_SRC_KHR: Self = Self(1 << 11);
     pub const VIDEO_DECODE_DPB_KHR: Self = Self(1 << 12);
 }
-///Provided by [VK_KHR_video_decode_queue](crate::khr::video_decode_queue)
-impl crate::vk::FormatFeatureFlags {
+///Provided by [Vulkan 1.0](crate::vk1_0)
+impl vk::FormatFeatureFlags {
     pub const VIDEO_DECODE_OUTPUT_KHR: Self = Self(
-        crate::vk::FormatFeatureFlagBits::VIDEO_DECODE_OUTPUT_KHR.0,
+        vk::FormatFeatureFlagBits::VIDEO_DECODE_OUTPUT_KHR.0,
     );
     pub const VIDEO_DECODE_DPB_KHR: Self = Self(
-        crate::vk::FormatFeatureFlagBits::VIDEO_DECODE_DPB_KHR.0,
+        vk::FormatFeatureFlagBits::VIDEO_DECODE_DPB_KHR.0,
     );
 }
-///Provided by [VK_KHR_video_decode_queue](crate::khr::video_decode_queue)
-impl crate::vk::FormatFeatureFlagBits {
+///Provided by [Vulkan 1.0](crate::vk1_0)
+impl vk::FormatFeatureFlagBits {
     pub const VIDEO_DECODE_OUTPUT_KHR: Self = Self(1 << 25);
     pub const VIDEO_DECODE_DPB_KHR: Self = Self(1 << 26);
 }
-///Provided by [VK_KHR_video_decode_queue](crate::khr::video_decode_queue)
-impl crate::vk::AccessFlags2 {
+///Provided by [Vulkan 1.3](crate::vk1_3)
+impl vk::AccessFlags2 {
     pub const VIDEO_DECODE_READ_KHR: Self = Self(
-        crate::vk::AccessFlagBits2::VIDEO_DECODE_READ_KHR.0,
+        vk::AccessFlagBits2::VIDEO_DECODE_READ_KHR.0,
     );
     pub const VIDEO_DECODE_WRITE_KHR: Self = Self(
-        crate::vk::AccessFlagBits2::VIDEO_DECODE_WRITE_KHR.0,
+        vk::AccessFlagBits2::VIDEO_DECODE_WRITE_KHR.0,
     );
 }
-///Provided by [VK_KHR_video_decode_queue](crate::khr::video_decode_queue)
-impl crate::vk::AccessFlagBits2 {
+///Provided by [Vulkan 1.3](crate::vk1_3)
+impl vk::AccessFlagBits2 {
     pub const VIDEO_DECODE_READ_KHR: Self = Self(1 << 35);
     pub const VIDEO_DECODE_WRITE_KHR: Self = Self(1 << 36);
 }
-///Provided by [VK_KHR_video_decode_queue](crate::khr::video_decode_queue)
-impl crate::vk::PipelineStageFlags2 {
+///Provided by [Vulkan 1.3](crate::vk1_3)
+impl vk::PipelineStageFlags2 {
     pub const VIDEO_DECODE_KHR: Self = Self(
-        crate::vk::PipelineStageFlagBits2::VIDEO_DECODE_KHR.0,
+        vk::PipelineStageFlagBits2::VIDEO_DECODE_KHR.0,
     );
 }
-///Provided by [VK_KHR_video_decode_queue](crate::khr::video_decode_queue)
-impl crate::vk::PipelineStageFlagBits2 {
+///Provided by [Vulkan 1.3](crate::vk1_3)
+impl vk::PipelineStageFlagBits2 {
     pub const VIDEO_DECODE_KHR: Self = Self(1 << 26);
 }
-///Provided by [VK_KHR_video_decode_queue](crate::khr::video_decode_queue)
-impl crate::vk::FormatFeatureFlags2 {
+///Provided by [Vulkan 1.3](crate::vk1_3)
+impl vk::FormatFeatureFlags2 {
     pub const VIDEO_DECODE_OUTPUT_KHR: Self = Self(
-        crate::vk::FormatFeatureFlagBits2::VIDEO_DECODE_OUTPUT_KHR.0,
+        vk::FormatFeatureFlagBits2::VIDEO_DECODE_OUTPUT_KHR.0,
     );
     pub const VIDEO_DECODE_DPB_KHR: Self = Self(
-        crate::vk::FormatFeatureFlagBits2::VIDEO_DECODE_DPB_KHR.0,
+        vk::FormatFeatureFlagBits2::VIDEO_DECODE_DPB_KHR.0,
     );
 }
-///Provided by [VK_KHR_video_decode_queue](crate::khr::video_decode_queue)
-impl crate::vk::FormatFeatureFlagBits2 {
+///Provided by [Vulkan 1.3](crate::vk1_3)
+impl vk::FormatFeatureFlagBits2 {
     pub const VIDEO_DECODE_OUTPUT_KHR: Self = Self(1 << 25);
     pub const VIDEO_DECODE_DPB_KHR: Self = Self(1 << 26);
 }
@@ -136,26 +137,24 @@ impl VideoDecodeCapabilityFlagBitsKHR {
     pub const DPB_AND_OUTPUT_COINCIDE: Self = Self(1 << 0);
     pub const DPB_AND_OUTPUT_DISTINCT: Self = Self(1 << 1);
 }
+pub const SPEC_VERSION: u32 = 8;
+pub const NAME: &CStr = c"VK_KHR_video_decode_queue";
 #[derive(Clone)]
 pub struct DeviceFn {
-    pub cmd_decode_video: crate::vk::PFN_vkCmdDecodeVideoKHR,
+    pub cmd_decode_video: vk::PFN_vkCmdDecodeVideoKHR,
 }
 unsafe impl Send for DeviceFn {}
 unsafe impl Sync for DeviceFn {}
 impl DeviceFn {
-    pub fn load<F: FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void>(
-        mut f: F,
-    ) -> Self {
+    pub fn load<F: FnMut(&CStr) -> *const c_void>(mut f: F) -> Self {
         Self::load_erased(&mut f)
     }
-    fn load_erased(
-        _f: &mut dyn FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void,
-    ) -> Self {
+    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const c_void) -> Self {
         Self {
             cmd_decode_video: unsafe {
                 unsafe extern "system" fn cmd_decode_video(
-                    _: crate::vk::CommandBuffer,
-                    _: *const crate::vk::VideoDecodeInfoKHR<'_>,
+                    _: vk::CommandBuffer,
+                    _: *const vk::VideoDecodeInfoKHR<'_>,
                 ) {
                     panic!("unable to load vkCmdDecodeVideoKHR")
                 }
@@ -194,30 +193,30 @@ impl Device {
     #[inline]
     pub unsafe fn cmd_decode_video(
         &self,
-        command_buffer: crate::vk::CommandBuffer,
-        decode_info: &crate::vk::VideoDecodeInfoKHR<'_>,
+        command_buffer: vk::CommandBuffer,
+        decode_info: &vk::VideoDecodeInfoKHR<'_>,
     ) {
         (self.fp.cmd_decode_video)(command_buffer, decode_info)
     }
 }
-pub const SPEC_VERSION: u32 = 8;
-pub const NAME: &core::ffi::CStr = c"VK_KHR_video_decode_queue";
 pub(crate) mod items {
+    use core::marker::PhantomData;
+    use crate::vk;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct VideoDecodeCapabilitiesKHR<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
-        pub flags: crate::vk::VideoDecodeCapabilityFlagsKHR,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub flags: vk::VideoDecodeCapabilityFlagsKHR,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for VideoDecodeCapabilitiesKHR<'_> {}
     unsafe impl Sync for VideoDecodeCapabilitiesKHR<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for VideoDecodeCapabilitiesKHR<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::VIDEO_DECODE_CAPABILITIES_KHR;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::VIDEO_DECODE_CAPABILITIES_KHR;
     }
-    unsafe impl<'a> crate::Extends<crate::vk::VideoCapabilitiesKHR<'_>>
+    unsafe impl<'a> crate::Extends<vk::VideoCapabilitiesKHR<'_>>
     for VideoDecodeCapabilitiesKHR<'a> {}
     impl<'a> Default for VideoDecodeCapabilitiesKHR<'a> {
         fn default() -> Self {
@@ -225,12 +224,12 @@ pub(crate) mod items {
                 s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
                 p_next: Default::default(),
                 flags: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
     impl<'a> VideoDecodeCapabilitiesKHR<'a> {
-        pub fn flags(mut self, flags: crate::vk::VideoDecodeCapabilityFlagsKHR) -> Self {
+        pub fn flags(mut self, flags: vk::VideoDecodeCapabilityFlagsKHR) -> Self {
             self.flags = flags;
             self
         }
@@ -239,19 +238,19 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct VideoDecodeUsageInfoKHR<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *const core::ffi::c_void,
-        pub video_usage_hints: crate::vk::VideoDecodeUsageFlagsKHR,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub video_usage_hints: vk::VideoDecodeUsageFlagsKHR,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for VideoDecodeUsageInfoKHR<'_> {}
     unsafe impl Sync for VideoDecodeUsageInfoKHR<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for VideoDecodeUsageInfoKHR<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::VIDEO_DECODE_USAGE_INFO_KHR;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::VIDEO_DECODE_USAGE_INFO_KHR;
     }
-    unsafe impl<'a> crate::Extends<crate::vk::VideoProfileInfoKHR<'_>>
+    unsafe impl<'a> crate::Extends<vk::VideoProfileInfoKHR<'_>>
     for VideoDecodeUsageInfoKHR<'a> {}
-    unsafe impl<'a> crate::Extends<crate::vk::QueryPoolCreateInfo<'_>>
+    unsafe impl<'a> crate::Extends<vk::QueryPoolCreateInfo<'_>>
     for VideoDecodeUsageInfoKHR<'a> {}
     impl<'a> Default for VideoDecodeUsageInfoKHR<'a> {
         fn default() -> Self {
@@ -259,14 +258,14 @@ pub(crate) mod items {
                 s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
                 p_next: Default::default(),
                 video_usage_hints: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
     impl<'a> VideoDecodeUsageInfoKHR<'a> {
         pub fn video_usage_hints(
             mut self,
-            video_usage_hints: crate::vk::VideoDecodeUsageFlagsKHR,
+            video_usage_hints: vk::VideoDecodeUsageFlagsKHR,
         ) -> Self {
             self.video_usage_hints = video_usage_hints;
             self
@@ -276,22 +275,22 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct VideoDecodeInfoKHR<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *const core::ffi::c_void,
-        pub flags: crate::vk::VideoDecodeFlagsKHR,
-        pub src_buffer: crate::vk::Buffer,
-        pub src_buffer_offset: crate::vk::DeviceSize,
-        pub src_buffer_range: crate::vk::DeviceSize,
-        pub dst_picture_resource: crate::vk::VideoPictureResourceInfoKHR<'a>,
-        pub p_setup_reference_slot: *const crate::vk::VideoReferenceSlotInfoKHR<'a>,
+        pub flags: vk::VideoDecodeFlagsKHR,
+        pub src_buffer: vk::Buffer,
+        pub src_buffer_offset: vk::DeviceSize,
+        pub src_buffer_range: vk::DeviceSize,
+        pub dst_picture_resource: vk::VideoPictureResourceInfoKHR<'a>,
+        pub p_setup_reference_slot: *const vk::VideoReferenceSlotInfoKHR<'a>,
         pub reference_slot_count: u32,
-        pub p_reference_slots: *const crate::vk::VideoReferenceSlotInfoKHR<'a>,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub p_reference_slots: *const vk::VideoReferenceSlotInfoKHR<'a>,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for VideoDecodeInfoKHR<'_> {}
     unsafe impl Sync for VideoDecodeInfoKHR<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for VideoDecodeInfoKHR<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::VIDEO_DECODE_INFO_KHR;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::VIDEO_DECODE_INFO_KHR;
     }
     impl<'a> Default for VideoDecodeInfoKHR<'a> {
         fn default() -> Self {
@@ -306,50 +305,44 @@ pub(crate) mod items {
                 p_setup_reference_slot: Default::default(),
                 reference_slot_count: Default::default(),
                 p_reference_slots: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
     impl<'a> VideoDecodeInfoKHR<'a> {
-        pub fn flags(mut self, flags: crate::vk::VideoDecodeFlagsKHR) -> Self {
+        pub fn flags(mut self, flags: vk::VideoDecodeFlagsKHR) -> Self {
             self.flags = flags;
             self
         }
-        pub fn src_buffer(mut self, src_buffer: crate::vk::Buffer) -> Self {
+        pub fn src_buffer(mut self, src_buffer: vk::Buffer) -> Self {
             self.src_buffer = src_buffer;
             self
         }
-        pub fn src_buffer_offset(
-            mut self,
-            src_buffer_offset: crate::vk::DeviceSize,
-        ) -> Self {
+        pub fn src_buffer_offset(mut self, src_buffer_offset: vk::DeviceSize) -> Self {
             self.src_buffer_offset = src_buffer_offset;
             self
         }
-        pub fn src_buffer_range(
-            mut self,
-            src_buffer_range: crate::vk::DeviceSize,
-        ) -> Self {
+        pub fn src_buffer_range(mut self, src_buffer_range: vk::DeviceSize) -> Self {
             self.src_buffer_range = src_buffer_range;
             self
         }
         pub fn dst_picture_resource(
             mut self,
-            dst_picture_resource: crate::vk::VideoPictureResourceInfoKHR<'a>,
+            dst_picture_resource: vk::VideoPictureResourceInfoKHR<'a>,
         ) -> Self {
             self.dst_picture_resource = dst_picture_resource;
             self
         }
         pub fn setup_reference_slot(
             mut self,
-            setup_reference_slot: &'a crate::vk::VideoReferenceSlotInfoKHR<'a>,
+            setup_reference_slot: &'a vk::VideoReferenceSlotInfoKHR<'a>,
         ) -> Self {
             self.p_setup_reference_slot = setup_reference_slot;
             self
         }
         pub fn reference_slots(
             mut self,
-            reference_slots: &'a [crate::vk::VideoReferenceSlotInfoKHR<'a>],
+            reference_slots: &'a [vk::VideoReferenceSlotInfoKHR<'a>],
         ) -> Self {
             self.reference_slot_count = reference_slots.len() as _;
             self.p_reference_slots = reference_slots.as_ptr();
@@ -625,8 +618,8 @@ pub(crate) mod items {
         }
     }
     pub type PFN_vkCmdDecodeVideoKHR = unsafe extern "system" fn(
-        command_buffer: crate::vk::CommandBuffer,
-        p_decode_info: *const crate::vk::VideoDecodeInfoKHR<'_>,
+        command_buffer: vk::CommandBuffer,
+        p_decode_info: *const vk::VideoDecodeInfoKHR<'_>,
     );
 }
 pub use items::*;

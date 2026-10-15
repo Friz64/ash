@@ -2,39 +2,40 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_pipeline_robustness.html) · Extension `VK_EXT_pipeline_robustness`
 #![doc(alias = "VK_EXT_pipeline_robustness")]
+use crate::vk;
+use core::ffi::CStr;
 ///Provided by [VK_EXT_pipeline_robustness](crate::ext::pipeline_robustness)
-impl crate::vk::StructureType {
+impl vk::StructureType {
     pub const PIPELINE_ROBUSTNESS_CREATE_INFO_EXT: Self = Self::PIPELINE_ROBUSTNESS_CREATE_INFO;
     pub const PHYSICAL_DEVICE_PIPELINE_ROBUSTNESS_FEATURES_EXT: Self = Self::PHYSICAL_DEVICE_PIPELINE_ROBUSTNESS_FEATURES;
     pub const PHYSICAL_DEVICE_PIPELINE_ROBUSTNESS_PROPERTIES_EXT: Self = Self::PHYSICAL_DEVICE_PIPELINE_ROBUSTNESS_PROPERTIES;
 }
 ///Provided by [VK_EXT_pipeline_robustness](crate::ext::pipeline_robustness)
-impl crate::vk::PipelineRobustnessBufferBehavior {
+impl vk::PipelineRobustnessBufferBehavior {
     pub const DEVICE_DEFAULT_EXT: Self = Self::DEVICE_DEFAULT;
     pub const DISABLED_EXT: Self = Self::DISABLED;
     pub const ROBUST_BUFFER_ACCESS_EXT: Self = Self::ROBUST_BUFFER_ACCESS;
     pub const ROBUST_BUFFER_ACCESS_2_EXT: Self = Self::ROBUST_BUFFER_ACCESS_2;
 }
 ///Provided by [VK_EXT_pipeline_robustness](crate::ext::pipeline_robustness)
-impl crate::vk::PipelineRobustnessImageBehavior {
+impl vk::PipelineRobustnessImageBehavior {
     pub const DEVICE_DEFAULT_EXT: Self = Self::DEVICE_DEFAULT;
     pub const DISABLED_EXT: Self = Self::DISABLED;
     pub const ROBUST_IMAGE_ACCESS_EXT: Self = Self::ROBUST_IMAGE_ACCESS;
     pub const ROBUST_IMAGE_ACCESS_2_EXT: Self = Self::ROBUST_IMAGE_ACCESS_2;
 }
 pub const SPEC_VERSION: u32 = 1;
-pub const NAME: &core::ffi::CStr = c"VK_EXT_pipeline_robustness";
+pub const NAME: &CStr = c"VK_EXT_pipeline_robustness";
 pub(crate) mod items {
-    pub type PhysicalDevicePipelineRobustnessFeaturesEXT<'a> = crate::vk::PhysicalDevicePipelineRobustnessFeatures<
+    use crate::vk;
+    pub type PhysicalDevicePipelineRobustnessFeaturesEXT<'a> = vk::PhysicalDevicePipelineRobustnessFeatures<
         'a,
     >;
-    pub type PipelineRobustnessCreateInfoEXT<'a> = crate::vk::PipelineRobustnessCreateInfo<
+    pub type PipelineRobustnessCreateInfoEXT<'a> = vk::PipelineRobustnessCreateInfo<'a>;
+    pub type PhysicalDevicePipelineRobustnessPropertiesEXT<'a> = vk::PhysicalDevicePipelineRobustnessProperties<
         'a,
     >;
-    pub type PhysicalDevicePipelineRobustnessPropertiesEXT<'a> = crate::vk::PhysicalDevicePipelineRobustnessProperties<
-        'a,
-    >;
-    pub type PipelineRobustnessBufferBehaviorEXT = crate::vk::PipelineRobustnessBufferBehavior;
-    pub type PipelineRobustnessImageBehaviorEXT = crate::vk::PipelineRobustnessImageBehavior;
+    pub type PipelineRobustnessBufferBehaviorEXT = vk::PipelineRobustnessBufferBehavior;
+    pub type PipelineRobustnessImageBehaviorEXT = vk::PipelineRobustnessImageBehavior;
 }
 pub use items::*;

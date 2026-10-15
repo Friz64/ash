@@ -2,45 +2,47 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_validation_cache.html) · Extension `VK_EXT_validation_cache`
 #![doc(alias = "VK_EXT_validation_cache")]
+use crate::vk;
+use core::ffi::CStr;
+use crate::VkResult;
+use core::ffi::c_void;
 ///Provided by [VK_EXT_validation_cache](crate::ext::validation_cache)
-impl crate::vk::StructureType {
+impl vk::StructureType {
     pub const VALIDATION_CACHE_CREATE_INFO_EXT: Self = Self(1000160000);
     pub const SHADER_MODULE_VALIDATION_CACHE_CREATE_INFO_EXT: Self = Self(1000160001);
 }
 ///Provided by [VK_EXT_validation_cache](crate::ext::validation_cache)
-impl crate::vk::ObjectType {
+impl vk::ObjectType {
     pub const VALIDATION_CACHE_EXT: Self = Self(1000160000);
 }
 ///Provided by [VK_EXT_validation_cache](crate::ext::validation_cache)
 impl ValidationCacheHeaderVersionEXT {
     pub const ONE: Self = Self(1);
 }
+pub const SPEC_VERSION: u32 = 1;
+pub const NAME: &CStr = c"VK_EXT_validation_cache";
 #[derive(Clone)]
 pub struct DeviceFn {
-    pub create_validation_cache: crate::vk::PFN_vkCreateValidationCacheEXT,
-    pub destroy_validation_cache: crate::vk::PFN_vkDestroyValidationCacheEXT,
-    pub get_validation_cache_data: crate::vk::PFN_vkGetValidationCacheDataEXT,
-    pub merge_validation_caches: crate::vk::PFN_vkMergeValidationCachesEXT,
+    pub create_validation_cache: vk::PFN_vkCreateValidationCacheEXT,
+    pub destroy_validation_cache: vk::PFN_vkDestroyValidationCacheEXT,
+    pub get_validation_cache_data: vk::PFN_vkGetValidationCacheDataEXT,
+    pub merge_validation_caches: vk::PFN_vkMergeValidationCachesEXT,
 }
 unsafe impl Send for DeviceFn {}
 unsafe impl Sync for DeviceFn {}
 impl DeviceFn {
-    pub fn load<F: FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void>(
-        mut f: F,
-    ) -> Self {
+    pub fn load<F: FnMut(&CStr) -> *const c_void>(mut f: F) -> Self {
         Self::load_erased(&mut f)
     }
-    fn load_erased(
-        _f: &mut dyn FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void,
-    ) -> Self {
+    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const c_void) -> Self {
         Self {
             create_validation_cache: unsafe {
                 unsafe extern "system" fn create_validation_cache(
-                    _: crate::vk::Device,
-                    _: *const crate::vk::ValidationCacheCreateInfoEXT<'_>,
-                    _: *const crate::vk::AllocationCallbacks<'_>,
-                    _: *mut crate::vk::ValidationCacheEXT,
-                ) -> crate::vk::Result {
+                    _: vk::Device,
+                    _: *const vk::ValidationCacheCreateInfoEXT<'_>,
+                    _: *const vk::AllocationCallbacks<'_>,
+                    _: *mut vk::ValidationCacheEXT,
+                ) -> vk::Result {
                     panic!("unable to load vkCreateValidationCacheEXT")
                 }
                 let val = _f(c"vkCreateValidationCacheEXT");
@@ -52,9 +54,9 @@ impl DeviceFn {
             },
             destroy_validation_cache: unsafe {
                 unsafe extern "system" fn destroy_validation_cache(
-                    _: crate::vk::Device,
-                    _: crate::vk::ValidationCacheEXT,
-                    _: *const crate::vk::AllocationCallbacks<'_>,
+                    _: vk::Device,
+                    _: vk::ValidationCacheEXT,
+                    _: *const vk::AllocationCallbacks<'_>,
                 ) {
                     panic!("unable to load vkDestroyValidationCacheEXT")
                 }
@@ -67,11 +69,11 @@ impl DeviceFn {
             },
             get_validation_cache_data: unsafe {
                 unsafe extern "system" fn get_validation_cache_data(
-                    _: crate::vk::Device,
-                    _: crate::vk::ValidationCacheEXT,
+                    _: vk::Device,
+                    _: vk::ValidationCacheEXT,
                     _: *mut usize,
                     _: *mut core::ffi::c_void,
-                ) -> crate::vk::Result {
+                ) -> vk::Result {
                     panic!("unable to load vkGetValidationCacheDataEXT")
                 }
                 let val = _f(c"vkGetValidationCacheDataEXT");
@@ -83,11 +85,11 @@ impl DeviceFn {
             },
             merge_validation_caches: unsafe {
                 unsafe extern "system" fn merge_validation_caches(
-                    _: crate::vk::Device,
-                    _: crate::vk::ValidationCacheEXT,
+                    _: vk::Device,
+                    _: vk::ValidationCacheEXT,
                     _: u32,
-                    _: *const crate::vk::ValidationCacheEXT,
-                ) -> crate::vk::Result {
+                    _: *const vk::ValidationCacheEXT,
+                ) -> vk::Result {
                     panic!("unable to load vkMergeValidationCachesEXT")
                 }
                 let val = _f(c"vkMergeValidationCachesEXT");
@@ -125,9 +127,9 @@ impl Device {
     #[inline]
     pub unsafe fn create_validation_cache(
         &self,
-        create_info: &crate::vk::ValidationCacheCreateInfoEXT<'_>,
-        allocator: Option<&crate::vk::AllocationCallbacks<'_>>,
-    ) -> crate::VkResult<crate::vk::ValidationCacheEXT> {
+        create_info: &vk::ValidationCacheCreateInfoEXT<'_>,
+        allocator: Option<&vk::AllocationCallbacks<'_>>,
+    ) -> VkResult<vk::ValidationCacheEXT> {
         let mut validation_cache = core::mem::MaybeUninit::uninit();
         (self
             .fp
@@ -146,8 +148,8 @@ impl Device {
     #[inline]
     pub unsafe fn destroy_validation_cache(
         &self,
-        validation_cache: crate::vk::ValidationCacheEXT,
-        allocator: Option<&crate::vk::AllocationCallbacks<'_>>,
+        validation_cache: vk::ValidationCacheEXT,
+        allocator: Option<&vk::AllocationCallbacks<'_>>,
     ) {
         (self
             .fp
@@ -164,7 +166,7 @@ impl Device {
     #[inline]
     pub unsafe fn get_validation_cache_data(
         &self,
-        validation_cache: crate::vk::ValidationCacheEXT,
+        validation_cache: vk::ValidationCacheEXT,
     ) -> crate::VkResult<Vec<core::ffi::c_void>> {
         crate::read_into_uninitialized_vector(|data_size, data| (self
             .fp
@@ -174,9 +176,9 @@ impl Device {
     #[inline]
     pub unsafe fn merge_validation_caches(
         &self,
-        dst_cache: crate::vk::ValidationCacheEXT,
-        src_caches: &[crate::vk::ValidationCacheEXT],
-    ) -> crate::VkResult<()> {
+        dst_cache: vk::ValidationCacheEXT,
+        src_caches: &[vk::ValidationCacheEXT],
+    ) -> VkResult<()> {
         (self
             .fp
             .merge_validation_caches)(
@@ -188,24 +190,28 @@ impl Device {
             .result()
     }
 }
-pub const SPEC_VERSION: u32 = 1;
-pub const NAME: &core::ffi::CStr = c"VK_EXT_validation_cache";
 pub(crate) mod items {
+    use core::marker::PhantomData;
+    use crate::vk;
+    use crate::Handle;
+    use core::fmt;
+    #[cfg(feature = "debug")]
+    use core::fmt as fmtdebug;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct ValidationCacheCreateInfoEXT<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *const core::ffi::c_void,
-        pub flags: crate::vk::ValidationCacheCreateFlagsEXT,
+        pub flags: vk::ValidationCacheCreateFlagsEXT,
         pub initial_data_size: usize,
         pub p_initial_data: *const core::ffi::c_void,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for ValidationCacheCreateInfoEXT<'_> {}
     unsafe impl Sync for ValidationCacheCreateInfoEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for ValidationCacheCreateInfoEXT<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::VALIDATION_CACHE_CREATE_INFO_EXT;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::VALIDATION_CACHE_CREATE_INFO_EXT;
     }
     impl<'a> Default for ValidationCacheCreateInfoEXT<'a> {
         fn default() -> Self {
@@ -215,12 +221,12 @@ pub(crate) mod items {
                 flags: Default::default(),
                 initial_data_size: Default::default(),
                 p_initial_data: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
     impl<'a> ValidationCacheCreateInfoEXT<'a> {
-        pub fn flags(mut self, flags: crate::vk::ValidationCacheCreateFlagsEXT) -> Self {
+        pub fn flags(mut self, flags: vk::ValidationCacheCreateFlagsEXT) -> Self {
             self.flags = flags;
             self
         }
@@ -234,20 +240,20 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct ShaderModuleValidationCacheCreateInfoEXT<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *const core::ffi::c_void,
-        pub validation_cache: crate::vk::ValidationCacheEXT,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub validation_cache: vk::ValidationCacheEXT,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for ShaderModuleValidationCacheCreateInfoEXT<'_> {}
     unsafe impl Sync for ShaderModuleValidationCacheCreateInfoEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for ShaderModuleValidationCacheCreateInfoEXT<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::SHADER_MODULE_VALIDATION_CACHE_CREATE_INFO_EXT;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::SHADER_MODULE_VALIDATION_CACHE_CREATE_INFO_EXT;
     }
-    unsafe impl<'a> crate::Extends<crate::vk::ShaderModuleCreateInfo<'_>>
+    unsafe impl<'a> crate::Extends<vk::ShaderModuleCreateInfo<'_>>
     for ShaderModuleValidationCacheCreateInfoEXT<'a> {}
-    unsafe impl<'a> crate::Extends<crate::vk::PipelineShaderStageCreateInfo<'_>>
+    unsafe impl<'a> crate::Extends<vk::PipelineShaderStageCreateInfo<'_>>
     for ShaderModuleValidationCacheCreateInfoEXT<'a> {}
     impl<'a> Default for ShaderModuleValidationCacheCreateInfoEXT<'a> {
         fn default() -> Self {
@@ -255,14 +261,14 @@ pub(crate) mod items {
                 s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
                 p_next: Default::default(),
                 validation_cache: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
     impl<'a> ShaderModuleValidationCacheCreateInfoEXT<'a> {
         pub fn validation_cache(
             mut self,
-            validation_cache: crate::vk::ValidationCacheEXT,
+            validation_cache: vk::ValidationCacheEXT,
         ) -> Self {
             self.validation_cache = validation_cache;
             self
@@ -365,8 +371,8 @@ pub(crate) mod items {
     #[repr(transparent)]
     #[derive(Eq, PartialEq, Ord, PartialOrd, Clone, Copy, Hash, Default)]
     pub struct ValidationCacheEXT(u64);
-    impl crate::Handle for ValidationCacheEXT {
-        const TYPE: crate::vk::ObjectType = crate::vk::ObjectType::VALIDATION_CACHE_EXT;
+    impl Handle for ValidationCacheEXT {
+        const TYPE: vk::ObjectType = vk::ObjectType::VALIDATION_CACHE_EXT;
         fn as_raw(self) -> u64 {
             self.0
         }
@@ -379,38 +385,39 @@ pub(crate) mod items {
             Self(0)
         }
     }
-    impl core::fmt::Pointer for ValidationCacheEXT {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+    impl fmt::Pointer for ValidationCacheEXT {
+        fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
             write!(f, "0x{:x}", self.0)
         }
     }
-    impl core::fmt::Debug for ValidationCacheEXT {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+    #[cfg(feature = "debug")]
+    impl fmtdebug::Debug for ValidationCacheEXT {
+        fn fmt(&self, f: &mut fmtdebug::Formatter) -> fmtdebug::Result {
             write!(f, "0x{:x}", self.0)
         }
     }
     pub type PFN_vkCreateValidationCacheEXT = unsafe extern "system" fn(
-        device: crate::vk::Device,
-        p_create_info: *const crate::vk::ValidationCacheCreateInfoEXT<'_>,
-        p_allocator: *const crate::vk::AllocationCallbacks<'_>,
-        p_validation_cache: *mut crate::vk::ValidationCacheEXT,
-    ) -> crate::vk::Result;
+        device: vk::Device,
+        p_create_info: *const vk::ValidationCacheCreateInfoEXT<'_>,
+        p_allocator: *const vk::AllocationCallbacks<'_>,
+        p_validation_cache: *mut vk::ValidationCacheEXT,
+    ) -> vk::Result;
     pub type PFN_vkDestroyValidationCacheEXT = unsafe extern "system" fn(
-        device: crate::vk::Device,
-        validation_cache: crate::vk::ValidationCacheEXT,
-        p_allocator: *const crate::vk::AllocationCallbacks<'_>,
+        device: vk::Device,
+        validation_cache: vk::ValidationCacheEXT,
+        p_allocator: *const vk::AllocationCallbacks<'_>,
     );
     pub type PFN_vkGetValidationCacheDataEXT = unsafe extern "system" fn(
-        device: crate::vk::Device,
-        validation_cache: crate::vk::ValidationCacheEXT,
+        device: vk::Device,
+        validation_cache: vk::ValidationCacheEXT,
         p_data_size: *mut usize,
         p_data: *mut core::ffi::c_void,
-    ) -> crate::vk::Result;
+    ) -> vk::Result;
     pub type PFN_vkMergeValidationCachesEXT = unsafe extern "system" fn(
-        device: crate::vk::Device,
-        dst_cache: crate::vk::ValidationCacheEXT,
+        device: vk::Device,
+        dst_cache: vk::ValidationCacheEXT,
         src_cache_count: u32,
-        p_src_caches: *const crate::vk::ValidationCacheEXT,
-    ) -> crate::vk::Result;
+        p_src_caches: *const vk::ValidationCacheEXT,
+    ) -> vk::Result;
 }
 pub use items::*;

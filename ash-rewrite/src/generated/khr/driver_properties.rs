@@ -2,12 +2,14 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_driver_properties.html) · Extension `VK_KHR_driver_properties`
 #![doc(alias = "VK_KHR_driver_properties")]
+use crate::vk;
+use core::ffi::CStr;
 ///Provided by [VK_KHR_driver_properties](crate::khr::driver_properties)
-impl crate::vk::StructureType {
+impl vk::StructureType {
     pub const PHYSICAL_DEVICE_DRIVER_PROPERTIES_KHR: Self = Self::PHYSICAL_DEVICE_DRIVER_PROPERTIES;
 }
 ///Provided by [VK_KHR_driver_properties](crate::khr::driver_properties)
-impl crate::vk::DriverId {
+impl vk::DriverId {
     pub const AMD_PROPRIETARY_KHR: Self = Self::AMD_PROPRIETARY;
     pub const AMD_OPEN_SOURCE_KHR: Self = Self::AMD_OPEN_SOURCE;
     pub const MESA_RADV_KHR: Self = Self::MESA_RADV;
@@ -22,12 +24,13 @@ impl crate::vk::DriverId {
     pub const BROADCOM_PROPRIETARY_KHR: Self = Self::BROADCOM_PROPRIETARY;
 }
 pub const SPEC_VERSION: u32 = 1;
-pub const NAME: &core::ffi::CStr = c"VK_KHR_driver_properties";
+pub const NAME: &CStr = c"VK_KHR_driver_properties";
 pub(crate) mod items {
-    pub type ConformanceVersionKHR = crate::vk::ConformanceVersion;
-    pub type PhysicalDeviceDriverPropertiesKHR<'a> = crate::vk::PhysicalDeviceDriverProperties<
+    use crate::vk;
+    pub type ConformanceVersionKHR = vk::ConformanceVersion;
+    pub type PhysicalDeviceDriverPropertiesKHR<'a> = vk::PhysicalDeviceDriverProperties<
         'a,
     >;
-    pub type DriverIdKHR = crate::vk::DriverId;
+    pub type DriverIdKHR = vk::DriverId;
 }
 pub use items::*;

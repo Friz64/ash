@@ -2,13 +2,15 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_ARM_tensor_controls.html) · Extension `VK_ARM_tensor_controls`
 #![doc(alias = "VK_ARM_tensor_controls")]
+use crate::vk;
+use core::ffi::CStr;
 ///Provided by [VK_ARM_tensor_controls](crate::arm::tensor_controls)
-impl crate::vk::StructureType {
+impl vk::StructureType {
     pub const TENSOR_EXPLICIT_TILING_FORMAT_PROPERTIES_ARM: Self = Self(1000565000);
     pub const TENSOR_ROLLING_BACKING_CREATE_INFO_ARM: Self = Self(1000565001);
 }
 ///Provided by [VK_ARM_tensor_controls](crate::arm::tensor_controls)
-impl crate::vk::TensorTilingARM {
+impl vk::TensorTilingARM {
     pub const BRICK_16_WIDE: Self = Self(1000565000);
     pub const BRICK_8_WIDE: Self = Self(1000565001);
     pub const BRICK_4_WIDE: Self = Self(1000565002);
@@ -16,28 +18,30 @@ impl crate::vk::TensorTilingARM {
     pub const BLOCK_U_INTERLEAVED_64K: Self = Self(1000565004);
 }
 pub const SPEC_VERSION: u32 = 1;
-pub const NAME: &core::ffi::CStr = c"VK_ARM_tensor_controls";
+pub const NAME: &CStr = c"VK_ARM_tensor_controls";
 pub(crate) mod items {
+    use core::marker::PhantomData;
+    use crate::vk;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct TensorExplicitTilingFormatPropertiesARM<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
-        pub brick16_tiling_tensor_features: crate::vk::FormatFeatureFlags2,
-        pub brick8_tiling_tensor_features: crate::vk::FormatFeatureFlags2,
-        pub brick4_tiling_tensor_features: crate::vk::FormatFeatureFlags2,
-        pub block_u_tiling_tensor_features: crate::vk::FormatFeatureFlags2,
-        pub block_u64k_tiling_tensor_features: crate::vk::FormatFeatureFlags2,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub brick16_tiling_tensor_features: vk::FormatFeatureFlags2,
+        pub brick8_tiling_tensor_features: vk::FormatFeatureFlags2,
+        pub brick4_tiling_tensor_features: vk::FormatFeatureFlags2,
+        pub block_u_tiling_tensor_features: vk::FormatFeatureFlags2,
+        pub block_u64k_tiling_tensor_features: vk::FormatFeatureFlags2,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for TensorExplicitTilingFormatPropertiesARM<'_> {}
     unsafe impl Sync for TensorExplicitTilingFormatPropertiesARM<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for TensorExplicitTilingFormatPropertiesARM<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::TENSOR_EXPLICIT_TILING_FORMAT_PROPERTIES_ARM;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::TENSOR_EXPLICIT_TILING_FORMAT_PROPERTIES_ARM;
     }
-    unsafe impl<'a> crate::Extends<crate::vk::FormatProperties2<'_>>
+    unsafe impl<'a> crate::Extends<vk::FormatProperties2<'_>>
     for TensorExplicitTilingFormatPropertiesARM<'a> {}
     impl<'a> Default for TensorExplicitTilingFormatPropertiesARM<'a> {
         fn default() -> Self {
@@ -49,42 +53,42 @@ pub(crate) mod items {
                 brick4_tiling_tensor_features: Default::default(),
                 block_u_tiling_tensor_features: Default::default(),
                 block_u64k_tiling_tensor_features: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
     impl<'a> TensorExplicitTilingFormatPropertiesARM<'a> {
         pub fn brick16_tiling_tensor_features(
             mut self,
-            brick16_tiling_tensor_features: crate::vk::FormatFeatureFlags2,
+            brick16_tiling_tensor_features: vk::FormatFeatureFlags2,
         ) -> Self {
             self.brick16_tiling_tensor_features = brick16_tiling_tensor_features;
             self
         }
         pub fn brick8_tiling_tensor_features(
             mut self,
-            brick8_tiling_tensor_features: crate::vk::FormatFeatureFlags2,
+            brick8_tiling_tensor_features: vk::FormatFeatureFlags2,
         ) -> Self {
             self.brick8_tiling_tensor_features = brick8_tiling_tensor_features;
             self
         }
         pub fn brick4_tiling_tensor_features(
             mut self,
-            brick4_tiling_tensor_features: crate::vk::FormatFeatureFlags2,
+            brick4_tiling_tensor_features: vk::FormatFeatureFlags2,
         ) -> Self {
             self.brick4_tiling_tensor_features = brick4_tiling_tensor_features;
             self
         }
         pub fn block_u_tiling_tensor_features(
             mut self,
-            block_u_tiling_tensor_features: crate::vk::FormatFeatureFlags2,
+            block_u_tiling_tensor_features: vk::FormatFeatureFlags2,
         ) -> Self {
             self.block_u_tiling_tensor_features = block_u_tiling_tensor_features;
             self
         }
         pub fn block_u64k_tiling_tensor_features(
             mut self,
-            block_u64k_tiling_tensor_features: crate::vk::FormatFeatureFlags2,
+            block_u64k_tiling_tensor_features: vk::FormatFeatureFlags2,
         ) -> Self {
             self.block_u64k_tiling_tensor_features = block_u64k_tiling_tensor_features;
             self
@@ -94,19 +98,18 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct TensorRollingBackingCreateInfoARM<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *const core::ffi::c_void,
-        pub wraps: [u32; crate::vk::MAX_TENSOR_CREATE_INFO_ROLLING_BACKING_WRAP_COUNT_ARM
-            as _],
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub wraps: [u32; vk::MAX_TENSOR_CREATE_INFO_ROLLING_BACKING_WRAP_COUNT_ARM as _],
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for TensorRollingBackingCreateInfoARM<'_> {}
     unsafe impl Sync for TensorRollingBackingCreateInfoARM<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for TensorRollingBackingCreateInfoARM<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::TENSOR_ROLLING_BACKING_CREATE_INFO_ARM;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::TENSOR_ROLLING_BACKING_CREATE_INFO_ARM;
     }
-    unsafe impl<'a> crate::Extends<crate::vk::TensorCreateInfoARM<'_>>
+    unsafe impl<'a> crate::Extends<vk::TensorCreateInfoARM<'_>>
     for TensorRollingBackingCreateInfoARM<'a> {}
     impl<'a> Default for TensorRollingBackingCreateInfoARM<'a> {
         fn default() -> Self {
@@ -114,15 +117,14 @@ pub(crate) mod items {
                 s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
                 p_next: Default::default(),
                 wraps: unsafe { core::mem::zeroed() },
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
     impl<'a> TensorRollingBackingCreateInfoARM<'a> {
         pub fn wraps(
             mut self,
-            wraps: [u32; crate::vk::MAX_TENSOR_CREATE_INFO_ROLLING_BACKING_WRAP_COUNT_ARM
-                as _],
+            wraps: [u32; vk::MAX_TENSOR_CREATE_INFO_ROLLING_BACKING_WRAP_COUNT_ARM as _],
         ) -> Self {
             self.wraps = wraps;
             self

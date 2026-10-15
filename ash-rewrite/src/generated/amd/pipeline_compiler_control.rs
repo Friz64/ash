@@ -2,34 +2,38 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_AMD_pipeline_compiler_control.html) · Extension `VK_AMD_pipeline_compiler_control`
 #![doc(alias = "VK_AMD_pipeline_compiler_control")]
+use crate::vk;
+use core::ffi::CStr;
 ///Provided by [VK_AMD_pipeline_compiler_control](crate::amd::pipeline_compiler_control)
-impl crate::vk::StructureType {
+impl vk::StructureType {
     pub const PIPELINE_COMPILER_CONTROL_CREATE_INFO_AMD: Self = Self(1000183000);
 }
 pub const SPEC_VERSION: u32 = 1;
-pub const NAME: &core::ffi::CStr = c"VK_AMD_pipeline_compiler_control";
+pub const NAME: &CStr = c"VK_AMD_pipeline_compiler_control";
 pub(crate) mod items {
+    use core::marker::PhantomData;
+    use crate::vk;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct PipelineCompilerControlCreateInfoAMD<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *const core::ffi::c_void,
-        pub compiler_control_flags: crate::vk::PipelineCompilerControlFlagsAMD,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub compiler_control_flags: vk::PipelineCompilerControlFlagsAMD,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for PipelineCompilerControlCreateInfoAMD<'_> {}
     unsafe impl Sync for PipelineCompilerControlCreateInfoAMD<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PipelineCompilerControlCreateInfoAMD<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PIPELINE_COMPILER_CONTROL_CREATE_INFO_AMD;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PIPELINE_COMPILER_CONTROL_CREATE_INFO_AMD;
     }
-    unsafe impl<'a> crate::Extends<crate::vk::GraphicsPipelineCreateInfo<'_>>
+    unsafe impl<'a> crate::Extends<vk::GraphicsPipelineCreateInfo<'_>>
     for PipelineCompilerControlCreateInfoAMD<'a> {}
-    unsafe impl<'a> crate::Extends<crate::vk::ComputePipelineCreateInfo<'_>>
+    unsafe impl<'a> crate::Extends<vk::ComputePipelineCreateInfo<'_>>
     for PipelineCompilerControlCreateInfoAMD<'a> {}
     #[cfg(feature = "provisional")]
-    unsafe impl<'a> crate::Extends<crate::vk::ExecutionGraphPipelineCreateInfoAMDX<'_>>
+    unsafe impl<'a> crate::Extends<vk::ExecutionGraphPipelineCreateInfoAMDX<'_>>
     for PipelineCompilerControlCreateInfoAMD<'a> {}
     impl<'a> Default for PipelineCompilerControlCreateInfoAMD<'a> {
         fn default() -> Self {
@@ -37,14 +41,14 @@ pub(crate) mod items {
                 s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
                 p_next: Default::default(),
                 compiler_control_flags: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
     impl<'a> PipelineCompilerControlCreateInfoAMD<'a> {
         pub fn compiler_control_flags(
             mut self,
-            compiler_control_flags: crate::vk::PipelineCompilerControlFlagsAMD,
+            compiler_control_flags: vk::PipelineCompilerControlFlagsAMD,
         ) -> Self {
             self.compiler_control_flags = compiler_control_flags;
             self

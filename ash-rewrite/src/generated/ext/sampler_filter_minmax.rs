@@ -2,36 +2,39 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_sampler_filter_minmax.html) · Extension `VK_EXT_sampler_filter_minmax`
 #![doc(alias = "VK_EXT_sampler_filter_minmax")]
+use crate::vk;
+use core::ffi::CStr;
 ///Provided by [VK_EXT_sampler_filter_minmax](crate::ext::sampler_filter_minmax)
-impl crate::vk::StructureType {
+impl vk::StructureType {
     pub const PHYSICAL_DEVICE_SAMPLER_FILTER_MINMAX_PROPERTIES_EXT: Self = Self::PHYSICAL_DEVICE_SAMPLER_FILTER_MINMAX_PROPERTIES;
     pub const SAMPLER_REDUCTION_MODE_CREATE_INFO_EXT: Self = Self::SAMPLER_REDUCTION_MODE_CREATE_INFO;
 }
 ///Provided by [VK_EXT_sampler_filter_minmax](crate::ext::sampler_filter_minmax)
-impl crate::vk::SamplerReductionMode {
+impl vk::SamplerReductionMode {
     pub const WEIGHTED_AVERAGE_EXT: Self = Self::WEIGHTED_AVERAGE;
     pub const MIN_EXT: Self = Self::MIN;
     pub const MAX_EXT: Self = Self::MAX;
 }
-///Provided by [VK_EXT_sampler_filter_minmax](crate::ext::sampler_filter_minmax)
-impl crate::vk::FormatFeatureFlags {
+///Provided by [Vulkan 1.0](crate::vk1_0)
+impl vk::FormatFeatureFlags {
     pub const SAMPLED_IMAGE_FILTER_MINMAX_EXT: Self = Self(
-        crate::vk::FormatFeatureFlagBits::SAMPLED_IMAGE_FILTER_MINMAX_EXT.0,
+        vk::FormatFeatureFlagBits::SAMPLED_IMAGE_FILTER_MINMAX_EXT.0,
     );
 }
-///Provided by [VK_EXT_sampler_filter_minmax](crate::ext::sampler_filter_minmax)
-impl crate::vk::FormatFeatureFlagBits {
+///Provided by [Vulkan 1.0](crate::vk1_0)
+impl vk::FormatFeatureFlagBits {
     pub const SAMPLED_IMAGE_FILTER_MINMAX_EXT: Self = Self::SAMPLED_IMAGE_FILTER_MINMAX;
 }
 pub const SPEC_VERSION: u32 = 2;
-pub const NAME: &core::ffi::CStr = c"VK_EXT_sampler_filter_minmax";
+pub const NAME: &CStr = c"VK_EXT_sampler_filter_minmax";
 pub(crate) mod items {
-    pub type PhysicalDeviceSamplerFilterMinmaxPropertiesEXT<'a> = crate::vk::PhysicalDeviceSamplerFilterMinmaxProperties<
+    use crate::vk;
+    pub type PhysicalDeviceSamplerFilterMinmaxPropertiesEXT<'a> = vk::PhysicalDeviceSamplerFilterMinmaxProperties<
         'a,
     >;
-    pub type SamplerReductionModeCreateInfoEXT<'a> = crate::vk::SamplerReductionModeCreateInfo<
+    pub type SamplerReductionModeCreateInfoEXT<'a> = vk::SamplerReductionModeCreateInfo<
         'a,
     >;
-    pub type SamplerReductionModeEXT = crate::vk::SamplerReductionMode;
+    pub type SamplerReductionModeEXT = vk::SamplerReductionMode;
 }
 pub use items::*;

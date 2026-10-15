@@ -2,8 +2,10 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_device_address_binding_report.html) · Extension `VK_EXT_device_address_binding_report`
 #![doc(alias = "VK_EXT_device_address_binding_report")]
+use crate::vk;
+use core::ffi::CStr;
 ///Provided by [VK_EXT_device_address_binding_report](crate::ext::device_address_binding_report)
-impl crate::vk::StructureType {
+impl vk::StructureType {
     pub const PHYSICAL_DEVICE_ADDRESS_BINDING_REPORT_FEATURES_EXT: Self = Self(
         1000354000,
     );
@@ -14,14 +16,14 @@ impl DeviceAddressBindingTypeEXT {
     pub const BIND: Self = Self(0);
     pub const UNBIND: Self = Self(1);
 }
-///Provided by [VK_EXT_device_address_binding_report](crate::ext::device_address_binding_report)
-impl crate::vk::DebugUtilsMessageTypeFlagsEXT {
+///Provided by [VK_EXT_debug_utils](crate::ext::debug_utils)
+impl vk::DebugUtilsMessageTypeFlagsEXT {
     pub const DEVICE_ADDRESS_BINDING: Self = Self(
-        crate::vk::DebugUtilsMessageTypeFlagBitsEXT::DEVICE_ADDRESS_BINDING.0,
+        vk::DebugUtilsMessageTypeFlagBitsEXT::DEVICE_ADDRESS_BINDING.0,
     );
 }
-///Provided by [VK_EXT_device_address_binding_report](crate::ext::device_address_binding_report)
-impl crate::vk::DebugUtilsMessageTypeFlagBitsEXT {
+///Provided by [VK_EXT_debug_utils](crate::ext::debug_utils)
+impl vk::DebugUtilsMessageTypeFlagBitsEXT {
     pub const DEVICE_ADDRESS_BINDING: Self = Self(1 << 3);
 }
 ///Provided by [VK_EXT_device_address_binding_report](crate::ext::device_address_binding_report)
@@ -35,26 +37,28 @@ impl DeviceAddressBindingFlagBitsEXT {
     pub const INTERNAL_OBJECT: Self = Self(1 << 0);
 }
 pub const SPEC_VERSION: u32 = 1;
-pub const NAME: &core::ffi::CStr = c"VK_EXT_device_address_binding_report";
+pub const NAME: &CStr = c"VK_EXT_device_address_binding_report";
 pub(crate) mod items {
+    use core::marker::PhantomData;
+    use crate::vk;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceAddressBindingReportFeaturesEXT<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
-        pub report_address_binding: crate::vk::Bool32,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub report_address_binding: vk::Bool32,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for PhysicalDeviceAddressBindingReportFeaturesEXT<'_> {}
     unsafe impl Sync for PhysicalDeviceAddressBindingReportFeaturesEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceAddressBindingReportFeaturesEXT<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_ADDRESS_BINDING_REPORT_FEATURES_EXT;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PHYSICAL_DEVICE_ADDRESS_BINDING_REPORT_FEATURES_EXT;
     }
-    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+    unsafe impl<'a> crate::Extends<vk::PhysicalDeviceFeatures2<'_>>
     for PhysicalDeviceAddressBindingReportFeaturesEXT<'a> {}
-    unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+    unsafe impl<'a> crate::Extends<vk::DeviceCreateInfo<'_>>
     for PhysicalDeviceAddressBindingReportFeaturesEXT<'a> {}
     impl<'a> Default for PhysicalDeviceAddressBindingReportFeaturesEXT<'a> {
         fn default() -> Self {
@@ -62,7 +66,7 @@ pub(crate) mod items {
                 s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
                 p_next: Default::default(),
                 report_address_binding: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
@@ -76,21 +80,21 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct DeviceAddressBindingCallbackDataEXT<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
-        pub flags: crate::vk::DeviceAddressBindingFlagsEXT,
-        pub base_address: crate::vk::DeviceAddress,
-        pub size: crate::vk::DeviceSize,
-        pub binding_type: crate::vk::DeviceAddressBindingTypeEXT,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub flags: vk::DeviceAddressBindingFlagsEXT,
+        pub base_address: vk::DeviceAddress,
+        pub size: vk::DeviceSize,
+        pub binding_type: vk::DeviceAddressBindingTypeEXT,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for DeviceAddressBindingCallbackDataEXT<'_> {}
     unsafe impl Sync for DeviceAddressBindingCallbackDataEXT<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for DeviceAddressBindingCallbackDataEXT<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::DEVICE_ADDRESS_BINDING_CALLBACK_DATA_EXT;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::DEVICE_ADDRESS_BINDING_CALLBACK_DATA_EXT;
     }
-    unsafe impl<'a> crate::Extends<crate::vk::DebugUtilsMessengerCallbackDataEXT<'_>>
+    unsafe impl<'a> crate::Extends<vk::DebugUtilsMessengerCallbackDataEXT<'_>>
     for DeviceAddressBindingCallbackDataEXT<'a> {}
     impl<'a> Default for DeviceAddressBindingCallbackDataEXT<'a> {
         fn default() -> Self {
@@ -101,26 +105,26 @@ pub(crate) mod items {
                 base_address: Default::default(),
                 size: Default::default(),
                 binding_type: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
     impl<'a> DeviceAddressBindingCallbackDataEXT<'a> {
-        pub fn flags(mut self, flags: crate::vk::DeviceAddressBindingFlagsEXT) -> Self {
+        pub fn flags(mut self, flags: vk::DeviceAddressBindingFlagsEXT) -> Self {
             self.flags = flags;
             self
         }
-        pub fn base_address(mut self, base_address: crate::vk::DeviceAddress) -> Self {
+        pub fn base_address(mut self, base_address: vk::DeviceAddress) -> Self {
             self.base_address = base_address;
             self
         }
-        pub fn size(mut self, size: crate::vk::DeviceSize) -> Self {
+        pub fn size(mut self, size: vk::DeviceSize) -> Self {
             self.size = size;
             self
         }
         pub fn binding_type(
             mut self,
-            binding_type: crate::vk::DeviceAddressBindingTypeEXT,
+            binding_type: vk::DeviceAddressBindingTypeEXT,
         ) -> Self {
             self.binding_type = binding_type;
             self

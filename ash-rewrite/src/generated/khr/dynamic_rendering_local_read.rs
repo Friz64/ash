@@ -2,37 +2,38 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_dynamic_rendering_local_read.html) · Extension `VK_KHR_dynamic_rendering_local_read`
 #![doc(alias = "VK_KHR_dynamic_rendering_local_read")]
+use crate::vk;
+use core::ffi::CStr;
+use core::ffi::c_void;
 ///Provided by [VK_KHR_dynamic_rendering_local_read](crate::khr::dynamic_rendering_local_read)
-impl crate::vk::ImageLayout {
+impl vk::ImageLayout {
     pub const RENDERING_LOCAL_READ_KHR: Self = Self::RENDERING_LOCAL_READ;
 }
 ///Provided by [VK_KHR_dynamic_rendering_local_read](crate::khr::dynamic_rendering_local_read)
-impl crate::vk::StructureType {
+impl vk::StructureType {
     pub const PHYSICAL_DEVICE_DYNAMIC_RENDERING_LOCAL_READ_FEATURES_KHR: Self = Self::PHYSICAL_DEVICE_DYNAMIC_RENDERING_LOCAL_READ_FEATURES;
     pub const RENDERING_ATTACHMENT_LOCATION_INFO_KHR: Self = Self::RENDERING_ATTACHMENT_LOCATION_INFO;
     pub const RENDERING_INPUT_ATTACHMENT_INDEX_INFO_KHR: Self = Self::RENDERING_INPUT_ATTACHMENT_INDEX_INFO;
 }
+pub const SPEC_VERSION: u32 = 1;
+pub const NAME: &CStr = c"VK_KHR_dynamic_rendering_local_read";
 #[derive(Clone)]
 pub struct DeviceFn {
-    pub cmd_set_rendering_attachment_locations: crate::vk::PFN_vkCmdSetRenderingAttachmentLocationsKHR,
-    pub cmd_set_rendering_input_attachment_indices: crate::vk::PFN_vkCmdSetRenderingInputAttachmentIndicesKHR,
+    pub cmd_set_rendering_attachment_locations: vk::PFN_vkCmdSetRenderingAttachmentLocationsKHR,
+    pub cmd_set_rendering_input_attachment_indices: vk::PFN_vkCmdSetRenderingInputAttachmentIndicesKHR,
 }
 unsafe impl Send for DeviceFn {}
 unsafe impl Sync for DeviceFn {}
 impl DeviceFn {
-    pub fn load<F: FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void>(
-        mut f: F,
-    ) -> Self {
+    pub fn load<F: FnMut(&CStr) -> *const c_void>(mut f: F) -> Self {
         Self::load_erased(&mut f)
     }
-    fn load_erased(
-        _f: &mut dyn FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void,
-    ) -> Self {
+    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const c_void) -> Self {
         Self {
             cmd_set_rendering_attachment_locations: unsafe {
                 unsafe extern "system" fn cmd_set_rendering_attachment_locations(
-                    _: crate::vk::CommandBuffer,
-                    _: *const crate::vk::RenderingAttachmentLocationInfo<'_>,
+                    _: vk::CommandBuffer,
+                    _: *const vk::RenderingAttachmentLocationInfo<'_>,
                 ) {
                     panic!("unable to load vkCmdSetRenderingAttachmentLocationsKHR")
                 }
@@ -45,8 +46,8 @@ impl DeviceFn {
             },
             cmd_set_rendering_input_attachment_indices: unsafe {
                 unsafe extern "system" fn cmd_set_rendering_input_attachment_indices(
-                    _: crate::vk::CommandBuffer,
-                    _: *const crate::vk::RenderingInputAttachmentIndexInfo<'_>,
+                    _: vk::CommandBuffer,
+                    _: *const vk::RenderingInputAttachmentIndexInfo<'_>,
                 ) {
                     panic!("unable to load vkCmdSetRenderingInputAttachmentIndicesKHR")
                 }
@@ -85,8 +86,8 @@ impl Device {
     #[inline]
     pub unsafe fn cmd_set_rendering_attachment_locations(
         &self,
-        command_buffer: crate::vk::CommandBuffer,
-        location_info: &crate::vk::RenderingAttachmentLocationInfo<'_>,
+        command_buffer: vk::CommandBuffer,
+        location_info: &vk::RenderingAttachmentLocationInfo<'_>,
     ) {
         (self.fp.cmd_set_rendering_attachment_locations)(command_buffer, location_info)
     }
@@ -94,8 +95,8 @@ impl Device {
     #[inline]
     pub unsafe fn cmd_set_rendering_input_attachment_indices(
         &self,
-        command_buffer: crate::vk::CommandBuffer,
-        input_attachment_index_info: &crate::vk::RenderingInputAttachmentIndexInfo<'_>,
+        command_buffer: vk::CommandBuffer,
+        input_attachment_index_info: &vk::RenderingInputAttachmentIndexInfo<'_>,
     ) {
         (self
             .fp
@@ -105,19 +106,18 @@ impl Device {
         )
     }
 }
-pub const SPEC_VERSION: u32 = 1;
-pub const NAME: &core::ffi::CStr = c"VK_KHR_dynamic_rendering_local_read";
 pub(crate) mod items {
-    pub type PhysicalDeviceDynamicRenderingLocalReadFeaturesKHR<'a> = crate::vk::PhysicalDeviceDynamicRenderingLocalReadFeatures<
+    use crate::vk;
+    pub type PhysicalDeviceDynamicRenderingLocalReadFeaturesKHR<'a> = vk::PhysicalDeviceDynamicRenderingLocalReadFeatures<
         'a,
     >;
-    pub type RenderingAttachmentLocationInfoKHR<'a> = crate::vk::RenderingAttachmentLocationInfo<
+    pub type RenderingAttachmentLocationInfoKHR<'a> = vk::RenderingAttachmentLocationInfo<
         'a,
     >;
-    pub type RenderingInputAttachmentIndexInfoKHR<'a> = crate::vk::RenderingInputAttachmentIndexInfo<
+    pub type RenderingInputAttachmentIndexInfoKHR<'a> = vk::RenderingInputAttachmentIndexInfo<
         'a,
     >;
-    pub type PFN_vkCmdSetRenderingAttachmentLocationsKHR = crate::vk::PFN_vkCmdSetRenderingAttachmentLocations;
-    pub type PFN_vkCmdSetRenderingInputAttachmentIndicesKHR = crate::vk::PFN_vkCmdSetRenderingInputAttachmentIndices;
+    pub type PFN_vkCmdSetRenderingAttachmentLocationsKHR = vk::PFN_vkCmdSetRenderingAttachmentLocations;
+    pub type PFN_vkCmdSetRenderingInputAttachmentIndicesKHR = vk::PFN_vkCmdSetRenderingInputAttachmentIndices;
 }
 pub use items::*;

@@ -2,59 +2,61 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_HUAWEI_subpass_shading.html) · Extension `VK_HUAWEI_subpass_shading`
 #![doc(alias = "VK_HUAWEI_subpass_shading")]
+use crate::vk;
+use core::ffi::CStr;
+use crate::VkResult;
+use core::ffi::c_void;
 ///Provided by [VK_HUAWEI_subpass_shading](crate::huawei::subpass_shading)
-impl crate::vk::PipelineBindPoint {
+impl vk::PipelineBindPoint {
     pub const SUBPASS_SHADING_HUAWEI: Self = Self(1000369003);
 }
 ///Provided by [VK_HUAWEI_subpass_shading](crate::huawei::subpass_shading)
-impl crate::vk::StructureType {
+impl vk::StructureType {
     pub const SUBPASS_SHADING_PIPELINE_CREATE_INFO_HUAWEI: Self = Self(1000369000);
     pub const PHYSICAL_DEVICE_SUBPASS_SHADING_FEATURES_HUAWEI: Self = Self(1000369001);
     pub const PHYSICAL_DEVICE_SUBPASS_SHADING_PROPERTIES_HUAWEI: Self = Self(1000369002);
 }
-///Provided by [VK_HUAWEI_subpass_shading](crate::huawei::subpass_shading)
-impl crate::vk::ShaderStageFlags {
+///Provided by [Vulkan 1.0](crate::vk1_0)
+impl vk::ShaderStageFlags {
     pub const SUBPASS_SHADING_HUAWEI: Self = Self(
-        crate::vk::ShaderStageFlagBits::SUBPASS_SHADING_HUAWEI.0,
+        vk::ShaderStageFlagBits::SUBPASS_SHADING_HUAWEI.0,
     );
 }
-///Provided by [VK_HUAWEI_subpass_shading](crate::huawei::subpass_shading)
-impl crate::vk::ShaderStageFlagBits {
+///Provided by [Vulkan 1.0](crate::vk1_0)
+impl vk::ShaderStageFlagBits {
     pub const SUBPASS_SHADING_HUAWEI: Self = Self(1 << 14);
 }
-///Provided by [VK_HUAWEI_subpass_shading](crate::huawei::subpass_shading)
-impl crate::vk::PipelineStageFlags2 {
+///Provided by [Vulkan 1.3](crate::vk1_3)
+impl vk::PipelineStageFlags2 {
     pub const SUBPASS_SHADER_HUAWEI: Self = Self(
-        crate::vk::PipelineStageFlagBits2::SUBPASS_SHADER_HUAWEI.0,
+        vk::PipelineStageFlagBits2::SUBPASS_SHADER_HUAWEI.0,
     );
 }
-///Provided by [VK_HUAWEI_subpass_shading](crate::huawei::subpass_shading)
-impl crate::vk::PipelineStageFlagBits2 {
+///Provided by [Vulkan 1.3](crate::vk1_3)
+impl vk::PipelineStageFlagBits2 {
     pub const SUBPASS_SHADER_HUAWEI: Self = Self(1 << 39);
 }
+pub const SPEC_VERSION: u32 = 3;
+pub const NAME: &CStr = c"VK_HUAWEI_subpass_shading";
 #[derive(Clone)]
 pub struct DeviceFn {
-    pub get_device_subpass_shading_max_workgroup_size: crate::vk::PFN_vkGetDeviceSubpassShadingMaxWorkgroupSizeHUAWEI,
-    pub cmd_subpass_shading: crate::vk::PFN_vkCmdSubpassShadingHUAWEI,
+    pub get_device_subpass_shading_max_workgroup_size: vk::PFN_vkGetDeviceSubpassShadingMaxWorkgroupSizeHUAWEI,
+    pub cmd_subpass_shading: vk::PFN_vkCmdSubpassShadingHUAWEI,
 }
 unsafe impl Send for DeviceFn {}
 unsafe impl Sync for DeviceFn {}
 impl DeviceFn {
-    pub fn load<F: FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void>(
-        mut f: F,
-    ) -> Self {
+    pub fn load<F: FnMut(&CStr) -> *const c_void>(mut f: F) -> Self {
         Self::load_erased(&mut f)
     }
-    fn load_erased(
-        _f: &mut dyn FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void,
-    ) -> Self {
+    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const c_void) -> Self {
         Self {
             get_device_subpass_shading_max_workgroup_size: unsafe {
                 unsafe extern "system" fn get_device_subpass_shading_max_workgroup_size(
-                    _: crate::vk::Device,
-                    _: crate::vk::RenderPass,
-                    _: *mut crate::vk::Extent2D,
-                ) -> crate::vk::Result {
+                    _: vk::Device,
+                    _: vk::RenderPass,
+                    _: *mut vk::Extent2D,
+                ) -> vk::Result {
                     panic!(
                         "unable to load vkGetDeviceSubpassShadingMaxWorkgroupSizeHUAWEI"
                     )
@@ -67,9 +69,7 @@ impl DeviceFn {
                 }
             },
             cmd_subpass_shading: unsafe {
-                unsafe extern "system" fn cmd_subpass_shading(
-                    _: crate::vk::CommandBuffer,
-                ) {
+                unsafe extern "system" fn cmd_subpass_shading(_: vk::CommandBuffer) {
                     panic!("unable to load vkCmdSubpassShadingHUAWEI")
                 }
                 let val = _f(c"vkCmdSubpassShadingHUAWEI");
@@ -107,8 +107,8 @@ impl Device {
     #[inline]
     pub unsafe fn get_device_subpass_shading_max_workgroup_size(
         &self,
-        renderpass: crate::vk::RenderPass,
-    ) -> crate::VkResult<crate::vk::Extent2D> {
+        renderpass: vk::RenderPass,
+    ) -> VkResult<vk::Extent2D> {
         let mut max_workgroup_size = core::mem::MaybeUninit::uninit();
         (self
             .fp
@@ -121,30 +121,30 @@ impl Device {
     }
     ///vkCmdSubpassShadingHUAWEI
     #[inline]
-    pub unsafe fn cmd_subpass_shading(&self, command_buffer: crate::vk::CommandBuffer) {
+    pub unsafe fn cmd_subpass_shading(&self, command_buffer: vk::CommandBuffer) {
         (self.fp.cmd_subpass_shading)(command_buffer)
     }
 }
-pub const SPEC_VERSION: u32 = 3;
-pub const NAME: &core::ffi::CStr = c"VK_HUAWEI_subpass_shading";
 pub(crate) mod items {
+    use core::marker::PhantomData;
+    use crate::vk;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct SubpassShadingPipelineCreateInfoHUAWEI<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
-        pub render_pass: crate::vk::RenderPass,
+        pub render_pass: vk::RenderPass,
         pub subpass: u32,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for SubpassShadingPipelineCreateInfoHUAWEI<'_> {}
     unsafe impl Sync for SubpassShadingPipelineCreateInfoHUAWEI<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for SubpassShadingPipelineCreateInfoHUAWEI<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::SUBPASS_SHADING_PIPELINE_CREATE_INFO_HUAWEI;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::SUBPASS_SHADING_PIPELINE_CREATE_INFO_HUAWEI;
     }
-    unsafe impl<'a> crate::Extends<crate::vk::ComputePipelineCreateInfo<'_>>
+    unsafe impl<'a> crate::Extends<vk::ComputePipelineCreateInfo<'_>>
     for SubpassShadingPipelineCreateInfoHUAWEI<'a> {}
     impl<'a> Default for SubpassShadingPipelineCreateInfoHUAWEI<'a> {
         fn default() -> Self {
@@ -153,12 +153,12 @@ pub(crate) mod items {
                 p_next: Default::default(),
                 render_pass: Default::default(),
                 subpass: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
     impl<'a> SubpassShadingPipelineCreateInfoHUAWEI<'a> {
-        pub fn render_pass(mut self, render_pass: crate::vk::RenderPass) -> Self {
+        pub fn render_pass(mut self, render_pass: vk::RenderPass) -> Self {
             self.render_pass = render_pass;
             self
         }
@@ -171,18 +171,18 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceSubpassShadingPropertiesHUAWEI<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
         pub max_subpass_shading_workgroup_size_aspect_ratio: u32,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for PhysicalDeviceSubpassShadingPropertiesHUAWEI<'_> {}
     unsafe impl Sync for PhysicalDeviceSubpassShadingPropertiesHUAWEI<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceSubpassShadingPropertiesHUAWEI<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_SUBPASS_SHADING_PROPERTIES_HUAWEI;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PHYSICAL_DEVICE_SUBPASS_SHADING_PROPERTIES_HUAWEI;
     }
-    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceProperties2<'_>>
+    unsafe impl<'a> crate::Extends<vk::PhysicalDeviceProperties2<'_>>
     for PhysicalDeviceSubpassShadingPropertiesHUAWEI<'a> {}
     impl<'a> Default for PhysicalDeviceSubpassShadingPropertiesHUAWEI<'a> {
         fn default() -> Self {
@@ -190,7 +190,7 @@ pub(crate) mod items {
                 s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
                 p_next: Default::default(),
                 max_subpass_shading_workgroup_size_aspect_ratio: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
@@ -207,20 +207,20 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceSubpassShadingFeaturesHUAWEI<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
-        pub subpass_shading: crate::vk::Bool32,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub subpass_shading: vk::Bool32,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for PhysicalDeviceSubpassShadingFeaturesHUAWEI<'_> {}
     unsafe impl Sync for PhysicalDeviceSubpassShadingFeaturesHUAWEI<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceSubpassShadingFeaturesHUAWEI<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_SUBPASS_SHADING_FEATURES_HUAWEI;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PHYSICAL_DEVICE_SUBPASS_SHADING_FEATURES_HUAWEI;
     }
-    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+    unsafe impl<'a> crate::Extends<vk::PhysicalDeviceFeatures2<'_>>
     for PhysicalDeviceSubpassShadingFeaturesHUAWEI<'a> {}
-    unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+    unsafe impl<'a> crate::Extends<vk::DeviceCreateInfo<'_>>
     for PhysicalDeviceSubpassShadingFeaturesHUAWEI<'a> {}
     impl<'a> Default for PhysicalDeviceSubpassShadingFeaturesHUAWEI<'a> {
         fn default() -> Self {
@@ -228,7 +228,7 @@ pub(crate) mod items {
                 s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
                 p_next: Default::default(),
                 subpass_shading: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
@@ -239,12 +239,12 @@ pub(crate) mod items {
         }
     }
     pub type PFN_vkGetDeviceSubpassShadingMaxWorkgroupSizeHUAWEI = unsafe extern "system" fn(
-        device: crate::vk::Device,
-        renderpass: crate::vk::RenderPass,
-        p_max_workgroup_size: *mut crate::vk::Extent2D,
-    ) -> crate::vk::Result;
+        device: vk::Device,
+        renderpass: vk::RenderPass,
+        p_max_workgroup_size: *mut vk::Extent2D,
+    ) -> vk::Result;
     pub type PFN_vkCmdSubpassShadingHUAWEI = unsafe extern "system" fn(
-        command_buffer: crate::vk::CommandBuffer,
+        command_buffer: vk::CommandBuffer,
     );
 }
 pub use items::*;

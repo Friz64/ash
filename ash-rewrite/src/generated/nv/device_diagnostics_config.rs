@@ -2,8 +2,10 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_NV_device_diagnostics_config.html) · Extension `VK_NV_device_diagnostics_config`
 #![doc(alias = "VK_NV_device_diagnostics_config")]
+use crate::vk;
+use core::ffi::CStr;
 ///Provided by [VK_NV_device_diagnostics_config](crate::nv::device_diagnostics_config)
-impl crate::vk::StructureType {
+impl vk::StructureType {
     pub const PHYSICAL_DEVICE_DIAGNOSTICS_CONFIG_FEATURES_NV: Self = Self(1000300000);
     pub const DEVICE_DIAGNOSTICS_CONFIG_CREATE_INFO_NV: Self = Self(1000300001);
 }
@@ -30,26 +32,28 @@ impl DeviceDiagnosticsConfigFlagBitsNV {
     pub const ENABLE_SHADER_ERROR_REPORTING: Self = Self(1 << 3);
 }
 pub const SPEC_VERSION: u32 = 2;
-pub const NAME: &core::ffi::CStr = c"VK_NV_device_diagnostics_config";
+pub const NAME: &CStr = c"VK_NV_device_diagnostics_config";
 pub(crate) mod items {
+    use core::marker::PhantomData;
+    use crate::vk;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceDiagnosticsConfigFeaturesNV<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *mut core::ffi::c_void,
-        pub diagnostics_config: crate::vk::Bool32,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub diagnostics_config: vk::Bool32,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for PhysicalDeviceDiagnosticsConfigFeaturesNV<'_> {}
     unsafe impl Sync for PhysicalDeviceDiagnosticsConfigFeaturesNV<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for PhysicalDeviceDiagnosticsConfigFeaturesNV<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::PHYSICAL_DEVICE_DIAGNOSTICS_CONFIG_FEATURES_NV;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::PHYSICAL_DEVICE_DIAGNOSTICS_CONFIG_FEATURES_NV;
     }
-    unsafe impl<'a> crate::Extends<crate::vk::PhysicalDeviceFeatures2<'_>>
+    unsafe impl<'a> crate::Extends<vk::PhysicalDeviceFeatures2<'_>>
     for PhysicalDeviceDiagnosticsConfigFeaturesNV<'a> {}
-    unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+    unsafe impl<'a> crate::Extends<vk::DeviceCreateInfo<'_>>
     for PhysicalDeviceDiagnosticsConfigFeaturesNV<'a> {}
     impl<'a> Default for PhysicalDeviceDiagnosticsConfigFeaturesNV<'a> {
         fn default() -> Self {
@@ -57,7 +61,7 @@ pub(crate) mod items {
                 s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
                 p_next: Default::default(),
                 diagnostics_config: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
@@ -71,18 +75,18 @@ pub(crate) mod items {
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct DeviceDiagnosticsConfigCreateInfoNV<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *const core::ffi::c_void,
-        pub flags: crate::vk::DeviceDiagnosticsConfigFlagsNV,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub flags: vk::DeviceDiagnosticsConfigFlagsNV,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for DeviceDiagnosticsConfigCreateInfoNV<'_> {}
     unsafe impl Sync for DeviceDiagnosticsConfigCreateInfoNV<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a>
     for DeviceDiagnosticsConfigCreateInfoNV<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::DEVICE_DIAGNOSTICS_CONFIG_CREATE_INFO_NV;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::DEVICE_DIAGNOSTICS_CONFIG_CREATE_INFO_NV;
     }
-    unsafe impl<'a> crate::Extends<crate::vk::DeviceCreateInfo<'_>>
+    unsafe impl<'a> crate::Extends<vk::DeviceCreateInfo<'_>>
     for DeviceDiagnosticsConfigCreateInfoNV<'a> {}
     impl<'a> Default for DeviceDiagnosticsConfigCreateInfoNV<'a> {
         fn default() -> Self {
@@ -90,15 +94,12 @@ pub(crate) mod items {
                 s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
                 p_next: Default::default(),
                 flags: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
     impl<'a> DeviceDiagnosticsConfigCreateInfoNV<'a> {
-        pub fn flags(
-            mut self,
-            flags: crate::vk::DeviceDiagnosticsConfigFlagsNV,
-        ) -> Self {
+        pub fn flags(mut self, flags: vk::DeviceDiagnosticsConfigFlagsNV) -> Self {
             self.flags = flags;
             self
         }

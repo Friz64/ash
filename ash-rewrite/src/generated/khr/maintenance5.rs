@@ -2,13 +2,16 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_maintenance5.html) · Extension `VK_KHR_maintenance5`
 #![doc(alias = "VK_KHR_maintenance5")]
+use crate::vk;
+use core::ffi::CStr;
+use core::ffi::c_void;
 ///Provided by [VK_KHR_maintenance5](crate::khr::maintenance5)
-impl crate::vk::Format {
+impl vk::Format {
     pub const A1B5G5R5_UNORM_PACK16_KHR: Self = Self::A1B5G5R5_UNORM_PACK16;
     pub const A8_UNORM_KHR: Self = Self::A8_UNORM;
 }
 ///Provided by [VK_KHR_maintenance5](crate::khr::maintenance5)
-impl crate::vk::StructureType {
+impl vk::StructureType {
     pub const PHYSICAL_DEVICE_MAINTENANCE_5_FEATURES_KHR: Self = Self::PHYSICAL_DEVICE_MAINTENANCE_5_FEATURES;
     pub const PHYSICAL_DEVICE_MAINTENANCE_5_PROPERTIES_KHR: Self = Self::PHYSICAL_DEVICE_MAINTENANCE_5_PROPERTIES;
     pub const RENDERING_AREA_INFO_KHR: Self = Self::RENDERING_AREA_INFO;
@@ -18,111 +21,103 @@ impl crate::vk::StructureType {
     pub const PIPELINE_CREATE_FLAGS_2_CREATE_INFO_KHR: Self = Self::PIPELINE_CREATE_FLAGS_2_CREATE_INFO;
     pub const BUFFER_USAGE_FLAGS_2_CREATE_INFO_KHR: Self = Self::BUFFER_USAGE_FLAGS_2_CREATE_INFO;
 }
-///Provided by [VK_KHR_maintenance5](crate::khr::maintenance5)
-impl crate::vk::PipelineCreateFlags2 {
+///Provided by [Vulkan 1.4](crate::vk1_4)
+impl vk::PipelineCreateFlags2 {
     pub const DISABLE_OPTIMIZATION_KHR: Self = Self(
-        crate::vk::PipelineCreateFlagBits2::DISABLE_OPTIMIZATION_KHR.0,
+        vk::PipelineCreateFlagBits2::DISABLE_OPTIMIZATION_KHR.0,
     );
     pub const ALLOW_DERIVATIVES_KHR: Self = Self(
-        crate::vk::PipelineCreateFlagBits2::ALLOW_DERIVATIVES_KHR.0,
+        vk::PipelineCreateFlagBits2::ALLOW_DERIVATIVES_KHR.0,
     );
-    pub const DERIVATIVE_KHR: Self = Self(
-        crate::vk::PipelineCreateFlagBits2::DERIVATIVE_KHR.0,
-    );
+    pub const DERIVATIVE_KHR: Self = Self(vk::PipelineCreateFlagBits2::DERIVATIVE_KHR.0);
     pub const VIEW_INDEX_FROM_DEVICE_INDEX_KHR: Self = Self(
-        crate::vk::PipelineCreateFlagBits2::VIEW_INDEX_FROM_DEVICE_INDEX_KHR.0,
+        vk::PipelineCreateFlagBits2::VIEW_INDEX_FROM_DEVICE_INDEX_KHR.0,
     );
     pub const DISPATCH_BASE_KHR: Self = Self(
-        crate::vk::PipelineCreateFlagBits2::DISPATCH_BASE_KHR.0,
+        vk::PipelineCreateFlagBits2::DISPATCH_BASE_KHR.0,
     );
     pub const DEFER_COMPILE_NV: Self = Self(
-        crate::vk::PipelineCreateFlagBits2::DEFER_COMPILE_NV.0,
+        vk::PipelineCreateFlagBits2::DEFER_COMPILE_NV.0,
     );
     pub const CAPTURE_STATISTICS_KHR: Self = Self(
-        crate::vk::PipelineCreateFlagBits2::CAPTURE_STATISTICS_KHR.0,
+        vk::PipelineCreateFlagBits2::CAPTURE_STATISTICS_KHR.0,
     );
     pub const CAPTURE_INTERNAL_REPRESENTATIONS_KHR: Self = Self(
-        crate::vk::PipelineCreateFlagBits2::CAPTURE_INTERNAL_REPRESENTATIONS_KHR.0,
+        vk::PipelineCreateFlagBits2::CAPTURE_INTERNAL_REPRESENTATIONS_KHR.0,
     );
     pub const FAIL_ON_PIPELINE_COMPILE_REQUIRED_KHR: Self = Self(
-        crate::vk::PipelineCreateFlagBits2::FAIL_ON_PIPELINE_COMPILE_REQUIRED_KHR.0,
+        vk::PipelineCreateFlagBits2::FAIL_ON_PIPELINE_COMPILE_REQUIRED_KHR.0,
     );
     pub const EARLY_RETURN_ON_FAILURE_KHR: Self = Self(
-        crate::vk::PipelineCreateFlagBits2::EARLY_RETURN_ON_FAILURE_KHR.0,
+        vk::PipelineCreateFlagBits2::EARLY_RETURN_ON_FAILURE_KHR.0,
     );
     pub const LINK_TIME_OPTIMIZATION_EXT: Self = Self(
-        crate::vk::PipelineCreateFlagBits2::LINK_TIME_OPTIMIZATION_EXT.0,
+        vk::PipelineCreateFlagBits2::LINK_TIME_OPTIMIZATION_EXT.0,
     );
     pub const RETAIN_LINK_TIME_OPTIMIZATION_INFO_EXT: Self = Self(
-        crate::vk::PipelineCreateFlagBits2::RETAIN_LINK_TIME_OPTIMIZATION_INFO_EXT.0,
+        vk::PipelineCreateFlagBits2::RETAIN_LINK_TIME_OPTIMIZATION_INFO_EXT.0,
     );
-    pub const LIBRARY_KHR: Self = Self(
-        crate::vk::PipelineCreateFlagBits2::LIBRARY_KHR.0,
-    );
+    pub const LIBRARY_KHR: Self = Self(vk::PipelineCreateFlagBits2::LIBRARY_KHR.0);
     pub const RAY_TRACING_SKIP_TRIANGLES_KHR: Self = Self(
-        crate::vk::PipelineCreateFlagBits2::RAY_TRACING_SKIP_TRIANGLES_KHR.0,
+        vk::PipelineCreateFlagBits2::RAY_TRACING_SKIP_TRIANGLES_KHR.0,
     );
     pub const RAY_TRACING_SKIP_AABBS_KHR: Self = Self(
-        crate::vk::PipelineCreateFlagBits2::RAY_TRACING_SKIP_AABBS_KHR.0,
+        vk::PipelineCreateFlagBits2::RAY_TRACING_SKIP_AABBS_KHR.0,
     );
     pub const RAY_TRACING_NO_NULL_ANY_HIT_SHADERS_KHR: Self = Self(
-        crate::vk::PipelineCreateFlagBits2::RAY_TRACING_NO_NULL_ANY_HIT_SHADERS_KHR.0,
+        vk::PipelineCreateFlagBits2::RAY_TRACING_NO_NULL_ANY_HIT_SHADERS_KHR.0,
     );
     pub const RAY_TRACING_NO_NULL_CLOSEST_HIT_SHADERS_KHR: Self = Self(
-        crate::vk::PipelineCreateFlagBits2::RAY_TRACING_NO_NULL_CLOSEST_HIT_SHADERS_KHR.0,
+        vk::PipelineCreateFlagBits2::RAY_TRACING_NO_NULL_CLOSEST_HIT_SHADERS_KHR.0,
     );
     pub const RAY_TRACING_NO_NULL_MISS_SHADERS_KHR: Self = Self(
-        crate::vk::PipelineCreateFlagBits2::RAY_TRACING_NO_NULL_MISS_SHADERS_KHR.0,
+        vk::PipelineCreateFlagBits2::RAY_TRACING_NO_NULL_MISS_SHADERS_KHR.0,
     );
     pub const RAY_TRACING_NO_NULL_INTERSECTION_SHADERS_KHR: Self = Self(
-        crate::vk::PipelineCreateFlagBits2::RAY_TRACING_NO_NULL_INTERSECTION_SHADERS_KHR
-            .0,
+        vk::PipelineCreateFlagBits2::RAY_TRACING_NO_NULL_INTERSECTION_SHADERS_KHR.0,
     );
     pub const RAY_TRACING_SHADER_GROUP_HANDLE_CAPTURE_REPLAY_KHR: Self = Self(
-        crate::vk::PipelineCreateFlagBits2::RAY_TRACING_SHADER_GROUP_HANDLE_CAPTURE_REPLAY_KHR
-            .0,
+        vk::PipelineCreateFlagBits2::RAY_TRACING_SHADER_GROUP_HANDLE_CAPTURE_REPLAY_KHR.0,
     );
     pub const INDIRECT_BINDABLE_NV: Self = Self(
-        crate::vk::PipelineCreateFlagBits2::INDIRECT_BINDABLE_NV.0,
+        vk::PipelineCreateFlagBits2::INDIRECT_BINDABLE_NV.0,
     );
     pub const RAY_TRACING_ALLOW_MOTION_NV: Self = Self(
-        crate::vk::PipelineCreateFlagBits2::RAY_TRACING_ALLOW_MOTION_NV.0,
+        vk::PipelineCreateFlagBits2::RAY_TRACING_ALLOW_MOTION_NV.0,
     );
     pub const RENDERING_FRAGMENT_SHADING_RATE_ATTACHMENT_KHR: Self = Self(
-        crate::vk::PipelineCreateFlagBits2::RENDERING_FRAGMENT_SHADING_RATE_ATTACHMENT_KHR
-            .0,
+        vk::PipelineCreateFlagBits2::RENDERING_FRAGMENT_SHADING_RATE_ATTACHMENT_KHR.0,
     );
     pub const RENDERING_FRAGMENT_DENSITY_MAP_ATTACHMENT_EXT: Self = Self(
-        crate::vk::PipelineCreateFlagBits2::RENDERING_FRAGMENT_DENSITY_MAP_ATTACHMENT_EXT
-            .0,
+        vk::PipelineCreateFlagBits2::RENDERING_FRAGMENT_DENSITY_MAP_ATTACHMENT_EXT.0,
     );
     pub const COLOR_ATTACHMENT_FEEDBACK_LOOP_EXT: Self = Self(
-        crate::vk::PipelineCreateFlagBits2::COLOR_ATTACHMENT_FEEDBACK_LOOP_EXT.0,
+        vk::PipelineCreateFlagBits2::COLOR_ATTACHMENT_FEEDBACK_LOOP_EXT.0,
     );
     pub const DEPTH_STENCIL_ATTACHMENT_FEEDBACK_LOOP_EXT: Self = Self(
-        crate::vk::PipelineCreateFlagBits2::DEPTH_STENCIL_ATTACHMENT_FEEDBACK_LOOP_EXT.0,
+        vk::PipelineCreateFlagBits2::DEPTH_STENCIL_ATTACHMENT_FEEDBACK_LOOP_EXT.0,
     );
     pub const NO_PROTECTED_ACCESS_EXT: Self = Self(
-        crate::vk::PipelineCreateFlagBits2::NO_PROTECTED_ACCESS_EXT.0,
+        vk::PipelineCreateFlagBits2::NO_PROTECTED_ACCESS_EXT.0,
     );
     pub const PROTECTED_ACCESS_ONLY_EXT: Self = Self(
-        crate::vk::PipelineCreateFlagBits2::PROTECTED_ACCESS_ONLY_EXT.0,
+        vk::PipelineCreateFlagBits2::PROTECTED_ACCESS_ONLY_EXT.0,
     );
     pub const RAY_TRACING_DISPLACEMENT_MICROMAP_NV: Self = Self(
-        crate::vk::PipelineCreateFlagBits2::RAY_TRACING_DISPLACEMENT_MICROMAP_NV.0,
+        vk::PipelineCreateFlagBits2::RAY_TRACING_DISPLACEMENT_MICROMAP_NV.0,
     );
     pub const DESCRIPTOR_BUFFER_EXT: Self = Self(
-        crate::vk::PipelineCreateFlagBits2::DESCRIPTOR_BUFFER_EXT.0,
+        vk::PipelineCreateFlagBits2::DESCRIPTOR_BUFFER_EXT.0,
     );
     pub const DISALLOW_OPACITY_MICROMAP_ARM: Self = Self(
-        crate::vk::PipelineCreateFlagBits2::DISALLOW_OPACITY_MICROMAP_ARM.0,
+        vk::PipelineCreateFlagBits2::DISALLOW_OPACITY_MICROMAP_ARM.0,
     );
     pub const INSTRUMENT_SHADERS_ARM: Self = Self(
-        crate::vk::PipelineCreateFlagBits2::INSTRUMENT_SHADERS_ARM.0,
+        vk::PipelineCreateFlagBits2::INSTRUMENT_SHADERS_ARM.0,
     );
 }
-///Provided by [VK_KHR_maintenance5](crate::khr::maintenance5)
-impl crate::vk::PipelineCreateFlagBits2 {
+///Provided by [Vulkan 1.4](crate::vk1_4)
+impl vk::PipelineCreateFlagBits2 {
     pub const DISABLE_OPTIMIZATION_KHR: Self = Self::DISABLE_OPTIMIZATION;
     pub const ALLOW_DERIVATIVES_KHR: Self = Self::ALLOW_DERIVATIVES;
     pub const DERIVATIVE_KHR: Self = Self::DERIVATIVE;
@@ -156,84 +151,81 @@ impl crate::vk::PipelineCreateFlagBits2 {
     pub const DISALLOW_OPACITY_MICROMAP_ARM: Self = Self(1 << 37);
     pub const INSTRUMENT_SHADERS_ARM: Self = Self(1 << 39);
 }
-///Provided by [VK_KHR_maintenance5](crate::khr::maintenance5)
-impl crate::vk::BufferUsageFlags2 {
+///Provided by [Vulkan 1.4](crate::vk1_4)
+impl vk::BufferUsageFlags2 {
     pub const TRANSFER_SRC_KHR: Self = Self(
-        crate::vk::BufferUsageFlagBits2::TRANSFER_SRC_KHR.0,
+        vk::BufferUsageFlagBits2::TRANSFER_SRC_KHR.0,
     );
     pub const TRANSFER_DST_KHR: Self = Self(
-        crate::vk::BufferUsageFlagBits2::TRANSFER_DST_KHR.0,
+        vk::BufferUsageFlagBits2::TRANSFER_DST_KHR.0,
     );
     pub const UNIFORM_TEXEL_BUFFER_KHR: Self = Self(
-        crate::vk::BufferUsageFlagBits2::UNIFORM_TEXEL_BUFFER_KHR.0,
+        vk::BufferUsageFlagBits2::UNIFORM_TEXEL_BUFFER_KHR.0,
     );
     pub const STORAGE_TEXEL_BUFFER_KHR: Self = Self(
-        crate::vk::BufferUsageFlagBits2::STORAGE_TEXEL_BUFFER_KHR.0,
+        vk::BufferUsageFlagBits2::STORAGE_TEXEL_BUFFER_KHR.0,
     );
     pub const UNIFORM_BUFFER_KHR: Self = Self(
-        crate::vk::BufferUsageFlagBits2::UNIFORM_BUFFER_KHR.0,
+        vk::BufferUsageFlagBits2::UNIFORM_BUFFER_KHR.0,
     );
     pub const STORAGE_BUFFER_KHR: Self = Self(
-        crate::vk::BufferUsageFlagBits2::STORAGE_BUFFER_KHR.0,
+        vk::BufferUsageFlagBits2::STORAGE_BUFFER_KHR.0,
     );
     pub const INDEX_BUFFER_KHR: Self = Self(
-        crate::vk::BufferUsageFlagBits2::INDEX_BUFFER_KHR.0,
+        vk::BufferUsageFlagBits2::INDEX_BUFFER_KHR.0,
     );
     pub const VERTEX_BUFFER_KHR: Self = Self(
-        crate::vk::BufferUsageFlagBits2::VERTEX_BUFFER_KHR.0,
+        vk::BufferUsageFlagBits2::VERTEX_BUFFER_KHR.0,
     );
     pub const INDIRECT_BUFFER_KHR: Self = Self(
-        crate::vk::BufferUsageFlagBits2::INDIRECT_BUFFER_KHR.0,
+        vk::BufferUsageFlagBits2::INDIRECT_BUFFER_KHR.0,
     );
     pub const CONDITIONAL_RENDERING_EXT: Self = Self(
-        crate::vk::BufferUsageFlagBits2::CONDITIONAL_RENDERING_EXT.0,
+        vk::BufferUsageFlagBits2::CONDITIONAL_RENDERING_EXT.0,
     );
     pub const SHADER_BINDING_TABLE_KHR: Self = Self(
-        crate::vk::BufferUsageFlagBits2::SHADER_BINDING_TABLE_KHR.0,
+        vk::BufferUsageFlagBits2::SHADER_BINDING_TABLE_KHR.0,
     );
-    pub const RAY_TRACING_NV: Self = Self(
-        crate::vk::BufferUsageFlagBits2::RAY_TRACING_NV.0,
-    );
+    pub const RAY_TRACING_NV: Self = Self(vk::BufferUsageFlagBits2::RAY_TRACING_NV.0);
     pub const TRANSFORM_FEEDBACK_BUFFER_EXT: Self = Self(
-        crate::vk::BufferUsageFlagBits2::TRANSFORM_FEEDBACK_BUFFER_EXT.0,
+        vk::BufferUsageFlagBits2::TRANSFORM_FEEDBACK_BUFFER_EXT.0,
     );
     pub const TRANSFORM_FEEDBACK_COUNTER_BUFFER_EXT: Self = Self(
-        crate::vk::BufferUsageFlagBits2::TRANSFORM_FEEDBACK_COUNTER_BUFFER_EXT.0,
+        vk::BufferUsageFlagBits2::TRANSFORM_FEEDBACK_COUNTER_BUFFER_EXT.0,
     );
     pub const VIDEO_DECODE_SRC_KHR: Self = Self(
-        crate::vk::BufferUsageFlagBits2::VIDEO_DECODE_SRC_KHR.0,
+        vk::BufferUsageFlagBits2::VIDEO_DECODE_SRC_KHR.0,
     );
     pub const VIDEO_DECODE_DST_KHR: Self = Self(
-        crate::vk::BufferUsageFlagBits2::VIDEO_DECODE_DST_KHR.0,
+        vk::BufferUsageFlagBits2::VIDEO_DECODE_DST_KHR.0,
     );
     pub const VIDEO_ENCODE_DST_KHR: Self = Self(
-        crate::vk::BufferUsageFlagBits2::VIDEO_ENCODE_DST_KHR.0,
+        vk::BufferUsageFlagBits2::VIDEO_ENCODE_DST_KHR.0,
     );
     pub const VIDEO_ENCODE_SRC_KHR: Self = Self(
-        crate::vk::BufferUsageFlagBits2::VIDEO_ENCODE_SRC_KHR.0,
+        vk::BufferUsageFlagBits2::VIDEO_ENCODE_SRC_KHR.0,
     );
     pub const SHADER_DEVICE_ADDRESS_KHR: Self = Self(
-        crate::vk::BufferUsageFlagBits2::SHADER_DEVICE_ADDRESS_KHR.0,
+        vk::BufferUsageFlagBits2::SHADER_DEVICE_ADDRESS_KHR.0,
     );
     pub const ACCELERATION_STRUCTURE_BUILD_INPUT_READ_ONLY_KHR: Self = Self(
-        crate::vk::BufferUsageFlagBits2::ACCELERATION_STRUCTURE_BUILD_INPUT_READ_ONLY_KHR
-            .0,
+        vk::BufferUsageFlagBits2::ACCELERATION_STRUCTURE_BUILD_INPUT_READ_ONLY_KHR.0,
     );
     pub const ACCELERATION_STRUCTURE_STORAGE_KHR: Self = Self(
-        crate::vk::BufferUsageFlagBits2::ACCELERATION_STRUCTURE_STORAGE_KHR.0,
+        vk::BufferUsageFlagBits2::ACCELERATION_STRUCTURE_STORAGE_KHR.0,
     );
     pub const SAMPLER_DESCRIPTOR_BUFFER_EXT: Self = Self(
-        crate::vk::BufferUsageFlagBits2::SAMPLER_DESCRIPTOR_BUFFER_EXT.0,
+        vk::BufferUsageFlagBits2::SAMPLER_DESCRIPTOR_BUFFER_EXT.0,
     );
     pub const RESOURCE_DESCRIPTOR_BUFFER_EXT: Self = Self(
-        crate::vk::BufferUsageFlagBits2::RESOURCE_DESCRIPTOR_BUFFER_EXT.0,
+        vk::BufferUsageFlagBits2::RESOURCE_DESCRIPTOR_BUFFER_EXT.0,
     );
     pub const PUSH_DESCRIPTORS_DESCRIPTOR_BUFFER_EXT: Self = Self(
-        crate::vk::BufferUsageFlagBits2::PUSH_DESCRIPTORS_DESCRIPTOR_BUFFER_EXT.0,
+        vk::BufferUsageFlagBits2::PUSH_DESCRIPTORS_DESCRIPTOR_BUFFER_EXT.0,
     );
 }
-///Provided by [VK_KHR_maintenance5](crate::khr::maintenance5)
-impl crate::vk::BufferUsageFlagBits2 {
+///Provided by [Vulkan 1.4](crate::vk1_4)
+impl vk::BufferUsageFlagBits2 {
     pub const TRANSFER_SRC_KHR: Self = Self::TRANSFER_SRC;
     pub const TRANSFER_DST_KHR: Self = Self::TRANSFER_DST;
     pub const UNIFORM_TEXEL_BUFFER_KHR: Self = Self::UNIFORM_TEXEL_BUFFER;
@@ -259,40 +251,38 @@ impl crate::vk::BufferUsageFlagBits2 {
     pub const RESOURCE_DESCRIPTOR_BUFFER_EXT: Self = Self(1 << 22);
     pub const PUSH_DESCRIPTORS_DESCRIPTOR_BUFFER_EXT: Self = Self(1 << 26);
 }
-///Provided by [VK_KHR_maintenance5](crate::khr::maintenance5)
-impl crate::vk::ShaderCreateFlagsEXT {
+///Provided by [VK_EXT_shader_object](crate::ext::shader_object)
+impl vk::ShaderCreateFlagsEXT {
     pub const INSTRUMENT_SHADER_ARM: Self = Self(
-        crate::vk::ShaderCreateFlagBitsEXT::INSTRUMENT_SHADER_ARM.0,
+        vk::ShaderCreateFlagBitsEXT::INSTRUMENT_SHADER_ARM.0,
     );
 }
-///Provided by [VK_KHR_maintenance5](crate::khr::maintenance5)
-impl crate::vk::ShaderCreateFlagBitsEXT {
+///Provided by [VK_EXT_shader_object](crate::ext::shader_object)
+impl vk::ShaderCreateFlagBitsEXT {
     pub const INSTRUMENT_SHADER_ARM: Self = Self(1 << 11);
 }
+pub const SPEC_VERSION: u32 = 1;
+pub const NAME: &CStr = c"VK_KHR_maintenance5";
 #[derive(Clone)]
 pub struct DeviceFn {
-    pub get_rendering_area_granularity: crate::vk::PFN_vkGetRenderingAreaGranularityKHR,
-    pub cmd_bind_index_buffer2: crate::vk::PFN_vkCmdBindIndexBuffer2KHR,
-    pub get_image_subresource_layout2: crate::vk::PFN_vkGetImageSubresourceLayout2KHR,
-    pub get_device_image_subresource_layout: crate::vk::PFN_vkGetDeviceImageSubresourceLayoutKHR,
+    pub get_rendering_area_granularity: vk::PFN_vkGetRenderingAreaGranularityKHR,
+    pub cmd_bind_index_buffer2: vk::PFN_vkCmdBindIndexBuffer2KHR,
+    pub get_image_subresource_layout2: vk::PFN_vkGetImageSubresourceLayout2KHR,
+    pub get_device_image_subresource_layout: vk::PFN_vkGetDeviceImageSubresourceLayoutKHR,
 }
 unsafe impl Send for DeviceFn {}
 unsafe impl Sync for DeviceFn {}
 impl DeviceFn {
-    pub fn load<F: FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void>(
-        mut f: F,
-    ) -> Self {
+    pub fn load<F: FnMut(&CStr) -> *const c_void>(mut f: F) -> Self {
         Self::load_erased(&mut f)
     }
-    fn load_erased(
-        _f: &mut dyn FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void,
-    ) -> Self {
+    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const c_void) -> Self {
         Self {
             get_rendering_area_granularity: unsafe {
                 unsafe extern "system" fn get_rendering_area_granularity(
-                    _: crate::vk::Device,
-                    _: *const crate::vk::RenderingAreaInfo<'_>,
-                    _: *mut crate::vk::Extent2D,
+                    _: vk::Device,
+                    _: *const vk::RenderingAreaInfo<'_>,
+                    _: *mut vk::Extent2D,
                 ) {
                     panic!("unable to load vkGetRenderingAreaGranularityKHR")
                 }
@@ -305,11 +295,11 @@ impl DeviceFn {
             },
             cmd_bind_index_buffer2: unsafe {
                 unsafe extern "system" fn cmd_bind_index_buffer2(
-                    _: crate::vk::CommandBuffer,
-                    _: crate::vk::Buffer,
-                    _: crate::vk::DeviceSize,
-                    _: crate::vk::DeviceSize,
-                    _: crate::vk::IndexType,
+                    _: vk::CommandBuffer,
+                    _: vk::Buffer,
+                    _: vk::DeviceSize,
+                    _: vk::DeviceSize,
+                    _: vk::IndexType,
                 ) {
                     panic!("unable to load vkCmdBindIndexBuffer2KHR")
                 }
@@ -322,10 +312,10 @@ impl DeviceFn {
             },
             get_image_subresource_layout2: unsafe {
                 unsafe extern "system" fn get_image_subresource_layout2(
-                    _: crate::vk::Device,
-                    _: crate::vk::Image,
-                    _: *const crate::vk::ImageSubresource2<'_>,
-                    _: *mut crate::vk::SubresourceLayout2<'_>,
+                    _: vk::Device,
+                    _: vk::Image,
+                    _: *const vk::ImageSubresource2<'_>,
+                    _: *mut vk::SubresourceLayout2<'_>,
                 ) {
                     panic!("unable to load vkGetImageSubresourceLayout2KHR")
                 }
@@ -338,9 +328,9 @@ impl DeviceFn {
             },
             get_device_image_subresource_layout: unsafe {
                 unsafe extern "system" fn get_device_image_subresource_layout(
-                    _: crate::vk::Device,
-                    _: *const crate::vk::DeviceImageSubresourceInfo<'_>,
-                    _: *mut crate::vk::SubresourceLayout2<'_>,
+                    _: vk::Device,
+                    _: *const vk::DeviceImageSubresourceInfo<'_>,
+                    _: *mut vk::SubresourceLayout2<'_>,
                 ) {
                     panic!("unable to load vkGetDeviceImageSubresourceLayoutKHR")
                 }
@@ -379,8 +369,8 @@ impl Device {
     #[inline]
     pub unsafe fn get_rendering_area_granularity(
         &self,
-        rendering_area_info: &crate::vk::RenderingAreaInfo<'_>,
-    ) -> crate::vk::Extent2D {
+        rendering_area_info: &vk::RenderingAreaInfo<'_>,
+    ) -> vk::Extent2D {
         let mut granularity = core::mem::MaybeUninit::uninit();
         (self
             .fp
@@ -395,11 +385,11 @@ impl Device {
     #[inline]
     pub unsafe fn cmd_bind_index_buffer2(
         &self,
-        command_buffer: crate::vk::CommandBuffer,
-        buffer: crate::vk::Buffer,
-        offset: crate::vk::DeviceSize,
-        size: crate::vk::DeviceSize,
-        index_type: crate::vk::IndexType,
+        command_buffer: vk::CommandBuffer,
+        buffer: vk::Buffer,
+        offset: vk::DeviceSize,
+        size: vk::DeviceSize,
+        index_type: vk::IndexType,
     ) {
         (self
             .fp
@@ -409,9 +399,9 @@ impl Device {
     #[inline]
     pub unsafe fn get_image_subresource_layout2(
         &self,
-        image: crate::vk::Image,
-        subresource: &crate::vk::ImageSubresource2<'_>,
-    ) -> crate::vk::SubresourceLayout2<'_> {
+        image: vk::Image,
+        subresource: &vk::ImageSubresource2<'_>,
+    ) -> vk::SubresourceLayout2<'_> {
         let mut layout = core::mem::MaybeUninit::uninit();
         (self
             .fp
@@ -427,8 +417,8 @@ impl Device {
     #[inline]
     pub unsafe fn get_device_image_subresource_layout(
         &self,
-        info: &crate::vk::DeviceImageSubresourceInfo<'_>,
-    ) -> crate::vk::SubresourceLayout2<'_> {
+        info: &vk::DeviceImageSubresourceInfo<'_>,
+    ) -> vk::SubresourceLayout2<'_> {
         let mut layout = core::mem::MaybeUninit::uninit();
         (self
             .fp
@@ -440,34 +430,29 @@ impl Device {
         layout.assume_init()
     }
 }
-pub const SPEC_VERSION: u32 = 1;
-pub const NAME: &core::ffi::CStr = c"VK_KHR_maintenance5";
 pub(crate) mod items {
-    pub type BufferUsageFlags2CreateInfoKHR<'a> = crate::vk::BufferUsageFlags2CreateInfo<
+    use crate::vk;
+    pub type BufferUsageFlags2CreateInfoKHR<'a> = vk::BufferUsageFlags2CreateInfo<'a>;
+    pub type PipelineCreateFlags2CreateInfoKHR<'a> = vk::PipelineCreateFlags2CreateInfo<
         'a,
     >;
-    pub type PipelineCreateFlags2CreateInfoKHR<'a> = crate::vk::PipelineCreateFlags2CreateInfo<
+    pub type PhysicalDeviceMaintenance5FeaturesKHR<'a> = vk::PhysicalDeviceMaintenance5Features<
         'a,
     >;
-    pub type PhysicalDeviceMaintenance5FeaturesKHR<'a> = crate::vk::PhysicalDeviceMaintenance5Features<
+    pub type PhysicalDeviceMaintenance5PropertiesKHR<'a> = vk::PhysicalDeviceMaintenance5Properties<
         'a,
     >;
-    pub type PhysicalDeviceMaintenance5PropertiesKHR<'a> = crate::vk::PhysicalDeviceMaintenance5Properties<
-        'a,
-    >;
-    pub type RenderingAreaInfoKHR<'a> = crate::vk::RenderingAreaInfo<'a>;
-    pub type ImageSubresource2KHR<'a> = crate::vk::ImageSubresource2<'a>;
-    pub type SubresourceLayout2KHR<'a> = crate::vk::SubresourceLayout2<'a>;
-    pub type DeviceImageSubresourceInfoKHR<'a> = crate::vk::DeviceImageSubresourceInfo<
-        'a,
-    >;
-    pub type PipelineCreateFlagBits2KHR = crate::vk::PipelineCreateFlagBits2;
-    pub type BufferUsageFlagBits2KHR = crate::vk::BufferUsageFlagBits2;
-    pub type PipelineCreateFlags2KHR = crate::vk::PipelineCreateFlags2;
-    pub type BufferUsageFlags2KHR = crate::vk::BufferUsageFlags2;
-    pub type PFN_vkGetRenderingAreaGranularityKHR = crate::vk::PFN_vkGetRenderingAreaGranularity;
-    pub type PFN_vkCmdBindIndexBuffer2KHR = crate::vk::PFN_vkCmdBindIndexBuffer2;
-    pub type PFN_vkGetImageSubresourceLayout2KHR = crate::vk::PFN_vkGetImageSubresourceLayout2;
-    pub type PFN_vkGetDeviceImageSubresourceLayoutKHR = crate::vk::PFN_vkGetDeviceImageSubresourceLayout;
+    pub type RenderingAreaInfoKHR<'a> = vk::RenderingAreaInfo<'a>;
+    pub type ImageSubresource2KHR<'a> = vk::ImageSubresource2<'a>;
+    pub type SubresourceLayout2KHR<'a> = vk::SubresourceLayout2<'a>;
+    pub type DeviceImageSubresourceInfoKHR<'a> = vk::DeviceImageSubresourceInfo<'a>;
+    pub type PipelineCreateFlagBits2KHR = vk::PipelineCreateFlagBits2;
+    pub type BufferUsageFlagBits2KHR = vk::BufferUsageFlagBits2;
+    pub type PipelineCreateFlags2KHR = vk::PipelineCreateFlags2;
+    pub type BufferUsageFlags2KHR = vk::BufferUsageFlags2;
+    pub type PFN_vkGetRenderingAreaGranularityKHR = vk::PFN_vkGetRenderingAreaGranularity;
+    pub type PFN_vkCmdBindIndexBuffer2KHR = vk::PFN_vkCmdBindIndexBuffer2;
+    pub type PFN_vkGetImageSubresourceLayout2KHR = vk::PFN_vkGetImageSubresourceLayout2;
+    pub type PFN_vkGetDeviceImageSubresourceLayoutKHR = vk::PFN_vkGetDeviceImageSubresourceLayout;
 }
 pub use items::*;

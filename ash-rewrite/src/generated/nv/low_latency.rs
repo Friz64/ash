@@ -2,37 +2,38 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_NV_low_latency.html) · Extension `VK_NV_low_latency`
 #![doc(alias = "VK_NV_low_latency")]
+use crate::vk;
+use core::ffi::CStr;
+use core::ffi::c_void;
 ///Provided by [VK_NV_low_latency](crate::nv::low_latency)
-impl crate::vk::StructureType {
+impl vk::StructureType {
     pub const QUERY_LOW_LATENCY_SUPPORT_NV: Self = Self(1000310000);
 }
+pub const SPEC_VERSION: u32 = 2;
+pub const NAME: &CStr = c"VK_NV_low_latency";
 #[derive(Clone)]
 pub struct DeviceFn {
-    pub set_latency_sleep_mode_legacy: crate::vk::PFN_vkSetLatencySleepModeLegacyNV,
-    pub latency_sleep_legacy: crate::vk::PFN_vkLatencySleepLegacyNV,
-    pub set_latency_marker_legacy: crate::vk::PFN_vkSetLatencyMarkerLegacyNV,
-    pub get_latency_timings_legacy: crate::vk::PFN_vkGetLatencyTimingsLegacyNV,
-    pub queue_notify_out_of_band_legacy: crate::vk::PFN_vkQueueNotifyOutOfBandLegacyNV,
-    pub get_sleep_status_legacy: crate::vk::PFN_vkGetSleepStatusLegacyNV,
-    pub shutdown_latency_device_legacy: crate::vk::PFN_vkShutdownLatencyDeviceLegacyNV,
+    pub set_latency_sleep_mode_legacy: vk::PFN_vkSetLatencySleepModeLegacyNV,
+    pub latency_sleep_legacy: vk::PFN_vkLatencySleepLegacyNV,
+    pub set_latency_marker_legacy: vk::PFN_vkSetLatencyMarkerLegacyNV,
+    pub get_latency_timings_legacy: vk::PFN_vkGetLatencyTimingsLegacyNV,
+    pub queue_notify_out_of_band_legacy: vk::PFN_vkQueueNotifyOutOfBandLegacyNV,
+    pub get_sleep_status_legacy: vk::PFN_vkGetSleepStatusLegacyNV,
+    pub shutdown_latency_device_legacy: vk::PFN_vkShutdownLatencyDeviceLegacyNV,
 }
 unsafe impl Send for DeviceFn {}
 unsafe impl Sync for DeviceFn {}
 impl DeviceFn {
-    pub fn load<F: FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void>(
-        mut f: F,
-    ) -> Self {
+    pub fn load<F: FnMut(&CStr) -> *const c_void>(mut f: F) -> Self {
         Self::load_erased(&mut f)
     }
-    fn load_erased(
-        _f: &mut dyn FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void,
-    ) -> Self {
+    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const c_void) -> Self {
         Self {
             set_latency_sleep_mode_legacy: unsafe {
                 unsafe extern "system" fn set_latency_sleep_mode_legacy(
-                    _: crate::vk::Device,
-                    _: crate::vk::Bool32,
-                    _: crate::vk::Bool32,
+                    _: vk::Device,
+                    _: vk::Bool32,
+                    _: vk::Bool32,
                     _: u32,
                 ) {
                     panic!("unable to load vkSetLatencySleepModeLegacyNV")
@@ -46,8 +47,8 @@ impl DeviceFn {
             },
             latency_sleep_legacy: unsafe {
                 unsafe extern "system" fn latency_sleep_legacy(
-                    _: crate::vk::Device,
-                    _: crate::vk::Semaphore,
+                    _: vk::Device,
+                    _: vk::Semaphore,
                     _: u64,
                 ) {
                     panic!("unable to load vkLatencySleepLegacyNV")
@@ -61,7 +62,7 @@ impl DeviceFn {
             },
             set_latency_marker_legacy: unsafe {
                 unsafe extern "system" fn set_latency_marker_legacy(
-                    _: crate::vk::Device,
+                    _: vk::Device,
                     _: u64,
                     _: u32,
                 ) {
@@ -76,7 +77,7 @@ impl DeviceFn {
             },
             get_latency_timings_legacy: unsafe {
                 unsafe extern "system" fn get_latency_timings_legacy(
-                    _: crate::vk::Device,
+                    _: vk::Device,
                     _: *mut core::ffi::c_void,
                 ) {
                     panic!("unable to load vkGetLatencyTimingsLegacyNV")
@@ -90,7 +91,7 @@ impl DeviceFn {
             },
             queue_notify_out_of_band_legacy: unsafe {
                 unsafe extern "system" fn queue_notify_out_of_band_legacy(
-                    _: crate::vk::Queue,
+                    _: vk::Queue,
                     _: u32,
                 ) {
                     panic!("unable to load vkQueueNotifyOutOfBandLegacyNV")
@@ -104,8 +105,8 @@ impl DeviceFn {
             },
             get_sleep_status_legacy: unsafe {
                 unsafe extern "system" fn get_sleep_status_legacy(
-                    _: crate::vk::Device,
-                    _: *mut crate::vk::Bool32,
+                    _: vk::Device,
+                    _: *mut vk::Bool32,
                 ) {
                     panic!("unable to load vkGetSleepStatusLegacyNV")
                 }
@@ -117,9 +118,7 @@ impl DeviceFn {
                 }
             },
             shutdown_latency_device_legacy: unsafe {
-                unsafe extern "system" fn shutdown_latency_device_legacy(
-                    _: crate::vk::Device,
-                ) {
+                unsafe extern "system" fn shutdown_latency_device_legacy(_: vk::Device) {
                     panic!("unable to load vkShutdownLatencyDeviceLegacyNV")
                 }
                 let val = _f(c"vkShutdownLatencyDeviceLegacyNV");
@@ -157,8 +156,8 @@ impl Device {
     #[inline]
     pub unsafe fn set_latency_sleep_mode_legacy(
         &self,
-        low_latency_mode: crate::vk::Bool32,
-        low_latency_boost: crate::vk::Bool32,
+        low_latency_mode: vk::Bool32,
+        low_latency_boost: vk::Bool32,
         minimum_interval_us: u32,
     ) {
         (self
@@ -174,7 +173,7 @@ impl Device {
     #[inline]
     pub unsafe fn latency_sleep_legacy(
         &self,
-        signal_semaphore: crate::vk::Semaphore,
+        signal_semaphore: vk::Semaphore,
         value: u64,
     ) {
         (self.fp.latency_sleep_legacy)(self.handle, signal_semaphore, value)
@@ -195,14 +194,14 @@ impl Device {
     #[inline]
     pub unsafe fn queue_notify_out_of_band_legacy(
         &self,
-        queue: crate::vk::Queue,
+        queue: vk::Queue,
         queue_type: u32,
     ) {
         (self.fp.queue_notify_out_of_band_legacy)(queue, queue_type)
     }
     ///vkGetSleepStatusLegacyNV
     #[inline]
-    pub unsafe fn get_sleep_status_legacy(&self) -> crate::vk::Bool32 {
+    pub unsafe fn get_sleep_status_legacy(&self) -> vk::Bool32 {
         let mut low_latency_mode = core::mem::MaybeUninit::uninit();
         (self.fp.get_sleep_status_legacy)(self.handle, low_latency_mode.as_mut_ptr());
         low_latency_mode.assume_init()
@@ -213,24 +212,24 @@ impl Device {
         (self.fp.shutdown_latency_device_legacy)(self.handle)
     }
 }
-pub const SPEC_VERSION: u32 = 2;
-pub const NAME: &core::ffi::CStr = c"VK_NV_low_latency";
 pub(crate) mod items {
+    use core::marker::PhantomData;
+    use crate::vk;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct QueryLowLatencySupportNV<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *const core::ffi::c_void,
         pub p_queried_low_latency_data: *mut core::ffi::c_void,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for QueryLowLatencySupportNV<'_> {}
     unsafe impl Sync for QueryLowLatencySupportNV<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for QueryLowLatencySupportNV<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::QUERY_LOW_LATENCY_SUPPORT_NV;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::QUERY_LOW_LATENCY_SUPPORT_NV;
     }
-    unsafe impl<'a> crate::Extends<crate::vk::SemaphoreCreateInfo<'_>>
+    unsafe impl<'a> crate::Extends<vk::SemaphoreCreateInfo<'_>>
     for QueryLowLatencySupportNV<'a> {}
     impl<'a> Default for QueryLowLatencySupportNV<'a> {
         fn default() -> Self {
@@ -238,7 +237,7 @@ pub(crate) mod items {
                 s_type: <Self as crate::TaggedStructure>::STRUCTURE_TYPE,
                 p_next: Default::default(),
                 p_queried_low_latency_data: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
@@ -252,35 +251,35 @@ pub(crate) mod items {
         }
     }
     pub type PFN_vkSetLatencySleepModeLegacyNV = unsafe extern "system" fn(
-        device: crate::vk::Device,
-        low_latency_mode: crate::vk::Bool32,
-        low_latency_boost: crate::vk::Bool32,
+        device: vk::Device,
+        low_latency_mode: vk::Bool32,
+        low_latency_boost: vk::Bool32,
         minimum_interval_us: u32,
     );
     pub type PFN_vkLatencySleepLegacyNV = unsafe extern "system" fn(
-        device: crate::vk::Device,
-        signal_semaphore: crate::vk::Semaphore,
+        device: vk::Device,
+        signal_semaphore: vk::Semaphore,
         value: u64,
     );
     pub type PFN_vkSetLatencyMarkerLegacyNV = unsafe extern "system" fn(
-        device: crate::vk::Device,
+        device: vk::Device,
         frame_id: u64,
         marker: u32,
     );
     pub type PFN_vkGetLatencyTimingsLegacyNV = unsafe extern "system" fn(
-        device: crate::vk::Device,
+        device: vk::Device,
         p_timings: *mut core::ffi::c_void,
     );
     pub type PFN_vkQueueNotifyOutOfBandLegacyNV = unsafe extern "system" fn(
-        queue: crate::vk::Queue,
+        queue: vk::Queue,
         queue_type: u32,
     );
     pub type PFN_vkGetSleepStatusLegacyNV = unsafe extern "system" fn(
-        device: crate::vk::Device,
-        p_low_latency_mode: *mut crate::vk::Bool32,
+        device: vk::Device,
+        p_low_latency_mode: *mut vk::Bool32,
     );
     pub type PFN_vkShutdownLatencyDeviceLegacyNV = unsafe extern "system" fn(
-        device: crate::vk::Device,
+        device: vk::Device,
     );
 }
 pub use items::*;

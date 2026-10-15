@@ -2,33 +2,35 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_MVK_ios_surface.html) · Extension `VK_MVK_ios_surface`
 #![doc(alias = "VK_MVK_ios_surface")]
+use crate::vk;
+use core::ffi::CStr;
+use crate::VkResult;
+use core::ffi::c_void;
 ///Provided by [VK_MVK_ios_surface](crate::mvk::ios_surface)
-impl crate::vk::StructureType {
+impl vk::StructureType {
     pub const IOS_SURFACE_CREATE_INFO_MVK: Self = Self(1000122000);
 }
+pub const SPEC_VERSION: u32 = 3;
+pub const NAME: &CStr = c"VK_MVK_ios_surface";
 #[derive(Clone)]
 pub struct InstanceFn {
-    pub create_ios_surface: crate::vk::PFN_vkCreateIOSSurfaceMVK,
+    pub create_ios_surface: vk::PFN_vkCreateIOSSurfaceMVK,
 }
 unsafe impl Send for InstanceFn {}
 unsafe impl Sync for InstanceFn {}
 impl InstanceFn {
-    pub fn load<F: FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void>(
-        mut f: F,
-    ) -> Self {
+    pub fn load<F: FnMut(&CStr) -> *const c_void>(mut f: F) -> Self {
         Self::load_erased(&mut f)
     }
-    fn load_erased(
-        _f: &mut dyn FnMut(&::core::ffi::CStr) -> *const ::core::ffi::c_void,
-    ) -> Self {
+    fn load_erased(_f: &mut dyn FnMut(&CStr) -> *const c_void) -> Self {
         Self {
             create_ios_surface: unsafe {
                 unsafe extern "system" fn create_ios_surface(
-                    _: crate::vk::Instance,
-                    _: *const crate::vk::IOSSurfaceCreateInfoMVK<'_>,
-                    _: *const crate::vk::AllocationCallbacks<'_>,
-                    _: *mut crate::vk::SurfaceKHR,
-                ) -> crate::vk::Result {
+                    _: vk::Instance,
+                    _: *const vk::IOSSurfaceCreateInfoMVK<'_>,
+                    _: *const vk::AllocationCallbacks<'_>,
+                    _: *mut vk::SurfaceKHR,
+                ) -> vk::Result {
                     panic!("unable to load vkCreateIOSSurfaceMVK")
                 }
                 let val = _f(c"vkCreateIOSSurfaceMVK");
@@ -66,9 +68,9 @@ impl Instance {
     #[inline]
     pub unsafe fn create_ios_surface(
         &self,
-        create_info: &crate::vk::IOSSurfaceCreateInfoMVK<'_>,
-        allocator: Option<&crate::vk::AllocationCallbacks<'_>>,
-    ) -> crate::VkResult<crate::vk::SurfaceKHR> {
+        create_info: &vk::IOSSurfaceCreateInfoMVK<'_>,
+        allocator: Option<&vk::AllocationCallbacks<'_>>,
+    ) -> VkResult<vk::SurfaceKHR> {
         let mut surface = core::mem::MaybeUninit::uninit();
         (self
             .fp
@@ -84,23 +86,23 @@ impl Instance {
             .assume_init_on_success(surface)
     }
 }
-pub const SPEC_VERSION: u32 = 3;
-pub const NAME: &core::ffi::CStr = c"VK_MVK_ios_surface";
 pub(crate) mod items {
+    use core::marker::PhantomData;
+    use crate::vk;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct IOSSurfaceCreateInfoMVK<'a> {
-        pub s_type: crate::vk::StructureType,
+        pub s_type: vk::StructureType,
         pub p_next: *const core::ffi::c_void,
-        pub flags: crate::vk::IOSSurfaceCreateFlagsMVK,
+        pub flags: vk::IOSSurfaceCreateFlagsMVK,
         pub p_view: *const core::ffi::c_void,
-        pub _marker: ::core::marker::PhantomData<&'a ()>,
+        pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for IOSSurfaceCreateInfoMVK<'_> {}
     unsafe impl Sync for IOSSurfaceCreateInfoMVK<'_> {}
     unsafe impl<'a> crate::TaggedStructure<'a> for IOSSurfaceCreateInfoMVK<'a> {
-        const STRUCTURE_TYPE: crate::vk::StructureType = crate::vk::StructureType::IOS_SURFACE_CREATE_INFO_MVK;
+        const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::IOS_SURFACE_CREATE_INFO_MVK;
     }
     impl<'a> Default for IOSSurfaceCreateInfoMVK<'a> {
         fn default() -> Self {
@@ -109,12 +111,12 @@ pub(crate) mod items {
                 p_next: Default::default(),
                 flags: Default::default(),
                 p_view: Default::default(),
-                _marker: ::core::marker::PhantomData,
+                _marker: PhantomData,
             }
         }
     }
     impl<'a> IOSSurfaceCreateInfoMVK<'a> {
-        pub fn flags(mut self, flags: crate::vk::IOSSurfaceCreateFlagsMVK) -> Self {
+        pub fn flags(mut self, flags: vk::IOSSurfaceCreateFlagsMVK) -> Self {
             self.flags = flags;
             self
         }
@@ -192,10 +194,10 @@ pub(crate) mod items {
         }
     }
     pub type PFN_vkCreateIOSSurfaceMVK = unsafe extern "system" fn(
-        instance: crate::vk::Instance,
-        p_create_info: *const crate::vk::IOSSurfaceCreateInfoMVK<'_>,
-        p_allocator: *const crate::vk::AllocationCallbacks<'_>,
-        p_surface: *mut crate::vk::SurfaceKHR,
-    ) -> crate::vk::Result;
+        instance: vk::Instance,
+        p_create_info: *const vk::IOSSurfaceCreateInfoMVK<'_>,
+        p_allocator: *const vk::AllocationCallbacks<'_>,
+        p_surface: *mut vk::SurfaceKHR,
+    ) -> vk::Result;
 }
 pub use items::*;

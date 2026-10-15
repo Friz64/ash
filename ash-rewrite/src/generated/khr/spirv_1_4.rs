@@ -2,5 +2,6 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_spirv_1_4.html) · Extension `VK_KHR_spirv_1_4`
 #![doc(alias = "VK_KHR_spirv_1_4")]
+use core::ffi::CStr;
 pub const SPEC_VERSION: u32 = 1;
-pub const NAME: &core::ffi::CStr = c"VK_KHR_spirv_1_4";
+pub const NAME: &CStr = c"VK_KHR_spirv_1_4";
