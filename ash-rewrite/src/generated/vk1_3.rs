@@ -142,17 +142,17 @@ impl vk::DynamicState {
 impl vk::ObjectType {
     pub const PRIVATE_DATA_SLOT: Self = Self(1000295000);
 }
-///Provided by [Vulkan 1.0](crate::vk1_0)
+///Provided by [Vulkan 1.3](crate::vk1_3)
 impl vk::PipelineCacheCreateFlags {
     pub const EXTERNALLY_SYNCHRONIZED: Self = Self(
         vk::PipelineCacheCreateFlagBits::EXTERNALLY_SYNCHRONIZED.0,
     );
 }
-///Provided by [Vulkan 1.0](crate::vk1_0)
+///Provided by [Vulkan 1.3](crate::vk1_3)
 impl vk::PipelineCacheCreateFlagBits {
     pub const EXTERNALLY_SYNCHRONIZED: Self = Self(1 << 0);
 }
-///Provided by [Vulkan 1.0](crate::vk1_0)
+///Provided by [Vulkan 1.3](crate::vk1_3)
 impl vk::PipelineShaderStageCreateFlags {
     pub const ALLOW_VARYING_SUBGROUP_SIZE: Self = Self(
         vk::PipelineShaderStageCreateFlagBits::ALLOW_VARYING_SUBGROUP_SIZE.0,
@@ -161,20 +161,20 @@ impl vk::PipelineShaderStageCreateFlags {
         vk::PipelineShaderStageCreateFlagBits::REQUIRE_FULL_SUBGROUPS.0,
     );
 }
-///Provided by [Vulkan 1.0](crate::vk1_0)
+///Provided by [Vulkan 1.3](crate::vk1_3)
 impl vk::PipelineShaderStageCreateFlagBits {
     pub const ALLOW_VARYING_SUBGROUP_SIZE: Self = Self(1 << 0);
     pub const REQUIRE_FULL_SUBGROUPS: Self = Self(1 << 1);
 }
-///Provided by [Vulkan 1.0](crate::vk1_0)
+///Provided by [Vulkan 1.3](crate::vk1_3)
 impl vk::AccessFlags {
     pub const NONE: Self = Self(vk::AccessFlagBits::NONE.0);
 }
-///Provided by [Vulkan 1.0](crate::vk1_0)
+///Provided by [Vulkan 1.3](crate::vk1_3)
 impl vk::AccessFlagBits {
     pub const NONE: Self = Self(0);
 }
-///Provided by [Vulkan 1.0](crate::vk1_0)
+///Provided by [Vulkan 1.3](crate::vk1_3)
 impl vk::PipelineCreateFlags {
     pub const FAIL_ON_PIPELINE_COMPILE_REQUIRED: Self = Self(
         vk::PipelineCreateFlagBits::FAIL_ON_PIPELINE_COMPILE_REQUIRED.0,
@@ -183,32 +183,32 @@ impl vk::PipelineCreateFlags {
         vk::PipelineCreateFlagBits::EARLY_RETURN_ON_FAILURE.0,
     );
 }
-///Provided by [Vulkan 1.0](crate::vk1_0)
+///Provided by [Vulkan 1.3](crate::vk1_3)
 impl vk::PipelineCreateFlagBits {
     pub const FAIL_ON_PIPELINE_COMPILE_REQUIRED: Self = Self(1 << 8);
     pub const EARLY_RETURN_ON_FAILURE: Self = Self(1 << 9);
 }
-///Provided by [Vulkan 1.0](crate::vk1_0)
+///Provided by [Vulkan 1.3](crate::vk1_3)
 impl vk::EventCreateFlags {
     pub const DEVICE_ONLY: Self = Self(vk::EventCreateFlagBits::DEVICE_ONLY.0);
 }
-///Provided by [Vulkan 1.0](crate::vk1_0)
+///Provided by [Vulkan 1.3](crate::vk1_3)
 impl vk::EventCreateFlagBits {
     pub const DEVICE_ONLY: Self = Self(1 << 0);
 }
-///Provided by [Vulkan 1.0](crate::vk1_0)
+///Provided by [Vulkan 1.3](crate::vk1_3)
 impl vk::ImageAspectFlags {
     pub const NONE: Self = Self(vk::ImageAspectFlagBits::NONE.0);
 }
-///Provided by [Vulkan 1.0](crate::vk1_0)
+///Provided by [Vulkan 1.3](crate::vk1_3)
 impl vk::ImageAspectFlagBits {
     pub const NONE: Self = Self(0);
 }
-///Provided by [Vulkan 1.0](crate::vk1_0)
+///Provided by [Vulkan 1.3](crate::vk1_3)
 impl vk::PipelineStageFlags {
     pub const NONE: Self = Self(vk::PipelineStageFlagBits::NONE.0);
 }
-///Provided by [Vulkan 1.0](crate::vk1_0)
+///Provided by [Vulkan 1.3](crate::vk1_3)
 impl vk::PipelineStageFlagBits {
     pub const NONE: Self = Self(0);
 }

@@ -22,11 +22,11 @@ impl vk::SemaphoreType {
     pub const BINARY_KHR: Self = Self::BINARY;
     pub const TIMELINE_KHR: Self = Self::TIMELINE;
 }
-///Provided by [Vulkan 1.2](crate::vk1_2)
+///Provided by [VK_KHR_timeline_semaphore](crate::khr::timeline_semaphore)
 impl vk::SemaphoreWaitFlags {
     pub const ANY_KHR: Self = Self(vk::SemaphoreWaitFlagBits::ANY_KHR.0);
 }
-///Provided by [Vulkan 1.2](crate::vk1_2)
+///Provided by [VK_KHR_timeline_semaphore](crate::khr::timeline_semaphore)
 impl vk::SemaphoreWaitFlagBits {
     pub const ANY_KHR: Self = Self::ANY;
 }

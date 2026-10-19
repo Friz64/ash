@@ -15,13 +15,13 @@ impl vk::StructureType {
     pub const VIDEO_DECODE_H265_PICTURE_INFO_KHR: Self = Self(1000187004);
     pub const VIDEO_DECODE_H265_DPB_SLOT_INFO_KHR: Self = Self(1000187005);
 }
-///Provided by [VK_KHR_video_queue](crate::khr::video_queue)
+///Provided by [VK_KHR_video_decode_h265](crate::khr::video_decode_h265)
 impl vk::VideoCodecOperationFlagsKHR {
     pub const DECODE_H265: Self = Self(
         vk::VideoCodecOperationFlagBitsKHR::DECODE_H265.0,
     );
 }
-///Provided by [VK_KHR_video_queue](crate::khr::video_queue)
+///Provided by [VK_KHR_video_decode_h265](crate::khr::video_decode_h265)
 impl vk::VideoCodecOperationFlagBitsKHR {
     pub const DECODE_H265: Self = Self(1 << 1);
 }

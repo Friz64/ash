@@ -12,7 +12,7 @@ impl vk::StructureType {
     pub const PHYSICAL_DEVICE_EXTERNAL_SEMAPHORE_INFO_KHR: Self = Self::PHYSICAL_DEVICE_EXTERNAL_SEMAPHORE_INFO;
     pub const EXTERNAL_SEMAPHORE_PROPERTIES_KHR: Self = Self::EXTERNAL_SEMAPHORE_PROPERTIES;
 }
-///Provided by [Vulkan 1.1](crate::vk1_1)
+///Provided by [VK_KHR_external_semaphore_capabilities](crate::khr::external_semaphore_capabilities)
 impl vk::ExternalSemaphoreHandleTypeFlags {
     pub const OPAQUE_FD_KHR: Self = Self(
         vk::ExternalSemaphoreHandleTypeFlagBits::OPAQUE_FD_KHR.0,
@@ -30,7 +30,7 @@ impl vk::ExternalSemaphoreHandleTypeFlags {
         vk::ExternalSemaphoreHandleTypeFlagBits::SYNC_FD_KHR.0,
     );
 }
-///Provided by [Vulkan 1.1](crate::vk1_1)
+///Provided by [VK_KHR_external_semaphore_capabilities](crate::khr::external_semaphore_capabilities)
 impl vk::ExternalSemaphoreHandleTypeFlagBits {
     pub const OPAQUE_FD_KHR: Self = Self::OPAQUE_FD;
     pub const OPAQUE_WIN32_KHR: Self = Self::OPAQUE_WIN32;
@@ -38,7 +38,7 @@ impl vk::ExternalSemaphoreHandleTypeFlagBits {
     pub const D3D12_FENCE_KHR: Self = Self::D3D12_FENCE;
     pub const SYNC_FD_KHR: Self = Self::SYNC_FD;
 }
-///Provided by [Vulkan 1.1](crate::vk1_1)
+///Provided by [VK_KHR_external_semaphore_capabilities](crate::khr::external_semaphore_capabilities)
 impl vk::ExternalSemaphoreFeatureFlags {
     pub const EXPORTABLE_KHR: Self = Self(
         vk::ExternalSemaphoreFeatureFlagBits::EXPORTABLE_KHR.0,
@@ -47,7 +47,7 @@ impl vk::ExternalSemaphoreFeatureFlags {
         vk::ExternalSemaphoreFeatureFlagBits::IMPORTABLE_KHR.0,
     );
 }
-///Provided by [Vulkan 1.1](crate::vk1_1)
+///Provided by [VK_KHR_external_semaphore_capabilities](crate::khr::external_semaphore_capabilities)
 impl vk::ExternalSemaphoreFeatureFlagBits {
     pub const EXPORTABLE_KHR: Self = Self::EXPORTABLE;
     pub const IMPORTABLE_KHR: Self = Self::IMPORTABLE;

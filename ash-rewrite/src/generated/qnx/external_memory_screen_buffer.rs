@@ -18,13 +18,13 @@ impl vk::StructureType {
         1000529004,
     );
 }
-///Provided by [Vulkan 1.1](crate::vk1_1)
+///Provided by [VK_QNX_external_memory_screen_buffer](crate::qnx::external_memory_screen_buffer)
 impl vk::ExternalMemoryHandleTypeFlags {
     pub const SCREEN_BUFFER_QNX: Self = Self(
         vk::ExternalMemoryHandleTypeFlagBits::SCREEN_BUFFER_QNX.0,
     );
 }
-///Provided by [Vulkan 1.1](crate::vk1_1)
+///Provided by [VK_QNX_external_memory_screen_buffer](crate::qnx::external_memory_screen_buffer)
 impl vk::ExternalMemoryHandleTypeFlagBits {
     pub const SCREEN_BUFFER_QNX: Self = Self(1 << 14);
 }

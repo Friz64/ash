@@ -14,17 +14,17 @@ impl vk::StructureType {
         1000339000,
     );
 }
-///Provided by [Vulkan 1.0](crate::vk1_0)
+///Provided by [VK_EXT_attachment_feedback_loop_layout](crate::ext::attachment_feedback_loop_layout)
 impl vk::ImageUsageFlags {
     pub const ATTACHMENT_FEEDBACK_LOOP_EXT: Self = Self(
         vk::ImageUsageFlagBits::ATTACHMENT_FEEDBACK_LOOP_EXT.0,
     );
 }
-///Provided by [Vulkan 1.0](crate::vk1_0)
+///Provided by [VK_EXT_attachment_feedback_loop_layout](crate::ext::attachment_feedback_loop_layout)
 impl vk::ImageUsageFlagBits {
     pub const ATTACHMENT_FEEDBACK_LOOP_EXT: Self = Self(1 << 19);
 }
-///Provided by [Vulkan 1.0](crate::vk1_0)
+///Provided by [VK_EXT_attachment_feedback_loop_layout](crate::ext::attachment_feedback_loop_layout)
 impl vk::PipelineCreateFlags {
     pub const COLOR_ATTACHMENT_FEEDBACK_LOOP_EXT: Self = Self(
         vk::PipelineCreateFlagBits::COLOR_ATTACHMENT_FEEDBACK_LOOP_EXT.0,
@@ -33,18 +33,18 @@ impl vk::PipelineCreateFlags {
         vk::PipelineCreateFlagBits::DEPTH_STENCIL_ATTACHMENT_FEEDBACK_LOOP_EXT.0,
     );
 }
-///Provided by [Vulkan 1.0](crate::vk1_0)
+///Provided by [VK_EXT_attachment_feedback_loop_layout](crate::ext::attachment_feedback_loop_layout)
 impl vk::PipelineCreateFlagBits {
     pub const COLOR_ATTACHMENT_FEEDBACK_LOOP_EXT: Self = Self(1 << 25);
     pub const DEPTH_STENCIL_ATTACHMENT_FEEDBACK_LOOP_EXT: Self = Self(1 << 26);
 }
-///Provided by [Vulkan 1.0](crate::vk1_0)
+///Provided by [VK_EXT_attachment_feedback_loop_layout](crate::ext::attachment_feedback_loop_layout)
 impl vk::DependencyFlags {
     pub const FEEDBACK_LOOP_EXT: Self = Self(
         vk::DependencyFlagBits::FEEDBACK_LOOP_EXT.0,
     );
 }
-///Provided by [Vulkan 1.0](crate::vk1_0)
+///Provided by [VK_EXT_attachment_feedback_loop_layout](crate::ext::attachment_feedback_loop_layout)
 impl vk::DependencyFlagBits {
     pub const FEEDBACK_LOOP_EXT: Self = Self(1 << 3);
 }

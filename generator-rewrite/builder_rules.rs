@@ -1,13 +1,13 @@
-/// This file describes "special cases" that are used to supplement the automatic wrapper generation
-/// in cases where the information in the XML is not sufficient.
-///
-/// - `#[keep]` = Force the generation of a function that would otherwise have been omitted
-///               because it is specified as a "len" of another member.
-/// - `#[skip]` = Skip the generation of a function.
-/// - `#[replace]` = Replace the arguments, return type, and content of a function.
-///
-/// Note that the struct and member names must match the original ones in vk.xml,
-/// the generator will adjust these on its own accord.
+//! This file describes "special cases" that are used to supplement the automatic builder generation
+//! in cases where the information in the XML is not sufficient.
+//!
+//! - `#[keep]` = Force the generation of a function that would otherwise have been omitted
+//!               because it is specified as a "len" of another member.
+//! - `#[skip]` = Skip the generation of a function.
+//! - `#[replace]` = Replace the arguments, return type, and content of a function.
+//!
+//! Note that the struct and member names must match the original ones in vk.xml,
+//! the generator will adjust these on its own accord.
 
 impl VkPipelineViewportStateCreateInfo {
     // pViewports is allowed to be empty if the viewport state is empty

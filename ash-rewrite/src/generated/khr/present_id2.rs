@@ -10,11 +10,11 @@ impl vk::StructureType {
     pub const PRESENT_ID_2_KHR: Self = Self(1000479001);
     pub const PHYSICAL_DEVICE_PRESENT_ID_2_FEATURES_KHR: Self = Self(1000479002);
 }
-///Provided by [VK_KHR_swapchain](crate::khr::swapchain)
+///Provided by [VK_KHR_present_id2](crate::khr::present_id2)
 impl vk::SwapchainCreateFlagsKHR {
     pub const PRESENT_ID_2: Self = Self(vk::SwapchainCreateFlagBitsKHR::PRESENT_ID_2.0);
 }
-///Provided by [VK_KHR_swapchain](crate::khr::swapchain)
+///Provided by [VK_KHR_present_id2](crate::khr::present_id2)
 impl vk::SwapchainCreateFlagBitsKHR {
     pub const PRESENT_ID_2: Self = Self(1 << 6);
 }

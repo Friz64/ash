@@ -30,17 +30,17 @@ impl vk::StructureType {
         1000316009,
     );
 }
-///Provided by [Vulkan 1.0](crate::vk1_0)
+///Provided by [VK_EXT_descriptor_buffer](crate::ext::descriptor_buffer)
 impl vk::SamplerCreateFlags {
     pub const DESCRIPTOR_BUFFER_CAPTURE_REPLAY_EXT: Self = Self(
         vk::SamplerCreateFlagBits::DESCRIPTOR_BUFFER_CAPTURE_REPLAY_EXT.0,
     );
 }
-///Provided by [Vulkan 1.0](crate::vk1_0)
+///Provided by [VK_EXT_descriptor_buffer](crate::ext::descriptor_buffer)
 impl vk::SamplerCreateFlagBits {
     pub const DESCRIPTOR_BUFFER_CAPTURE_REPLAY_EXT: Self = Self(1 << 3);
 }
-///Provided by [Vulkan 1.0](crate::vk1_0)
+///Provided by [VK_EXT_descriptor_buffer](crate::ext::descriptor_buffer)
 impl vk::DescriptorSetLayoutCreateFlags {
     pub const DESCRIPTOR_BUFFER_EXT: Self = Self(
         vk::DescriptorSetLayoutCreateFlagBits::DESCRIPTOR_BUFFER_EXT.0,
@@ -49,12 +49,12 @@ impl vk::DescriptorSetLayoutCreateFlags {
         vk::DescriptorSetLayoutCreateFlagBits::EMBEDDED_IMMUTABLE_SAMPLERS_EXT.0,
     );
 }
-///Provided by [Vulkan 1.0](crate::vk1_0)
+///Provided by [VK_EXT_descriptor_buffer](crate::ext::descriptor_buffer)
 impl vk::DescriptorSetLayoutCreateFlagBits {
     pub const DESCRIPTOR_BUFFER_EXT: Self = Self(1 << 4);
     pub const EMBEDDED_IMMUTABLE_SAMPLERS_EXT: Self = Self(1 << 5);
 }
-///Provided by [Vulkan 1.0](crate::vk1_0)
+///Provided by [VK_EXT_descriptor_buffer](crate::ext::descriptor_buffer)
 impl vk::BufferUsageFlags {
     pub const SAMPLER_DESCRIPTOR_BUFFER_EXT: Self = Self(
         vk::BufferUsageFlagBits::SAMPLER_DESCRIPTOR_BUFFER_EXT.0,
@@ -66,70 +66,70 @@ impl vk::BufferUsageFlags {
         vk::BufferUsageFlagBits::PUSH_DESCRIPTORS_DESCRIPTOR_BUFFER_EXT.0,
     );
 }
-///Provided by [Vulkan 1.0](crate::vk1_0)
+///Provided by [VK_EXT_descriptor_buffer](crate::ext::descriptor_buffer)
 impl vk::BufferUsageFlagBits {
     pub const SAMPLER_DESCRIPTOR_BUFFER_EXT: Self = Self(1 << 21);
     pub const RESOURCE_DESCRIPTOR_BUFFER_EXT: Self = Self(1 << 22);
     pub const PUSH_DESCRIPTORS_DESCRIPTOR_BUFFER_EXT: Self = Self(1 << 26);
 }
-///Provided by [Vulkan 1.0](crate::vk1_0)
+///Provided by [VK_EXT_descriptor_buffer](crate::ext::descriptor_buffer)
 impl vk::BufferCreateFlags {
     pub const DESCRIPTOR_BUFFER_CAPTURE_REPLAY_EXT: Self = Self(
         vk::BufferCreateFlagBits::DESCRIPTOR_BUFFER_CAPTURE_REPLAY_EXT.0,
     );
 }
-///Provided by [Vulkan 1.0](crate::vk1_0)
+///Provided by [VK_EXT_descriptor_buffer](crate::ext::descriptor_buffer)
 impl vk::BufferCreateFlagBits {
     pub const DESCRIPTOR_BUFFER_CAPTURE_REPLAY_EXT: Self = Self(1 << 5);
 }
-///Provided by [Vulkan 1.0](crate::vk1_0)
+///Provided by [VK_EXT_descriptor_buffer](crate::ext::descriptor_buffer)
 impl vk::ImageCreateFlags {
     pub const DESCRIPTOR_BUFFER_CAPTURE_REPLAY_EXT: Self = Self(
         vk::ImageCreateFlagBits::DESCRIPTOR_BUFFER_CAPTURE_REPLAY_EXT.0,
     );
 }
-///Provided by [Vulkan 1.0](crate::vk1_0)
+///Provided by [VK_EXT_descriptor_buffer](crate::ext::descriptor_buffer)
 impl vk::ImageCreateFlagBits {
     pub const DESCRIPTOR_BUFFER_CAPTURE_REPLAY_EXT: Self = Self::DESCRIPTOR_HEAP_CAPTURE_REPLAY_EXT;
 }
-///Provided by [Vulkan 1.0](crate::vk1_0)
+///Provided by [VK_EXT_descriptor_buffer](crate::ext::descriptor_buffer)
 impl vk::ImageViewCreateFlags {
     pub const DESCRIPTOR_BUFFER_CAPTURE_REPLAY_EXT: Self = Self(
         vk::ImageViewCreateFlagBits::DESCRIPTOR_BUFFER_CAPTURE_REPLAY_EXT.0,
     );
 }
-///Provided by [Vulkan 1.0](crate::vk1_0)
+///Provided by [VK_EXT_descriptor_buffer](crate::ext::descriptor_buffer)
 impl vk::ImageViewCreateFlagBits {
     pub const DESCRIPTOR_BUFFER_CAPTURE_REPLAY_EXT: Self = Self(1 << 2);
 }
-///Provided by [Vulkan 1.0](crate::vk1_0)
+///Provided by [VK_EXT_descriptor_buffer](crate::ext::descriptor_buffer)
 impl vk::PipelineCreateFlags {
     pub const DESCRIPTOR_BUFFER_EXT: Self = Self(
         vk::PipelineCreateFlagBits::DESCRIPTOR_BUFFER_EXT.0,
     );
 }
-///Provided by [Vulkan 1.0](crate::vk1_0)
+///Provided by [VK_EXT_descriptor_buffer](crate::ext::descriptor_buffer)
 impl vk::PipelineCreateFlagBits {
     pub const DESCRIPTOR_BUFFER_EXT: Self = Self(1 << 29);
 }
-///Provided by [VK_KHR_acceleration_structure](crate::khr::acceleration_structure)
+///Provided by [VK_EXT_descriptor_buffer](crate::ext::descriptor_buffer)
 impl vk::AccelerationStructureCreateFlagsKHR {
     pub const DESCRIPTOR_BUFFER_CAPTURE_REPLAY_EXT: Self = Self(
         vk::AccelerationStructureCreateFlagBitsKHR::DESCRIPTOR_BUFFER_CAPTURE_REPLAY_EXT
             .0,
     );
 }
-///Provided by [VK_KHR_acceleration_structure](crate::khr::acceleration_structure)
+///Provided by [VK_EXT_descriptor_buffer](crate::ext::descriptor_buffer)
 impl vk::AccelerationStructureCreateFlagBitsKHR {
     pub const DESCRIPTOR_BUFFER_CAPTURE_REPLAY_EXT: Self = Self(1 << 3);
 }
-///Provided by [Vulkan 1.3](crate::vk1_3)
+///Provided by [VK_EXT_descriptor_buffer](crate::ext::descriptor_buffer)
 impl vk::AccessFlags2 {
     pub const DESCRIPTOR_BUFFER_READ_EXT: Self = Self(
         vk::AccessFlagBits2::DESCRIPTOR_BUFFER_READ_EXT.0,
     );
 }
-///Provided by [Vulkan 1.3](crate::vk1_3)
+///Provided by [VK_EXT_descriptor_buffer](crate::ext::descriptor_buffer)
 impl vk::AccessFlagBits2 {
     pub const DESCRIPTOR_BUFFER_READ_EXT: Self = Self(1 << 41);
 }

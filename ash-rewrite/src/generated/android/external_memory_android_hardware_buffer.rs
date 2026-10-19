@@ -20,13 +20,13 @@ impl vk::StructureType {
         1000129006,
     );
 }
-///Provided by [Vulkan 1.1](crate::vk1_1)
+///Provided by [VK_ANDROID_external_memory_android_hardware_buffer](crate::android::external_memory_android_hardware_buffer)
 impl vk::ExternalMemoryHandleTypeFlags {
     pub const ANDROID_HARDWARE_BUFFER_ANDROID: Self = Self(
         vk::ExternalMemoryHandleTypeFlagBits::ANDROID_HARDWARE_BUFFER_ANDROID.0,
     );
 }
-///Provided by [Vulkan 1.1](crate::vk1_1)
+///Provided by [VK_ANDROID_external_memory_android_hardware_buffer](crate::android::external_memory_android_hardware_buffer)
 impl vk::ExternalMemoryHandleTypeFlagBits {
     pub const ANDROID_HARDWARE_BUFFER_ANDROID: Self = Self(1 << 10);
 }

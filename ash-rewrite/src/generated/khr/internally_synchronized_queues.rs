@@ -10,13 +10,13 @@ impl vk::StructureType {
         1000504000,
     );
 }
-///Provided by [Vulkan 1.0](crate::vk1_0)
+///Provided by [VK_KHR_internally_synchronized_queues](crate::khr::internally_synchronized_queues)
 impl vk::DeviceQueueCreateFlags {
     pub const INTERNALLY_SYNCHRONIZED_KHR: Self = Self(
         vk::DeviceQueueCreateFlagBits::INTERNALLY_SYNCHRONIZED_KHR.0,
     );
 }
-///Provided by [Vulkan 1.0](crate::vk1_0)
+///Provided by [VK_KHR_internally_synchronized_queues](crate::khr::internally_synchronized_queues)
 impl vk::DeviceQueueCreateFlagBits {
     pub const INTERNALLY_SYNCHRONIZED_KHR: Self = Self(1 << 2);
 }

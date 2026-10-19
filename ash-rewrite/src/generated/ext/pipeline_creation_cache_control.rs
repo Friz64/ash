@@ -13,17 +13,17 @@ impl vk::Result {
     pub const PIPELINE_COMPILE_REQUIRED_EXT: Self = Self::PIPELINE_COMPILE_REQUIRED;
     pub const ERROR_PIPELINE_COMPILE_REQUIRED_EXT: Self = Self::PIPELINE_COMPILE_REQUIRED;
 }
-///Provided by [Vulkan 1.0](crate::vk1_0)
+///Provided by [VK_EXT_pipeline_creation_cache_control](crate::ext::pipeline_creation_cache_control)
 impl vk::PipelineCacheCreateFlags {
     pub const EXTERNALLY_SYNCHRONIZED_EXT: Self = Self(
         vk::PipelineCacheCreateFlagBits::EXTERNALLY_SYNCHRONIZED_EXT.0,
     );
 }
-///Provided by [Vulkan 1.0](crate::vk1_0)
+///Provided by [VK_EXT_pipeline_creation_cache_control](crate::ext::pipeline_creation_cache_control)
 impl vk::PipelineCacheCreateFlagBits {
     pub const EXTERNALLY_SYNCHRONIZED_EXT: Self = Self::EXTERNALLY_SYNCHRONIZED;
 }
-///Provided by [Vulkan 1.0](crate::vk1_0)
+///Provided by [VK_EXT_pipeline_creation_cache_control](crate::ext::pipeline_creation_cache_control)
 impl vk::PipelineCreateFlags {
     pub const FAIL_ON_PIPELINE_COMPILE_REQUIRED_EXT: Self = Self(
         vk::PipelineCreateFlagBits::FAIL_ON_PIPELINE_COMPILE_REQUIRED_EXT.0,
@@ -32,7 +32,7 @@ impl vk::PipelineCreateFlags {
         vk::PipelineCreateFlagBits::EARLY_RETURN_ON_FAILURE_EXT.0,
     );
 }
-///Provided by [Vulkan 1.0](crate::vk1_0)
+///Provided by [VK_EXT_pipeline_creation_cache_control](crate::ext::pipeline_creation_cache_control)
 impl vk::PipelineCreateFlagBits {
     pub const FAIL_ON_PIPELINE_COMPILE_REQUIRED_EXT: Self = Self::FAIL_ON_PIPELINE_COMPILE_REQUIRED;
     pub const EARLY_RETURN_ON_FAILURE_EXT: Self = Self::EARLY_RETURN_ON_FAILURE;

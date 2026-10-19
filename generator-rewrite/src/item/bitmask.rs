@@ -227,7 +227,7 @@ impl Code for BitMask {
                         None,
                     );
 
-                    let doc = output.provided_by_doc_comment();
+                    let doc = octx.output().provided_by_doc_comment();
                     quote! {
                         #[doc = #doc]
                         impl #bits_path { #impl_tokens }

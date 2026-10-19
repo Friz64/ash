@@ -65,17 +65,17 @@ impl TensorTilingARM {
     pub const OPTIMAL: Self = Self(0);
     pub const LINEAR: Self = Self(1);
 }
-///Provided by [Vulkan 1.0](crate::vk1_0)
+///Provided by [VK_ARM_tensors](crate::arm::tensors)
 impl vk::ImageUsageFlags {
     pub const TENSOR_ALIASING_ARM: Self = Self(
         vk::ImageUsageFlagBits::TENSOR_ALIASING_ARM.0,
     );
 }
-///Provided by [Vulkan 1.0](crate::vk1_0)
+///Provided by [VK_ARM_tensors](crate::arm::tensors)
 impl vk::ImageUsageFlagBits {
     pub const TENSOR_ALIASING_ARM: Self = Self(1 << 23);
 }
-///Provided by [Vulkan 1.3](crate::vk1_3)
+///Provided by [VK_ARM_tensors](crate::arm::tensors)
 impl vk::FormatFeatureFlags2 {
     pub const TENSOR_SHADER_ARM: Self = Self(
         vk::FormatFeatureFlagBits2::TENSOR_SHADER_ARM.0,
@@ -84,7 +84,7 @@ impl vk::FormatFeatureFlags2 {
         vk::FormatFeatureFlagBits2::TENSOR_IMAGE_ALIASING_ARM.0,
     );
 }
-///Provided by [Vulkan 1.3](crate::vk1_3)
+///Provided by [VK_ARM_tensors](crate::arm::tensors)
 impl vk::FormatFeatureFlagBits2 {
     pub const TENSOR_SHADER_ARM: Self = Self(1 << 39);
     pub const TENSOR_IMAGE_ALIASING_ARM: Self = Self(1 << 43);
@@ -117,13 +117,13 @@ impl TensorUsageFlagBitsARM {
     pub const TRANSFER_DST: Self = Self(1 << 3);
     pub const IMAGE_ALIASING: Self = Self(1 << 4);
 }
-///Provided by [VK_EXT_descriptor_heap](crate::ext::descriptor_heap)
+///Provided by [VK_ARM_tensors](crate::arm::tensors)
 impl vk::TensorViewCreateFlagsARM {
     pub const DESCRIPTOR_BUFFER_CAPTURE_REPLAY: Self = Self(
         vk::TensorViewCreateFlagBitsARM::DESCRIPTOR_BUFFER_CAPTURE_REPLAY.0,
     );
 }
-///Provided by [VK_EXT_descriptor_heap](crate::ext::descriptor_heap)
+///Provided by [VK_ARM_tensors](crate::arm::tensors)
 impl vk::TensorViewCreateFlagBitsARM {
     pub const DESCRIPTOR_BUFFER_CAPTURE_REPLAY: Self = Self(1 << 0);
 }

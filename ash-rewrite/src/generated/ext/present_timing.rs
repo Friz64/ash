@@ -30,13 +30,13 @@ impl vk::TimeDomainKHR {
     pub const PRESENT_STAGE_LOCAL_EXT: Self = Self(1000208000);
     pub const SWAPCHAIN_LOCAL_EXT: Self = Self(1000208001);
 }
-///Provided by [VK_KHR_swapchain](crate::khr::swapchain)
+///Provided by [VK_EXT_present_timing](crate::ext::present_timing)
 impl vk::SwapchainCreateFlagsKHR {
     pub const PRESENT_TIMING_EXT: Self = Self(
         vk::SwapchainCreateFlagBitsKHR::PRESENT_TIMING_EXT.0,
     );
 }
-///Provided by [VK_KHR_swapchain](crate::khr::swapchain)
+///Provided by [VK_EXT_present_timing](crate::ext::present_timing)
 impl vk::SwapchainCreateFlagBitsKHR {
     pub const PRESENT_TIMING_EXT: Self = Self(1 << 9);
 }

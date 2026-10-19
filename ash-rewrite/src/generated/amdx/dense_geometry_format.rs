@@ -22,13 +22,13 @@ impl vk::GeometryTypeKHR {
 impl CompressedTriangleFormatAMDX {
     pub const DGF1: Self = Self(0);
 }
-///Provided by [Vulkan 1.4](crate::vk1_4)
+///Provided by [VK_AMDX_dense_geometry_format](crate::amdx::dense_geometry_format)
 impl vk::BufferUsageFlags2 {
     pub const COMPRESSED_DATA_DGF1_AMDX: Self = Self(
         vk::BufferUsageFlagBits2::COMPRESSED_DATA_DGF1_AMDX.0,
     );
 }
-///Provided by [Vulkan 1.4](crate::vk1_4)
+///Provided by [VK_AMDX_dense_geometry_format](crate::amdx::dense_geometry_format)
 impl vk::BufferUsageFlagBits2 {
     pub const COMPRESSED_DATA_DGF1_AMDX: Self = Self(1 << 33);
 }

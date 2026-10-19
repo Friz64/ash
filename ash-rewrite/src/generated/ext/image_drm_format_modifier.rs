@@ -31,7 +31,7 @@ impl vk::Result {
         -1000158000,
     );
 }
-///Provided by [Vulkan 1.0](crate::vk1_0)
+///Provided by [VK_EXT_image_drm_format_modifier](crate::ext::image_drm_format_modifier)
 impl vk::ImageAspectFlags {
     pub const MEMORY_PLANE_0_EXT: Self = Self(
         vk::ImageAspectFlagBits::MEMORY_PLANE_0_EXT.0,
@@ -46,7 +46,7 @@ impl vk::ImageAspectFlags {
         vk::ImageAspectFlagBits::MEMORY_PLANE_3_EXT.0,
     );
 }
-///Provided by [Vulkan 1.0](crate::vk1_0)
+///Provided by [VK_EXT_image_drm_format_modifier](crate::ext::image_drm_format_modifier)
 impl vk::ImageAspectFlagBits {
     pub const MEMORY_PLANE_0_EXT: Self = Self(1 << 7);
     pub const MEMORY_PLANE_1_EXT: Self = Self(1 << 8);

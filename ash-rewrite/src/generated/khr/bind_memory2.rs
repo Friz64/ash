@@ -12,11 +12,11 @@ impl vk::StructureType {
     pub const BIND_BUFFER_MEMORY_INFO_KHR: Self = Self::BIND_BUFFER_MEMORY_INFO;
     pub const BIND_IMAGE_MEMORY_INFO_KHR: Self = Self::BIND_IMAGE_MEMORY_INFO;
 }
-///Provided by [Vulkan 1.0](crate::vk1_0)
+///Provided by [VK_KHR_bind_memory2](crate::khr::bind_memory2)
 impl vk::ImageCreateFlags {
     pub const ALIAS_KHR: Self = Self(vk::ImageCreateFlagBits::ALIAS_KHR.0);
 }
-///Provided by [Vulkan 1.0](crate::vk1_0)
+///Provided by [VK_KHR_bind_memory2](crate::khr::bind_memory2)
 impl vk::ImageCreateFlagBits {
     pub const ALIAS_KHR: Self = Self::ALIAS;
 }

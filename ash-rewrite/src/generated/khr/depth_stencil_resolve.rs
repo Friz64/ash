@@ -9,7 +9,7 @@ impl vk::StructureType {
     pub const PHYSICAL_DEVICE_DEPTH_STENCIL_RESOLVE_PROPERTIES_KHR: Self = Self::PHYSICAL_DEVICE_DEPTH_STENCIL_RESOLVE_PROPERTIES;
     pub const SUBPASS_DESCRIPTION_DEPTH_STENCIL_RESOLVE_KHR: Self = Self::SUBPASS_DESCRIPTION_DEPTH_STENCIL_RESOLVE;
 }
-///Provided by [Vulkan 1.2](crate::vk1_2)
+///Provided by [VK_KHR_depth_stencil_resolve](crate::khr::depth_stencil_resolve)
 impl vk::ResolveModeFlags {
     pub const NONE_KHR: Self = Self(vk::ResolveModeFlagBits::NONE_KHR.0);
     pub const SAMPLE_ZERO_KHR: Self = Self(vk::ResolveModeFlagBits::SAMPLE_ZERO_KHR.0);
@@ -17,7 +17,7 @@ impl vk::ResolveModeFlags {
     pub const MIN_KHR: Self = Self(vk::ResolveModeFlagBits::MIN_KHR.0);
     pub const MAX_KHR: Self = Self(vk::ResolveModeFlagBits::MAX_KHR.0);
 }
-///Provided by [Vulkan 1.2](crate::vk1_2)
+///Provided by [VK_KHR_depth_stencil_resolve](crate::khr::depth_stencil_resolve)
 impl vk::ResolveModeFlagBits {
     pub const NONE_KHR: Self = Self::NONE;
     pub const SAMPLE_ZERO_KHR: Self = Self::SAMPLE_ZERO;

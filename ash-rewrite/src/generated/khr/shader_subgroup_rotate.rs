@@ -8,14 +8,14 @@ use core::ffi::CStr;
 impl vk::StructureType {
     pub const PHYSICAL_DEVICE_SHADER_SUBGROUP_ROTATE_FEATURES_KHR: Self = Self::PHYSICAL_DEVICE_SHADER_SUBGROUP_ROTATE_FEATURES;
 }
-///Provided by [Vulkan 1.1](crate::vk1_1)
+///Provided by [VK_KHR_shader_subgroup_rotate](crate::khr::shader_subgroup_rotate)
 impl vk::SubgroupFeatureFlags {
     pub const ROTATE_KHR: Self = Self(vk::SubgroupFeatureFlagBits::ROTATE_KHR.0);
     pub const ROTATE_CLUSTERED_KHR: Self = Self(
         vk::SubgroupFeatureFlagBits::ROTATE_CLUSTERED_KHR.0,
     );
 }
-///Provided by [Vulkan 1.1](crate::vk1_1)
+///Provided by [VK_KHR_shader_subgroup_rotate](crate::khr::shader_subgroup_rotate)
 impl vk::SubgroupFeatureFlagBits {
     pub const ROTATE_KHR: Self = Self::ROTATE;
     pub const ROTATE_CLUSTERED_KHR: Self = Self::ROTATE_CLUSTERED;

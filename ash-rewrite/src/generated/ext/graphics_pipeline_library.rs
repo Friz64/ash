@@ -14,17 +14,17 @@ impl vk::StructureType {
     );
     pub const GRAPHICS_PIPELINE_LIBRARY_CREATE_INFO_EXT: Self = Self(1000320002);
 }
-///Provided by [Vulkan 1.0](crate::vk1_0)
+///Provided by [VK_EXT_graphics_pipeline_library](crate::ext::graphics_pipeline_library)
 impl vk::PipelineLayoutCreateFlags {
     pub const INDEPENDENT_SETS_EXT: Self = Self(
         vk::PipelineLayoutCreateFlagBits::INDEPENDENT_SETS_EXT.0,
     );
 }
-///Provided by [Vulkan 1.0](crate::vk1_0)
+///Provided by [VK_EXT_graphics_pipeline_library](crate::ext::graphics_pipeline_library)
 impl vk::PipelineLayoutCreateFlagBits {
     pub const INDEPENDENT_SETS_EXT: Self = Self(1 << 1);
 }
-///Provided by [Vulkan 1.0](crate::vk1_0)
+///Provided by [VK_EXT_graphics_pipeline_library](crate::ext::graphics_pipeline_library)
 impl vk::PipelineCreateFlags {
     pub const RETAIN_LINK_TIME_OPTIMIZATION_INFO_EXT: Self = Self(
         vk::PipelineCreateFlagBits::RETAIN_LINK_TIME_OPTIMIZATION_INFO_EXT.0,
@@ -33,7 +33,7 @@ impl vk::PipelineCreateFlags {
         vk::PipelineCreateFlagBits::LINK_TIME_OPTIMIZATION_EXT.0,
     );
 }
-///Provided by [Vulkan 1.0](crate::vk1_0)
+///Provided by [VK_EXT_graphics_pipeline_library](crate::ext::graphics_pipeline_library)
 impl vk::PipelineCreateFlagBits {
     pub const RETAIN_LINK_TIME_OPTIMIZATION_INFO_EXT: Self = Self(1 << 23);
     pub const LINK_TIME_OPTIMIZATION_EXT: Self = Self(1 << 10);

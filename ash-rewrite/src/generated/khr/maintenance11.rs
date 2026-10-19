@@ -11,43 +11,43 @@ impl vk::StructureType {
         1000657001,
     );
 }
-///Provided by [Vulkan 1.0](crate::vk1_0)
+///Provided by [VK_KHR_maintenance11](crate::khr::maintenance11)
 impl vk::PipelineLayoutCreateFlags {
     pub const NO_TASK_SHADER_KHR: Self = Self(
         vk::PipelineLayoutCreateFlagBits::NO_TASK_SHADER_KHR.0,
     );
 }
-///Provided by [Vulkan 1.0](crate::vk1_0)
+///Provided by [VK_KHR_maintenance11](crate::khr::maintenance11)
 impl vk::PipelineLayoutCreateFlagBits {
     pub const NO_TASK_SHADER_KHR: Self = Self(1 << 2);
 }
-///Provided by [Vulkan 1.0](crate::vk1_0)
+///Provided by [VK_KHR_maintenance11](crate::khr::maintenance11)
 impl vk::ImageCreateFlags {
     pub const ALIAS_SINGLE_LAYER_DESCRIPTOR_KHR: Self = Self(
         vk::ImageCreateFlagBits::ALIAS_SINGLE_LAYER_DESCRIPTOR_KHR.0,
     );
 }
-///Provided by [Vulkan 1.0](crate::vk1_0)
+///Provided by [VK_KHR_maintenance11](crate::khr::maintenance11)
 impl vk::ImageCreateFlagBits {
     pub const ALIAS_SINGLE_LAYER_DESCRIPTOR_KHR: Self = Self(1 << 22);
 }
-///Provided by [VK_KHR_extended_flags](crate::khr::extended_flags)
+///Provided by [VK_KHR_maintenance11](crate::khr::maintenance11)
 impl vk::ImageCreateFlags2KHR {
     pub const ALIAS_SINGLE_LAYER_DESCRIPTOR: Self = Self(
         vk::ImageCreateFlagBits2KHR::ALIAS_SINGLE_LAYER_DESCRIPTOR.0,
     );
 }
-///Provided by [VK_KHR_extended_flags](crate::khr::extended_flags)
+///Provided by [VK_KHR_maintenance11](crate::khr::maintenance11)
 impl vk::ImageCreateFlagBits2KHR {
     pub const ALIAS_SINGLE_LAYER_DESCRIPTOR: Self = Self(1 << 22);
 }
-///Provided by [VK_EXT_shader_object](crate::ext::shader_object)
+///Provided by [VK_KHR_maintenance11](crate::khr::maintenance11)
 impl vk::ShaderCreateFlagsEXT {
     pub const INDEPENDENT_SETS_KHR: Self = Self(
         vk::ShaderCreateFlagBitsEXT::INDEPENDENT_SETS_KHR.0,
     );
 }
-///Provided by [VK_EXT_shader_object](crate::ext::shader_object)
+///Provided by [VK_KHR_maintenance11](crate::khr::maintenance11)
 impl vk::ShaderCreateFlagBitsEXT {
     pub const INDEPENDENT_SETS_KHR: Self = Self(1 << 18);
 }

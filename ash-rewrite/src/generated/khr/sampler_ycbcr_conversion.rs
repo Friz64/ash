@@ -81,15 +81,15 @@ impl vk::ChromaLocation {
     pub const COSITED_EVEN_KHR: Self = Self::COSITED_EVEN;
     pub const MIDPOINT_KHR: Self = Self::MIDPOINT;
 }
-///Provided by [Vulkan 1.0](crate::vk1_0)
+///Provided by [VK_KHR_sampler_ycbcr_conversion](crate::khr::sampler_ycbcr_conversion)
 impl vk::ImageCreateFlags {
     pub const DISJOINT_KHR: Self = Self(vk::ImageCreateFlagBits::DISJOINT_KHR.0);
 }
-///Provided by [Vulkan 1.0](crate::vk1_0)
+///Provided by [VK_KHR_sampler_ycbcr_conversion](crate::khr::sampler_ycbcr_conversion)
 impl vk::ImageCreateFlagBits {
     pub const DISJOINT_KHR: Self = Self::DISJOINT;
 }
-///Provided by [Vulkan 1.0](crate::vk1_0)
+///Provided by [VK_KHR_sampler_ycbcr_conversion](crate::khr::sampler_ycbcr_conversion)
 impl vk::FormatFeatureFlags {
     pub const MIDPOINT_CHROMA_SAMPLES_KHR: Self = Self(
         vk::FormatFeatureFlagBits::MIDPOINT_CHROMA_SAMPLES_KHR.0,
@@ -114,7 +114,7 @@ impl vk::FormatFeatureFlags {
         vk::FormatFeatureFlagBits::COSITED_CHROMA_SAMPLES_KHR.0,
     );
 }
-///Provided by [Vulkan 1.0](crate::vk1_0)
+///Provided by [VK_KHR_sampler_ycbcr_conversion](crate::khr::sampler_ycbcr_conversion)
 impl vk::FormatFeatureFlagBits {
     pub const MIDPOINT_CHROMA_SAMPLES_KHR: Self = Self::MIDPOINT_CHROMA_SAMPLES;
     pub const SAMPLED_IMAGE_YCBCR_CONVERSION_LINEAR_FILTER_KHR: Self = Self::SAMPLED_IMAGE_YCBCR_CONVERSION_LINEAR_FILTER;
@@ -124,13 +124,13 @@ impl vk::FormatFeatureFlagBits {
     pub const DISJOINT_KHR: Self = Self::DISJOINT;
     pub const COSITED_CHROMA_SAMPLES_KHR: Self = Self::COSITED_CHROMA_SAMPLES;
 }
-///Provided by [Vulkan 1.0](crate::vk1_0)
+///Provided by [VK_KHR_sampler_ycbcr_conversion](crate::khr::sampler_ycbcr_conversion)
 impl vk::ImageAspectFlags {
     pub const PLANE_0_KHR: Self = Self(vk::ImageAspectFlagBits::PLANE_0_KHR.0);
     pub const PLANE_1_KHR: Self = Self(vk::ImageAspectFlagBits::PLANE_1_KHR.0);
     pub const PLANE_2_KHR: Self = Self(vk::ImageAspectFlagBits::PLANE_2_KHR.0);
 }
-///Provided by [Vulkan 1.0](crate::vk1_0)
+///Provided by [VK_KHR_sampler_ycbcr_conversion](crate::khr::sampler_ycbcr_conversion)
 impl vk::ImageAspectFlagBits {
     pub const PLANE_0_KHR: Self = Self::PLANE_0;
     pub const PLANE_1_KHR: Self = Self::PLANE_1;

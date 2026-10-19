@@ -19,13 +19,13 @@ impl vk::StructureType {
 impl vk::DynamicState {
     pub const SAMPLE_LOCATIONS_EXT: Self = Self(1000143000);
 }
-///Provided by [Vulkan 1.0](crate::vk1_0)
+///Provided by [VK_EXT_sample_locations](crate::ext::sample_locations)
 impl vk::ImageCreateFlags {
     pub const SAMPLE_LOCATIONS_COMPATIBLE_DEPTH_EXT: Self = Self(
         vk::ImageCreateFlagBits::SAMPLE_LOCATIONS_COMPATIBLE_DEPTH_EXT.0,
     );
 }
-///Provided by [Vulkan 1.0](crate::vk1_0)
+///Provided by [VK_EXT_sample_locations](crate::ext::sample_locations)
 impl vk::ImageCreateFlagBits {
     pub const SAMPLE_LOCATIONS_COMPATIBLE_DEPTH_EXT: Self = Self(1 << 12);
 }

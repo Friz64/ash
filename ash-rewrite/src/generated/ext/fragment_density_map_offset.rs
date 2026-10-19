@@ -20,13 +20,13 @@ impl vk::StructureType {
     );
     pub const RENDERING_END_INFO_EXT: Self = Self::RENDERING_END_INFO_KHR;
 }
-///Provided by [Vulkan 1.0](crate::vk1_0)
+///Provided by [VK_EXT_fragment_density_map_offset](crate::ext::fragment_density_map_offset)
 impl vk::ImageCreateFlags {
     pub const FRAGMENT_DENSITY_MAP_OFFSET_EXT: Self = Self(
         vk::ImageCreateFlagBits::FRAGMENT_DENSITY_MAP_OFFSET_EXT.0,
     );
 }
-///Provided by [Vulkan 1.0](crate::vk1_0)
+///Provided by [VK_EXT_fragment_density_map_offset](crate::ext::fragment_density_map_offset)
 impl vk::ImageCreateFlagBits {
     pub const FRAGMENT_DENSITY_MAP_OFFSET_EXT: Self = Self(1 << 15);
 }

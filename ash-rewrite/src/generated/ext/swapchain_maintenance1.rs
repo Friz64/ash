@@ -16,13 +16,13 @@ impl vk::StructureType {
     pub const SWAPCHAIN_PRESENT_SCALING_CREATE_INFO_EXT: Self = Self::SWAPCHAIN_PRESENT_SCALING_CREATE_INFO_KHR;
     pub const RELEASE_SWAPCHAIN_IMAGES_INFO_EXT: Self = Self::RELEASE_SWAPCHAIN_IMAGES_INFO_KHR;
 }
-///Provided by [VK_KHR_swapchain](crate::khr::swapchain)
+///Provided by [VK_EXT_swapchain_maintenance1](crate::ext::swapchain_maintenance1)
 impl vk::SwapchainCreateFlagsKHR {
     pub const DEFERRED_MEMORY_ALLOCATION_EXT: Self = Self(
         vk::SwapchainCreateFlagBitsKHR::DEFERRED_MEMORY_ALLOCATION_EXT.0,
     );
 }
-///Provided by [VK_KHR_swapchain](crate::khr::swapchain)
+///Provided by [VK_EXT_swapchain_maintenance1](crate::ext::swapchain_maintenance1)
 impl vk::SwapchainCreateFlagBitsKHR {
     pub const DEFERRED_MEMORY_ALLOCATION_EXT: Self = Self::DEFERRED_MEMORY_ALLOCATION;
 }

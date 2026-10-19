@@ -122,12 +122,10 @@ pub fn generate_code(ctx: &Context, codemap: &mut CodeMap) {
                 pub #field_name: #command_ty,
             });
 
+            // todo use rules
             if ![
                 CommandName::VK_GET_INSTANCE_PROC_ADDR,
                 CommandName::VK_GET_DEVICE_PROC_ADDR,
-                CommandName::VK_ENUMERATE_INSTANCE_VERSION,
-                CommandName::VK_CREATE_INSTANCE,
-                CommandName::VK_CREATE_DEVICE,
             ]
             .contains(&name)
             {

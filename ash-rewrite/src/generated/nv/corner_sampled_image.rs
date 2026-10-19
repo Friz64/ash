@@ -8,13 +8,13 @@ use core::ffi::CStr;
 impl vk::StructureType {
     pub const PHYSICAL_DEVICE_CORNER_SAMPLED_IMAGE_FEATURES_NV: Self = Self(1000050000);
 }
-///Provided by [Vulkan 1.0](crate::vk1_0)
+///Provided by [VK_NV_corner_sampled_image](crate::nv::corner_sampled_image)
 impl vk::ImageCreateFlags {
     pub const CORNER_SAMPLED_NV: Self = Self(
         vk::ImageCreateFlagBits::CORNER_SAMPLED_NV.0,
     );
 }
-///Provided by [Vulkan 1.0](crate::vk1_0)
+///Provided by [VK_NV_corner_sampled_image](crate::nv::corner_sampled_image)
 impl vk::ImageCreateFlagBits {
     pub const CORNER_SAMPLED_NV: Self = Self(1 << 13);
 }

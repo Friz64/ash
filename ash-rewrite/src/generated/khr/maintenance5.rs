@@ -23,7 +23,7 @@ impl vk::StructureType {
     pub const PIPELINE_CREATE_FLAGS_2_CREATE_INFO_KHR: Self = Self::PIPELINE_CREATE_FLAGS_2_CREATE_INFO;
     pub const BUFFER_USAGE_FLAGS_2_CREATE_INFO_KHR: Self = Self::BUFFER_USAGE_FLAGS_2_CREATE_INFO;
 }
-///Provided by [Vulkan 1.4](crate::vk1_4)
+///Provided by [VK_KHR_maintenance5](crate::khr::maintenance5)
 impl vk::PipelineCreateFlags2 {
     pub const DISABLE_OPTIMIZATION_KHR: Self = Self(
         vk::PipelineCreateFlagBits2::DISABLE_OPTIMIZATION_KHR.0,
@@ -118,7 +118,7 @@ impl vk::PipelineCreateFlags2 {
         vk::PipelineCreateFlagBits2::INSTRUMENT_SHADERS_ARM.0,
     );
 }
-///Provided by [Vulkan 1.4](crate::vk1_4)
+///Provided by [VK_KHR_maintenance5](crate::khr::maintenance5)
 impl vk::PipelineCreateFlagBits2 {
     pub const DISABLE_OPTIMIZATION_KHR: Self = Self::DISABLE_OPTIMIZATION;
     pub const ALLOW_DERIVATIVES_KHR: Self = Self::ALLOW_DERIVATIVES;
@@ -153,7 +153,7 @@ impl vk::PipelineCreateFlagBits2 {
     pub const DISALLOW_OPACITY_MICROMAP_ARM: Self = Self(1 << 37);
     pub const INSTRUMENT_SHADERS_ARM: Self = Self(1 << 39);
 }
-///Provided by [Vulkan 1.4](crate::vk1_4)
+///Provided by [VK_KHR_maintenance5](crate::khr::maintenance5)
 impl vk::BufferUsageFlags2 {
     pub const TRANSFER_SRC_KHR: Self = Self(
         vk::BufferUsageFlagBits2::TRANSFER_SRC_KHR.0,
@@ -226,7 +226,7 @@ impl vk::BufferUsageFlags2 {
         vk::BufferUsageFlagBits2::PUSH_DESCRIPTORS_DESCRIPTOR_BUFFER_EXT.0,
     );
 }
-///Provided by [Vulkan 1.4](crate::vk1_4)
+///Provided by [VK_KHR_maintenance5](crate::khr::maintenance5)
 impl vk::BufferUsageFlagBits2 {
     pub const TRANSFER_SRC_KHR: Self = Self::TRANSFER_SRC;
     pub const TRANSFER_DST_KHR: Self = Self::TRANSFER_DST;
@@ -253,13 +253,13 @@ impl vk::BufferUsageFlagBits2 {
     pub const RESOURCE_DESCRIPTOR_BUFFER_EXT: Self = Self(1 << 22);
     pub const PUSH_DESCRIPTORS_DESCRIPTOR_BUFFER_EXT: Self = Self(1 << 26);
 }
-///Provided by [VK_EXT_shader_object](crate::ext::shader_object)
+///Provided by [VK_KHR_maintenance5](crate::khr::maintenance5)
 impl vk::ShaderCreateFlagsEXT {
     pub const INSTRUMENT_SHADER_ARM: Self = Self(
         vk::ShaderCreateFlagBitsEXT::INSTRUMENT_SHADER_ARM.0,
     );
 }
-///Provided by [VK_EXT_shader_object](crate::ext::shader_object)
+///Provided by [VK_KHR_maintenance5](crate::khr::maintenance5)
 impl vk::ShaderCreateFlagBitsEXT {
     pub const INSTRUMENT_SHADER_ARM: Self = Self(1 << 11);
 }

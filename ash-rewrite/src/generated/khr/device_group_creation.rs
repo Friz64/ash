@@ -14,13 +14,13 @@ impl vk::StructureType {
     pub const PHYSICAL_DEVICE_GROUP_PROPERTIES_KHR: Self = Self::PHYSICAL_DEVICE_GROUP_PROPERTIES;
     pub const DEVICE_GROUP_DEVICE_CREATE_INFO_KHR: Self = Self::DEVICE_GROUP_DEVICE_CREATE_INFO;
 }
-///Provided by [Vulkan 1.0](crate::vk1_0)
+///Provided by [VK_KHR_device_group_creation](crate::khr::device_group_creation)
 impl vk::MemoryHeapFlags {
     pub const MULTI_INSTANCE_KHR: Self = Self(
         vk::MemoryHeapFlagBits::MULTI_INSTANCE_KHR.0,
     );
 }
-///Provided by [Vulkan 1.0](crate::vk1_0)
+///Provided by [VK_KHR_device_group_creation](crate::khr::device_group_creation)
 impl vk::MemoryHeapFlagBits {
     pub const MULTI_INSTANCE_KHR: Self = Self::MULTI_INSTANCE;
 }

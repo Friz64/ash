@@ -8,7 +8,7 @@ use core::ffi::CStr;
 impl vk::StructureType {
     pub const PIPELINE_CREATION_FEEDBACK_CREATE_INFO_EXT: Self = Self::PIPELINE_CREATION_FEEDBACK_CREATE_INFO;
 }
-///Provided by [Vulkan 1.3](crate::vk1_3)
+///Provided by [VK_EXT_pipeline_creation_feedback](crate::ext::pipeline_creation_feedback)
 impl vk::PipelineCreationFeedbackFlags {
     pub const VALID_EXT: Self = Self(vk::PipelineCreationFeedbackFlagBits::VALID_EXT.0);
     pub const APPLICATION_PIPELINE_CACHE_HIT_EXT: Self = Self(
@@ -18,7 +18,7 @@ impl vk::PipelineCreationFeedbackFlags {
         vk::PipelineCreationFeedbackFlagBits::BASE_PIPELINE_ACCELERATION_EXT.0,
     );
 }
-///Provided by [Vulkan 1.3](crate::vk1_3)
+///Provided by [VK_EXT_pipeline_creation_feedback](crate::ext::pipeline_creation_feedback)
 impl vk::PipelineCreationFeedbackFlagBits {
     pub const VALID_EXT: Self = Self::VALID;
     pub const APPLICATION_PIPELINE_CACHE_HIT_EXT: Self = Self::APPLICATION_PIPELINE_CACHE_HIT;

@@ -55,27 +55,27 @@ impl DescriptorMappingSourceEXT {
     pub const SHADER_RECORD_DATA: Self = Self(9);
     pub const SHADER_RECORD_ADDRESS: Self = Self(10);
 }
-///Provided by [Vulkan 1.0](crate::vk1_0)
+///Provided by [VK_EXT_descriptor_heap](crate::ext::descriptor_heap)
 impl vk::BufferUsageFlags {
     pub const DESCRIPTOR_HEAP_EXT: Self = Self(
         vk::BufferUsageFlagBits::DESCRIPTOR_HEAP_EXT.0,
     );
 }
-///Provided by [Vulkan 1.0](crate::vk1_0)
+///Provided by [VK_EXT_descriptor_heap](crate::ext::descriptor_heap)
 impl vk::BufferUsageFlagBits {
     pub const DESCRIPTOR_HEAP_EXT: Self = Self(1 << 28);
 }
-///Provided by [Vulkan 1.0](crate::vk1_0)
+///Provided by [VK_EXT_descriptor_heap](crate::ext::descriptor_heap)
 impl vk::ImageCreateFlags {
     pub const DESCRIPTOR_HEAP_CAPTURE_REPLAY_EXT: Self = Self(
         vk::ImageCreateFlagBits::DESCRIPTOR_HEAP_CAPTURE_REPLAY_EXT.0,
     );
 }
-///Provided by [Vulkan 1.0](crate::vk1_0)
+///Provided by [VK_EXT_descriptor_heap](crate::ext::descriptor_heap)
 impl vk::ImageCreateFlagBits {
     pub const DESCRIPTOR_HEAP_CAPTURE_REPLAY_EXT: Self = Self(1 << 16);
 }
-///Provided by [Vulkan 1.3](crate::vk1_3)
+///Provided by [VK_EXT_descriptor_heap](crate::ext::descriptor_heap)
 impl vk::AccessFlags2 {
     pub const SAMPLER_HEAP_READ_EXT: Self = Self(
         vk::AccessFlagBits2::SAMPLER_HEAP_READ_EXT.0,
@@ -84,38 +84,38 @@ impl vk::AccessFlags2 {
         vk::AccessFlagBits2::RESOURCE_HEAP_READ_EXT.0,
     );
 }
-///Provided by [Vulkan 1.3](crate::vk1_3)
+///Provided by [VK_EXT_descriptor_heap](crate::ext::descriptor_heap)
 impl vk::AccessFlagBits2 {
     pub const SAMPLER_HEAP_READ_EXT: Self = Self(1 << 57);
     pub const RESOURCE_HEAP_READ_EXT: Self = Self(1 << 58);
 }
-///Provided by [Vulkan 1.4](crate::vk1_4)
+///Provided by [VK_EXT_descriptor_heap](crate::ext::descriptor_heap)
 impl vk::PipelineCreateFlags2 {
     pub const DESCRIPTOR_HEAP_EXT: Self = Self(
         vk::PipelineCreateFlagBits2::DESCRIPTOR_HEAP_EXT.0,
     );
 }
-///Provided by [Vulkan 1.4](crate::vk1_4)
+///Provided by [VK_EXT_descriptor_heap](crate::ext::descriptor_heap)
 impl vk::PipelineCreateFlagBits2 {
     pub const DESCRIPTOR_HEAP_EXT: Self = Self(1 << 36);
 }
-///Provided by [Vulkan 1.4](crate::vk1_4)
+///Provided by [VK_EXT_descriptor_heap](crate::ext::descriptor_heap)
 impl vk::BufferUsageFlags2 {
     pub const DESCRIPTOR_HEAP_EXT: Self = Self(
         vk::BufferUsageFlagBits2::DESCRIPTOR_HEAP_EXT.0,
     );
 }
-///Provided by [Vulkan 1.4](crate::vk1_4)
+///Provided by [VK_EXT_descriptor_heap](crate::ext::descriptor_heap)
 impl vk::BufferUsageFlagBits2 {
     pub const DESCRIPTOR_HEAP_EXT: Self = Self(1 << 28);
 }
-///Provided by [VK_ARM_tensors](crate::arm::tensors)
+///Provided by [VK_EXT_descriptor_heap](crate::ext::descriptor_heap)
 impl vk::TensorCreateFlagsARM {
     pub const DESCRIPTOR_HEAP_CAPTURE_REPLAY: Self = Self(
         vk::TensorCreateFlagBitsARM::DESCRIPTOR_HEAP_CAPTURE_REPLAY.0,
     );
 }
-///Provided by [VK_ARM_tensors](crate::arm::tensors)
+///Provided by [VK_EXT_descriptor_heap](crate::ext::descriptor_heap)
 impl vk::TensorCreateFlagBitsARM {
     pub const DESCRIPTOR_HEAP_CAPTURE_REPLAY: Self = Self(1 << 3);
 }
@@ -161,13 +161,13 @@ impl SpirvResourceTypeFlagBitsEXT {
     pub const ACCELERATION_STRUCTURE: Self = Self(1 << 8);
     pub const TENSOR_ARM: Self = Self(1 << 9);
 }
-///Provided by [VK_EXT_shader_object](crate::ext::shader_object)
+///Provided by [VK_EXT_descriptor_heap](crate::ext::descriptor_heap)
 impl vk::ShaderCreateFlagsEXT {
     pub const DESCRIPTOR_HEAP: Self = Self(
         vk::ShaderCreateFlagBitsEXT::DESCRIPTOR_HEAP.0,
     );
 }
-///Provided by [VK_EXT_shader_object](crate::ext::shader_object)
+///Provided by [VK_EXT_descriptor_heap](crate::ext::descriptor_heap)
 impl vk::ShaderCreateFlagBitsEXT {
     pub const DESCRIPTOR_HEAP: Self = Self(1 << 10);
 }

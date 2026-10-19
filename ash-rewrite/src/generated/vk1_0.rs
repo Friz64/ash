@@ -3,12 +3,12 @@
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_VERSION_1_0.html) · Vulkan version 1.0
 #![doc(alias = "VK_VERSION_1_0")]
 use crate::vk;
-use core::mem::transmute;
 use core::ptr;
-use alloc::vec::Vec;
-use crate::VkResult;
-use core::ffi;
 use core::mem::MaybeUninit;
+use crate::VkResult;
+use core::mem::transmute;
+use alloc::vec::Vec;
+use core::ffi;
 use core::ffi::CStr;
 ///Provided by [Vulkan 1.0](crate::vk1_0)
 impl ImageLayout {
@@ -1247,6 +1247,26 @@ impl crate::Entry {
     pub fn fp_v1_0(&self) -> &crate::EntryFnV1_0 {
         &self.entry_fn_1_0
     }
+    ///vkCreateInstance
+    #[inline]
+    pub unsafe fn create_instance(
+        &self,
+        create_info: &vk::InstanceCreateInfo<'_>,
+        allocator: Option<&vk::AllocationCallbacks<'_>>,
+    ) -> VkResult<vk::Instance> {
+        let mut instance = MaybeUninit::uninit();
+        (self
+            .entry_fn_1_0
+            .create_instance)(
+                create_info,
+                match allocator {
+                    Some(inner) => inner,
+                    None => ptr::null_mut(),
+                },
+                instance.as_mut_ptr(),
+            )
+            .assume_init_on_success(instance)
+    }
     ///vkEnumerateInstanceLayerProperties
     #[inline]
     pub unsafe fn enumerate_instance_layer_properties(
@@ -1617,6 +1637,28 @@ impl crate::Instance {
                 image_format_properties.as_mut_ptr(),
             )
             .assume_init_on_success(image_format_properties)
+    }
+    ///vkCreateDevice
+    #[inline]
+    pub unsafe fn create_device(
+        &self,
+        physical_device: vk::PhysicalDevice,
+        create_info: &vk::DeviceCreateInfo<'_>,
+        allocator: Option<&vk::AllocationCallbacks<'_>>,
+    ) -> VkResult<vk::Device> {
+        let mut device = MaybeUninit::uninit();
+        (self
+            .instance_fn_1_0
+            .create_device)(
+                physical_device,
+                create_info,
+                match allocator {
+                    Some(inner) => inner,
+                    None => ptr::null_mut(),
+                },
+                device.as_mut_ptr(),
+            )
+            .assume_init_on_success(device)
     }
     ///vkEnumerateDeviceLayerProperties
     #[inline]

@@ -16,7 +16,7 @@ impl vk::StructureType {
         1000178002,
     );
 }
-///Provided by [Vulkan 1.1](crate::vk1_1)
+///Provided by [VK_EXT_external_memory_host](crate::ext::external_memory_host)
 impl vk::ExternalMemoryHandleTypeFlags {
     pub const HOST_ALLOCATION_EXT: Self = Self(
         vk::ExternalMemoryHandleTypeFlagBits::HOST_ALLOCATION_EXT.0,
@@ -25,7 +25,7 @@ impl vk::ExternalMemoryHandleTypeFlags {
         vk::ExternalMemoryHandleTypeFlagBits::HOST_MAPPED_FOREIGN_MEMORY_EXT.0,
     );
 }
-///Provided by [Vulkan 1.1](crate::vk1_1)
+///Provided by [VK_EXT_external_memory_host](crate::ext::external_memory_host)
 impl vk::ExternalMemoryHandleTypeFlagBits {
     pub const HOST_ALLOCATION_EXT: Self = Self(1 << 7);
     pub const HOST_MAPPED_FOREIGN_MEMORY_EXT: Self = Self(1 << 8);

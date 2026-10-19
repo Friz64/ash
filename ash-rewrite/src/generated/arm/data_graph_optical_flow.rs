@@ -58,7 +58,7 @@ impl DataGraphPipelineNodeConnectionTypeARM {
 impl DataGraphPipelineNodeTypeARM {
     pub const OPTICAL_FLOW: Self = Self(1000631000);
 }
-///Provided by [Vulkan 1.3](crate::vk1_3)
+///Provided by [VK_ARM_data_graph_optical_flow](crate::arm::data_graph_optical_flow)
 impl vk::FormatFeatureFlags2 {
     pub const DATA_GRAPH_OPTICAL_FLOW_IMAGE_ARM: Self = Self(
         vk::FormatFeatureFlagBits2::DATA_GRAPH_OPTICAL_FLOW_IMAGE_ARM.0,
@@ -70,19 +70,19 @@ impl vk::FormatFeatureFlags2 {
         vk::FormatFeatureFlagBits2::DATA_GRAPH_OPTICAL_FLOW_COST_ARM.0,
     );
 }
-///Provided by [Vulkan 1.3](crate::vk1_3)
+///Provided by [VK_ARM_data_graph_optical_flow](crate::arm::data_graph_optical_flow)
 impl vk::FormatFeatureFlagBits2 {
     pub const DATA_GRAPH_OPTICAL_FLOW_IMAGE_ARM: Self = Self(1 << 56);
     pub const DATA_GRAPH_OPTICAL_FLOW_VECTOR_ARM: Self = Self(1 << 57);
     pub const DATA_GRAPH_OPTICAL_FLOW_COST_ARM: Self = Self(1 << 58);
 }
-///Provided by [VK_ARM_data_graph](crate::arm::data_graph)
+///Provided by [VK_ARM_data_graph_optical_flow](crate::arm::data_graph_optical_flow)
 impl vk::DataGraphPipelineSessionCreateFlagsARM {
     pub const OPTICAL_FLOW_CACHE: Self = Self(
         vk::DataGraphPipelineSessionCreateFlagBitsARM::OPTICAL_FLOW_CACHE.0,
     );
 }
-///Provided by [VK_ARM_data_graph](crate::arm::data_graph)
+///Provided by [VK_ARM_data_graph_optical_flow](crate::arm::data_graph_optical_flow)
 impl vk::DataGraphPipelineSessionCreateFlagBitsARM {
     pub const OPTICAL_FLOW_CACHE: Self = Self(1 << 1);
 }

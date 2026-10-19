@@ -17,13 +17,13 @@ impl vk::StructureType {
         1000586003,
     );
 }
-///Provided by [VK_KHR_video_queue](crate::khr::video_queue)
+///Provided by [VK_KHR_video_maintenance2](crate::khr::video_maintenance2)
 impl vk::VideoSessionCreateFlagsKHR {
     pub const INLINE_SESSION_PARAMETERS: Self = Self(
         vk::VideoSessionCreateFlagBitsKHR::INLINE_SESSION_PARAMETERS.0,
     );
 }
-///Provided by [VK_KHR_video_queue](crate::khr::video_queue)
+///Provided by [VK_KHR_video_maintenance2](crate::khr::video_maintenance2)
 impl vk::VideoSessionCreateFlagBitsKHR {
     pub const INLINE_SESSION_PARAMETERS: Self = Self(1 << 5);
 }

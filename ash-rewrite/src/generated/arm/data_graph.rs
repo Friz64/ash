@@ -76,15 +76,15 @@ impl PhysicalDeviceDataGraphProcessingEngineTypeARM {
 impl PhysicalDeviceDataGraphOperationTypeARM {
     pub const SPIRV_EXTENDED_INSTRUCTION_SET: Self = Self(0);
 }
-///Provided by [Vulkan 1.0](crate::vk1_0)
+///Provided by [VK_ARM_data_graph](crate::arm::data_graph)
 impl vk::QueueFlags {
     pub const DATA_GRAPH_ARM: Self = Self(vk::QueueFlagBits::DATA_GRAPH_ARM.0);
 }
-///Provided by [Vulkan 1.0](crate::vk1_0)
+///Provided by [VK_ARM_data_graph](crate::arm::data_graph)
 impl vk::QueueFlagBits {
     pub const DATA_GRAPH_ARM: Self = Self(1 << 10);
 }
-///Provided by [Vulkan 1.3](crate::vk1_3)
+///Provided by [VK_ARM_data_graph](crate::arm::data_graph)
 impl vk::AccessFlags2 {
     pub const DATA_GRAPH_READ_ARM: Self = Self(
         vk::AccessFlagBits2::DATA_GRAPH_READ_ARM.0,
@@ -93,44 +93,44 @@ impl vk::AccessFlags2 {
         vk::AccessFlagBits2::DATA_GRAPH_WRITE_ARM.0,
     );
 }
-///Provided by [Vulkan 1.3](crate::vk1_3)
+///Provided by [VK_ARM_data_graph](crate::arm::data_graph)
 impl vk::AccessFlagBits2 {
     pub const DATA_GRAPH_READ_ARM: Self = Self(1 << 47);
     pub const DATA_GRAPH_WRITE_ARM: Self = Self(1 << 48);
 }
-///Provided by [Vulkan 1.3](crate::vk1_3)
+///Provided by [VK_ARM_data_graph](crate::arm::data_graph)
 impl vk::PipelineStageFlags2 {
     pub const DATA_GRAPH_ARM: Self = Self(vk::PipelineStageFlagBits2::DATA_GRAPH_ARM.0);
 }
-///Provided by [Vulkan 1.3](crate::vk1_3)
+///Provided by [VK_ARM_data_graph](crate::arm::data_graph)
 impl vk::PipelineStageFlagBits2 {
     pub const DATA_GRAPH_ARM: Self = Self(1 << 42);
 }
-///Provided by [Vulkan 1.3](crate::vk1_3)
+///Provided by [VK_ARM_data_graph](crate::arm::data_graph)
 impl vk::FormatFeatureFlags2 {
     pub const TENSOR_DATA_GRAPH_ARM: Self = Self(
         vk::FormatFeatureFlagBits2::TENSOR_DATA_GRAPH_ARM.0,
     );
 }
-///Provided by [Vulkan 1.3](crate::vk1_3)
+///Provided by [VK_ARM_data_graph](crate::arm::data_graph)
 impl vk::FormatFeatureFlagBits2 {
     pub const TENSOR_DATA_GRAPH_ARM: Self = Self(1 << 48);
 }
-///Provided by [Vulkan 1.4](crate::vk1_4)
+///Provided by [VK_ARM_data_graph](crate::arm::data_graph)
 impl vk::BufferUsageFlags2 {
     pub const DATA_GRAPH_FOREIGN_DESCRIPTOR_ARM: Self = Self(
         vk::BufferUsageFlagBits2::DATA_GRAPH_FOREIGN_DESCRIPTOR_ARM.0,
     );
 }
-///Provided by [Vulkan 1.4](crate::vk1_4)
+///Provided by [VK_ARM_data_graph](crate::arm::data_graph)
 impl vk::BufferUsageFlagBits2 {
     pub const DATA_GRAPH_FOREIGN_DESCRIPTOR_ARM: Self = Self(1 << 29);
 }
-///Provided by [VK_ARM_tensors](crate::arm::tensors)
+///Provided by [VK_ARM_data_graph](crate::arm::data_graph)
 impl vk::TensorUsageFlagsARM {
     pub const DATA_GRAPH: Self = Self(vk::TensorUsageFlagBitsARM::DATA_GRAPH.0);
 }
-///Provided by [VK_ARM_tensors](crate::arm::tensors)
+///Provided by [VK_ARM_data_graph](crate::arm::data_graph)
 impl vk::TensorUsageFlagBitsARM {
     pub const DATA_GRAPH: Self = Self(1 << 5);
 }

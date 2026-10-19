@@ -15,21 +15,21 @@ impl DefaultVertexAttributeValueKHR {
     pub const ZERO_ZERO_ZERO_ZERO: Self = Self(0);
     pub const ZERO_ZERO_ZERO_ONE: Self = Self(1);
 }
-///Provided by [Vulkan 1.0](crate::vk1_0)
+///Provided by [VK_KHR_maintenance9](crate::khr::maintenance9)
 impl vk::QueryPoolCreateFlags {
     pub const RESET_KHR: Self = Self(vk::QueryPoolCreateFlagBits::RESET_KHR.0);
 }
-///Provided by [Vulkan 1.0](crate::vk1_0)
+///Provided by [VK_KHR_maintenance9](crate::khr::maintenance9)
 impl vk::QueryPoolCreateFlagBits {
     pub const RESET_KHR: Self = Self(1 << 0);
 }
-///Provided by [Vulkan 1.0](crate::vk1_0)
+///Provided by [VK_KHR_maintenance9](crate::khr::maintenance9)
 impl vk::DependencyFlags {
     pub const ASYMMETRIC_EVENT_KHR: Self = Self(
         vk::DependencyFlagBits::ASYMMETRIC_EVENT_KHR.0,
     );
 }
-///Provided by [Vulkan 1.0](crate::vk1_0)
+///Provided by [VK_KHR_maintenance9](crate::khr::maintenance9)
 impl vk::DependencyFlagBits {
     pub const ASYMMETRIC_EVENT_KHR: Self = Self(1 << 6);
 }

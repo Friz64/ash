@@ -8,11 +8,11 @@ use core::ffi::CStr;
 impl vk::StructureType {
     pub const PIPELINE_LIBRARY_CREATE_INFO_KHR: Self = Self(1000290000);
 }
-///Provided by [Vulkan 1.0](crate::vk1_0)
+///Provided by [VK_KHR_pipeline_library](crate::khr::pipeline_library)
 impl vk::PipelineCreateFlags {
     pub const LIBRARY_KHR: Self = Self(vk::PipelineCreateFlagBits::LIBRARY_KHR.0);
 }
-///Provided by [Vulkan 1.0](crate::vk1_0)
+///Provided by [VK_KHR_pipeline_library](crate::khr::pipeline_library)
 impl vk::PipelineCreateFlagBits {
     pub const LIBRARY_KHR: Self = Self(1 << 11);
 }

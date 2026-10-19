@@ -11,13 +11,13 @@ impl vk::StructureType {
     );
     pub const SWAPCHAIN_FLAGS_SURFACE_CAPABILITIES_EXT: Self = Self(1000616001);
 }
-///Provided by [VK_KHR_swapchain](crate::khr::swapchain)
+///Provided by [VK_EXT_multisampled_render_to_swapchain](crate::ext::multisampled_render_to_swapchain)
 impl vk::SwapchainCreateFlagsKHR {
     pub const MULTISAMPLED_RENDER_TO_SINGLE_SAMPLED_EXT: Self = Self(
         vk::SwapchainCreateFlagBitsKHR::MULTISAMPLED_RENDER_TO_SINGLE_SAMPLED_EXT.0,
     );
 }
-///Provided by [VK_KHR_swapchain](crate::khr::swapchain)
+///Provided by [VK_EXT_multisampled_render_to_swapchain](crate::ext::multisampled_render_to_swapchain)
 impl vk::SwapchainCreateFlagBitsKHR {
     pub const MULTISAMPLED_RENDER_TO_SINGLE_SAMPLED_EXT: Self = Self(1 << 8);
 }

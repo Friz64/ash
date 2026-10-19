@@ -23,31 +23,31 @@ impl vk::StructureType {
     pub const COMMAND_BUFFER_SUBMIT_INFO_KHR: Self = Self::COMMAND_BUFFER_SUBMIT_INFO;
     pub const PHYSICAL_DEVICE_SYNCHRONIZATION_2_FEATURES_KHR: Self = Self::PHYSICAL_DEVICE_SYNCHRONIZATION_2_FEATURES;
 }
-///Provided by [Vulkan 1.0](crate::vk1_0)
+///Provided by [VK_KHR_synchronization2](crate::khr::synchronization2)
 impl vk::AccessFlags {
     pub const NONE_KHR: Self = Self(vk::AccessFlagBits::NONE_KHR.0);
 }
-///Provided by [Vulkan 1.0](crate::vk1_0)
+///Provided by [VK_KHR_synchronization2](crate::khr::synchronization2)
 impl vk::AccessFlagBits {
     pub const NONE_KHR: Self = Self::NONE;
 }
-///Provided by [Vulkan 1.0](crate::vk1_0)
+///Provided by [VK_KHR_synchronization2](crate::khr::synchronization2)
 impl vk::EventCreateFlags {
     pub const DEVICE_ONLY_KHR: Self = Self(vk::EventCreateFlagBits::DEVICE_ONLY_KHR.0);
 }
-///Provided by [Vulkan 1.0](crate::vk1_0)
+///Provided by [VK_KHR_synchronization2](crate::khr::synchronization2)
 impl vk::EventCreateFlagBits {
     pub const DEVICE_ONLY_KHR: Self = Self::DEVICE_ONLY;
 }
-///Provided by [Vulkan 1.0](crate::vk1_0)
+///Provided by [VK_KHR_synchronization2](crate::khr::synchronization2)
 impl vk::PipelineStageFlags {
     pub const NONE_KHR: Self = Self(vk::PipelineStageFlagBits::NONE_KHR.0);
 }
-///Provided by [Vulkan 1.0](crate::vk1_0)
+///Provided by [VK_KHR_synchronization2](crate::khr::synchronization2)
 impl vk::PipelineStageFlagBits {
     pub const NONE_KHR: Self = Self::NONE;
 }
-///Provided by [Vulkan 1.3](crate::vk1_3)
+///Provided by [VK_KHR_synchronization2](crate::khr::synchronization2)
 impl vk::AccessFlags2 {
     pub const NONE_KHR: Self = Self(vk::AccessFlagBits2::NONE_KHR.0);
     pub const INDIRECT_COMMAND_READ_KHR: Self = Self(
@@ -139,7 +139,7 @@ impl vk::AccessFlags2 {
         vk::AccessFlagBits2::COLOR_ATTACHMENT_READ_NONCOHERENT_EXT.0,
     );
 }
-///Provided by [Vulkan 1.3](crate::vk1_3)
+///Provided by [VK_KHR_synchronization2](crate::khr::synchronization2)
 impl vk::AccessFlagBits2 {
     pub const NONE_KHR: Self = Self::NONE;
     pub const INDIRECT_COMMAND_READ_KHR: Self = Self::INDIRECT_COMMAND_READ;
@@ -179,7 +179,7 @@ impl vk::AccessFlagBits2 {
     pub const FRAGMENT_DENSITY_MAP_READ_EXT: Self = Self(1 << 24);
     pub const COLOR_ATTACHMENT_READ_NONCOHERENT_EXT: Self = Self(1 << 19);
 }
-///Provided by [Vulkan 1.3](crate::vk1_3)
+///Provided by [VK_KHR_synchronization2](crate::khr::synchronization2)
 impl vk::PipelineStageFlags2 {
     pub const NONE_KHR: Self = Self(vk::PipelineStageFlagBits2::NONE_KHR.0);
     pub const TOP_OF_PIPE_KHR: Self = Self(
@@ -287,7 +287,7 @@ impl vk::PipelineStageFlags2 {
         vk::PipelineStageFlagBits2::MESH_SHADER_EXT.0,
     );
 }
-///Provided by [Vulkan 1.3](crate::vk1_3)
+///Provided by [VK_KHR_synchronization2](crate::khr::synchronization2)
 impl vk::PipelineStageFlagBits2 {
     pub const NONE_KHR: Self = Self::NONE;
     pub const TOP_OF_PIPE_KHR: Self = Self::TOP_OF_PIPE;
@@ -331,11 +331,11 @@ impl vk::PipelineStageFlagBits2 {
     pub const TASK_SHADER_EXT: Self = Self(1 << 19);
     pub const MESH_SHADER_EXT: Self = Self(1 << 20);
 }
-///Provided by [Vulkan 1.3](crate::vk1_3)
+///Provided by [VK_KHR_synchronization2](crate::khr::synchronization2)
 impl vk::SubmitFlags {
     pub const PROTECTED_KHR: Self = Self(vk::SubmitFlagBits::PROTECTED_KHR.0);
 }
-///Provided by [Vulkan 1.3](crate::vk1_3)
+///Provided by [VK_KHR_synchronization2](crate::khr::synchronization2)
 impl vk::SubmitFlagBits {
     pub const PROTECTED_KHR: Self = Self::PROTECTED;
 }

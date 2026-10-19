@@ -5,7 +5,7 @@ mod rules;
 
 use crate::{
     output::{CodeMap, OutputContext},
-    rules::BuilderRules,
+    rules::{BuilderRules, WrapperRules},
 };
 use analysis::{
     Analysis, AnalysisResult,
@@ -29,6 +29,7 @@ use tracing::debug;
 pub fn generate(
     analysis: &Analysis,
     builder_rules: &syn::File,
+    wrapper_rules: &syn::File,
     output_path: impl AsRef<Path>,
 ) -> io::Result<()> {
     debug!("building codemap");
@@ -36,6 +37,7 @@ pub fn generate(
     let ctx = Context {
         analysis: analysis.result(),
         builder_rules: BuilderRules::new(builder_rules),
+        wrapper_rules: WrapperRules::new(wrapper_rules),
     };
 
     let mut codemap = CodeMap::default();
@@ -102,6 +104,7 @@ fn escape_ident(name: &str) -> Ident {
 pub struct Context<'a> {
     analysis: &'a AnalysisResult,
     builder_rules: BuilderRules,
+    wrapper_rules: WrapperRules,
 }
 
 impl<'a> Deref for Context<'a> {

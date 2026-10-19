@@ -25,13 +25,13 @@ impl vk::StructureType {
         1000038013,
     );
 }
-///Provided by [VK_KHR_video_queue](crate::khr::video_queue)
+///Provided by [VK_KHR_video_encode_h264](crate::khr::video_encode_h264)
 impl vk::VideoCodecOperationFlagsKHR {
     pub const ENCODE_H264: Self = Self(
         vk::VideoCodecOperationFlagBitsKHR::ENCODE_H264.0,
     );
 }
-///Provided by [VK_KHR_video_queue](crate::khr::video_queue)
+///Provided by [VK_KHR_video_encode_h264](crate::khr::video_encode_h264)
 impl vk::VideoCodecOperationFlagBitsKHR {
     pub const ENCODE_H264: Self = Self(1 << 16);
 }

@@ -9,23 +9,23 @@ impl vk::StructureType {
     pub const PHYSICAL_DEVICE_MAINTENANCE_8_FEATURES_KHR: Self = Self(1000574000);
     pub const MEMORY_BARRIER_ACCESS_FLAGS_3_KHR: Self = Self(1000574002);
 }
-///Provided by [Vulkan 1.0](crate::vk1_0)
+///Provided by [VK_KHR_maintenance8](crate::khr::maintenance8)
 impl vk::PipelineCacheCreateFlags {
     pub const INTERNALLY_SYNCHRONIZED_MERGE_KHR: Self = Self(
         vk::PipelineCacheCreateFlagBits::INTERNALLY_SYNCHRONIZED_MERGE_KHR.0,
     );
 }
-///Provided by [Vulkan 1.0](crate::vk1_0)
+///Provided by [VK_KHR_maintenance8](crate::khr::maintenance8)
 impl vk::PipelineCacheCreateFlagBits {
     pub const INTERNALLY_SYNCHRONIZED_MERGE_KHR: Self = Self(1 << 3);
 }
-///Provided by [Vulkan 1.0](crate::vk1_0)
+///Provided by [VK_KHR_maintenance8](crate::khr::maintenance8)
 impl vk::DependencyFlags {
     pub const QUEUE_FAMILY_OWNERSHIP_TRANSFER_USE_ALL_STAGES_KHR: Self = Self(
         vk::DependencyFlagBits::QUEUE_FAMILY_OWNERSHIP_TRANSFER_USE_ALL_STAGES_KHR.0,
     );
 }
-///Provided by [Vulkan 1.0](crate::vk1_0)
+///Provided by [VK_KHR_maintenance8](crate::khr::maintenance8)
 impl vk::DependencyFlagBits {
     pub const QUEUE_FAMILY_OWNERSHIP_TRANSFER_USE_ALL_STAGES_KHR: Self = Self(1 << 5);
 }

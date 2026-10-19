@@ -10,13 +10,13 @@ impl vk::StructureType {
         1000481000,
     );
 }
-///Provided by [VK_KHR_acceleration_structure](crate::khr::acceleration_structure)
+///Provided by [VK_KHR_ray_tracing_position_fetch](crate::khr::ray_tracing_position_fetch)
 impl vk::BuildAccelerationStructureFlagsKHR {
     pub const ALLOW_DATA_ACCESS: Self = Self(
         vk::BuildAccelerationStructureFlagBitsKHR::ALLOW_DATA_ACCESS.0,
     );
 }
-///Provided by [VK_KHR_acceleration_structure](crate::khr::acceleration_structure)
+///Provided by [VK_KHR_ray_tracing_position_fetch](crate::khr::ray_tracing_position_fetch)
 impl vk::BuildAccelerationStructureFlagBitsKHR {
     pub const ALLOW_DATA_ACCESS: Self = Self(1 << 11);
 }

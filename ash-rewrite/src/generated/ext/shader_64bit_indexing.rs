@@ -8,23 +8,23 @@ use core::ffi::CStr;
 impl vk::StructureType {
     pub const PHYSICAL_DEVICE_SHADER_64_INDEXING_FEATURES_EXT: Self = Self(1000627000);
 }
-///Provided by [Vulkan 1.4](crate::vk1_4)
+///Provided by [VK_EXT_shader_64bit_indexing](crate::ext::shader_64bit_indexing)
 impl vk::PipelineCreateFlags2 {
     pub const TYPE_64_INDEXING_EXT: Self = Self(
         vk::PipelineCreateFlagBits2::TYPE_64_INDEXING_EXT.0,
     );
 }
-///Provided by [Vulkan 1.4](crate::vk1_4)
+///Provided by [VK_EXT_shader_64bit_indexing](crate::ext::shader_64bit_indexing)
 impl vk::PipelineCreateFlagBits2 {
     pub const TYPE_64_INDEXING_EXT: Self = Self(1 << 43);
 }
-///Provided by [VK_EXT_shader_object](crate::ext::shader_object)
+///Provided by [VK_EXT_shader_64bit_indexing](crate::ext::shader_64bit_indexing)
 impl vk::ShaderCreateFlagsEXT {
     pub const TYPE_64_INDEXING: Self = Self(
         vk::ShaderCreateFlagBitsEXT::TYPE_64_INDEXING.0,
     );
 }
-///Provided by [VK_EXT_shader_object](crate::ext::shader_object)
+///Provided by [VK_EXT_shader_64bit_indexing](crate::ext::shader_64bit_indexing)
 impl vk::ShaderCreateFlagBitsEXT {
     pub const TYPE_64_INDEXING: Self = Self(1 << 15);
 }

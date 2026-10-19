@@ -11,11 +11,11 @@ impl vk::StructureType {
     pub const VIDEO_DECODE_VP9_PICTURE_INFO_KHR: Self = Self(1000514002);
     pub const VIDEO_DECODE_VP9_PROFILE_INFO_KHR: Self = Self(1000514003);
 }
-///Provided by [VK_KHR_video_queue](crate::khr::video_queue)
+///Provided by [VK_KHR_video_decode_vp9](crate::khr::video_decode_vp9)
 impl vk::VideoCodecOperationFlagsKHR {
     pub const DECODE_VP9: Self = Self(vk::VideoCodecOperationFlagBitsKHR::DECODE_VP9.0);
 }
-///Provided by [VK_KHR_video_queue](crate::khr::video_queue)
+///Provided by [VK_KHR_video_decode_vp9](crate::khr::video_decode_vp9)
 impl vk::VideoCodecOperationFlagBitsKHR {
     pub const DECODE_VP9: Self = Self(1 << 3);
 }

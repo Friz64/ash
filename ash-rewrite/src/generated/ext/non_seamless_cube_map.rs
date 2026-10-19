@@ -10,13 +10,13 @@ impl vk::StructureType {
         1000422000,
     );
 }
-///Provided by [Vulkan 1.0](crate::vk1_0)
+///Provided by [VK_EXT_non_seamless_cube_map](crate::ext::non_seamless_cube_map)
 impl vk::SamplerCreateFlags {
     pub const NON_SEAMLESS_CUBE_MAP_EXT: Self = Self(
         vk::SamplerCreateFlagBits::NON_SEAMLESS_CUBE_MAP_EXT.0,
     );
 }
-///Provided by [Vulkan 1.0](crate::vk1_0)
+///Provided by [VK_EXT_non_seamless_cube_map](crate::ext::non_seamless_cube_map)
 impl vk::SamplerCreateFlagBits {
     pub const NON_SEAMLESS_CUBE_MAP_EXT: Self = Self(1 << 2);
 }

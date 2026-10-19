@@ -13,13 +13,13 @@ impl vk::StructureType {
     pub const PHYSICAL_DEVICE_PRESENT_WAIT_2_FEATURES_KHR: Self = Self(1000480001);
     pub const PRESENT_WAIT_2_INFO_KHR: Self = Self(1000480002);
 }
-///Provided by [VK_KHR_swapchain](crate::khr::swapchain)
+///Provided by [VK_KHR_present_wait2](crate::khr::present_wait2)
 impl vk::SwapchainCreateFlagsKHR {
     pub const PRESENT_WAIT_2: Self = Self(
         vk::SwapchainCreateFlagBitsKHR::PRESENT_WAIT_2.0,
     );
 }
-///Provided by [VK_KHR_swapchain](crate::khr::swapchain)
+///Provided by [VK_KHR_present_wait2](crate::khr::present_wait2)
 impl vk::SwapchainCreateFlagBitsKHR {
     pub const PRESENT_WAIT_2: Self = Self(1 << 7);
 }

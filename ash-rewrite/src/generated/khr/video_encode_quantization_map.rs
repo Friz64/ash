@@ -31,7 +31,7 @@ impl vk::StructureType {
     );
     pub const VIDEO_FORMAT_AV1_QUANTIZATION_MAP_PROPERTIES_KHR: Self = Self(1000553008);
 }
-///Provided by [Vulkan 1.0](crate::vk1_0)
+///Provided by [VK_KHR_video_encode_quantization_map](crate::khr::video_encode_quantization_map)
 impl vk::ImageUsageFlags {
     pub const VIDEO_ENCODE_QUANTIZATION_DELTA_MAP_KHR: Self = Self(
         vk::ImageUsageFlagBits::VIDEO_ENCODE_QUANTIZATION_DELTA_MAP_KHR.0,
@@ -40,12 +40,12 @@ impl vk::ImageUsageFlags {
         vk::ImageUsageFlagBits::VIDEO_ENCODE_EMPHASIS_MAP_KHR.0,
     );
 }
-///Provided by [Vulkan 1.0](crate::vk1_0)
+///Provided by [VK_KHR_video_encode_quantization_map](crate::khr::video_encode_quantization_map)
 impl vk::ImageUsageFlagBits {
     pub const VIDEO_ENCODE_QUANTIZATION_DELTA_MAP_KHR: Self = Self(1 << 25);
     pub const VIDEO_ENCODE_EMPHASIS_MAP_KHR: Self = Self(1 << 26);
 }
-///Provided by [Vulkan 1.3](crate::vk1_3)
+///Provided by [VK_KHR_video_encode_quantization_map](crate::khr::video_encode_quantization_map)
 impl vk::FormatFeatureFlags2 {
     pub const VIDEO_ENCODE_QUANTIZATION_DELTA_MAP_KHR: Self = Self(
         vk::FormatFeatureFlagBits2::VIDEO_ENCODE_QUANTIZATION_DELTA_MAP_KHR.0,
@@ -54,12 +54,12 @@ impl vk::FormatFeatureFlags2 {
         vk::FormatFeatureFlagBits2::VIDEO_ENCODE_EMPHASIS_MAP_KHR.0,
     );
 }
-///Provided by [Vulkan 1.3](crate::vk1_3)
+///Provided by [VK_KHR_video_encode_quantization_map](crate::khr::video_encode_quantization_map)
 impl vk::FormatFeatureFlagBits2 {
     pub const VIDEO_ENCODE_QUANTIZATION_DELTA_MAP_KHR: Self = Self(1 << 49);
     pub const VIDEO_ENCODE_EMPHASIS_MAP_KHR: Self = Self(1 << 50);
 }
-///Provided by [VK_KHR_video_queue](crate::khr::video_queue)
+///Provided by [VK_KHR_video_encode_quantization_map](crate::khr::video_encode_quantization_map)
 impl vk::VideoSessionCreateFlagsKHR {
     pub const ALLOW_ENCODE_QUANTIZATION_DELTA_MAP: Self = Self(
         vk::VideoSessionCreateFlagBitsKHR::ALLOW_ENCODE_QUANTIZATION_DELTA_MAP.0,
@@ -68,22 +68,22 @@ impl vk::VideoSessionCreateFlagsKHR {
         vk::VideoSessionCreateFlagBitsKHR::ALLOW_ENCODE_EMPHASIS_MAP.0,
     );
 }
-///Provided by [VK_KHR_video_queue](crate::khr::video_queue)
+///Provided by [VK_KHR_video_encode_quantization_map](crate::khr::video_encode_quantization_map)
 impl vk::VideoSessionCreateFlagBitsKHR {
     pub const ALLOW_ENCODE_QUANTIZATION_DELTA_MAP: Self = Self(1 << 3);
     pub const ALLOW_ENCODE_EMPHASIS_MAP: Self = Self(1 << 4);
 }
-///Provided by [VK_KHR_video_queue](crate::khr::video_queue)
+///Provided by [VK_KHR_video_encode_quantization_map](crate::khr::video_encode_quantization_map)
 impl vk::VideoSessionParametersCreateFlagsKHR {
     pub const QUANTIZATION_MAP_COMPATIBLE: Self = Self(
         vk::VideoSessionParametersCreateFlagBitsKHR::QUANTIZATION_MAP_COMPATIBLE.0,
     );
 }
-///Provided by [VK_KHR_video_queue](crate::khr::video_queue)
+///Provided by [VK_KHR_video_encode_quantization_map](crate::khr::video_encode_quantization_map)
 impl vk::VideoSessionParametersCreateFlagBitsKHR {
     pub const QUANTIZATION_MAP_COMPATIBLE: Self = Self(1 << 0);
 }
-///Provided by [VK_KHR_video_encode_queue](crate::khr::video_encode_queue)
+///Provided by [VK_KHR_video_encode_quantization_map](crate::khr::video_encode_quantization_map)
 impl vk::VideoEncodeFlagsKHR {
     pub const WITH_QUANTIZATION_DELTA_MAP: Self = Self(
         vk::VideoEncodeFlagBitsKHR::WITH_QUANTIZATION_DELTA_MAP.0,
@@ -92,12 +92,12 @@ impl vk::VideoEncodeFlagsKHR {
         vk::VideoEncodeFlagBitsKHR::WITH_EMPHASIS_MAP.0,
     );
 }
-///Provided by [VK_KHR_video_encode_queue](crate::khr::video_encode_queue)
+///Provided by [VK_KHR_video_encode_quantization_map](crate::khr::video_encode_quantization_map)
 impl vk::VideoEncodeFlagBitsKHR {
     pub const WITH_QUANTIZATION_DELTA_MAP: Self = Self(1 << 0);
     pub const WITH_EMPHASIS_MAP: Self = Self(1 << 1);
 }
-///Provided by [VK_KHR_video_encode_queue](crate::khr::video_encode_queue)
+///Provided by [VK_KHR_video_encode_quantization_map](crate::khr::video_encode_quantization_map)
 impl vk::VideoEncodeCapabilityFlagsKHR {
     pub const QUANTIZATION_DELTA_MAP: Self = Self(
         vk::VideoEncodeCapabilityFlagBitsKHR::QUANTIZATION_DELTA_MAP.0,
@@ -106,28 +106,28 @@ impl vk::VideoEncodeCapabilityFlagsKHR {
         vk::VideoEncodeCapabilityFlagBitsKHR::EMPHASIS_MAP.0,
     );
 }
-///Provided by [VK_KHR_video_encode_queue](crate::khr::video_encode_queue)
+///Provided by [VK_KHR_video_encode_quantization_map](crate::khr::video_encode_quantization_map)
 impl vk::VideoEncodeCapabilityFlagBitsKHR {
     pub const QUANTIZATION_DELTA_MAP: Self = Self(1 << 2);
     pub const EMPHASIS_MAP: Self = Self(1 << 3);
 }
-///Provided by [VK_KHR_video_encode_h264](crate::khr::video_encode_h264)
+///Provided by [VK_KHR_video_encode_quantization_map](crate::khr::video_encode_quantization_map)
 impl vk::VideoEncodeH264CapabilityFlagsKHR {
     pub const MB_QP_DIFF_WRAPAROUND: Self = Self(
         vk::VideoEncodeH264CapabilityFlagBitsKHR::MB_QP_DIFF_WRAPAROUND.0,
     );
 }
-///Provided by [VK_KHR_video_encode_h264](crate::khr::video_encode_h264)
+///Provided by [VK_KHR_video_encode_quantization_map](crate::khr::video_encode_quantization_map)
 impl vk::VideoEncodeH264CapabilityFlagBitsKHR {
     pub const MB_QP_DIFF_WRAPAROUND: Self = Self(1 << 9);
 }
-///Provided by [VK_KHR_video_encode_h265](crate::khr::video_encode_h265)
+///Provided by [VK_KHR_video_encode_quantization_map](crate::khr::video_encode_quantization_map)
 impl vk::VideoEncodeH265CapabilityFlagsKHR {
     pub const CU_QP_DIFF_WRAPAROUND: Self = Self(
         vk::VideoEncodeH265CapabilityFlagBitsKHR::CU_QP_DIFF_WRAPAROUND.0,
     );
 }
-///Provided by [VK_KHR_video_encode_h265](crate::khr::video_encode_h265)
+///Provided by [VK_KHR_video_encode_quantization_map](crate::khr::video_encode_quantization_map)
 impl vk::VideoEncodeH265CapabilityFlagBitsKHR {
     pub const CU_QP_DIFF_WRAPAROUND: Self = Self(1 << 10);
 }

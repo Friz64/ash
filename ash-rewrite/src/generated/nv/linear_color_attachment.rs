@@ -10,13 +10,13 @@ impl vk::StructureType {
         1000430000,
     );
 }
-///Provided by [Vulkan 1.3](crate::vk1_3)
+///Provided by [VK_NV_linear_color_attachment](crate::nv::linear_color_attachment)
 impl vk::FormatFeatureFlags2 {
     pub const LINEAR_COLOR_ATTACHMENT_NV: Self = Self(
         vk::FormatFeatureFlagBits2::LINEAR_COLOR_ATTACHMENT_NV.0,
     );
 }
-///Provided by [Vulkan 1.3](crate::vk1_3)
+///Provided by [VK_NV_linear_color_attachment](crate::nv::linear_color_attachment)
 impl vk::FormatFeatureFlagBits2 {
     pub const LINEAR_COLOR_ATTACHMENT_NV: Self = Self(1 << 38);
 }

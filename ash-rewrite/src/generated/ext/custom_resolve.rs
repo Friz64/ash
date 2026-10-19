@@ -13,7 +13,7 @@ impl vk::StructureType {
     pub const BEGIN_CUSTOM_RESOLVE_INFO_EXT: Self = Self(1000628001);
     pub const CUSTOM_RESOLVE_CREATE_INFO_EXT: Self = Self(1000628002);
 }
-///Provided by [Vulkan 1.0](crate::vk1_0)
+///Provided by [VK_EXT_custom_resolve](crate::ext::custom_resolve)
 impl vk::SubpassDescriptionFlags {
     pub const FRAGMENT_REGION_EXT: Self = Self(
         vk::SubpassDescriptionFlagBits::FRAGMENT_REGION_EXT.0,
@@ -22,12 +22,12 @@ impl vk::SubpassDescriptionFlags {
         vk::SubpassDescriptionFlagBits::CUSTOM_RESOLVE_EXT.0,
     );
 }
-///Provided by [Vulkan 1.0](crate::vk1_0)
+///Provided by [VK_EXT_custom_resolve](crate::ext::custom_resolve)
 impl vk::SubpassDescriptionFlagBits {
     pub const FRAGMENT_REGION_EXT: Self = Self(1 << 2);
     pub const CUSTOM_RESOLVE_EXT: Self = Self(1 << 3);
 }
-///Provided by [Vulkan 1.3](crate::vk1_3)
+///Provided by [VK_EXT_custom_resolve](crate::ext::custom_resolve)
 impl vk::RenderingFlags {
     pub const FRAGMENT_REGION_EXT: Self = Self(
         vk::RenderingFlagBits::FRAGMENT_REGION_EXT.0,
@@ -36,16 +36,16 @@ impl vk::RenderingFlags {
         vk::RenderingFlagBits::CUSTOM_RESOLVE_EXT.0,
     );
 }
-///Provided by [Vulkan 1.3](crate::vk1_3)
+///Provided by [VK_EXT_custom_resolve](crate::ext::custom_resolve)
 impl vk::RenderingFlagBits {
     pub const FRAGMENT_REGION_EXT: Self = Self(1 << 6);
     pub const CUSTOM_RESOLVE_EXT: Self = Self(1 << 7);
 }
-///Provided by [Vulkan 1.2](crate::vk1_2)
+///Provided by [VK_EXT_custom_resolve](crate::ext::custom_resolve)
 impl vk::ResolveModeFlags {
     pub const CUSTOM_EXT: Self = Self(vk::ResolveModeFlagBits::CUSTOM_EXT.0);
 }
-///Provided by [Vulkan 1.2](crate::vk1_2)
+///Provided by [VK_EXT_custom_resolve](crate::ext::custom_resolve)
 impl vk::ResolveModeFlagBits {
     pub const CUSTOM_EXT: Self = Self(1 << 5);
 }

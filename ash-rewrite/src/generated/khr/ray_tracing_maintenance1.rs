@@ -23,23 +23,23 @@ impl vk::StructureType {
 impl vk::IndirectCommandsTokenTypeEXT {
     pub const TRACE_RAYS2: Self = Self(1000386004);
 }
-///Provided by [Vulkan 1.3](crate::vk1_3)
+///Provided by [VK_KHR_ray_tracing_maintenance1](crate::khr::ray_tracing_maintenance1)
 impl vk::AccessFlags2 {
     pub const SHADER_BINDING_TABLE_READ_KHR: Self = Self(
         vk::AccessFlagBits2::SHADER_BINDING_TABLE_READ_KHR.0,
     );
 }
-///Provided by [Vulkan 1.3](crate::vk1_3)
+///Provided by [VK_KHR_ray_tracing_maintenance1](crate::khr::ray_tracing_maintenance1)
 impl vk::AccessFlagBits2 {
     pub const SHADER_BINDING_TABLE_READ_KHR: Self = Self(1 << 40);
 }
-///Provided by [Vulkan 1.3](crate::vk1_3)
+///Provided by [VK_KHR_ray_tracing_maintenance1](crate::khr::ray_tracing_maintenance1)
 impl vk::PipelineStageFlags2 {
     pub const ACCELERATION_STRUCTURE_COPY_KHR: Self = Self(
         vk::PipelineStageFlagBits2::ACCELERATION_STRUCTURE_COPY_KHR.0,
     );
 }
-///Provided by [Vulkan 1.3](crate::vk1_3)
+///Provided by [VK_KHR_ray_tracing_maintenance1](crate::khr::ray_tracing_maintenance1)
 impl vk::PipelineStageFlagBits2 {
     pub const ACCELERATION_STRUCTURE_COPY_KHR: Self = Self(1 << 28);
 }

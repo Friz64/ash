@@ -24,13 +24,13 @@ impl PhysicalDeviceLayeredApiKHR {
     pub const OPENGL: Self = Self(3);
     pub const OPENGLES: Self = Self(4);
 }
-///Provided by [Vulkan 1.3](crate::vk1_3)
+///Provided by [VK_KHR_maintenance7](crate::khr::maintenance7)
 impl vk::RenderingFlags {
     pub const CONTENTS_INLINE_KHR: Self = Self(
         vk::RenderingFlagBits::CONTENTS_INLINE_KHR.0,
     );
 }
-///Provided by [Vulkan 1.3](crate::vk1_3)
+///Provided by [VK_KHR_maintenance7](crate::khr::maintenance7)
 impl vk::RenderingFlagBits {
     pub const CONTENTS_INLINE_KHR: Self = Self(1 << 4);
 }

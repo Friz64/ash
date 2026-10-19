@@ -46,15 +46,15 @@ impl OpticalFlowSessionBindingPointNV {
     pub const BACKWARD_COST: Self = Self(7);
     pub const GLOBAL_FLOW: Self = Self(8);
 }
-///Provided by [Vulkan 1.0](crate::vk1_0)
+///Provided by [VK_NV_optical_flow](crate::nv::optical_flow)
 impl vk::QueueFlags {
     pub const OPTICAL_FLOW_NV: Self = Self(vk::QueueFlagBits::OPTICAL_FLOW_NV.0);
 }
-///Provided by [Vulkan 1.0](crate::vk1_0)
+///Provided by [VK_NV_optical_flow](crate::nv::optical_flow)
 impl vk::QueueFlagBits {
     pub const OPTICAL_FLOW_NV: Self = Self(1 << 8);
 }
-///Provided by [Vulkan 1.3](crate::vk1_3)
+///Provided by [VK_NV_optical_flow](crate::nv::optical_flow)
 impl vk::AccessFlags2 {
     pub const OPTICAL_FLOW_READ_NV: Self = Self(
         vk::AccessFlagBits2::OPTICAL_FLOW_READ_NV.0,
@@ -63,22 +63,22 @@ impl vk::AccessFlags2 {
         vk::AccessFlagBits2::OPTICAL_FLOW_WRITE_NV.0,
     );
 }
-///Provided by [Vulkan 1.3](crate::vk1_3)
+///Provided by [VK_NV_optical_flow](crate::nv::optical_flow)
 impl vk::AccessFlagBits2 {
     pub const OPTICAL_FLOW_READ_NV: Self = Self(1 << 42);
     pub const OPTICAL_FLOW_WRITE_NV: Self = Self(1 << 43);
 }
-///Provided by [Vulkan 1.3](crate::vk1_3)
+///Provided by [VK_NV_optical_flow](crate::nv::optical_flow)
 impl vk::PipelineStageFlags2 {
     pub const OPTICAL_FLOW_NV: Self = Self(
         vk::PipelineStageFlagBits2::OPTICAL_FLOW_NV.0,
     );
 }
-///Provided by [Vulkan 1.3](crate::vk1_3)
+///Provided by [VK_NV_optical_flow](crate::nv::optical_flow)
 impl vk::PipelineStageFlagBits2 {
     pub const OPTICAL_FLOW_NV: Self = Self(1 << 29);
 }
-///Provided by [Vulkan 1.3](crate::vk1_3)
+///Provided by [VK_NV_optical_flow](crate::nv::optical_flow)
 impl vk::FormatFeatureFlags2 {
     pub const OPTICAL_FLOW_IMAGE_NV: Self = Self(
         vk::FormatFeatureFlagBits2::OPTICAL_FLOW_IMAGE_NV.0,
@@ -90,7 +90,7 @@ impl vk::FormatFeatureFlags2 {
         vk::FormatFeatureFlagBits2::OPTICAL_FLOW_COST_NV.0,
     );
 }
-///Provided by [Vulkan 1.3](crate::vk1_3)
+///Provided by [VK_NV_optical_flow](crate::nv::optical_flow)
 impl vk::FormatFeatureFlagBits2 {
     pub const OPTICAL_FLOW_IMAGE_NV: Self = Self(1 << 40);
     pub const OPTICAL_FLOW_VECTOR_NV: Self = Self(1 << 41);

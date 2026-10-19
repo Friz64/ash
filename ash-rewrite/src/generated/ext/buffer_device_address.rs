@@ -19,23 +19,23 @@ impl vk::StructureType {
 impl vk::Result {
     pub const ERROR_INVALID_DEVICE_ADDRESS_EXT: Self = Self::ERROR_INVALID_OPAQUE_CAPTURE_ADDRESS;
 }
-///Provided by [Vulkan 1.0](crate::vk1_0)
+///Provided by [VK_EXT_buffer_device_address](crate::ext::buffer_device_address)
 impl vk::BufferUsageFlags {
     pub const SHADER_DEVICE_ADDRESS_EXT: Self = Self(
         vk::BufferUsageFlagBits::SHADER_DEVICE_ADDRESS_EXT.0,
     );
 }
-///Provided by [Vulkan 1.0](crate::vk1_0)
+///Provided by [VK_EXT_buffer_device_address](crate::ext::buffer_device_address)
 impl vk::BufferUsageFlagBits {
     pub const SHADER_DEVICE_ADDRESS_EXT: Self = Self::SHADER_DEVICE_ADDRESS;
 }
-///Provided by [Vulkan 1.0](crate::vk1_0)
+///Provided by [VK_EXT_buffer_device_address](crate::ext::buffer_device_address)
 impl vk::BufferCreateFlags {
     pub const DEVICE_ADDRESS_CAPTURE_REPLAY_EXT: Self = Self(
         vk::BufferCreateFlagBits::DEVICE_ADDRESS_CAPTURE_REPLAY_EXT.0,
     );
 }
-///Provided by [Vulkan 1.0](crate::vk1_0)
+///Provided by [VK_EXT_buffer_device_address](crate::ext::buffer_device_address)
 impl vk::BufferCreateFlagBits {
     pub const DEVICE_ADDRESS_CAPTURE_REPLAY_EXT: Self = Self::DEVICE_ADDRESS_CAPTURE_REPLAY;
 }

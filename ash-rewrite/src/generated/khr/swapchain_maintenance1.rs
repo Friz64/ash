@@ -18,13 +18,13 @@ impl vk::StructureType {
     pub const SWAPCHAIN_PRESENT_SCALING_CREATE_INFO_KHR: Self = Self(1000275004);
     pub const RELEASE_SWAPCHAIN_IMAGES_INFO_KHR: Self = Self(1000275005);
 }
-///Provided by [VK_KHR_swapchain](crate::khr::swapchain)
+///Provided by [VK_KHR_swapchain_maintenance1](crate::khr::swapchain_maintenance1)
 impl vk::SwapchainCreateFlagsKHR {
     pub const DEFERRED_MEMORY_ALLOCATION: Self = Self(
         vk::SwapchainCreateFlagBitsKHR::DEFERRED_MEMORY_ALLOCATION.0,
     );
 }
-///Provided by [VK_KHR_swapchain](crate::khr::swapchain)
+///Provided by [VK_KHR_swapchain_maintenance1](crate::khr::swapchain_maintenance1)
 impl vk::SwapchainCreateFlagBitsKHR {
     pub const DEFERRED_MEMORY_ALLOCATION: Self = Self(1 << 3);
 }

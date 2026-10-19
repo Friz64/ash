@@ -10,7 +10,7 @@ impl vk::StructureType {
         1000546000,
     );
 }
-///Provided by [Vulkan 1.0](crate::vk1_0)
+///Provided by [VK_NV_descriptor_pool_overallocation](crate::nv::descriptor_pool_overallocation)
 impl vk::DescriptorPoolCreateFlags {
     pub const ALLOW_OVERALLOCATION_SETS_NV: Self = Self(
         vk::DescriptorPoolCreateFlagBits::ALLOW_OVERALLOCATION_SETS_NV.0,
@@ -19,7 +19,7 @@ impl vk::DescriptorPoolCreateFlags {
         vk::DescriptorPoolCreateFlagBits::ALLOW_OVERALLOCATION_POOLS_NV.0,
     );
 }
-///Provided by [Vulkan 1.0](crate::vk1_0)
+///Provided by [VK_NV_descriptor_pool_overallocation](crate::nv::descriptor_pool_overallocation)
 impl vk::DescriptorPoolCreateFlagBits {
     pub const ALLOW_OVERALLOCATION_SETS_NV: Self = Self(1 << 3);
     pub const ALLOW_OVERALLOCATION_POOLS_NV: Self = Self(1 << 4);

@@ -15,13 +15,13 @@ impl vk::StructureType {
         1000170001,
     );
 }
-///Provided by [Vulkan 1.0](crate::vk1_0)
+///Provided by [VK_EXT_filter_cubic](crate::ext::filter_cubic)
 impl vk::FormatFeatureFlags {
     pub const SAMPLED_IMAGE_FILTER_CUBIC_EXT: Self = Self(
         vk::FormatFeatureFlagBits::SAMPLED_IMAGE_FILTER_CUBIC_EXT.0,
     );
 }
-///Provided by [Vulkan 1.0](crate::vk1_0)
+///Provided by [VK_EXT_filter_cubic](crate::ext::filter_cubic)
 impl vk::FormatFeatureFlagBits {
     pub const SAMPLED_IMAGE_FILTER_CUBIC_EXT: Self = Self(1 << 13);
 }

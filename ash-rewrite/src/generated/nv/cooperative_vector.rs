@@ -41,13 +41,13 @@ impl CooperativeVectorMatrixLayoutNV {
     pub const INFERENCING_OPTIMAL: Self = Self(2);
     pub const TRAINING_OPTIMAL: Self = Self(3);
 }
-///Provided by [Vulkan 1.3](crate::vk1_3)
+///Provided by [VK_NV_cooperative_vector](crate::nv::cooperative_vector)
 impl vk::PipelineStageFlags2 {
     pub const CONVERT_COOPERATIVE_VECTOR_MATRIX_NV: Self = Self(
         vk::PipelineStageFlagBits2::CONVERT_COOPERATIVE_VECTOR_MATRIX_NV.0,
     );
 }
-///Provided by [Vulkan 1.3](crate::vk1_3)
+///Provided by [VK_NV_cooperative_vector](crate::nv::cooperative_vector)
 impl vk::PipelineStageFlagBits2 {
     pub const CONVERT_COOPERATIVE_VECTOR_MATRIX_NV: Self = Self(1 << 44);
 }

@@ -4,13 +4,13 @@
 #![doc(alias = "VK_KHR_portability_enumeration")]
 use crate::vk;
 use core::ffi::CStr;
-///Provided by [Vulkan 1.0](crate::vk1_0)
+///Provided by [VK_KHR_portability_enumeration](crate::khr::portability_enumeration)
 impl vk::InstanceCreateFlags {
     pub const ENUMERATE_PORTABILITY_KHR: Self = Self(
         vk::InstanceCreateFlagBits::ENUMERATE_PORTABILITY_KHR.0,
     );
 }
-///Provided by [Vulkan 1.0](crate::vk1_0)
+///Provided by [VK_KHR_portability_enumeration](crate::khr::portability_enumeration)
 impl vk::InstanceCreateFlagBits {
     pub const ENUMERATE_PORTABILITY_KHR: Self = Self(1 << 0);
 }

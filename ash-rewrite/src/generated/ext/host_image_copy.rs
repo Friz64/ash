@@ -21,31 +21,31 @@ impl vk::StructureType {
     pub const SUBRESOURCE_HOST_MEMCPY_SIZE_EXT: Self = Self::SUBRESOURCE_HOST_MEMCPY_SIZE;
     pub const HOST_IMAGE_COPY_DEVICE_PERFORMANCE_QUERY_EXT: Self = Self::HOST_IMAGE_COPY_DEVICE_PERFORMANCE_QUERY;
 }
-///Provided by [Vulkan 1.0](crate::vk1_0)
+///Provided by [VK_EXT_host_image_copy](crate::ext::host_image_copy)
 impl vk::ImageUsageFlags {
     pub const HOST_TRANSFER_EXT: Self = Self(
         vk::ImageUsageFlagBits::HOST_TRANSFER_EXT.0,
     );
 }
-///Provided by [Vulkan 1.0](crate::vk1_0)
+///Provided by [VK_EXT_host_image_copy](crate::ext::host_image_copy)
 impl vk::ImageUsageFlagBits {
     pub const HOST_TRANSFER_EXT: Self = Self::HOST_TRANSFER;
 }
-///Provided by [Vulkan 1.3](crate::vk1_3)
+///Provided by [VK_EXT_host_image_copy](crate::ext::host_image_copy)
 impl vk::FormatFeatureFlags2 {
     pub const HOST_IMAGE_TRANSFER_EXT: Self = Self(
         vk::FormatFeatureFlagBits2::HOST_IMAGE_TRANSFER_EXT.0,
     );
 }
-///Provided by [Vulkan 1.3](crate::vk1_3)
+///Provided by [VK_EXT_host_image_copy](crate::ext::host_image_copy)
 impl vk::FormatFeatureFlagBits2 {
     pub const HOST_IMAGE_TRANSFER_EXT: Self = Self::HOST_IMAGE_TRANSFER;
 }
-///Provided by [Vulkan 1.4](crate::vk1_4)
+///Provided by [VK_EXT_host_image_copy](crate::ext::host_image_copy)
 impl vk::HostImageCopyFlags {
     pub const MEMCPY_EXT: Self = Self(vk::HostImageCopyFlagBits::MEMCPY_EXT.0);
 }
-///Provided by [Vulkan 1.4](crate::vk1_4)
+///Provided by [VK_EXT_host_image_copy](crate::ext::host_image_copy)
 impl vk::HostImageCopyFlagBits {
     pub const MEMCPY_EXT: Self = Self::MEMCPY;
 }

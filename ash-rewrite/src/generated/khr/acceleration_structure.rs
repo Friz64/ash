@@ -91,7 +91,7 @@ impl AccelerationStructureCompatibilityKHR {
     pub const COMPATIBLE: Self = Self(0);
     pub const INCOMPATIBLE: Self = Self(1);
 }
-///Provided by [Vulkan 1.0](crate::vk1_0)
+///Provided by [VK_KHR_acceleration_structure](crate::khr::acceleration_structure)
 impl vk::AccessFlags {
     pub const ACCELERATION_STRUCTURE_READ_KHR: Self = Self(
         vk::AccessFlagBits::ACCELERATION_STRUCTURE_READ_KHR.0,
@@ -100,12 +100,12 @@ impl vk::AccessFlags {
         vk::AccessFlagBits::ACCELERATION_STRUCTURE_WRITE_KHR.0,
     );
 }
-///Provided by [Vulkan 1.0](crate::vk1_0)
+///Provided by [VK_KHR_acceleration_structure](crate::khr::acceleration_structure)
 impl vk::AccessFlagBits {
     pub const ACCELERATION_STRUCTURE_READ_KHR: Self = Self(1 << 21);
     pub const ACCELERATION_STRUCTURE_WRITE_KHR: Self = Self(1 << 22);
 }
-///Provided by [Vulkan 1.0](crate::vk1_0)
+///Provided by [VK_KHR_acceleration_structure](crate::khr::acceleration_structure)
 impl vk::BufferUsageFlags {
     pub const ACCELERATION_STRUCTURE_BUILD_INPUT_READ_ONLY_KHR: Self = Self(
         vk::BufferUsageFlagBits::ACCELERATION_STRUCTURE_BUILD_INPUT_READ_ONLY_KHR.0,
@@ -114,28 +114,28 @@ impl vk::BufferUsageFlags {
         vk::BufferUsageFlagBits::ACCELERATION_STRUCTURE_STORAGE_KHR.0,
     );
 }
-///Provided by [Vulkan 1.0](crate::vk1_0)
+///Provided by [VK_KHR_acceleration_structure](crate::khr::acceleration_structure)
 impl vk::BufferUsageFlagBits {
     pub const ACCELERATION_STRUCTURE_BUILD_INPUT_READ_ONLY_KHR: Self = Self(1 << 19);
     pub const ACCELERATION_STRUCTURE_STORAGE_KHR: Self = Self(1 << 20);
 }
-///Provided by [Vulkan 1.0](crate::vk1_0)
+///Provided by [VK_KHR_acceleration_structure](crate::khr::acceleration_structure)
 impl vk::FormatFeatureFlags {
     pub const ACCELERATION_STRUCTURE_VERTEX_BUFFER_KHR: Self = Self(
         vk::FormatFeatureFlagBits::ACCELERATION_STRUCTURE_VERTEX_BUFFER_KHR.0,
     );
 }
-///Provided by [Vulkan 1.0](crate::vk1_0)
+///Provided by [VK_KHR_acceleration_structure](crate::khr::acceleration_structure)
 impl vk::FormatFeatureFlagBits {
     pub const ACCELERATION_STRUCTURE_VERTEX_BUFFER_KHR: Self = Self(1 << 29);
 }
-///Provided by [Vulkan 1.0](crate::vk1_0)
+///Provided by [VK_KHR_acceleration_structure](crate::khr::acceleration_structure)
 impl vk::PipelineStageFlags {
     pub const ACCELERATION_STRUCTURE_BUILD_KHR: Self = Self(
         vk::PipelineStageFlagBits::ACCELERATION_STRUCTURE_BUILD_KHR.0,
     );
 }
-///Provided by [Vulkan 1.0](crate::vk1_0)
+///Provided by [VK_KHR_acceleration_structure](crate::khr::acceleration_structure)
 impl vk::PipelineStageFlagBits {
     pub const ACCELERATION_STRUCTURE_BUILD_KHR: Self = Self(1 << 25);
 }
@@ -211,13 +211,13 @@ impl AccelerationStructureCreateFlagsKHR {
 impl AccelerationStructureCreateFlagBitsKHR {
     pub const DEVICE_ADDRESS_CAPTURE_REPLAY: Self = Self(1 << 0);
 }
-///Provided by [Vulkan 1.3](crate::vk1_3)
+///Provided by [VK_KHR_acceleration_structure](crate::khr::acceleration_structure)
 impl vk::FormatFeatureFlags2 {
     pub const ACCELERATION_STRUCTURE_VERTEX_BUFFER_KHR: Self = Self(
         vk::FormatFeatureFlagBits2::ACCELERATION_STRUCTURE_VERTEX_BUFFER_KHR.0,
     );
 }
-///Provided by [Vulkan 1.3](crate::vk1_3)
+///Provided by [VK_KHR_acceleration_structure](crate::khr::acceleration_structure)
 impl vk::FormatFeatureFlagBits2 {
     pub const ACCELERATION_STRUCTURE_VERTEX_BUFFER_KHR: Self = Self(1 << 29);
 }

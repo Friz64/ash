@@ -29,24 +29,24 @@ impl vk::GeometryTypeKHR {
     pub const SPHERES_NV: Self = Self(1000429004);
     pub const LINEAR_SWEPT_SPHERES_NV: Self = Self(1000429005);
 }
-///Provided by [Vulkan 1.3](crate::vk1_3)
+///Provided by [VK_NV_ray_tracing_linear_swept_spheres](crate::nv::ray_tracing_linear_swept_spheres)
 impl vk::FormatFeatureFlags2 {
     pub const ACCELERATION_STRUCTURE_RADIUS_BUFFER_NV: Self = Self(
         vk::FormatFeatureFlagBits2::ACCELERATION_STRUCTURE_RADIUS_BUFFER_NV.0,
     );
 }
-///Provided by [Vulkan 1.3](crate::vk1_3)
+///Provided by [VK_NV_ray_tracing_linear_swept_spheres](crate::nv::ray_tracing_linear_swept_spheres)
 impl vk::FormatFeatureFlagBits2 {
     pub const ACCELERATION_STRUCTURE_RADIUS_BUFFER_NV: Self = Self(1 << 51);
 }
-///Provided by [Vulkan 1.4](crate::vk1_4)
+///Provided by [VK_NV_ray_tracing_linear_swept_spheres](crate::nv::ray_tracing_linear_swept_spheres)
 impl vk::PipelineCreateFlags2 {
     pub const RAY_TRACING_ALLOW_SPHERES_AND_LINEAR_SWEPT_SPHERES_NV: Self = Self(
         vk::PipelineCreateFlagBits2::RAY_TRACING_ALLOW_SPHERES_AND_LINEAR_SWEPT_SPHERES_NV
             .0,
     );
 }
-///Provided by [Vulkan 1.4](crate::vk1_4)
+///Provided by [VK_NV_ray_tracing_linear_swept_spheres](crate::nv::ray_tracing_linear_swept_spheres)
 impl vk::PipelineCreateFlagBits2 {
     pub const RAY_TRACING_ALLOW_SPHERES_AND_LINEAR_SWEPT_SPHERES_NV: Self = Self(
         1 << 33,

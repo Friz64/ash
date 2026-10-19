@@ -39,17 +39,17 @@ impl ShaderGroupShaderKHR {
     pub const ANY_HIT: Self = Self(2);
     pub const INTERSECTION: Self = Self(3);
 }
-///Provided by [Vulkan 1.0](crate::vk1_0)
+///Provided by [VK_KHR_ray_tracing_pipeline](crate::khr::ray_tracing_pipeline)
 impl vk::BufferUsageFlags {
     pub const SHADER_BINDING_TABLE_KHR: Self = Self(
         vk::BufferUsageFlagBits::SHADER_BINDING_TABLE_KHR.0,
     );
 }
-///Provided by [Vulkan 1.0](crate::vk1_0)
+///Provided by [VK_KHR_ray_tracing_pipeline](crate::khr::ray_tracing_pipeline)
 impl vk::BufferUsageFlagBits {
     pub const SHADER_BINDING_TABLE_KHR: Self = Self(1 << 10);
 }
-///Provided by [Vulkan 1.0](crate::vk1_0)
+///Provided by [VK_KHR_ray_tracing_pipeline](crate::khr::ray_tracing_pipeline)
 impl vk::ShaderStageFlags {
     pub const RAYGEN_KHR: Self = Self(vk::ShaderStageFlagBits::RAYGEN_KHR.0);
     pub const ANY_HIT_KHR: Self = Self(vk::ShaderStageFlagBits::ANY_HIT_KHR.0);
@@ -58,7 +58,7 @@ impl vk::ShaderStageFlags {
     pub const INTERSECTION_KHR: Self = Self(vk::ShaderStageFlagBits::INTERSECTION_KHR.0);
     pub const CALLABLE_KHR: Self = Self(vk::ShaderStageFlagBits::CALLABLE_KHR.0);
 }
-///Provided by [Vulkan 1.0](crate::vk1_0)
+///Provided by [VK_KHR_ray_tracing_pipeline](crate::khr::ray_tracing_pipeline)
 impl vk::ShaderStageFlagBits {
     pub const RAYGEN_KHR: Self = Self(1 << 8);
     pub const ANY_HIT_KHR: Self = Self(1 << 9);
@@ -67,7 +67,7 @@ impl vk::ShaderStageFlagBits {
     pub const INTERSECTION_KHR: Self = Self(1 << 12);
     pub const CALLABLE_KHR: Self = Self(1 << 13);
 }
-///Provided by [Vulkan 1.0](crate::vk1_0)
+///Provided by [VK_KHR_ray_tracing_pipeline](crate::khr::ray_tracing_pipeline)
 impl vk::PipelineCreateFlags {
     pub const RAY_TRACING_NO_NULL_ANY_HIT_SHADERS_KHR: Self = Self(
         vk::PipelineCreateFlagBits::RAY_TRACING_NO_NULL_ANY_HIT_SHADERS_KHR.0,
@@ -91,7 +91,7 @@ impl vk::PipelineCreateFlags {
         vk::PipelineCreateFlagBits::RAY_TRACING_SHADER_GROUP_HANDLE_CAPTURE_REPLAY_KHR.0,
     );
 }
-///Provided by [Vulkan 1.0](crate::vk1_0)
+///Provided by [VK_KHR_ray_tracing_pipeline](crate::khr::ray_tracing_pipeline)
 impl vk::PipelineCreateFlagBits {
     pub const RAY_TRACING_NO_NULL_ANY_HIT_SHADERS_KHR: Self = Self(1 << 14);
     pub const RAY_TRACING_NO_NULL_CLOSEST_HIT_SHADERS_KHR: Self = Self(1 << 15);
@@ -101,23 +101,23 @@ impl vk::PipelineCreateFlagBits {
     pub const RAY_TRACING_SKIP_AABBS_KHR: Self = Self(1 << 13);
     pub const RAY_TRACING_SHADER_GROUP_HANDLE_CAPTURE_REPLAY_KHR: Self = Self(1 << 19);
 }
-///Provided by [Vulkan 1.0](crate::vk1_0)
+///Provided by [VK_KHR_ray_tracing_pipeline](crate::khr::ray_tracing_pipeline)
 impl vk::PipelineStageFlags {
     pub const RAY_TRACING_SHADER_KHR: Self = Self(
         vk::PipelineStageFlagBits::RAY_TRACING_SHADER_KHR.0,
     );
 }
-///Provided by [Vulkan 1.0](crate::vk1_0)
+///Provided by [VK_KHR_ray_tracing_pipeline](crate::khr::ray_tracing_pipeline)
 impl vk::PipelineStageFlagBits {
     pub const RAY_TRACING_SHADER_KHR: Self = Self(1 << 21);
 }
-///Provided by [Vulkan 1.4](crate::vk1_4)
+///Provided by [VK_KHR_ray_tracing_pipeline](crate::khr::ray_tracing_pipeline)
 impl vk::PipelineCreateFlags2 {
     pub const RAY_TRACING_SKIP_BUILT_IN_PRIMITIVES_KHR: Self = Self(
         vk::PipelineCreateFlagBits2::RAY_TRACING_SKIP_BUILT_IN_PRIMITIVES_KHR.0,
     );
 }
-///Provided by [Vulkan 1.4](crate::vk1_4)
+///Provided by [VK_KHR_ray_tracing_pipeline](crate::khr::ray_tracing_pipeline)
 impl vk::PipelineCreateFlagBits2 {
     pub const RAY_TRACING_SKIP_BUILT_IN_PRIMITIVES_KHR: Self = Self::RAY_TRACING_SKIP_TRIANGLES_KHR;
 }

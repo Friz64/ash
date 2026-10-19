@@ -14,11 +14,11 @@ impl vk::StructureType {
     );
     pub const VIDEO_DECODE_AV1_DPB_SLOT_INFO_KHR: Self = Self(1000512005);
 }
-///Provided by [VK_KHR_video_queue](crate::khr::video_queue)
+///Provided by [VK_KHR_video_decode_av1](crate::khr::video_decode_av1)
 impl vk::VideoCodecOperationFlagsKHR {
     pub const DECODE_AV1: Self = Self(vk::VideoCodecOperationFlagBitsKHR::DECODE_AV1.0);
 }
-///Provided by [VK_KHR_video_queue](crate::khr::video_queue)
+///Provided by [VK_KHR_video_decode_av1](crate::khr::video_decode_av1)
 impl vk::VideoCodecOperationFlagBitsKHR {
     pub const DECODE_AV1: Self = Self(1 << 2);
 }

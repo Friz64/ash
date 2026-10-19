@@ -14,13 +14,13 @@ impl vk::StructureType {
 impl vk::DescriptorUpdateTemplateType {
     pub const PUSH_DESCRIPTORS_KHR: Self = Self::PUSH_DESCRIPTORS;
 }
-///Provided by [Vulkan 1.0](crate::vk1_0)
+///Provided by [VK_KHR_push_descriptor](crate::khr::push_descriptor)
 impl vk::DescriptorSetLayoutCreateFlags {
     pub const PUSH_DESCRIPTOR_KHR: Self = Self(
         vk::DescriptorSetLayoutCreateFlagBits::PUSH_DESCRIPTOR_KHR.0,
     );
 }
-///Provided by [Vulkan 1.0](crate::vk1_0)
+///Provided by [VK_KHR_push_descriptor](crate::khr::push_descriptor)
 impl vk::DescriptorSetLayoutCreateFlagBits {
     pub const PUSH_DESCRIPTOR_KHR: Self = Self::PUSH_DESCRIPTOR;
 }

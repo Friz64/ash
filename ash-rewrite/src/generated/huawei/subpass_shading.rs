@@ -18,23 +18,23 @@ impl vk::StructureType {
     pub const PHYSICAL_DEVICE_SUBPASS_SHADING_FEATURES_HUAWEI: Self = Self(1000369001);
     pub const PHYSICAL_DEVICE_SUBPASS_SHADING_PROPERTIES_HUAWEI: Self = Self(1000369002);
 }
-///Provided by [Vulkan 1.0](crate::vk1_0)
+///Provided by [VK_HUAWEI_subpass_shading](crate::huawei::subpass_shading)
 impl vk::ShaderStageFlags {
     pub const SUBPASS_SHADING_HUAWEI: Self = Self(
         vk::ShaderStageFlagBits::SUBPASS_SHADING_HUAWEI.0,
     );
 }
-///Provided by [Vulkan 1.0](crate::vk1_0)
+///Provided by [VK_HUAWEI_subpass_shading](crate::huawei::subpass_shading)
 impl vk::ShaderStageFlagBits {
     pub const SUBPASS_SHADING_HUAWEI: Self = Self(1 << 14);
 }
-///Provided by [Vulkan 1.3](crate::vk1_3)
+///Provided by [VK_HUAWEI_subpass_shading](crate::huawei::subpass_shading)
 impl vk::PipelineStageFlags2 {
     pub const SUBPASS_SHADER_HUAWEI: Self = Self(
         vk::PipelineStageFlagBits2::SUBPASS_SHADER_HUAWEI.0,
     );
 }
-///Provided by [Vulkan 1.3](crate::vk1_3)
+///Provided by [VK_HUAWEI_subpass_shading](crate::huawei::subpass_shading)
 impl vk::PipelineStageFlagBits2 {
     pub const SUBPASS_SHADER_HUAWEI: Self = Self(1 << 39);
 }

@@ -3,9 +3,9 @@
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_VERSION_1_1.html) · Vulkan version 1.1
 #![doc(alias = "VK_VERSION_1_1")]
 use crate::vk;
-use core::mem::transmute;
 use core::mem::MaybeUninit;
 use crate::VkResult;
+use core::mem::transmute;
 use core::ptr;
 use core::ffi;
 use core::ffi::CStr;
@@ -172,47 +172,47 @@ impl ChromaLocation {
     pub const COSITED_EVEN: Self = Self(0);
     pub const MIDPOINT: Self = Self(1);
 }
-///Provided by [Vulkan 1.0](crate::vk1_0)
+///Provided by [Vulkan 1.1](crate::vk1_1)
 impl vk::DeviceQueueCreateFlags {
     pub const PROTECTED: Self = Self(vk::DeviceQueueCreateFlagBits::PROTECTED.0);
 }
-///Provided by [Vulkan 1.0](crate::vk1_0)
+///Provided by [Vulkan 1.1](crate::vk1_1)
 impl vk::DeviceQueueCreateFlagBits {
     pub const PROTECTED: Self = Self(1 << 0);
 }
-///Provided by [Vulkan 1.0](crate::vk1_0)
+///Provided by [Vulkan 1.1](crate::vk1_1)
 impl vk::QueueFlags {
     pub const PROTECTED: Self = Self(vk::QueueFlagBits::PROTECTED.0);
 }
-///Provided by [Vulkan 1.0](crate::vk1_0)
+///Provided by [Vulkan 1.1](crate::vk1_1)
 impl vk::QueueFlagBits {
     pub const PROTECTED: Self = Self(1 << 4);
 }
-///Provided by [Vulkan 1.0](crate::vk1_0)
+///Provided by [Vulkan 1.1](crate::vk1_1)
 impl vk::MemoryPropertyFlags {
     pub const PROTECTED: Self = Self(vk::MemoryPropertyFlagBits::PROTECTED.0);
 }
-///Provided by [Vulkan 1.0](crate::vk1_0)
+///Provided by [Vulkan 1.1](crate::vk1_1)
 impl vk::MemoryPropertyFlagBits {
     pub const PROTECTED: Self = Self(1 << 5);
 }
-///Provided by [Vulkan 1.0](crate::vk1_0)
+///Provided by [Vulkan 1.1](crate::vk1_1)
 impl vk::MemoryHeapFlags {
     pub const MULTI_INSTANCE: Self = Self(vk::MemoryHeapFlagBits::MULTI_INSTANCE.0);
 }
-///Provided by [Vulkan 1.0](crate::vk1_0)
+///Provided by [Vulkan 1.1](crate::vk1_1)
 impl vk::MemoryHeapFlagBits {
     pub const MULTI_INSTANCE: Self = Self(1 << 1);
 }
-///Provided by [Vulkan 1.0](crate::vk1_0)
+///Provided by [Vulkan 1.1](crate::vk1_1)
 impl vk::BufferCreateFlags {
     pub const PROTECTED: Self = Self(vk::BufferCreateFlagBits::PROTECTED.0);
 }
-///Provided by [Vulkan 1.0](crate::vk1_0)
+///Provided by [Vulkan 1.1](crate::vk1_1)
 impl vk::BufferCreateFlagBits {
     pub const PROTECTED: Self = Self(1 << 3);
 }
-///Provided by [Vulkan 1.0](crate::vk1_0)
+///Provided by [Vulkan 1.1](crate::vk1_1)
 impl vk::ImageCreateFlags {
     pub const ALIAS: Self = Self(vk::ImageCreateFlagBits::ALIAS.0);
     pub const SPLIT_INSTANCE_BIND_REGIONS: Self = Self(
@@ -228,7 +228,7 @@ impl vk::ImageCreateFlags {
     pub const PROTECTED: Self = Self(vk::ImageCreateFlagBits::PROTECTED.0);
     pub const DISJOINT: Self = Self(vk::ImageCreateFlagBits::DISJOINT.0);
 }
-///Provided by [Vulkan 1.0](crate::vk1_0)
+///Provided by [Vulkan 1.1](crate::vk1_1)
 impl vk::ImageCreateFlagBits {
     pub const ALIAS: Self = Self(1 << 10);
     pub const SPLIT_INSTANCE_BIND_REGIONS: Self = Self(1 << 6);
@@ -238,19 +238,19 @@ impl vk::ImageCreateFlagBits {
     pub const PROTECTED: Self = Self(1 << 11);
     pub const DISJOINT: Self = Self(1 << 9);
 }
-///Provided by [Vulkan 1.0](crate::vk1_0)
+///Provided by [Vulkan 1.1](crate::vk1_1)
 impl vk::PipelineCreateFlags {
     pub const DISPATCH_BASE: Self = Self(vk::PipelineCreateFlagBits::DISPATCH_BASE.0);
     pub const VIEW_INDEX_FROM_DEVICE_INDEX: Self = Self(
         vk::PipelineCreateFlagBits::VIEW_INDEX_FROM_DEVICE_INDEX.0,
     );
 }
-///Provided by [Vulkan 1.0](crate::vk1_0)
+///Provided by [Vulkan 1.1](crate::vk1_1)
 impl vk::PipelineCreateFlagBits {
     pub const DISPATCH_BASE: Self = Self(1 << 4);
     pub const VIEW_INDEX_FROM_DEVICE_INDEX: Self = Self(1 << 3);
 }
-///Provided by [Vulkan 1.0](crate::vk1_0)
+///Provided by [Vulkan 1.1](crate::vk1_1)
 impl vk::FormatFeatureFlags {
     pub const TRANSFER_SRC: Self = Self(vk::FormatFeatureFlagBits::TRANSFER_SRC.0);
     pub const TRANSFER_DST: Self = Self(vk::FormatFeatureFlagBits::TRANSFER_DST.0);
@@ -277,7 +277,7 @@ impl vk::FormatFeatureFlags {
         vk::FormatFeatureFlagBits::COSITED_CHROMA_SAMPLES.0,
     );
 }
-///Provided by [Vulkan 1.0](crate::vk1_0)
+///Provided by [Vulkan 1.1](crate::vk1_1)
 impl vk::FormatFeatureFlagBits {
     pub const TRANSFER_SRC: Self = Self(1 << 14);
     pub const TRANSFER_DST: Self = Self(1 << 15);
@@ -295,32 +295,32 @@ impl vk::FormatFeatureFlagBits {
     pub const DISJOINT: Self = Self(1 << 22);
     pub const COSITED_CHROMA_SAMPLES: Self = Self(1 << 23);
 }
-///Provided by [Vulkan 1.0](crate::vk1_0)
+///Provided by [Vulkan 1.1](crate::vk1_1)
 impl vk::CommandPoolCreateFlags {
     pub const PROTECTED: Self = Self(vk::CommandPoolCreateFlagBits::PROTECTED.0);
 }
-///Provided by [Vulkan 1.0](crate::vk1_0)
+///Provided by [Vulkan 1.1](crate::vk1_1)
 impl vk::CommandPoolCreateFlagBits {
     pub const PROTECTED: Self = Self(1 << 2);
 }
-///Provided by [Vulkan 1.0](crate::vk1_0)
+///Provided by [Vulkan 1.1](crate::vk1_1)
 impl vk::ImageAspectFlags {
     pub const PLANE_0: Self = Self(vk::ImageAspectFlagBits::PLANE_0.0);
     pub const PLANE_1: Self = Self(vk::ImageAspectFlagBits::PLANE_1.0);
     pub const PLANE_2: Self = Self(vk::ImageAspectFlagBits::PLANE_2.0);
 }
-///Provided by [Vulkan 1.0](crate::vk1_0)
+///Provided by [Vulkan 1.1](crate::vk1_1)
 impl vk::ImageAspectFlagBits {
     pub const PLANE_0: Self = Self(1 << 4);
     pub const PLANE_1: Self = Self(1 << 5);
     pub const PLANE_2: Self = Self(1 << 6);
 }
-///Provided by [Vulkan 1.0](crate::vk1_0)
+///Provided by [Vulkan 1.1](crate::vk1_1)
 impl vk::DependencyFlags {
     pub const DEVICE_GROUP: Self = Self(vk::DependencyFlagBits::DEVICE_GROUP.0);
     pub const VIEW_LOCAL: Self = Self(vk::DependencyFlagBits::VIEW_LOCAL.0);
 }
-///Provided by [Vulkan 1.0](crate::vk1_0)
+///Provided by [Vulkan 1.1](crate::vk1_1)
 impl vk::DependencyFlagBits {
     pub const DEVICE_GROUP: Self = Self(1 << 2);
     pub const VIEW_LOCAL: Self = Self(1 << 1);
@@ -520,6 +520,13 @@ impl crate::Entry {
     #[inline]
     pub fn fp_v1_1(&self) -> &crate::EntryFnV1_1 {
         &self.entry_fn_1_1
+    }
+    ///vkEnumerateInstanceVersion
+    #[inline]
+    pub unsafe fn enumerate_instance_version(&self) -> VkResult<u32> {
+        let mut api_version = MaybeUninit::uninit();
+        (self.entry_fn_1_1.enumerate_instance_version)(api_version.as_mut_ptr())
+            .assume_init_on_success(api_version)
     }
 }
 #[derive(Clone)]

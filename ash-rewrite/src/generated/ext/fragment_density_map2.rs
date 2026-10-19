@@ -13,13 +13,13 @@ impl vk::StructureType {
         1000332001,
     );
 }
-///Provided by [Vulkan 1.0](crate::vk1_0)
+///Provided by [VK_EXT_fragment_density_map2](crate::ext::fragment_density_map2)
 impl vk::ImageViewCreateFlags {
     pub const FRAGMENT_DENSITY_MAP_DEFERRED_EXT: Self = Self(
         vk::ImageViewCreateFlagBits::FRAGMENT_DENSITY_MAP_DEFERRED_EXT.0,
     );
 }
-///Provided by [Vulkan 1.0](crate::vk1_0)
+///Provided by [VK_EXT_fragment_density_map2](crate::ext::fragment_density_map2)
 impl vk::ImageViewCreateFlagBits {
     pub const FRAGMENT_DENSITY_MAP_DEFERRED_EXT: Self = Self(1 << 1);
 }

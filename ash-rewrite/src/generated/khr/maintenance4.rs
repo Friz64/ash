@@ -15,11 +15,11 @@ impl vk::StructureType {
     pub const DEVICE_BUFFER_MEMORY_REQUIREMENTS_KHR: Self = Self::DEVICE_BUFFER_MEMORY_REQUIREMENTS;
     pub const DEVICE_IMAGE_MEMORY_REQUIREMENTS_KHR: Self = Self::DEVICE_IMAGE_MEMORY_REQUIREMENTS;
 }
-///Provided by [Vulkan 1.0](crate::vk1_0)
+///Provided by [VK_KHR_maintenance4](crate::khr::maintenance4)
 impl vk::ImageAspectFlags {
     pub const NONE_KHR: Self = Self(vk::ImageAspectFlagBits::NONE_KHR.0);
 }
-///Provided by [Vulkan 1.0](crate::vk1_0)
+///Provided by [VK_KHR_maintenance4](crate::khr::maintenance4)
 impl vk::ImageAspectFlagBits {
     pub const NONE_KHR: Self = Self::NONE;
 }

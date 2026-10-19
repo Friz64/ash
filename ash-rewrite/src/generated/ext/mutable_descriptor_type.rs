@@ -15,23 +15,23 @@ impl vk::StructureType {
     );
     pub const MUTABLE_DESCRIPTOR_TYPE_CREATE_INFO_EXT: Self = Self(1000351002);
 }
-///Provided by [Vulkan 1.0](crate::vk1_0)
+///Provided by [VK_EXT_mutable_descriptor_type](crate::ext::mutable_descriptor_type)
 impl vk::DescriptorSetLayoutCreateFlags {
     pub const HOST_ONLY_POOL_EXT: Self = Self(
         vk::DescriptorSetLayoutCreateFlagBits::HOST_ONLY_POOL_EXT.0,
     );
 }
-///Provided by [Vulkan 1.0](crate::vk1_0)
+///Provided by [VK_EXT_mutable_descriptor_type](crate::ext::mutable_descriptor_type)
 impl vk::DescriptorSetLayoutCreateFlagBits {
     pub const HOST_ONLY_POOL_EXT: Self = Self(1 << 2);
 }
-///Provided by [Vulkan 1.0](crate::vk1_0)
+///Provided by [VK_EXT_mutable_descriptor_type](crate::ext::mutable_descriptor_type)
 impl vk::DescriptorPoolCreateFlags {
     pub const HOST_ONLY_EXT: Self = Self(
         vk::DescriptorPoolCreateFlagBits::HOST_ONLY_EXT.0,
     );
 }
-///Provided by [Vulkan 1.0](crate::vk1_0)
+///Provided by [VK_EXT_mutable_descriptor_type](crate::ext::mutable_descriptor_type)
 impl vk::DescriptorPoolCreateFlagBits {
     pub const HOST_ONLY_EXT: Self = Self(1 << 2);
 }

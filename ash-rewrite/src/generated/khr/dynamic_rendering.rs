@@ -18,7 +18,7 @@ impl vk::StructureType {
     pub const PHYSICAL_DEVICE_DYNAMIC_RENDERING_FEATURES_KHR: Self = Self::PHYSICAL_DEVICE_DYNAMIC_RENDERING_FEATURES;
     pub const COMMAND_BUFFER_INHERITANCE_RENDERING_INFO_KHR: Self = Self::COMMAND_BUFFER_INHERITANCE_RENDERING_INFO;
 }
-///Provided by [Vulkan 1.3](crate::vk1_3)
+///Provided by [VK_KHR_dynamic_rendering](crate::khr::dynamic_rendering)
 impl vk::RenderingFlags {
     pub const CONTENTS_SECONDARY_COMMAND_BUFFERS_KHR: Self = Self(
         vk::RenderingFlagBits::CONTENTS_SECONDARY_COMMAND_BUFFERS_KHR.0,
@@ -26,7 +26,7 @@ impl vk::RenderingFlags {
     pub const SUSPENDING_KHR: Self = Self(vk::RenderingFlagBits::SUSPENDING_KHR.0);
     pub const RESUMING_KHR: Self = Self(vk::RenderingFlagBits::RESUMING_KHR.0);
 }
-///Provided by [Vulkan 1.3](crate::vk1_3)
+///Provided by [VK_KHR_dynamic_rendering](crate::khr::dynamic_rendering)
 impl vk::RenderingFlagBits {
     pub const CONTENTS_SECONDARY_COMMAND_BUFFERS_KHR: Self = Self::CONTENTS_SECONDARY_COMMAND_BUFFERS;
     pub const SUSPENDING_KHR: Self = Self::SUSPENDING;

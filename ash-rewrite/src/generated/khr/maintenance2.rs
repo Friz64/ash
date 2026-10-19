@@ -26,7 +26,7 @@ impl vk::TessellationDomainOrigin {
     pub const UPPER_LEFT_KHR: Self = Self::UPPER_LEFT;
     pub const LOWER_LEFT_KHR: Self = Self::LOWER_LEFT;
 }
-///Provided by [Vulkan 1.0](crate::vk1_0)
+///Provided by [VK_KHR_maintenance2](crate::khr::maintenance2)
 impl vk::ImageCreateFlags {
     pub const BLOCK_TEXEL_VIEW_COMPATIBLE_KHR: Self = Self(
         vk::ImageCreateFlagBits::BLOCK_TEXEL_VIEW_COMPATIBLE_KHR.0,
@@ -35,7 +35,7 @@ impl vk::ImageCreateFlags {
         vk::ImageCreateFlagBits::EXTENDED_USAGE_KHR.0,
     );
 }
-///Provided by [Vulkan 1.0](crate::vk1_0)
+///Provided by [VK_KHR_maintenance2](crate::khr::maintenance2)
 impl vk::ImageCreateFlagBits {
     pub const BLOCK_TEXEL_VIEW_COMPATIBLE_KHR: Self = Self::BLOCK_TEXEL_VIEW_COMPATIBLE;
     pub const EXTENDED_USAGE_KHR: Self = Self::EXTENDED_USAGE;

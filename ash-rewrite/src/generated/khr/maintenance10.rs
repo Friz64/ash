@@ -15,7 +15,7 @@ impl vk::StructureType {
     pub const RENDERING_END_INFO_KHR: Self = Self(1000619003);
     pub const RESOLVE_IMAGE_MODE_INFO_KHR: Self = Self(1000630004);
 }
-///Provided by [Vulkan 1.0](crate::vk1_0)
+///Provided by [VK_KHR_maintenance10](crate::khr::maintenance10)
 impl vk::AttachmentDescriptionFlags {
     pub const RESOLVE_SKIP_TRANSFER_FUNCTION_KHR: Self = Self(
         vk::AttachmentDescriptionFlagBits::RESOLVE_SKIP_TRANSFER_FUNCTION_KHR.0,
@@ -24,12 +24,12 @@ impl vk::AttachmentDescriptionFlags {
         vk::AttachmentDescriptionFlagBits::RESOLVE_ENABLE_TRANSFER_FUNCTION_KHR.0,
     );
 }
-///Provided by [Vulkan 1.0](crate::vk1_0)
+///Provided by [VK_KHR_maintenance10](crate::khr::maintenance10)
 impl vk::AttachmentDescriptionFlagBits {
     pub const RESOLVE_SKIP_TRANSFER_FUNCTION_KHR: Self = Self(1 << 1);
     pub const RESOLVE_ENABLE_TRANSFER_FUNCTION_KHR: Self = Self(1 << 2);
 }
-///Provided by [Vulkan 1.3](crate::vk1_3)
+///Provided by [VK_KHR_maintenance10](crate::khr::maintenance10)
 impl vk::FormatFeatureFlags2 {
     pub const DEPTH_COPY_ON_COMPUTE_QUEUE_KHR: Self = Self(
         vk::FormatFeatureFlagBits2::DEPTH_COPY_ON_COMPUTE_QUEUE_KHR.0,
@@ -44,20 +44,20 @@ impl vk::FormatFeatureFlags2 {
         vk::FormatFeatureFlagBits2::STENCIL_COPY_ON_TRANSFER_QUEUE_KHR.0,
     );
 }
-///Provided by [Vulkan 1.3](crate::vk1_3)
+///Provided by [VK_KHR_maintenance10](crate::khr::maintenance10)
 impl vk::FormatFeatureFlagBits2 {
     pub const DEPTH_COPY_ON_COMPUTE_QUEUE_KHR: Self = Self(1 << 52);
     pub const DEPTH_COPY_ON_TRANSFER_QUEUE_KHR: Self = Self(1 << 53);
     pub const STENCIL_COPY_ON_COMPUTE_QUEUE_KHR: Self = Self(1 << 54);
     pub const STENCIL_COPY_ON_TRANSFER_QUEUE_KHR: Self = Self(1 << 55);
 }
-///Provided by [Vulkan 1.3](crate::vk1_3)
+///Provided by [VK_KHR_maintenance10](crate::khr::maintenance10)
 impl vk::RenderingFlags {
     pub const LOCAL_READ_CONCURRENT_ACCESS_CONTROL_KHR: Self = Self(
         vk::RenderingFlagBits::LOCAL_READ_CONCURRENT_ACCESS_CONTROL_KHR.0,
     );
 }
-///Provided by [Vulkan 1.3](crate::vk1_3)
+///Provided by [VK_KHR_maintenance10](crate::khr::maintenance10)
 impl vk::RenderingFlagBits {
     pub const LOCAL_READ_CONCURRENT_ACCESS_CONTROL_KHR: Self = Self(1 << 8);
 }

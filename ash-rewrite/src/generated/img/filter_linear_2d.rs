@@ -4,13 +4,13 @@
 #![doc(alias = "VK_IMG_filter_linear_2d")]
 use crate::vk;
 use core::ffi::CStr;
-///Provided by [Vulkan 1.3](crate::vk1_3)
+///Provided by [VK_IMG_filter_linear_2d](crate::img::filter_linear_2d)
 impl vk::FormatFeatureFlags2 {
     pub const SAMPLED_IMAGE_FILTER_LINEAR_2D_IMG: Self = Self(
         vk::FormatFeatureFlagBits2::SAMPLED_IMAGE_FILTER_LINEAR_2D_IMG.0,
     );
 }
-///Provided by [Vulkan 1.3](crate::vk1_3)
+///Provided by [VK_IMG_filter_linear_2d](crate::img::filter_linear_2d)
 impl vk::FormatFeatureFlagBits2 {
     pub const SAMPLED_IMAGE_FILTER_LINEAR_2D_IMG: Self = Self(1 << 45);
 }

@@ -37,17 +37,17 @@ impl OpacityMicromapSpecialIndexKHR {
 impl AccelerationStructureSerializedBlockTypeKHR {
     pub const OPACITY_MICROMAP: Self = Self(0);
 }
-///Provided by [Vulkan 1.0](crate::vk1_0)
+///Provided by [VK_KHR_opacity_micromap](crate::khr::opacity_micromap)
 impl vk::PipelineCreateFlags {
     pub const RAY_TRACING_OPACITY_MICROMAP_KHR: Self = Self(
         vk::PipelineCreateFlagBits::RAY_TRACING_OPACITY_MICROMAP_KHR.0,
     );
 }
-///Provided by [Vulkan 1.0](crate::vk1_0)
+///Provided by [VK_KHR_opacity_micromap](crate::khr::opacity_micromap)
 impl vk::PipelineCreateFlagBits {
     pub const RAY_TRACING_OPACITY_MICROMAP_KHR: Self = Self(1 << 24);
 }
-///Provided by [VK_KHR_acceleration_structure](crate::khr::acceleration_structure)
+///Provided by [VK_KHR_opacity_micromap](crate::khr::opacity_micromap)
 impl vk::GeometryInstanceFlagsKHR {
     pub const FORCE_OPACITY_MICROMAP_2_STATE: Self = Self(
         vk::GeometryInstanceFlagBitsKHR::FORCE_OPACITY_MICROMAP_2_STATE.0,
@@ -56,12 +56,12 @@ impl vk::GeometryInstanceFlagsKHR {
         vk::GeometryInstanceFlagBitsKHR::DISABLE_OPACITY_MICROMAPS.0,
     );
 }
-///Provided by [VK_KHR_acceleration_structure](crate::khr::acceleration_structure)
+///Provided by [VK_KHR_opacity_micromap](crate::khr::opacity_micromap)
 impl vk::GeometryInstanceFlagBitsKHR {
     pub const FORCE_OPACITY_MICROMAP_2_STATE: Self = Self(1 << 4);
     pub const DISABLE_OPACITY_MICROMAPS: Self = Self(1 << 5);
 }
-///Provided by [VK_KHR_acceleration_structure](crate::khr::acceleration_structure)
+///Provided by [VK_KHR_opacity_micromap](crate::khr::opacity_micromap)
 impl vk::BuildAccelerationStructureFlagsKHR {
     pub const ALLOW_OPACITY_MICROMAP_UPDATE: Self = Self(
         vk::BuildAccelerationStructureFlagBitsKHR::ALLOW_OPACITY_MICROMAP_UPDATE.0,
@@ -73,13 +73,13 @@ impl vk::BuildAccelerationStructureFlagsKHR {
         vk::BuildAccelerationStructureFlagBitsKHR::MICROMAP_LOSSY.0,
     );
 }
-///Provided by [VK_KHR_acceleration_structure](crate::khr::acceleration_structure)
+///Provided by [VK_KHR_opacity_micromap](crate::khr::opacity_micromap)
 impl vk::BuildAccelerationStructureFlagBitsKHR {
     pub const ALLOW_OPACITY_MICROMAP_UPDATE: Self = Self(1 << 6);
     pub const ALLOW_DISABLE_OPACITY_MICROMAPS: Self = Self(1 << 7);
     pub const MICROMAP_LOSSY: Self = Self(1 << 10);
 }
-///Provided by [Vulkan 1.4](crate::vk1_4)
+///Provided by [VK_KHR_opacity_micromap](crate::khr::opacity_micromap)
 impl vk::PipelineCreateFlags2 {
     pub const RAY_TRACING_OPACITY_MICROMAP_KHR: Self = Self(
         vk::PipelineCreateFlagBits2::RAY_TRACING_OPACITY_MICROMAP_KHR.0,
@@ -88,18 +88,18 @@ impl vk::PipelineCreateFlags2 {
         vk::PipelineCreateFlagBits2::OPACITY_MICROMAP_DISALLOW_MIXED_SPECIAL_INDEX_KHR.0,
     );
 }
-///Provided by [Vulkan 1.4](crate::vk1_4)
+///Provided by [VK_KHR_opacity_micromap](crate::khr::opacity_micromap)
 impl vk::PipelineCreateFlagBits2 {
     pub const RAY_TRACING_OPACITY_MICROMAP_KHR: Self = Self(1 << 24);
     pub const OPACITY_MICROMAP_DISALLOW_MIXED_SPECIAL_INDEX_KHR: Self = Self(1 << 41);
 }
-///Provided by [VK_EXT_shader_object](crate::ext::shader_object)
+///Provided by [VK_KHR_opacity_micromap](crate::khr::opacity_micromap)
 impl vk::ShaderCreateFlagsEXT {
     pub const OPACITY_MICROMAP_DISALLOW_MIXED_SPECIAL_INDEX: Self = Self(
         vk::ShaderCreateFlagBitsEXT::OPACITY_MICROMAP_DISALLOW_MIXED_SPECIAL_INDEX.0,
     );
 }
-///Provided by [VK_EXT_shader_object](crate::ext::shader_object)
+///Provided by [VK_KHR_opacity_micromap](crate::khr::opacity_micromap)
 impl vk::ShaderCreateFlagBitsEXT {
     pub const OPACITY_MICROMAP_DISALLOW_MIXED_SPECIAL_INDEX: Self = Self(1 << 12);
 }

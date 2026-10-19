@@ -33,11 +33,11 @@ impl VideoEncodeAV1RateControlGroupKHR {
     pub const PREDICTIVE: Self = Self(1);
     pub const BIPREDICTIVE: Self = Self(2);
 }
-///Provided by [VK_KHR_video_queue](crate::khr::video_queue)
+///Provided by [VK_KHR_video_encode_av1](crate::khr::video_encode_av1)
 impl vk::VideoCodecOperationFlagsKHR {
     pub const ENCODE_AV1: Self = Self(vk::VideoCodecOperationFlagBitsKHR::ENCODE_AV1.0);
 }
-///Provided by [VK_KHR_video_queue](crate::khr::video_queue)
+///Provided by [VK_KHR_video_encode_av1](crate::khr::video_encode_av1)
 impl vk::VideoCodecOperationFlagBitsKHR {
     pub const ENCODE_AV1: Self = Self(1 << 18);
 }

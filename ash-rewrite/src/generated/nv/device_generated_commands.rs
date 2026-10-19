@@ -39,7 +39,7 @@ impl IndirectCommandsTokenTypeNV {
     pub const DRAW: Self = Self(6);
     pub const DRAW_TASKS: Self = Self(7);
 }
-///Provided by [Vulkan 1.0](crate::vk1_0)
+///Provided by [VK_NV_device_generated_commands](crate::nv::device_generated_commands)
 impl vk::AccessFlags {
     pub const COMMAND_PREPROCESS_READ_NV: Self = Self(
         vk::AccessFlagBits::COMMAND_PREPROCESS_READ_NV.0,
@@ -48,28 +48,28 @@ impl vk::AccessFlags {
         vk::AccessFlagBits::COMMAND_PREPROCESS_WRITE_NV.0,
     );
 }
-///Provided by [Vulkan 1.0](crate::vk1_0)
+///Provided by [VK_NV_device_generated_commands](crate::nv::device_generated_commands)
 impl vk::AccessFlagBits {
     pub const COMMAND_PREPROCESS_READ_NV: Self = Self::COMMAND_PREPROCESS_READ_EXT;
     pub const COMMAND_PREPROCESS_WRITE_NV: Self = Self::COMMAND_PREPROCESS_WRITE_EXT;
 }
-///Provided by [Vulkan 1.0](crate::vk1_0)
+///Provided by [VK_NV_device_generated_commands](crate::nv::device_generated_commands)
 impl vk::PipelineCreateFlags {
     pub const INDIRECT_BINDABLE_NV: Self = Self(
         vk::PipelineCreateFlagBits::INDIRECT_BINDABLE_NV.0,
     );
 }
-///Provided by [Vulkan 1.0](crate::vk1_0)
+///Provided by [VK_NV_device_generated_commands](crate::nv::device_generated_commands)
 impl vk::PipelineCreateFlagBits {
     pub const INDIRECT_BINDABLE_NV: Self = Self(1 << 18);
 }
-///Provided by [Vulkan 1.0](crate::vk1_0)
+///Provided by [VK_NV_device_generated_commands](crate::nv::device_generated_commands)
 impl vk::PipelineStageFlags {
     pub const COMMAND_PREPROCESS_NV: Self = Self(
         vk::PipelineStageFlagBits::COMMAND_PREPROCESS_NV.0,
     );
 }
-///Provided by [Vulkan 1.0](crate::vk1_0)
+///Provided by [VK_NV_device_generated_commands](crate::nv::device_generated_commands)
 impl vk::PipelineStageFlagBits {
     pub const COMMAND_PREPROCESS_NV: Self = Self::COMMAND_PREPROCESS_EXT;
 }

@@ -15,23 +15,23 @@ impl vk::StructureType {
     pub const COPY_MEMORY_INDIRECT_INFO_KHR: Self = Self(1000549002);
     pub const COPY_MEMORY_TO_IMAGE_INDIRECT_INFO_KHR: Self = Self(1000549003);
 }
-///Provided by [Vulkan 1.3](crate::vk1_3)
+///Provided by [VK_KHR_copy_memory_indirect](crate::khr::copy_memory_indirect)
 impl vk::PipelineStageFlags2 {
     pub const COPY_INDIRECT_KHR: Self = Self(
         vk::PipelineStageFlagBits2::COPY_INDIRECT_KHR.0,
     );
 }
-///Provided by [Vulkan 1.3](crate::vk1_3)
+///Provided by [VK_KHR_copy_memory_indirect](crate::khr::copy_memory_indirect)
 impl vk::PipelineStageFlagBits2 {
     pub const COPY_INDIRECT_KHR: Self = Self(1 << 46);
 }
-///Provided by [Vulkan 1.3](crate::vk1_3)
+///Provided by [VK_KHR_copy_memory_indirect](crate::khr::copy_memory_indirect)
 impl vk::FormatFeatureFlags2 {
     pub const COPY_IMAGE_INDIRECT_DST_KHR: Self = Self(
         vk::FormatFeatureFlagBits2::COPY_IMAGE_INDIRECT_DST_KHR.0,
     );
 }
-///Provided by [Vulkan 1.3](crate::vk1_3)
+///Provided by [VK_KHR_copy_memory_indirect](crate::khr::copy_memory_indirect)
 impl vk::FormatFeatureFlagBits2 {
     pub const COPY_IMAGE_INDIRECT_DST_KHR: Self = Self(1 << 59);
 }

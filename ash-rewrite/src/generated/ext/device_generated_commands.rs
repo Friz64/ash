@@ -53,7 +53,7 @@ impl IndirectCommandsTokenTypeEXT {
     pub const DRAW_COUNT: Self = Self(8);
     pub const DISPATCH: Self = Self(9);
 }
-///Provided by [Vulkan 1.0](crate::vk1_0)
+///Provided by [VK_EXT_device_generated_commands](crate::ext::device_generated_commands)
 impl vk::AccessFlags {
     pub const COMMAND_PREPROCESS_READ_EXT: Self = Self(
         vk::AccessFlagBits::COMMAND_PREPROCESS_READ_EXT.0,
@@ -62,18 +62,18 @@ impl vk::AccessFlags {
         vk::AccessFlagBits::COMMAND_PREPROCESS_WRITE_EXT.0,
     );
 }
-///Provided by [Vulkan 1.0](crate::vk1_0)
+///Provided by [VK_EXT_device_generated_commands](crate::ext::device_generated_commands)
 impl vk::AccessFlagBits {
     pub const COMMAND_PREPROCESS_READ_EXT: Self = Self(1 << 17);
     pub const COMMAND_PREPROCESS_WRITE_EXT: Self = Self(1 << 18);
 }
-///Provided by [Vulkan 1.0](crate::vk1_0)
+///Provided by [VK_EXT_device_generated_commands](crate::ext::device_generated_commands)
 impl vk::PipelineStageFlags {
     pub const COMMAND_PREPROCESS_EXT: Self = Self(
         vk::PipelineStageFlagBits::COMMAND_PREPROCESS_EXT.0,
     );
 }
-///Provided by [Vulkan 1.0](crate::vk1_0)
+///Provided by [VK_EXT_device_generated_commands](crate::ext::device_generated_commands)
 impl vk::PipelineStageFlagBits {
     pub const COMMAND_PREPROCESS_EXT: Self = Self(1 << 17);
 }
@@ -105,33 +105,33 @@ impl IndirectCommandsInputModeFlagBitsEXT {
     pub const VULKAN_INDEX_BUFFER: Self = Self(1 << 0);
     pub const DXGI_INDEX_BUFFER: Self = Self(1 << 1);
 }
-///Provided by [Vulkan 1.4](crate::vk1_4)
+///Provided by [VK_EXT_device_generated_commands](crate::ext::device_generated_commands)
 impl vk::PipelineCreateFlags2 {
     pub const INDIRECT_BINDABLE_EXT: Self = Self(
         vk::PipelineCreateFlagBits2::INDIRECT_BINDABLE_EXT.0,
     );
 }
-///Provided by [Vulkan 1.4](crate::vk1_4)
+///Provided by [VK_EXT_device_generated_commands](crate::ext::device_generated_commands)
 impl vk::PipelineCreateFlagBits2 {
     pub const INDIRECT_BINDABLE_EXT: Self = Self(1 << 38);
 }
-///Provided by [Vulkan 1.4](crate::vk1_4)
+///Provided by [VK_EXT_device_generated_commands](crate::ext::device_generated_commands)
 impl vk::BufferUsageFlags2 {
     pub const PREPROCESS_BUFFER_EXT: Self = Self(
         vk::BufferUsageFlagBits2::PREPROCESS_BUFFER_EXT.0,
     );
 }
-///Provided by [Vulkan 1.4](crate::vk1_4)
+///Provided by [VK_EXT_device_generated_commands](crate::ext::device_generated_commands)
 impl vk::BufferUsageFlagBits2 {
     pub const PREPROCESS_BUFFER_EXT: Self = Self(1 << 31);
 }
-///Provided by [VK_EXT_shader_object](crate::ext::shader_object)
+///Provided by [VK_EXT_device_generated_commands](crate::ext::device_generated_commands)
 impl vk::ShaderCreateFlagsEXT {
     pub const INDIRECT_BINDABLE: Self = Self(
         vk::ShaderCreateFlagBitsEXT::INDIRECT_BINDABLE.0,
     );
 }
-///Provided by [VK_EXT_shader_object](crate::ext::shader_object)
+///Provided by [VK_EXT_device_generated_commands](crate::ext::device_generated_commands)
 impl vk::ShaderCreateFlagBitsEXT {
     pub const INDIRECT_BINDABLE: Self = Self(1 << 7);
 }

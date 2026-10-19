@@ -27,7 +27,7 @@ impl PipelineExecutableStatisticFormatKHR {
     pub const UINT64: Self = Self(2);
     pub const FLOAT64: Self = Self(3);
 }
-///Provided by [Vulkan 1.0](crate::vk1_0)
+///Provided by [VK_KHR_pipeline_executable_properties](crate::khr::pipeline_executable_properties)
 impl vk::PipelineCreateFlags {
     pub const CAPTURE_STATISTICS_KHR: Self = Self(
         vk::PipelineCreateFlagBits::CAPTURE_STATISTICS_KHR.0,
@@ -36,7 +36,7 @@ impl vk::PipelineCreateFlags {
         vk::PipelineCreateFlagBits::CAPTURE_INTERNAL_REPRESENTATIONS_KHR.0,
     );
 }
-///Provided by [Vulkan 1.0](crate::vk1_0)
+///Provided by [VK_KHR_pipeline_executable_properties](crate::khr::pipeline_executable_properties)
 impl vk::PipelineCreateFlagBits {
     pub const CAPTURE_STATISTICS_KHR: Self = Self(1 << 6);
     pub const CAPTURE_INTERNAL_REPRESENTATIONS_KHR: Self = Self(1 << 7);

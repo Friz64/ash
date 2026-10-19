@@ -18,7 +18,7 @@ impl vk::StructureType {
         1000028002,
     );
 }
-///Provided by [Vulkan 1.0](crate::vk1_0)
+///Provided by [VK_EXT_transform_feedback](crate::ext::transform_feedback)
 impl vk::AccessFlags {
     pub const TRANSFORM_FEEDBACK_WRITE_EXT: Self = Self(
         vk::AccessFlagBits::TRANSFORM_FEEDBACK_WRITE_EXT.0,
@@ -30,13 +30,13 @@ impl vk::AccessFlags {
         vk::AccessFlagBits::TRANSFORM_FEEDBACK_COUNTER_WRITE_EXT.0,
     );
 }
-///Provided by [Vulkan 1.0](crate::vk1_0)
+///Provided by [VK_EXT_transform_feedback](crate::ext::transform_feedback)
 impl vk::AccessFlagBits {
     pub const TRANSFORM_FEEDBACK_WRITE_EXT: Self = Self(1 << 25);
     pub const TRANSFORM_FEEDBACK_COUNTER_READ_EXT: Self = Self(1 << 26);
     pub const TRANSFORM_FEEDBACK_COUNTER_WRITE_EXT: Self = Self(1 << 27);
 }
-///Provided by [Vulkan 1.0](crate::vk1_0)
+///Provided by [VK_EXT_transform_feedback](crate::ext::transform_feedback)
 impl vk::BufferUsageFlags {
     pub const TRANSFORM_FEEDBACK_BUFFER_EXT: Self = Self(
         vk::BufferUsageFlagBits::TRANSFORM_FEEDBACK_BUFFER_EXT.0,
@@ -45,18 +45,18 @@ impl vk::BufferUsageFlags {
         vk::BufferUsageFlagBits::TRANSFORM_FEEDBACK_COUNTER_BUFFER_EXT.0,
     );
 }
-///Provided by [Vulkan 1.0](crate::vk1_0)
+///Provided by [VK_EXT_transform_feedback](crate::ext::transform_feedback)
 impl vk::BufferUsageFlagBits {
     pub const TRANSFORM_FEEDBACK_BUFFER_EXT: Self = Self(1 << 11);
     pub const TRANSFORM_FEEDBACK_COUNTER_BUFFER_EXT: Self = Self(1 << 12);
 }
-///Provided by [Vulkan 1.0](crate::vk1_0)
+///Provided by [VK_EXT_transform_feedback](crate::ext::transform_feedback)
 impl vk::PipelineStageFlags {
     pub const TRANSFORM_FEEDBACK_EXT: Self = Self(
         vk::PipelineStageFlagBits::TRANSFORM_FEEDBACK_EXT.0,
     );
 }
-///Provided by [Vulkan 1.0](crate::vk1_0)
+///Provided by [VK_EXT_transform_feedback](crate::ext::transform_feedback)
 impl vk::PipelineStageFlagBits {
     pub const TRANSFORM_FEEDBACK_EXT: Self = Self(1 << 24);
 }

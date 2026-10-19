@@ -60,7 +60,7 @@ impl vk::OpacityMicromapSpecialIndexKHR {
     pub const FULLY_UNKNOWN_TRANSPARENT_EXT: Self = Self::FULLY_UNKNOWN_TRANSPARENT;
     pub const FULLY_UNKNOWN_OPAQUE_EXT: Self = Self::FULLY_UNKNOWN_OPAQUE;
 }
-///Provided by [Vulkan 1.0](crate::vk1_0)
+///Provided by [VK_EXT_opacity_micromap](crate::ext::opacity_micromap)
 impl vk::BufferUsageFlags {
     pub const MICROMAP_BUILD_INPUT_READ_ONLY_EXT: Self = Self(
         vk::BufferUsageFlagBits::MICROMAP_BUILD_INPUT_READ_ONLY_EXT.0,
@@ -69,22 +69,22 @@ impl vk::BufferUsageFlags {
         vk::BufferUsageFlagBits::MICROMAP_STORAGE_EXT.0,
     );
 }
-///Provided by [Vulkan 1.0](crate::vk1_0)
+///Provided by [VK_EXT_opacity_micromap](crate::ext::opacity_micromap)
 impl vk::BufferUsageFlagBits {
     pub const MICROMAP_BUILD_INPUT_READ_ONLY_EXT: Self = Self(1 << 23);
     pub const MICROMAP_STORAGE_EXT: Self = Self(1 << 24);
 }
-///Provided by [Vulkan 1.0](crate::vk1_0)
+///Provided by [VK_EXT_opacity_micromap](crate::ext::opacity_micromap)
 impl vk::PipelineCreateFlags {
     pub const RAY_TRACING_OPACITY_MICROMAP_EXT: Self = Self(
         vk::PipelineCreateFlagBits::RAY_TRACING_OPACITY_MICROMAP_EXT.0,
     );
 }
-///Provided by [Vulkan 1.0](crate::vk1_0)
+///Provided by [VK_EXT_opacity_micromap](crate::ext::opacity_micromap)
 impl vk::PipelineCreateFlagBits {
     pub const RAY_TRACING_OPACITY_MICROMAP_EXT: Self = Self::RAY_TRACING_OPACITY_MICROMAP_KHR;
 }
-///Provided by [VK_KHR_acceleration_structure](crate::khr::acceleration_structure)
+///Provided by [VK_EXT_opacity_micromap](crate::ext::opacity_micromap)
 impl vk::GeometryInstanceFlagsKHR {
     pub const FORCE_OPACITY_MICROMAP_2_STATE_EXT: Self = Self(
         vk::GeometryInstanceFlagBitsKHR::FORCE_OPACITY_MICROMAP_2_STATE_EXT.0,
@@ -93,12 +93,12 @@ impl vk::GeometryInstanceFlagsKHR {
         vk::GeometryInstanceFlagBitsKHR::DISABLE_OPACITY_MICROMAPS_EXT.0,
     );
 }
-///Provided by [VK_KHR_acceleration_structure](crate::khr::acceleration_structure)
+///Provided by [VK_EXT_opacity_micromap](crate::ext::opacity_micromap)
 impl vk::GeometryInstanceFlagBitsKHR {
     pub const FORCE_OPACITY_MICROMAP_2_STATE_EXT: Self = Self::FORCE_OPACITY_MICROMAP_2_STATE;
     pub const DISABLE_OPACITY_MICROMAPS_EXT: Self = Self::DISABLE_OPACITY_MICROMAPS;
 }
-///Provided by [VK_KHR_acceleration_structure](crate::khr::acceleration_structure)
+///Provided by [VK_EXT_opacity_micromap](crate::ext::opacity_micromap)
 impl vk::BuildAccelerationStructureFlagsKHR {
     pub const ALLOW_OPACITY_MICROMAP_UPDATE_EXT: Self = Self(
         vk::BuildAccelerationStructureFlagBitsKHR::ALLOW_OPACITY_MICROMAP_UPDATE_EXT.0,
@@ -111,29 +111,29 @@ impl vk::BuildAccelerationStructureFlagsKHR {
             .0,
     );
 }
-///Provided by [VK_KHR_acceleration_structure](crate::khr::acceleration_structure)
+///Provided by [VK_EXT_opacity_micromap](crate::ext::opacity_micromap)
 impl vk::BuildAccelerationStructureFlagBitsKHR {
     pub const ALLOW_OPACITY_MICROMAP_UPDATE_EXT: Self = Self::ALLOW_OPACITY_MICROMAP_UPDATE;
     pub const ALLOW_DISABLE_OPACITY_MICROMAPS_EXT: Self = Self::ALLOW_DISABLE_OPACITY_MICROMAPS;
     pub const ALLOW_OPACITY_MICROMAP_DATA_UPDATE_EXT: Self = Self(1 << 8);
 }
-///Provided by [Vulkan 1.3](crate::vk1_3)
+///Provided by [VK_EXT_opacity_micromap](crate::ext::opacity_micromap)
 impl vk::AccessFlags2 {
     pub const MICROMAP_READ_EXT: Self = Self(vk::AccessFlagBits2::MICROMAP_READ_EXT.0);
     pub const MICROMAP_WRITE_EXT: Self = Self(vk::AccessFlagBits2::MICROMAP_WRITE_EXT.0);
 }
-///Provided by [Vulkan 1.3](crate::vk1_3)
+///Provided by [VK_EXT_opacity_micromap](crate::ext::opacity_micromap)
 impl vk::AccessFlagBits2 {
     pub const MICROMAP_READ_EXT: Self = Self(1 << 44);
     pub const MICROMAP_WRITE_EXT: Self = Self(1 << 45);
 }
-///Provided by [Vulkan 1.3](crate::vk1_3)
+///Provided by [VK_EXT_opacity_micromap](crate::ext::opacity_micromap)
 impl vk::PipelineStageFlags2 {
     pub const MICROMAP_BUILD_EXT: Self = Self(
         vk::PipelineStageFlagBits2::MICROMAP_BUILD_EXT.0,
     );
 }
-///Provided by [Vulkan 1.3](crate::vk1_3)
+///Provided by [VK_EXT_opacity_micromap](crate::ext::opacity_micromap)
 impl vk::PipelineStageFlagBits2 {
     pub const MICROMAP_BUILD_EXT: Self = Self(1 << 30);
 }
@@ -165,17 +165,17 @@ impl MicromapCreateFlagsEXT {
 impl MicromapCreateFlagBitsEXT {
     pub const DEVICE_ADDRESS_CAPTURE_REPLAY: Self = Self(1 << 0);
 }
-///Provided by [Vulkan 1.4](crate::vk1_4)
+///Provided by [VK_EXT_opacity_micromap](crate::ext::opacity_micromap)
 impl vk::PipelineCreateFlags2 {
     pub const RAY_TRACING_OPACITY_MICROMAP_EXT: Self = Self(
         vk::PipelineCreateFlagBits2::RAY_TRACING_OPACITY_MICROMAP_EXT.0,
     );
 }
-///Provided by [Vulkan 1.4](crate::vk1_4)
+///Provided by [VK_EXT_opacity_micromap](crate::ext::opacity_micromap)
 impl vk::PipelineCreateFlagBits2 {
     pub const RAY_TRACING_OPACITY_MICROMAP_EXT: Self = Self::RAY_TRACING_OPACITY_MICROMAP_KHR;
 }
-///Provided by [Vulkan 1.4](crate::vk1_4)
+///Provided by [VK_EXT_opacity_micromap](crate::ext::opacity_micromap)
 impl vk::BufferUsageFlags2 {
     pub const MICROMAP_BUILD_INPUT_READ_ONLY_EXT: Self = Self(
         vk::BufferUsageFlagBits2::MICROMAP_BUILD_INPUT_READ_ONLY_EXT.0,
@@ -184,7 +184,7 @@ impl vk::BufferUsageFlags2 {
         vk::BufferUsageFlagBits2::MICROMAP_STORAGE_EXT.0,
     );
 }
-///Provided by [Vulkan 1.4](crate::vk1_4)
+///Provided by [VK_EXT_opacity_micromap](crate::ext::opacity_micromap)
 impl vk::BufferUsageFlagBits2 {
     pub const MICROMAP_BUILD_INPUT_READ_ONLY_EXT: Self = Self(1 << 23);
     pub const MICROMAP_STORAGE_EXT: Self = Self(1 << 24);

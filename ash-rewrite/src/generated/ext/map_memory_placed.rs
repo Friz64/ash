@@ -10,19 +10,19 @@ impl vk::StructureType {
     pub const PHYSICAL_DEVICE_MAP_MEMORY_PLACED_PROPERTIES_EXT: Self = Self(1000272001);
     pub const MEMORY_MAP_PLACED_INFO_EXT: Self = Self(1000272002);
 }
-///Provided by [Vulkan 1.0](crate::vk1_0)
+///Provided by [VK_EXT_map_memory_placed](crate::ext::map_memory_placed)
 impl vk::MemoryMapFlags {
     pub const PLACED_EXT: Self = Self(vk::MemoryMapFlagBits::PLACED_EXT.0);
 }
-///Provided by [Vulkan 1.0](crate::vk1_0)
+///Provided by [VK_EXT_map_memory_placed](crate::ext::map_memory_placed)
 impl vk::MemoryMapFlagBits {
     pub const PLACED_EXT: Self = Self(1 << 0);
 }
-///Provided by [Vulkan 1.4](crate::vk1_4)
+///Provided by [VK_EXT_map_memory_placed](crate::ext::map_memory_placed)
 impl vk::MemoryUnmapFlags {
     pub const RESERVE_EXT: Self = Self(vk::MemoryUnmapFlagBits::RESERVE_EXT.0);
 }
-///Provided by [Vulkan 1.4](crate::vk1_4)
+///Provided by [VK_EXT_map_memory_placed](crate::ext::map_memory_placed)
 impl vk::MemoryUnmapFlagBits {
     pub const RESERVE_EXT: Self = Self(1 << 0);
 }

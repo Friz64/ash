@@ -16,13 +16,13 @@ impl vk::StructureType {
         1000468002,
     );
 }
-///Provided by [Vulkan 1.2](crate::vk1_2)
+///Provided by [VK_ANDROID_external_format_resolve](crate::android::external_format_resolve)
 impl vk::ResolveModeFlags {
     pub const EXTERNAL_FORMAT_DOWNSAMPLE_ANDROID: Self = Self(
         vk::ResolveModeFlagBits::EXTERNAL_FORMAT_DOWNSAMPLE_ANDROID.0,
     );
 }
-///Provided by [Vulkan 1.2](crate::vk1_2)
+///Provided by [VK_ANDROID_external_format_resolve](crate::android::external_format_resolve)
 impl vk::ResolveModeFlagBits {
     pub const EXTERNAL_FORMAT_DOWNSAMPLE_ANDROID: Self = Self(1 << 4);
 }

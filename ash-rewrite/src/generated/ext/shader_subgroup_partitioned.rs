@@ -10,13 +10,13 @@ impl vk::StructureType {
         1000662000,
     );
 }
-///Provided by [Vulkan 1.1](crate::vk1_1)
+///Provided by [VK_EXT_shader_subgroup_partitioned](crate::ext::shader_subgroup_partitioned)
 impl vk::SubgroupFeatureFlags {
     pub const PARTITIONED_EXT: Self = Self(
         vk::SubgroupFeatureFlagBits::PARTITIONED_EXT.0,
     );
 }
-///Provided by [Vulkan 1.1](crate::vk1_1)
+///Provided by [VK_EXT_shader_subgroup_partitioned](crate::ext::shader_subgroup_partitioned)
 impl vk::SubgroupFeatureFlagBits {
     pub const PARTITIONED_EXT: Self = Self(1 << 8);
 }

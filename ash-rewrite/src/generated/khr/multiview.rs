@@ -10,11 +10,11 @@ impl vk::StructureType {
     pub const PHYSICAL_DEVICE_MULTIVIEW_FEATURES_KHR: Self = Self::PHYSICAL_DEVICE_MULTIVIEW_FEATURES;
     pub const PHYSICAL_DEVICE_MULTIVIEW_PROPERTIES_KHR: Self = Self::PHYSICAL_DEVICE_MULTIVIEW_PROPERTIES;
 }
-///Provided by [Vulkan 1.0](crate::vk1_0)
+///Provided by [VK_KHR_multiview](crate::khr::multiview)
 impl vk::DependencyFlags {
     pub const VIEW_LOCAL_KHR: Self = Self(vk::DependencyFlagBits::VIEW_LOCAL_KHR.0);
 }
-///Provided by [Vulkan 1.0](crate::vk1_0)
+///Provided by [VK_KHR_multiview](crate::khr::multiview)
 impl vk::DependencyFlagBits {
     pub const VIEW_LOCAL_KHR: Self = Self::VIEW_LOCAL;
 }

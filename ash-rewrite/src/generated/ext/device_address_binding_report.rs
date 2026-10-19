@@ -16,13 +16,13 @@ impl DeviceAddressBindingTypeEXT {
     pub const BIND: Self = Self(0);
     pub const UNBIND: Self = Self(1);
 }
-///Provided by [VK_EXT_debug_utils](crate::ext::debug_utils)
+///Provided by [VK_EXT_device_address_binding_report](crate::ext::device_address_binding_report)
 impl vk::DebugUtilsMessageTypeFlagsEXT {
     pub const DEVICE_ADDRESS_BINDING: Self = Self(
         vk::DebugUtilsMessageTypeFlagBitsEXT::DEVICE_ADDRESS_BINDING.0,
     );
 }
-///Provided by [VK_EXT_debug_utils](crate::ext::debug_utils)
+///Provided by [VK_EXT_device_address_binding_report](crate::ext::device_address_binding_report)
 impl vk::DebugUtilsMessageTypeFlagBitsEXT {
     pub const DEVICE_ADDRESS_BINDING: Self = Self(1 << 3);
 }

@@ -12,13 +12,13 @@ impl vk::StructureType {
     pub const SUBPASS_RESOLVE_PERFORMANCE_QUERY_EXT: Self = Self(1000376001);
     pub const MULTISAMPLED_RENDER_TO_SINGLE_SAMPLED_INFO_EXT: Self = Self(1000376002);
 }
-///Provided by [Vulkan 1.0](crate::vk1_0)
+///Provided by [VK_EXT_multisampled_render_to_single_sampled](crate::ext::multisampled_render_to_single_sampled)
 impl vk::ImageCreateFlags {
     pub const MULTISAMPLED_RENDER_TO_SINGLE_SAMPLED_EXT: Self = Self(
         vk::ImageCreateFlagBits::MULTISAMPLED_RENDER_TO_SINGLE_SAMPLED_EXT.0,
     );
 }
-///Provided by [Vulkan 1.0](crate::vk1_0)
+///Provided by [VK_EXT_multisampled_render_to_single_sampled](crate::ext::multisampled_render_to_single_sampled)
 impl vk::ImageCreateFlagBits {
     pub const MULTISAMPLED_RENDER_TO_SINGLE_SAMPLED_EXT: Self = Self(1 << 18);
 }

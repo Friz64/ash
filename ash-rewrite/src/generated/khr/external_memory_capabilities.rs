@@ -15,7 +15,7 @@ impl vk::StructureType {
     pub const EXTERNAL_BUFFER_PROPERTIES_KHR: Self = Self::EXTERNAL_BUFFER_PROPERTIES;
     pub const PHYSICAL_DEVICE_ID_PROPERTIES_KHR: Self = Self::PHYSICAL_DEVICE_ID_PROPERTIES;
 }
-///Provided by [Vulkan 1.1](crate::vk1_1)
+///Provided by [VK_KHR_external_memory_capabilities](crate::khr::external_memory_capabilities)
 impl vk::ExternalMemoryHandleTypeFlags {
     pub const OPAQUE_FD_KHR: Self = Self(
         vk::ExternalMemoryHandleTypeFlagBits::OPAQUE_FD_KHR.0,
@@ -39,7 +39,7 @@ impl vk::ExternalMemoryHandleTypeFlags {
         vk::ExternalMemoryHandleTypeFlagBits::D3D12_RESOURCE_KHR.0,
     );
 }
-///Provided by [Vulkan 1.1](crate::vk1_1)
+///Provided by [VK_KHR_external_memory_capabilities](crate::khr::external_memory_capabilities)
 impl vk::ExternalMemoryHandleTypeFlagBits {
     pub const OPAQUE_FD_KHR: Self = Self::OPAQUE_FD;
     pub const OPAQUE_WIN32_KHR: Self = Self::OPAQUE_WIN32;
@@ -49,7 +49,7 @@ impl vk::ExternalMemoryHandleTypeFlagBits {
     pub const D3D12_HEAP_KHR: Self = Self::D3D12_HEAP;
     pub const D3D12_RESOURCE_KHR: Self = Self::D3D12_RESOURCE;
 }
-///Provided by [Vulkan 1.1](crate::vk1_1)
+///Provided by [VK_KHR_external_memory_capabilities](crate::khr::external_memory_capabilities)
 impl vk::ExternalMemoryFeatureFlags {
     pub const DEDICATED_ONLY_KHR: Self = Self(
         vk::ExternalMemoryFeatureFlagBits::DEDICATED_ONLY_KHR.0,
@@ -61,7 +61,7 @@ impl vk::ExternalMemoryFeatureFlags {
         vk::ExternalMemoryFeatureFlagBits::IMPORTABLE_KHR.0,
     );
 }
-///Provided by [Vulkan 1.1](crate::vk1_1)
+///Provided by [VK_KHR_external_memory_capabilities](crate::khr::external_memory_capabilities)
 impl vk::ExternalMemoryFeatureFlagBits {
     pub const DEDICATED_ONLY_KHR: Self = Self::DEDICATED_ONLY;
     pub const EXPORTABLE_KHR: Self = Self::EXPORTABLE;

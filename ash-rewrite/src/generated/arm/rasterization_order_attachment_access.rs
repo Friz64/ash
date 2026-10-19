@@ -8,7 +8,7 @@ use core::ffi::CStr;
 impl vk::StructureType {
     pub const PHYSICAL_DEVICE_RASTERIZATION_ORDER_ATTACHMENT_ACCESS_FEATURES_ARM: Self = Self::PHYSICAL_DEVICE_RASTERIZATION_ORDER_ATTACHMENT_ACCESS_FEATURES_EXT;
 }
-///Provided by [Vulkan 1.0](crate::vk1_0)
+///Provided by [VK_ARM_rasterization_order_attachment_access](crate::arm::rasterization_order_attachment_access)
 impl vk::PipelineDepthStencilStateCreateFlags {
     pub const RASTERIZATION_ORDER_ATTACHMENT_DEPTH_ACCESS_ARM: Self = Self(
         vk::PipelineDepthStencilStateCreateFlagBits::RASTERIZATION_ORDER_ATTACHMENT_DEPTH_ACCESS_ARM
@@ -19,23 +19,23 @@ impl vk::PipelineDepthStencilStateCreateFlags {
             .0,
     );
 }
-///Provided by [Vulkan 1.0](crate::vk1_0)
+///Provided by [VK_ARM_rasterization_order_attachment_access](crate::arm::rasterization_order_attachment_access)
 impl vk::PipelineDepthStencilStateCreateFlagBits {
     pub const RASTERIZATION_ORDER_ATTACHMENT_DEPTH_ACCESS_ARM: Self = Self::RASTERIZATION_ORDER_ATTACHMENT_DEPTH_ACCESS_EXT;
     pub const RASTERIZATION_ORDER_ATTACHMENT_STENCIL_ACCESS_ARM: Self = Self::RASTERIZATION_ORDER_ATTACHMENT_STENCIL_ACCESS_EXT;
 }
-///Provided by [Vulkan 1.0](crate::vk1_0)
+///Provided by [VK_ARM_rasterization_order_attachment_access](crate::arm::rasterization_order_attachment_access)
 impl vk::PipelineColorBlendStateCreateFlags {
     pub const RASTERIZATION_ORDER_ATTACHMENT_ACCESS_ARM: Self = Self(
         vk::PipelineColorBlendStateCreateFlagBits::RASTERIZATION_ORDER_ATTACHMENT_ACCESS_ARM
             .0,
     );
 }
-///Provided by [Vulkan 1.0](crate::vk1_0)
+///Provided by [VK_ARM_rasterization_order_attachment_access](crate::arm::rasterization_order_attachment_access)
 impl vk::PipelineColorBlendStateCreateFlagBits {
     pub const RASTERIZATION_ORDER_ATTACHMENT_ACCESS_ARM: Self = Self::RASTERIZATION_ORDER_ATTACHMENT_ACCESS_EXT;
 }
-///Provided by [Vulkan 1.0](crate::vk1_0)
+///Provided by [VK_ARM_rasterization_order_attachment_access](crate::arm::rasterization_order_attachment_access)
 impl vk::SubpassDescriptionFlags {
     pub const RASTERIZATION_ORDER_ATTACHMENT_COLOR_ACCESS_ARM: Self = Self(
         vk::SubpassDescriptionFlagBits::RASTERIZATION_ORDER_ATTACHMENT_COLOR_ACCESS_ARM.0,
@@ -48,7 +48,7 @@ impl vk::SubpassDescriptionFlags {
             .0,
     );
 }
-///Provided by [Vulkan 1.0](crate::vk1_0)
+///Provided by [VK_ARM_rasterization_order_attachment_access](crate::arm::rasterization_order_attachment_access)
 impl vk::SubpassDescriptionFlagBits {
     pub const RASTERIZATION_ORDER_ATTACHMENT_COLOR_ACCESS_ARM: Self = Self::RASTERIZATION_ORDER_ATTACHMENT_COLOR_ACCESS_EXT;
     pub const RASTERIZATION_ORDER_ATTACHMENT_DEPTH_ACCESS_ARM: Self = Self::RASTERIZATION_ORDER_ATTACHMENT_DEPTH_ACCESS_EXT;

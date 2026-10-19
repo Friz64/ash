@@ -16,27 +16,27 @@ impl vk::StructureType {
 impl vk::Result {
     pub const ERROR_FRAGMENTATION_EXT: Self = Self::ERROR_FRAGMENTATION;
 }
-///Provided by [Vulkan 1.0](crate::vk1_0)
+///Provided by [VK_EXT_descriptor_indexing](crate::ext::descriptor_indexing)
 impl vk::DescriptorSetLayoutCreateFlags {
     pub const UPDATE_AFTER_BIND_POOL_EXT: Self = Self(
         vk::DescriptorSetLayoutCreateFlagBits::UPDATE_AFTER_BIND_POOL_EXT.0,
     );
 }
-///Provided by [Vulkan 1.0](crate::vk1_0)
+///Provided by [VK_EXT_descriptor_indexing](crate::ext::descriptor_indexing)
 impl vk::DescriptorSetLayoutCreateFlagBits {
     pub const UPDATE_AFTER_BIND_POOL_EXT: Self = Self::UPDATE_AFTER_BIND_POOL;
 }
-///Provided by [Vulkan 1.0](crate::vk1_0)
+///Provided by [VK_EXT_descriptor_indexing](crate::ext::descriptor_indexing)
 impl vk::DescriptorPoolCreateFlags {
     pub const UPDATE_AFTER_BIND_EXT: Self = Self(
         vk::DescriptorPoolCreateFlagBits::UPDATE_AFTER_BIND_EXT.0,
     );
 }
-///Provided by [Vulkan 1.0](crate::vk1_0)
+///Provided by [VK_EXT_descriptor_indexing](crate::ext::descriptor_indexing)
 impl vk::DescriptorPoolCreateFlagBits {
     pub const UPDATE_AFTER_BIND_EXT: Self = Self::UPDATE_AFTER_BIND;
 }
-///Provided by [Vulkan 1.2](crate::vk1_2)
+///Provided by [VK_EXT_descriptor_indexing](crate::ext::descriptor_indexing)
 impl vk::DescriptorBindingFlags {
     pub const UPDATE_AFTER_BIND_EXT: Self = Self(
         vk::DescriptorBindingFlagBits::UPDATE_AFTER_BIND_EXT.0,
@@ -51,7 +51,7 @@ impl vk::DescriptorBindingFlags {
         vk::DescriptorBindingFlagBits::VARIABLE_DESCRIPTOR_COUNT_EXT.0,
     );
 }
-///Provided by [Vulkan 1.2](crate::vk1_2)
+///Provided by [VK_EXT_descriptor_indexing](crate::ext::descriptor_indexing)
 impl vk::DescriptorBindingFlagBits {
     pub const UPDATE_AFTER_BIND_EXT: Self = Self::UPDATE_AFTER_BIND;
     pub const UPDATE_UNUSED_WHILE_PENDING_EXT: Self = Self::UPDATE_UNUSED_WHILE_PENDING;

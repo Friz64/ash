@@ -8,33 +8,33 @@ use core::ffi::CStr;
 impl vk::StructureType {
     pub const PHYSICAL_DEVICE_LEGACY_DITHERING_FEATURES_EXT: Self = Self(1000465000);
 }
-///Provided by [Vulkan 1.0](crate::vk1_0)
+///Provided by [VK_EXT_legacy_dithering](crate::ext::legacy_dithering)
 impl vk::SubpassDescriptionFlags {
     pub const ENABLE_LEGACY_DITHERING_EXT: Self = Self(
         vk::SubpassDescriptionFlagBits::ENABLE_LEGACY_DITHERING_EXT.0,
     );
 }
-///Provided by [Vulkan 1.0](crate::vk1_0)
+///Provided by [VK_EXT_legacy_dithering](crate::ext::legacy_dithering)
 impl vk::SubpassDescriptionFlagBits {
     pub const ENABLE_LEGACY_DITHERING_EXT: Self = Self(1 << 7);
 }
-///Provided by [Vulkan 1.3](crate::vk1_3)
+///Provided by [VK_EXT_legacy_dithering](crate::ext::legacy_dithering)
 impl vk::RenderingFlags {
     pub const ENABLE_LEGACY_DITHERING_EXT: Self = Self(
         vk::RenderingFlagBits::ENABLE_LEGACY_DITHERING_EXT.0,
     );
 }
-///Provided by [Vulkan 1.3](crate::vk1_3)
+///Provided by [VK_EXT_legacy_dithering](crate::ext::legacy_dithering)
 impl vk::RenderingFlagBits {
     pub const ENABLE_LEGACY_DITHERING_EXT: Self = Self(1 << 3);
 }
-///Provided by [Vulkan 1.4](crate::vk1_4)
+///Provided by [VK_EXT_legacy_dithering](crate::ext::legacy_dithering)
 impl vk::PipelineCreateFlags2 {
     pub const ENABLE_LEGACY_DITHERING_EXT: Self = Self(
         vk::PipelineCreateFlagBits2::ENABLE_LEGACY_DITHERING_EXT.0,
     );
 }
-///Provided by [Vulkan 1.4](crate::vk1_4)
+///Provided by [VK_EXT_legacy_dithering](crate::ext::legacy_dithering)
 impl vk::PipelineCreateFlagBits2 {
     pub const ENABLE_LEGACY_DITHERING_EXT: Self = Self(1 << 34);
 }

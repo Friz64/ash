@@ -16,11 +16,11 @@ impl vk::StructureType {
         1000552004,
     );
 }
-///Provided by [VK_KHR_video_encode_queue](crate::khr::video_encode_queue)
+///Provided by [VK_KHR_video_encode_intra_refresh](crate::khr::video_encode_intra_refresh)
 impl vk::VideoEncodeFlagsKHR {
     pub const INTRA_REFRESH: Self = Self(vk::VideoEncodeFlagBitsKHR::INTRA_REFRESH.0);
 }
-///Provided by [VK_KHR_video_encode_queue](crate::khr::video_encode_queue)
+///Provided by [VK_KHR_video_encode_intra_refresh](crate::khr::video_encode_intra_refresh)
 impl vk::VideoEncodeFlagBitsKHR {
     pub const INTRA_REFRESH: Self = Self(1 << 2);
 }
@@ -48,33 +48,33 @@ impl VideoEncodeIntraRefreshModeFlagBitsKHR {
     pub const BLOCK_ROW_BASED: Self = Self(1 << 2);
     pub const BLOCK_COLUMN_BASED: Self = Self(1 << 3);
 }
-///Provided by [VK_KHR_video_encode_h264](crate::khr::video_encode_h264)
+///Provided by [VK_KHR_video_encode_intra_refresh](crate::khr::video_encode_intra_refresh)
 impl vk::VideoEncodeH264CapabilityFlagsKHR {
     pub const B_PICTURE_INTRA_REFRESH: Self = Self(
         vk::VideoEncodeH264CapabilityFlagBitsKHR::B_PICTURE_INTRA_REFRESH.0,
     );
 }
-///Provided by [VK_KHR_video_encode_h264](crate::khr::video_encode_h264)
+///Provided by [VK_KHR_video_encode_intra_refresh](crate::khr::video_encode_intra_refresh)
 impl vk::VideoEncodeH264CapabilityFlagBitsKHR {
     pub const B_PICTURE_INTRA_REFRESH: Self = Self(1 << 10);
 }
-///Provided by [VK_KHR_video_encode_h265](crate::khr::video_encode_h265)
+///Provided by [VK_KHR_video_encode_intra_refresh](crate::khr::video_encode_intra_refresh)
 impl vk::VideoEncodeH265CapabilityFlagsKHR {
     pub const B_PICTURE_INTRA_REFRESH: Self = Self(
         vk::VideoEncodeH265CapabilityFlagBitsKHR::B_PICTURE_INTRA_REFRESH.0,
     );
 }
-///Provided by [VK_KHR_video_encode_h265](crate::khr::video_encode_h265)
+///Provided by [VK_KHR_video_encode_intra_refresh](crate::khr::video_encode_intra_refresh)
 impl vk::VideoEncodeH265CapabilityFlagBitsKHR {
     pub const B_PICTURE_INTRA_REFRESH: Self = Self(1 << 11);
 }
-///Provided by [VK_KHR_video_encode_av1](crate::khr::video_encode_av1)
+///Provided by [VK_KHR_video_encode_intra_refresh](crate::khr::video_encode_intra_refresh)
 impl vk::VideoEncodeAV1CapabilityFlagsKHR {
     pub const COMPOUND_PREDICTION_INTRA_REFRESH: Self = Self(
         vk::VideoEncodeAV1CapabilityFlagBitsKHR::COMPOUND_PREDICTION_INTRA_REFRESH.0,
     );
 }
-///Provided by [VK_KHR_video_encode_av1](crate::khr::video_encode_av1)
+///Provided by [VK_KHR_video_encode_intra_refresh](crate::khr::video_encode_intra_refresh)
 impl vk::VideoEncodeAV1CapabilityFlagBitsKHR {
     pub const COMPOUND_PREDICTION_INTRA_REFRESH: Self = Self(1 << 5);
 }

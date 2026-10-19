@@ -13,7 +13,7 @@ use core::ffi;
 impl vk::StructureType {
     pub const PHYSICAL_DEVICE_TOOL_PROPERTIES_EXT: Self = Self::PHYSICAL_DEVICE_TOOL_PROPERTIES;
 }
-///Provided by [Vulkan 1.3](crate::vk1_3)
+///Provided by [VK_EXT_tooling_info](crate::ext::tooling_info)
 impl vk::ToolPurposeFlags {
     pub const VALIDATION_EXT: Self = Self(vk::ToolPurposeFlagBits::VALIDATION_EXT.0);
     pub const PROFILING_EXT: Self = Self(vk::ToolPurposeFlagBits::PROFILING_EXT.0);
@@ -31,7 +31,7 @@ impl vk::ToolPurposeFlags {
         vk::ToolPurposeFlagBits::DEBUG_MARKERS_EXT.0,
     );
 }
-///Provided by [Vulkan 1.3](crate::vk1_3)
+///Provided by [VK_EXT_tooling_info](crate::ext::tooling_info)
 impl vk::ToolPurposeFlagBits {
     pub const VALIDATION_EXT: Self = Self::VALIDATION;
     pub const PROFILING_EXT: Self = Self::PROFILING;

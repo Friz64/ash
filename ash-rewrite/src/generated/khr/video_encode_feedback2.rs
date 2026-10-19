@@ -14,7 +14,7 @@ impl vk::StructureType {
         1000598002,
     );
 }
-///Provided by [VK_KHR_video_encode_queue](crate::khr::video_encode_queue)
+///Provided by [VK_KHR_video_encode_feedback2](crate::khr::video_encode_feedback2)
 impl vk::VideoEncodeFeedbackFlagsKHR {
     pub const AVERAGE_QUANTIZATION: Self = Self(
         vk::VideoEncodeFeedbackFlagBitsKHR::AVERAGE_QUANTIZATION.0,
@@ -38,7 +38,7 @@ impl vk::VideoEncodeFeedbackFlagsKHR {
         vk::VideoEncodeFeedbackFlagBitsKHR::PICTURE_PARTITION_COUNT.0,
     );
 }
-///Provided by [VK_KHR_video_encode_queue](crate::khr::video_encode_queue)
+///Provided by [VK_KHR_video_encode_feedback2](crate::khr::video_encode_feedback2)
 impl vk::VideoEncodeFeedbackFlagBitsKHR {
     pub const AVERAGE_QUANTIZATION: Self = Self(1 << 3);
     pub const MIN_QUANTIZATION: Self = Self(1 << 4);

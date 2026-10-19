@@ -11,11 +11,11 @@ impl vk::StructureType {
     pub const FRAMEBUFFER_ATTACHMENT_IMAGE_INFO_KHR: Self = Self::FRAMEBUFFER_ATTACHMENT_IMAGE_INFO;
     pub const RENDER_PASS_ATTACHMENT_BEGIN_INFO_KHR: Self = Self::RENDER_PASS_ATTACHMENT_BEGIN_INFO;
 }
-///Provided by [Vulkan 1.0](crate::vk1_0)
+///Provided by [VK_KHR_imageless_framebuffer](crate::khr::imageless_framebuffer)
 impl vk::FramebufferCreateFlags {
     pub const IMAGELESS_KHR: Self = Self(vk::FramebufferCreateFlagBits::IMAGELESS_KHR.0);
 }
-///Provided by [Vulkan 1.0](crate::vk1_0)
+///Provided by [VK_KHR_imageless_framebuffer](crate::khr::imageless_framebuffer)
 impl vk::FramebufferCreateFlagBits {
     pub const IMAGELESS_KHR: Self = Self::IMAGELESS;
 }

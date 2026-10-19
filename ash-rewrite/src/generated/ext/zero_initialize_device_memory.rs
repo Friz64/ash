@@ -14,13 +14,13 @@ impl vk::StructureType {
         1000620000,
     );
 }
-///Provided by [Vulkan 1.1](crate::vk1_1)
+///Provided by [VK_EXT_zero_initialize_device_memory](crate::ext::zero_initialize_device_memory)
 impl vk::MemoryAllocateFlags {
     pub const ZERO_INITIALIZE_EXT: Self = Self(
         vk::MemoryAllocateFlagBits::ZERO_INITIALIZE_EXT.0,
     );
 }
-///Provided by [Vulkan 1.1](crate::vk1_1)
+///Provided by [VK_EXT_zero_initialize_device_memory](crate::ext::zero_initialize_device_memory)
 impl vk::MemoryAllocateFlagBits {
     pub const ZERO_INITIALIZE_EXT: Self = Self(1 << 3);
 }

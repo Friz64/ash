@@ -24,17 +24,17 @@ impl vk::IndirectCommandsTokenTypeEXT {
     pub const DRAW_MESH_TASKS: Self = Self(1000328000);
     pub const DRAW_MESH_TASKS_COUNT: Self = Self(1000328001);
 }
-///Provided by [Vulkan 1.0](crate::vk1_0)
+///Provided by [VK_EXT_mesh_shader](crate::ext::mesh_shader)
 impl vk::ShaderStageFlags {
     pub const TASK_EXT: Self = Self(vk::ShaderStageFlagBits::TASK_EXT.0);
     pub const MESH_EXT: Self = Self(vk::ShaderStageFlagBits::MESH_EXT.0);
 }
-///Provided by [Vulkan 1.0](crate::vk1_0)
+///Provided by [VK_EXT_mesh_shader](crate::ext::mesh_shader)
 impl vk::ShaderStageFlagBits {
     pub const TASK_EXT: Self = Self(1 << 6);
     pub const MESH_EXT: Self = Self(1 << 7);
 }
-///Provided by [Vulkan 1.0](crate::vk1_0)
+///Provided by [VK_EXT_mesh_shader](crate::ext::mesh_shader)
 impl vk::QueryPipelineStatisticFlags {
     pub const TASK_SHADER_INVOCATIONS_EXT: Self = Self(
         vk::QueryPipelineStatisticFlagBits::TASK_SHADER_INVOCATIONS_EXT.0,
@@ -43,17 +43,17 @@ impl vk::QueryPipelineStatisticFlags {
         vk::QueryPipelineStatisticFlagBits::MESH_SHADER_INVOCATIONS_EXT.0,
     );
 }
-///Provided by [Vulkan 1.0](crate::vk1_0)
+///Provided by [VK_EXT_mesh_shader](crate::ext::mesh_shader)
 impl vk::QueryPipelineStatisticFlagBits {
     pub const TASK_SHADER_INVOCATIONS_EXT: Self = Self(1 << 11);
     pub const MESH_SHADER_INVOCATIONS_EXT: Self = Self(1 << 12);
 }
-///Provided by [Vulkan 1.0](crate::vk1_0)
+///Provided by [VK_EXT_mesh_shader](crate::ext::mesh_shader)
 impl vk::PipelineStageFlags {
     pub const TASK_SHADER_EXT: Self = Self(vk::PipelineStageFlagBits::TASK_SHADER_EXT.0);
     pub const MESH_SHADER_EXT: Self = Self(vk::PipelineStageFlagBits::MESH_SHADER_EXT.0);
 }
-///Provided by [Vulkan 1.0](crate::vk1_0)
+///Provided by [VK_EXT_mesh_shader](crate::ext::mesh_shader)
 impl vk::PipelineStageFlagBits {
     pub const TASK_SHADER_EXT: Self = Self(1 << 19);
     pub const MESH_SHADER_EXT: Self = Self(1 << 20);

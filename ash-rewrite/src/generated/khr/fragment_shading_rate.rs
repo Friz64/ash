@@ -42,63 +42,63 @@ impl FragmentShadingRateCombinerOpKHR {
     pub const MAX: Self = Self(3);
     pub const MUL: Self = Self(4);
 }
-///Provided by [Vulkan 1.0](crate::vk1_0)
+///Provided by [VK_KHR_fragment_shading_rate](crate::khr::fragment_shading_rate)
 impl vk::AccessFlags {
     pub const FRAGMENT_SHADING_RATE_ATTACHMENT_READ_KHR: Self = Self(
         vk::AccessFlagBits::FRAGMENT_SHADING_RATE_ATTACHMENT_READ_KHR.0,
     );
 }
-///Provided by [Vulkan 1.0](crate::vk1_0)
+///Provided by [VK_KHR_fragment_shading_rate](crate::khr::fragment_shading_rate)
 impl vk::AccessFlagBits {
     pub const FRAGMENT_SHADING_RATE_ATTACHMENT_READ_KHR: Self = Self(1 << 23);
 }
-///Provided by [Vulkan 1.0](crate::vk1_0)
+///Provided by [VK_KHR_fragment_shading_rate](crate::khr::fragment_shading_rate)
 impl vk::ImageUsageFlags {
     pub const FRAGMENT_SHADING_RATE_ATTACHMENT_KHR: Self = Self(
         vk::ImageUsageFlagBits::FRAGMENT_SHADING_RATE_ATTACHMENT_KHR.0,
     );
 }
-///Provided by [Vulkan 1.0](crate::vk1_0)
+///Provided by [VK_KHR_fragment_shading_rate](crate::khr::fragment_shading_rate)
 impl vk::ImageUsageFlagBits {
     pub const FRAGMENT_SHADING_RATE_ATTACHMENT_KHR: Self = Self(1 << 8);
 }
-///Provided by [Vulkan 1.0](crate::vk1_0)
+///Provided by [VK_KHR_fragment_shading_rate](crate::khr::fragment_shading_rate)
 impl vk::PipelineCreateFlags {
     pub const RENDERING_FRAGMENT_SHADING_RATE_ATTACHMENT_KHR: Self = Self(
         vk::PipelineCreateFlagBits::RENDERING_FRAGMENT_SHADING_RATE_ATTACHMENT_KHR.0,
     );
 }
-///Provided by [Vulkan 1.0](crate::vk1_0)
+///Provided by [VK_KHR_fragment_shading_rate](crate::khr::fragment_shading_rate)
 impl vk::PipelineCreateFlagBits {
     pub const RENDERING_FRAGMENT_SHADING_RATE_ATTACHMENT_KHR: Self = Self(1 << 21);
 }
-///Provided by [Vulkan 1.0](crate::vk1_0)
+///Provided by [VK_KHR_fragment_shading_rate](crate::khr::fragment_shading_rate)
 impl vk::FormatFeatureFlags {
     pub const FRAGMENT_SHADING_RATE_ATTACHMENT_KHR: Self = Self(
         vk::FormatFeatureFlagBits::FRAGMENT_SHADING_RATE_ATTACHMENT_KHR.0,
     );
 }
-///Provided by [Vulkan 1.0](crate::vk1_0)
+///Provided by [VK_KHR_fragment_shading_rate](crate::khr::fragment_shading_rate)
 impl vk::FormatFeatureFlagBits {
     pub const FRAGMENT_SHADING_RATE_ATTACHMENT_KHR: Self = Self(1 << 30);
 }
-///Provided by [Vulkan 1.0](crate::vk1_0)
+///Provided by [VK_KHR_fragment_shading_rate](crate::khr::fragment_shading_rate)
 impl vk::PipelineStageFlags {
     pub const FRAGMENT_SHADING_RATE_ATTACHMENT_KHR: Self = Self(
         vk::PipelineStageFlagBits::FRAGMENT_SHADING_RATE_ATTACHMENT_KHR.0,
     );
 }
-///Provided by [Vulkan 1.0](crate::vk1_0)
+///Provided by [VK_KHR_fragment_shading_rate](crate::khr::fragment_shading_rate)
 impl vk::PipelineStageFlagBits {
     pub const FRAGMENT_SHADING_RATE_ATTACHMENT_KHR: Self = Self(1 << 22);
 }
-///Provided by [Vulkan 1.3](crate::vk1_3)
+///Provided by [VK_KHR_fragment_shading_rate](crate::khr::fragment_shading_rate)
 impl vk::FormatFeatureFlags2 {
     pub const FRAGMENT_SHADING_RATE_ATTACHMENT_KHR: Self = Self(
         vk::FormatFeatureFlagBits2::FRAGMENT_SHADING_RATE_ATTACHMENT_KHR.0,
     );
 }
-///Provided by [Vulkan 1.3](crate::vk1_3)
+///Provided by [VK_KHR_fragment_shading_rate](crate::khr::fragment_shading_rate)
 impl vk::FormatFeatureFlagBits2 {
     pub const FRAGMENT_SHADING_RATE_ATTACHMENT_KHR: Self = Self(1 << 30);
 }

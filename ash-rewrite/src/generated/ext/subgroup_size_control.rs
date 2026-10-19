@@ -10,7 +10,7 @@ impl vk::StructureType {
     pub const PIPELINE_SHADER_STAGE_REQUIRED_SUBGROUP_SIZE_CREATE_INFO_EXT: Self = Self::PIPELINE_SHADER_STAGE_REQUIRED_SUBGROUP_SIZE_CREATE_INFO;
     pub const PHYSICAL_DEVICE_SUBGROUP_SIZE_CONTROL_FEATURES_EXT: Self = Self::PHYSICAL_DEVICE_SUBGROUP_SIZE_CONTROL_FEATURES;
 }
-///Provided by [Vulkan 1.0](crate::vk1_0)
+///Provided by [VK_EXT_subgroup_size_control](crate::ext::subgroup_size_control)
 impl vk::PipelineShaderStageCreateFlags {
     pub const ALLOW_VARYING_SUBGROUP_SIZE_EXT: Self = Self(
         vk::PipelineShaderStageCreateFlagBits::ALLOW_VARYING_SUBGROUP_SIZE_EXT.0,
@@ -19,7 +19,7 @@ impl vk::PipelineShaderStageCreateFlags {
         vk::PipelineShaderStageCreateFlagBits::REQUIRE_FULL_SUBGROUPS_EXT.0,
     );
 }
-///Provided by [Vulkan 1.0](crate::vk1_0)
+///Provided by [VK_EXT_subgroup_size_control](crate::ext::subgroup_size_control)
 impl vk::PipelineShaderStageCreateFlagBits {
     pub const ALLOW_VARYING_SUBGROUP_SIZE_EXT: Self = Self::ALLOW_VARYING_SUBGROUP_SIZE;
     pub const REQUIRE_FULL_SUBGROUPS_EXT: Self = Self::REQUIRE_FULL_SUBGROUPS;

@@ -13,23 +13,23 @@ impl vk::StructureType {
     pub const MEMORY_GET_REMOTE_ADDRESS_INFO_NV: Self = Self(1000371000);
     pub const PHYSICAL_DEVICE_EXTERNAL_MEMORY_RDMA_FEATURES_NV: Self = Self(1000371001);
 }
-///Provided by [Vulkan 1.0](crate::vk1_0)
+///Provided by [VK_NV_external_memory_rdma](crate::nv::external_memory_rdma)
 impl vk::MemoryPropertyFlags {
     pub const RDMA_CAPABLE_NV: Self = Self(
         vk::MemoryPropertyFlagBits::RDMA_CAPABLE_NV.0,
     );
 }
-///Provided by [Vulkan 1.0](crate::vk1_0)
+///Provided by [VK_NV_external_memory_rdma](crate::nv::external_memory_rdma)
 impl vk::MemoryPropertyFlagBits {
     pub const RDMA_CAPABLE_NV: Self = Self(1 << 8);
 }
-///Provided by [Vulkan 1.1](crate::vk1_1)
+///Provided by [VK_NV_external_memory_rdma](crate::nv::external_memory_rdma)
 impl vk::ExternalMemoryHandleTypeFlags {
     pub const RDMA_ADDRESS_NV: Self = Self(
         vk::ExternalMemoryHandleTypeFlagBits::RDMA_ADDRESS_NV.0,
     );
 }
-///Provided by [Vulkan 1.1](crate::vk1_1)
+///Provided by [VK_NV_external_memory_rdma](crate::nv::external_memory_rdma)
 impl vk::ExternalMemoryHandleTypeFlagBits {
     pub const RDMA_ADDRESS_NV: Self = Self(1 << 12);
 }

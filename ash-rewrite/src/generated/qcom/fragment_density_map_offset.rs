@@ -10,13 +10,13 @@ impl vk::StructureType {
     pub const PHYSICAL_DEVICE_FRAGMENT_DENSITY_MAP_OFFSET_PROPERTIES_QCOM: Self = Self::PHYSICAL_DEVICE_FRAGMENT_DENSITY_MAP_OFFSET_PROPERTIES_EXT;
     pub const SUBPASS_FRAGMENT_DENSITY_MAP_OFFSET_END_INFO_QCOM: Self = Self::RENDER_PASS_FRAGMENT_DENSITY_MAP_OFFSET_END_INFO_EXT;
 }
-///Provided by [Vulkan 1.0](crate::vk1_0)
+///Provided by [VK_QCOM_fragment_density_map_offset](crate::qcom::fragment_density_map_offset)
 impl vk::ImageCreateFlags {
     pub const FRAGMENT_DENSITY_MAP_OFFSET_QCOM: Self = Self(
         vk::ImageCreateFlagBits::FRAGMENT_DENSITY_MAP_OFFSET_QCOM.0,
     );
 }
-///Provided by [Vulkan 1.0](crate::vk1_0)
+///Provided by [VK_QCOM_fragment_density_map_offset](crate::qcom::fragment_density_map_offset)
 impl vk::ImageCreateFlagBits {
     pub const FRAGMENT_DENSITY_MAP_OFFSET_QCOM: Self = Self::FRAGMENT_DENSITY_MAP_OFFSET_EXT;
 }

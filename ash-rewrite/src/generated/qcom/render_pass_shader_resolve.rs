@@ -4,7 +4,7 @@
 #![doc(alias = "VK_QCOM_render_pass_shader_resolve")]
 use crate::vk;
 use core::ffi::CStr;
-///Provided by [Vulkan 1.0](crate::vk1_0)
+///Provided by [VK_QCOM_render_pass_shader_resolve](crate::qcom::render_pass_shader_resolve)
 impl vk::SubpassDescriptionFlags {
     pub const FRAGMENT_REGION_QCOM: Self = Self(
         vk::SubpassDescriptionFlagBits::FRAGMENT_REGION_QCOM.0,
@@ -13,7 +13,7 @@ impl vk::SubpassDescriptionFlags {
         vk::SubpassDescriptionFlagBits::SHADER_RESOLVE_QCOM.0,
     );
 }
-///Provided by [Vulkan 1.0](crate::vk1_0)
+///Provided by [VK_QCOM_render_pass_shader_resolve](crate::qcom::render_pass_shader_resolve)
 impl vk::SubpassDescriptionFlagBits {
     pub const FRAGMENT_REGION_QCOM: Self = Self::FRAGMENT_REGION_EXT;
     pub const SHADER_RESOLVE_QCOM: Self = Self::CUSTOM_RESOLVE_EXT;

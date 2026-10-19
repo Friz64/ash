@@ -17,13 +17,13 @@ impl vk::StructureType {
 impl vk::SubpassContents {
     pub const INLINE_AND_SECONDARY_COMMAND_BUFFERS_EXT: Self = Self::INLINE_AND_SECONDARY_COMMAND_BUFFERS_KHR;
 }
-///Provided by [Vulkan 1.3](crate::vk1_3)
+///Provided by [VK_EXT_nested_command_buffer](crate::ext::nested_command_buffer)
 impl vk::RenderingFlags {
     pub const CONTENTS_INLINE_EXT: Self = Self(
         vk::RenderingFlagBits::CONTENTS_INLINE_EXT.0,
     );
 }
-///Provided by [Vulkan 1.3](crate::vk1_3)
+///Provided by [VK_EXT_nested_command_buffer](crate::ext::nested_command_buffer)
 impl vk::RenderingFlagBits {
     pub const CONTENTS_INLINE_EXT: Self = Self::CONTENTS_INLINE_KHR;
 }

@@ -13,23 +13,23 @@ impl vk::StructureType {
     pub const PHYSICAL_DEVICE_MUTABLE_DESCRIPTOR_TYPE_FEATURES_VALVE: Self = Self::PHYSICAL_DEVICE_MUTABLE_DESCRIPTOR_TYPE_FEATURES_EXT;
     pub const MUTABLE_DESCRIPTOR_TYPE_CREATE_INFO_VALVE: Self = Self::MUTABLE_DESCRIPTOR_TYPE_CREATE_INFO_EXT;
 }
-///Provided by [Vulkan 1.0](crate::vk1_0)
+///Provided by [VK_VALVE_mutable_descriptor_type](crate::valve::mutable_descriptor_type)
 impl vk::DescriptorSetLayoutCreateFlags {
     pub const HOST_ONLY_POOL_VALVE: Self = Self(
         vk::DescriptorSetLayoutCreateFlagBits::HOST_ONLY_POOL_VALVE.0,
     );
 }
-///Provided by [Vulkan 1.0](crate::vk1_0)
+///Provided by [VK_VALVE_mutable_descriptor_type](crate::valve::mutable_descriptor_type)
 impl vk::DescriptorSetLayoutCreateFlagBits {
     pub const HOST_ONLY_POOL_VALVE: Self = Self::HOST_ONLY_POOL_EXT;
 }
-///Provided by [Vulkan 1.0](crate::vk1_0)
+///Provided by [VK_VALVE_mutable_descriptor_type](crate::valve::mutable_descriptor_type)
 impl vk::DescriptorPoolCreateFlags {
     pub const HOST_ONLY_VALVE: Self = Self(
         vk::DescriptorPoolCreateFlagBits::HOST_ONLY_VALVE.0,
     );
 }
-///Provided by [Vulkan 1.0](crate::vk1_0)
+///Provided by [VK_VALVE_mutable_descriptor_type](crate::valve::mutable_descriptor_type)
 impl vk::DescriptorPoolCreateFlagBits {
     pub const HOST_ONLY_VALVE: Self = Self::HOST_ONLY_EXT;
 }

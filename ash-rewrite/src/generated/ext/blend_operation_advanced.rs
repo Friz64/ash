@@ -71,13 +71,13 @@ impl BlendOverlapEXT {
     pub const DISJOINT: Self = Self(1);
     pub const CONJOINT: Self = Self(2);
 }
-///Provided by [Vulkan 1.0](crate::vk1_0)
+///Provided by [VK_EXT_blend_operation_advanced](crate::ext::blend_operation_advanced)
 impl vk::AccessFlags {
     pub const COLOR_ATTACHMENT_READ_NONCOHERENT_EXT: Self = Self(
         vk::AccessFlagBits::COLOR_ATTACHMENT_READ_NONCOHERENT_EXT.0,
     );
 }
-///Provided by [Vulkan 1.0](crate::vk1_0)
+///Provided by [VK_EXT_blend_operation_advanced](crate::ext::blend_operation_advanced)
 impl vk::AccessFlagBits {
     pub const COLOR_ATTACHMENT_READ_NONCOHERENT_EXT: Self = Self(1 << 19);
 }

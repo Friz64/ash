@@ -10,13 +10,13 @@ impl vk::StructureType {
         1000707000,
     );
 }
-///Provided by [Vulkan 1.3](crate::vk1_3)
+///Provided by [VK_NV_private_data_base_handle](crate::nv::private_data_base_handle)
 impl vk::PrivateDataSlotCreateFlags {
     pub const BASE_OBJECT_HANDLE_NV: Self = Self(
         vk::PrivateDataSlotCreateFlagBits::BASE_OBJECT_HANDLE_NV.0,
     );
 }
-///Provided by [Vulkan 1.3](crate::vk1_3)
+///Provided by [VK_NV_private_data_base_handle](crate::nv::private_data_base_handle)
 impl vk::PrivateDataSlotCreateFlagBits {
     pub const BASE_OBJECT_HANDLE_NV: Self = Self(1 << 0);
 }

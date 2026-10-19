@@ -8,13 +8,13 @@ use core::ffi::CStr;
 impl vk::StructureType {
     pub const PHYSICAL_DEVICE_IMAGE_PROCESSING_3_FEATURES_QCOM: Self = Self(1000303000);
 }
-///Provided by [Vulkan 1.3](crate::vk1_3)
+///Provided by [VK_QCOM_image_processing3](crate::qcom::image_processing3)
 impl vk::FormatFeatureFlags2 {
     pub const BLOCK_MATCHING_SXD_QCOM: Self = Self(
         vk::FormatFeatureFlagBits2::BLOCK_MATCHING_SXD_QCOM.0,
     );
 }
-///Provided by [Vulkan 1.3](crate::vk1_3)
+///Provided by [VK_QCOM_image_processing3](crate::qcom::image_processing3)
 impl vk::FormatFeatureFlagBits2 {
     pub const BLOCK_MATCHING_SXD_QCOM: Self = Self(1 << 44);
 }

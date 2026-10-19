@@ -17,13 +17,13 @@ impl vk::StructureType {
     pub const MEMORY_GET_NATIVE_BUFFER_INFO_OHOS: Self = Self(1000452004);
     pub const EXTERNAL_FORMAT_OHOS: Self = Self(1000452005);
 }
-///Provided by [Vulkan 1.1](crate::vk1_1)
+///Provided by [VK_OHOS_external_memory](crate::ohos::external_memory)
 impl vk::ExternalMemoryHandleTypeFlags {
     pub const OH_NATIVE_BUFFER_OHOS: Self = Self(
         vk::ExternalMemoryHandleTypeFlagBits::OH_NATIVE_BUFFER_OHOS.0,
     );
 }
-///Provided by [Vulkan 1.1](crate::vk1_1)
+///Provided by [VK_OHOS_external_memory](crate::ohos::external_memory)
 impl vk::ExternalMemoryHandleTypeFlagBits {
     pub const OH_NATIVE_BUFFER_OHOS: Self = Self(1 << 15);
 }

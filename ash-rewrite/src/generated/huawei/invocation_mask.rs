@@ -10,33 +10,33 @@ use core::ffi;
 impl vk::StructureType {
     pub const PHYSICAL_DEVICE_INVOCATION_MASK_FEATURES_HUAWEI: Self = Self(1000370000);
 }
-///Provided by [Vulkan 1.0](crate::vk1_0)
+///Provided by [VK_HUAWEI_invocation_mask](crate::huawei::invocation_mask)
 impl vk::ImageUsageFlags {
     pub const INVOCATION_MASK_HUAWEI: Self = Self(
         vk::ImageUsageFlagBits::INVOCATION_MASK_HUAWEI.0,
     );
 }
-///Provided by [Vulkan 1.0](crate::vk1_0)
+///Provided by [VK_HUAWEI_invocation_mask](crate::huawei::invocation_mask)
 impl vk::ImageUsageFlagBits {
     pub const INVOCATION_MASK_HUAWEI: Self = Self(1 << 18);
 }
-///Provided by [Vulkan 1.3](crate::vk1_3)
+///Provided by [VK_HUAWEI_invocation_mask](crate::huawei::invocation_mask)
 impl vk::AccessFlags2 {
     pub const INVOCATION_MASK_READ_HUAWEI: Self = Self(
         vk::AccessFlagBits2::INVOCATION_MASK_READ_HUAWEI.0,
     );
 }
-///Provided by [Vulkan 1.3](crate::vk1_3)
+///Provided by [VK_HUAWEI_invocation_mask](crate::huawei::invocation_mask)
 impl vk::AccessFlagBits2 {
     pub const INVOCATION_MASK_READ_HUAWEI: Self = Self(1 << 39);
 }
-///Provided by [Vulkan 1.3](crate::vk1_3)
+///Provided by [VK_HUAWEI_invocation_mask](crate::huawei::invocation_mask)
 impl vk::PipelineStageFlags2 {
     pub const INVOCATION_MASK_HUAWEI: Self = Self(
         vk::PipelineStageFlagBits2::INVOCATION_MASK_HUAWEI.0,
     );
 }
-///Provided by [Vulkan 1.3](crate::vk1_3)
+///Provided by [VK_HUAWEI_invocation_mask](crate::huawei::invocation_mask)
 impl vk::PipelineStageFlagBits2 {
     pub const INVOCATION_MASK_HUAWEI: Self = Self(1 << 40);
 }

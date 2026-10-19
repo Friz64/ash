@@ -15,37 +15,37 @@ impl vk::StructureType {
     pub const TILE_MEMORY_BIND_INFO_QCOM: Self = Self(1000547003);
     pub const TILE_MEMORY_SIZE_INFO_QCOM: Self = Self(1000547004);
 }
-///Provided by [Vulkan 1.0](crate::vk1_0)
+///Provided by [VK_QCOM_tile_memory_heap](crate::qcom::tile_memory_heap)
 impl vk::MemoryHeapFlags {
     pub const TILE_MEMORY_QCOM: Self = Self(vk::MemoryHeapFlagBits::TILE_MEMORY_QCOM.0);
 }
-///Provided by [Vulkan 1.0](crate::vk1_0)
+///Provided by [VK_QCOM_tile_memory_heap](crate::qcom::tile_memory_heap)
 impl vk::MemoryHeapFlagBits {
     pub const TILE_MEMORY_QCOM: Self = Self(1 << 3);
 }
-///Provided by [Vulkan 1.0](crate::vk1_0)
+///Provided by [VK_QCOM_tile_memory_heap](crate::qcom::tile_memory_heap)
 impl vk::BufferUsageFlags {
     pub const TILE_MEMORY_QCOM: Self = Self(vk::BufferUsageFlagBits::TILE_MEMORY_QCOM.0);
 }
-///Provided by [Vulkan 1.0](crate::vk1_0)
+///Provided by [VK_QCOM_tile_memory_heap](crate::qcom::tile_memory_heap)
 impl vk::BufferUsageFlagBits {
     pub const TILE_MEMORY_QCOM: Self = Self(1 << 27);
 }
-///Provided by [Vulkan 1.0](crate::vk1_0)
+///Provided by [VK_QCOM_tile_memory_heap](crate::qcom::tile_memory_heap)
 impl vk::ImageUsageFlags {
     pub const TILE_MEMORY_QCOM: Self = Self(vk::ImageUsageFlagBits::TILE_MEMORY_QCOM.0);
 }
-///Provided by [Vulkan 1.0](crate::vk1_0)
+///Provided by [VK_QCOM_tile_memory_heap](crate::qcom::tile_memory_heap)
 impl vk::ImageUsageFlagBits {
     pub const TILE_MEMORY_QCOM: Self = Self(1 << 27);
 }
-///Provided by [Vulkan 1.4](crate::vk1_4)
+///Provided by [VK_QCOM_tile_memory_heap](crate::qcom::tile_memory_heap)
 impl vk::BufferUsageFlags2 {
     pub const TILE_MEMORY_QCOM: Self = Self(
         vk::BufferUsageFlagBits2::TILE_MEMORY_QCOM.0,
     );
 }
-///Provided by [Vulkan 1.4](crate::vk1_4)
+///Provided by [VK_QCOM_tile_memory_heap](crate::qcom::tile_memory_heap)
 impl vk::BufferUsageFlagBits2 {
     pub const TILE_MEMORY_QCOM: Self = Self(1 << 27);
 }

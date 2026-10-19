@@ -13,13 +13,13 @@ impl vk::StructureType {
     pub const IMPORT_SEMAPHORE_ZIRCON_HANDLE_INFO_FUCHSIA: Self = Self(1000365000);
     pub const SEMAPHORE_GET_ZIRCON_HANDLE_INFO_FUCHSIA: Self = Self(1000365001);
 }
-///Provided by [Vulkan 1.1](crate::vk1_1)
+///Provided by [VK_FUCHSIA_external_semaphore](crate::fuchsia::external_semaphore)
 impl vk::ExternalSemaphoreHandleTypeFlags {
     pub const ZIRCON_EVENT_FUCHSIA: Self = Self(
         vk::ExternalSemaphoreHandleTypeFlagBits::ZIRCON_EVENT_FUCHSIA.0,
     );
 }
-///Provided by [Vulkan 1.1](crate::vk1_1)
+///Provided by [VK_FUCHSIA_external_semaphore](crate::fuchsia::external_semaphore)
 impl vk::ExternalSemaphoreHandleTypeFlagBits {
     pub const ZIRCON_EVENT_FUCHSIA: Self = Self(1 << 7);
 }

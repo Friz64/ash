@@ -4,11 +4,11 @@
 #![doc(alias = "VK_NV_shader_subgroup_partitioned")]
 use crate::vk;
 use core::ffi::CStr;
-///Provided by [Vulkan 1.1](crate::vk1_1)
+///Provided by [VK_NV_shader_subgroup_partitioned](crate::nv::shader_subgroup_partitioned)
 impl vk::SubgroupFeatureFlags {
     pub const PARTITIONED_NV: Self = Self(vk::SubgroupFeatureFlagBits::PARTITIONED_NV.0);
 }
-///Provided by [Vulkan 1.1](crate::vk1_1)
+///Provided by [VK_NV_shader_subgroup_partitioned](crate::nv::shader_subgroup_partitioned)
 impl vk::SubgroupFeatureFlagBits {
     pub const PARTITIONED_NV: Self = Self::PARTITIONED_EXT;
 }

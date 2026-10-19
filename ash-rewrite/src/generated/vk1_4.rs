@@ -124,25 +124,25 @@ impl PipelineRobustnessImageBehavior {
     pub const ROBUST_IMAGE_ACCESS: Self = Self(2);
     pub const ROBUST_IMAGE_ACCESS_2: Self = Self(3);
 }
-///Provided by [Vulkan 1.0](crate::vk1_0)
+///Provided by [Vulkan 1.4](crate::vk1_4)
 impl vk::DescriptorSetLayoutCreateFlags {
     pub const PUSH_DESCRIPTOR: Self = Self(
         vk::DescriptorSetLayoutCreateFlagBits::PUSH_DESCRIPTOR.0,
     );
 }
-///Provided by [Vulkan 1.0](crate::vk1_0)
+///Provided by [Vulkan 1.4](crate::vk1_4)
 impl vk::DescriptorSetLayoutCreateFlagBits {
     pub const PUSH_DESCRIPTOR: Self = Self(1 << 0);
 }
-///Provided by [Vulkan 1.0](crate::vk1_0)
+///Provided by [Vulkan 1.4](crate::vk1_4)
 impl vk::ImageUsageFlags {
     pub const HOST_TRANSFER: Self = Self(vk::ImageUsageFlagBits::HOST_TRANSFER.0);
 }
-///Provided by [Vulkan 1.0](crate::vk1_0)
+///Provided by [Vulkan 1.4](crate::vk1_4)
 impl vk::ImageUsageFlagBits {
     pub const HOST_TRANSFER: Self = Self(1 << 22);
 }
-///Provided by [Vulkan 1.0](crate::vk1_0)
+///Provided by [Vulkan 1.4](crate::vk1_4)
 impl vk::PipelineCreateFlags {
     pub const NO_PROTECTED_ACCESS: Self = Self(
         vk::PipelineCreateFlagBits::NO_PROTECTED_ACCESS.0,
@@ -151,30 +151,30 @@ impl vk::PipelineCreateFlags {
         vk::PipelineCreateFlagBits::PROTECTED_ACCESS_ONLY.0,
     );
 }
-///Provided by [Vulkan 1.0](crate::vk1_0)
+///Provided by [Vulkan 1.4](crate::vk1_4)
 impl vk::PipelineCreateFlagBits {
     pub const NO_PROTECTED_ACCESS: Self = Self(1 << 27);
     pub const PROTECTED_ACCESS_ONLY: Self = Self(1 << 30);
 }
-///Provided by [Vulkan 1.1](crate::vk1_1)
+///Provided by [Vulkan 1.4](crate::vk1_4)
 impl vk::SubgroupFeatureFlags {
     pub const ROTATE: Self = Self(vk::SubgroupFeatureFlagBits::ROTATE.0);
     pub const ROTATE_CLUSTERED: Self = Self(
         vk::SubgroupFeatureFlagBits::ROTATE_CLUSTERED.0,
     );
 }
-///Provided by [Vulkan 1.1](crate::vk1_1)
+///Provided by [Vulkan 1.4](crate::vk1_4)
 impl vk::SubgroupFeatureFlagBits {
     pub const ROTATE: Self = Self(1 << 9);
     pub const ROTATE_CLUSTERED: Self = Self(1 << 10);
 }
-///Provided by [Vulkan 1.3](crate::vk1_3)
+///Provided by [Vulkan 1.4](crate::vk1_4)
 impl vk::FormatFeatureFlags2 {
     pub const HOST_IMAGE_TRANSFER: Self = Self(
         vk::FormatFeatureFlagBits2::HOST_IMAGE_TRANSFER.0,
     );
 }
-///Provided by [Vulkan 1.3](crate::vk1_3)
+///Provided by [Vulkan 1.4](crate::vk1_4)
 impl vk::FormatFeatureFlagBits2 {
     pub const HOST_IMAGE_TRANSFER: Self = Self(1 << 46);
 }

@@ -19,93 +19,93 @@ impl vk::StructureType {
         1000044007,
     );
 }
-///Provided by [Vulkan 1.0](crate::vk1_0)
+///Provided by [VK_EXT_fragment_density_map](crate::ext::fragment_density_map)
 impl vk::SamplerCreateFlags {
     pub const SUBSAMPLED_EXT: Self = Self(vk::SamplerCreateFlagBits::SUBSAMPLED_EXT.0);
     pub const SUBSAMPLED_COARSE_RECONSTRUCTION_EXT: Self = Self(
         vk::SamplerCreateFlagBits::SUBSAMPLED_COARSE_RECONSTRUCTION_EXT.0,
     );
 }
-///Provided by [Vulkan 1.0](crate::vk1_0)
+///Provided by [VK_EXT_fragment_density_map](crate::ext::fragment_density_map)
 impl vk::SamplerCreateFlagBits {
     pub const SUBSAMPLED_EXT: Self = Self(1 << 0);
     pub const SUBSAMPLED_COARSE_RECONSTRUCTION_EXT: Self = Self(1 << 1);
 }
-///Provided by [Vulkan 1.0](crate::vk1_0)
+///Provided by [VK_EXT_fragment_density_map](crate::ext::fragment_density_map)
 impl vk::AccessFlags {
     pub const FRAGMENT_DENSITY_MAP_READ_EXT: Self = Self(
         vk::AccessFlagBits::FRAGMENT_DENSITY_MAP_READ_EXT.0,
     );
 }
-///Provided by [Vulkan 1.0](crate::vk1_0)
+///Provided by [VK_EXT_fragment_density_map](crate::ext::fragment_density_map)
 impl vk::AccessFlagBits {
     pub const FRAGMENT_DENSITY_MAP_READ_EXT: Self = Self(1 << 24);
 }
-///Provided by [Vulkan 1.0](crate::vk1_0)
+///Provided by [VK_EXT_fragment_density_map](crate::ext::fragment_density_map)
 impl vk::ImageUsageFlags {
     pub const FRAGMENT_DENSITY_MAP_EXT: Self = Self(
         vk::ImageUsageFlagBits::FRAGMENT_DENSITY_MAP_EXT.0,
     );
 }
-///Provided by [Vulkan 1.0](crate::vk1_0)
+///Provided by [VK_EXT_fragment_density_map](crate::ext::fragment_density_map)
 impl vk::ImageUsageFlagBits {
     pub const FRAGMENT_DENSITY_MAP_EXT: Self = Self(1 << 9);
 }
-///Provided by [Vulkan 1.0](crate::vk1_0)
+///Provided by [VK_EXT_fragment_density_map](crate::ext::fragment_density_map)
 impl vk::ImageCreateFlags {
     pub const SUBSAMPLED_EXT: Self = Self(vk::ImageCreateFlagBits::SUBSAMPLED_EXT.0);
 }
-///Provided by [Vulkan 1.0](crate::vk1_0)
+///Provided by [VK_EXT_fragment_density_map](crate::ext::fragment_density_map)
 impl vk::ImageCreateFlagBits {
     pub const SUBSAMPLED_EXT: Self = Self(1 << 14);
 }
-///Provided by [Vulkan 1.0](crate::vk1_0)
+///Provided by [VK_EXT_fragment_density_map](crate::ext::fragment_density_map)
 impl vk::ImageViewCreateFlags {
     pub const FRAGMENT_DENSITY_MAP_DYNAMIC_EXT: Self = Self(
         vk::ImageViewCreateFlagBits::FRAGMENT_DENSITY_MAP_DYNAMIC_EXT.0,
     );
 }
-///Provided by [Vulkan 1.0](crate::vk1_0)
+///Provided by [VK_EXT_fragment_density_map](crate::ext::fragment_density_map)
 impl vk::ImageViewCreateFlagBits {
     pub const FRAGMENT_DENSITY_MAP_DYNAMIC_EXT: Self = Self(1 << 0);
 }
-///Provided by [Vulkan 1.0](crate::vk1_0)
+///Provided by [VK_EXT_fragment_density_map](crate::ext::fragment_density_map)
 impl vk::PipelineCreateFlags {
     pub const RENDERING_FRAGMENT_DENSITY_MAP_ATTACHMENT_EXT: Self = Self(
         vk::PipelineCreateFlagBits::RENDERING_FRAGMENT_DENSITY_MAP_ATTACHMENT_EXT.0,
     );
 }
-///Provided by [Vulkan 1.0](crate::vk1_0)
+///Provided by [VK_EXT_fragment_density_map](crate::ext::fragment_density_map)
 impl vk::PipelineCreateFlagBits {
     pub const RENDERING_FRAGMENT_DENSITY_MAP_ATTACHMENT_EXT: Self = Self(1 << 22);
 }
-///Provided by [Vulkan 1.0](crate::vk1_0)
+///Provided by [VK_EXT_fragment_density_map](crate::ext::fragment_density_map)
 impl vk::FormatFeatureFlags {
     pub const FRAGMENT_DENSITY_MAP_EXT: Self = Self(
         vk::FormatFeatureFlagBits::FRAGMENT_DENSITY_MAP_EXT.0,
     );
 }
-///Provided by [Vulkan 1.0](crate::vk1_0)
+///Provided by [VK_EXT_fragment_density_map](crate::ext::fragment_density_map)
 impl vk::FormatFeatureFlagBits {
     pub const FRAGMENT_DENSITY_MAP_EXT: Self = Self(1 << 24);
 }
-///Provided by [Vulkan 1.0](crate::vk1_0)
+///Provided by [VK_EXT_fragment_density_map](crate::ext::fragment_density_map)
 impl vk::PipelineStageFlags {
     pub const FRAGMENT_DENSITY_PROCESS_EXT: Self = Self(
         vk::PipelineStageFlagBits::FRAGMENT_DENSITY_PROCESS_EXT.0,
     );
 }
-///Provided by [Vulkan 1.0](crate::vk1_0)
+///Provided by [VK_EXT_fragment_density_map](crate::ext::fragment_density_map)
 impl vk::PipelineStageFlagBits {
     pub const FRAGMENT_DENSITY_PROCESS_EXT: Self = Self(1 << 23);
 }
-///Provided by [Vulkan 1.3](crate::vk1_3)
+///Provided by [VK_EXT_fragment_density_map](crate::ext::fragment_density_map)
 impl vk::FormatFeatureFlags2 {
     pub const FRAGMENT_DENSITY_MAP_EXT: Self = Self(
         vk::FormatFeatureFlagBits2::FRAGMENT_DENSITY_MAP_EXT.0,
     );
 }
-///Provided by [Vulkan 1.3](crate::vk1_3)
+///Provided by [VK_EXT_fragment_density_map](crate::ext::fragment_density_map)
 impl vk::FormatFeatureFlagBits2 {
     pub const FRAGMENT_DENSITY_MAP_EXT: Self = Self(1 << 24);
 }

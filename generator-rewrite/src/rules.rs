@@ -1,4 +1,4 @@
-use analysis::name::{TypeName, VariableName};
+use analysis::name::{CommandName, TypeName, VariableName};
 use proc_macro2::TokenStream;
 use quote::ToTokens;
 use std::collections::HashMap;
@@ -26,7 +26,7 @@ impl BuilderRules {
 
         for item in &definitions.items {
             let syn::Item::Impl(item_impl) = item else {
-                continue;
+                panic!();
             };
 
             let type_name = if let syn::Type::Path(self_ty) = &*item_impl.self_ty
@@ -79,5 +79,67 @@ impl BuilderRules {
 
     pub fn get(&self, struct_name: TypeName, field_name: VariableName) -> Option<&'_ BuilderRule> {
         self.0.get(&(struct_name, field_name))
+    }
+}
+
+#[derive(Debug)]
+pub struct WrapperMethod {
+    pub inputs: TokenStream,
+    pub output: TokenStream,
+    pub block: TokenStream,
+}
+
+#[derive(Debug)]
+pub enum WrapperRule {
+    Skip,
+    Replace(WrapperMethod),
+}
+
+#[derive(Debug)]
+pub struct WrapperRules(HashMap<CommandName, WrapperRule>);
+
+impl WrapperRules {
+    pub fn new(definitions: &syn::File) -> WrapperRules {
+        let mut output = HashMap::new();
+
+        for item in &definitions.items {
+            let (attrs, sig, method) = match item {
+                syn::Item::Fn(item_fn) => (
+                    item_fn.attrs.clone(),
+                    item_fn.sig.clone(),
+                    Some(WrapperMethod {
+                        inputs: item_fn.sig.inputs.to_token_stream(),
+                        output: item_fn.sig.output.to_token_stream(),
+                        block: item_fn.block.to_token_stream(),
+                    }),
+                ),
+                syn::Item::Verbatim(tokens) => {
+                    let item_fn: syn::TraitItemFn = syn::parse2(tokens.clone()).unwrap();
+                    (item_fn.attrs, item_fn.sig, None)
+                }
+                _ => panic!(),
+            };
+
+            let Ok([attr]) = <&[_; 1]>::try_from(attrs.as_slice()) else {
+                panic!("expected there to be exactly one attribute on the function");
+            };
+
+            let value = if attr.path().is_ident("skip") {
+                WrapperRule::Skip
+            } else if attr.path().is_ident("replace") {
+                WrapperRule::Replace(method.unwrap())
+            } else {
+                panic!("unexpected attribute");
+            };
+
+            let command_name = CommandName::new(sig.ident.to_string().leak());
+            output.insert(command_name, value);
+        }
+
+        WrapperRules(output)
+    }
+
+    pub fn get(&self, command_name: CommandName) -> Option<&'_ WrapperRule> {
+        self.0.get(&command_name)
     }
 }

@@ -76,7 +76,7 @@ impl vk::RayTracingShaderGroupTypeKHR {
     pub const TRIANGLES_HIT_GROUP_NV: Self = Self::TRIANGLES_HIT_GROUP;
     pub const PROCEDURAL_HIT_GROUP_NV: Self = Self::PROCEDURAL_HIT_GROUP;
 }
-///Provided by [Vulkan 1.0](crate::vk1_0)
+///Provided by [VK_NV_ray_tracing](crate::nv::ray_tracing)
 impl vk::AccessFlags {
     pub const ACCELERATION_STRUCTURE_READ_NV: Self = Self(
         vk::AccessFlagBits::ACCELERATION_STRUCTURE_READ_NV.0,
@@ -85,20 +85,20 @@ impl vk::AccessFlags {
         vk::AccessFlagBits::ACCELERATION_STRUCTURE_WRITE_NV.0,
     );
 }
-///Provided by [Vulkan 1.0](crate::vk1_0)
+///Provided by [VK_NV_ray_tracing](crate::nv::ray_tracing)
 impl vk::AccessFlagBits {
     pub const ACCELERATION_STRUCTURE_READ_NV: Self = Self::ACCELERATION_STRUCTURE_READ_KHR;
     pub const ACCELERATION_STRUCTURE_WRITE_NV: Self = Self::ACCELERATION_STRUCTURE_WRITE_KHR;
 }
-///Provided by [Vulkan 1.0](crate::vk1_0)
+///Provided by [VK_NV_ray_tracing](crate::nv::ray_tracing)
 impl vk::BufferUsageFlags {
     pub const RAY_TRACING_NV: Self = Self(vk::BufferUsageFlagBits::RAY_TRACING_NV.0);
 }
-///Provided by [Vulkan 1.0](crate::vk1_0)
+///Provided by [VK_NV_ray_tracing](crate::nv::ray_tracing)
 impl vk::BufferUsageFlagBits {
     pub const RAY_TRACING_NV: Self = Self::SHADER_BINDING_TABLE_KHR;
 }
-///Provided by [Vulkan 1.0](crate::vk1_0)
+///Provided by [VK_NV_ray_tracing](crate::nv::ray_tracing)
 impl vk::ShaderStageFlags {
     pub const RAYGEN_NV: Self = Self(vk::ShaderStageFlagBits::RAYGEN_NV.0);
     pub const ANY_HIT_NV: Self = Self(vk::ShaderStageFlagBits::ANY_HIT_NV.0);
@@ -107,7 +107,7 @@ impl vk::ShaderStageFlags {
     pub const INTERSECTION_NV: Self = Self(vk::ShaderStageFlagBits::INTERSECTION_NV.0);
     pub const CALLABLE_NV: Self = Self(vk::ShaderStageFlagBits::CALLABLE_NV.0);
 }
-///Provided by [Vulkan 1.0](crate::vk1_0)
+///Provided by [VK_NV_ray_tracing](crate::nv::ray_tracing)
 impl vk::ShaderStageFlagBits {
     pub const RAYGEN_NV: Self = Self::RAYGEN_KHR;
     pub const ANY_HIT_NV: Self = Self::ANY_HIT_KHR;
@@ -116,17 +116,17 @@ impl vk::ShaderStageFlagBits {
     pub const INTERSECTION_NV: Self = Self::INTERSECTION_KHR;
     pub const CALLABLE_NV: Self = Self::CALLABLE_KHR;
 }
-///Provided by [Vulkan 1.0](crate::vk1_0)
+///Provided by [VK_NV_ray_tracing](crate::nv::ray_tracing)
 impl vk::PipelineCreateFlags {
     pub const DEFER_COMPILE_NV: Self = Self(
         vk::PipelineCreateFlagBits::DEFER_COMPILE_NV.0,
     );
 }
-///Provided by [Vulkan 1.0](crate::vk1_0)
+///Provided by [VK_NV_ray_tracing](crate::nv::ray_tracing)
 impl vk::PipelineCreateFlagBits {
     pub const DEFER_COMPILE_NV: Self = Self(1 << 5);
 }
-///Provided by [Vulkan 1.0](crate::vk1_0)
+///Provided by [VK_NV_ray_tracing](crate::nv::ray_tracing)
 impl vk::PipelineStageFlags {
     pub const RAY_TRACING_SHADER_NV: Self = Self(
         vk::PipelineStageFlagBits::RAY_TRACING_SHADER_NV.0,
@@ -135,24 +135,24 @@ impl vk::PipelineStageFlags {
         vk::PipelineStageFlagBits::ACCELERATION_STRUCTURE_BUILD_NV.0,
     );
 }
-///Provided by [Vulkan 1.0](crate::vk1_0)
+///Provided by [VK_NV_ray_tracing](crate::nv::ray_tracing)
 impl vk::PipelineStageFlagBits {
     pub const RAY_TRACING_SHADER_NV: Self = Self::RAY_TRACING_SHADER_KHR;
     pub const ACCELERATION_STRUCTURE_BUILD_NV: Self = Self::ACCELERATION_STRUCTURE_BUILD_KHR;
 }
-///Provided by [VK_KHR_acceleration_structure](crate::khr::acceleration_structure)
+///Provided by [VK_NV_ray_tracing](crate::nv::ray_tracing)
 impl vk::GeometryFlagsKHR {
     pub const OPAQUE_NV: Self = Self(vk::GeometryFlagBitsKHR::OPAQUE_NV.0);
     pub const NO_DUPLICATE_ANY_HIT_INVOCATION_NV: Self = Self(
         vk::GeometryFlagBitsKHR::NO_DUPLICATE_ANY_HIT_INVOCATION_NV.0,
     );
 }
-///Provided by [VK_KHR_acceleration_structure](crate::khr::acceleration_structure)
+///Provided by [VK_NV_ray_tracing](crate::nv::ray_tracing)
 impl vk::GeometryFlagBitsKHR {
     pub const OPAQUE_NV: Self = Self::OPAQUE;
     pub const NO_DUPLICATE_ANY_HIT_INVOCATION_NV: Self = Self::NO_DUPLICATE_ANY_HIT_INVOCATION;
 }
-///Provided by [VK_KHR_acceleration_structure](crate::khr::acceleration_structure)
+///Provided by [VK_NV_ray_tracing](crate::nv::ray_tracing)
 impl vk::GeometryInstanceFlagsKHR {
     pub const TRIANGLE_CULL_DISABLE_NV: Self = Self(
         vk::GeometryInstanceFlagBitsKHR::TRIANGLE_CULL_DISABLE_NV.0,
@@ -167,14 +167,14 @@ impl vk::GeometryInstanceFlagsKHR {
         vk::GeometryInstanceFlagBitsKHR::FORCE_NO_OPAQUE_NV.0,
     );
 }
-///Provided by [VK_KHR_acceleration_structure](crate::khr::acceleration_structure)
+///Provided by [VK_NV_ray_tracing](crate::nv::ray_tracing)
 impl vk::GeometryInstanceFlagBitsKHR {
     pub const TRIANGLE_CULL_DISABLE_NV: Self = Self::TRIANGLE_FACING_CULL_DISABLE;
     pub const TRIANGLE_FRONT_COUNTERCLOCKWISE_NV: Self = Self::TRIANGLE_FRONT_COUNTERCLOCKWISE;
     pub const FORCE_OPAQUE_NV: Self = Self::FORCE_OPAQUE;
     pub const FORCE_NO_OPAQUE_NV: Self = Self::FORCE_NO_OPAQUE;
 }
-///Provided by [VK_KHR_acceleration_structure](crate::khr::acceleration_structure)
+///Provided by [VK_NV_ray_tracing](crate::nv::ray_tracing)
 impl vk::BuildAccelerationStructureFlagsKHR {
     pub const ALLOW_UPDATE_NV: Self = Self(
         vk::BuildAccelerationStructureFlagBitsKHR::ALLOW_UPDATE_NV.0,
@@ -192,7 +192,7 @@ impl vk::BuildAccelerationStructureFlagsKHR {
         vk::BuildAccelerationStructureFlagBitsKHR::LOW_MEMORY_NV.0,
     );
 }
-///Provided by [VK_KHR_acceleration_structure](crate::khr::acceleration_structure)
+///Provided by [VK_NV_ray_tracing](crate::nv::ray_tracing)
 impl vk::BuildAccelerationStructureFlagBitsKHR {
     pub const ALLOW_UPDATE_NV: Self = Self::ALLOW_UPDATE;
     pub const ALLOW_COMPACTION_NV: Self = Self::ALLOW_COMPACTION;

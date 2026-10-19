@@ -14,7 +14,7 @@ impl vk::StructureType {
     pub const MEMORY_METAL_HANDLE_PROPERTIES_EXT: Self = Self(1000602001);
     pub const MEMORY_GET_METAL_HANDLE_INFO_EXT: Self = Self(1000602002);
 }
-///Provided by [Vulkan 1.1](crate::vk1_1)
+///Provided by [VK_EXT_external_memory_metal](crate::ext::external_memory_metal)
 impl vk::ExternalMemoryHandleTypeFlags {
     pub const MTLBUFFER_EXT: Self = Self(
         vk::ExternalMemoryHandleTypeFlagBits::MTLBUFFER_EXT.0,
@@ -26,7 +26,7 @@ impl vk::ExternalMemoryHandleTypeFlags {
         vk::ExternalMemoryHandleTypeFlagBits::MTLHEAP_EXT.0,
     );
 }
-///Provided by [Vulkan 1.1](crate::vk1_1)
+///Provided by [VK_EXT_external_memory_metal](crate::ext::external_memory_metal)
 impl vk::ExternalMemoryHandleTypeFlagBits {
     pub const MTLBUFFER_EXT: Self = Self(1 << 16);
     pub const MTLTEXTURE_EXT: Self = Self(1 << 17);

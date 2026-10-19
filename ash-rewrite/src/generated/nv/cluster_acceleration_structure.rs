@@ -123,13 +123,13 @@ impl ClusterAccelerationStructureAddressResolutionFlagBitsNV {
     pub const INDIRECTED_SRC_INFOS_ARRAY: Self = Self(1 << 4);
     pub const INDIRECTED_SRC_INFOS_COUNT: Self = Self(1 << 5);
 }
-///Provided by [VK_KHR_acceleration_structure](crate::khr::acceleration_structure)
+///Provided by [VK_NV_cluster_acceleration_structure](crate::nv::cluster_acceleration_structure)
 impl vk::BuildAccelerationStructureFlagsKHR {
     pub const ALLOW_CLUSTER_OPACITY_MICROMAPS_NV: Self = Self(
         vk::BuildAccelerationStructureFlagBitsKHR::ALLOW_CLUSTER_OPACITY_MICROMAPS_NV.0,
     );
 }
-///Provided by [VK_KHR_acceleration_structure](crate::khr::acceleration_structure)
+///Provided by [VK_NV_cluster_acceleration_structure](crate::nv::cluster_acceleration_structure)
 impl vk::BuildAccelerationStructureFlagBitsKHR {
     pub const ALLOW_CLUSTER_OPACITY_MICROMAPS_NV: Self = Self(1 << 12);
 }

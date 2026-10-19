@@ -15,13 +15,13 @@ impl vk::SamplerReductionMode {
     pub const MIN_EXT: Self = Self::MIN;
     pub const MAX_EXT: Self = Self::MAX;
 }
-///Provided by [Vulkan 1.0](crate::vk1_0)
+///Provided by [VK_EXT_sampler_filter_minmax](crate::ext::sampler_filter_minmax)
 impl vk::FormatFeatureFlags {
     pub const SAMPLED_IMAGE_FILTER_MINMAX_EXT: Self = Self(
         vk::FormatFeatureFlagBits::SAMPLED_IMAGE_FILTER_MINMAX_EXT.0,
     );
 }
-///Provided by [Vulkan 1.0](crate::vk1_0)
+///Provided by [VK_EXT_sampler_filter_minmax](crate::ext::sampler_filter_minmax)
 impl vk::FormatFeatureFlagBits {
     pub const SAMPLED_IMAGE_FILTER_MINMAX_EXT: Self = Self::SAMPLED_IMAGE_FILTER_MINMAX;
 }

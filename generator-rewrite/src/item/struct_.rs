@@ -232,6 +232,7 @@ impl Code for Struct {
         let builders = self.members.iter().flat_map(|member| match member {
             Member::Regular(member) => {
                 let tokens = match ctx.builder_rules.get(self.name, member.decl.name) {
+                    _ if matches!(member.decl.name.original(), "sType" | "pNext") => quote! {},
                     Some(BuilderRule::Skip) => quote! {},
                     Some(BuilderRule::Replace(BuilderMethod {
                         inputs,
@@ -279,10 +280,6 @@ fn regular_builder(
     lifetime: &Lifetime,
     keep: bool,
 ) -> TokenStream {
-    if matches!(member.decl.name.original(), "sType" | "pNext") {
-        return quote! {};
-    }
-
     let field_name = octx.variable_token(member.decl.name);
     let method_name = method_name_token(member);
 

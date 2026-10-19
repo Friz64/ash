@@ -8,13 +8,13 @@ use core::ffi::CStr;
 impl vk::Filter {
     pub const CUBIC_IMG: Self = Self::CUBIC_EXT;
 }
-///Provided by [Vulkan 1.0](crate::vk1_0)
+///Provided by [VK_IMG_filter_cubic](crate::img::filter_cubic)
 impl vk::FormatFeatureFlags {
     pub const SAMPLED_IMAGE_FILTER_CUBIC_IMG: Self = Self(
         vk::FormatFeatureFlagBits::SAMPLED_IMAGE_FILTER_CUBIC_IMG.0,
     );
 }
-///Provided by [Vulkan 1.0](crate::vk1_0)
+///Provided by [VK_IMG_filter_cubic](crate::img::filter_cubic)
 impl vk::FormatFeatureFlagBits {
     pub const SAMPLED_IMAGE_FILTER_CUBIC_IMG: Self = Self::SAMPLED_IMAGE_FILTER_CUBIC_EXT;
 }

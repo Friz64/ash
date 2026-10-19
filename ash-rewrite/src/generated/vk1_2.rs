@@ -170,61 +170,61 @@ impl ShaderFloatControlsIndependence {
     pub const ALL: Self = Self(1);
     pub const NONE: Self = Self(2);
 }
-///Provided by [Vulkan 1.0](crate::vk1_0)
+///Provided by [Vulkan 1.2](crate::vk1_2)
 impl vk::FramebufferCreateFlags {
     pub const IMAGELESS: Self = Self(vk::FramebufferCreateFlagBits::IMAGELESS.0);
 }
-///Provided by [Vulkan 1.0](crate::vk1_0)
+///Provided by [Vulkan 1.2](crate::vk1_2)
 impl vk::FramebufferCreateFlagBits {
     pub const IMAGELESS: Self = Self(1 << 0);
 }
-///Provided by [Vulkan 1.0](crate::vk1_0)
+///Provided by [Vulkan 1.2](crate::vk1_2)
 impl vk::DescriptorSetLayoutCreateFlags {
     pub const UPDATE_AFTER_BIND_POOL: Self = Self(
         vk::DescriptorSetLayoutCreateFlagBits::UPDATE_AFTER_BIND_POOL.0,
     );
 }
-///Provided by [Vulkan 1.0](crate::vk1_0)
+///Provided by [Vulkan 1.2](crate::vk1_2)
 impl vk::DescriptorSetLayoutCreateFlagBits {
     pub const UPDATE_AFTER_BIND_POOL: Self = Self(1 << 1);
 }
-///Provided by [Vulkan 1.0](crate::vk1_0)
+///Provided by [Vulkan 1.2](crate::vk1_2)
 impl vk::BufferUsageFlags {
     pub const SHADER_DEVICE_ADDRESS: Self = Self(
         vk::BufferUsageFlagBits::SHADER_DEVICE_ADDRESS.0,
     );
 }
-///Provided by [Vulkan 1.0](crate::vk1_0)
+///Provided by [Vulkan 1.2](crate::vk1_2)
 impl vk::BufferUsageFlagBits {
     pub const SHADER_DEVICE_ADDRESS: Self = Self(1 << 17);
 }
-///Provided by [Vulkan 1.0](crate::vk1_0)
+///Provided by [Vulkan 1.2](crate::vk1_2)
 impl vk::BufferCreateFlags {
     pub const DEVICE_ADDRESS_CAPTURE_REPLAY: Self = Self(
         vk::BufferCreateFlagBits::DEVICE_ADDRESS_CAPTURE_REPLAY.0,
     );
 }
-///Provided by [Vulkan 1.0](crate::vk1_0)
+///Provided by [Vulkan 1.2](crate::vk1_2)
 impl vk::BufferCreateFlagBits {
     pub const DEVICE_ADDRESS_CAPTURE_REPLAY: Self = Self(1 << 4);
 }
-///Provided by [Vulkan 1.0](crate::vk1_0)
+///Provided by [Vulkan 1.2](crate::vk1_2)
 impl vk::FormatFeatureFlags {
     pub const SAMPLED_IMAGE_FILTER_MINMAX: Self = Self(
         vk::FormatFeatureFlagBits::SAMPLED_IMAGE_FILTER_MINMAX.0,
     );
 }
-///Provided by [Vulkan 1.0](crate::vk1_0)
+///Provided by [Vulkan 1.2](crate::vk1_2)
 impl vk::FormatFeatureFlagBits {
     pub const SAMPLED_IMAGE_FILTER_MINMAX: Self = Self(1 << 16);
 }
-///Provided by [Vulkan 1.0](crate::vk1_0)
+///Provided by [Vulkan 1.2](crate::vk1_2)
 impl vk::DescriptorPoolCreateFlags {
     pub const UPDATE_AFTER_BIND: Self = Self(
         vk::DescriptorPoolCreateFlagBits::UPDATE_AFTER_BIND.0,
     );
 }
-///Provided by [Vulkan 1.0](crate::vk1_0)
+///Provided by [Vulkan 1.2](crate::vk1_2)
 impl vk::DescriptorPoolCreateFlagBits {
     pub const UPDATE_AFTER_BIND: Self = Self(1 << 1);
 }
@@ -236,14 +236,14 @@ impl SemaphoreWaitFlags {
 impl SemaphoreWaitFlagBits {
     pub const ANY: Self = Self(1 << 0);
 }
-///Provided by [Vulkan 1.1](crate::vk1_1)
+///Provided by [Vulkan 1.2](crate::vk1_2)
 impl vk::MemoryAllocateFlags {
     pub const DEVICE_ADDRESS: Self = Self(vk::MemoryAllocateFlagBits::DEVICE_ADDRESS.0);
     pub const DEVICE_ADDRESS_CAPTURE_REPLAY: Self = Self(
         vk::MemoryAllocateFlagBits::DEVICE_ADDRESS_CAPTURE_REPLAY.0,
     );
 }
-///Provided by [Vulkan 1.1](crate::vk1_1)
+///Provided by [Vulkan 1.2](crate::vk1_2)
 impl vk::MemoryAllocateFlagBits {
     pub const DEVICE_ADDRESS: Self = Self(1 << 1);
     pub const DEVICE_ADDRESS_CAPTURE_REPLAY: Self = Self(1 << 2);

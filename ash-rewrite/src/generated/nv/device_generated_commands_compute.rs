@@ -20,13 +20,13 @@ impl vk::IndirectCommandsTokenTypeNV {
     pub const PIPELINE: Self = Self(1000428003);
     pub const DISPATCH: Self = Self(1000428004);
 }
-///Provided by [Vulkan 1.0](crate::vk1_0)
+///Provided by [VK_NV_device_generated_commands_compute](crate::nv::device_generated_commands_compute)
 impl vk::DescriptorSetLayoutCreateFlags {
     pub const INDIRECT_BINDABLE_NV: Self = Self(
         vk::DescriptorSetLayoutCreateFlagBits::INDIRECT_BINDABLE_NV.0,
     );
 }
-///Provided by [Vulkan 1.0](crate::vk1_0)
+///Provided by [VK_NV_device_generated_commands_compute](crate::nv::device_generated_commands_compute)
 impl vk::DescriptorSetLayoutCreateFlagBits {
     pub const INDIRECT_BINDABLE_NV: Self = Self(1 << 7);
 }

@@ -9,33 +9,33 @@ impl vk::StructureType {
     pub const PHYSICAL_DEVICE_VIDEO_MAINTENANCE_1_FEATURES_KHR: Self = Self(1000515000);
     pub const VIDEO_INLINE_QUERY_INFO_KHR: Self = Self(1000515001);
 }
-///Provided by [Vulkan 1.0](crate::vk1_0)
+///Provided by [VK_KHR_video_maintenance1](crate::khr::video_maintenance1)
 impl vk::BufferCreateFlags {
     pub const VIDEO_PROFILE_INDEPENDENT_KHR: Self = Self(
         vk::BufferCreateFlagBits::VIDEO_PROFILE_INDEPENDENT_KHR.0,
     );
 }
-///Provided by [Vulkan 1.0](crate::vk1_0)
+///Provided by [VK_KHR_video_maintenance1](crate::khr::video_maintenance1)
 impl vk::BufferCreateFlagBits {
     pub const VIDEO_PROFILE_INDEPENDENT_KHR: Self = Self(1 << 6);
 }
-///Provided by [Vulkan 1.0](crate::vk1_0)
+///Provided by [VK_KHR_video_maintenance1](crate::khr::video_maintenance1)
 impl vk::ImageCreateFlags {
     pub const VIDEO_PROFILE_INDEPENDENT_KHR: Self = Self(
         vk::ImageCreateFlagBits::VIDEO_PROFILE_INDEPENDENT_KHR.0,
     );
 }
-///Provided by [Vulkan 1.0](crate::vk1_0)
+///Provided by [VK_KHR_video_maintenance1](crate::khr::video_maintenance1)
 impl vk::ImageCreateFlagBits {
     pub const VIDEO_PROFILE_INDEPENDENT_KHR: Self = Self(1 << 20);
 }
-///Provided by [VK_KHR_video_queue](crate::khr::video_queue)
+///Provided by [VK_KHR_video_maintenance1](crate::khr::video_maintenance1)
 impl vk::VideoSessionCreateFlagsKHR {
     pub const INLINE_QUERIES: Self = Self(
         vk::VideoSessionCreateFlagBitsKHR::INLINE_QUERIES.0,
     );
 }
-///Provided by [VK_KHR_video_queue](crate::khr::video_queue)
+///Provided by [VK_KHR_video_maintenance1](crate::khr::video_maintenance1)
 impl vk::VideoSessionCreateFlagBitsKHR {
     pub const INLINE_QUERIES: Self = Self(1 << 2);
 }

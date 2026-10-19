@@ -8,13 +8,13 @@ use core::ffi::CStr;
 impl vk::StructureType {
     pub const PHYSICAL_DEVICE_IMAGE_2D_VIEW_OF_3D_FEATURES_EXT: Self = Self(1000393000);
 }
-///Provided by [Vulkan 1.0](crate::vk1_0)
+///Provided by [VK_EXT_image_2d_view_of_3d](crate::ext::image_2d_view_of_3d)
 impl vk::ImageCreateFlags {
     pub const TYPE_2D_VIEW_COMPATIBLE_EXT: Self = Self(
         vk::ImageCreateFlagBits::TYPE_2D_VIEW_COMPATIBLE_EXT.0,
     );
 }
-///Provided by [Vulkan 1.0](crate::vk1_0)
+///Provided by [VK_EXT_image_2d_view_of_3d](crate::ext::image_2d_view_of_3d)
 impl vk::ImageCreateFlagBits {
     pub const TYPE_2D_VIEW_COMPATIBLE_EXT: Self = Self(1 << 17);
 }

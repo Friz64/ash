@@ -25,24 +25,24 @@ impl DisplacementMicromapFormatNV {
     pub const TYPE_256_TRIANGLES_128_BYTES: Self = Self(2);
     pub const TYPE_1024_TRIANGLES_128_BYTES: Self = Self(3);
 }
-///Provided by [Vulkan 1.0](crate::vk1_0)
+///Provided by [VK_NV_displacement_micromap](crate::nv::displacement_micromap)
 impl vk::PipelineCreateFlags {
     pub const RAY_TRACING_DISPLACEMENT_MICROMAP_NV: Self = Self(
         vk::PipelineCreateFlagBits::RAY_TRACING_DISPLACEMENT_MICROMAP_NV.0,
     );
 }
-///Provided by [Vulkan 1.0](crate::vk1_0)
+///Provided by [VK_NV_displacement_micromap](crate::nv::displacement_micromap)
 impl vk::PipelineCreateFlagBits {
     pub const RAY_TRACING_DISPLACEMENT_MICROMAP_NV: Self = Self(1 << 28);
 }
-///Provided by [VK_KHR_acceleration_structure](crate::khr::acceleration_structure)
+///Provided by [VK_NV_displacement_micromap](crate::nv::displacement_micromap)
 impl vk::BuildAccelerationStructureFlagsKHR {
     pub const ALLOW_DISPLACEMENT_MICROMAP_UPDATE_NV: Self = Self(
         vk::BuildAccelerationStructureFlagBitsKHR::ALLOW_DISPLACEMENT_MICROMAP_UPDATE_NV
             .0,
     );
 }
-///Provided by [VK_KHR_acceleration_structure](crate::khr::acceleration_structure)
+///Provided by [VK_NV_displacement_micromap](crate::nv::displacement_micromap)
 impl vk::BuildAccelerationStructureFlagBitsKHR {
     pub const ALLOW_DISPLACEMENT_MICROMAP_UPDATE_NV: Self = Self(1 << 9);
 }

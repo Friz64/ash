@@ -4,13 +4,13 @@
 #![doc(alias = "VK_EXT_external_memory_dma_buf")]
 use crate::vk;
 use core::ffi::CStr;
-///Provided by [Vulkan 1.1](crate::vk1_1)
+///Provided by [VK_EXT_external_memory_dma_buf](crate::ext::external_memory_dma_buf)
 impl vk::ExternalMemoryHandleTypeFlags {
     pub const DMA_BUF_EXT: Self = Self(
         vk::ExternalMemoryHandleTypeFlagBits::DMA_BUF_EXT.0,
     );
 }
-///Provided by [Vulkan 1.1](crate::vk1_1)
+///Provided by [VK_EXT_external_memory_dma_buf](crate::ext::external_memory_dma_buf)
 impl vk::ExternalMemoryHandleTypeFlagBits {
     pub const DMA_BUF_EXT: Self = Self(1 << 9);
 }

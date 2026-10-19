@@ -20,33 +20,33 @@ impl AccelerationStructureMotionInstanceTypeNV {
     pub const MATRIX_MOTION: Self = Self(1);
     pub const SRT_MOTION: Self = Self(2);
 }
-///Provided by [Vulkan 1.0](crate::vk1_0)
+///Provided by [VK_NV_ray_tracing_motion_blur](crate::nv::ray_tracing_motion_blur)
 impl vk::PipelineCreateFlags {
     pub const RAY_TRACING_ALLOW_MOTION_NV: Self = Self(
         vk::PipelineCreateFlagBits::RAY_TRACING_ALLOW_MOTION_NV.0,
     );
 }
-///Provided by [Vulkan 1.0](crate::vk1_0)
+///Provided by [VK_NV_ray_tracing_motion_blur](crate::nv::ray_tracing_motion_blur)
 impl vk::PipelineCreateFlagBits {
     pub const RAY_TRACING_ALLOW_MOTION_NV: Self = Self(1 << 20);
 }
-///Provided by [VK_KHR_acceleration_structure](crate::khr::acceleration_structure)
+///Provided by [VK_NV_ray_tracing_motion_blur](crate::nv::ray_tracing_motion_blur)
 impl vk::BuildAccelerationStructureFlagsKHR {
     pub const MOTION_NV: Self = Self(
         vk::BuildAccelerationStructureFlagBitsKHR::MOTION_NV.0,
     );
 }
-///Provided by [VK_KHR_acceleration_structure](crate::khr::acceleration_structure)
+///Provided by [VK_NV_ray_tracing_motion_blur](crate::nv::ray_tracing_motion_blur)
 impl vk::BuildAccelerationStructureFlagBitsKHR {
     pub const MOTION_NV: Self = Self(1 << 5);
 }
-///Provided by [VK_KHR_acceleration_structure](crate::khr::acceleration_structure)
+///Provided by [VK_NV_ray_tracing_motion_blur](crate::nv::ray_tracing_motion_blur)
 impl vk::AccelerationStructureCreateFlagsKHR {
     pub const MOTION_NV: Self = Self(
         vk::AccelerationStructureCreateFlagBitsKHR::MOTION_NV.0,
     );
 }
-///Provided by [VK_KHR_acceleration_structure](crate::khr::acceleration_structure)
+///Provided by [VK_NV_ray_tracing_motion_blur](crate::nv::ray_tracing_motion_blur)
 impl vk::AccelerationStructureCreateFlagBitsKHR {
     pub const MOTION_NV: Self = Self(1 << 2);
 }

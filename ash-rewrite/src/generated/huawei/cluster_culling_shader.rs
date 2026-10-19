@@ -18,33 +18,33 @@ impl vk::StructureType {
         1000404002,
     );
 }
-///Provided by [Vulkan 1.0](crate::vk1_0)
+///Provided by [VK_HUAWEI_cluster_culling_shader](crate::huawei::cluster_culling_shader)
 impl vk::ShaderStageFlags {
     pub const CLUSTER_CULLING_HUAWEI: Self = Self(
         vk::ShaderStageFlagBits::CLUSTER_CULLING_HUAWEI.0,
     );
 }
-///Provided by [Vulkan 1.0](crate::vk1_0)
+///Provided by [VK_HUAWEI_cluster_culling_shader](crate::huawei::cluster_culling_shader)
 impl vk::ShaderStageFlagBits {
     pub const CLUSTER_CULLING_HUAWEI: Self = Self(1 << 19);
 }
-///Provided by [Vulkan 1.0](crate::vk1_0)
+///Provided by [VK_HUAWEI_cluster_culling_shader](crate::huawei::cluster_culling_shader)
 impl vk::QueryPipelineStatisticFlags {
     pub const CLUSTER_CULLING_SHADER_INVOCATIONS_HUAWEI: Self = Self(
         vk::QueryPipelineStatisticFlagBits::CLUSTER_CULLING_SHADER_INVOCATIONS_HUAWEI.0,
     );
 }
-///Provided by [Vulkan 1.0](crate::vk1_0)
+///Provided by [VK_HUAWEI_cluster_culling_shader](crate::huawei::cluster_culling_shader)
 impl vk::QueryPipelineStatisticFlagBits {
     pub const CLUSTER_CULLING_SHADER_INVOCATIONS_HUAWEI: Self = Self(1 << 13);
 }
-///Provided by [Vulkan 1.3](crate::vk1_3)
+///Provided by [VK_HUAWEI_cluster_culling_shader](crate::huawei::cluster_culling_shader)
 impl vk::PipelineStageFlags2 {
     pub const CLUSTER_CULLING_SHADER_HUAWEI: Self = Self(
         vk::PipelineStageFlagBits2::CLUSTER_CULLING_SHADER_HUAWEI.0,
     );
 }
-///Provided by [Vulkan 1.3](crate::vk1_3)
+///Provided by [VK_HUAWEI_cluster_culling_shader](crate::huawei::cluster_culling_shader)
 impl vk::PipelineStageFlagBits2 {
     pub const CLUSTER_CULLING_SHADER_HUAWEI: Self = Self(1 << 41);
 }

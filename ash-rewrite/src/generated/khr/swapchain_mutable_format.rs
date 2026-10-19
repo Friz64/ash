@@ -4,13 +4,13 @@
 #![doc(alias = "VK_KHR_swapchain_mutable_format")]
 use crate::vk;
 use core::ffi::CStr;
-///Provided by [VK_KHR_swapchain](crate::khr::swapchain)
+///Provided by [VK_KHR_swapchain_mutable_format](crate::khr::swapchain_mutable_format)
 impl vk::SwapchainCreateFlagsKHR {
     pub const MUTABLE_FORMAT: Self = Self(
         vk::SwapchainCreateFlagBitsKHR::MUTABLE_FORMAT.0,
     );
 }
-///Provided by [VK_KHR_swapchain](crate::khr::swapchain)
+///Provided by [VK_KHR_swapchain_mutable_format](crate::khr::swapchain_mutable_format)
 impl vk::SwapchainCreateFlagBitsKHR {
     pub const MUTABLE_FORMAT: Self = Self(1 << 2);
 }

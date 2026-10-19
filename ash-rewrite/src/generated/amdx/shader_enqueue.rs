@@ -22,33 +22,33 @@ impl vk::StructureType {
     pub const EXECUTION_GRAPH_PIPELINE_CREATE_INFO_AMDX: Self = Self(1000134003);
     pub const PIPELINE_SHADER_STAGE_NODE_CREATE_INFO_AMDX: Self = Self(1000134004);
 }
-///Provided by [Vulkan 1.0](crate::vk1_0)
+///Provided by [VK_AMDX_shader_enqueue](crate::amdx::shader_enqueue)
 impl vk::BufferUsageFlags {
     pub const EXECUTION_GRAPH_SCRATCH_AMDX: Self = Self(
         vk::BufferUsageFlagBits::EXECUTION_GRAPH_SCRATCH_AMDX.0,
     );
 }
-///Provided by [Vulkan 1.0](crate::vk1_0)
+///Provided by [VK_AMDX_shader_enqueue](crate::amdx::shader_enqueue)
 impl vk::BufferUsageFlagBits {
     pub const EXECUTION_GRAPH_SCRATCH_AMDX: Self = Self(1 << 25);
 }
-///Provided by [Vulkan 1.4](crate::vk1_4)
+///Provided by [VK_AMDX_shader_enqueue](crate::amdx::shader_enqueue)
 impl vk::PipelineCreateFlags2 {
     pub const EXECUTION_GRAPH_AMDX: Self = Self(
         vk::PipelineCreateFlagBits2::EXECUTION_GRAPH_AMDX.0,
     );
 }
-///Provided by [Vulkan 1.4](crate::vk1_4)
+///Provided by [VK_AMDX_shader_enqueue](crate::amdx::shader_enqueue)
 impl vk::PipelineCreateFlagBits2 {
     pub const EXECUTION_GRAPH_AMDX: Self = Self(1 << 32);
 }
-///Provided by [Vulkan 1.4](crate::vk1_4)
+///Provided by [VK_AMDX_shader_enqueue](crate::amdx::shader_enqueue)
 impl vk::BufferUsageFlags2 {
     pub const EXECUTION_GRAPH_SCRATCH_AMDX: Self = Self(
         vk::BufferUsageFlagBits2::EXECUTION_GRAPH_SCRATCH_AMDX.0,
     );
 }
-///Provided by [Vulkan 1.4](crate::vk1_4)
+///Provided by [VK_AMDX_shader_enqueue](crate::amdx::shader_enqueue)
 impl vk::BufferUsageFlagBits2 {
     pub const EXECUTION_GRAPH_SCRATCH_AMDX: Self = Self(1 << 25);
 }

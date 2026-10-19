@@ -10,13 +10,13 @@ impl vk::StructureType {
         1000516000,
     );
 }
-///Provided by [Vulkan 1.0](crate::vk1_0)
+///Provided by [VK_NV_per_stage_descriptor_set](crate::nv::per_stage_descriptor_set)
 impl vk::DescriptorSetLayoutCreateFlags {
     pub const PER_STAGE_NV: Self = Self(
         vk::DescriptorSetLayoutCreateFlagBits::PER_STAGE_NV.0,
     );
 }
-///Provided by [Vulkan 1.0](crate::vk1_0)
+///Provided by [VK_NV_per_stage_descriptor_set](crate::nv::per_stage_descriptor_set)
 impl vk::DescriptorSetLayoutCreateFlagBits {
     pub const PER_STAGE_NV: Self = Self(1 << 6);
 }

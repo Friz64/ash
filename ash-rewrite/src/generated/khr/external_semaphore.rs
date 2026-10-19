@@ -8,11 +8,11 @@ use core::ffi::CStr;
 impl vk::StructureType {
     pub const EXPORT_SEMAPHORE_CREATE_INFO_KHR: Self = Self::EXPORT_SEMAPHORE_CREATE_INFO;
 }
-///Provided by [Vulkan 1.1](crate::vk1_1)
+///Provided by [VK_KHR_external_semaphore](crate::khr::external_semaphore)
 impl vk::SemaphoreImportFlags {
     pub const TEMPORARY_KHR: Self = Self(vk::SemaphoreImportFlagBits::TEMPORARY_KHR.0);
 }
-///Provided by [Vulkan 1.1](crate::vk1_1)
+///Provided by [VK_KHR_external_semaphore](crate::khr::external_semaphore)
 impl vk::SemaphoreImportFlagBits {
     pub const TEMPORARY_KHR: Self = Self::TEMPORARY;
 }

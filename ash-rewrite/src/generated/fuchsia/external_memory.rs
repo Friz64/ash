@@ -14,13 +14,13 @@ impl vk::StructureType {
     pub const MEMORY_ZIRCON_HANDLE_PROPERTIES_FUCHSIA: Self = Self(1000364001);
     pub const MEMORY_GET_ZIRCON_HANDLE_INFO_FUCHSIA: Self = Self(1000364002);
 }
-///Provided by [Vulkan 1.1](crate::vk1_1)
+///Provided by [VK_FUCHSIA_external_memory](crate::fuchsia::external_memory)
 impl vk::ExternalMemoryHandleTypeFlags {
     pub const ZIRCON_VMO_FUCHSIA: Self = Self(
         vk::ExternalMemoryHandleTypeFlagBits::ZIRCON_VMO_FUCHSIA.0,
     );
 }
-///Provided by [Vulkan 1.1](crate::vk1_1)
+///Provided by [VK_FUCHSIA_external_memory](crate::fuchsia::external_memory)
 impl vk::ExternalMemoryHandleTypeFlagBits {
     pub const ZIRCON_VMO_FUCHSIA: Self = Self(1 << 11);
 }

@@ -53,11 +53,11 @@ impl QueryResultStatusKHR {
     pub const NOT_READY: Self = Self(0);
     pub const COMPLETE: Self = Self(1);
 }
-///Provided by [Vulkan 1.0](crate::vk1_0)
+///Provided by [VK_KHR_video_queue](crate::khr::video_queue)
 impl vk::QueryResultFlags {
     pub const WITH_STATUS_KHR: Self = Self(vk::QueryResultFlagBits::WITH_STATUS_KHR.0);
 }
-///Provided by [Vulkan 1.0](crate::vk1_0)
+///Provided by [VK_KHR_video_queue](crate::khr::video_queue)
 impl vk::QueryResultFlagBits {
     pub const WITH_STATUS_KHR: Self = Self(1 << 4);
 }

@@ -11,13 +11,13 @@ impl vk::StructureType {
     );
     pub const RENDER_PASS_TRANSFORM_BEGIN_INFO_QCOM: Self = Self(1000282001);
 }
-///Provided by [Vulkan 1.0](crate::vk1_0)
+///Provided by [VK_QCOM_render_pass_transform](crate::qcom::render_pass_transform)
 impl vk::RenderPassCreateFlags {
     pub const TRANSFORM_QCOM: Self = Self(
         vk::RenderPassCreateFlagBits::TRANSFORM_QCOM.0,
     );
 }
-///Provided by [Vulkan 1.0](crate::vk1_0)
+///Provided by [VK_QCOM_render_pass_transform](crate::qcom::render_pass_transform)
 impl vk::RenderPassCreateFlagBits {
     pub const TRANSFORM_QCOM: Self = Self(1 << 1);
 }

@@ -10,7 +10,7 @@ impl vk::StructureType {
         1000342000,
     );
 }
-///Provided by [Vulkan 1.0](crate::vk1_0)
+///Provided by [VK_EXT_rasterization_order_attachment_access](crate::ext::rasterization_order_attachment_access)
 impl vk::PipelineDepthStencilStateCreateFlags {
     pub const RASTERIZATION_ORDER_ATTACHMENT_DEPTH_ACCESS_EXT: Self = Self(
         vk::PipelineDepthStencilStateCreateFlagBits::RASTERIZATION_ORDER_ATTACHMENT_DEPTH_ACCESS_EXT
@@ -21,23 +21,23 @@ impl vk::PipelineDepthStencilStateCreateFlags {
             .0,
     );
 }
-///Provided by [Vulkan 1.0](crate::vk1_0)
+///Provided by [VK_EXT_rasterization_order_attachment_access](crate::ext::rasterization_order_attachment_access)
 impl vk::PipelineDepthStencilStateCreateFlagBits {
     pub const RASTERIZATION_ORDER_ATTACHMENT_DEPTH_ACCESS_EXT: Self = Self(1 << 0);
     pub const RASTERIZATION_ORDER_ATTACHMENT_STENCIL_ACCESS_EXT: Self = Self(1 << 1);
 }
-///Provided by [Vulkan 1.0](crate::vk1_0)
+///Provided by [VK_EXT_rasterization_order_attachment_access](crate::ext::rasterization_order_attachment_access)
 impl vk::PipelineColorBlendStateCreateFlags {
     pub const RASTERIZATION_ORDER_ATTACHMENT_ACCESS_EXT: Self = Self(
         vk::PipelineColorBlendStateCreateFlagBits::RASTERIZATION_ORDER_ATTACHMENT_ACCESS_EXT
             .0,
     );
 }
-///Provided by [Vulkan 1.0](crate::vk1_0)
+///Provided by [VK_EXT_rasterization_order_attachment_access](crate::ext::rasterization_order_attachment_access)
 impl vk::PipelineColorBlendStateCreateFlagBits {
     pub const RASTERIZATION_ORDER_ATTACHMENT_ACCESS_EXT: Self = Self(1 << 0);
 }
-///Provided by [Vulkan 1.0](crate::vk1_0)
+///Provided by [VK_EXT_rasterization_order_attachment_access](crate::ext::rasterization_order_attachment_access)
 impl vk::SubpassDescriptionFlags {
     pub const RASTERIZATION_ORDER_ATTACHMENT_COLOR_ACCESS_EXT: Self = Self(
         vk::SubpassDescriptionFlagBits::RASTERIZATION_ORDER_ATTACHMENT_COLOR_ACCESS_EXT.0,
@@ -50,7 +50,7 @@ impl vk::SubpassDescriptionFlags {
             .0,
     );
 }
-///Provided by [Vulkan 1.0](crate::vk1_0)
+///Provided by [VK_EXT_rasterization_order_attachment_access](crate::ext::rasterization_order_attachment_access)
 impl vk::SubpassDescriptionFlagBits {
     pub const RASTERIZATION_ORDER_ATTACHMENT_COLOR_ACCESS_EXT: Self = Self(1 << 4);
     pub const RASTERIZATION_ORDER_ATTACHMENT_DEPTH_ACCESS_EXT: Self = Self(1 << 5);

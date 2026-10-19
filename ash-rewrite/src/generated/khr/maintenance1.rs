@@ -10,17 +10,17 @@ use core::ffi;
 impl vk::Result {
     pub const ERROR_OUT_OF_POOL_MEMORY_KHR: Self = Self::ERROR_OUT_OF_POOL_MEMORY;
 }
-///Provided by [Vulkan 1.0](crate::vk1_0)
+///Provided by [VK_KHR_maintenance1](crate::khr::maintenance1)
 impl vk::ImageCreateFlags {
     pub const TYPE_2D_ARRAY_COMPATIBLE_KHR: Self = Self(
         vk::ImageCreateFlagBits::TYPE_2D_ARRAY_COMPATIBLE_KHR.0,
     );
 }
-///Provided by [Vulkan 1.0](crate::vk1_0)
+///Provided by [VK_KHR_maintenance1](crate::khr::maintenance1)
 impl vk::ImageCreateFlagBits {
     pub const TYPE_2D_ARRAY_COMPATIBLE_KHR: Self = Self::TYPE_2D_ARRAY_COMPATIBLE;
 }
-///Provided by [Vulkan 1.0](crate::vk1_0)
+///Provided by [VK_KHR_maintenance1](crate::khr::maintenance1)
 impl vk::FormatFeatureFlags {
     pub const TRANSFER_SRC_KHR: Self = Self(
         vk::FormatFeatureFlagBits::TRANSFER_SRC_KHR.0,
@@ -29,7 +29,7 @@ impl vk::FormatFeatureFlags {
         vk::FormatFeatureFlagBits::TRANSFER_DST_KHR.0,
     );
 }
-///Provided by [Vulkan 1.0](crate::vk1_0)
+///Provided by [VK_KHR_maintenance1](crate::khr::maintenance1)
 impl vk::FormatFeatureFlagBits {
     pub const TRANSFER_SRC_KHR: Self = Self::TRANSFER_SRC;
     pub const TRANSFER_DST_KHR: Self = Self::TRANSFER_DST;

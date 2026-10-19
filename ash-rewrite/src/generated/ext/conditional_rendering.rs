@@ -16,33 +16,33 @@ impl vk::StructureType {
     );
     pub const CONDITIONAL_RENDERING_BEGIN_INFO_EXT: Self = Self(1000081002);
 }
-///Provided by [Vulkan 1.0](crate::vk1_0)
+///Provided by [VK_EXT_conditional_rendering](crate::ext::conditional_rendering)
 impl vk::AccessFlags {
     pub const CONDITIONAL_RENDERING_READ_EXT: Self = Self(
         vk::AccessFlagBits::CONDITIONAL_RENDERING_READ_EXT.0,
     );
 }
-///Provided by [Vulkan 1.0](crate::vk1_0)
+///Provided by [VK_EXT_conditional_rendering](crate::ext::conditional_rendering)
 impl vk::AccessFlagBits {
     pub const CONDITIONAL_RENDERING_READ_EXT: Self = Self(1 << 20);
 }
-///Provided by [Vulkan 1.0](crate::vk1_0)
+///Provided by [VK_EXT_conditional_rendering](crate::ext::conditional_rendering)
 impl vk::BufferUsageFlags {
     pub const CONDITIONAL_RENDERING_EXT: Self = Self(
         vk::BufferUsageFlagBits::CONDITIONAL_RENDERING_EXT.0,
     );
 }
-///Provided by [Vulkan 1.0](crate::vk1_0)
+///Provided by [VK_EXT_conditional_rendering](crate::ext::conditional_rendering)
 impl vk::BufferUsageFlagBits {
     pub const CONDITIONAL_RENDERING_EXT: Self = Self(1 << 9);
 }
-///Provided by [Vulkan 1.0](crate::vk1_0)
+///Provided by [VK_EXT_conditional_rendering](crate::ext::conditional_rendering)
 impl vk::PipelineStageFlags {
     pub const CONDITIONAL_RENDERING_EXT: Self = Self(
         vk::PipelineStageFlagBits::CONDITIONAL_RENDERING_EXT.0,
     );
 }
-///Provided by [Vulkan 1.0](crate::vk1_0)
+///Provided by [VK_EXT_conditional_rendering](crate::ext::conditional_rendering)
 impl vk::PipelineStageFlagBits {
     pub const CONDITIONAL_RENDERING_EXT: Self = Self(1 << 18);
 }

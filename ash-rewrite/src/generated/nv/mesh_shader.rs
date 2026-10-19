@@ -16,22 +16,22 @@ impl vk::IndirectCommandsTokenTypeEXT {
     pub const DRAW_MESH_TASKS_NV: Self = Self(1000202002);
     pub const DRAW_MESH_TASKS_COUNT_NV: Self = Self(1000202003);
 }
-///Provided by [Vulkan 1.0](crate::vk1_0)
+///Provided by [VK_NV_mesh_shader](crate::nv::mesh_shader)
 impl vk::ShaderStageFlags {
     pub const TASK_NV: Self = Self(vk::ShaderStageFlagBits::TASK_NV.0);
     pub const MESH_NV: Self = Self(vk::ShaderStageFlagBits::MESH_NV.0);
 }
-///Provided by [Vulkan 1.0](crate::vk1_0)
+///Provided by [VK_NV_mesh_shader](crate::nv::mesh_shader)
 impl vk::ShaderStageFlagBits {
     pub const TASK_NV: Self = Self::TASK_EXT;
     pub const MESH_NV: Self = Self::MESH_EXT;
 }
-///Provided by [Vulkan 1.0](crate::vk1_0)
+///Provided by [VK_NV_mesh_shader](crate::nv::mesh_shader)
 impl vk::PipelineStageFlags {
     pub const TASK_SHADER_NV: Self = Self(vk::PipelineStageFlagBits::TASK_SHADER_NV.0);
     pub const MESH_SHADER_NV: Self = Self(vk::PipelineStageFlagBits::MESH_SHADER_NV.0);
 }
-///Provided by [Vulkan 1.0](crate::vk1_0)
+///Provided by [VK_NV_mesh_shader](crate::nv::mesh_shader)
 impl vk::PipelineStageFlagBits {
     pub const TASK_SHADER_NV: Self = Self::TASK_SHADER_EXT;
     pub const MESH_SHADER_NV: Self = Self::MESH_SHADER_EXT;

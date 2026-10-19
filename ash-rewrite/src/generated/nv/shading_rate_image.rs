@@ -48,33 +48,33 @@ impl CoarseSampleOrderTypeNV {
     pub const PIXEL_MAJOR: Self = Self(2);
     pub const SAMPLE_MAJOR: Self = Self(3);
 }
-///Provided by [Vulkan 1.0](crate::vk1_0)
+///Provided by [VK_NV_shading_rate_image](crate::nv::shading_rate_image)
 impl vk::AccessFlags {
     pub const SHADING_RATE_IMAGE_READ_NV: Self = Self(
         vk::AccessFlagBits::SHADING_RATE_IMAGE_READ_NV.0,
     );
 }
-///Provided by [Vulkan 1.0](crate::vk1_0)
+///Provided by [VK_NV_shading_rate_image](crate::nv::shading_rate_image)
 impl vk::AccessFlagBits {
     pub const SHADING_RATE_IMAGE_READ_NV: Self = Self::FRAGMENT_SHADING_RATE_ATTACHMENT_READ_KHR;
 }
-///Provided by [Vulkan 1.0](crate::vk1_0)
+///Provided by [VK_NV_shading_rate_image](crate::nv::shading_rate_image)
 impl vk::ImageUsageFlags {
     pub const SHADING_RATE_IMAGE_NV: Self = Self(
         vk::ImageUsageFlagBits::SHADING_RATE_IMAGE_NV.0,
     );
 }
-///Provided by [Vulkan 1.0](crate::vk1_0)
+///Provided by [VK_NV_shading_rate_image](crate::nv::shading_rate_image)
 impl vk::ImageUsageFlagBits {
     pub const SHADING_RATE_IMAGE_NV: Self = Self::FRAGMENT_SHADING_RATE_ATTACHMENT_KHR;
 }
-///Provided by [Vulkan 1.0](crate::vk1_0)
+///Provided by [VK_NV_shading_rate_image](crate::nv::shading_rate_image)
 impl vk::PipelineStageFlags {
     pub const SHADING_RATE_IMAGE_NV: Self = Self(
         vk::PipelineStageFlagBits::SHADING_RATE_IMAGE_NV.0,
     );
 }
-///Provided by [Vulkan 1.0](crate::vk1_0)
+///Provided by [VK_NV_shading_rate_image](crate::nv::shading_rate_image)
 impl vk::PipelineStageFlagBits {
     pub const SHADING_RATE_IMAGE_NV: Self = Self::FRAGMENT_SHADING_RATE_ATTACHMENT_KHR;
 }

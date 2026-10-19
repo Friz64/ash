@@ -31,13 +31,13 @@ impl vk::Result {
 impl vk::ObjectType {
     pub const PIPELINE_BINARY_KHR: Self = Self(1000483000);
 }
-///Provided by [Vulkan 1.4](crate::vk1_4)
+///Provided by [VK_KHR_pipeline_binary](crate::khr::pipeline_binary)
 impl vk::PipelineCreateFlags2 {
     pub const CAPTURE_DATA_KHR: Self = Self(
         vk::PipelineCreateFlagBits2::CAPTURE_DATA_KHR.0,
     );
 }
-///Provided by [Vulkan 1.4](crate::vk1_4)
+///Provided by [VK_KHR_pipeline_binary](crate::khr::pipeline_binary)
 impl vk::PipelineCreateFlagBits2 {
     pub const CAPTURE_DATA_KHR: Self = Self(1 << 31);
 }

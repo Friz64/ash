@@ -19,17 +19,17 @@ impl vk::StructureType {
     pub const BIND_BUFFER_MEMORY_DEVICE_GROUP_INFO_KHR: Self = Self::BIND_BUFFER_MEMORY_DEVICE_GROUP_INFO;
     pub const BIND_IMAGE_MEMORY_DEVICE_GROUP_INFO_KHR: Self = Self::BIND_IMAGE_MEMORY_DEVICE_GROUP_INFO;
 }
-///Provided by [Vulkan 1.0](crate::vk1_0)
+///Provided by [VK_KHR_device_group](crate::khr::device_group)
 impl vk::ImageCreateFlags {
     pub const SPLIT_INSTANCE_BIND_REGIONS_KHR: Self = Self(
         vk::ImageCreateFlagBits::SPLIT_INSTANCE_BIND_REGIONS_KHR.0,
     );
 }
-///Provided by [Vulkan 1.0](crate::vk1_0)
+///Provided by [VK_KHR_device_group](crate::khr::device_group)
 impl vk::ImageCreateFlagBits {
     pub const SPLIT_INSTANCE_BIND_REGIONS_KHR: Self = Self::SPLIT_INSTANCE_BIND_REGIONS;
 }
-///Provided by [Vulkan 1.0](crate::vk1_0)
+///Provided by [VK_KHR_device_group](crate::khr::device_group)
 impl vk::PipelineCreateFlags {
     pub const VIEW_INDEX_FROM_DEVICE_INDEX_KHR: Self = Self(
         vk::PipelineCreateFlagBits::VIEW_INDEX_FROM_DEVICE_INDEX_KHR.0,
@@ -38,20 +38,20 @@ impl vk::PipelineCreateFlags {
         vk::PipelineCreateFlagBits::DISPATCH_BASE_KHR.0,
     );
 }
-///Provided by [Vulkan 1.0](crate::vk1_0)
+///Provided by [VK_KHR_device_group](crate::khr::device_group)
 impl vk::PipelineCreateFlagBits {
     pub const VIEW_INDEX_FROM_DEVICE_INDEX_KHR: Self = Self::VIEW_INDEX_FROM_DEVICE_INDEX;
     pub const DISPATCH_BASE_KHR: Self = Self::DISPATCH_BASE;
 }
-///Provided by [Vulkan 1.0](crate::vk1_0)
+///Provided by [VK_KHR_device_group](crate::khr::device_group)
 impl vk::DependencyFlags {
     pub const DEVICE_GROUP_KHR: Self = Self(vk::DependencyFlagBits::DEVICE_GROUP_KHR.0);
 }
-///Provided by [Vulkan 1.0](crate::vk1_0)
+///Provided by [VK_KHR_device_group](crate::khr::device_group)
 impl vk::DependencyFlagBits {
     pub const DEVICE_GROUP_KHR: Self = Self::DEVICE_GROUP;
 }
-///Provided by [Vulkan 1.1](crate::vk1_1)
+///Provided by [VK_KHR_device_group](crate::khr::device_group)
 impl vk::PeerMemoryFeatureFlags {
     pub const COPY_SRC_KHR: Self = Self(vk::PeerMemoryFeatureFlagBits::COPY_SRC_KHR.0);
     pub const COPY_DST_KHR: Self = Self(vk::PeerMemoryFeatureFlagBits::COPY_DST_KHR.0);
@@ -62,20 +62,20 @@ impl vk::PeerMemoryFeatureFlags {
         vk::PeerMemoryFeatureFlagBits::GENERIC_DST_KHR.0,
     );
 }
-///Provided by [Vulkan 1.1](crate::vk1_1)
+///Provided by [VK_KHR_device_group](crate::khr::device_group)
 impl vk::PeerMemoryFeatureFlagBits {
     pub const COPY_SRC_KHR: Self = Self::COPY_SRC;
     pub const COPY_DST_KHR: Self = Self::COPY_DST;
     pub const GENERIC_SRC_KHR: Self = Self::GENERIC_SRC;
     pub const GENERIC_DST_KHR: Self = Self::GENERIC_DST;
 }
-///Provided by [Vulkan 1.1](crate::vk1_1)
+///Provided by [VK_KHR_device_group](crate::khr::device_group)
 impl vk::MemoryAllocateFlags {
     pub const DEVICE_MASK_KHR: Self = Self(
         vk::MemoryAllocateFlagBits::DEVICE_MASK_KHR.0,
     );
 }
-///Provided by [Vulkan 1.1](crate::vk1_1)
+///Provided by [VK_KHR_device_group](crate::khr::device_group)
 impl vk::MemoryAllocateFlagBits {
     pub const DEVICE_MASK_KHR: Self = Self::DEVICE_MASK;
 }

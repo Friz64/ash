@@ -12,7 +12,7 @@ impl vk::StructureType {
     pub const PHYSICAL_DEVICE_EXTERNAL_FENCE_INFO_KHR: Self = Self::PHYSICAL_DEVICE_EXTERNAL_FENCE_INFO;
     pub const EXTERNAL_FENCE_PROPERTIES_KHR: Self = Self::EXTERNAL_FENCE_PROPERTIES;
 }
-///Provided by [Vulkan 1.1](crate::vk1_1)
+///Provided by [VK_KHR_external_fence_capabilities](crate::khr::external_fence_capabilities)
 impl vk::ExternalFenceHandleTypeFlags {
     pub const OPAQUE_FD_KHR: Self = Self(
         vk::ExternalFenceHandleTypeFlagBits::OPAQUE_FD_KHR.0,
@@ -27,14 +27,14 @@ impl vk::ExternalFenceHandleTypeFlags {
         vk::ExternalFenceHandleTypeFlagBits::SYNC_FD_KHR.0,
     );
 }
-///Provided by [Vulkan 1.1](crate::vk1_1)
+///Provided by [VK_KHR_external_fence_capabilities](crate::khr::external_fence_capabilities)
 impl vk::ExternalFenceHandleTypeFlagBits {
     pub const OPAQUE_FD_KHR: Self = Self::OPAQUE_FD;
     pub const OPAQUE_WIN32_KHR: Self = Self::OPAQUE_WIN32;
     pub const OPAQUE_WIN32_KMT_KHR: Self = Self::OPAQUE_WIN32_KMT;
     pub const SYNC_FD_KHR: Self = Self::SYNC_FD;
 }
-///Provided by [Vulkan 1.1](crate::vk1_1)
+///Provided by [VK_KHR_external_fence_capabilities](crate::khr::external_fence_capabilities)
 impl vk::ExternalFenceFeatureFlags {
     pub const EXPORTABLE_KHR: Self = Self(
         vk::ExternalFenceFeatureFlagBits::EXPORTABLE_KHR.0,
@@ -43,7 +43,7 @@ impl vk::ExternalFenceFeatureFlags {
         vk::ExternalFenceFeatureFlagBits::IMPORTABLE_KHR.0,
     );
 }
-///Provided by [Vulkan 1.1](crate::vk1_1)
+///Provided by [VK_KHR_external_fence_capabilities](crate::khr::external_fence_capabilities)
 impl vk::ExternalFenceFeatureFlagBits {
     pub const EXPORTABLE_KHR: Self = Self::EXPORTABLE;
     pub const IMPORTABLE_KHR: Self = Self::IMPORTABLE;
