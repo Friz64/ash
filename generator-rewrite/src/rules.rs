@@ -1,6 +1,6 @@
 use analysis::name::{CommandName, TypeName, VariableName};
 use proc_macro2::TokenStream;
-use quote::ToTokens;
+use quote::{ToTokens, quote};
 use std::collections::HashMap;
 
 #[derive(Debug)]
@@ -84,62 +84,43 @@ impl BuilderRules {
 
 #[derive(Debug)]
 pub struct WrapperMethod {
+    pub attributes: TokenStream,
     pub inputs: TokenStream,
     pub output: TokenStream,
     pub block: TokenStream,
 }
 
 #[derive(Debug)]
-pub enum WrapperRule {
-    Skip,
-    Replace(WrapperMethod),
-}
-
-#[derive(Debug)]
-pub struct WrapperRules(HashMap<CommandName, WrapperRule>);
+pub struct WrapperRules(HashMap<CommandName, WrapperMethod>);
 
 impl WrapperRules {
     pub fn new(definitions: &syn::File) -> WrapperRules {
         let mut output = HashMap::new();
 
         for item in &definitions.items {
-            let (attrs, sig, method) = match item {
-                syn::Item::Fn(item_fn) => (
-                    item_fn.attrs.clone(),
-                    item_fn.sig.clone(),
-                    Some(WrapperMethod {
-                        inputs: item_fn.sig.inputs.to_token_stream(),
-                        output: item_fn.sig.output.to_token_stream(),
-                        block: item_fn.block.to_token_stream(),
-                    }),
-                ),
-                syn::Item::Verbatim(tokens) => {
-                    let item_fn: syn::TraitItemFn = syn::parse2(tokens.clone()).unwrap();
-                    (item_fn.attrs, item_fn.sig, None)
-                }
-                _ => panic!(),
+            let syn::Item::Fn(item_fn) = item else {
+                panic!()
             };
 
-            let Ok([attr]) = <&[_; 1]>::try_from(attrs.as_slice()) else {
-                panic!("expected there to be exactly one attribute on the function");
-            };
+            let mut attributes = TokenStream::new();
+            (item_fn.attrs.iter()).for_each(|attr| attr.to_tokens(&mut attributes));
 
-            let value = if attr.path().is_ident("skip") {
-                WrapperRule::Skip
-            } else if attr.path().is_ident("replace") {
-                WrapperRule::Replace(method.unwrap())
-            } else {
-                panic!("unexpected attribute");
-            };
-
-            let command_name = CommandName::new(sig.ident.to_string().leak());
-            output.insert(command_name, value);
+            let command_name = CommandName::new(item_fn.sig.ident.to_string().leak());
+            output.insert(
+                command_name,
+                WrapperMethod {
+                    attributes,
+                    inputs: item_fn.sig.inputs.to_token_stream(),
+                    output: item_fn.sig.output.to_token_stream(),
+                    block: item_fn.block.to_token_stream(),
+                },
+            );
         }
 
         WrapperRules(output)
     }
 
-    pub fn get(&self, command_name: CommandName) -> Option<&'_ WrapperRule> {
+    pub fn get(&self, command_name: CommandName) -> Option<&'_ WrapperMethod> {
         self.0.get(&command_name)
     }
 }

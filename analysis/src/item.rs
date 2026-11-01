@@ -182,7 +182,7 @@ impl Items {
                     RequireType::FuncPointer(name) => {
                         extend(require_map.func_pointer.entry(*name), library, location);
                     }
-                    // in ash these are covered by platform_types.rs, so let's just ignore those :P
+                    // TODO? in ash these are covered by platform_types.rs, so let's just ignore those :P
                     RequireType::External(_name) => continue,
                 };
             }

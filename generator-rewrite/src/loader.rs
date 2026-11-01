@@ -1,6 +1,7 @@
 use crate::{
     Context, Import,
     output::{CodeMap, GlobExport, OutputContext, OutputLocation},
+    rules,
 };
 use analysis::{
     decl::{CPrimaryType, Mutability, Ty},
@@ -14,7 +15,7 @@ use analysis::{
 use heck::ToSnekCase;
 use indexmap::IndexMap;
 use proc_macro2::{Literal, TokenStream};
-use quote::{format_ident, quote};
+use quote::{ToTokens, format_ident, quote};
 use std::ffi::CString;
 use syn::Ident;
 use tracing::{debug, instrument, trace};
@@ -287,6 +288,15 @@ pub fn generate_code(ctx: &Context, codemap: &mut CodeMap) {
 
         octx.insert_tokens(quote! { #table_code #loader_code });
     }
+}
+
+fn method_code(
+    name: Ident,
+    attributes: TokenStream,
+    inputs: TokenStream,
+    output: TokenStream,
+    bloxck: TokenStream,
+) {
 }
 
 #[instrument(skip(octx))]

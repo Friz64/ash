@@ -281,43 +281,6 @@ impl Entry {
             Ok(None)
         }
     }
-
-    /// <https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/vkCreateInstance.html>
-    ///
-    /// # Safety
-    ///
-    /// The resulting [`Instance`] and any function-pointer objects (e.g. [`Device`][crate::Device]
-    /// and extensions like [`crate::khr::swapchain::Device`]) loaded from it may not be used after
-    /// this [`Entry`] object is dropped, unless it was crated using [`Entry::linked()`] or
-    /// [`Entry::from_parts_1_1()`].
-    ///
-    /// [`Instance`] does _not_ implement [drop][drop()] semantics and can only be destroyed via
-    /// [`destroy_instance()`][Instance::destroy_instance()].
-    #[inline]
-    pub unsafe fn create_instance(
-        &self,
-        create_info: &vk::InstanceCreateInfo<'_>,
-        allocation_callbacks: Option<&vk::AllocationCallbacks>,
-    ) -> VkResult<Instance> {
-        let mut instance = mem::MaybeUninit::uninit();
-        let instance = (self.entry_fn_1_0.create_instance)(
-            create_info,
-            allocation_callbacks.to_raw_ptr(),
-            instance.as_mut_ptr(),
-        )
-        .assume_init_on_success(instance)?;
-        Ok(Instance::load(&self.static_fn, instance))
-    }
-
-    /// <https://docs.vulkan.org/refpages/latest/refpages/source/vkGetInstanceProcAddr.html>
-    #[inline]
-    pub unsafe fn get_instance_proc_addr(
-        &self,
-        instance: vk::Instance,
-        p_name: *const ffi::c_char,
-    ) -> vk::PFN_vkVoidFunction {
-        (self.static_fn.get_instance_proc_addr)(instance, p_name)
-    }
 }
 
 impl Entry {
