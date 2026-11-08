@@ -203,6 +203,9 @@ impl Device {
             )
             .assume_init_on_success(pipeline_key)
     }
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkGetPipelineBinaryDataKHR.html) · Device Function
+    /// wip
+    pub unsafe fn get_pipeline_binary_data() {}
     ///vkReleaseCapturedPipelineDataKHR
     #[inline]
     pub unsafe fn release_captured_pipeline_data(

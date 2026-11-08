@@ -1,8 +1,8 @@
 use super::{Code, Context};
 use crate::{
-    Import, OutputContext,
+    Import, Method, OutputContext,
     output::{CodeMap, GlobExport, OutputLocation},
-    rules::{BuilderMethod, BuilderRule},
+    rules::BuilderRule,
 };
 use analysis::{
     decl::{CPrimaryType, Mutability, Ty},
@@ -234,13 +234,22 @@ impl Code for Struct {
                 let tokens = match ctx.builder_rules.get(self.name, member.decl.name) {
                     _ if matches!(member.decl.name.original(), "sType" | "pNext") => quote! {},
                     Some(BuilderRule::Skip) => quote! {},
-                    Some(BuilderRule::Replace(BuilderMethod {
+                    Some(BuilderRule::Replace(Method {
+                        imports,
+                        attributes,
                         inputs,
                         output,
-                        block,
+                        content,
                     })) => {
-                        let method_name = method_name_token(member);
-                        quote! { pub fn #method_name(#inputs) #output #block }
+                        for &import in imports {
+                            octx.insert_import(import);
+                        }
+
+                        let name = method_name_token(member);
+                        quote! {
+                           #attributes
+                           pub fn #name(#inputs) #output { #content }
+                        }
                     }
                     rule @ (Some(BuilderRule::Keep) | None) => {
                         let keep = matches!(rule, Some(BuilderRule::Keep));

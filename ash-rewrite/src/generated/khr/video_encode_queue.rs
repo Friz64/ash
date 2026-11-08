@@ -379,6 +379,9 @@ impl Device {
     pub fn device(&self) -> vk::Device {
         self.handle
     }
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkGetEncodedVideoSessionParametersKHR.html) · Device Function
+    /// wip
+    pub unsafe fn get_encoded_video_session_parameters() {}
     ///vkCmdEncodeVideoKHR
     #[inline]
     pub unsafe fn cmd_encode_video(

@@ -7,12 +7,10 @@ fn main() -> io::Result<()> {
     debug!("running analysis");
     let analysis = Analysis::new("generator-rewrite/Vulkan-Headers");
     debug!("running generator");
-    let builder_rules = syn::parse_file(include_str!("../builder_rules.rs")).unwrap();
-    let wrapper_rules = syn::parse_file(include_str!("../wrapper_rules.rs")).unwrap();
     generator_rewrite::generate(
         &analysis,
-        &builder_rules,
-        &wrapper_rules,
+        include_str!("../rules/builder.rs"),
+        include_str!("../rules/wrapper.rs"),
         "ash-rewrite/src/generated",
     )
 }

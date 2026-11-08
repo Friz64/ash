@@ -57,7 +57,7 @@ mod loaded {
     }
 }
 
-use crate::{vk, RawPtr, VkResult};
+use crate::{vk, VkResult};
 use core::{ffi, fmt, mem};
 
 /// Holds the Vulkan functions independent of a particular instance
@@ -283,19 +283,6 @@ impl Entry {
     }
 }
 
-impl Entry {
-    #[deprecated = "This function is unavailable and therefore panics on Vulkan 1.0, please use `try_enumerate_instance_version()` instead"]
-    /// <https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/vkEnumerateInstanceVersion.html>
-    ///
-    /// Please use [`try_enumerate_instance_version()`][Self::try_enumerate_instance_version()] instead.
-    #[inline]
-    pub unsafe fn enumerate_instance_version(&self) -> VkResult<u32> {
-        let mut api_version = mem::MaybeUninit::uninit();
-        (self.entry_fn_1_1.enumerate_instance_version)(api_version.as_mut_ptr())
-            .assume_init_on_success(api_version)
-    }
-}
-
 #[cfg(feature = "linked")]
 #[cfg_attr(docsrs, doc(cfg(feature = "linked")))]
 impl Default for Entry {
@@ -391,48 +378,6 @@ impl Instance {
     #[inline]
     pub fn handle(&self) -> vk::Instance {
         self.handle
-    }
-
-    /// <https://docs.vulkan.org/refpages/latest/refpages/source/vkCreateDevice.html>
-    ///
-    /// # Safety
-    ///
-    /// There is a [parent/child relation] between [`Instance`] and the resulting [`Device`].  The
-    /// application must not [destroy][Instance::destroy_instance()] the parent [`Instance`] object
-    /// before first [destroying][Device::destroy_device()] the returned [`Device`] child object.
-    /// [`Device`] does _not_ implement [drop][drop()] semantics and can only be destroyed via
-    /// [`destroy_device()`][Device::destroy_device()].
-    ///
-    /// See the [`Entry::create_instance()`] documentation for more destruction ordering rules on
-    /// [`Instance`].
-    ///
-    /// [parent/child relation]: https://docs.vulkan.org/spec/latest/chapters/fundamentals.html#fundamentals-objectmodel-lifetime
-    #[inline]
-    pub unsafe fn create_device(
-        &self,
-        physical_device: vk::PhysicalDevice,
-        create_info: &vk::DeviceCreateInfo<'_>,
-        allocation_callbacks: Option<&vk::AllocationCallbacks>,
-    ) -> VkResult<Device> {
-        let mut device = mem::MaybeUninit::uninit();
-        let device = (self.instance_fn_1_0.create_device)(
-            physical_device,
-            create_info,
-            allocation_callbacks.to_raw_ptr(),
-            device.as_mut_ptr(),
-        )
-        .assume_init_on_success(device)?;
-        Ok(Device::load(&self.instance_fn_1_0, device))
-    }
-
-    /// <https://docs.vulkan.org/refpages/latest/refpages/source/vkGetDeviceProcAddr.html>
-    #[inline]
-    pub unsafe fn get_device_proc_addr(
-        &self,
-        device: vk::Device,
-        p_name: *const ffi::c_char,
-    ) -> vk::PFN_vkVoidFunction {
-        (self.instance_fn_1_0.get_device_proc_addr)(device, p_name)
     }
 }
 

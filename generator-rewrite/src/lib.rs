@@ -22,22 +22,23 @@ use proc_macro2::TokenStream;
 use quote::quote;
 use quote::{ToTokens, format_ident};
 use regex::Regex;
-use std::{borrow::Cow, fmt::Display, io, ops::Deref, path::Path, sync::LazyLock};
+use serde::{Deserialize, de::IntoDeserializer};
+use std::{borrow::Cow, fmt::Display, io, ops::Deref, path::Path, str::FromStr, sync::LazyLock};
 use syn::Ident;
 use tracing::debug;
 
 pub fn generate(
     analysis: &Analysis,
-    builder_rules: &syn::File,
-    wrapper_rules: &syn::File,
+    builder_rules_src: &str,
+    wrapper_rules_src: &str,
     output_path: impl AsRef<Path>,
 ) -> io::Result<()> {
     debug!("building codemap");
 
     let ctx = Context {
         analysis: analysis.result(),
-        builder_rules: BuilderRules::new(builder_rules),
-        wrapper_rules: WrapperRules::new(wrapper_rules),
+        builder_rules: BuilderRules::new(&syn::parse_file(builder_rules_src).unwrap()),
+        wrapper_rules: WrapperRules::new(&syn::parse_file(wrapper_rules_src).unwrap()),
     };
 
     let mut codemap = CodeMap::default();
@@ -47,7 +48,7 @@ pub fn generate(
     codemap.write(&ctx, output_path)
 }
 
-fn generate_target_doc_comment(target: &str, description: impl Display) -> String {
+fn target_manual_page_doc_comment(target: &str, description: impl Display) -> String {
     let valid = matches!(
         target.get(0..2).map(|ab| ab.eq_ignore_ascii_case("vk")),
         Some(true)
@@ -122,7 +123,7 @@ impl Context<'_> {
     }
 }
 
-#[derive(PartialEq, Eq, Hash)]
+#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash, Deserialize)]
 pub enum Import {
     CrateVk,
     CrateVkResult,
@@ -174,6 +175,27 @@ impl ToTokens for Import {
 
         tokens.extend(code);
     }
+}
+
+impl FromStr for Import {
+    type Err = serde::de::value::Error;
+
+    fn from_str(s: &str) -> Result<Self, Self::Err> {
+        Self::deserialize(s.into_deserializer())
+    }
+}
+
+#[derive(Debug)]
+pub struct Method {
+    pub imports: Vec<Import>,
+    /// Also includes doc comments!
+    pub attributes: TokenStream,
+    /// e.g. `&self, a: i32`
+    pub inputs: TokenStream,
+    /// e.g. `-> i32` or empty
+    pub output: TokenStream,
+    /// e.g. `let b = a + 64; b`
+    pub content: TokenStream,
 }
 
 impl OutputContext<'_, '_> {

@@ -6,9 +6,10 @@
 //! Note that the command name must match the original one in vk.xml,
 //! the generator will adjust it on its own accord.
 
+#[import(CoreMemMaybeUninit)]
 #[deprecated = "This function is unavailable and therefore panics on Vulkan 1.0, please use `try_enumerate_instance_version()` instead"]
 fn vkEnumerateInstanceVersion(&self) -> VkResult<u32> {
-    let mut api_version = mem::MaybeUninit::uninit();
+    let mut api_version = MaybeUninit::uninit();
     (self.entry_fn_1_1.enumerate_instance_version)(api_version.as_mut_ptr())
         .assume_init_on_success(api_version)
 }
@@ -22,19 +23,20 @@ fn vkEnumerateInstanceVersion(&self) -> VkResult<u32> {
 ///
 /// [`Instance`] does _not_ implement [drop][drop()] semantics and can only be destroyed via
 /// [`destroy_instance()`][Instance::destroy_instance()].
+#[import(CorePtr)]
 fn vkCreateInstance(
     &self,
     create_info: &vk::InstanceCreateInfo<'_>,
     allocation_callbacks: Option<&vk::AllocationCallbacks>,
-) -> VkResult<Instance> {
-    let mut instance = mem::MaybeUninit::uninit();
+) -> VkResult<crate::Instance> {
+    let mut instance = MaybeUninit::uninit();
     let instance = (self.entry_fn_1_0.create_instance)(
         create_info,
-        allocation_callbacks.to_raw_ptr(),
+        allocation_callbacks.map_or(ptr::null(), |s| s),
         instance.as_mut_ptr(),
     )
     .assume_init_on_success(instance)?;
-    Ok(Instance::load(&self.static_fn, instance))
+    Ok(crate::Instance::load(&self.static_fn, instance))
 }
 
 fn vkGetInstanceProcAddr(
@@ -62,16 +64,16 @@ fn vkCreateDevice(
     physical_device: vk::PhysicalDevice,
     create_info: &vk::DeviceCreateInfo<'_>,
     allocation_callbacks: Option<&vk::AllocationCallbacks>,
-) -> VkResult<Device> {
-    let mut device = mem::MaybeUninit::uninit();
+) -> VkResult<crate::Device> {
+    let mut device = MaybeUninit::uninit();
     let device = (self.instance_fn_1_0.create_device)(
         physical_device,
         create_info,
-        allocation_callbacks.to_raw_ptr(),
+        allocation_callbacks.map_or(ptr::null(), |s| s),
         device.as_mut_ptr(),
     )
     .assume_init_on_success(device)?;
-    Ok(Device::load(&self.instance_fn_1_0, device))
+    Ok(crate::Device::load(&self.instance_fn_1_0, device))
 }
 
 fn vkGetDeviceProcAddr(

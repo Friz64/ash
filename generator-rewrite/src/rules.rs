@@ -1,20 +1,23 @@
+use crate::{Import, Method};
 use analysis::name::{CommandName, TypeName, VariableName};
 use proc_macro2::TokenStream;
-use quote::{ToTokens, quote};
+use quote::{ToTokens, TokenStreamExt};
 use std::collections::HashMap;
 
-#[derive(Debug)]
-pub struct BuilderMethod {
-    pub inputs: TokenStream,
-    pub output: TokenStream,
-    pub block: TokenStream,
+fn import(attr: &syn::Attribute) -> Option<Import> {
+    if !attr.path().is_ident("import") {
+        return None;
+    }
+
+    let variant = attr.parse_args::<syn::Ident>().ok()?;
+    variant.to_string().parse().ok()
 }
 
 #[derive(Debug)]
 pub enum BuilderRule {
     Keep,
     Skip,
-    Replace(BuilderMethod),
+    Replace(Method),
 }
 
 #[derive(Debug)]
@@ -38,16 +41,10 @@ impl BuilderRules {
             };
 
             for impl_item in &item_impl.items {
-                let (attrs, sig, method) = match impl_item {
-                    syn::ImplItem::Fn(item_fn) => (
-                        item_fn.attrs.clone(),
-                        item_fn.sig.clone(),
-                        Some(BuilderMethod {
-                            inputs: item_fn.sig.inputs.to_token_stream(),
-                            output: item_fn.sig.output.to_token_stream(),
-                            block: item_fn.block.to_token_stream(),
-                        }),
-                    ),
+                let (attrs, sig, impl_item_fn) = match impl_item {
+                    syn::ImplItem::Fn(item_fn) => {
+                        (item_fn.attrs.clone(), item_fn.sig.clone(), Some(item_fn))
+                    }
                     syn::ImplItem::Verbatim(tokens) => {
                         let item_fn: syn::TraitItemFn = syn::parse2(tokens.clone()).unwrap();
                         (item_fn.attrs, item_fn.sig, None)
@@ -55,22 +52,39 @@ impl BuilderRules {
                     _ => panic!(),
                 };
 
-                let Ok([attr]) = <&[_; 1]>::try_from(attrs.as_slice()) else {
-                    panic!("expected there to be exactly one attribute on the function");
-                };
+                let mut imports = Vec::new();
+                let mut attributes = TokenStream::new();
+                let mut rule: Box<dyn Fn(Vec<Import>, TokenStream) -> BuilderRule> =
+                    Box::new(|_, _| panic!("no rule specified"));
+                for attr in attrs {
+                    if attr.path().is_ident("keep") {
+                        rule = Box::new(|_, _| BuilderRule::Keep);
+                    } else if attr.path().is_ident("skip") {
+                        rule = Box::new(|_, _| BuilderRule::Skip);
+                    } else if attr.path().is_ident("replace") {
+                        let impl_item_fn =
+                            impl_item_fn.expect("function with replace attr should have body");
 
-                let value = if attr.path().is_ident("keep") {
-                    BuilderRule::Keep
-                } else if attr.path().is_ident("skip") {
-                    BuilderRule::Skip
-                } else if attr.path().is_ident("replace") {
-                    BuilderRule::Replace(method.unwrap())
-                } else {
-                    panic!("unexpected attribute");
-                };
+                        rule = Box::new(|imports, attributes| {
+                            let mut content = TokenStream::new();
+                            content.append_all(&impl_item_fn.block.stmts);
+                            BuilderRule::Replace(Method {
+                                imports,
+                                attributes,
+                                inputs: impl_item_fn.sig.inputs.to_token_stream(),
+                                output: impl_item_fn.sig.output.to_token_stream(),
+                                content,
+                            })
+                        });
+                    } else if let Some(import) = import(&attr) {
+                        imports.push(import);
+                    } else {
+                        attr.to_tokens(&mut attributes)
+                    }
+                }
 
                 let field_name = VariableName::new(sig.ident.to_string().leak());
-                output.insert((type_name, field_name), value);
+                output.insert((type_name, field_name), rule(imports, attributes));
             }
         }
 
@@ -83,15 +97,7 @@ impl BuilderRules {
 }
 
 #[derive(Debug)]
-pub struct WrapperMethod {
-    pub attributes: TokenStream,
-    pub inputs: TokenStream,
-    pub output: TokenStream,
-    pub block: TokenStream,
-}
-
-#[derive(Debug)]
-pub struct WrapperRules(HashMap<CommandName, WrapperMethod>);
+pub struct WrapperRules(HashMap<CommandName, Method>);
 
 impl WrapperRules {
     pub fn new(definitions: &syn::File) -> WrapperRules {
@@ -102,17 +108,26 @@ impl WrapperRules {
                 panic!()
             };
 
+            let mut imports = Vec::new();
             let mut attributes = TokenStream::new();
-            (item_fn.attrs.iter()).for_each(|attr| attr.to_tokens(&mut attributes));
+            for attr in &item_fn.attrs {
+                match import(attr) {
+                    Some(import) => imports.push(import),
+                    None => attr.to_tokens(&mut attributes),
+                }
+            }
 
             let command_name = CommandName::new(item_fn.sig.ident.to_string().leak());
+            let mut content = TokenStream::new();
+            content.append_all(&item_fn.block.stmts);
             output.insert(
                 command_name,
-                WrapperMethod {
+                Method {
+                    imports,
                     attributes,
                     inputs: item_fn.sig.inputs.to_token_stream(),
                     output: item_fn.sig.output.to_token_stream(),
-                    block: item_fn.block.to_token_stream(),
+                    content,
                 },
             );
         }
@@ -120,7 +135,7 @@ impl WrapperRules {
         WrapperRules(output)
     }
 
-    pub fn get(&self, command_name: CommandName) -> Option<&'_ WrapperMethod> {
+    pub fn get(&self, command_name: CommandName) -> Option<&'_ Method> {
         self.0.get(&command_name)
     }
 }

@@ -4,11 +4,11 @@
 #![doc(alias = "VK_VERSION_1_0")]
 use crate::vk;
 use core::ptr;
-use core::mem::MaybeUninit;
-use crate::VkResult;
 use core::mem::transmute;
 use alloc::vec::Vec;
+use crate::VkResult;
 use core::ffi;
+use core::mem::MaybeUninit;
 use core::ffi::CStr;
 ///Provided by [Vulkan 1.0](crate::vk1_0)
 impl ImageLayout {
@@ -1247,25 +1247,31 @@ impl crate::Entry {
     pub fn fp_v1_0(&self) -> &crate::EntryFnV1_0 {
         &self.entry_fn_1_0
     }
-    ///vkCreateInstance
-    #[inline]
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCreateInstance.html) · Entry Function
+    /// # Safety
+    ///
+    /// The resulting [`Instance`] and any function-pointer objects (e.g. [`Device`][crate::Device]
+    /// and extensions like [`crate::khr::swapchain::Device`]) loaded from it may not be used after
+    /// this [`Entry`] object is dropped, unless it was crated using [`Entry::linked()`] or
+    /// [`Entry::from_parts_1_1()`].
+    ///
+    /// [`Instance`] does _not_ implement [drop][drop()] semantics and can only be destroyed via
+    /// [`destroy_instance()`][Instance::destroy_instance()].
     pub unsafe fn create_instance(
         &self,
         create_info: &vk::InstanceCreateInfo<'_>,
-        allocator: Option<&vk::AllocationCallbacks<'_>>,
-    ) -> VkResult<vk::Instance> {
+        allocation_callbacks: Option<&vk::AllocationCallbacks>,
+    ) -> VkResult<crate::Instance> {
         let mut instance = MaybeUninit::uninit();
-        (self
+        let instance = (self
             .entry_fn_1_0
             .create_instance)(
                 create_info,
-                match allocator {
-                    Some(inner) => inner,
-                    None => ptr::null_mut(),
-                },
+                allocation_callbacks.map_or(ptr::null(), |s| s),
                 instance.as_mut_ptr(),
             )
-            .assume_init_on_success(instance)
+            .assume_init_on_success(instance)?;
+        Ok(crate::Instance::load(&self.static_fn, instance))
     }
     ///vkEnumerateInstanceLayerProperties
     #[inline]
@@ -1536,6 +1542,14 @@ impl crate::Instance {
             physical_devices,
         ))
     }
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkGetDeviceProcAddr.html) · Instance Function
+    pub unsafe fn get_device_proc_addr(
+        &self,
+        device: vk::Device,
+        p_name: *const ffi::c_char,
+    ) -> vk::PFN_vkVoidFunction {
+        (self.instance_fn_1_0.get_device_proc_addr)(device, p_name)
+    }
     ///vkGetPhysicalDeviceProperties
     #[inline]
     pub unsafe fn get_physical_device_properties(
@@ -1638,27 +1652,36 @@ impl crate::Instance {
             )
             .assume_init_on_success(image_format_properties)
     }
-    ///vkCreateDevice
-    #[inline]
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCreateDevice.html) · Instance Function
+    /// # Safety
+    ///
+    /// There is a [parent/child relation] between [`Instance`] and the resulting [`Device`].  The
+    /// application must not [destroy][Instance::destroy_instance()] the parent [`Instance`] object
+    /// before first [destroying][Device::destroy_device()] the returned [`Device`] child object.
+    /// [`Device`] does _not_ implement [drop][drop()] semantics and can only be destroyed via
+    /// [`destroy_device()`][Device::destroy_device()].
+    ///
+    /// See the [`Entry::create_instance()`] documentation for more destruction ordering rules on
+    /// [`Instance`].
+    ///
+    /// [parent/child relation]: https://docs.vulkan.org/spec/latest/chapters/fundamentals.html#fundamentals-objectmodel-lifetime
     pub unsafe fn create_device(
         &self,
         physical_device: vk::PhysicalDevice,
         create_info: &vk::DeviceCreateInfo<'_>,
-        allocator: Option<&vk::AllocationCallbacks<'_>>,
-    ) -> VkResult<vk::Device> {
+        allocation_callbacks: Option<&vk::AllocationCallbacks>,
+    ) -> VkResult<crate::Device> {
         let mut device = MaybeUninit::uninit();
-        (self
+        let device = (self
             .instance_fn_1_0
             .create_device)(
                 physical_device,
                 create_info,
-                match allocator {
-                    Some(inner) => inner,
-                    None => ptr::null_mut(),
-                },
+                allocation_callbacks.map_or(ptr::null(), |s| s),
                 device.as_mut_ptr(),
             )
-            .assume_init_on_success(device)
+            .assume_init_on_success(device)?;
+        Ok(crate::Device::load(&self.instance_fn_1_0, device))
     }
     ///vkEnumerateDeviceLayerProperties
     #[inline]
@@ -1745,7 +1768,16 @@ impl StaticFn {
     }
 }
 ///Provided by [Vulkan 1.0](crate::vk1_0)
-impl crate::Entry {}
+impl crate::Entry {
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkGetInstanceProcAddr.html) · Static Function
+    pub unsafe fn get_instance_proc_addr(
+        &self,
+        instance: vk::Instance,
+        p_name: *const ffi::c_char,
+    ) -> vk::PFN_vkVoidFunction {
+        (self.static_fn.get_instance_proc_addr)(instance, p_name)
+    }
+}
 #[derive(Clone)]
 pub struct DeviceFnV1_0 {
     pub destroy_device: vk::PFN_vkDestroyDevice,
@@ -3632,15 +3664,10 @@ impl crate::Device {
             .reset_fences)(self.handle, fences.len() as _, fences.as_ptr())
             .result()
     }
-    /// <https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/vkGetFenceStatus.html>
+    ///vkGetFenceStatus
     #[inline]
-    pub unsafe fn get_fence_status(&self, fence: vk::Fence) -> VkResult<bool> {
-        let err_code = (self.device_fn_1_0.get_fence_status)(self.handle(), fence);
-        match err_code {
-            vk::Result::SUCCESS => Ok(true),
-            vk::Result::NOT_READY => Ok(false),
-            _ => Err(err_code),
-        }
+    pub unsafe fn get_fence_status(&self, fence: vk::Fence) -> VkResult<()> {
+        (self.device_fn_1_0.get_fence_status)(self.handle, fence).result()
     }
     ///vkWaitForFences
     #[inline]

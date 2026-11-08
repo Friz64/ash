@@ -4,8 +4,8 @@
 #![doc(alias = "VK_VERSION_1_1")]
 use crate::vk;
 use core::mem::MaybeUninit;
-use crate::VkResult;
 use core::mem::transmute;
+use crate::VkResult;
 use core::ptr;
 use core::ffi;
 use core::ffi::CStr;
@@ -521,8 +521,8 @@ impl crate::Entry {
     pub fn fp_v1_1(&self) -> &crate::EntryFnV1_1 {
         &self.entry_fn_1_1
     }
-    ///vkEnumerateInstanceVersion
-    #[inline]
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkEnumerateInstanceVersion.html) · Entry Function
+    #[deprecated = "This function is unavailable and therefore panics on Vulkan 1.0, please use `try_enumerate_instance_version()` instead"]
     pub unsafe fn enumerate_instance_version(&self) -> VkResult<u32> {
         let mut api_version = MaybeUninit::uninit();
         (self.entry_fn_1_1.enumerate_instance_version)(api_version.as_mut_ptr())

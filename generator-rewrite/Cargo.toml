@@ -22,3 +22,4 @@ indexmap = "2.11"
 heck = "0.5"
 itertools = "0.15"
 regex = "1.13.1"
+serde = { version = "1.0.229", features = ["derive"] }

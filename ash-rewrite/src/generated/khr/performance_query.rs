@@ -142,6 +142,9 @@ impl Instance {
     pub fn instance(&self) -> vk::Instance {
         self.handle
     }
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkEnumeratePhysicalDeviceQueueFamilyPerformanceQueryCountersKHR.html) · Instance Function
+    /// wip
+    pub unsafe fn enumerate_physical_device_queue_family_performance_query_counters() {}
     ///vkGetPhysicalDeviceQueueFamilyPerformanceQueryPassesKHR
     #[inline]
     pub unsafe fn get_physical_device_queue_family_performance_query_passes(

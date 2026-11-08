@@ -1,7 +1,6 @@
 use crate::{
-    Context, Import,
+    Context, Import, Method,
     output::{CodeMap, GlobExport, OutputContext, OutputLocation},
-    rules,
 };
 use analysis::{
     decl::{CPrimaryType, Mutability, Ty},
@@ -15,7 +14,7 @@ use analysis::{
 use heck::ToSnekCase;
 use indexmap::IndexMap;
 use proc_macro2::{Literal, TokenStream};
-use quote::{ToTokens, format_ident, quote};
+use quote::{format_ident, quote};
 use std::ffi::CString;
 use syn::Ident;
 use tracing::{debug, instrument, trace};
@@ -117,22 +116,19 @@ pub fn generate_code(ctx: &Context, codemap: &mut CodeMap) {
             let table_field = function_type.table_field(output.require);
             let table = tables.entry((function_type, output)).or_default();
 
-            let field_name = format_ident!("{}", name.prefix_and_tag_stripped().to_snek_case());
+            let wrapper_name = format_ident!("{}", name.prefix_and_tag_stripped().to_snek_case());
             let command_ty = octx.command_tokens(name, true);
             table.fields.extend(quote! {
-                pub #field_name: #command_ty,
+                pub #wrapper_name: #command_ty,
             });
 
-            // todo use rules
-            if ![
-                CommandName::VK_GET_INSTANCE_PROC_ADDR,
-                CommandName::VK_GET_DEVICE_PROC_ADDR,
-            ]
-            .contains(&name)
-            {
-                let code = wrapper(&octx, command, &field_name, table_field);
-                table.wrappers.extend(code);
-            }
+            let code = if let Some(method) = ctx.wrapper_rules.get(name) {
+                method_code(&octx, &wrapper_name, command, function_type, method)
+            } else {
+                wrapper(&octx, command, &wrapper_name, table_field)
+            };
+
+            table.wrappers.extend(code);
 
             let panic_msg = format!("unable to load {}", name.original());
             let cstr = Literal::c_string(&CString::new(name.original()).unwrap());
@@ -149,14 +145,14 @@ pub fn generate_code(ctx: &Context, codemap: &mut CodeMap) {
 
             octx.insert_import(Import::CoreMemTransmute);
             table.loaders.extend(quote! {
-                #field_name: unsafe {
-                    unsafe extern "system" fn #field_name( #( #params ),* ) #ret {
+                #wrapper_name: unsafe {
+                    unsafe extern "system" fn #wrapper_name( #( #params ),* ) #ret {
                         panic!(#panic_msg)
                     }
 
                     let val = _f(#cstr);
                     if val.is_null() {
-                        #field_name
+                        #wrapper_name
                     } else {
                         transmute(val)
                     }
@@ -291,12 +287,35 @@ pub fn generate_code(ctx: &Context, codemap: &mut CodeMap) {
 }
 
 fn method_code(
-    name: Ident,
-    attributes: TokenStream,
-    inputs: TokenStream,
-    output: TokenStream,
-    bloxck: TokenStream,
-) {
+    octx: &OutputContext,
+    name: &Ident,
+    command: &Command,
+    function_type: FunctionType,
+    Method {
+        imports,
+        attributes,
+        inputs,
+        output,
+        content,
+    }: &Method,
+) -> TokenStream {
+    for &import in imports {
+        octx.insert_import(import);
+    }
+
+    let description = match function_type {
+        FunctionType::Static => "Static Function",
+        FunctionType::Entry => "Entry Function",
+        FunctionType::Instance => "Instance Function",
+        FunctionType::Device => "Device Function",
+    };
+
+    let manual_page = crate::target_manual_page_doc_comment(command.name.original(), description);
+    quote! {
+        #[doc = #manual_page]
+        #attributes
+        pub unsafe fn #name(#inputs) #output { #content }
+    }
 }
 
 #[instrument(skip(octx))]
@@ -308,32 +327,32 @@ fn wrapper(
 ) -> TokenStream {
     trace!("generating");
 
-    match command.name.original() {
-        "vkEnumeratePhysicalDeviceQueueFamilyPerformanceQueryCountersKHR"
-        | "vkEnumeratePhysicalDeviceQueueFamilyPerformanceCountersByRegionARM"
-        | "vkGetPipelineBinaryDataKHR"
-        | "vkGetEncodedVideoSessionParametersKHR" => {
-            // todo
-            return quote! {};
-        }
+    // match command.name.original() {
+    //     "vkEnumeratePhysicalDeviceQueueFamilyPerformanceQueryCountersKHR"
+    //     | "vkEnumeratePhysicalDeviceQueueFamilyPerformanceCountersByRegionARM"
+    //     | "vkGetPipelineBinaryDataKHR"
+    //     | "vkGetEncodedVideoSessionParametersKHR" => {
+    //         // todo
+    //         return quote! {};
+    //     }
 
-        "vkGetFenceStatus" => {
-            return quote! {
-                /// <https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/vkGetFenceStatus.html>
-                #[inline]
-                pub unsafe fn get_fence_status(&self, fence: vk::Fence) -> VkResult<bool> {
-                    let err_code = (self.device_fn_1_0.get_fence_status)(self.handle(), fence);
-                    match err_code {
-                        vk::Result::SUCCESS => Ok(true),
-                        vk::Result::NOT_READY => Ok(false),
-                        _ => Err(err_code),
-                    }
-                }
-            };
-        }
+    //     "vkGetFenceStatus" => {
+    //         return quote! {
+    //             /// <https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/vkGetFenceStatus.html>
+    //             #[inline]
+    //             pub unsafe fn get_fence_status(&self, fence: vk::Fence) -> VkResult<bool> {
+    //                 let err_code = (self.device_fn_1_0.get_fence_status)(self.handle(), fence);
+    //                 match err_code {
+    //                     vk::Result::SUCCESS => Ok(true),
+    //                     vk::Result::NOT_READY => Ok(false),
+    //                     _ => Err(err_code),
+    //                 }
+    //             }
+    //         };
+    //     }
 
-        _ => (),
-    }
+    //     _ => (),
+    // }
 
     fn param_ident(name: VariableName) -> Ident {
         let stripped = crate::strip_leading_p(name.original()).to_snek_case();

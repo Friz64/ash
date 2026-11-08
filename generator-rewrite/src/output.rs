@@ -79,7 +79,7 @@ impl PathComponent {
         match require_location {
             RequireLocation::Core { major, minor } => vec![PathComponent {
                 module_name: format_ident!("vk{major}_{minor}"),
-                doc_comment: crate::generate_target_doc_comment(
+                doc_comment: crate::target_manual_page_doc_comment(
                     &original_name,
                     format!("Vulkan version {major}.{minor}"),
                 ),
@@ -94,7 +94,7 @@ impl PathComponent {
                         },
                         PathComponent {
                             module_name: crate::escape_ident(&ext_name.to_snek_case()),
-                            doc_comment: crate::generate_target_doc_comment(
+                            doc_comment: crate::target_manual_page_doc_comment(
                                 &original_name,
                                 format!("Extension `{}`", original_name),
                             ),
@@ -147,26 +147,16 @@ impl CodeMap {
         }))
     }
 
-    // ???????
-    pub fn extend_mapped<'c, 'm, F>(&'m mut self, other: Self, ctx: &'c Context, mut f: F)
+    pub fn extend_mapped<'c, 'm, F>(&'m mut self, other: Self, ctx: &'c Context, mut map_fn: F)
     where
         F: for<'f> FnMut(OutputContext<'c, 'f>, TokenStream) -> TokenStream,
     {
         for (output, code) in other.0 {
             let octx = self.octx(output, ctx);
-            let tokens = f(octx, code.tokens);
+            let tokens = map_fn(octx, code.tokens);
 
             let entry = self.0.entry(output).or_default();
             entry.tokens.extend(tokens);
-            entry.imports.extend(code.imports);
-        }
-    }
-
-    // where is this used??
-    pub fn extend(&mut self, other: Self) {
-        for (output, code) in other.0 {
-            let entry = self.0.entry(output).or_default();
-            entry.tokens.extend(code.tokens);
             entry.imports.extend(code.imports);
         }
     }
