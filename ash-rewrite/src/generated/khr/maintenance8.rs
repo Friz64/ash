@@ -2,7 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_maintenance8.html) · Extension `VK_KHR_maintenance8`
 #![doc(alias = "VK_KHR_maintenance8")]
-use crate::generated::prelude::*;
+use crate::internal_prelude::*;
 ///Provided by [VK_KHR_maintenance8](crate::khr::maintenance8)
 impl vk::StructureType {
     pub const PHYSICAL_DEVICE_MAINTENANCE_8_FEATURES_KHR: Self = Self(1000574000);
@@ -39,7 +39,7 @@ impl AccessFlagBits3KHR {
 pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &CStr = c"VK_KHR_maintenance8";
 pub(crate) mod items {
-    use crate::generated::prelude::*;
+    use crate::internal_prelude::*;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]

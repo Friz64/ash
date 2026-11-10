@@ -2,7 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_blend_operation_advanced.html) · Extension `VK_EXT_blend_operation_advanced`
 #![doc(alias = "VK_EXT_blend_operation_advanced")]
-use crate::generated::prelude::*;
+use crate::internal_prelude::*;
 ///Provided by [VK_EXT_blend_operation_advanced](crate::ext::blend_operation_advanced)
 impl vk::BlendOp {
     pub const ZERO_EXT: Self = Self(1000148000);
@@ -83,7 +83,7 @@ impl vk::AccessFlagBits {
 pub const SPEC_VERSION: u32 = 2;
 pub const NAME: &CStr = c"VK_EXT_blend_operation_advanced";
 pub(crate) mod items {
-    use crate::generated::prelude::*;
+    use crate::internal_prelude::*;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]

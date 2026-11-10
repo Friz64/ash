@@ -2,7 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_validation_cache.html) · Extension `VK_EXT_validation_cache`
 #![doc(alias = "VK_EXT_validation_cache")]
-use crate::generated::prelude::*;
+use crate::internal_prelude::*;
 ///Provided by [VK_EXT_validation_cache](crate::ext::validation_cache)
 impl vk::StructureType {
     pub const VALIDATION_CACHE_CREATE_INFO_EXT: Self = Self(1000160000);
@@ -172,7 +172,7 @@ impl Device {
     }
 }
 pub(crate) mod items {
-    use crate::generated::prelude::*;
+    use crate::internal_prelude::*;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]

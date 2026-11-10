@@ -2,7 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_NV_external_memory.html) · Extension `VK_NV_external_memory`
 #![doc(alias = "VK_NV_external_memory")]
-use crate::generated::prelude::*;
+use crate::internal_prelude::*;
 ///Provided by [VK_NV_external_memory](crate::nv::external_memory)
 impl vk::StructureType {
     pub const EXTERNAL_MEMORY_IMAGE_CREATE_INFO_NV: Self = Self(1000056000);
@@ -11,7 +11,7 @@ impl vk::StructureType {
 pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &CStr = c"VK_NV_external_memory";
 pub(crate) mod items {
-    use crate::generated::prelude::*;
+    use crate::internal_prelude::*;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]

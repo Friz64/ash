@@ -2,7 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_legacy_dithering.html) · Extension `VK_EXT_legacy_dithering`
 #![doc(alias = "VK_EXT_legacy_dithering")]
-use crate::generated::prelude::*;
+use crate::internal_prelude::*;
 ///Provided by [VK_EXT_legacy_dithering](crate::ext::legacy_dithering)
 impl vk::StructureType {
     pub const PHYSICAL_DEVICE_LEGACY_DITHERING_FEATURES_EXT: Self = Self(1000465000);
@@ -40,7 +40,7 @@ impl vk::PipelineCreateFlagBits2 {
 pub const SPEC_VERSION: u32 = 2;
 pub const NAME: &CStr = c"VK_EXT_legacy_dithering";
 pub(crate) mod items {
-    use crate::generated::prelude::*;
+    use crate::internal_prelude::*;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]

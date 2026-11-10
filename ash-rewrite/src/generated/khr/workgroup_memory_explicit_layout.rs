@@ -2,7 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_workgroup_memory_explicit_layout.html) · Extension `VK_KHR_workgroup_memory_explicit_layout`
 #![doc(alias = "VK_KHR_workgroup_memory_explicit_layout")]
-use crate::generated::prelude::*;
+use crate::internal_prelude::*;
 ///Provided by [VK_KHR_workgroup_memory_explicit_layout](crate::khr::workgroup_memory_explicit_layout)
 impl vk::StructureType {
     pub const PHYSICAL_DEVICE_WORKGROUP_MEMORY_EXPLICIT_LAYOUT_FEATURES_KHR: Self = Self(
@@ -12,7 +12,7 @@ impl vk::StructureType {
 pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &CStr = c"VK_KHR_workgroup_memory_explicit_layout";
 pub(crate) mod items {
-    use crate::generated::prelude::*;
+    use crate::internal_prelude::*;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]

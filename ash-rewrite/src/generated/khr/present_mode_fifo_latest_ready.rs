@@ -2,7 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_present_mode_fifo_latest_ready.html) · Extension `VK_KHR_present_mode_fifo_latest_ready`
 #![doc(alias = "VK_KHR_present_mode_fifo_latest_ready")]
-use crate::generated::prelude::*;
+use crate::internal_prelude::*;
 ///Provided by [VK_KHR_present_mode_fifo_latest_ready](crate::khr::present_mode_fifo_latest_ready)
 impl vk::StructureType {
     pub const PHYSICAL_DEVICE_PRESENT_MODE_FIFO_LATEST_READY_FEATURES_KHR: Self = Self(
@@ -16,7 +16,7 @@ impl vk::PresentModeKHR {
 pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &CStr = c"VK_KHR_present_mode_fifo_latest_ready";
 pub(crate) mod items {
-    use crate::generated::prelude::*;
+    use crate::internal_prelude::*;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]

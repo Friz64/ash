@@ -2,7 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_filter_cubic.html) · Extension `VK_EXT_filter_cubic`
 #![doc(alias = "VK_EXT_filter_cubic")]
-use crate::generated::prelude::*;
+use crate::internal_prelude::*;
 ///Provided by [VK_EXT_filter_cubic](crate::ext::filter_cubic)
 impl vk::Filter {
     pub const CUBIC_EXT: Self = Self(1000015000);
@@ -27,7 +27,7 @@ impl vk::FormatFeatureFlagBits {
 pub const SPEC_VERSION: u32 = 3;
 pub const NAME: &CStr = c"VK_EXT_filter_cubic";
 pub(crate) mod items {
-    use crate::generated::prelude::*;
+    use crate::internal_prelude::*;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]

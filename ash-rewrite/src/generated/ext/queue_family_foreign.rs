@@ -2,11 +2,11 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_queue_family_foreign.html) · Extension `VK_EXT_queue_family_foreign`
 #![doc(alias = "VK_EXT_queue_family_foreign")]
-use crate::generated::prelude::*;
+use crate::internal_prelude::*;
 pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &CStr = c"VK_EXT_queue_family_foreign";
 pub(crate) mod items {
-    use crate::generated::prelude::*;
+    use crate::internal_prelude::*;
     pub const QUEUE_FAMILY_FOREIGN_EXT: u32 = (!2);
 }
 pub use items::*;

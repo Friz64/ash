@@ -2,7 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_AMD_buffer_marker.html) · Extension `VK_AMD_buffer_marker`
 #![doc(alias = "VK_AMD_buffer_marker")]
-use crate::generated::prelude::*;
+use crate::internal_prelude::*;
 pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &CStr = c"VK_AMD_buffer_marker";
 #[derive(Clone)]
@@ -110,7 +110,7 @@ impl Device {
     }
 }
 pub(crate) mod items {
-    use crate::generated::prelude::*;
+    use crate::internal_prelude::*;
     pub type PFN_vkCmdWriteBufferMarkerAMD = unsafe extern "system" fn(
         command_buffer: vk::CommandBuffer,
         pipeline_stage: vk::PipelineStageFlagBits,

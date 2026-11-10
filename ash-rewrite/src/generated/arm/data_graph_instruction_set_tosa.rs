@@ -2,7 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_ARM_data_graph_instruction_set_tosa.html) · Extension `VK_ARM_data_graph_instruction_set_tosa`
 #![doc(alias = "VK_ARM_data_graph_instruction_set_tosa")]
-use crate::generated::prelude::*;
+use crate::internal_prelude::*;
 ///Provided by [VK_ARM_data_graph_instruction_set_tosa](crate::arm::data_graph_instruction_set_tosa)
 impl vk::StructureType {
     pub const QUEUE_FAMILY_DATA_GRAPH_TOSA_PROPERTIES_ARM: Self = Self(1000508000);
@@ -105,7 +105,7 @@ impl Instance {
     }
 }
 pub(crate) mod items {
-    use crate::generated::prelude::*;
+    use crate::internal_prelude::*;
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct DataGraphTOSANameQualityARM {
@@ -135,12 +135,10 @@ pub(crate) mod items {
         pub fn name(
             mut self,
             name: &CStr,
-        ) -> core::result::Result<Self, crate::CStrTooLargeForStaticArray> {
+        ) -> CoreResult<Self, crate::CStrTooLargeForStaticArray> {
             crate::write_c_str_slice_with_nul(&mut self.name, name).map(|_| self)
         }
-        pub fn name_as_c_str(
-            &self,
-        ) -> core::result::Result<&CStr, ffi::FromBytesUntilNulError> {
+        pub fn name_as_c_str(&self) -> CoreResult<&CStr, ffi::FromBytesUntilNulError> {
             crate::wrap_c_str_slice_until_nul(&self.name)
         }
         pub fn quality_flags(

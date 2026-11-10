@@ -4,7 +4,8 @@
 //! All function listed in this file will be used to replace the ones that would be auto-generated.
 //!
 //! Note that the command name must match the original one in vk.xml,
-//! the generator will adjust it on its own accord.
+//! the generator will adjust it on its own accord. If this is not what you want,
+//! you can use `#[name(<name override>)]`.
 
 #[deprecated = "This function is unavailable and therefore panics on Vulkan 1.0, please use `try_enumerate_instance_version()` instead"]
 fn vkEnumerateInstanceVersion(&self) -> VkResult<u32> {

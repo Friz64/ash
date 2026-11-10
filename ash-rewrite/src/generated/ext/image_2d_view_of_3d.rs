@@ -2,7 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_image_2d_view_of_3d.html) · Extension `VK_EXT_image_2d_view_of_3d`
 #![doc(alias = "VK_EXT_image_2d_view_of_3d")]
-use crate::generated::prelude::*;
+use crate::internal_prelude::*;
 ///Provided by [VK_EXT_image_2d_view_of_3d](crate::ext::image_2d_view_of_3d)
 impl vk::StructureType {
     pub const PHYSICAL_DEVICE_IMAGE_2D_VIEW_OF_3D_FEATURES_EXT: Self = Self(1000393000);
@@ -20,7 +20,7 @@ impl vk::ImageCreateFlagBits {
 pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &CStr = c"VK_EXT_image_2d_view_of_3d";
 pub(crate) mod items {
-    use crate::generated::prelude::*;
+    use crate::internal_prelude::*;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]

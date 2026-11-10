@@ -2,7 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_shader_split_barrier.html) · Extension `VK_EXT_shader_split_barrier`
 #![doc(alias = "VK_EXT_shader_split_barrier")]
-use crate::generated::prelude::*;
+use crate::internal_prelude::*;
 ///Provided by [VK_EXT_shader_split_barrier](crate::ext::shader_split_barrier)
 impl vk::StructureType {
     pub const PHYSICAL_DEVICE_SHADER_SPLIT_BARRIER_FEATURES_EXT: Self = Self(1000305000);
@@ -13,7 +13,7 @@ impl vk::StructureType {
 pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &CStr = c"VK_EXT_shader_split_barrier";
 pub(crate) mod items {
-    use crate::generated::prelude::*;
+    use crate::internal_prelude::*;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]

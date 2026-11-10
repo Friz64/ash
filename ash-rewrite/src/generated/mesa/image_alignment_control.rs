@@ -2,7 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_MESA_image_alignment_control.html) · Extension `VK_MESA_image_alignment_control`
 #![doc(alias = "VK_MESA_image_alignment_control")]
-use crate::generated::prelude::*;
+use crate::internal_prelude::*;
 ///Provided by [VK_MESA_image_alignment_control](crate::mesa::image_alignment_control)
 impl vk::StructureType {
     pub const PHYSICAL_DEVICE_IMAGE_ALIGNMENT_CONTROL_FEATURES_MESA: Self = Self(
@@ -16,7 +16,7 @@ impl vk::StructureType {
 pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &CStr = c"VK_MESA_image_alignment_control";
 pub(crate) mod items {
-    use crate::generated::prelude::*;
+    use crate::internal_prelude::*;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]

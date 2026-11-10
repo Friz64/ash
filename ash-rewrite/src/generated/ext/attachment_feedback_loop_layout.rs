@@ -2,7 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_attachment_feedback_loop_layout.html) · Extension `VK_EXT_attachment_feedback_loop_layout`
 #![doc(alias = "VK_EXT_attachment_feedback_loop_layout")]
-use crate::generated::prelude::*;
+use crate::internal_prelude::*;
 ///Provided by [VK_EXT_attachment_feedback_loop_layout](crate::ext::attachment_feedback_loop_layout)
 impl vk::ImageLayout {
     pub const ATTACHMENT_FEEDBACK_LOOP_OPTIMAL_EXT: Self = Self(1000339000);
@@ -50,7 +50,7 @@ impl vk::DependencyFlagBits {
 pub const SPEC_VERSION: u32 = 2;
 pub const NAME: &CStr = c"VK_EXT_attachment_feedback_loop_layout";
 pub(crate) mod items {
-    use crate::generated::prelude::*;
+    use crate::internal_prelude::*;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]

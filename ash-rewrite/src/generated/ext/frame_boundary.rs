@@ -2,7 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_frame_boundary.html) · Extension `VK_EXT_frame_boundary`
 #![doc(alias = "VK_EXT_frame_boundary")]
-use crate::generated::prelude::*;
+use crate::internal_prelude::*;
 ///Provided by [VK_EXT_frame_boundary](crate::ext::frame_boundary)
 impl vk::StructureType {
     pub const PHYSICAL_DEVICE_FRAME_BOUNDARY_FEATURES_EXT: Self = Self(1000375000);
@@ -19,7 +19,7 @@ impl FrameBoundaryFlagBitsEXT {
 pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &CStr = c"VK_EXT_frame_boundary";
 pub(crate) mod items {
-    use crate::generated::prelude::*;
+    use crate::internal_prelude::*;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]

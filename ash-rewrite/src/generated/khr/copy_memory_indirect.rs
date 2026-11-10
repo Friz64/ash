@@ -2,7 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_copy_memory_indirect.html) · Extension `VK_KHR_copy_memory_indirect`
 #![doc(alias = "VK_KHR_copy_memory_indirect")]
-use crate::generated::prelude::*;
+use crate::internal_prelude::*;
 ///Provided by [VK_KHR_copy_memory_indirect](crate::khr::copy_memory_indirect)
 impl vk::StructureType {
     pub const PHYSICAL_DEVICE_COPY_MEMORY_INDIRECT_FEATURES_KHR: Self = Self(1000549000);
@@ -132,7 +132,7 @@ impl Device {
     }
 }
 pub(crate) mod items {
-    use crate::generated::prelude::*;
+    use crate::internal_prelude::*;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy, Default)]

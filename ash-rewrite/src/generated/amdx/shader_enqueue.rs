@@ -3,7 +3,7 @@
 #![cfg(feature = "provisional")]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_AMDX_shader_enqueue.html) · Extension `VK_AMDX_shader_enqueue`
 #![doc(alias = "VK_AMDX_shader_enqueue")]
-use crate::generated::prelude::*;
+use crate::internal_prelude::*;
 ///Provided by [VK_AMDX_shader_enqueue](crate::amdx::shader_enqueue)
 impl vk::PipelineBindPoint {
     pub const EXECUTION_GRAPH_AMDX: Self = Self(1000134000);
@@ -321,7 +321,7 @@ impl Device {
     }
 }
 pub(crate) mod items {
-    use crate::generated::prelude::*;
+    use crate::internal_prelude::*;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
@@ -558,11 +558,7 @@ pub(crate) mod items {
             self
         }
         pub unsafe fn name_as_c_str(&self) -> Option<&CStr> {
-            if self.p_name.is_null() {
-                None
-            } else {
-                Some(unsafe { CStr::from_ptr(self.p_name) })
-            }
+            if self.p_name.is_null() { None } else { Some(CStr::from_ptr(self.p_name)) }
         }
         pub fn index(mut self, index: u32) -> Self {
             self.index = index;

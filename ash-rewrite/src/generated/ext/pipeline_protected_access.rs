@@ -2,7 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_pipeline_protected_access.html) · Extension `VK_EXT_pipeline_protected_access`
 #![doc(alias = "VK_EXT_pipeline_protected_access")]
-use crate::generated::prelude::*;
+use crate::internal_prelude::*;
 ///Provided by [VK_EXT_pipeline_protected_access](crate::ext::pipeline_protected_access)
 impl vk::StructureType {
     pub const PHYSICAL_DEVICE_PIPELINE_PROTECTED_ACCESS_FEATURES_EXT: Self = Self::PHYSICAL_DEVICE_PIPELINE_PROTECTED_ACCESS_FEATURES;
@@ -24,7 +24,7 @@ impl vk::PipelineCreateFlagBits {
 pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &CStr = c"VK_EXT_pipeline_protected_access";
 pub(crate) mod items {
-    use crate::generated::prelude::*;
+    use crate::internal_prelude::*;
     pub type PhysicalDevicePipelineProtectedAccessFeaturesEXT<'a> = vk::PhysicalDevicePipelineProtectedAccessFeatures<
         'a,
     >;

@@ -2,7 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_VERSION_1_4.html) · Vulkan version 1.4
 #![doc(alias = "VK_VERSION_1_4")]
-use crate::generated::prelude::*;
+use crate::internal_prelude::*;
 ///Provided by [Vulkan 1.4](crate::vk1_4)
 impl vk::ImageLayout {
     pub const RENDERING_LOCAL_READ: Self = Self(1000232000);
@@ -780,7 +780,7 @@ impl crate::Device {
     }
 }
 pub(crate) mod items {
-    use crate::generated::prelude::*;
+    use crate::internal_prelude::*;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]

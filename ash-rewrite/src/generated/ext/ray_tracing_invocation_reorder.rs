@@ -2,7 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_ray_tracing_invocation_reorder.html) · Extension `VK_EXT_ray_tracing_invocation_reorder`
 #![doc(alias = "VK_EXT_ray_tracing_invocation_reorder")]
-use crate::generated::prelude::*;
+use crate::internal_prelude::*;
 ///Provided by [VK_EXT_ray_tracing_invocation_reorder](crate::ext::ray_tracing_invocation_reorder)
 impl vk::StructureType {
     pub const PHYSICAL_DEVICE_RAY_TRACING_INVOCATION_REORDER_FEATURES_EXT: Self = Self(
@@ -20,7 +20,7 @@ impl RayTracingInvocationReorderModeEXT {
 pub const SPEC_VERSION: u32 = 2;
 pub const NAME: &CStr = c"VK_EXT_ray_tracing_invocation_reorder";
 pub(crate) mod items {
-    use crate::generated::prelude::*;
+    use crate::internal_prelude::*;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]

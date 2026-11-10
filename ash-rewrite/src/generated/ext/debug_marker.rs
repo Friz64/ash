@@ -2,7 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_debug_marker.html) · Extension `VK_EXT_debug_marker`
 #![doc(alias = "VK_EXT_debug_marker")]
-use crate::generated::prelude::*;
+use crate::internal_prelude::*;
 ///Provided by [VK_EXT_debug_marker](crate::ext::debug_marker)
 impl vk::StructureType {
     pub const DEBUG_MARKER_OBJECT_NAME_INFO_EXT: Self = Self(1000022000);
@@ -139,7 +139,7 @@ impl Device {
     }
 }
 pub(crate) mod items {
-    use crate::generated::prelude::*;
+    use crate::internal_prelude::*;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
@@ -185,7 +185,7 @@ pub(crate) mod items {
             if self.p_object_name.is_null() {
                 None
             } else {
-                Some(unsafe { CStr::from_ptr(self.p_object_name) })
+                Some(CStr::from_ptr(self.p_object_name))
             }
         }
     }
@@ -275,7 +275,7 @@ pub(crate) mod items {
             if self.p_marker_name.is_null() {
                 None
             } else {
-                Some(unsafe { CStr::from_ptr(self.p_marker_name) })
+                Some(CStr::from_ptr(self.p_marker_name))
             }
         }
         pub fn color(mut self, color: [ffi::c_float; 4 as _]) -> Self {

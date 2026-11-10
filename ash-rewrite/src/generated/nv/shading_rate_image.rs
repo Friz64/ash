@@ -2,7 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_NV_shading_rate_image.html) · Extension `VK_NV_shading_rate_image`
 #![doc(alias = "VK_NV_shading_rate_image")]
-use crate::generated::prelude::*;
+use crate::internal_prelude::*;
 ///Provided by [VK_NV_shading_rate_image](crate::nv::shading_rate_image)
 impl vk::ImageLayout {
     pub const SHADING_RATE_OPTIMAL_NV: Self = Self::FRAGMENT_SHADING_RATE_ATTACHMENT_OPTIMAL_KHR;
@@ -200,7 +200,7 @@ impl Device {
     }
 }
 pub(crate) mod items {
-    use crate::generated::prelude::*;
+    use crate::internal_prelude::*;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy, Default)]

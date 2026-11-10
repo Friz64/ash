@@ -2,7 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_NV_ray_tracing_motion_blur.html) · Extension `VK_NV_ray_tracing_motion_blur`
 #![doc(alias = "VK_NV_ray_tracing_motion_blur")]
-use crate::generated::prelude::*;
+use crate::internal_prelude::*;
 ///Provided by [VK_NV_ray_tracing_motion_blur](crate::nv::ray_tracing_motion_blur)
 impl vk::StructureType {
     pub const ACCELERATION_STRUCTURE_GEOMETRY_MOTION_TRIANGLES_DATA_NV: Self = Self(
@@ -52,7 +52,7 @@ impl vk::AccelerationStructureCreateFlagBitsKHR {
 pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &CStr = c"VK_NV_ray_tracing_motion_blur";
 pub(crate) mod items {
-    use crate::generated::prelude::*;
+    use crate::internal_prelude::*;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]

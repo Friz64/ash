@@ -2,7 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_video_decode_av1.html) · Extension `VK_KHR_video_decode_av1`
 #![doc(alias = "VK_KHR_video_decode_av1")]
-use crate::generated::prelude::*;
+use crate::internal_prelude::*;
 ///Provided by [VK_KHR_video_decode_av1](crate::khr::video_decode_av1)
 impl vk::StructureType {
     pub const VIDEO_DECODE_AV1_CAPABILITIES_KHR: Self = Self(1000512000);
@@ -24,7 +24,7 @@ impl vk::VideoCodecOperationFlagBitsKHR {
 pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &CStr = c"VK_KHR_video_decode_av1";
 pub(crate) mod items {
-    use crate::generated::prelude::*;
+    use crate::internal_prelude::*;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]

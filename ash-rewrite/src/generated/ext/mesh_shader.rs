@@ -2,7 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_mesh_shader.html) · Extension `VK_EXT_mesh_shader`
 #![doc(alias = "VK_EXT_mesh_shader")]
-use crate::generated::prelude::*;
+use crate::internal_prelude::*;
 ///Provided by [VK_EXT_mesh_shader](crate::ext::mesh_shader)
 impl vk::QueryType {
     pub const MESH_PRIMITIVES_GENERATED_EXT: Self = Self(1000328000);
@@ -203,7 +203,7 @@ impl Device {
     }
 }
 pub(crate) mod items {
-    use crate::generated::prelude::*;
+    use crate::internal_prelude::*;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]

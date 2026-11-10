@@ -2,7 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_imageless_framebuffer.html) · Extension `VK_KHR_imageless_framebuffer`
 #![doc(alias = "VK_KHR_imageless_framebuffer")]
-use crate::generated::prelude::*;
+use crate::internal_prelude::*;
 ///Provided by [VK_KHR_imageless_framebuffer](crate::khr::imageless_framebuffer)
 impl vk::StructureType {
     pub const PHYSICAL_DEVICE_IMAGELESS_FRAMEBUFFER_FEATURES_KHR: Self = Self::PHYSICAL_DEVICE_IMAGELESS_FRAMEBUFFER_FEATURES;
@@ -21,7 +21,7 @@ impl vk::FramebufferCreateFlagBits {
 pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &CStr = c"VK_KHR_imageless_framebuffer";
 pub(crate) mod items {
-    use crate::generated::prelude::*;
+    use crate::internal_prelude::*;
     pub type PhysicalDeviceImagelessFramebufferFeaturesKHR<'a> = vk::PhysicalDeviceImagelessFramebufferFeatures<
         'a,
     >;

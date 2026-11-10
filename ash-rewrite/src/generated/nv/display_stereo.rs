@@ -2,7 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_NV_display_stereo.html) · Extension `VK_NV_display_stereo`
 #![doc(alias = "VK_NV_display_stereo")]
-use crate::generated::prelude::*;
+use crate::internal_prelude::*;
 ///Provided by [VK_NV_display_stereo](crate::nv::display_stereo)
 impl vk::StructureType {
     pub const DISPLAY_SURFACE_STEREO_CREATE_INFO_NV: Self = Self(1000551000);
@@ -18,7 +18,7 @@ impl DisplaySurfaceStereoTypeNV {
 pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &CStr = c"VK_NV_display_stereo";
 pub(crate) mod items {
-    use crate::generated::prelude::*;
+    use crate::internal_prelude::*;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]

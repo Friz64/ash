@@ -2,7 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_maintenance3.html) · Extension `VK_KHR_maintenance3`
 #![doc(alias = "VK_KHR_maintenance3")]
-use crate::generated::prelude::*;
+use crate::internal_prelude::*;
 ///Provided by [VK_KHR_maintenance3](crate::khr::maintenance3)
 impl vk::StructureType {
     pub const PHYSICAL_DEVICE_MAINTENANCE_3_PROPERTIES_KHR: Self = Self::PHYSICAL_DEVICE_MAINTENANCE_3_PROPERTIES;
@@ -79,7 +79,7 @@ impl Device {
     }
 }
 pub(crate) mod items {
-    use crate::generated::prelude::*;
+    use crate::internal_prelude::*;
     pub type PhysicalDeviceMaintenance3PropertiesKHR<'a> = vk::PhysicalDeviceMaintenance3Properties<
         'a,
     >;

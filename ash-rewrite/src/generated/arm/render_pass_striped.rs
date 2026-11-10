@@ -2,7 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_ARM_render_pass_striped.html) · Extension `VK_ARM_render_pass_striped`
 #![doc(alias = "VK_ARM_render_pass_striped")]
-use crate::generated::prelude::*;
+use crate::internal_prelude::*;
 ///Provided by [VK_ARM_render_pass_striped](crate::arm::render_pass_striped)
 impl vk::StructureType {
     pub const PHYSICAL_DEVICE_RENDER_PASS_STRIPED_FEATURES_ARM: Self = Self(1000424000);
@@ -16,7 +16,7 @@ impl vk::StructureType {
 pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &CStr = c"VK_ARM_render_pass_striped";
 pub(crate) mod items {
-    use crate::generated::prelude::*;
+    use crate::internal_prelude::*;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]

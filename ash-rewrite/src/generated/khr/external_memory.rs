@@ -2,7 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_external_memory.html) · Extension `VK_KHR_external_memory`
 #![doc(alias = "VK_KHR_external_memory")]
-use crate::generated::prelude::*;
+use crate::internal_prelude::*;
 ///Provided by [VK_KHR_external_memory](crate::khr::external_memory)
 impl vk::StructureType {
     pub const EXTERNAL_MEMORY_BUFFER_CREATE_INFO_KHR: Self = Self::EXTERNAL_MEMORY_BUFFER_CREATE_INFO;
@@ -16,7 +16,7 @@ impl vk::Result {
 pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &CStr = c"VK_KHR_external_memory";
 pub(crate) mod items {
-    use crate::generated::prelude::*;
+    use crate::internal_prelude::*;
     pub type ExternalMemoryImageCreateInfoKHR<'a> = vk::ExternalMemoryImageCreateInfo<
         'a,
     >;

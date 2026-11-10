@@ -2,7 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_device_fault.html) · Extension `VK_KHR_device_fault`
 #![doc(alias = "VK_KHR_device_fault")]
-use crate::generated::prelude::*;
+use crate::internal_prelude::*;
 ///Provided by [VK_KHR_device_fault](crate::khr::device_fault)
 impl vk::StructureType {
     pub const PHYSICAL_DEVICE_FAULT_FEATURES_KHR: Self = Self(1000573000);
@@ -157,7 +157,7 @@ impl Device {
     }
 }
 pub(crate) mod items {
-    use crate::generated::prelude::*;
+    use crate::internal_prelude::*;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy, Default)]
@@ -217,13 +217,13 @@ pub(crate) mod items {
         pub fn description(
             mut self,
             description: &CStr,
-        ) -> core::result::Result<Self, crate::CStrTooLargeForStaticArray> {
+        ) -> CoreResult<Self, crate::CStrTooLargeForStaticArray> {
             crate::write_c_str_slice_with_nul(&mut self.description, description)
                 .map(|_| self)
         }
         pub fn description_as_c_str(
             &self,
-        ) -> core::result::Result<&CStr, ffi::FromBytesUntilNulError> {
+        ) -> CoreResult<&CStr, ffi::FromBytesUntilNulError> {
             crate::wrap_c_str_slice_until_nul(&self.description)
         }
         pub fn vendor_fault_code(mut self, vendor_fault_code: u64) -> Self {
@@ -295,13 +295,13 @@ pub(crate) mod items {
         pub fn description(
             mut self,
             description: &CStr,
-        ) -> core::result::Result<Self, crate::CStrTooLargeForStaticArray> {
+        ) -> CoreResult<Self, crate::CStrTooLargeForStaticArray> {
             crate::write_c_str_slice_with_nul(&mut self.description, description)
                 .map(|_| self)
         }
         pub fn description_as_c_str(
             &self,
-        ) -> core::result::Result<&CStr, ffi::FromBytesUntilNulError> {
+        ) -> CoreResult<&CStr, ffi::FromBytesUntilNulError> {
             crate::wrap_c_str_slice_until_nul(&self.description)
         }
         pub fn fault_address_info(

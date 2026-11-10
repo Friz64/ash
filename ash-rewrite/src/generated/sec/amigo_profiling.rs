@@ -2,7 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_SEC_amigo_profiling.html) · Extension `VK_SEC_amigo_profiling`
 #![doc(alias = "VK_SEC_amigo_profiling")]
-use crate::generated::prelude::*;
+use crate::internal_prelude::*;
 ///Provided by [VK_SEC_amigo_profiling](crate::sec::amigo_profiling)
 impl vk::StructureType {
     pub const PHYSICAL_DEVICE_AMIGO_PROFILING_FEATURES_SEC: Self = Self(1000485000);
@@ -11,7 +11,7 @@ impl vk::StructureType {
 pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &CStr = c"VK_SEC_amigo_profiling";
 pub(crate) mod items {
-    use crate::generated::prelude::*;
+    use crate::internal_prelude::*;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]

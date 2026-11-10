@@ -2,7 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_ARM_format_pack.html) · Extension `VK_ARM_format_pack`
 #![doc(alias = "VK_ARM_format_pack")]
-use crate::generated::prelude::*;
+use crate::internal_prelude::*;
 ///Provided by [VK_ARM_format_pack](crate::arm::format_pack)
 impl vk::Format {
     pub const R10X6_UINT_PACK16_ARM: Self = Self(1000609000);
@@ -27,7 +27,7 @@ impl vk::StructureType {
 pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &CStr = c"VK_ARM_format_pack";
 pub(crate) mod items {
-    use crate::generated::prelude::*;
+    use crate::internal_prelude::*;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]

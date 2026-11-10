@@ -2,7 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_HUAWEI_cluster_culling_shader.html) · Extension `VK_HUAWEI_cluster_culling_shader`
 #![doc(alias = "VK_HUAWEI_cluster_culling_shader")]
-use crate::generated::prelude::*;
+use crate::internal_prelude::*;
 ///Provided by [VK_HUAWEI_cluster_culling_shader](crate::huawei::cluster_culling_shader)
 impl vk::StructureType {
     pub const PHYSICAL_DEVICE_CLUSTER_CULLING_SHADER_FEATURES_HUAWEI: Self = Self(
@@ -137,7 +137,7 @@ impl Device {
     }
 }
 pub(crate) mod items {
-    use crate::generated::prelude::*;
+    use crate::internal_prelude::*;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]

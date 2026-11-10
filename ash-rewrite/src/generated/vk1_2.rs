@@ -2,7 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_VERSION_1_2.html) · Vulkan version 1.2
 #![doc(alias = "VK_VERSION_1_2")]
-use crate::generated::prelude::*;
+use crate::internal_prelude::*;
 ///Provided by [Vulkan 1.2](crate::vk1_2)
 impl vk::ImageLayout {
     pub const DEPTH_ATTACHMENT_OPTIMAL: Self = Self(1000241000);
@@ -644,7 +644,7 @@ impl crate::Device {
     }
 }
 pub(crate) mod items {
-    use crate::generated::prelude::*;
+    use crate::internal_prelude::*;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy, Default)]
@@ -726,25 +726,25 @@ pub(crate) mod items {
         pub fn driver_name(
             mut self,
             driver_name: &CStr,
-        ) -> core::result::Result<Self, crate::CStrTooLargeForStaticArray> {
+        ) -> CoreResult<Self, crate::CStrTooLargeForStaticArray> {
             crate::write_c_str_slice_with_nul(&mut self.driver_name, driver_name)
                 .map(|_| self)
         }
         pub fn driver_name_as_c_str(
             &self,
-        ) -> core::result::Result<&CStr, ffi::FromBytesUntilNulError> {
+        ) -> CoreResult<&CStr, ffi::FromBytesUntilNulError> {
             crate::wrap_c_str_slice_until_nul(&self.driver_name)
         }
         pub fn driver_info(
             mut self,
             driver_info: &CStr,
-        ) -> core::result::Result<Self, crate::CStrTooLargeForStaticArray> {
+        ) -> CoreResult<Self, crate::CStrTooLargeForStaticArray> {
             crate::write_c_str_slice_with_nul(&mut self.driver_info, driver_info)
                 .map(|_| self)
         }
         pub fn driver_info_as_c_str(
             &self,
-        ) -> core::result::Result<&CStr, ffi::FromBytesUntilNulError> {
+        ) -> CoreResult<&CStr, ffi::FromBytesUntilNulError> {
             crate::wrap_c_str_slice_until_nul(&self.driver_info)
         }
         pub fn conformance_version(
@@ -4283,25 +4283,25 @@ pub(crate) mod items {
         pub fn driver_name(
             mut self,
             driver_name: &CStr,
-        ) -> core::result::Result<Self, crate::CStrTooLargeForStaticArray> {
+        ) -> CoreResult<Self, crate::CStrTooLargeForStaticArray> {
             crate::write_c_str_slice_with_nul(&mut self.driver_name, driver_name)
                 .map(|_| self)
         }
         pub fn driver_name_as_c_str(
             &self,
-        ) -> core::result::Result<&CStr, ffi::FromBytesUntilNulError> {
+        ) -> CoreResult<&CStr, ffi::FromBytesUntilNulError> {
             crate::wrap_c_str_slice_until_nul(&self.driver_name)
         }
         pub fn driver_info(
             mut self,
             driver_info: &CStr,
-        ) -> core::result::Result<Self, crate::CStrTooLargeForStaticArray> {
+        ) -> CoreResult<Self, crate::CStrTooLargeForStaticArray> {
             crate::write_c_str_slice_with_nul(&mut self.driver_info, driver_info)
                 .map(|_| self)
         }
         pub fn driver_info_as_c_str(
             &self,
-        ) -> core::result::Result<&CStr, ffi::FromBytesUntilNulError> {
+        ) -> CoreResult<&CStr, ffi::FromBytesUntilNulError> {
             crate::wrap_c_str_slice_until_nul(&self.driver_info)
         }
         pub fn conformance_version(

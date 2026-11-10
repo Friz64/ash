@@ -2,7 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_maintenance4.html) · Extension `VK_KHR_maintenance4`
 #![doc(alias = "VK_KHR_maintenance4")]
-use crate::generated::prelude::*;
+use crate::internal_prelude::*;
 ///Provided by [VK_KHR_maintenance4](crate::khr::maintenance4)
 impl vk::StructureType {
     pub const PHYSICAL_DEVICE_MAINTENANCE_4_FEATURES_KHR: Self = Self::PHYSICAL_DEVICE_MAINTENANCE_4_FEATURES;
@@ -175,7 +175,7 @@ impl Device {
     }
 }
 pub(crate) mod items {
-    use crate::generated::prelude::*;
+    use crate::internal_prelude::*;
     pub type DeviceBufferMemoryRequirementsKHR<'a> = vk::DeviceBufferMemoryRequirements<
         'a,
     >;

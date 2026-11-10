@@ -2,7 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_NV_scissor_exclusive.html) · Extension `VK_NV_scissor_exclusive`
 #![doc(alias = "VK_NV_scissor_exclusive")]
-use crate::generated::prelude::*;
+use crate::internal_prelude::*;
 ///Provided by [VK_NV_scissor_exclusive](crate::nv::scissor_exclusive)
 impl vk::StructureType {
     pub const PIPELINE_VIEWPORT_EXCLUSIVE_SCISSOR_STATE_CREATE_INFO_NV: Self = Self(
@@ -118,7 +118,7 @@ impl Device {
     }
 }
 pub(crate) mod items {
-    use crate::generated::prelude::*;
+    use crate::internal_prelude::*;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]

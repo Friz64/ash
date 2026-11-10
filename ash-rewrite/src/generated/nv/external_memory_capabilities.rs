@@ -2,7 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_NV_external_memory_capabilities.html) · Extension `VK_NV_external_memory_capabilities`
 #![doc(alias = "VK_NV_external_memory_capabilities")]
-use crate::generated::prelude::*;
+use crate::internal_prelude::*;
 ///Provided by [VK_NV_external_memory_capabilities](crate::nv::external_memory_capabilities)
 impl ExternalMemoryHandleTypeFlagsNV {
     pub const OPAQUE_WIN32: Self = Self(
@@ -128,7 +128,7 @@ impl Instance {
     }
 }
 pub(crate) mod items {
-    use crate::generated::prelude::*;
+    use crate::internal_prelude::*;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy, Default)]

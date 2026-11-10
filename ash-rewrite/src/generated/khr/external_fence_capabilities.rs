@@ -2,7 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_external_fence_capabilities.html) · Extension `VK_KHR_external_fence_capabilities`
 #![doc(alias = "VK_KHR_external_fence_capabilities")]
-use crate::generated::prelude::*;
+use crate::internal_prelude::*;
 ///Provided by [VK_KHR_external_fence_capabilities](crate::khr::external_fence_capabilities)
 impl vk::StructureType {
     pub const PHYSICAL_DEVICE_EXTERNAL_FENCE_INFO_KHR: Self = Self::PHYSICAL_DEVICE_EXTERNAL_FENCE_INFO;
@@ -118,7 +118,7 @@ impl Instance {
     }
 }
 pub(crate) mod items {
-    use crate::generated::prelude::*;
+    use crate::internal_prelude::*;
     pub type PhysicalDeviceExternalFenceInfoKHR<'a> = vk::PhysicalDeviceExternalFenceInfo<
         'a,
     >;

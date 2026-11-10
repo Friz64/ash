@@ -2,7 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_dynamic_rendering.html) · Extension `VK_KHR_dynamic_rendering`
 #![doc(alias = "VK_KHR_dynamic_rendering")]
-use crate::generated::prelude::*;
+use crate::internal_prelude::*;
 ///Provided by [VK_KHR_dynamic_rendering](crate::khr::dynamic_rendering)
 impl vk::AttachmentStoreOp {
     pub const NONE_KHR: Self = Self::NONE;
@@ -101,7 +101,7 @@ impl Device {
     }
 }
 pub(crate) mod items {
-    use crate::generated::prelude::*;
+    use crate::internal_prelude::*;
     pub type PipelineRenderingCreateInfoKHR<'a> = vk::PipelineRenderingCreateInfo<'a>;
     pub type RenderingInfoKHR<'a> = vk::RenderingInfo<'a>;
     pub type RenderingAttachmentInfoKHR<'a> = vk::RenderingAttachmentInfo<'a>;

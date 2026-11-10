@@ -2,7 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_vertex_attribute_divisor.html) · Extension `VK_EXT_vertex_attribute_divisor`
 #![doc(alias = "VK_EXT_vertex_attribute_divisor")]
-use crate::generated::prelude::*;
+use crate::internal_prelude::*;
 ///Provided by [VK_EXT_vertex_attribute_divisor](crate::ext::vertex_attribute_divisor)
 impl vk::StructureType {
     pub const PHYSICAL_DEVICE_VERTEX_ATTRIBUTE_DIVISOR_PROPERTIES_EXT: Self = Self(
@@ -14,7 +14,7 @@ impl vk::StructureType {
 pub const SPEC_VERSION: u32 = 3;
 pub const NAME: &CStr = c"VK_EXT_vertex_attribute_divisor";
 pub(crate) mod items {
-    use crate::generated::prelude::*;
+    use crate::internal_prelude::*;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]

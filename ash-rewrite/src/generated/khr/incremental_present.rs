@@ -2,7 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_incremental_present.html) · Extension `VK_KHR_incremental_present`
 #![doc(alias = "VK_KHR_incremental_present")]
-use crate::generated::prelude::*;
+use crate::internal_prelude::*;
 ///Provided by [VK_KHR_incremental_present](crate::khr::incremental_present)
 impl vk::StructureType {
     pub const PRESENT_REGIONS_KHR: Self = Self(1000084000);
@@ -10,7 +10,7 @@ impl vk::StructureType {
 pub const SPEC_VERSION: u32 = 2;
 pub const NAME: &CStr = c"VK_KHR_incremental_present";
 pub(crate) mod items {
-    use crate::generated::prelude::*;
+    use crate::internal_prelude::*;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]

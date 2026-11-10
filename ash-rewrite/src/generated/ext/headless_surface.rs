@@ -2,7 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_headless_surface.html) · Extension `VK_EXT_headless_surface`
 #![doc(alias = "VK_EXT_headless_surface")]
-use crate::generated::prelude::*;
+use crate::internal_prelude::*;
 ///Provided by [VK_EXT_headless_surface](crate::ext::headless_surface)
 impl vk::StructureType {
     pub const HEADLESS_SURFACE_CREATE_INFO_EXT: Self = Self(1000256000);
@@ -80,7 +80,7 @@ impl Instance {
     }
 }
 pub(crate) mod items {
-    use crate::generated::prelude::*;
+    use crate::internal_prelude::*;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]

@@ -2,7 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_ARM_data_graph.html) · Extension `VK_ARM_data_graph`
 #![doc(alias = "VK_ARM_data_graph")]
-use crate::generated::prelude::*;
+use crate::internal_prelude::*;
 ///Provided by [VK_ARM_data_graph](crate::arm::data_graph)
 impl vk::PipelineBindPoint {
     pub const DATA_GRAPH_ARM: Self = Self(1000507000);
@@ -656,7 +656,7 @@ impl Instance {
     }
 }
 pub(crate) mod items {
-    use crate::generated::prelude::*;
+    use crate::internal_prelude::*;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
@@ -890,7 +890,7 @@ pub(crate) mod items {
             if self.p_vendor_options.is_null() {
                 None
             } else {
-                Some(unsafe { CStr::from_ptr(self.p_vendor_options) })
+                Some(CStr::from_ptr(self.p_vendor_options))
             }
         }
     }
@@ -987,11 +987,7 @@ pub(crate) mod items {
             self
         }
         pub unsafe fn name_as_c_str(&self) -> Option<&CStr> {
-            if self.p_name.is_null() {
-                None
-            } else {
-                Some(unsafe { CStr::from_ptr(self.p_name) })
-            }
+            if self.p_name.is_null() { None } else { Some(CStr::from_ptr(self.p_name)) }
         }
         pub fn specialization_info(
             mut self,
@@ -1435,12 +1431,10 @@ pub(crate) mod items {
         pub fn name(
             mut self,
             name: &CStr,
-        ) -> core::result::Result<Self, crate::CStrTooLargeForStaticArray> {
+        ) -> CoreResult<Self, crate::CStrTooLargeForStaticArray> {
             crate::write_c_str_slice_with_nul(&mut self.name, name).map(|_| self)
         }
-        pub fn name_as_c_str(
-            &self,
-        ) -> core::result::Result<&CStr, ffi::FromBytesUntilNulError> {
+        pub fn name_as_c_str(&self) -> CoreResult<&CStr, ffi::FromBytesUntilNulError> {
             crate::wrap_c_str_slice_until_nul(&self.name)
         }
         pub fn version(mut self, version: u32) -> Self {

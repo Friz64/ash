@@ -2,7 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_xlib_surface.html) · Extension `VK_KHR_xlib_surface`
 #![doc(alias = "VK_KHR_xlib_surface")]
-use crate::generated::prelude::*;
+use crate::internal_prelude::*;
 ///Provided by [VK_KHR_xlib_surface](crate::khr::xlib_surface)
 impl vk::StructureType {
     pub const XLIB_SURFACE_CREATE_INFO_KHR: Self = Self(1000004000);
@@ -118,7 +118,7 @@ impl Instance {
     }
 }
 pub(crate) mod items {
-    use crate::generated::prelude::*;
+    use crate::internal_prelude::*;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]

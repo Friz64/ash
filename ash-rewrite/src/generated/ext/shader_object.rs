@@ -2,7 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_shader_object.html) · Extension `VK_EXT_shader_object`
 #![doc(alias = "VK_EXT_shader_object")]
-use crate::generated::prelude::*;
+use crate::internal_prelude::*;
 ///Provided by [VK_EXT_shader_object](crate::ext::shader_object)
 impl vk::StructureType {
     pub const PHYSICAL_DEVICE_SHADER_OBJECT_FEATURES_EXT: Self = Self(1000482000);
@@ -1497,7 +1497,7 @@ impl Device {
     }
 }
 pub(crate) mod items {
-    use crate::generated::prelude::*;
+    use crate::internal_prelude::*;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
@@ -1646,11 +1646,7 @@ pub(crate) mod items {
             self
         }
         pub unsafe fn name_as_c_str(&self) -> Option<&CStr> {
-            if self.p_name.is_null() {
-                None
-            } else {
-                Some(unsafe { CStr::from_ptr(self.p_name) })
-            }
+            if self.p_name.is_null() { None } else { Some(CStr::from_ptr(self.p_name)) }
         }
         pub fn set_layouts(
             mut self,

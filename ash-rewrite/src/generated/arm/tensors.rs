@@ -2,7 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_ARM_tensors.html) · Extension `VK_ARM_tensors`
 #![doc(alias = "VK_ARM_tensors")]
-use crate::generated::prelude::*;
+use crate::internal_prelude::*;
 ///Provided by [VK_ARM_tensors](crate::arm::tensors)
 impl vk::ImageLayout {
     pub const TENSOR_ALIASING_ARM: Self = Self(1000460000);
@@ -532,7 +532,7 @@ impl Instance {
     }
 }
 pub(crate) mod items {
-    use crate::generated::prelude::*;
+    use crate::internal_prelude::*;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]

@@ -2,7 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_AMD_shader_info.html) · Extension `VK_AMD_shader_info`
 #![doc(alias = "VK_AMD_shader_info")]
-use crate::generated::prelude::*;
+use crate::internal_prelude::*;
 ///Provided by [VK_AMD_shader_info](crate::amd::shader_info)
 impl ShaderInfoTypeAMD {
     pub const STATISTICS: Self = Self(0);
@@ -82,7 +82,7 @@ impl Device {
     }
 }
 pub(crate) mod items {
-    use crate::generated::prelude::*;
+    use crate::internal_prelude::*;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy, Default)]

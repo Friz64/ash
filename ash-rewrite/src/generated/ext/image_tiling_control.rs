@@ -2,7 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_image_tiling_control.html) · Extension `VK_EXT_image_tiling_control`
 #![doc(alias = "VK_EXT_image_tiling_control")]
-use crate::generated::prelude::*;
+use crate::internal_prelude::*;
 ///Provided by [VK_EXT_image_tiling_control](crate::ext::image_tiling_control)
 impl vk::StructureType {
     pub const PHYSICAL_DEVICE_IMAGE_TILING_CONTROL_FEATURES_EXT: Self = Self(1000687000);
@@ -17,7 +17,7 @@ impl ImageTilingControlEXT {
 pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &CStr = c"VK_EXT_image_tiling_control";
 pub(crate) mod items {
-    use crate::generated::prelude::*;
+    use crate::internal_prelude::*;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]

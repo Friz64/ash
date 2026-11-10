@@ -2,7 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_validation_flags.html) · Extension `VK_EXT_validation_flags`
 #![doc(alias = "VK_EXT_validation_flags")]
-use crate::generated::prelude::*;
+use crate::internal_prelude::*;
 ///Provided by [VK_EXT_validation_flags](crate::ext::validation_flags)
 impl vk::StructureType {
     pub const VALIDATION_FLAGS_EXT: Self = Self(1000061000);
@@ -15,7 +15,7 @@ impl ValidationCheckEXT {
 pub const SPEC_VERSION: u32 = 3;
 pub const NAME: &CStr = c"VK_EXT_validation_flags";
 pub(crate) mod items {
-    use crate::generated::prelude::*;
+    use crate::internal_prelude::*;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]

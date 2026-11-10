@@ -2,7 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_layer_settings.html) · Extension `VK_EXT_layer_settings`
 #![doc(alias = "VK_EXT_layer_settings")]
-use crate::generated::prelude::*;
+use crate::internal_prelude::*;
 ///Provided by [VK_EXT_layer_settings](crate::ext::layer_settings)
 impl vk::StructureType {
     pub const LAYER_SETTINGS_CREATE_INFO_EXT: Self = Self(1000496000);
@@ -21,7 +21,7 @@ impl LayerSettingTypeEXT {
 pub const SPEC_VERSION: u32 = 2;
 pub const NAME: &CStr = c"VK_EXT_layer_settings";
 pub(crate) mod items {
-    use crate::generated::prelude::*;
+    use crate::internal_prelude::*;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
@@ -79,7 +79,7 @@ pub(crate) mod items {
             if self.p_layer_name.is_null() {
                 None
             } else {
-                Some(unsafe { CStr::from_ptr(self.p_layer_name) })
+                Some(CStr::from_ptr(self.p_layer_name))
             }
         }
         pub fn setting_name(mut self, setting_name: &'a CStr) -> Self {
@@ -90,7 +90,7 @@ pub(crate) mod items {
             if self.p_setting_name.is_null() {
                 None
             } else {
-                Some(unsafe { CStr::from_ptr(self.p_setting_name) })
+                Some(CStr::from_ptr(self.p_setting_name))
             }
         }
         pub fn ty(mut self, ty: vk::LayerSettingTypeEXT) -> Self {

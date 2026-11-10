@@ -18,8 +18,7 @@ use analysis::{
 };
 use heck::{ToShoutySnekCase, ToSnekCase};
 use proc_macro2::TokenStream;
-use quote::format_ident;
-use quote::quote;
+use quote::{format_ident, quote};
 use regex::Regex;
 use std::{borrow::Cow, fmt::Display, io, ops::Deref, path::Path, sync::LazyLock};
 use syn::Ident;
@@ -46,7 +45,7 @@ pub fn generate(
     codemap.write(&ctx, output_path)
 }
 
-fn target_manual_page_doc_comment(target: &str, description: impl Display) -> String {
+fn manual_page_doc_comment(target: &str, description: impl Display) -> String {
     let valid = matches!(
         target.get(0..2).map(|ab| ab.eq_ignore_ascii_case("vk")),
         Some(true)
@@ -112,20 +111,6 @@ impl<'a> Deref for Context<'a> {
     fn deref(&self) -> &'a Self::Target {
         self.analysis
     }
-}
-
-#[derive(Debug, Clone)]
-pub struct Method {
-    /// Also includes doc comments!
-    pub attributes: TokenStream,
-    /// To be used in place of a default name
-    pub name_override: Option<Ident>,
-    /// e.g. `&self, a: i32`
-    pub inputs: TokenStream,
-    /// e.g. `-> i32` or empty
-    pub output: TokenStream,
-    /// e.g. `let b = a + 64; b`
-    pub content: TokenStream,
 }
 
 impl OutputContext<'_, '_> {
@@ -268,4 +253,27 @@ impl RustTokens for OutputContext<'_, '_> {
             CPrimaryType::Size => quote! { usize },
         }
     }
+}
+
+#[derive(Debug, Clone, Default)]
+enum Safety {
+    #[default]
+    Default,
+    Safe,
+    Unsafe,
+}
+
+#[derive(Debug, Clone, Default)]
+struct Function {
+    /// Also includes doc comments!
+    pub attributes: TokenStream,
+    pub safety: Safety,
+    /// To be used in place of a default name
+    pub name_override: Option<Ident>,
+    /// e.g. `&self, a: i32`
+    pub inputs: TokenStream,
+    /// e.g. `-> i32` or empty
+    pub output: TokenStream,
+    /// e.g. `let b = a + 64; b`
+    pub content: TokenStream,
 }

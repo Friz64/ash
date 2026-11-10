@@ -2,7 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_cooperative_matrix_maintenance1.html) · Extension `VK_EXT_cooperative_matrix_maintenance1`
 #![doc(alias = "VK_EXT_cooperative_matrix_maintenance1")]
-use crate::generated::prelude::*;
+use crate::internal_prelude::*;
 ///Provided by [VK_EXT_cooperative_matrix_maintenance1](crate::ext::cooperative_matrix_maintenance1)
 impl vk::StructureType {
     pub const PHYSICAL_DEVICE_COOPERATIVE_MATRIX_MAINTENANCE_1_FEATURES_EXT: Self = Self(
@@ -119,7 +119,7 @@ impl Instance {
     }
 }
 pub(crate) mod items {
-    use crate::generated::prelude::*;
+    use crate::internal_prelude::*;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]

@@ -2,7 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_shader_subgroup_partitioned.html) · Extension `VK_EXT_shader_subgroup_partitioned`
 #![doc(alias = "VK_EXT_shader_subgroup_partitioned")]
-use crate::generated::prelude::*;
+use crate::internal_prelude::*;
 ///Provided by [VK_EXT_shader_subgroup_partitioned](crate::ext::shader_subgroup_partitioned)
 impl vk::StructureType {
     pub const PHYSICAL_DEVICE_SHADER_SUBGROUP_PARTITIONED_FEATURES_EXT: Self = Self(
@@ -22,7 +22,7 @@ impl vk::SubgroupFeatureFlagBits {
 pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &CStr = c"VK_EXT_shader_subgroup_partitioned";
 pub(crate) mod items {
-    use crate::generated::prelude::*;
+    use crate::internal_prelude::*;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]

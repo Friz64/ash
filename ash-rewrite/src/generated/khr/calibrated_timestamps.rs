@@ -2,7 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_calibrated_timestamps.html) · Extension `VK_KHR_calibrated_timestamps`
 #![doc(alias = "VK_KHR_calibrated_timestamps")]
-use crate::generated::prelude::*;
+use crate::internal_prelude::*;
 ///Provided by [VK_KHR_calibrated_timestamps](crate::khr::calibrated_timestamps)
 impl vk::StructureType {
     pub const CALIBRATED_TIMESTAMP_INFO_KHR: Self = Self(1000184000);
@@ -155,7 +155,7 @@ impl Device {
     }
 }
 pub(crate) mod items {
-    use crate::generated::prelude::*;
+    use crate::internal_prelude::*;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]

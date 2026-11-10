@@ -2,7 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_swapchain.html) · Extension `VK_KHR_swapchain`
 #![doc(alias = "VK_KHR_swapchain")]
-use crate::generated::prelude::*;
+use crate::internal_prelude::*;
 ///Provided by [VK_KHR_swapchain](crate::khr::swapchain)
 impl vk::ImageLayout {
     pub const PRESENT_SRC_KHR: Self = Self(1000001002);
@@ -397,7 +397,7 @@ impl Instance {
     }
 }
 pub(crate) mod items {
-    use crate::generated::prelude::*;
+    use crate::internal_prelude::*;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]

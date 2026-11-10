@@ -2,7 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_VALVE_shader_mixed_float_dot_product.html) · Extension `VK_VALVE_shader_mixed_float_dot_product`
 #![doc(alias = "VK_VALVE_shader_mixed_float_dot_product")]
-use crate::generated::prelude::*;
+use crate::internal_prelude::*;
 ///Provided by [VK_VALVE_shader_mixed_float_dot_product](crate::valve::shader_mixed_float_dot_product)
 impl vk::StructureType {
     pub const PHYSICAL_DEVICE_SHADER_MIXED_FLOAT_DOT_PRODUCT_FEATURES_VALVE: Self = Self(
@@ -12,7 +12,7 @@ impl vk::StructureType {
 pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &CStr = c"VK_VALVE_shader_mixed_float_dot_product";
 pub(crate) mod items {
-    use crate::generated::prelude::*;
+    use crate::internal_prelude::*;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]

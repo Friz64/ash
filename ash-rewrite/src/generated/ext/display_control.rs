@@ -2,7 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_display_control.html) · Extension `VK_EXT_display_control`
 #![doc(alias = "VK_EXT_display_control")]
-use crate::generated::prelude::*;
+use crate::internal_prelude::*;
 ///Provided by [VK_EXT_display_control](crate::ext::display_control)
 impl vk::StructureType {
     pub const DISPLAY_POWER_INFO_EXT: Self = Self(1000091000);
@@ -187,7 +187,7 @@ impl Device {
     }
 }
 pub(crate) mod items {
-    use crate::generated::prelude::*;
+    use crate::internal_prelude::*;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]

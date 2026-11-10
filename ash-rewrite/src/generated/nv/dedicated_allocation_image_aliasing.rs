@@ -2,7 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_NV_dedicated_allocation_image_aliasing.html) · Extension `VK_NV_dedicated_allocation_image_aliasing`
 #![doc(alias = "VK_NV_dedicated_allocation_image_aliasing")]
-use crate::generated::prelude::*;
+use crate::internal_prelude::*;
 ///Provided by [VK_NV_dedicated_allocation_image_aliasing](crate::nv::dedicated_allocation_image_aliasing)
 impl vk::StructureType {
     pub const PHYSICAL_DEVICE_DEDICATED_ALLOCATION_IMAGE_ALIASING_FEATURES_NV: Self = Self(
@@ -12,7 +12,7 @@ impl vk::StructureType {
 pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &CStr = c"VK_NV_dedicated_allocation_image_aliasing";
 pub(crate) mod items {
-    use crate::generated::prelude::*;
+    use crate::internal_prelude::*;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]

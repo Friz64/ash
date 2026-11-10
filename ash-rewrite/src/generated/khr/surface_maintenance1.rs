@@ -2,7 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_surface_maintenance1.html) · Extension `VK_KHR_surface_maintenance1`
 #![doc(alias = "VK_KHR_surface_maintenance1")]
-use crate::generated::prelude::*;
+use crate::internal_prelude::*;
 ///Provided by [VK_KHR_surface_maintenance1](crate::khr::surface_maintenance1)
 impl vk::StructureType {
     pub const SURFACE_PRESENT_MODE_KHR: Self = Self(1000274000);
@@ -52,7 +52,7 @@ impl PresentGravityFlagBitsKHR {
 pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &CStr = c"VK_KHR_surface_maintenance1";
 pub(crate) mod items {
-    use crate::generated::prelude::*;
+    use crate::internal_prelude::*;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]

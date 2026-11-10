@@ -2,7 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_QCOM_ycbcr_degamma.html) · Extension `VK_QCOM_ycbcr_degamma`
 #![doc(alias = "VK_QCOM_ycbcr_degamma")]
-use crate::generated::prelude::*;
+use crate::internal_prelude::*;
 ///Provided by [VK_QCOM_ycbcr_degamma](crate::qcom::ycbcr_degamma)
 impl vk::StructureType {
     pub const PHYSICAL_DEVICE_YCBCR_DEGAMMA_FEATURES_QCOM: Self = Self(1000520000);
@@ -13,7 +13,7 @@ impl vk::StructureType {
 pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &CStr = c"VK_QCOM_ycbcr_degamma";
 pub(crate) mod items {
-    use crate::generated::prelude::*;
+    use crate::internal_prelude::*;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]

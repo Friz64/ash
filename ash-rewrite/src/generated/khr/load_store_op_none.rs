@@ -2,7 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_load_store_op_none.html) · Extension `VK_KHR_load_store_op_none`
 #![doc(alias = "VK_KHR_load_store_op_none")]
-use crate::generated::prelude::*;
+use crate::internal_prelude::*;
 ///Provided by [VK_KHR_load_store_op_none](crate::khr::load_store_op_none)
 impl vk::AttachmentLoadOp {
     pub const NONE_KHR: Self = Self::NONE;

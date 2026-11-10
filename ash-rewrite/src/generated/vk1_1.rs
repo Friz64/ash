@@ -2,7 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_VERSION_1_1.html) · Vulkan version 1.1
 #![doc(alias = "VK_VERSION_1_1")]
-use crate::generated::prelude::*;
+use crate::internal_prelude::*;
 ///Provided by [Vulkan 1.1](crate::vk1_1)
 impl vk::ImageLayout {
     pub const DEPTH_READ_ONLY_STENCIL_ATTACHMENT_OPTIMAL: Self = Self(1000117000);
@@ -514,6 +514,13 @@ impl crate::Entry {
     #[inline]
     pub fn fp_v1_1(&self) -> &crate::EntryFnV1_1 {
         &self.entry_fn_1_1
+    }
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkEnumerateInstanceVersion.html) · Entry Function
+    #[deprecated = "This function is unavailable and therefore panics on Vulkan 1.0, please use `try_enumerate_instance_version()` instead"]
+    pub unsafe fn enumerate_instance_version(&self) -> VkResult<u32> {
+        let mut api_version = MaybeUninit::uninit();
+        (self.entry_fn_1_1.enumerate_instance_version)(api_version.as_mut_ptr())
+            .assume_init_on_success(api_version)
     }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkEnumerateInstanceVersion.html) · Entry Function
     /// # Example
@@ -1529,7 +1536,7 @@ impl crate::Device {
     }
 }
 pub(crate) mod items {
-    use crate::generated::prelude::*;
+    use crate::internal_prelude::*;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]

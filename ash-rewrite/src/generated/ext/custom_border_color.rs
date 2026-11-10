@@ -2,7 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_custom_border_color.html) · Extension `VK_EXT_custom_border_color`
 #![doc(alias = "VK_EXT_custom_border_color")]
-use crate::generated::prelude::*;
+use crate::internal_prelude::*;
 ///Provided by [VK_EXT_custom_border_color](crate::ext::custom_border_color)
 impl vk::BorderColor {
     pub const FLOAT_CUSTOM_EXT: Self = Self(1000287003);
@@ -19,7 +19,7 @@ impl vk::StructureType {
 pub const SPEC_VERSION: u32 = 12;
 pub const NAME: &CStr = c"VK_EXT_custom_border_color";
 pub(crate) mod items {
-    use crate::generated::prelude::*;
+    use crate::internal_prelude::*;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]

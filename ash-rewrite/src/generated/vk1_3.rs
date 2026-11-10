@@ -2,7 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_VERSION_1_3.html) · Vulkan version 1.3
 #![doc(alias = "VK_VERSION_1_3")]
-use crate::generated::prelude::*;
+use crate::internal_prelude::*;
 ///Provided by [Vulkan 1.3](crate::vk1_3)
 impl vk::ImageLayout {
     pub const READ_ONLY_OPTIMAL: Self = Self(1000314000);
@@ -1530,7 +1530,7 @@ impl crate::Instance {
     }
 }
 pub(crate) mod items {
-    use crate::generated::prelude::*;
+    use crate::internal_prelude::*;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
@@ -2999,23 +2999,21 @@ pub(crate) mod items {
         pub fn name(
             mut self,
             name: &CStr,
-        ) -> core::result::Result<Self, crate::CStrTooLargeForStaticArray> {
+        ) -> CoreResult<Self, crate::CStrTooLargeForStaticArray> {
             crate::write_c_str_slice_with_nul(&mut self.name, name).map(|_| self)
         }
-        pub fn name_as_c_str(
-            &self,
-        ) -> core::result::Result<&CStr, ffi::FromBytesUntilNulError> {
+        pub fn name_as_c_str(&self) -> CoreResult<&CStr, ffi::FromBytesUntilNulError> {
             crate::wrap_c_str_slice_until_nul(&self.name)
         }
         pub fn version(
             mut self,
             version: &CStr,
-        ) -> core::result::Result<Self, crate::CStrTooLargeForStaticArray> {
+        ) -> CoreResult<Self, crate::CStrTooLargeForStaticArray> {
             crate::write_c_str_slice_with_nul(&mut self.version, version).map(|_| self)
         }
         pub fn version_as_c_str(
             &self,
-        ) -> core::result::Result<&CStr, ffi::FromBytesUntilNulError> {
+        ) -> CoreResult<&CStr, ffi::FromBytesUntilNulError> {
             crate::wrap_c_str_slice_until_nul(&self.version)
         }
         pub fn purposes(mut self, purposes: vk::ToolPurposeFlags) -> Self {
@@ -3025,24 +3023,22 @@ pub(crate) mod items {
         pub fn description(
             mut self,
             description: &CStr,
-        ) -> core::result::Result<Self, crate::CStrTooLargeForStaticArray> {
+        ) -> CoreResult<Self, crate::CStrTooLargeForStaticArray> {
             crate::write_c_str_slice_with_nul(&mut self.description, description)
                 .map(|_| self)
         }
         pub fn description_as_c_str(
             &self,
-        ) -> core::result::Result<&CStr, ffi::FromBytesUntilNulError> {
+        ) -> CoreResult<&CStr, ffi::FromBytesUntilNulError> {
             crate::wrap_c_str_slice_until_nul(&self.description)
         }
         pub fn layer(
             mut self,
             layer: &CStr,
-        ) -> core::result::Result<Self, crate::CStrTooLargeForStaticArray> {
+        ) -> CoreResult<Self, crate::CStrTooLargeForStaticArray> {
             crate::write_c_str_slice_with_nul(&mut self.layer, layer).map(|_| self)
         }
-        pub fn layer_as_c_str(
-            &self,
-        ) -> core::result::Result<&CStr, ffi::FromBytesUntilNulError> {
+        pub fn layer_as_c_str(&self) -> CoreResult<&CStr, ffi::FromBytesUntilNulError> {
             crate::wrap_c_str_slice_until_nul(&self.layer)
         }
     }

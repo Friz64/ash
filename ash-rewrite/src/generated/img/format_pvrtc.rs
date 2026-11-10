@@ -2,7 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_IMG_format_pvrtc.html) · Extension `VK_IMG_format_pvrtc`
 #![doc(alias = "VK_IMG_format_pvrtc")]
-use crate::generated::prelude::*;
+use crate::internal_prelude::*;
 ///Provided by [VK_IMG_format_pvrtc](crate::img::format_pvrtc)
 impl vk::Format {
     pub const PVRTC1_2BPP_UNORM_BLOCK_IMG: Self = Self(1000054000);

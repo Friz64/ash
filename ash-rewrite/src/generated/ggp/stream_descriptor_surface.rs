@@ -2,7 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_GGP_stream_descriptor_surface.html) · Extension `VK_GGP_stream_descriptor_surface`
 #![doc(alias = "VK_GGP_stream_descriptor_surface")]
-use crate::generated::prelude::*;
+use crate::internal_prelude::*;
 ///Provided by [VK_GGP_stream_descriptor_surface](crate::ggp::stream_descriptor_surface)
 impl vk::StructureType {
     pub const STREAM_DESCRIPTOR_SURFACE_CREATE_INFO_GGP: Self = Self(1000049000);
@@ -84,7 +84,7 @@ impl Instance {
     }
 }
 pub(crate) mod items {
-    use crate::generated::prelude::*;
+    use crate::internal_prelude::*;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]

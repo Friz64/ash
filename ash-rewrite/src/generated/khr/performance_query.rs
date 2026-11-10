@@ -2,7 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_performance_query.html) · Extension `VK_KHR_performance_query`
 #![doc(alias = "VK_KHR_performance_query")]
-use crate::generated::prelude::*;
+use crate::internal_prelude::*;
 ///Provided by [VK_KHR_performance_query](crate::khr::performance_query)
 impl vk::QueryType {
     pub const PERFORMANCE_QUERY_KHR: Self = Self(1000116000);
@@ -227,7 +227,7 @@ impl Device {
     }
 }
 pub(crate) mod items {
-    use crate::generated::prelude::*;
+    use crate::internal_prelude::*;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
@@ -415,35 +415,33 @@ pub(crate) mod items {
         pub fn name(
             mut self,
             name: &CStr,
-        ) -> core::result::Result<Self, crate::CStrTooLargeForStaticArray> {
+        ) -> CoreResult<Self, crate::CStrTooLargeForStaticArray> {
             crate::write_c_str_slice_with_nul(&mut self.name, name).map(|_| self)
         }
-        pub fn name_as_c_str(
-            &self,
-        ) -> core::result::Result<&CStr, ffi::FromBytesUntilNulError> {
+        pub fn name_as_c_str(&self) -> CoreResult<&CStr, ffi::FromBytesUntilNulError> {
             crate::wrap_c_str_slice_until_nul(&self.name)
         }
         pub fn category(
             mut self,
             category: &CStr,
-        ) -> core::result::Result<Self, crate::CStrTooLargeForStaticArray> {
+        ) -> CoreResult<Self, crate::CStrTooLargeForStaticArray> {
             crate::write_c_str_slice_with_nul(&mut self.category, category).map(|_| self)
         }
         pub fn category_as_c_str(
             &self,
-        ) -> core::result::Result<&CStr, ffi::FromBytesUntilNulError> {
+        ) -> CoreResult<&CStr, ffi::FromBytesUntilNulError> {
             crate::wrap_c_str_slice_until_nul(&self.category)
         }
         pub fn description(
             mut self,
             description: &CStr,
-        ) -> core::result::Result<Self, crate::CStrTooLargeForStaticArray> {
+        ) -> CoreResult<Self, crate::CStrTooLargeForStaticArray> {
             crate::write_c_str_slice_with_nul(&mut self.description, description)
                 .map(|_| self)
         }
         pub fn description_as_c_str(
             &self,
-        ) -> core::result::Result<&CStr, ffi::FromBytesUntilNulError> {
+        ) -> CoreResult<&CStr, ffi::FromBytesUntilNulError> {
             crate::wrap_c_str_slice_until_nul(&self.description)
         }
     }

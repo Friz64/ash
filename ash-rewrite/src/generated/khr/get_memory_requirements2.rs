@@ -2,7 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_get_memory_requirements2.html) · Extension `VK_KHR_get_memory_requirements2`
 #![doc(alias = "VK_KHR_get_memory_requirements2")]
-use crate::generated::prelude::*;
+use crate::internal_prelude::*;
 ///Provided by [VK_KHR_get_memory_requirements2](crate::khr::get_memory_requirements2)
 impl vk::StructureType {
     pub const BUFFER_MEMORY_REQUIREMENTS_INFO_2_KHR: Self = Self::BUFFER_MEMORY_REQUIREMENTS_INFO_2;
@@ -168,7 +168,7 @@ impl Device {
     }
 }
 pub(crate) mod items {
-    use crate::generated::prelude::*;
+    use crate::internal_prelude::*;
     pub type BufferMemoryRequirementsInfo2KHR<'a> = vk::BufferMemoryRequirementsInfo2<
         'a,
     >;

@@ -2,11 +2,11 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //!Items provided by `vulkan_video_codec_h264std_encode`
 #![doc(alias = "vulkan_video_codec_h264std_encode")]
-use crate::generated::prelude::*;
+use crate::internal_prelude::*;
 pub const SPEC_VERSION: u32 = vk::STD_VULKAN_VIDEO_CODEC_H264_ENCODE_API_VERSION_1_0_0;
 pub const NAME: &CStr = c"VK_STD_vulkan_video_codec_h264_encode";
 pub(crate) mod items {
-    use crate::generated::prelude::*;
+    use crate::internal_prelude::*;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy, Default)]

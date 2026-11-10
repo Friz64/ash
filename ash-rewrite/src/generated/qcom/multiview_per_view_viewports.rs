@@ -2,7 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_QCOM_multiview_per_view_viewports.html) · Extension `VK_QCOM_multiview_per_view_viewports`
 #![doc(alias = "VK_QCOM_multiview_per_view_viewports")]
-use crate::generated::prelude::*;
+use crate::internal_prelude::*;
 ///Provided by [VK_QCOM_multiview_per_view_viewports](crate::qcom::multiview_per_view_viewports)
 impl vk::StructureType {
     pub const PHYSICAL_DEVICE_MULTIVIEW_PER_VIEW_VIEWPORTS_FEATURES_QCOM: Self = Self(
@@ -12,7 +12,7 @@ impl vk::StructureType {
 pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &CStr = c"VK_QCOM_multiview_per_view_viewports";
 pub(crate) mod items {
-    use crate::generated::prelude::*;
+    use crate::internal_prelude::*;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]

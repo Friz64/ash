@@ -2,7 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_push_descriptor.html) · Extension `VK_KHR_push_descriptor`
 #![doc(alias = "VK_KHR_push_descriptor")]
-use crate::generated::prelude::*;
+use crate::internal_prelude::*;
 ///Provided by [VK_KHR_push_descriptor](crate::khr::push_descriptor)
 impl vk::StructureType {
     pub const PHYSICAL_DEVICE_PUSH_DESCRIPTOR_PROPERTIES_KHR: Self = Self::PHYSICAL_DEVICE_PUSH_DESCRIPTOR_PROPERTIES;
@@ -134,7 +134,7 @@ impl Device {
     }
 }
 pub(crate) mod items {
-    use crate::generated::prelude::*;
+    use crate::internal_prelude::*;
     pub type PhysicalDevicePushDescriptorPropertiesKHR<'a> = vk::PhysicalDevicePushDescriptorProperties<
         'a,
     >;

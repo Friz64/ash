@@ -2,7 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_NV_acquire_winrt_display.html) · Extension `VK_NV_acquire_winrt_display`
 #![doc(alias = "VK_NV_acquire_winrt_display")]
-use crate::generated::prelude::*;
+use crate::internal_prelude::*;
 pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &CStr = c"VK_NV_acquire_winrt_display";
 #[derive(Clone)]
@@ -91,7 +91,7 @@ impl Instance {
     }
 }
 pub(crate) mod items {
-    use crate::generated::prelude::*;
+    use crate::internal_prelude::*;
     pub type PFN_vkAcquireWinrtDisplayNV = unsafe extern "system" fn(
         physical_device: vk::PhysicalDevice,
         display: vk::DisplayKHR,

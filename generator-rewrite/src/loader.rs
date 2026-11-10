@@ -1,5 +1,5 @@
 use crate::{
-    Context, Method,
+    Context, Function, Safety,
     output::{CodeMap, GlobExport, OutputContext, OutputLocation},
 };
 use analysis::{
@@ -122,8 +122,40 @@ pub fn generate_code(ctx: &Context, codemap: &mut CodeMap) {
                 pub #wrapper_name: #command_ty,
             });
 
-            let code = if let Some(method) = ctx.wrapper_rules.get(name) {
-                method_code(&octx, &wrapper_name, command, function_type, method)
+            let code = if let Some(methods) = ctx.wrapper_rules.get(name) {
+                let methods = methods.iter().map(
+                    |Function {
+                         attributes,
+                         safety,
+                         name_override,
+                         inputs,
+                         output,
+                         content,
+                     }| {
+                        let safety = match safety {
+                            Safety::Default | Safety::Unsafe => quote! { unsafe },
+                            Safety::Safe => quote! {},
+                        };
+
+                        let description = match function_type {
+                            FunctionType::Static => "Static Function",
+                            FunctionType::Entry => "Entry Function",
+                            FunctionType::Instance => "Instance Function",
+                            FunctionType::Device => "Device Function",
+                        };
+
+                        let name = name_override.as_ref().unwrap_or(&wrapper_name);
+                        let manual_page =
+                            crate::manual_page_doc_comment(command.name.original(), description);
+                        quote! {
+                            #[doc = #manual_page]
+                            #attributes
+                            pub #safety fn #name(#inputs) #output { #content }
+                        }
+                    },
+                );
+
+                quote! { #(#methods)* }
             } else {
                 wrapper(&octx, command, &wrapper_name, table_field)
             };
@@ -278,35 +310,6 @@ pub fn generate_code(ctx: &Context, codemap: &mut CodeMap) {
         };
 
         octx.emit_tokens(quote! { #table_code #loader_code });
-    }
-}
-
-fn method_code(
-    _octx: &OutputContext,
-    name: &Ident,
-    command: &Command,
-    function_type: FunctionType,
-    Method {
-        attributes,
-        name_override,
-        inputs,
-        output,
-        content,
-    }: &Method,
-) -> TokenStream {
-    let description = match function_type {
-        FunctionType::Static => "Static Function",
-        FunctionType::Entry => "Entry Function",
-        FunctionType::Instance => "Instance Function",
-        FunctionType::Device => "Device Function",
-    };
-
-    let name = name_override.as_ref().unwrap_or(name);
-    let manual_page = crate::target_manual_page_doc_comment(command.name.original(), description);
-    quote! {
-        #[doc = #manual_page]
-        #attributes
-        pub unsafe fn #name(#inputs) #output { #content }
     }
 }
 

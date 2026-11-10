@@ -2,7 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_QCOM_render_pass_shader_resolve.html) · Extension `VK_QCOM_render_pass_shader_resolve`
 #![doc(alias = "VK_QCOM_render_pass_shader_resolve")]
-use crate::generated::prelude::*;
+use crate::internal_prelude::*;
 ///Provided by [VK_QCOM_render_pass_shader_resolve](crate::qcom::render_pass_shader_resolve)
 impl vk::SubpassDescriptionFlags {
     pub const FRAGMENT_REGION_QCOM: Self = Self(

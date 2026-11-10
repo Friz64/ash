@@ -2,7 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_NVX_image_view_handle.html) · Extension `VK_NVX_image_view_handle`
 #![doc(alias = "VK_NVX_image_view_handle")]
-use crate::generated::prelude::*;
+use crate::internal_prelude::*;
 ///Provided by [VK_NVX_image_view_handle](crate::nvx::image_view_handle)
 impl vk::StructureType {
     pub const IMAGE_VIEW_HANDLE_INFO_NVX: Self = Self(1000030000);
@@ -140,7 +140,7 @@ impl Device {
     }
 }
 pub(crate) mod items {
-    use crate::generated::prelude::*;
+    use crate::internal_prelude::*;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]

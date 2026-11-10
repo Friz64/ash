@@ -2,7 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_format_feature_flags2.html) · Extension `VK_KHR_format_feature_flags2`
 #![doc(alias = "VK_KHR_format_feature_flags2")]
-use crate::generated::prelude::*;
+use crate::internal_prelude::*;
 ///Provided by [VK_KHR_format_feature_flags2](crate::khr::format_feature_flags2)
 impl vk::StructureType {
     pub const FORMAT_PROPERTIES_3_KHR: Self = Self::FORMAT_PROPERTIES_3;
@@ -121,7 +121,7 @@ impl vk::FormatFeatureFlagBits2 {
 pub const SPEC_VERSION: u32 = 2;
 pub const NAME: &CStr = c"VK_KHR_format_feature_flags2";
 pub(crate) mod items {
-    use crate::generated::prelude::*;
+    use crate::internal_prelude::*;
     pub type FormatProperties3KHR<'a> = vk::FormatProperties3<'a>;
     pub type FormatFeatureFlagBits2KHR = vk::FormatFeatureFlagBits2;
     pub type FormatFeatureFlags2KHR = vk::FormatFeatureFlags2;

@@ -2,7 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_zero_initialize_device_memory.html) · Extension `VK_EXT_zero_initialize_device_memory`
 #![doc(alias = "VK_EXT_zero_initialize_device_memory")]
-use crate::generated::prelude::*;
+use crate::internal_prelude::*;
 ///Provided by [VK_EXT_zero_initialize_device_memory](crate::ext::zero_initialize_device_memory)
 impl vk::ImageLayout {
     pub const ZERO_INITIALIZED_EXT: Self = Self(1000620000);
@@ -26,7 +26,7 @@ impl vk::MemoryAllocateFlagBits {
 pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &CStr = c"VK_EXT_zero_initialize_device_memory";
 pub(crate) mod items {
-    use crate::generated::prelude::*;
+    use crate::internal_prelude::*;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]

@@ -2,7 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_video_encode_h264.html) · Extension `VK_KHR_video_encode_h264`
 #![doc(alias = "VK_KHR_video_encode_h264")]
-use crate::generated::prelude::*;
+use crate::internal_prelude::*;
 ///Provided by [VK_KHR_video_encode_h264](crate::khr::video_encode_h264)
 impl vk::StructureType {
     pub const VIDEO_ENCODE_H264_CAPABILITIES_KHR: Self = Self(1000038000);
@@ -191,7 +191,7 @@ impl VideoEncodeH264RateControlFlagBitsKHR {
 pub const SPEC_VERSION: u32 = 14;
 pub const NAME: &CStr = c"VK_KHR_video_encode_h264";
 pub(crate) mod items {
-    use crate::generated::prelude::*;
+    use crate::internal_prelude::*;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]

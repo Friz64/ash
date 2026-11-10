@@ -2,7 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_AMD_texture_gather_bias_lod.html) · Extension `VK_AMD_texture_gather_bias_lod`
 #![doc(alias = "VK_AMD_texture_gather_bias_lod")]
-use crate::generated::prelude::*;
+use crate::internal_prelude::*;
 ///Provided by [VK_AMD_texture_gather_bias_lod](crate::amd::texture_gather_bias_lod)
 impl vk::StructureType {
     pub const TEXTURE_LOD_GATHER_FORMAT_PROPERTIES_AMD: Self = Self(1000041000);
@@ -10,7 +10,7 @@ impl vk::StructureType {
 pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &CStr = c"VK_AMD_texture_gather_bias_lod";
 pub(crate) mod items {
-    use crate::generated::prelude::*;
+    use crate::internal_prelude::*;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]

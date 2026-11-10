@@ -2,7 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_external_memory_dma_buf.html) · Extension `VK_EXT_external_memory_dma_buf`
 #![doc(alias = "VK_EXT_external_memory_dma_buf")]
-use crate::generated::prelude::*;
+use crate::internal_prelude::*;
 ///Provided by [VK_EXT_external_memory_dma_buf](crate::ext::external_memory_dma_buf)
 impl vk::ExternalMemoryHandleTypeFlags {
     pub const DMA_BUF_EXT: Self = Self(

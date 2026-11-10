@@ -2,7 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_QCOM_tile_shading.html) · Extension `VK_QCOM_tile_shading`
 #![doc(alias = "VK_QCOM_tile_shading")]
-use crate::generated::prelude::*;
+use crate::internal_prelude::*;
 ///Provided by [VK_QCOM_tile_shading](crate::qcom::tile_shading)
 impl vk::StructureType {
     pub const PHYSICAL_DEVICE_TILE_SHADING_FEATURES_QCOM: Self = Self(1000309000);
@@ -147,7 +147,7 @@ impl Device {
     }
 }
 pub(crate) mod items {
-    use crate::generated::prelude::*;
+    use crate::internal_prelude::*;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]

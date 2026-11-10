@@ -2,7 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_ARM_data_graph_neural_accelerator_statistics.html) · Extension `VK_ARM_data_graph_neural_accelerator_statistics`
 #![doc(alias = "VK_ARM_data_graph_neural_accelerator_statistics")]
-use crate::generated::prelude::*;
+use crate::internal_prelude::*;
 ///Provided by [VK_ARM_data_graph_neural_accelerator_statistics](crate::arm::data_graph_neural_accelerator_statistics)
 impl vk::StructureType {
     pub const DATA_GRAPH_PIPELINE_NEURAL_STATISTICS_CREATE_INFO_ARM: Self = Self(
@@ -33,7 +33,7 @@ impl NeuralAcceleratorStatisticsModeARM {
 pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &CStr = c"VK_ARM_data_graph_neural_accelerator_statistics";
 pub(crate) mod items {
-    use crate::generated::prelude::*;
+    use crate::internal_prelude::*;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]

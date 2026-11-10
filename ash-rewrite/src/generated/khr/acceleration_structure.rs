@@ -2,7 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_acceleration_structure.html) · Extension `VK_KHR_acceleration_structure`
 #![doc(alias = "VK_KHR_acceleration_structure")]
-use crate::generated::prelude::*;
+use crate::internal_prelude::*;
 ///Provided by [VK_KHR_acceleration_structure](crate::khr::acceleration_structure)
 impl vk::DescriptorType {
     pub const ACCELERATION_STRUCTURE_KHR: Self = Self(1000150000);
@@ -782,7 +782,7 @@ impl Device {
     }
 }
 pub(crate) mod items {
-    use crate::generated::prelude::*;
+    use crate::internal_prelude::*;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]

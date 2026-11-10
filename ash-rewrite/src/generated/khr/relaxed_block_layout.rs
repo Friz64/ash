@@ -2,6 +2,6 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_relaxed_block_layout.html) · Extension `VK_KHR_relaxed_block_layout`
 #![doc(alias = "VK_KHR_relaxed_block_layout")]
-use crate::generated::prelude::*;
+use crate::internal_prelude::*;
 pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &CStr = c"VK_KHR_relaxed_block_layout";

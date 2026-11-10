@@ -2,7 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_video_decode_queue.html) · Extension `VK_KHR_video_decode_queue`
 #![doc(alias = "VK_KHR_video_decode_queue")]
-use crate::generated::prelude::*;
+use crate::internal_prelude::*;
 ///Provided by [VK_KHR_video_decode_queue](crate::khr::video_decode_queue)
 impl vk::ImageLayout {
     pub const VIDEO_DECODE_DST_KHR: Self = Self(1000024000);
@@ -194,7 +194,7 @@ impl Device {
     }
 }
 pub(crate) mod items {
-    use crate::generated::prelude::*;
+    use crate::internal_prelude::*;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]

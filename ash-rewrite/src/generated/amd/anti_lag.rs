@@ -2,7 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_AMD_anti_lag.html) · Extension `VK_AMD_anti_lag`
 #![doc(alias = "VK_AMD_anti_lag")]
-use crate::generated::prelude::*;
+use crate::internal_prelude::*;
 ///Provided by [VK_AMD_anti_lag](crate::amd::anti_lag)
 impl vk::StructureType {
     pub const PHYSICAL_DEVICE_ANTI_LAG_FEATURES_AMD: Self = Self(1000476000);
@@ -75,7 +75,7 @@ impl Device {
     }
 }
 pub(crate) mod items {
-    use crate::generated::prelude::*;
+    use crate::internal_prelude::*;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]

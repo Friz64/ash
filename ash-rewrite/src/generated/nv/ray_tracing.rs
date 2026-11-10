@@ -2,7 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_NV_ray_tracing.html) · Extension `VK_NV_ray_tracing`
 #![doc(alias = "VK_NV_ray_tracing")]
-use crate::generated::prelude::*;
+use crate::internal_prelude::*;
 ///Provided by [VK_NV_ray_tracing](crate::nv::ray_tracing)
 impl vk::DescriptorType {
     pub const ACCELERATION_STRUCTURE_NV: Self = Self(1000165000);
@@ -687,7 +687,7 @@ impl Device {
     }
 }
 pub(crate) mod items {
-    use crate::generated::prelude::*;
+    use crate::internal_prelude::*;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]

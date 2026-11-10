@@ -2,7 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_hdr_metadata.html) · Extension `VK_EXT_hdr_metadata`
 #![doc(alias = "VK_EXT_hdr_metadata")]
-use crate::generated::prelude::*;
+use crate::internal_prelude::*;
 ///Provided by [VK_EXT_hdr_metadata](crate::ext::hdr_metadata)
 impl vk::StructureType {
     pub const HDR_METADATA_EXT: Self = Self(1000105000);
@@ -76,7 +76,7 @@ impl Device {
     }
 }
 pub(crate) mod items {
-    use crate::generated::prelude::*;
+    use crate::internal_prelude::*;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy, Default)]

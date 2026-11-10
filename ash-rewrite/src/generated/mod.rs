@@ -2,20 +2,6 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 /// A re-export of all items
 pub mod vk;
-mod prelude {
-    pub use crate::{vk, Extends, Handle, TaggedStructure, VkResult};
-    pub use core::ffi::{self, CStr};
-    pub use core::fmt;
-    pub use core::marker::PhantomData;
-    pub use core::mem::{transmute, zeroed, MaybeUninit};
-    pub use core::ops::{
-        BitAnd, BitAndAssign, BitOr, BitOrAssign, BitXor, BitXorAssign, Not,
-    };
-    pub use core::ptr;
-    #[cfg(feature = "debug")]
-    pub use core::fmt as fmtd;
-    pub use alloc::vec::Vec;
-}
 pub mod vk1_0;
 pub mod vk1_1;
 pub mod vk1_2;

@@ -2,7 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_maintenance2.html) · Extension `VK_KHR_maintenance2`
 #![doc(alias = "VK_KHR_maintenance2")]
-use crate::generated::prelude::*;
+use crate::internal_prelude::*;
 ///Provided by [VK_KHR_maintenance2](crate::khr::maintenance2)
 impl vk::ImageLayout {
     pub const DEPTH_READ_ONLY_STENCIL_ATTACHMENT_OPTIMAL_KHR: Self = Self::DEPTH_READ_ONLY_STENCIL_ATTACHMENT_OPTIMAL;
@@ -42,7 +42,7 @@ impl vk::ImageCreateFlagBits {
 pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &CStr = c"VK_KHR_maintenance2";
 pub(crate) mod items {
-    use crate::generated::prelude::*;
+    use crate::internal_prelude::*;
     pub type InputAttachmentAspectReferenceKHR = vk::InputAttachmentAspectReference;
     pub type RenderPassInputAttachmentAspectCreateInfoKHR<'a> = vk::RenderPassInputAttachmentAspectCreateInfo<
         'a,

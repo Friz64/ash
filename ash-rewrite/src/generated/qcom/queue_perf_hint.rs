@@ -2,7 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_QCOM_queue_perf_hint.html) · Extension `VK_QCOM_queue_perf_hint`
 #![doc(alias = "VK_QCOM_queue_perf_hint")]
-use crate::generated::prelude::*;
+use crate::internal_prelude::*;
 ///Provided by [VK_QCOM_queue_perf_hint](crate::qcom::queue_perf_hint)
 impl vk::StructureType {
     pub const PERF_HINT_INFO_QCOM: Self = Self(1000302000);
@@ -75,7 +75,7 @@ impl Device {
     }
 }
 pub(crate) mod items {
-    use crate::generated::prelude::*;
+    use crate::internal_prelude::*;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]

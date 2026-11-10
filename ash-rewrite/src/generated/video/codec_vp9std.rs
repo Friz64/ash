@@ -2,7 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //!Items provided by `vulkan_video_codec_vp9std`
 #![doc(alias = "vulkan_video_codec_vp9std")]
-use crate::generated::prelude::*;
+use crate::internal_prelude::*;
 ///Provided by [vulkan_video_codec_vp9std](crate::video::codec_vp9std)
 impl VP9Profile {
     pub const TYPE_0: Self = Self(0);
@@ -65,7 +65,7 @@ impl VP9ColorSpace {
     pub const INVALID: Self = Self(0x7FFFFFFF);
 }
 pub(crate) mod items {
-    use crate::generated::prelude::*;
+    use crate::internal_prelude::*;
     #[repr(C)]
     #[derive(Clone, Copy, Default)]
     pub struct VP9ColorConfigFlags {

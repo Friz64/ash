@@ -2,7 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_shared_presentable_image.html) · Extension `VK_KHR_shared_presentable_image`
 #![doc(alias = "VK_KHR_shared_presentable_image")]
-use crate::generated::prelude::*;
+use crate::internal_prelude::*;
 ///Provided by [VK_KHR_shared_presentable_image](crate::khr::shared_presentable_image)
 impl vk::ImageLayout {
     pub const SHARED_PRESENT_KHR: Self = Self(1000111000);
@@ -74,7 +74,7 @@ impl Device {
     }
 }
 pub(crate) mod items {
-    use crate::generated::prelude::*;
+    use crate::internal_prelude::*;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]

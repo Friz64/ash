@@ -2,7 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_calibrated_timestamps.html) · Extension `VK_EXT_calibrated_timestamps`
 #![doc(alias = "VK_EXT_calibrated_timestamps")]
-use crate::generated::prelude::*;
+use crate::internal_prelude::*;
 ///Provided by [VK_EXT_calibrated_timestamps](crate::ext::calibrated_timestamps)
 impl vk::StructureType {
     pub const CALIBRATED_TIMESTAMP_INFO_EXT: Self = Self::CALIBRATED_TIMESTAMP_INFO_KHR;
@@ -155,7 +155,7 @@ impl Device {
     }
 }
 pub(crate) mod items {
-    use crate::generated::prelude::*;
+    use crate::internal_prelude::*;
     pub type CalibratedTimestampInfoEXT<'a> = vk::CalibratedTimestampInfoKHR<'a>;
     pub type TimeDomainEXT = vk::TimeDomainKHR;
     pub type PFN_vkGetPhysicalDeviceCalibrateableTimeDomainsEXT = vk::PFN_vkGetPhysicalDeviceCalibrateableTimeDomainsKHR;

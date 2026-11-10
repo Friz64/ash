@@ -2,7 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_FUCHSIA_external_semaphore.html) · Extension `VK_FUCHSIA_external_semaphore`
 #![doc(alias = "VK_FUCHSIA_external_semaphore")]
-use crate::generated::prelude::*;
+use crate::internal_prelude::*;
 ///Provided by [VK_FUCHSIA_external_semaphore](crate::fuchsia::external_semaphore)
 impl vk::StructureType {
     pub const IMPORT_SEMAPHORE_ZIRCON_HANDLE_INFO_FUCHSIA: Self = Self(1000365000);
@@ -116,7 +116,7 @@ impl Device {
     }
 }
 pub(crate) mod items {
-    use crate::generated::prelude::*;
+    use crate::internal_prelude::*;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]

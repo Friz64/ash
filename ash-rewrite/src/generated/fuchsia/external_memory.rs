@@ -2,7 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_FUCHSIA_external_memory.html) · Extension `VK_FUCHSIA_external_memory`
 #![doc(alias = "VK_FUCHSIA_external_memory")]
-use crate::generated::prelude::*;
+use crate::internal_prelude::*;
 ///Provided by [VK_FUCHSIA_external_memory](crate::fuchsia::external_memory)
 impl vk::StructureType {
     pub const IMPORT_MEMORY_ZIRCON_HANDLE_INFO_FUCHSIA: Self = Self(1000364000);
@@ -121,7 +121,7 @@ impl Device {
     }
 }
 pub(crate) mod items {
-    use crate::generated::prelude::*;
+    use crate::internal_prelude::*;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]

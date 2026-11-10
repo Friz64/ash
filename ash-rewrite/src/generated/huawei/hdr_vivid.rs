@@ -2,7 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_HUAWEI_hdr_vivid.html) · Extension `VK_HUAWEI_hdr_vivid`
 #![doc(alias = "VK_HUAWEI_hdr_vivid")]
-use crate::generated::prelude::*;
+use crate::internal_prelude::*;
 ///Provided by [VK_HUAWEI_hdr_vivid](crate::huawei::hdr_vivid)
 impl vk::StructureType {
     pub const PHYSICAL_DEVICE_HDR_VIVID_FEATURES_HUAWEI: Self = Self(1000590000);
@@ -11,7 +11,7 @@ impl vk::StructureType {
 pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &CStr = c"VK_HUAWEI_hdr_vivid";
 pub(crate) mod items {
-    use crate::generated::prelude::*;
+    use crate::internal_prelude::*;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]

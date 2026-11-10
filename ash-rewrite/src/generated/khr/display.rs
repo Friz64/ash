@@ -2,7 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_display.html) · Extension `VK_KHR_display`
 #![doc(alias = "VK_KHR_display")]
-use crate::generated::prelude::*;
+use crate::internal_prelude::*;
 ///Provided by [VK_KHR_display](crate::khr::display)
 impl vk::StructureType {
     pub const DISPLAY_MODE_CREATE_INFO_KHR: Self = Self(1000002000);
@@ -298,7 +298,7 @@ impl Instance {
     }
 }
 pub(crate) mod items {
-    use crate::generated::prelude::*;
+    use crate::internal_prelude::*;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy, Default)]
@@ -327,7 +327,7 @@ pub(crate) mod items {
             if self.display_name.is_null() {
                 None
             } else {
-                Some(unsafe { CStr::from_ptr(self.display_name) })
+                Some(CStr::from_ptr(self.display_name))
             }
         }
         pub fn physical_dimensions(mut self, physical_dimensions: vk::Extent2D) -> Self {

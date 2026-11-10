@@ -2,7 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_INTEL_performance_query.html) · Extension `VK_INTEL_performance_query`
 #![doc(alias = "VK_INTEL_performance_query")]
-use crate::generated::prelude::*;
+use crate::internal_prelude::*;
 ///Provided by [VK_INTEL_performance_query](crate::intel::performance_query)
 impl vk::QueryType {
     pub const PERFORMANCE_QUERY_INTEL: Self = Self(1000210000);
@@ -282,7 +282,7 @@ impl Device {
     }
 }
 pub(crate) mod items {
-    use crate::generated::prelude::*;
+    use crate::internal_prelude::*;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy, Default)]

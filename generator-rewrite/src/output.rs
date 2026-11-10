@@ -79,7 +79,7 @@ impl PathComponent {
         match require_location {
             RequireLocation::Core { major, minor } => vec![PathComponent {
                 module_name: format_ident!("vk{major}_{minor}"),
-                doc_comment: crate::target_manual_page_doc_comment(
+                doc_comment: crate::manual_page_doc_comment(
                     &original_name,
                     format!("Vulkan version {major}.{minor}"),
                 ),
@@ -94,7 +94,7 @@ impl PathComponent {
                         },
                         PathComponent {
                             module_name: crate::escape_ident(&ext_name.to_snek_case()),
-                            doc_comment: crate::target_manual_page_doc_comment(
+                            doc_comment: crate::manual_page_doc_comment(
                                 &original_name,
                                 format!("Extension `{}`", original_name),
                             ),
@@ -201,18 +201,6 @@ impl CodeMap {
             quote! {
                 /// A re-export of all items
                 pub mod vk;
-                mod prelude {
-                    pub use crate::{vk, Extends, Handle, TaggedStructure, VkResult};
-                    pub use core::ffi::{self, CStr};
-                    pub use core::fmt;
-                    pub use core::marker::PhantomData;
-                    pub use core::mem::{transmute, zeroed, MaybeUninit};
-                    pub use core::ops::{BitAnd, BitAndAssign, BitOr, BitOrAssign, BitXor, BitXorAssign, Not};
-                    pub use core::ptr;
-                    #[cfg(feature = "debug")]
-                    pub use core::fmt as fmtd;
-                    pub use alloc::vec::Vec;
-                }
             },
         );
         vfs.write(
@@ -266,12 +254,9 @@ impl CodeMap {
                 content: TokenStream::new(),
             });
 
-            let oooooh_im_preluuuding = quote! { use crate::generated::prelude::*; };
             if output.glob_export == GlobExport::Yes {
-                source_file.reexport_content.extend(oooooh_im_preluuuding);
                 source_file.reexport_content.extend(code.tokens);
             } else {
-                source_file.content.extend(oooooh_im_preluuuding);
                 source_file.content.extend(code.tokens);
             };
 
@@ -323,7 +308,11 @@ impl CodeMap {
 
             if !reexport_content.is_empty() {
                 reexport_content = quote! {
-                    pub(crate) mod items { #reexport_content }
+                    pub(crate) mod items {
+                        use crate::internal_prelude::*;
+                        #reexport_content
+                    }
+
                     pub use items::*;
                 };
 
@@ -353,6 +342,7 @@ impl CodeMap {
                     #provisional_mod_guard
                     #![doc = #doc_comment]
                     #![doc(alias = #doc_alias)]
+                    use crate::internal_prelude::*;
                     #content
                     #reexport_content
                 },

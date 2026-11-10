@@ -14,6 +14,7 @@ extern crate alloc;
     clippy::too_many_arguments
 )]
 mod generated;
+mod internal_prelude;
 mod loader;
 /// Type definitions for platform-specific external types
 pub mod platform_types;

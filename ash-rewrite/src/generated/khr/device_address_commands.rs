@@ -2,7 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_device_address_commands.html) · Extension `VK_KHR_device_address_commands`
 #![doc(alias = "VK_KHR_device_address_commands")]
-use crate::generated::prelude::*;
+use crate::internal_prelude::*;
 ///Provided by [VK_KHR_device_address_commands](crate::khr::device_address_commands)
 impl vk::StructureType {
     pub const DEVICE_MEMORY_COPY_KHR: Self = Self(1000318000);
@@ -702,7 +702,7 @@ impl Device {
     }
 }
 pub(crate) mod items {
-    use crate::generated::prelude::*;
+    use crate::internal_prelude::*;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy, Default)]

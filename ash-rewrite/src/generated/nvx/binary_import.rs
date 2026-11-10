@@ -2,7 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_NVX_binary_import.html) · Extension `VK_NVX_binary_import`
 #![doc(alias = "VK_NVX_binary_import")]
-use crate::generated::prelude::*;
+use crate::internal_prelude::*;
 ///Provided by [VK_NVX_binary_import](crate::nvx::binary_import)
 impl vk::StructureType {
     pub const CU_MODULE_CREATE_INFO_NVX: Self = Self(1000029000);
@@ -207,7 +207,7 @@ impl Device {
     }
 }
 pub(crate) mod items {
-    use crate::generated::prelude::*;
+    use crate::internal_prelude::*;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
@@ -309,11 +309,7 @@ pub(crate) mod items {
             self
         }
         pub unsafe fn name_as_c_str(&self) -> Option<&CStr> {
-            if self.p_name.is_null() {
-                None
-            } else {
-                Some(unsafe { CStr::from_ptr(self.p_name) })
-            }
+            if self.p_name.is_null() { None } else { Some(CStr::from_ptr(self.p_name)) }
         }
     }
     #[repr(C)]

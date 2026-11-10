@@ -2,7 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_tooling_info.html) · Extension `VK_EXT_tooling_info`
 #![doc(alias = "VK_EXT_tooling_info")]
-use crate::generated::prelude::*;
+use crate::internal_prelude::*;
 ///Provided by [VK_EXT_tooling_info](crate::ext::tooling_info)
 impl vk::StructureType {
     pub const PHYSICAL_DEVICE_TOOL_PROPERTIES_EXT: Self = Self::PHYSICAL_DEVICE_TOOL_PROPERTIES;
@@ -126,7 +126,7 @@ impl Instance {
     }
 }
 pub(crate) mod items {
-    use crate::generated::prelude::*;
+    use crate::internal_prelude::*;
     pub type PhysicalDeviceToolPropertiesEXT<'a> = vk::PhysicalDeviceToolProperties<'a>;
     pub type ToolPurposeFlagBitsEXT = vk::ToolPurposeFlagBits;
     pub type ToolPurposeFlagsEXT = vk::ToolPurposeFlags;

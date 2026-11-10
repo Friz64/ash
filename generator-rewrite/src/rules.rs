@@ -1,22 +1,22 @@
-use crate::Method;
+use crate::{Function, Safety};
 use analysis::name::{CommandName, TypeName, VariableName};
 use proc_macro2::TokenStream;
 use quote::{ToTokens, TokenStreamExt};
-use std::collections::HashMap;
+use std::collections::{HashMap, hash_map::Entry};
 
-fn parse_name_attr(attr: &syn::Attribute) -> Option<syn::Ident> {
-    if !attr.path().is_ident("name") {
-        return None;
+fn map_safety(safety: &syn::Safety) -> Safety {
+    match safety {
+        syn::Safety::Safe(_) => Safety::Safe,
+        syn::Safety::Unsafe(_) => Safety::Unsafe,
+        syn::Safety::Default => Safety::Default,
     }
-
-    attr.parse_args::<syn::Ident>().ok()
 }
 
 #[derive(Debug)]
 pub enum BuilderRule {
     Keep,
     Skip,
-    Replace(Method),
+    Replace(Vec<Function>),
 }
 
 #[derive(Debug)]
@@ -52,7 +52,7 @@ impl BuilderRules {
                 };
 
                 let mut attributes = TokenStream::new();
-                let mut rule: Box<dyn Fn(TokenStream) -> BuilderRule> =
+                let mut rule: Box<dyn FnOnce(TokenStream) -> BuilderRule> =
                     Box::new(|_| panic!("no rule specified"));
                 for attr in attrs {
                     if attr.path().is_ident("keep") {
@@ -60,27 +60,43 @@ impl BuilderRules {
                     } else if attr.path().is_ident("skip") {
                         rule = Box::new(|_attributes| BuilderRule::Skip);
                     } else if attr.path().is_ident("replace") {
+                        let name_override = attr.parse_args::<syn::Ident>().ok();
                         let impl_item_fn =
                             impl_item_fn.expect("function with replace attr should have body");
 
-                        rule = Box::new(|attributes| {
+                        rule = Box::new(move |attributes| {
                             let mut content = TokenStream::new();
                             content.append_all(&impl_item_fn.block.stmts);
-                            BuilderRule::Replace(Method {
+                            BuilderRule::Replace(vec![Function {
                                 attributes,
-                                name_override: None,
+                                safety: map_safety(&impl_item_fn.sig.safety),
+                                name_override,
                                 inputs: impl_item_fn.sig.inputs.to_token_stream(),
                                 output: impl_item_fn.sig.output.to_token_stream(),
                                 content,
-                            })
+                            }])
                         });
                     } else {
-                        attr.to_tokens(&mut attributes)
+                        attr.to_tokens(&mut attributes);
                     }
                 }
 
                 let field_name = VariableName::new(sig.ident.to_string().leak());
-                output.insert((type_name, field_name), rule(attributes));
+                let rule = rule(attributes);
+                match output.entry((type_name, field_name)) {
+                    Entry::Vacant(vacant) => {
+                        vacant.insert(rule);
+                    }
+                    Entry::Occupied(mut occupied) => {
+                        if let BuilderRule::Replace(mut src) = rule
+                            && let BuilderRule::Replace(dst) = occupied.get_mut()
+                        {
+                            dst.append(&mut src);
+                        } else {
+                            panic!("rule already exists");
+                        }
+                    }
+                }
             }
         }
 
@@ -93,12 +109,11 @@ impl BuilderRules {
 }
 
 #[derive(Debug)]
-pub struct WrapperRules(HashMap<CommandName, Method>);
+pub struct WrapperRules(HashMap<CommandName, Vec<Function>>);
 
 impl WrapperRules {
     pub fn new(definitions: &syn::File) -> WrapperRules {
-        let mut output = HashMap::new();
-
+        let mut output: HashMap<CommandName, Vec<Function>> = HashMap::new();
         for item in &definitions.items {
             let syn::Item::Fn(item_fn) = item else {
                 panic!()
@@ -107,7 +122,9 @@ impl WrapperRules {
             let mut name = None;
             let mut attributes = TokenStream::new();
             for attr in &item_fn.attrs {
-                if let Some(value) = parse_name_attr(attr) {
+                if attr.path().is_ident("name")
+                    && let Ok(value) = attr.parse_args::<syn::Ident>()
+                {
                     name = Some(value);
                 } else {
                     attr.to_tokens(&mut attributes);
@@ -117,22 +134,20 @@ impl WrapperRules {
             let command_name = CommandName::new(item_fn.sig.ident.to_string().leak());
             let mut content = TokenStream::new();
             content.append_all(&item_fn.block.stmts);
-            output.insert(
-                command_name,
-                Method {
-                    attributes,
-                    name_override: name,
-                    inputs: item_fn.sig.inputs.to_token_stream(),
-                    output: item_fn.sig.output.to_token_stream(),
-                    content,
-                },
-            );
+            output.entry(command_name).or_default().push(Function {
+                attributes,
+                safety: map_safety(&item_fn.sig.safety),
+                name_override: name,
+                inputs: item_fn.sig.inputs.to_token_stream(),
+                output: item_fn.sig.output.to_token_stream(),
+                content,
+            });
         }
 
         WrapperRules(output)
     }
 
-    pub fn get(&self, command_name: CommandName) -> Option<&'_ Method> {
-        self.0.get(&command_name)
+    pub fn get(&self, command_name: CommandName) -> Option<&'_ [Function]> {
+        self.0.get(&command_name).map(|vec| vec.as_slice())
     }
 }

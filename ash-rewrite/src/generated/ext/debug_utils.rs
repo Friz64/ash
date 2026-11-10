@@ -2,7 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_debug_utils.html) · Extension `VK_EXT_debug_utils`
 #![doc(alias = "VK_EXT_debug_utils")]
-use crate::generated::prelude::*;
+use crate::internal_prelude::*;
 ///Provided by [VK_EXT_debug_utils](crate::ext::debug_utils)
 impl vk::StructureType {
     pub const DEBUG_UTILS_OBJECT_NAME_INFO_EXT: Self = Self(1000128000);
@@ -368,7 +368,7 @@ impl Instance {
     }
 }
 pub(crate) mod items {
-    use crate::generated::prelude::*;
+    use crate::internal_prelude::*;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
@@ -420,7 +420,7 @@ pub(crate) mod items {
             if self.p_object_name.is_null() {
                 None
             } else {
-                Some(unsafe { CStr::from_ptr(self.p_object_name) })
+                Some(CStr::from_ptr(self.p_object_name))
             }
         }
     }
@@ -510,7 +510,7 @@ pub(crate) mod items {
             if self.p_label_name.is_null() {
                 None
             } else {
-                Some(unsafe { CStr::from_ptr(self.p_label_name) })
+                Some(CStr::from_ptr(self.p_label_name))
             }
         }
         pub fn color(mut self, color: [ffi::c_float; 4 as _]) -> Self {
@@ -641,7 +641,7 @@ pub(crate) mod items {
             if self.p_message_id_name.is_null() {
                 None
             } else {
-                Some(unsafe { CStr::from_ptr(self.p_message_id_name) })
+                Some(CStr::from_ptr(self.p_message_id_name))
             }
         }
         pub fn message_id_number(mut self, message_id_number: i32) -> Self {
@@ -656,7 +656,7 @@ pub(crate) mod items {
             if self.p_message.is_null() {
                 None
             } else {
-                Some(unsafe { CStr::from_ptr(self.p_message) })
+                Some(CStr::from_ptr(self.p_message))
             }
         }
         pub fn queue_labels(

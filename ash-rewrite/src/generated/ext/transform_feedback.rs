@@ -2,7 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_transform_feedback.html) · Extension `VK_EXT_transform_feedback`
 #![doc(alias = "VK_EXT_transform_feedback")]
-use crate::generated::prelude::*;
+use crate::internal_prelude::*;
 ///Provided by [VK_EXT_transform_feedback](crate::ext::transform_feedback)
 impl vk::QueryType {
     pub const TRANSFORM_FEEDBACK_STREAM_EXT: Self = Self(1000028004);
@@ -298,7 +298,7 @@ impl Device {
     }
 }
 pub(crate) mod items {
-    use crate::generated::prelude::*;
+    use crate::internal_prelude::*;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]

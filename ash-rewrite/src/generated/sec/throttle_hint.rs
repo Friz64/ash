@@ -2,7 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_SEC_throttle_hint.html) · Extension `VK_SEC_throttle_hint`
 #![doc(alias = "VK_SEC_throttle_hint")]
-use crate::generated::prelude::*;
+use crate::internal_prelude::*;
 ///Provided by [VK_SEC_throttle_hint](crate::sec::throttle_hint)
 impl vk::StructureType {
     pub const PHYSICAL_DEVICE_THROTTLE_HINT_FEATURES_SEC: Self = Self(1000674000);
@@ -17,7 +17,7 @@ impl ThrottleHintTypeSEC {
 pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &CStr = c"VK_SEC_throttle_hint";
 pub(crate) mod items {
-    use crate::generated::prelude::*;
+    use crate::internal_prelude::*;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]

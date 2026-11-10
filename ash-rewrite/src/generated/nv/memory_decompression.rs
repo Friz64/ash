@@ -2,7 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_NV_memory_decompression.html) · Extension `VK_NV_memory_decompression`
 #![doc(alias = "VK_NV_memory_decompression")]
-use crate::generated::prelude::*;
+use crate::internal_prelude::*;
 ///Provided by [VK_NV_memory_decompression](crate::nv::memory_decompression)
 impl vk::StructureType {
     pub const PHYSICAL_DEVICE_MEMORY_DECOMPRESSION_FEATURES_NV: Self = Self::PHYSICAL_DEVICE_MEMORY_DECOMPRESSION_FEATURES_EXT;
@@ -109,7 +109,7 @@ impl Device {
     }
 }
 pub(crate) mod items {
-    use crate::generated::prelude::*;
+    use crate::internal_prelude::*;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy, Default)]

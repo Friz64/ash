@@ -2,7 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_acquire_xlib_display.html) · Extension `VK_EXT_acquire_xlib_display`
 #![doc(alias = "VK_EXT_acquire_xlib_display")]
-use crate::generated::prelude::*;
+use crate::internal_prelude::*;
 pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &CStr = c"VK_EXT_acquire_xlib_display";
 #[derive(Clone)]
@@ -90,7 +90,7 @@ impl Instance {
     }
 }
 pub(crate) mod items {
-    use crate::generated::prelude::*;
+    use crate::internal_prelude::*;
     pub type PFN_vkAcquireXlibDisplayEXT = unsafe extern "system" fn(
         physical_device: vk::PhysicalDevice,
         dpy: *mut vk::Display,

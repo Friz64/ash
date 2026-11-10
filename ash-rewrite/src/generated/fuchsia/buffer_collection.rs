@@ -2,7 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_FUCHSIA_buffer_collection.html) · Extension `VK_FUCHSIA_buffer_collection`
 #![doc(alias = "VK_FUCHSIA_buffer_collection")]
-use crate::generated::prelude::*;
+use crate::internal_prelude::*;
 ///Provided by [VK_FUCHSIA_buffer_collection](crate::fuchsia::buffer_collection)
 impl vk::StructureType {
     pub const BUFFER_COLLECTION_CREATE_INFO_FUCHSIA: Self = Self(1000366000);
@@ -251,7 +251,7 @@ impl Device {
     }
 }
 pub(crate) mod items {
-    use crate::generated::prelude::*;
+    use crate::internal_prelude::*;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]

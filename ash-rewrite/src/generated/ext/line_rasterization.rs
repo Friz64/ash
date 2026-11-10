@@ -2,7 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_line_rasterization.html) · Extension `VK_EXT_line_rasterization`
 #![doc(alias = "VK_EXT_line_rasterization")]
-use crate::generated::prelude::*;
+use crate::internal_prelude::*;
 ///Provided by [VK_EXT_line_rasterization](crate::ext::line_rasterization)
 impl vk::StructureType {
     pub const PHYSICAL_DEVICE_LINE_RASTERIZATION_FEATURES_EXT: Self = Self::PHYSICAL_DEVICE_LINE_RASTERIZATION_FEATURES;
@@ -87,7 +87,7 @@ impl Device {
     }
 }
 pub(crate) mod items {
-    use crate::generated::prelude::*;
+    use crate::internal_prelude::*;
     pub type PhysicalDeviceLineRasterizationFeaturesEXT<'a> = vk::PhysicalDeviceLineRasterizationFeatures<
         'a,
     >;

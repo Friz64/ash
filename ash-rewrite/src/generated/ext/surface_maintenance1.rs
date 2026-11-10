@@ -2,7 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_surface_maintenance1.html) · Extension `VK_EXT_surface_maintenance1`
 #![doc(alias = "VK_EXT_surface_maintenance1")]
-use crate::generated::prelude::*;
+use crate::internal_prelude::*;
 ///Provided by [VK_EXT_surface_maintenance1](crate::ext::surface_maintenance1)
 impl vk::StructureType {
     pub const SURFACE_PRESENT_MODE_EXT: Self = Self::SURFACE_PRESENT_MODE_KHR;
@@ -12,7 +12,7 @@ impl vk::StructureType {
 pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &CStr = c"VK_EXT_surface_maintenance1";
 pub(crate) mod items {
-    use crate::generated::prelude::*;
+    use crate::internal_prelude::*;
     pub type SurfacePresentModeEXT<'a> = vk::SurfacePresentModeKHR<'a>;
     pub type SurfacePresentScalingCapabilitiesEXT<'a> = vk::SurfacePresentScalingCapabilitiesKHR<
         'a,

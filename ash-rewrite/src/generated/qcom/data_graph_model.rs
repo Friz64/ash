@@ -2,7 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_QCOM_data_graph_model.html) · Extension `VK_QCOM_data_graph_model`
 #![doc(alias = "VK_QCOM_data_graph_model")]
-use crate::generated::prelude::*;
+use crate::internal_prelude::*;
 ///Provided by [VK_QCOM_data_graph_model](crate::qcom::data_graph_model)
 impl vk::PipelineCacheHeaderVersion {
     pub const DATA_GRAPH_QCOM: Self = Self(1000629000);
@@ -31,7 +31,7 @@ impl DataGraphModelCacheTypeQCOM {
 pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &CStr = c"VK_QCOM_data_graph_model";
 pub(crate) mod items {
-    use crate::generated::prelude::*;
+    use crate::internal_prelude::*;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]

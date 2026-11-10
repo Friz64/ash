@@ -2,11 +2,11 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //!Items provided by `vulkan_video_codec_av1std_decode`
 #![doc(alias = "vulkan_video_codec_av1std_decode")]
-use crate::generated::prelude::*;
+use crate::internal_prelude::*;
 pub const SPEC_VERSION: u32 = vk::STD_VULKAN_VIDEO_CODEC_AV1_DECODE_API_VERSION_1_0_0;
 pub const NAME: &CStr = c"VK_STD_vulkan_video_codec_av1_decode";
 pub(crate) mod items {
-    use crate::generated::prelude::*;
+    use crate::internal_prelude::*;
     #[repr(C)]
     #[derive(Clone, Copy, Default)]
     pub struct DecodeAV1PictureInfoFlags {

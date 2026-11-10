@@ -2,7 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_GGP_frame_token.html) · Extension `VK_GGP_frame_token`
 #![doc(alias = "VK_GGP_frame_token")]
-use crate::generated::prelude::*;
+use crate::internal_prelude::*;
 ///Provided by [VK_GGP_frame_token](crate::ggp::frame_token)
 impl vk::StructureType {
     pub const PRESENT_FRAME_TOKEN_GGP: Self = Self(1000191000);
@@ -10,7 +10,7 @@ impl vk::StructureType {
 pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &CStr = c"VK_GGP_frame_token";
 pub(crate) mod items {
-    use crate::generated::prelude::*;
+    use crate::internal_prelude::*;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]

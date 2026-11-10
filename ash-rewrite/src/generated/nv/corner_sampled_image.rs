@@ -2,7 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_NV_corner_sampled_image.html) · Extension `VK_NV_corner_sampled_image`
 #![doc(alias = "VK_NV_corner_sampled_image")]
-use crate::generated::prelude::*;
+use crate::internal_prelude::*;
 ///Provided by [VK_NV_corner_sampled_image](crate::nv::corner_sampled_image)
 impl vk::StructureType {
     pub const PHYSICAL_DEVICE_CORNER_SAMPLED_IMAGE_FEATURES_NV: Self = Self(1000050000);
@@ -20,7 +20,7 @@ impl vk::ImageCreateFlagBits {
 pub const SPEC_VERSION: u32 = 2;
 pub const NAME: &CStr = c"VK_NV_corner_sampled_image";
 pub(crate) mod items {
-    use crate::generated::prelude::*;
+    use crate::internal_prelude::*;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]

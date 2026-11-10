@@ -2,7 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_global_priority_query.html) · Extension `VK_EXT_global_priority_query`
 #![doc(alias = "VK_EXT_global_priority_query")]
-use crate::generated::prelude::*;
+use crate::internal_prelude::*;
 ///Provided by [VK_EXT_global_priority_query](crate::ext::global_priority_query)
 impl vk::StructureType {
     pub const PHYSICAL_DEVICE_GLOBAL_PRIORITY_QUERY_FEATURES_EXT: Self = Self::PHYSICAL_DEVICE_GLOBAL_PRIORITY_QUERY_FEATURES;
@@ -11,7 +11,7 @@ impl vk::StructureType {
 pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &CStr = c"VK_EXT_global_priority_query";
 pub(crate) mod items {
-    use crate::generated::prelude::*;
+    use crate::internal_prelude::*;
     pub type PhysicalDeviceGlobalPriorityQueryFeaturesEXT<'a> = vk::PhysicalDeviceGlobalPriorityQueryFeatures<
         'a,
     >;

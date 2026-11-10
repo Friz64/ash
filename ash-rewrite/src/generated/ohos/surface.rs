@@ -2,7 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_OHOS_surface.html) · Extension `VK_OHOS_surface`
 #![doc(alias = "VK_OHOS_surface")]
-use crate::generated::prelude::*;
+use crate::internal_prelude::*;
 ///Provided by [VK_OHOS_surface](crate::ohos::surface)
 impl vk::StructureType {
     pub const SURFACE_CREATE_INFO_OHOS: Self = Self(1000685000);
@@ -80,7 +80,7 @@ impl Instance {
     }
 }
 pub(crate) mod items {
-    use crate::generated::prelude::*;
+    use crate::internal_prelude::*;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]

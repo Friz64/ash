@@ -2,7 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_shader_float16_int8.html) · Extension `VK_KHR_shader_float16_int8`
 #![doc(alias = "VK_KHR_shader_float16_int8")]
-use crate::generated::prelude::*;
+use crate::internal_prelude::*;
 ///Provided by [VK_KHR_shader_float16_int8](crate::khr::shader_float16_int8)
 impl vk::StructureType {
     pub const PHYSICAL_DEVICE_SHADER_FLOAT16_INT8_FEATURES_KHR: Self = Self::PHYSICAL_DEVICE_SHADER_FLOAT16_INT8_FEATURES;
@@ -11,7 +11,7 @@ impl vk::StructureType {
 pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &CStr = c"VK_KHR_shader_float16_int8";
 pub(crate) mod items {
-    use crate::generated::prelude::*;
+    use crate::internal_prelude::*;
     pub type PhysicalDeviceShaderFloat16Int8FeaturesKHR<'a> = vk::PhysicalDeviceShaderFloat16Int8Features<
         'a,
     >;

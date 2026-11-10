@@ -2,7 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_NV_low_latency2.html) · Extension `VK_NV_low_latency2`
 #![doc(alias = "VK_NV_low_latency2")]
-use crate::generated::prelude::*;
+use crate::internal_prelude::*;
 ///Provided by [VK_NV_low_latency2](crate::nv::low_latency2)
 impl vk::StructureType {
     pub const LATENCY_SLEEP_MODE_INFO_NV: Self = Self(1000505000);
@@ -186,7 +186,7 @@ impl Device {
     }
 }
 pub(crate) mod items {
-    use crate::generated::prelude::*;
+    use crate::internal_prelude::*;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]

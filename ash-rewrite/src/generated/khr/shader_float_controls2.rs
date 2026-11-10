@@ -2,7 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_shader_float_controls2.html) · Extension `VK_KHR_shader_float_controls2`
 #![doc(alias = "VK_KHR_shader_float_controls2")]
-use crate::generated::prelude::*;
+use crate::internal_prelude::*;
 ///Provided by [VK_KHR_shader_float_controls2](crate::khr::shader_float_controls2)
 impl vk::StructureType {
     pub const PHYSICAL_DEVICE_SHADER_FLOAT_CONTROLS_2_FEATURES_KHR: Self = Self::PHYSICAL_DEVICE_SHADER_FLOAT_CONTROLS_2_FEATURES;
@@ -10,7 +10,7 @@ impl vk::StructureType {
 pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &CStr = c"VK_KHR_shader_float_controls2";
 pub(crate) mod items {
-    use crate::generated::prelude::*;
+    use crate::internal_prelude::*;
     pub type PhysicalDeviceShaderFloatControls2FeaturesKHR<'a> = vk::PhysicalDeviceShaderFloatControls2Features<
         'a,
     >;

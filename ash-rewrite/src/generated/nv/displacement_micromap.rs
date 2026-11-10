@@ -3,7 +3,7 @@
 #![cfg(feature = "provisional")]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_NV_displacement_micromap.html) · Extension `VK_NV_displacement_micromap`
 #![doc(alias = "VK_NV_displacement_micromap")]
-use crate::generated::prelude::*;
+use crate::internal_prelude::*;
 ///Provided by [VK_NV_displacement_micromap](crate::nv::displacement_micromap)
 impl vk::StructureType {
     pub const PHYSICAL_DEVICE_DISPLACEMENT_MICROMAP_FEATURES_NV: Self = Self(1000397000);
@@ -48,7 +48,7 @@ impl vk::BuildAccelerationStructureFlagBitsKHR {
 pub const SPEC_VERSION: u32 = 2;
 pub const NAME: &CStr = c"VK_NV_displacement_micromap";
 pub(crate) mod items {
-    use crate::generated::prelude::*;
+    use crate::internal_prelude::*;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]

@@ -2,6 +2,6 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_shader_viewport_index_layer.html) · Extension `VK_EXT_shader_viewport_index_layer`
 #![doc(alias = "VK_EXT_shader_viewport_index_layer")]
-use crate::generated::prelude::*;
+use crate::internal_prelude::*;
 pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &CStr = c"VK_EXT_shader_viewport_index_layer";

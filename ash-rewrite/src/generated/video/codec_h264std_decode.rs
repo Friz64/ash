@@ -2,7 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //!Items provided by `vulkan_video_codec_h264std_decode`
 #![doc(alias = "vulkan_video_codec_h264std_decode")]
-use crate::generated::prelude::*;
+use crate::internal_prelude::*;
 ///Provided by [vulkan_video_codec_h264std_decode](crate::video::codec_h264std_decode)
 impl DecodeH264FieldOrderCount {
     pub const TOP: Self = Self(0);
@@ -12,7 +12,7 @@ impl DecodeH264FieldOrderCount {
 pub const SPEC_VERSION: u32 = vk::STD_VULKAN_VIDEO_CODEC_H264_DECODE_API_VERSION_1_0_0;
 pub const NAME: &CStr = c"VK_STD_vulkan_video_codec_h264_decode";
 pub(crate) mod items {
-    use crate::generated::prelude::*;
+    use crate::internal_prelude::*;
     #[repr(C)]
     #[derive(Clone, Copy, Default)]
     pub struct DecodeH264PictureInfoFlags {

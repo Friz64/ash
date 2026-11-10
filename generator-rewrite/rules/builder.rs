@@ -7,7 +7,8 @@
 //! - `#[replace]` = Replace the arguments, return type, and content of a function.
 //!
 //! Note that the struct and member names must match the original ones in vk.xml,
-//! the generator will adjust these on its own accord.
+//! the generator will adjust these on its own accord. If this is not what you want,
+//! you can use `#[replace(<name override>)]`.
 
 impl VkPipelineViewportStateCreateInfo {
     // pViewports is allowed to be empty if the viewport state is empty

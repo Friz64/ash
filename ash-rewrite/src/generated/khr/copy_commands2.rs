@@ -2,7 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_copy_commands2.html) · Extension `VK_KHR_copy_commands2`
 #![doc(alias = "VK_KHR_copy_commands2")]
-use crate::generated::prelude::*;
+use crate::internal_prelude::*;
 ///Provided by [VK_KHR_copy_commands2](crate::khr::copy_commands2)
 impl vk::StructureType {
     pub const COPY_BUFFER_INFO_2_KHR: Self = Self::COPY_BUFFER_INFO_2;
@@ -176,7 +176,7 @@ impl Device {
     }
 }
 pub(crate) mod items {
-    use crate::generated::prelude::*;
+    use crate::internal_prelude::*;
     pub type BufferCopy2KHR<'a> = vk::BufferCopy2<'a>;
     pub type ImageCopy2KHR<'a> = vk::ImageCopy2<'a>;
     pub type ImageBlit2KHR<'a> = vk::ImageBlit2<'a>;

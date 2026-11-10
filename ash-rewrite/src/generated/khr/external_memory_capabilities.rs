@@ -2,7 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_external_memory_capabilities.html) · Extension `VK_KHR_external_memory_capabilities`
 #![doc(alias = "VK_KHR_external_memory_capabilities")]
-use crate::generated::prelude::*;
+use crate::internal_prelude::*;
 ///Provided by [VK_KHR_external_memory_capabilities](crate::khr::external_memory_capabilities)
 impl vk::StructureType {
     pub const PHYSICAL_DEVICE_EXTERNAL_IMAGE_FORMAT_INFO_KHR: Self = Self::PHYSICAL_DEVICE_EXTERNAL_IMAGE_FORMAT_INFO;
@@ -137,7 +137,7 @@ impl Instance {
     }
 }
 pub(crate) mod items {
-    use crate::generated::prelude::*;
+    use crate::internal_prelude::*;
     pub type ExternalMemoryPropertiesKHR = vk::ExternalMemoryProperties;
     pub type PhysicalDeviceExternalImageFormatInfoKHR<'a> = vk::PhysicalDeviceExternalImageFormatInfo<
         'a,

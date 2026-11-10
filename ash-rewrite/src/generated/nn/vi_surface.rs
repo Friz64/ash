@@ -2,7 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_NN_vi_surface.html) · Extension `VK_NN_vi_surface`
 #![doc(alias = "VK_NN_vi_surface")]
-use crate::generated::prelude::*;
+use crate::internal_prelude::*;
 ///Provided by [VK_NN_vi_surface](crate::nn::vi_surface)
 impl vk::StructureType {
     pub const VI_SURFACE_CREATE_INFO_NN: Self = Self(1000062000);
@@ -80,7 +80,7 @@ impl Instance {
     }
 }
 pub(crate) mod items {
-    use crate::generated::prelude::*;
+    use crate::internal_prelude::*;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]

@@ -2,7 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_pipeline_creation_cache_control.html) · Extension `VK_EXT_pipeline_creation_cache_control`
 #![doc(alias = "VK_EXT_pipeline_creation_cache_control")]
-use crate::generated::prelude::*;
+use crate::internal_prelude::*;
 ///Provided by [VK_EXT_pipeline_creation_cache_control](crate::ext::pipeline_creation_cache_control)
 impl vk::StructureType {
     pub const PHYSICAL_DEVICE_PIPELINE_CREATION_CACHE_CONTROL_FEATURES_EXT: Self = Self::PHYSICAL_DEVICE_PIPELINE_CREATION_CACHE_CONTROL_FEATURES;
@@ -39,7 +39,7 @@ impl vk::PipelineCreateFlagBits {
 pub const SPEC_VERSION: u32 = 3;
 pub const NAME: &CStr = c"VK_EXT_pipeline_creation_cache_control";
 pub(crate) mod items {
-    use crate::generated::prelude::*;
+    use crate::internal_prelude::*;
     pub type PhysicalDevicePipelineCreationCacheControlFeaturesEXT<'a> = vk::PhysicalDevicePipelineCreationCacheControlFeatures<
         'a,
     >;

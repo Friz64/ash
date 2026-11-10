@@ -2,7 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_MVK_ios_surface.html) · Extension `VK_MVK_ios_surface`
 #![doc(alias = "VK_MVK_ios_surface")]
-use crate::generated::prelude::*;
+use crate::internal_prelude::*;
 ///Provided by [VK_MVK_ios_surface](crate::mvk::ios_surface)
 impl vk::StructureType {
     pub const IOS_SURFACE_CREATE_INFO_MVK: Self = Self(1000122000);
@@ -80,7 +80,7 @@ impl Instance {
     }
 }
 pub(crate) mod items {
-    use crate::generated::prelude::*;
+    use crate::internal_prelude::*;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]

@@ -2,6 +2,6 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_GOOGLE_user_type.html) · Extension `VK_GOOGLE_user_type`
 #![doc(alias = "VK_GOOGLE_user_type")]
-use crate::generated::prelude::*;
+use crate::internal_prelude::*;
 pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &CStr = c"VK_GOOGLE_user_type";

@@ -2,7 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_multisampled_render_to_swapchain.html) · Extension `VK_EXT_multisampled_render_to_swapchain`
 #![doc(alias = "VK_EXT_multisampled_render_to_swapchain")]
-use crate::generated::prelude::*;
+use crate::internal_prelude::*;
 ///Provided by [VK_EXT_multisampled_render_to_swapchain](crate::ext::multisampled_render_to_swapchain)
 impl vk::StructureType {
     pub const PHYSICAL_DEVICE_MULTISAMPLED_RENDER_TO_SWAPCHAIN_FEATURES_EXT: Self = Self(
@@ -23,7 +23,7 @@ impl vk::SwapchainCreateFlagBitsKHR {
 pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &CStr = c"VK_EXT_multisampled_render_to_swapchain";
 pub(crate) mod items {
-    use crate::generated::prelude::*;
+    use crate::internal_prelude::*;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]

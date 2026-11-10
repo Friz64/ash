@@ -2,7 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_OHOS_external_memory.html) · Extension `VK_OHOS_external_memory`
 #![doc(alias = "VK_OHOS_external_memory")]
-use crate::generated::prelude::*;
+use crate::internal_prelude::*;
 ///Provided by [VK_OHOS_external_memory](crate::ohos::external_memory)
 impl vk::StructureType {
     pub const NATIVE_BUFFER_USAGE_OHOS: Self = Self(1000452000);
@@ -107,7 +107,7 @@ impl Device {
     }
 }
 pub(crate) mod items {
-    use crate::generated::prelude::*;
+    use crate::internal_prelude::*;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]

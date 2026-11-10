@@ -2,7 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_timeline_semaphore.html) · Extension `VK_KHR_timeline_semaphore`
 #![doc(alias = "VK_KHR_timeline_semaphore")]
-use crate::generated::prelude::*;
+use crate::internal_prelude::*;
 ///Provided by [VK_KHR_timeline_semaphore](crate::khr::timeline_semaphore)
 impl vk::StructureType {
     pub const PHYSICAL_DEVICE_TIMELINE_SEMAPHORE_FEATURES_KHR: Self = Self::PHYSICAL_DEVICE_TIMELINE_SEMAPHORE_FEATURES;
@@ -126,7 +126,7 @@ impl Device {
     }
 }
 pub(crate) mod items {
-    use crate::generated::prelude::*;
+    use crate::internal_prelude::*;
     pub type PhysicalDeviceTimelineSemaphoreFeaturesKHR<'a> = vk::PhysicalDeviceTimelineSemaphoreFeatures<
         'a,
     >;

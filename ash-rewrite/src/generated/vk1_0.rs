@@ -2,7 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_VERSION_1_0.html) · Vulkan version 1.0
 #![doc(alias = "VK_VERSION_1_0")]
-use crate::generated::prelude::*;
+use crate::internal_prelude::*;
 ///Provided by [Vulkan 1.0](crate::vk1_0)
 impl ImageLayout {
     ///Implicit layout an image is when its contents are undefined due to various reasons (e.g. right after creation)
@@ -5325,7 +5325,7 @@ impl crate::Device {
     }
 }
 pub(crate) mod items {
-    use crate::generated::prelude::*;
+    use crate::internal_prelude::*;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy, Default)]
@@ -5615,13 +5615,13 @@ pub(crate) mod items {
         pub fn device_name(
             mut self,
             device_name: &CStr,
-        ) -> core::result::Result<Self, crate::CStrTooLargeForStaticArray> {
+        ) -> CoreResult<Self, crate::CStrTooLargeForStaticArray> {
             crate::write_c_str_slice_with_nul(&mut self.device_name, device_name)
                 .map(|_| self)
         }
         pub fn device_name_as_c_str(
             &self,
-        ) -> core::result::Result<&CStr, ffi::FromBytesUntilNulError> {
+        ) -> CoreResult<&CStr, ffi::FromBytesUntilNulError> {
             crate::wrap_c_str_slice_until_nul(&self.device_name)
         }
         pub fn pipeline_cache_uuid(
@@ -5672,13 +5672,13 @@ pub(crate) mod items {
         pub fn extension_name(
             mut self,
             extension_name: &CStr,
-        ) -> core::result::Result<Self, crate::CStrTooLargeForStaticArray> {
+        ) -> CoreResult<Self, crate::CStrTooLargeForStaticArray> {
             crate::write_c_str_slice_with_nul(&mut self.extension_name, extension_name)
                 .map(|_| self)
         }
         pub fn extension_name_as_c_str(
             &self,
-        ) -> core::result::Result<&CStr, ffi::FromBytesUntilNulError> {
+        ) -> CoreResult<&CStr, ffi::FromBytesUntilNulError> {
             crate::wrap_c_str_slice_until_nul(&self.extension_name)
         }
         pub fn spec_version(mut self, spec_version: u32) -> Self {
@@ -5721,13 +5721,13 @@ pub(crate) mod items {
         pub fn layer_name(
             mut self,
             layer_name: &CStr,
-        ) -> core::result::Result<Self, crate::CStrTooLargeForStaticArray> {
+        ) -> CoreResult<Self, crate::CStrTooLargeForStaticArray> {
             crate::write_c_str_slice_with_nul(&mut self.layer_name, layer_name)
                 .map(|_| self)
         }
         pub fn layer_name_as_c_str(
             &self,
-        ) -> core::result::Result<&CStr, ffi::FromBytesUntilNulError> {
+        ) -> CoreResult<&CStr, ffi::FromBytesUntilNulError> {
             crate::wrap_c_str_slice_until_nul(&self.layer_name)
         }
         pub fn spec_version(mut self, spec_version: u32) -> Self {
@@ -5741,13 +5741,13 @@ pub(crate) mod items {
         pub fn description(
             mut self,
             description: &CStr,
-        ) -> core::result::Result<Self, crate::CStrTooLargeForStaticArray> {
+        ) -> CoreResult<Self, crate::CStrTooLargeForStaticArray> {
             crate::write_c_str_slice_with_nul(&mut self.description, description)
                 .map(|_| self)
         }
         pub fn description_as_c_str(
             &self,
-        ) -> core::result::Result<&CStr, ffi::FromBytesUntilNulError> {
+        ) -> CoreResult<&CStr, ffi::FromBytesUntilNulError> {
             crate::wrap_c_str_slice_until_nul(&self.description)
         }
     }
@@ -5792,7 +5792,7 @@ pub(crate) mod items {
             if self.p_application_name.is_null() {
                 None
             } else {
-                Some(unsafe { CStr::from_ptr(self.p_application_name) })
+                Some(CStr::from_ptr(self.p_application_name))
             }
         }
         pub fn application_version(mut self, application_version: u32) -> Self {
@@ -5807,7 +5807,7 @@ pub(crate) mod items {
             if self.p_engine_name.is_null() {
                 None
             } else {
-                Some(unsafe { CStr::from_ptr(self.p_engine_name) })
+                Some(CStr::from_ptr(self.p_engine_name))
             }
         }
         pub fn engine_version(mut self, engine_version: u32) -> Self {
@@ -7916,11 +7916,7 @@ pub(crate) mod items {
             self
         }
         pub unsafe fn name_as_c_str(&self) -> Option<&CStr> {
-            if self.p_name.is_null() {
-                None
-            } else {
-                Some(unsafe { CStr::from_ptr(self.p_name) })
-            }
+            if self.p_name.is_null() { None } else { Some(CStr::from_ptr(self.p_name)) }
         }
         pub fn specialization_info(
             mut self,

@@ -2,7 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_deferred_host_operations.html) · Extension `VK_KHR_deferred_host_operations`
 #![doc(alias = "VK_KHR_deferred_host_operations")]
-use crate::generated::prelude::*;
+use crate::internal_prelude::*;
 ///Provided by [VK_KHR_deferred_host_operations](crate::khr::deferred_host_operations)
 impl vk::Result {
     pub const THREAD_IDLE_KHR: Self = Self(1000268000);
@@ -179,7 +179,7 @@ impl Device {
     }
 }
 pub(crate) mod items {
-    use crate::generated::prelude::*;
+    use crate::internal_prelude::*;
     #[repr(transparent)]
     #[derive(Eq, PartialEq, Ord, PartialOrd, Clone, Copy, Hash, Default)]
     pub struct DeferredOperationKHR(u64);

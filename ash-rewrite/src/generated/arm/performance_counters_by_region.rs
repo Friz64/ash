@@ -2,7 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_ARM_performance_counters_by_region.html) · Extension `VK_ARM_performance_counters_by_region`
 #![doc(alias = "VK_ARM_performance_counters_by_region")]
-use crate::generated::prelude::*;
+use crate::internal_prelude::*;
 ///Provided by [VK_ARM_performance_counters_by_region](crate::arm::performance_counters_by_region)
 impl vk::StructureType {
     pub const PHYSICAL_DEVICE_PERFORMANCE_COUNTERS_BY_REGION_FEATURES_ARM: Self = Self(
@@ -81,7 +81,7 @@ impl Instance {
     pub unsafe fn enumerate_physical_device_queue_family_performance_counters_by_region() {}
 }
 pub(crate) mod items {
-    use crate::generated::prelude::*;
+    use crate::internal_prelude::*;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
@@ -263,12 +263,10 @@ pub(crate) mod items {
         pub fn name(
             mut self,
             name: &CStr,
-        ) -> core::result::Result<Self, crate::CStrTooLargeForStaticArray> {
+        ) -> CoreResult<Self, crate::CStrTooLargeForStaticArray> {
             crate::write_c_str_slice_with_nul(&mut self.name, name).map(|_| self)
         }
-        pub fn name_as_c_str(
-            &self,
-        ) -> core::result::Result<&CStr, ffi::FromBytesUntilNulError> {
+        pub fn name_as_c_str(&self) -> CoreResult<&CStr, ffi::FromBytesUntilNulError> {
             crate::wrap_c_str_slice_until_nul(&self.name)
         }
     }

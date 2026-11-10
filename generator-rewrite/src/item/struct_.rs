@@ -1,6 +1,6 @@
 use super::{Code, Context};
 use crate::{
-    Method, OutputContext,
+    Function, OutputContext, Safety,
     output::{CodeMap, GlobExport, OutputLocation},
     rules::BuilderRule,
 };
@@ -13,7 +13,7 @@ use analysis::{
 use heck::ToSnekCase;
 use proc_macro2::{Literal, TokenStream};
 use quote::{format_ident, quote};
-use std::{iter, str::FromStr};
+use std::str::FromStr;
 use syn::Ident;
 use tracing::{instrument, trace};
 
@@ -224,36 +224,46 @@ impl Code for Struct {
         let mut bitfield_i = 0;
         let builders = self.members.iter().flat_map(|member| match member {
             Member::Regular(member) => {
-                let tokens = match ctx.builder_rules.get(self.name, member.decl.name) {
-                    _ if matches!(member.decl.name.original(), "sType" | "pNext") => quote! {},
-                    Some(BuilderRule::Skip) => quote! {},
-                    Some(BuilderRule::Replace(Method {
-                        attributes,
-                        name_override,
-                        inputs,
-                        output,
-                        content,
-                    })) => {
-                        let name = name_override
-                            .clone()
-                            .unwrap_or_else(|| method_name_token(member));
-                        quote! {
-                           #attributes
-                           pub fn #name(#inputs) #output { #content }
-                        }
-                    }
+                let methods = match ctx.builder_rules.get(self.name, member.decl.name) {
+                    _ if matches!(member.decl.name.original(), "sType" | "pNext") => vec![],
+                    Some(BuilderRule::Skip) => vec![],
+                    Some(BuilderRule::Replace(methods)) => methods.clone(),
                     rule @ (Some(BuilderRule::Keep) | None) => {
                         let keep = matches!(rule, Some(BuilderRule::Keep));
                         regular_builder(&octx, self, member, &lifetime, keep)
                     }
                 };
 
-                itertools::Either::Left(iter::once(tokens))
+                itertools::Either::Left(methods.into_iter().map(
+                    |Function {
+                         attributes,
+                         safety,
+                         name_override,
+                         inputs,
+                         output,
+                         content,
+                     }| {
+                        let safety = match safety {
+                            Safety::Default | Safety::Safe => quote! {},
+                            Safety::Unsafe => quote! { unsafe },
+                        };
+
+                        let name = match name_override {
+                            Some(name) => name.clone(),
+                            None => method_name_token(member),
+                        };
+
+                        quote! {
+                           #attributes
+                           pub #safety fn #name(#inputs) #output { #content }
+                        }
+                    },
+                ))
             }
             Member::Bitfield(bitfield_ranges) => {
-                let bitfield_builder = bitfield_builder(&octx, bitfield_i, bitfield_ranges);
+                let methods = bitfield_builder(&octx, bitfield_i, bitfield_ranges);
                 bitfield_i += 1;
-                itertools::Either::Right(bitfield_builder)
+                itertools::Either::Right(methods)
             }
         });
 
@@ -279,7 +289,7 @@ fn regular_builder(
     member: &RegularMember,
     lifetime: &Lifetime,
     keep: bool,
-) -> TokenStream {
+) -> Vec<Function> {
     let field_name = octx.variable_token(member.decl.name);
     let method_name = method_name_token(member);
 
@@ -299,7 +309,7 @@ fn regular_builder(
             }
         })
     } {
-        return TokenStream::new();
+        return vec![];
     }
 
     let array_element_ty = |element_ty: &Ty| {
@@ -314,12 +324,12 @@ fn regular_builder(
 
     match member.decl.ty {
         Ty::ApiType(TypeName::VK_BOOL32) => {
-            quote! {
-                pub fn #field_name(mut self, #field_name: bool) -> Self {
-                    self.#field_name = #field_name.into();
-                    self
-                }
-            }
+            vec![Function {
+                inputs: quote! { mut self, #field_name: bool },
+                output: quote! { -> Self },
+                content: quote! {  self.#field_name = #field_name.into(); self },
+                ..Default::default()
+            }]
         }
         Ty::Ptr(Ty::CPrimary(CPrimaryType::Char), mutability)
             if member.length_at_depth(0) == Some(Length::NullTerminated) =>
@@ -333,55 +343,76 @@ fn regular_builder(
             )
             .tokens(octx, Some(lifetime));
 
-            let method_name_as_cstr = as_c_str_method_token(&method_name);
-            quote! {
-                pub fn #method_name(mut self, #method_name: #ty) -> Self {
-                    self.#field_name = #method_name.as_ptr();
-                    self
-                }
-
-                pub unsafe fn #method_name_as_cstr(&self) -> Option<&CStr> {
-                    if self.#field_name.is_null() {
-                        None
-                    } else {
-                        Some(unsafe { CStr::from_ptr(self.#field_name) })
-                    }
-                }
-            }
+            vec![
+                Function {
+                    inputs: quote! { mut self, #method_name: #ty },
+                    output: quote! { -> Self },
+                    content: quote! { self.#field_name = #method_name.as_ptr(); self },
+                    ..Default::default()
+                },
+                Function {
+                    safety: Safety::Unsafe,
+                    name_override: Some(as_c_str_method_token(&method_name)),
+                    inputs: quote! { &self },
+                    output: quote! { -> Option<&CStr> },
+                    content: quote! {
+                        if self.#field_name.is_null() {
+                            None
+                        } else {
+                            Some(CStr::from_ptr(self.#field_name))
+                        }
+                    },
+                    ..Default::default()
+                },
+            ]
         }
         Ty::Array(Ty::CPrimary(CPrimaryType::Char), _)
             if member.length_at_depth(0) == Some(Length::NullTerminated) =>
         {
-            let method_name_as_cstr = as_c_str_method_token(&method_name);
-            quote! {
-                pub fn #method_name(mut self, #method_name: &CStr) -> core::result::Result<Self, crate::CStrTooLargeForStaticArray> {
-                    crate::write_c_str_slice_with_nul(&mut self.#field_name, #method_name).map(|_| self)
-                }
-
-                pub fn #method_name_as_cstr(&self) -> core::result::Result<&CStr, ffi::FromBytesUntilNulError> {
-                    crate::wrap_c_str_slice_until_nul(&self.#field_name)
-                }
-            }
+            vec![
+                Function {
+                    inputs: quote! { mut self, #method_name: &CStr },
+                    output: quote! { -> CoreResult<Self, crate::CStrTooLargeForStaticArray> },
+                    content: quote! {
+                        crate::write_c_str_slice_with_nul(&mut self.#field_name, #method_name)
+                            .map(|_| self)
+                    },
+                    ..Default::default()
+                },
+                Function {
+                    name_override: Some(as_c_str_method_token(&method_name)),
+                    inputs: quote! { &self },
+                    output: quote! { -> CoreResult<&CStr, ffi::FromBytesUntilNulError> },
+                    content: quote! { crate::wrap_c_str_slice_until_nul(&self.#field_name) },
+                    ..Default::default()
+                },
+            ]
         }
         Ty::Array(element_ty, _)
             if let Some(Length::DefinedByMember(length_member)) = member.length_at_depth(0) =>
         {
             let length_name = octx.variable_token(length_member);
-            let method_name_as_slice = format_ident!("{method_name}_as_slice");
             let slice_ty = array_element_ty(element_ty);
             let slice = RustTy::Slice(Box::new(slice_ty), Mutability::Not, None).tokens(octx, None);
-
-            quote! {
-                pub fn #field_name(mut self, #method_name: #slice) -> Self {
-                    self.#length_name = #method_name.len() as _;
-                    self.#field_name[..#method_name.len()].copy_from_slice(#method_name);
-                    self
-                }
-
-                pub fn #method_name_as_slice(&self) -> #slice {
-                    &self.#field_name[..self.#length_name as _]
-                }
-            }
+            vec![
+                Function {
+                    inputs: quote! { mut self, #method_name: #slice },
+                    output: quote! { -> Self },
+                    content: quote! {
+                        self.#length_name = #method_name.len() as _;
+                        self.#field_name[..#method_name.len()].copy_from_slice(#method_name);
+                        self
+                    },
+                    ..Default::default()
+                },
+                Function {
+                    name_override: Some(format_ident!("{method_name}_as_slice")),
+                    inputs: quote! { &self },
+                    output: quote! { -> #slice },
+                    content: quote! { &self.#field_name[..self.#length_name as _] },
+                    ..Default::default()
+                },
+            ]
         }
         Ty::Ptr(element_ty, mutability)
             if let Some(Length::DefinedByMember(length_member)) = member.length_at_depth(0) =>
@@ -405,13 +436,16 @@ fn regular_builder(
             let len_name = octx.variable_token(length_member);
             let slice =
                 RustTy::Slice(Box::new(slice_ty), mutability, None).tokens(octx, Some(lifetime));
-            quote! {
-                pub fn #method_name(mut self, #method_name: #slice) -> Self {
+            vec![Function {
+                inputs: quote! { mut self, #method_name: #slice },
+                output: quote! { -> Self },
+                content: quote! {
                     self.#len_name = #method_name.len() as _;
                     self.#field_name = #method_name #ptr;
                     self
-                }
-            }
+                },
+                ..Default::default()
+            }]
         }
         Ty::Ptr(base, mutability)
             if member
@@ -419,21 +453,21 @@ fn regular_builder(
                 .is_none_or(|l| l == Length::Count(1)) =>
         {
             let ty = RustTy::Ref(Box::new(base.to_rust()), mutability).tokens(octx, Some(lifetime));
-            quote! {
-                pub fn #method_name(mut self, #method_name: #ty) -> Self {
-                    self.#field_name = #method_name;
-                    self
-                }
-            }
+            vec![Function {
+                inputs: quote! { mut self, #method_name: #ty },
+                output: quote! { -> Self },
+                content: quote! { self.#field_name = #method_name; self },
+                ..Default::default()
+            }]
         }
         _ => {
             let ty = member.decl.ty.to_rust().tokens(octx, Some(lifetime));
-            quote! {
-                pub fn #method_name(mut self, #method_name: #ty) -> Self {
-                    self.#field_name = #method_name;
-                    self
-                }
-            }
+            vec![Function {
+                inputs: quote! { mut self, #method_name: #ty },
+                output: quote! { -> Self },
+                content: quote! { self.#field_name = #method_name; self },
+                ..Default::default()
+            }]
         }
     }
 }

@@ -2,7 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_shader_64bit_indexing.html) · Extension `VK_EXT_shader_64bit_indexing`
 #![doc(alias = "VK_EXT_shader_64bit_indexing")]
-use crate::generated::prelude::*;
+use crate::internal_prelude::*;
 ///Provided by [VK_EXT_shader_64bit_indexing](crate::ext::shader_64bit_indexing)
 impl vk::StructureType {
     pub const PHYSICAL_DEVICE_SHADER_64_INDEXING_FEATURES_EXT: Self = Self(1000627000);
@@ -30,7 +30,7 @@ impl vk::ShaderCreateFlagBitsEXT {
 pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &CStr = c"VK_EXT_shader_64bit_indexing";
 pub(crate) mod items {
-    use crate::generated::prelude::*;
+    use crate::internal_prelude::*;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]

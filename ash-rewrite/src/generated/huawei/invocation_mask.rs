@@ -2,7 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_HUAWEI_invocation_mask.html) · Extension `VK_HUAWEI_invocation_mask`
 #![doc(alias = "VK_HUAWEI_invocation_mask")]
-use crate::generated::prelude::*;
+use crate::internal_prelude::*;
 ///Provided by [VK_HUAWEI_invocation_mask](crate::huawei::invocation_mask)
 impl vk::StructureType {
     pub const PHYSICAL_DEVICE_INVOCATION_MASK_FEATURES_HUAWEI: Self = Self(1000370000);
@@ -98,7 +98,7 @@ impl Device {
     }
 }
 pub(crate) mod items {
-    use crate::generated::prelude::*;
+    use crate::internal_prelude::*;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]

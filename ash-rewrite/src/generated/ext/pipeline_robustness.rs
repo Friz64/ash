@@ -2,7 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_pipeline_robustness.html) · Extension `VK_EXT_pipeline_robustness`
 #![doc(alias = "VK_EXT_pipeline_robustness")]
-use crate::generated::prelude::*;
+use crate::internal_prelude::*;
 ///Provided by [VK_EXT_pipeline_robustness](crate::ext::pipeline_robustness)
 impl vk::StructureType {
     pub const PIPELINE_ROBUSTNESS_CREATE_INFO_EXT: Self = Self::PIPELINE_ROBUSTNESS_CREATE_INFO;
@@ -26,7 +26,7 @@ impl vk::PipelineRobustnessImageBehavior {
 pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &CStr = c"VK_EXT_pipeline_robustness";
 pub(crate) mod items {
-    use crate::generated::prelude::*;
+    use crate::internal_prelude::*;
     pub type PhysicalDevicePipelineRobustnessFeaturesEXT<'a> = vk::PhysicalDevicePipelineRobustnessFeatures<
         'a,
     >;

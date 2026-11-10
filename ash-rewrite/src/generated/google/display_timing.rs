@@ -2,7 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_GOOGLE_display_timing.html) · Extension `VK_GOOGLE_display_timing`
 #![doc(alias = "VK_GOOGLE_display_timing")]
-use crate::generated::prelude::*;
+use crate::internal_prelude::*;
 ///Provided by [VK_GOOGLE_display_timing](crate::google::display_timing)
 impl vk::StructureType {
     pub const PRESENT_TIMES_INFO_GOOGLE: Self = Self(1000092000);
@@ -105,7 +105,7 @@ impl Device {
     }
 }
 pub(crate) mod items {
-    use crate::generated::prelude::*;
+    use crate::internal_prelude::*;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy, Default)]

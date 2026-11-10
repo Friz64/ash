@@ -2,7 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_swapchain_maintenance1.html) · Extension `VK_EXT_swapchain_maintenance1`
 #![doc(alias = "VK_EXT_swapchain_maintenance1")]
-use crate::generated::prelude::*;
+use crate::internal_prelude::*;
 ///Provided by [VK_EXT_swapchain_maintenance1](crate::ext::swapchain_maintenance1)
 impl vk::StructureType {
     pub const PHYSICAL_DEVICE_SWAPCHAIN_MAINTENANCE_1_FEATURES_EXT: Self = Self::PHYSICAL_DEVICE_SWAPCHAIN_MAINTENANCE_1_FEATURES_KHR;
@@ -80,7 +80,7 @@ impl Device {
     }
 }
 pub(crate) mod items {
-    use crate::generated::prelude::*;
+    use crate::internal_prelude::*;
     pub type PhysicalDeviceSwapchainMaintenance1FeaturesEXT<'a> = vk::PhysicalDeviceSwapchainMaintenance1FeaturesKHR<
         'a,
     >;

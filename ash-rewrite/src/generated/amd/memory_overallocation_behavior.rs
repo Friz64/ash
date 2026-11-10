@@ -2,7 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_AMD_memory_overallocation_behavior.html) · Extension `VK_AMD_memory_overallocation_behavior`
 #![doc(alias = "VK_AMD_memory_overallocation_behavior")]
-use crate::generated::prelude::*;
+use crate::internal_prelude::*;
 ///Provided by [VK_AMD_memory_overallocation_behavior](crate::amd::memory_overallocation_behavior)
 impl vk::StructureType {
     pub const DEVICE_MEMORY_OVERALLOCATION_CREATE_INFO_AMD: Self = Self(1000189000);
@@ -16,7 +16,7 @@ impl MemoryOverallocationBehaviorAMD {
 pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &CStr = c"VK_AMD_memory_overallocation_behavior";
 pub(crate) mod items {
-    use crate::generated::prelude::*;
+    use crate::internal_prelude::*;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
