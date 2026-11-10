@@ -2,11 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_swapchain_maintenance1.html) · Extension `VK_KHR_swapchain_maintenance1`
 #![doc(alias = "VK_KHR_swapchain_maintenance1")]
-use crate::vk;
-use core::ffi::CStr;
-use crate::VkResult;
-use core::mem::transmute;
-use core::ffi;
+use crate::generated::prelude::*;
 ///Provided by [VK_KHR_swapchain_maintenance1](crate::khr::swapchain_maintenance1)
 impl vk::StructureType {
     pub const PHYSICAL_DEVICE_SWAPCHAIN_MAINTENANCE_1_FEATURES_KHR: Self = Self(
@@ -86,11 +82,7 @@ impl Device {
     }
 }
 pub(crate) mod items {
-    use core::marker::PhantomData;
-    use crate::vk;
-    use crate::TaggedStructure;
-    use crate::Extends;
-    use core::ffi;
+    use crate::generated::prelude::*;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]

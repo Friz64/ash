@@ -2,8 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_subpass_merge_feedback.html) · Extension `VK_EXT_subpass_merge_feedback`
 #![doc(alias = "VK_EXT_subpass_merge_feedback")]
-use crate::vk;
-use core::ffi::CStr;
+use crate::generated::prelude::*;
 ///Provided by [VK_EXT_subpass_merge_feedback](crate::ext::subpass_merge_feedback)
 impl vk::StructureType {
     pub const PHYSICAL_DEVICE_SUBPASS_MERGE_FEEDBACK_FEATURES_EXT: Self = Self(
@@ -33,15 +32,7 @@ impl SubpassMergeStatusEXT {
 pub const SPEC_VERSION: u32 = 2;
 pub const NAME: &CStr = c"VK_EXT_subpass_merge_feedback";
 pub(crate) mod items {
-    use core::marker::PhantomData;
-    use crate::vk;
-    use crate::TaggedStructure;
-    use crate::Extends;
-    use core::ffi;
-    use core::mem::zeroed;
-    #[cfg(feature = "debug")]
-    use core::fmt as fmtd;
-    use core::ffi::CStr;
+    use crate::generated::prelude::*;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]

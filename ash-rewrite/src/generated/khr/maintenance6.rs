@@ -2,10 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_maintenance6.html) · Extension `VK_KHR_maintenance6`
 #![doc(alias = "VK_KHR_maintenance6")]
-use crate::vk;
-use core::ffi::CStr;
-use core::mem::transmute;
-use core::ffi;
+use crate::generated::prelude::*;
 ///Provided by [VK_KHR_maintenance6](crate::khr::maintenance6)
 impl vk::StructureType {
     pub const PHYSICAL_DEVICE_MAINTENANCE_6_FEATURES_KHR: Self = Self::PHYSICAL_DEVICE_MAINTENANCE_6_FEATURES;
@@ -210,10 +207,7 @@ impl Device {
     }
 }
 pub(crate) mod items {
-    use core::marker::PhantomData;
-    use crate::vk;
-    use crate::TaggedStructure;
-    use core::ffi;
+    use crate::generated::prelude::*;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]

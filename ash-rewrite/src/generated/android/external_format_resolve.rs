@@ -2,8 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_ANDROID_external_format_resolve.html) · Extension `VK_ANDROID_external_format_resolve`
 #![doc(alias = "VK_ANDROID_external_format_resolve")]
-use crate::vk;
-use core::ffi::CStr;
+use crate::generated::prelude::*;
 ///Provided by [VK_ANDROID_external_format_resolve](crate::android::external_format_resolve)
 impl vk::StructureType {
     pub const PHYSICAL_DEVICE_EXTERNAL_FORMAT_RESOLVE_FEATURES_ANDROID: Self = Self(
@@ -29,11 +28,7 @@ impl vk::ResolveModeFlagBits {
 pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &CStr = c"VK_ANDROID_external_format_resolve";
 pub(crate) mod items {
-    use core::marker::PhantomData;
-    use crate::vk;
-    use crate::TaggedStructure;
-    use crate::Extends;
-    use core::ffi;
+    use crate::generated::prelude::*;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]

@@ -2,8 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_ARM_tensor_controls.html) · Extension `VK_ARM_tensor_controls`
 #![doc(alias = "VK_ARM_tensor_controls")]
-use crate::vk;
-use core::ffi::CStr;
+use crate::generated::prelude::*;
 ///Provided by [VK_ARM_tensor_controls](crate::arm::tensor_controls)
 impl vk::StructureType {
     pub const TENSOR_EXPLICIT_TILING_FORMAT_PROPERTIES_ARM: Self = Self(1000565000);
@@ -20,12 +19,7 @@ impl vk::TensorTilingARM {
 pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &CStr = c"VK_ARM_tensor_controls";
 pub(crate) mod items {
-    use core::marker::PhantomData;
-    use crate::vk;
-    use crate::TaggedStructure;
-    use crate::Extends;
-    use core::ffi;
-    use core::mem::zeroed;
+    use crate::generated::prelude::*;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]

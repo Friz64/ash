@@ -2,8 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_QCOM_cooperative_matrix_conversion.html) · Extension `VK_QCOM_cooperative_matrix_conversion`
 #![doc(alias = "VK_QCOM_cooperative_matrix_conversion")]
-use crate::vk;
-use core::ffi::CStr;
+use crate::generated::prelude::*;
 ///Provided by [VK_QCOM_cooperative_matrix_conversion](crate::qcom::cooperative_matrix_conversion)
 impl vk::StructureType {
     pub const PHYSICAL_DEVICE_COOPERATIVE_MATRIX_CONVERSION_FEATURES_QCOM: Self = Self(
@@ -13,11 +12,7 @@ impl vk::StructureType {
 pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &CStr = c"VK_QCOM_cooperative_matrix_conversion";
 pub(crate) mod items {
-    use core::marker::PhantomData;
-    use crate::vk;
-    use crate::TaggedStructure;
-    use crate::Extends;
-    use core::ffi;
+    use crate::generated::prelude::*;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]

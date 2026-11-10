@@ -2,13 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_NV_external_compute_queue.html) · Extension `VK_NV_external_compute_queue`
 #![doc(alias = "VK_NV_external_compute_queue")]
-use crate::vk;
-use core::ffi::CStr;
-use core::ptr;
-use core::mem::MaybeUninit;
-use crate::VkResult;
-use core::mem::transmute;
-use core::ffi;
+use crate::generated::prelude::*;
 ///Provided by [VK_NV_external_compute_queue](crate::nv::external_compute_queue)
 impl vk::StructureType {
     pub const EXTERNAL_COMPUTE_QUEUE_DEVICE_CREATE_INFO_NV: Self = Self(1000556000);
@@ -163,16 +157,7 @@ impl EntryFn {
     }
 }
 pub(crate) mod items {
-    use core::marker::PhantomData;
-    use crate::vk;
-    use crate::TaggedStructure;
-    use crate::Extends;
-    use core::ffi;
-    use crate::Handle;
-    use core::fmt;
-    #[cfg(feature = "debug")]
-    use core::fmt as fmtd;
-    use core::ptr;
+    use crate::generated::prelude::*;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]

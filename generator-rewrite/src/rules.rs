@@ -1,4 +1,4 @@
-use crate::{Import, Method};
+use crate::Method;
 use analysis::name::{CommandName, TypeName, VariableName};
 use proc_macro2::TokenStream;
 use quote::{ToTokens, TokenStreamExt};
@@ -10,15 +10,6 @@ fn parse_name_attr(attr: &syn::Attribute) -> Option<syn::Ident> {
     }
 
     attr.parse_args::<syn::Ident>().ok()
-}
-
-fn parse_import_attr(attr: &syn::Attribute) -> Option<Import> {
-    if !attr.path().is_ident("import") {
-        return None;
-    }
-
-    let variant = attr.parse_args::<syn::Ident>().ok()?;
-    variant.to_string().parse().ok()
 }
 
 #[derive(Debug)]
@@ -60,24 +51,22 @@ impl BuilderRules {
                     _ => panic!(),
                 };
 
-                let mut imports = Vec::new();
                 let mut attributes = TokenStream::new();
-                let mut rule: Box<dyn Fn(Vec<Import>, TokenStream) -> BuilderRule> =
-                    Box::new(|_, _| panic!("no rule specified"));
+                let mut rule: Box<dyn Fn(TokenStream) -> BuilderRule> =
+                    Box::new(|_| panic!("no rule specified"));
                 for attr in attrs {
                     if attr.path().is_ident("keep") {
-                        rule = Box::new(|_, _| BuilderRule::Keep);
+                        rule = Box::new(|_attributes| BuilderRule::Keep);
                     } else if attr.path().is_ident("skip") {
-                        rule = Box::new(|_, _| BuilderRule::Skip);
+                        rule = Box::new(|_attributes| BuilderRule::Skip);
                     } else if attr.path().is_ident("replace") {
                         let impl_item_fn =
                             impl_item_fn.expect("function with replace attr should have body");
 
-                        rule = Box::new(|imports, attributes| {
+                        rule = Box::new(|attributes| {
                             let mut content = TokenStream::new();
                             content.append_all(&impl_item_fn.block.stmts);
                             BuilderRule::Replace(Method {
-                                imports,
                                 attributes,
                                 name_override: None,
                                 inputs: impl_item_fn.sig.inputs.to_token_stream(),
@@ -85,15 +74,13 @@ impl BuilderRules {
                                 content,
                             })
                         });
-                    } else if let Some(import) = parse_import_attr(&attr) {
-                        imports.push(import);
                     } else {
                         attr.to_tokens(&mut attributes)
                     }
                 }
 
                 let field_name = VariableName::new(sig.ident.to_string().leak());
-                output.insert((type_name, field_name), rule(imports, attributes));
+                output.insert((type_name, field_name), rule(attributes));
             }
         }
 
@@ -118,12 +105,9 @@ impl WrapperRules {
             };
 
             let mut name = None;
-            let mut imports = Vec::new();
             let mut attributes = TokenStream::new();
             for attr in &item_fn.attrs {
-                if let Some(value) = parse_import_attr(attr) {
-                    imports.push(value);
-                } else if let Some(value) = parse_name_attr(attr) {
+                if let Some(value) = parse_name_attr(attr) {
                     name = Some(value);
                 } else {
                     attr.to_tokens(&mut attributes);
@@ -136,7 +120,6 @@ impl WrapperRules {
             output.insert(
                 command_name,
                 Method {
-                    imports,
                     attributes,
                     name_override: name,
                     inputs: item_fn.sig.inputs.to_token_stream(),

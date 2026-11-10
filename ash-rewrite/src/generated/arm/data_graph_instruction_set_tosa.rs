@@ -2,12 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_ARM_data_graph_instruction_set_tosa.html) · Extension `VK_ARM_data_graph_instruction_set_tosa`
 #![doc(alias = "VK_ARM_data_graph_instruction_set_tosa")]
-use crate::vk;
-use core::ffi::CStr;
-use core::mem::MaybeUninit;
-use crate::VkResult;
-use core::mem::transmute;
-use core::ffi;
+use crate::generated::prelude::*;
 ///Provided by [VK_ARM_data_graph_instruction_set_tosa](crate::arm::data_graph_instruction_set_tosa)
 impl vk::StructureType {
     pub const QUEUE_FAMILY_DATA_GRAPH_TOSA_PROPERTIES_ARM: Self = Self(1000508000);
@@ -110,15 +105,7 @@ impl Instance {
     }
 }
 pub(crate) mod items {
-    use core::ffi;
-    use crate::vk;
-    use core::mem::zeroed;
-    #[cfg(feature = "debug")]
-    use core::fmt as fmtd;
-    use core::ffi::CStr;
-    use core::marker::PhantomData;
-    use crate::TaggedStructure;
-    use core::ops::{BitOr, BitOrAssign, BitAnd, BitAndAssign, BitXor, BitXorAssign, Not};
+    use crate::generated::prelude::*;
     #[repr(C)]
     #[derive(Clone, Copy)]
     pub struct DataGraphTOSANameQualityARM {

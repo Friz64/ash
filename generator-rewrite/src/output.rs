@@ -1,17 +1,17 @@
 mod vfs;
 
-use crate::{Context, Import, output::vfs::VirtualRustFs};
+use crate::{Context, output::vfs::VirtualRustFs};
 use analysis::{
     LibraryName,
     item::{RequireLocation, RequiredBy},
 };
 use heck::ToSnekCase;
-use indexmap::{IndexMap, IndexSet};
+use indexmap::IndexMap;
 use itertools::Itertools;
 use proc_macro2::TokenStream;
-use quote::{TokenStreamExt, format_ident, quote};
+use quote::{format_ident, quote};
 use std::{
-    cell::{Ref, RefCell},
+    cell::{Ref, RefCell, RefMut},
     hash::Hash,
     io, iter,
     path::{Path, PathBuf},
@@ -32,7 +32,7 @@ pub struct OutputLocation {
 }
 
 impl OutputLocation {
-    pub fn primary_location(required_by: RequiredBy, glob_export: GlobExport) -> OutputLocation {
+    pub fn primary_of(required_by: RequiredBy, glob_export: GlobExport) -> OutputLocation {
         OutputLocation {
             library: required_by.library,
             require: required_by.primary_location(),
@@ -40,7 +40,7 @@ impl OutputLocation {
         }
     }
 
-    pub fn all_locations(
+    pub fn all_of(
         required_by: RequiredBy,
         glob_export: GlobExport,
     ) -> impl Iterator<Item = OutputLocation> {
@@ -128,7 +128,6 @@ struct ReexportAs {
 struct Code {
     tokens: TokenStream,
     reexports: Vec<ReexportAs>,
-    imports: IndexSet<Import>,
 }
 
 #[derive(Default)]
@@ -157,7 +156,6 @@ impl CodeMap {
 
             let entry = self.0.entry(output).or_default();
             entry.tokens.extend(tokens);
-            entry.imports.extend(code.imports);
         }
     }
 }
@@ -175,30 +173,23 @@ impl<'c, 'm> OutputContext<'c, 'm> {
         Ref::map(self.0.borrow(), |inner| inner.ctx)
     }
 
-    pub fn insert_tokens(&self, tokens: TokenStream) {
+    pub fn output(&self) -> RefMut<'_, OutputLocation> {
+        RefMut::map(self.0.borrow_mut(), |inner| &mut inner.output)
+    }
+
+    pub fn emit_tokens(&self, tokens: TokenStream) {
         let mut inner = self.0.borrow_mut();
         let output = inner.output;
         let entry = inner.codemap.0.entry(output).or_default();
         entry.tokens.extend(tokens);
     }
 
-    pub fn insert_reexport(&self, original: Ident, alias: Ident) {
+    pub fn emit_reexport(&self, original: Ident, alias: Ident) {
         let mut inner = self.0.borrow_mut();
-        inner.output.glob_export = GlobExport::No;
+        std::assert_matches!(inner.output.glob_export, GlobExport::No);
         let output = inner.output;
         let entry = inner.codemap.0.entry(output).or_default();
         entry.reexports.push(ReexportAs { original, alias });
-    }
-
-    pub fn insert_import(&self, import: Import) {
-        let mut inner = self.0.borrow_mut();
-        let output = inner.output;
-        let entry = inner.codemap.0.entry(output).or_default();
-        entry.imports.insert(import);
-    }
-
-    pub fn output(&self) -> OutputLocation {
-        self.0.borrow().output
     }
 }
 
@@ -210,6 +201,27 @@ impl CodeMap {
             quote! {
                 /// A re-export of all items
                 pub mod vk;
+                mod prelude {
+                    pub use crate::{vk, Extends, Handle, TaggedStructure, VkResult};
+                    pub use core::ffi::{self, CStr};
+                    pub use core::fmt;
+                    pub use core::marker::PhantomData;
+                    pub use core::mem::{transmute, zeroed, MaybeUninit};
+                    pub use core::ops::{BitAnd, BitAndAssign, BitOr, BitOrAssign, BitXor, BitXorAssign, Not};
+                    pub use core::ptr;
+                    #[cfg(feature = "debug")]
+                    pub use core::fmt as fmtd;
+                    pub use alloc::vec::Vec;
+                }
+            },
+        );
+        vfs.write(
+            "vk.rs",
+            quote! {
+                pub use crate::platform_types::*;
+                pub use crate::Handle;
+                pub use crate::TaggedStructure;
+                pub use crate::Extends;
             },
         );
 
@@ -254,11 +266,12 @@ impl CodeMap {
                 content: TokenStream::new(),
             });
 
+            let oooooh_im_preluuuding = quote! { use crate::generated::prelude::*; };
             if output.glob_export == GlobExport::Yes {
-                source_file.reexport_content.append_all(code.imports);
+                source_file.reexport_content.extend(oooooh_im_preluuuding);
                 source_file.reexport_content.extend(code.tokens);
             } else {
-                source_file.content.append_all(code.imports);
+                source_file.content.extend(oooooh_im_preluuuding);
                 source_file.content.extend(code.tokens);
             };
 
@@ -357,16 +370,6 @@ impl CodeMap {
                 },
             );
         }
-
-        vfs.write(
-            "vk.rs",
-            quote! {
-                pub use crate::platform_types::*;
-                pub use crate::Handle;
-                pub use crate::TaggedStructure;
-                pub use crate::Extends;
-            },
-        );
 
         vfs.sync_to(output_path)
     }

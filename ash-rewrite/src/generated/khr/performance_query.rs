@@ -2,12 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_performance_query.html) · Extension `VK_KHR_performance_query`
 #![doc(alias = "VK_KHR_performance_query")]
-use crate::vk;
-use core::ffi::CStr;
-use core::mem::transmute;
-use core::mem::MaybeUninit;
-use crate::VkResult;
-use core::ffi;
+use crate::generated::prelude::*;
 ///Provided by [VK_KHR_performance_query](crate::khr::performance_query)
 impl vk::QueryType {
     pub const PERFORMANCE_QUERY_KHR: Self = Self(1000116000);
@@ -232,16 +227,7 @@ impl Device {
     }
 }
 pub(crate) mod items {
-    use core::marker::PhantomData;
-    use crate::vk;
-    use crate::TaggedStructure;
-    use crate::Extends;
-    use core::ffi;
-    use core::mem::zeroed;
-    #[cfg(feature = "debug")]
-    use core::fmt as fmtd;
-    use core::ffi::CStr;
-    use core::ops::{BitOr, BitOrAssign, BitAnd, BitAndAssign, BitXor, BitXorAssign, Not};
+    use crate::generated::prelude::*;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]

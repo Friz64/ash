@@ -2,11 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_NV_cluster_acceleration_structure.html) · Extension `VK_NV_cluster_acceleration_structure`
 #![doc(alias = "VK_NV_cluster_acceleration_structure")]
-use crate::vk;
-use core::ffi::CStr;
-use core::mem::MaybeUninit;
-use core::mem::transmute;
-use core::ffi;
+use crate::generated::prelude::*;
 ///Provided by [VK_NV_cluster_acceleration_structure](crate::nv::cluster_acceleration_structure)
 impl vk::StructureType {
     pub const PHYSICAL_DEVICE_CLUSTER_ACCELERATION_STRUCTURE_FEATURES_NV: Self = Self(
@@ -255,15 +251,7 @@ impl Device {
     }
 }
 pub(crate) mod items {
-    use core::marker::PhantomData;
-    use crate::vk;
-    use crate::TaggedStructure;
-    use crate::Extends;
-    use core::ffi;
-    #[cfg(feature = "debug")]
-    use core::fmt as fmtd;
-    use core::mem::zeroed;
-    use core::ops::{BitOr, BitOrAssign, BitAnd, BitAndAssign, BitXor, BitXorAssign, Not};
+    use crate::generated::prelude::*;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]

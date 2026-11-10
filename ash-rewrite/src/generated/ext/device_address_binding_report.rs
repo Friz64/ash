@@ -2,8 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_device_address_binding_report.html) · Extension `VK_EXT_device_address_binding_report`
 #![doc(alias = "VK_EXT_device_address_binding_report")]
-use crate::vk;
-use core::ffi::CStr;
+use crate::generated::prelude::*;
 ///Provided by [VK_EXT_device_address_binding_report](crate::ext::device_address_binding_report)
 impl vk::StructureType {
     pub const PHYSICAL_DEVICE_ADDRESS_BINDING_REPORT_FEATURES_EXT: Self = Self(
@@ -39,14 +38,7 @@ impl DeviceAddressBindingFlagBitsEXT {
 pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &CStr = c"VK_EXT_device_address_binding_report";
 pub(crate) mod items {
-    use core::marker::PhantomData;
-    use crate::vk;
-    use crate::TaggedStructure;
-    use crate::Extends;
-    use core::ffi;
-    #[cfg(feature = "debug")]
-    use core::fmt as fmtd;
-    use core::ops::{BitOr, BitOrAssign, BitAnd, BitAndAssign, BitXor, BitXorAssign, Not};
+    use crate::generated::prelude::*;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]

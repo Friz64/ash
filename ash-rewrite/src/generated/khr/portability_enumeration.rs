@@ -2,8 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_portability_enumeration.html) · Extension `VK_KHR_portability_enumeration`
 #![doc(alias = "VK_KHR_portability_enumeration")]
-use crate::vk;
-use core::ffi::CStr;
+use crate::generated::prelude::*;
 ///Provided by [VK_KHR_portability_enumeration](crate::khr::portability_enumeration)
 impl vk::InstanceCreateFlags {
     pub const ENUMERATE_PORTABILITY_KHR: Self = Self(

@@ -2,13 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_get_display_properties2.html) · Extension `VK_KHR_get_display_properties2`
 #![doc(alias = "VK_KHR_get_display_properties2")]
-use crate::vk;
-use core::ffi::CStr;
-use crate::VkResult;
-use core::ptr;
-use core::mem::MaybeUninit;
-use core::mem::transmute;
-use core::ffi;
+use crate::generated::prelude::*;
 ///Provided by [VK_KHR_get_display_properties2](crate::khr::get_display_properties2)
 impl vk::StructureType {
     pub const DISPLAY_PROPERTIES_2_KHR: Self = Self(1000121000);
@@ -248,10 +242,7 @@ impl Instance {
     }
 }
 pub(crate) mod items {
-    use core::marker::PhantomData;
-    use crate::vk;
-    use crate::TaggedStructure;
-    use core::ffi;
+    use crate::generated::prelude::*;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]

@@ -10,7 +10,6 @@ use crate::{
 use analysis::{
     Analysis, AnalysisResult,
     decl::CPrimaryType,
-    item::RequiredBy,
     name::{
         CMacroName, CommandName, ConstantName, EnumeratorName, FuncPointerName, TypeName,
         VariableName,
@@ -19,11 +18,10 @@ use analysis::{
 };
 use heck::{ToShoutySnekCase, ToSnekCase};
 use proc_macro2::TokenStream;
+use quote::format_ident;
 use quote::quote;
-use quote::{ToTokens, format_ident};
 use regex::Regex;
-use serde::{Deserialize, de::IntoDeserializer};
-use std::{borrow::Cow, fmt::Display, io, ops::Deref, path::Path, str::FromStr, sync::LazyLock};
+use std::{borrow::Cow, fmt::Display, io, ops::Deref, path::Path, sync::LazyLock};
 use syn::Ident;
 use tracing::debug;
 
@@ -116,78 +114,8 @@ impl<'a> Deref for Context<'a> {
     }
 }
 
-impl Context<'_> {
-    fn type_required_by(&self, name: TypeName) -> RequiredBy {
-        let type_item = &self.items.types[&name];
-        type_item.required_by(self.items)
-    }
-}
-
-#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash, Deserialize)]
-pub enum Import {
-    CrateVk,
-    CrateVkResult,
-    CrateHandle,
-    CrateExtends,
-    CrateTaggedStructure,
-    CoreMarkerPhantomData,
-    CoreMemMaybeUninit,
-    CoreMemTransmute,
-    CoreMemZeroed,
-    CoreFfi,
-    CoreFfiCStr,
-    CoreFmt,
-    /// `#[cfg(feature = "debug")] use core::fmt as fmtd;`
-    DebugCoreFmt,
-    CorePtr,
-    CoreOpsBitmask,
-    AllocVecVec,
-}
-
-impl ToTokens for Import {
-    fn to_tokens(&self, tokens: &mut TokenStream) {
-        use Import::*;
-        let code = match self {
-            CrateVk => quote! { use crate::vk; },
-            CrateVkResult => quote! { use crate::VkResult; },
-            CrateHandle => quote! { use crate::Handle; },
-            CrateExtends => quote! { use crate::Extends; },
-            CrateTaggedStructure => quote! { use crate::TaggedStructure; },
-            CoreMarkerPhantomData => quote! { use core::marker::PhantomData; },
-            CoreMemMaybeUninit => quote! { use core::mem::MaybeUninit; },
-            CoreMemTransmute => quote! { use core::mem::transmute; },
-            CoreMemZeroed => quote! { use core::mem::zeroed; },
-            CoreFfi => quote! { use core::ffi; },
-            CoreFfiCStr => quote! { use core::ffi::CStr; },
-            CoreFmt => quote! { use core::fmt; },
-            DebugCoreFmt => quote! {
-                #[cfg(feature = "debug")]
-                use core::fmt as fmtd;
-            },
-            CorePtr => quote! { use core::ptr; },
-            CoreOpsBitmask => quote! {
-                use core::ops::{
-                    BitOr, BitOrAssign, BitAnd, BitAndAssign, BitXor, BitXorAssign, Not
-                };
-            },
-            AllocVecVec => quote! { use alloc::vec::Vec; },
-        };
-
-        tokens.extend(code);
-    }
-}
-
-impl FromStr for Import {
-    type Err = serde::de::value::Error;
-
-    fn from_str(s: &str) -> Result<Self, Self::Err> {
-        Self::deserialize(s.into_deserializer())
-    }
-}
-
 #[derive(Debug, Clone)]
 pub struct Method {
-    pub imports: Vec<Import>,
     /// Also includes doc comments!
     pub attributes: TokenStream,
     /// To be used in place of a default name
@@ -231,11 +159,7 @@ impl RustTokens for OutputContext<'_, '_> {
     ) -> TokenStream {
         let required_by = self.ctx().type_required_by(name);
         let ident: Ident = syn::parse_str(name.prefix_stripped(required_by.library)).unwrap();
-        let path = qualified.then(|| {
-            self.insert_import(Import::CrateVk);
-            quote! { vk:: }
-        });
-
+        let path = qualified.then(|| quote! { vk:: });
         let lifetime_tokens = self.ctx().type_has_lifetime(name).then(|| {
             let placeholder_lifetime = Lifetime::placeholder();
             let lifetime = lifetime.unwrap_or(&placeholder_lifetime);
@@ -247,31 +171,19 @@ impl RustTokens for OutputContext<'_, '_> {
 
     fn func_pointer_tokens(&self, name: FuncPointerName, qualified: bool) -> TokenStream {
         let ident: Ident = syn::parse_str(name.original()).unwrap();
-        let path = qualified.then(|| {
-            self.insert_import(Import::CrateVk);
-            quote! { vk:: }
-        });
-
+        let path = qualified.then(|| quote! { vk:: });
         quote! { #path #ident }
     }
 
     fn command_tokens(&self, name: CommandName, qualified: bool) -> TokenStream {
         let ident: Ident = syn::parse_str(&format!("PFN_{}", name.original())).unwrap();
-        let path = qualified.then(|| {
-            self.insert_import(Import::CrateVk);
-            quote! { vk:: }
-        });
-
+        let path = qualified.then(|| quote! { vk:: });
         quote! { #path #ident }
     }
 
     fn constant_tokens(&self, name: ConstantName, qualified: bool) -> TokenStream {
         let ident = self.constant_token(name);
-        let path = qualified.then(|| {
-            self.insert_import(Import::CrateVk);
-            quote! { vk:: }
-        });
-
+        let path = qualified.then(|| quote! { vk:: });
         quote! { #path #ident }
     }
 
@@ -323,48 +235,28 @@ impl RustTokens for OutputContext<'_, '_> {
 
     fn cmacro_tokens(&self, name: CMacroName, qualified: bool) -> TokenStream {
         let ident: Ident = if self.ctx().items.cmacros[&name].has_args() {
-            syn::parse_str(name.prefix_stripped()).unwrap()
-        } else {
             syn::parse_str(&name.prefix_stripped().to_ascii_lowercase()).unwrap()
+        } else {
+            syn::parse_str(name.prefix_stripped()).unwrap()
         };
 
-        let path = qualified.then(|| {
-            self.insert_import(Import::CrateVk);
-            quote! { vk:: }
-        });
-
+        let path = qualified.then(|| quote! { vk:: });
         quote! { #path #ident }
     }
 
     fn platform_type_tokens(&self, raw: &str, qualified: bool) -> TokenStream {
         let ident: Ident = syn::parse_str(raw).unwrap();
-        self.insert_import(Import::CrateVk);
         let path = qualified.then(|| quote! { vk:: });
         quote! { #path #ident }
     }
 
     fn primary_type_tokens(&self, primary_ty: CPrimaryType) -> TokenStream {
         match primary_ty {
-            CPrimaryType::Void => {
-                self.insert_import(Import::CoreFfi);
-                quote! { ffi::c_void }
-            }
-            CPrimaryType::Char => {
-                self.insert_import(Import::CoreFfi);
-                quote! { ffi::c_char }
-            }
-            CPrimaryType::Int => {
-                self.insert_import(Import::CoreFfi);
-                quote! { ffi::c_int }
-            }
-            CPrimaryType::Float => {
-                self.insert_import(Import::CoreFfi);
-                quote! { ffi::c_float }
-            }
-            CPrimaryType::Double => {
-                self.insert_import(Import::CoreFfi);
-                quote! { ffi::c_double }
-            }
+            CPrimaryType::Void => quote! { ffi::c_void },
+            CPrimaryType::Char => quote! { ffi::c_char },
+            CPrimaryType::Int => quote! { ffi::c_int },
+            CPrimaryType::Float => quote! { ffi::c_float },
+            CPrimaryType::Double => quote! { ffi::c_double },
             CPrimaryType::Int8 => quote! { i8 },
             CPrimaryType::UInt8 => quote! { u8 },
             CPrimaryType::Int16 => quote! { i16 },

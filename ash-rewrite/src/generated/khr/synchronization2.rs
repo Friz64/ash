@@ -2,11 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_synchronization2.html) · Extension `VK_KHR_synchronization2`
 #![doc(alias = "VK_KHR_synchronization2")]
-use crate::vk;
-use core::ffi::CStr;
-use core::mem::transmute;
-use crate::VkResult;
-use core::ffi;
+use crate::generated::prelude::*;
 ///Provided by [VK_KHR_synchronization2](crate::khr::synchronization2)
 impl vk::ImageLayout {
     pub const READ_ONLY_OPTIMAL_KHR: Self = Self::READ_ONLY_OPTIMAL;
@@ -521,7 +517,7 @@ impl Device {
     }
 }
 pub(crate) mod items {
-    use crate::vk;
+    use crate::generated::prelude::*;
     pub type MemoryBarrier2KHR<'a> = vk::MemoryBarrier2<'a>;
     pub type ImageMemoryBarrier2KHR<'a> = vk::ImageMemoryBarrier2<'a>;
     pub type BufferMemoryBarrier2KHR<'a> = vk::BufferMemoryBarrier2<'a>;

@@ -6,7 +6,6 @@
 //! Note that the command name must match the original one in vk.xml,
 //! the generator will adjust it on its own accord.
 
-#[import(CoreMemMaybeUninit)]
 #[deprecated = "This function is unavailable and therefore panics on Vulkan 1.0, please use `try_enumerate_instance_version()` instead"]
 fn vkEnumerateInstanceVersion(&self) -> VkResult<u32> {
     let mut api_version = MaybeUninit::uninit();
@@ -14,9 +13,6 @@ fn vkEnumerateInstanceVersion(&self) -> VkResult<u32> {
         .assume_init_on_success(api_version)
 }
 
-#[import(CrateVk)]
-#[import(CoreMemMaybeUninit)]
-#[import(CoreMemTransmute)]
 /// # Example
 ///
 /// ```no_run
@@ -66,8 +62,6 @@ fn vkEnumerateInstanceVersion(&self) -> VkResult<Option<u32>> {
 ///
 /// [`Instance`] does _not_ implement [drop][drop()] semantics and can only be destroyed via
 /// [`destroy_instance()`][Instance::destroy_instance()].
-#[import(CrateVk)]
-#[import(CorePtr)]
 fn vkCreateInstance(
     &self,
     create_info: &vk::InstanceCreateInfo<'_>,
@@ -83,7 +77,6 @@ fn vkCreateInstance(
     Ok(crate::Instance::load(&self.static_fn, instance))
 }
 
-#[import(CrateVk)]
 fn vkGetInstanceProcAddr(
     &self,
     instance: vk::Instance,
@@ -104,7 +97,6 @@ fn vkGetInstanceProcAddr(
 /// [`Instance`].
 ///
 /// [parent/child relation]: https://docs.vulkan.org/spec/latest/chapters/fundamentals.html#fundamentals-objectmodel-lifetime
-#[import(CrateVk)]
 fn vkCreateDevice(
     &self,
     physical_device: vk::PhysicalDevice,
@@ -122,7 +114,6 @@ fn vkCreateDevice(
     Ok(crate::Device::load(&self.instance_fn_1_0, device))
 }
 
-#[import(CrateVk)]
 fn vkGetDeviceProcAddr(
     &self,
     device: vk::Device,

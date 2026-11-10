@@ -2,12 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_HUAWEI_subpass_shading.html) · Extension `VK_HUAWEI_subpass_shading`
 #![doc(alias = "VK_HUAWEI_subpass_shading")]
-use crate::vk;
-use core::ffi::CStr;
-use core::mem::MaybeUninit;
-use crate::VkResult;
-use core::mem::transmute;
-use core::ffi;
+use crate::generated::prelude::*;
 ///Provided by [VK_HUAWEI_subpass_shading](crate::huawei::subpass_shading)
 impl vk::PipelineBindPoint {
     pub const SUBPASS_SHADING_HUAWEI: Self = Self(1000369003);
@@ -124,11 +119,7 @@ impl Device {
     }
 }
 pub(crate) mod items {
-    use core::marker::PhantomData;
-    use crate::vk;
-    use crate::TaggedStructure;
-    use crate::Extends;
-    use core::ffi;
+    use crate::generated::prelude::*;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]

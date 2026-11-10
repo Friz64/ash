@@ -1,8 +1,5 @@
 use super::{Code, Context};
-use crate::{
-    Import,
-    output::{CodeMap, GlobExport, OutputLocation},
-};
+use crate::output::{CodeMap, GlobExport, OutputLocation};
 use analysis::{
     item::enum_::{Enum, Value},
     name::TypeName,
@@ -17,7 +14,7 @@ impl Code for Enum {
     #[instrument(skip(ctx, codemap))]
     fn code(&self, ctx: &Context, codemap: &mut CodeMap) {
         trace!("generating");
-        let output = OutputLocation::primary_location(self.required_by, GlobExport::Yes);
+        let output = OutputLocation::primary_of(self.required_by, GlobExport::Yes);
         let octx = codemap.octx(output, ctx);
         let name = octx.type_tokens(self.name, false, None);
 
@@ -50,10 +47,8 @@ impl Code for Enum {
                 self.name == TypeName::VK_RESULT || self.name == TypeName::VK_OBJECT_TYPE;
             let cfg_guard = (!unconditional_debug).then_some(quote! { #[cfg(feature = "debug")] });
             let fmt = if unconditional_debug {
-                octx.insert_import(Import::CoreFmt);
                 quote! { fmt }
             } else {
-                octx.insert_import(Import::DebugCoreFmt);
                 quote! { fmtd }
             };
 
@@ -87,7 +82,6 @@ impl Code for Enum {
                     quote! { Self::#name => Some(#comment), }
                 });
 
-            octx.insert_import(Import::CoreFmt);
             quote! {
                 impl fmt::Display for #name {
                     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
@@ -104,7 +98,7 @@ impl Code for Enum {
             }
         });
 
-        octx.insert_tokens(quote! {
+        octx.emit_tokens(quote! {
             #[repr(transparent)]
             #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
             pub struct #name(pub(crate) i32);
@@ -127,7 +121,7 @@ impl Code for Enum {
 
         let mut impl_map = CodeMap::default();
         for (&name, item) in filtered_items {
-            let output = OutputLocation::primary_location(item.required_by, GlobExport::No);
+            let output = OutputLocation::primary_of(item.required_by, GlobExport::No);
             let octx = impl_map.octx(output, ctx);
 
             let name = octx.enumerator_tokens(name, self.name, false);
@@ -151,7 +145,7 @@ impl Code for Enum {
                 quote! { #[doc = #expanded] }
             });
 
-            octx.insert_tokens(quote! {
+            octx.emit_tokens(quote! {
                #comment
                pub const #name: Self = #value;
             });
@@ -159,11 +153,8 @@ impl Code for Enum {
 
         codemap.extend_mapped(impl_map, ctx, |octx, impl_tokens| {
             let doc = octx.output().provided_by_doc_comment();
-            let name = octx.type_tokens(
-                self.name,
-                octx.output().require != self.required_by.primary_location(),
-                None,
-            );
+            let qualified = octx.output().require != self.required_by.primary_location();
+            let name = octx.type_tokens(self.name, qualified, None);
 
             quote! {
                 #[doc = #doc]

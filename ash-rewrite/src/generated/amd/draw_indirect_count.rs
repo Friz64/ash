@@ -2,10 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_AMD_draw_indirect_count.html) · Extension `VK_AMD_draw_indirect_count`
 #![doc(alias = "VK_AMD_draw_indirect_count")]
-use core::ffi::CStr;
-use crate::vk;
-use core::mem::transmute;
-use core::ffi;
+use crate::generated::prelude::*;
 pub const SPEC_VERSION: u32 = 2;
 pub const NAME: &CStr = c"VK_AMD_draw_indirect_count";
 #[derive(Clone)]
@@ -129,7 +126,7 @@ impl Device {
     }
 }
 pub(crate) mod items {
-    use crate::vk;
+    use crate::generated::prelude::*;
     pub type PFN_vkCmdDrawIndirectCountAMD = vk::PFN_vkCmdDrawIndirectCount;
     pub type PFN_vkCmdDrawIndexedIndirectCountAMD = vk::PFN_vkCmdDrawIndexedIndirectCount;
 }

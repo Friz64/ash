@@ -2,13 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_display_control.html) · Extension `VK_EXT_display_control`
 #![doc(alias = "VK_EXT_display_control")]
-use crate::vk;
-use core::ffi::CStr;
-use crate::VkResult;
-use core::mem::transmute;
-use core::ptr;
-use core::mem::MaybeUninit;
-use core::ffi;
+use crate::generated::prelude::*;
 ///Provided by [VK_EXT_display_control](crate::ext::display_control)
 impl vk::StructureType {
     pub const DISPLAY_POWER_INFO_EXT: Self = Self(1000091000);
@@ -193,13 +187,7 @@ impl Device {
     }
 }
 pub(crate) mod items {
-    use core::marker::PhantomData;
-    use crate::vk;
-    use crate::TaggedStructure;
-    use core::ffi;
-    use crate::Extends;
-    #[cfg(feature = "debug")]
-    use core::fmt as fmtd;
+    use crate::generated::prelude::*;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]

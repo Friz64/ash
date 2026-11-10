@@ -2,11 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_bind_memory2.html) · Extension `VK_KHR_bind_memory2`
 #![doc(alias = "VK_KHR_bind_memory2")]
-use crate::vk;
-use core::ffi::CStr;
-use crate::VkResult;
-use core::mem::transmute;
-use core::ffi;
+use crate::generated::prelude::*;
 ///Provided by [VK_KHR_bind_memory2](crate::khr::bind_memory2)
 impl vk::StructureType {
     pub const BIND_BUFFER_MEMORY_INFO_KHR: Self = Self::BIND_BUFFER_MEMORY_INFO;
@@ -109,7 +105,7 @@ impl Device {
     }
 }
 pub(crate) mod items {
-    use crate::vk;
+    use crate::generated::prelude::*;
     pub type BindBufferMemoryInfoKHR<'a> = vk::BindBufferMemoryInfo<'a>;
     pub type BindImageMemoryInfoKHR<'a> = vk::BindImageMemoryInfo<'a>;
     pub type PFN_vkBindBufferMemory2KHR = vk::PFN_vkBindBufferMemory2;

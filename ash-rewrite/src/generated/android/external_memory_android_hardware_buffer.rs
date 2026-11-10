@@ -2,12 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_ANDROID_external_memory_android_hardware_buffer.html) · Extension `VK_ANDROID_external_memory_android_hardware_buffer`
 #![doc(alias = "VK_ANDROID_external_memory_android_hardware_buffer")]
-use crate::vk;
-use core::ffi::CStr;
-use core::mem::MaybeUninit;
-use crate::VkResult;
-use core::mem::transmute;
-use core::ffi;
+use crate::generated::prelude::*;
 ///Provided by [VK_ANDROID_external_memory_android_hardware_buffer](crate::android::external_memory_android_hardware_buffer)
 impl vk::StructureType {
     pub const ANDROID_HARDWARE_BUFFER_USAGE_ANDROID: Self = Self(1000129000);
@@ -129,11 +124,7 @@ impl Device {
     }
 }
 pub(crate) mod items {
-    use core::marker::PhantomData;
-    use crate::vk;
-    use crate::TaggedStructure;
-    use crate::Extends;
-    use core::ffi;
+    use crate::generated::prelude::*;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]

@@ -2,13 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_private_data.html) · Extension `VK_EXT_private_data`
 #![doc(alias = "VK_EXT_private_data")]
-use crate::vk;
-use core::ffi::CStr;
-use core::ptr;
-use core::mem::MaybeUninit;
-use crate::VkResult;
-use core::mem::transmute;
-use core::ffi;
+use crate::generated::prelude::*;
 ///Provided by [VK_EXT_private_data](crate::ext::private_data)
 impl vk::StructureType {
     pub const PHYSICAL_DEVICE_PRIVATE_DATA_FEATURES_EXT: Self = Self::PHYSICAL_DEVICE_PRIVATE_DATA_FEATURES;
@@ -190,7 +184,7 @@ impl Device {
     }
 }
 pub(crate) mod items {
-    use crate::vk;
+    use crate::generated::prelude::*;
     pub type DevicePrivateDataCreateInfoEXT<'a> = vk::DevicePrivateDataCreateInfo<'a>;
     pub type PrivateDataSlotCreateInfoEXT<'a> = vk::PrivateDataSlotCreateInfo<'a>;
     pub type PhysicalDevicePrivateDataFeaturesEXT<'a> = vk::PhysicalDevicePrivateDataFeatures<

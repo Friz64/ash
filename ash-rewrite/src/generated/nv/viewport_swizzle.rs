@@ -2,8 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_NV_viewport_swizzle.html) · Extension `VK_NV_viewport_swizzle`
 #![doc(alias = "VK_NV_viewport_swizzle")]
-use crate::vk;
-use core::ffi::CStr;
+use crate::generated::prelude::*;
 ///Provided by [VK_NV_viewport_swizzle](crate::nv::viewport_swizzle)
 impl vk::StructureType {
     pub const PIPELINE_VIEWPORT_SWIZZLE_STATE_CREATE_INFO_NV: Self = Self(1000098000);
@@ -22,14 +21,7 @@ impl ViewportCoordinateSwizzleNV {
 pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &CStr = c"VK_NV_viewport_swizzle";
 pub(crate) mod items {
-    use crate::vk;
-    use core::marker::PhantomData;
-    use crate::TaggedStructure;
-    use crate::Extends;
-    use core::ffi;
-    #[cfg(feature = "debug")]
-    use core::fmt as fmtd;
-    use core::ops::{BitOr, BitOrAssign, BitAnd, BitAndAssign, BitXor, BitXorAssign, Not};
+    use crate::generated::prelude::*;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy, Default)]

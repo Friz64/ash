@@ -2,8 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_separate_depth_stencil_layouts.html) · Extension `VK_KHR_separate_depth_stencil_layouts`
 #![doc(alias = "VK_KHR_separate_depth_stencil_layouts")]
-use crate::vk;
-use core::ffi::CStr;
+use crate::generated::prelude::*;
 ///Provided by [VK_KHR_separate_depth_stencil_layouts](crate::khr::separate_depth_stencil_layouts)
 impl vk::ImageLayout {
     pub const DEPTH_ATTACHMENT_OPTIMAL_KHR: Self = Self::DEPTH_ATTACHMENT_OPTIMAL;
@@ -20,7 +19,7 @@ impl vk::StructureType {
 pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &CStr = c"VK_KHR_separate_depth_stencil_layouts";
 pub(crate) mod items {
-    use crate::vk;
+    use crate::generated::prelude::*;
     pub type PhysicalDeviceSeparateDepthStencilLayoutsFeaturesKHR<'a> = vk::PhysicalDeviceSeparateDepthStencilLayoutsFeatures<
         'a,
     >;

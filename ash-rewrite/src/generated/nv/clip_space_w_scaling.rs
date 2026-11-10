@@ -2,10 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_NV_clip_space_w_scaling.html) · Extension `VK_NV_clip_space_w_scaling`
 #![doc(alias = "VK_NV_clip_space_w_scaling")]
-use crate::vk;
-use core::ffi::CStr;
-use core::mem::transmute;
-use core::ffi;
+use crate::generated::prelude::*;
 ///Provided by [VK_NV_clip_space_w_scaling](crate::nv::clip_space_w_scaling)
 impl vk::StructureType {
     pub const PIPELINE_VIEWPORT_W_SCALING_STATE_CREATE_INFO_NV: Self = Self(1000087000);
@@ -83,11 +80,7 @@ impl Device {
     }
 }
 pub(crate) mod items {
-    use core::ffi;
-    use core::marker::PhantomData;
-    use crate::vk;
-    use crate::TaggedStructure;
-    use crate::Extends;
+    use crate::generated::prelude::*;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy, Default)]

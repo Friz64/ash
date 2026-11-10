@@ -3,8 +3,7 @@
 #![cfg(feature = "provisional")]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_AMDX_dense_geometry_format.html) · Extension `VK_AMDX_dense_geometry_format`
 #![doc(alias = "VK_AMDX_dense_geometry_format")]
-use crate::vk;
-use core::ffi::CStr;
+use crate::generated::prelude::*;
 ///Provided by [VK_AMDX_dense_geometry_format](crate::amdx::dense_geometry_format)
 impl vk::StructureType {
     pub const PHYSICAL_DEVICE_DENSE_GEOMETRY_FORMAT_FEATURES_AMDX: Self = Self(
@@ -35,13 +34,7 @@ impl vk::BufferUsageFlagBits2 {
 pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &CStr = c"VK_AMDX_dense_geometry_format";
 pub(crate) mod items {
-    use core::marker::PhantomData;
-    use crate::vk;
-    use crate::TaggedStructure;
-    use crate::Extends;
-    use core::ffi;
-    #[cfg(feature = "debug")]
-    use core::fmt as fmtd;
+    use crate::generated::prelude::*;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]

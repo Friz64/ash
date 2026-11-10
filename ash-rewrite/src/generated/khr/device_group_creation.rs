@@ -2,13 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_device_group_creation.html) · Extension `VK_KHR_device_group_creation`
 #![doc(alias = "VK_KHR_device_group_creation")]
-use crate::vk;
-use core::ffi::CStr;
-use crate::VkResult;
-use core::ptr;
-use core::mem::MaybeUninit;
-use core::mem::transmute;
-use core::ffi;
+use crate::generated::prelude::*;
 ///Provided by [VK_KHR_device_group_creation](crate::khr::device_group_creation)
 impl vk::StructureType {
     pub const PHYSICAL_DEVICE_GROUP_PROPERTIES_KHR: Self = Self::PHYSICAL_DEVICE_GROUP_PROPERTIES;
@@ -114,7 +108,7 @@ impl Instance {
     }
 }
 pub(crate) mod items {
-    use crate::vk;
+    use crate::generated::prelude::*;
     pub type PhysicalDeviceGroupPropertiesKHR<'a> = vk::PhysicalDeviceGroupProperties<
         'a,
     >;

@@ -11,7 +11,7 @@ impl Code for FuncPointer {
     #[instrument(skip(ctx, codemap))]
     fn code(&self, ctx: &Context, codemap: &mut CodeMap) {
         trace!("generating");
-        let output = OutputLocation::primary_location(self.required_by, GlobExport::Yes);
+        let output = OutputLocation::primary_of(self.required_by, GlobExport::Yes);
         let octx = codemap.octx(output, ctx);
 
         let name = octx.func_pointer_tokens(self.name, false);
@@ -24,7 +24,7 @@ impl Code for FuncPointer {
             quote! { -> #rust_ty }
         });
 
-        octx.insert_tokens(
+        octx.emit_tokens(
             quote! { pub type #name = Option<unsafe extern "system" fn(#( #params ),*) #ret>; },
         );
     }
@@ -34,7 +34,7 @@ impl Code for Command {
     #[instrument(skip(ctx, codemap))]
     fn code(&self, ctx: &Context, codemap: &mut CodeMap) {
         trace!("generating");
-        let output = OutputLocation::primary_location(self.required_by, GlobExport::Yes);
+        let output = OutputLocation::primary_of(self.required_by, GlobExport::Yes);
         let octx = codemap.octx(output, ctx);
 
         let name = octx.command_tokens(self.name, false);
@@ -47,7 +47,7 @@ impl Code for Command {
             quote! { -> #rust_ty }
         });
 
-        octx.insert_tokens(
+        octx.emit_tokens(
             quote! { pub type #name = unsafe extern "system" fn(#( #params ),*) #ret; },
         );
     }

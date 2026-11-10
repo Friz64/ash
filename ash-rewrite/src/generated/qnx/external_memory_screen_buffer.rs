@@ -2,12 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_QNX_external_memory_screen_buffer.html) · Extension `VK_QNX_external_memory_screen_buffer`
 #![doc(alias = "VK_QNX_external_memory_screen_buffer")]
-use crate::vk;
-use core::ffi::CStr;
-use core::mem::MaybeUninit;
-use crate::VkResult;
-use core::mem::transmute;
-use core::ffi;
+use crate::generated::prelude::*;
 ///Provided by [VK_QNX_external_memory_screen_buffer](crate::qnx::external_memory_screen_buffer)
 impl vk::StructureType {
     pub const SCREEN_BUFFER_PROPERTIES_QNX: Self = Self(1000529000);
@@ -91,11 +86,7 @@ impl Device {
     }
 }
 pub(crate) mod items {
-    use core::marker::PhantomData;
-    use crate::vk;
-    use crate::TaggedStructure;
-    use crate::Extends;
-    use core::ffi;
+    use crate::generated::prelude::*;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]

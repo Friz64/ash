@@ -2,8 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_texture_compression_astc_hdr.html) · Extension `VK_EXT_texture_compression_astc_hdr`
 #![doc(alias = "VK_EXT_texture_compression_astc_hdr")]
-use crate::vk;
-use core::ffi::CStr;
+use crate::generated::prelude::*;
 ///Provided by [VK_EXT_texture_compression_astc_hdr](crate::ext::texture_compression_astc_hdr)
 impl vk::Format {
     pub const ASTC_4X4_SFLOAT_BLOCK_EXT: Self = Self::ASTC_4X4_SFLOAT_BLOCK;
@@ -28,7 +27,7 @@ impl vk::StructureType {
 pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &CStr = c"VK_EXT_texture_compression_astc_hdr";
 pub(crate) mod items {
-    use crate::vk;
+    use crate::generated::prelude::*;
     pub type PhysicalDeviceTextureCompressionASTCHDRFeaturesEXT<'a> = vk::PhysicalDeviceTextureCompressionASTCHDRFeatures<
         'a,
     >;

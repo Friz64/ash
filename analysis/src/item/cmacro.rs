@@ -28,6 +28,6 @@ impl CMacro {
     }
 
     pub fn has_args(&self) -> bool {
-        self.args.is_empty()
+        !self.args.is_empty()
     }
 }

@@ -2,13 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_debug_utils.html) · Extension `VK_EXT_debug_utils`
 #![doc(alias = "VK_EXT_debug_utils")]
-use crate::vk;
-use core::ffi::CStr;
-use crate::VkResult;
-use core::mem::transmute;
-use core::ptr;
-use core::mem::MaybeUninit;
-use core::ffi;
+use crate::generated::prelude::*;
 ///Provided by [VK_EXT_debug_utils](crate::ext::debug_utils)
 impl vk::StructureType {
     pub const DEBUG_UTILS_OBJECT_NAME_INFO_EXT: Self = Self(1000128000);
@@ -374,18 +368,7 @@ impl Instance {
     }
 }
 pub(crate) mod items {
-    use core::marker::PhantomData;
-    use crate::vk;
-    use crate::TaggedStructure;
-    use crate::Extends;
-    use core::ffi;
-    use core::ffi::CStr;
-    use core::mem::zeroed;
-    #[cfg(feature = "debug")]
-    use core::fmt as fmtd;
-    use core::ops::{BitOr, BitOrAssign, BitAnd, BitAndAssign, BitXor, BitXorAssign, Not};
-    use crate::Handle;
-    use core::fmt;
+    use crate::generated::prelude::*;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]

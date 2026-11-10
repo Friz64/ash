@@ -33,7 +33,7 @@ fn determine_for_type(
 
             let result = match &types[type_name] {
                 TypeItem::Alias(item) => {
-                    determine_for_type(store, types, &Ty::ApiType(item.alias), false)
+                    determine_for_type(store, types, &Ty::ApiType(item.target), false)
                 }
                 TypeItem::Struct(item) => item.members.iter().any(|member| {
                     matches!(

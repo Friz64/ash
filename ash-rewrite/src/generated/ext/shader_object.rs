@@ -2,13 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_shader_object.html) · Extension `VK_EXT_shader_object`
 #![doc(alias = "VK_EXT_shader_object")]
-use crate::vk;
-use core::ffi::CStr;
-use core::mem::transmute;
-use core::ptr;
-use core::ffi;
-use crate::VkResult;
-use alloc::vec::Vec;
+use crate::generated::prelude::*;
 ///Provided by [VK_EXT_shader_object](crate::ext::shader_object)
 impl vk::StructureType {
     pub const PHYSICAL_DEVICE_SHADER_OBJECT_FEATURES_EXT: Self = Self(1000482000);
@@ -1503,18 +1497,7 @@ impl Device {
     }
 }
 pub(crate) mod items {
-    use core::marker::PhantomData;
-    use crate::vk;
-    use crate::TaggedStructure;
-    use crate::Extends;
-    use core::ffi;
-    use core::mem::zeroed;
-    use core::ffi::CStr;
-    #[cfg(feature = "debug")]
-    use core::fmt as fmtd;
-    use core::ops::{BitOr, BitOrAssign, BitAnd, BitAndAssign, BitXor, BitXorAssign, Not};
-    use crate::Handle;
-    use core::fmt;
+    use crate::generated::prelude::*;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]

@@ -2,6 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //!Items provided by `vulkan_video_codec_av1std`
 #![doc(alias = "vulkan_video_codec_av1std")]
+use crate::generated::prelude::*;
 ///Provided by [vulkan_video_codec_av1std](crate::video::codec_av1std)
 impl AV1Profile {
     pub const MAIN: Self = Self(0);
@@ -148,11 +149,7 @@ impl AV1ChromaSamplePosition {
     pub const INVALID: Self = Self(0x7FFFFFFF);
 }
 pub(crate) mod items {
-    #[cfg(feature = "debug")]
-    use core::fmt as fmtd;
-    use crate::vk;
-    use core::marker::PhantomData;
-    use core::mem::zeroed;
+    use crate::generated::prelude::*;
     #[repr(C)]
     #[derive(Clone, Copy, Default)]
     pub struct AV1ColorConfigFlags {

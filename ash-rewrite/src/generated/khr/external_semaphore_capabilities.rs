@@ -2,11 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_external_semaphore_capabilities.html) · Extension `VK_KHR_external_semaphore_capabilities`
 #![doc(alias = "VK_KHR_external_semaphore_capabilities")]
-use crate::vk;
-use core::ffi::CStr;
-use core::mem::MaybeUninit;
-use core::mem::transmute;
-use core::ffi;
+use crate::generated::prelude::*;
 ///Provided by [VK_KHR_external_semaphore_capabilities](crate::khr::external_semaphore_capabilities)
 impl vk::StructureType {
     pub const PHYSICAL_DEVICE_EXTERNAL_SEMAPHORE_INFO_KHR: Self = Self::PHYSICAL_DEVICE_EXTERNAL_SEMAPHORE_INFO;
@@ -126,7 +122,7 @@ impl Instance {
     }
 }
 pub(crate) mod items {
-    use crate::vk;
+    use crate::generated::prelude::*;
     pub type PhysicalDeviceExternalSemaphoreInfoKHR<'a> = vk::PhysicalDeviceExternalSemaphoreInfo<
         'a,
     >;

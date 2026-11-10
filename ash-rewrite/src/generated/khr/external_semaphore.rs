@@ -2,8 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_external_semaphore.html) · Extension `VK_KHR_external_semaphore`
 #![doc(alias = "VK_KHR_external_semaphore")]
-use crate::vk;
-use core::ffi::CStr;
+use crate::generated::prelude::*;
 ///Provided by [VK_KHR_external_semaphore](crate::khr::external_semaphore)
 impl vk::StructureType {
     pub const EXPORT_SEMAPHORE_CREATE_INFO_KHR: Self = Self::EXPORT_SEMAPHORE_CREATE_INFO;
@@ -19,7 +18,7 @@ impl vk::SemaphoreImportFlagBits {
 pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &CStr = c"VK_KHR_external_semaphore";
 pub(crate) mod items {
-    use crate::vk;
+    use crate::generated::prelude::*;
     pub type ExportSemaphoreCreateInfoKHR<'a> = vk::ExportSemaphoreCreateInfo<'a>;
     pub type SemaphoreImportFlagBitsKHR = vk::SemaphoreImportFlagBits;
     pub type SemaphoreImportFlagsKHR = vk::SemaphoreImportFlags;

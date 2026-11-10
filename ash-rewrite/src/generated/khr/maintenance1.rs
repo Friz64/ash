@@ -2,10 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_maintenance1.html) · Extension `VK_KHR_maintenance1`
 #![doc(alias = "VK_KHR_maintenance1")]
-use crate::vk;
-use core::ffi::CStr;
-use core::mem::transmute;
-use core::ffi;
+use crate::generated::prelude::*;
 ///Provided by [VK_KHR_maintenance1](crate::khr::maintenance1)
 impl vk::Result {
     pub const ERROR_OUT_OF_POOL_MEMORY_KHR: Self = Self::ERROR_OUT_OF_POOL_MEMORY;
@@ -94,7 +91,7 @@ impl Device {
     }
 }
 pub(crate) mod items {
-    use crate::vk;
+    use crate::generated::prelude::*;
     pub type CommandPoolTrimFlagsKHR = vk::CommandPoolTrimFlags;
     pub type PFN_vkTrimCommandPoolKHR = vk::PFN_vkTrimCommandPool;
 }

@@ -2,13 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_VERSION_1_3.html) · Vulkan version 1.3
 #![doc(alias = "VK_VERSION_1_3")]
-use crate::vk;
-use core::mem::MaybeUninit;
-use core::mem::transmute;
-use core::ptr;
-use crate::VkResult;
-use core::ffi::CStr;
-use core::ffi;
+use crate::generated::prelude::*;
 ///Provided by [Vulkan 1.3](crate::vk1_3)
 impl vk::ImageLayout {
     pub const READ_ONLY_OPTIMAL: Self = Self(1000314000);
@@ -1536,18 +1530,7 @@ impl crate::Instance {
     }
 }
 pub(crate) mod items {
-    use core::marker::PhantomData;
-    use crate::vk;
-    use crate::TaggedStructure;
-    use crate::Extends;
-    use core::ffi;
-    use core::mem::zeroed;
-    #[cfg(feature = "debug")]
-    use core::fmt as fmtd;
-    use core::ffi::CStr;
-    use core::ops::{BitOr, BitOrAssign, BitAnd, BitAndAssign, BitXor, BitXorAssign, Not};
-    use crate::Handle;
-    use core::fmt;
+    use crate::generated::prelude::*;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]

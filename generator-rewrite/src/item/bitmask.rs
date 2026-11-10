@@ -1,8 +1,5 @@
 use super::{Code, Context};
-use crate::{
-    Import,
-    output::{CodeMap, GlobExport, OutputLocation},
-};
+use crate::output::{CodeMap, GlobExport, OutputLocation};
 use analysis::{
     item::bitmask::{BitMask, BitWidth, Item, Value},
     rust::RustTokens,
@@ -16,7 +13,7 @@ impl Code for BitMask {
     #[instrument(skip(ctx, codemap))]
     fn code(&self, ctx: &Context, codemap: &mut CodeMap) {
         trace!("generating");
-        let output = OutputLocation::primary_location(self.required_by, GlobExport::Yes);
+        let output = OutputLocation::primary_of(self.required_by, GlobExport::Yes);
         let octx = codemap.octx(output, ctx);
         let name_tokens = octx.type_tokens(self.bitmask_name, false, None);
         let base_ty = match self.bitwidth {
@@ -24,7 +21,6 @@ impl Code for BitMask {
             BitWidth::Bits64 => quote! { u64 },
         };
 
-        octx.insert_import(Import::DebugCoreFmt);
         let mut bits_definition = TokenStream::default();
         let mut bitmask_impl_map = CodeMap::default();
         let mut bits_impl_map = CodeMap::default();
@@ -74,7 +70,7 @@ impl Code for BitMask {
                 };
 
                 let name = octx.enumerator_tokens(name, bits_name, false);
-                let output = OutputLocation::primary_location(*required_by, GlobExport::No);
+                let output = OutputLocation::primary_of(*required_by, GlobExport::No);
                 let value_tokens = match &value {
                     Value::BitPos(bitpos) => {
                         let literal = Literal::u8_unsuffixed(*bitpos);
@@ -92,7 +88,7 @@ impl Code for BitMask {
 
                 bits_impl_map
                     .octx(output, ctx)
-                    .insert_tokens(quote! { pub const #name: Self = #value_tokens; });
+                    .emit_tokens(quote! { pub const #name: Self = #value_tokens; });
 
                 let bits_path = octx.type_tokens(
                     bits_name,
@@ -102,7 +98,7 @@ impl Code for BitMask {
 
                 bitmask_impl_map
                     .octx(output, ctx)
-                    .insert_tokens(quote! { pub const #name: Self = Self(#bits_path::#name.0); });
+                    .emit_tokens(quote! { pub const #name: Self = Self(#bits_path::#name.0); });
 
                 if !matches!(value, Value::Alias(..)) {
                     let is_provisional = required_by.primary_location().is_provisional(ctx);
@@ -123,8 +119,7 @@ impl Code for BitMask {
             debug_items => quote! { crate::debug_flags(f, &[ #( #debug_items, )* ], self.0) },
         };
 
-        octx.insert_import(Import::CoreOpsBitmask);
-        octx.insert_tokens(quote! {
+        octx.emit_tokens(quote! {
             #[repr(transparent)]
             #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
             pub struct #name_tokens(pub(crate) #base_ty);
@@ -221,11 +216,8 @@ impl Code for BitMask {
                 (bits_name, bits_impl_map),
             ] {
                 codemap.extend_mapped(impl_map, ctx, |octx, impl_tokens| {
-                    let bits_path = octx.type_tokens(
-                        type_name,
-                        octx.output().require != self.required_by.primary_location(),
-                        None,
-                    );
+                    let qualified = octx.output().require != self.required_by.primary_location();
+                    let bits_path = octx.type_tokens(type_name, qualified, None);
 
                     let doc = octx.output().provided_by_doc_comment();
                     quote! {

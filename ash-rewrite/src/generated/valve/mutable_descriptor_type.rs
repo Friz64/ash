@@ -2,8 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_VALVE_mutable_descriptor_type.html) · Extension `VK_VALVE_mutable_descriptor_type`
 #![doc(alias = "VK_VALVE_mutable_descriptor_type")]
-use crate::vk;
-use core::ffi::CStr;
+use crate::generated::prelude::*;
 ///Provided by [VK_VALVE_mutable_descriptor_type](crate::valve::mutable_descriptor_type)
 impl vk::DescriptorType {
     pub const MUTABLE_VALVE: Self = Self::MUTABLE_EXT;
@@ -36,7 +35,7 @@ impl vk::DescriptorPoolCreateFlagBits {
 pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &CStr = c"VK_VALVE_mutable_descriptor_type";
 pub(crate) mod items {
-    use crate::vk;
+    use crate::generated::prelude::*;
     pub type PhysicalDeviceMutableDescriptorTypeFeaturesVALVE<'a> = vk::PhysicalDeviceMutableDescriptorTypeFeaturesEXT<
         'a,
     >;

@@ -2,13 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_create_renderpass2.html) · Extension `VK_KHR_create_renderpass2`
 #![doc(alias = "VK_KHR_create_renderpass2")]
-use crate::vk;
-use core::ffi::CStr;
-use core::ptr;
-use core::mem::MaybeUninit;
-use crate::VkResult;
-use core::mem::transmute;
-use core::ffi;
+use crate::generated::prelude::*;
 ///Provided by [VK_KHR_create_renderpass2](crate::khr::create_renderpass2)
 impl vk::StructureType {
     pub const ATTACHMENT_DESCRIPTION_2_KHR: Self = Self::ATTACHMENT_DESCRIPTION_2;
@@ -162,7 +156,7 @@ impl Device {
     }
 }
 pub(crate) mod items {
-    use crate::vk;
+    use crate::generated::prelude::*;
     pub type AttachmentDescription2KHR<'a> = vk::AttachmentDescription2<'a>;
     pub type AttachmentReference2KHR<'a> = vk::AttachmentReference2<'a>;
     pub type SubpassDescription2KHR<'a> = vk::SubpassDescription2<'a>;

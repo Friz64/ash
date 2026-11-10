@@ -2,13 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_device_generated_commands.html) · Extension `VK_EXT_device_generated_commands`
 #![doc(alias = "VK_EXT_device_generated_commands")]
-use crate::vk;
-use core::ffi::CStr;
-use core::mem::transmute;
-use core::mem::MaybeUninit;
-use core::ptr;
-use crate::VkResult;
-use core::ffi;
+use crate::generated::prelude::*;
 ///Provided by [VK_EXT_device_generated_commands](crate::ext::device_generated_commands)
 impl vk::StructureType {
     pub const PHYSICAL_DEVICE_DEVICE_GENERATED_COMMANDS_FEATURES_EXT: Self = Self(
@@ -480,17 +474,7 @@ impl Device {
     }
 }
 pub(crate) mod items {
-    use core::marker::PhantomData;
-    use crate::vk;
-    use crate::TaggedStructure;
-    use crate::Extends;
-    use core::ffi;
-    use core::mem::zeroed;
-    #[cfg(feature = "debug")]
-    use core::fmt as fmtd;
-    use core::ops::{BitOr, BitOrAssign, BitAnd, BitAndAssign, BitXor, BitXorAssign, Not};
-    use crate::Handle;
-    use core::fmt;
+    use crate::generated::prelude::*;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]

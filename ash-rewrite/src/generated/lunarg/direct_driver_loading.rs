@@ -2,8 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_LUNARG_direct_driver_loading.html) · Extension `VK_LUNARG_direct_driver_loading`
 #![doc(alias = "VK_LUNARG_direct_driver_loading")]
-use crate::vk;
-use core::ffi::CStr;
+use crate::generated::prelude::*;
 ///Provided by [VK_LUNARG_direct_driver_loading](crate::lunarg::direct_driver_loading)
 impl vk::StructureType {
     pub const DIRECT_DRIVER_LOADING_INFO_LUNARG: Self = Self(1000459000);
@@ -17,14 +16,7 @@ impl DirectDriverLoadingModeLUNARG {
 pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &CStr = c"VK_LUNARG_direct_driver_loading";
 pub(crate) mod items {
-    use core::marker::PhantomData;
-    use crate::vk;
-    use crate::TaggedStructure;
-    use core::ffi;
-    use crate::Extends;
-    #[cfg(feature = "debug")]
-    use core::fmt as fmtd;
-    use core::ops::{BitOr, BitOrAssign, BitAnd, BitAndAssign, BitXor, BitXorAssign, Not};
+    use crate::generated::prelude::*;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]

@@ -2,6 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //!Items provided by `vulkan_video_codec_h264std`
 #![doc(alias = "vulkan_video_codec_h264std")]
+use crate::generated::prelude::*;
 ///Provided by [vulkan_video_codec_h264std](crate::video::codec_h264std)
 impl H264ChromaFormatIdc {
     pub const MONOCHROME: Self = Self(0);
@@ -142,11 +143,7 @@ impl H264NonVclNaluType {
     pub const INVALID: Self = Self(0x7FFFFFFF);
 }
 pub(crate) mod items {
-    #[cfg(feature = "debug")]
-    use core::fmt as fmtd;
-    use crate::vk;
-    use core::mem::zeroed;
-    use core::marker::PhantomData;
+    use crate::generated::prelude::*;
     #[repr(C)]
     #[derive(Clone, Copy, Default)]
     pub struct H264SpsVuiFlags {

@@ -2,13 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_MVK_macos_surface.html) · Extension `VK_MVK_macos_surface`
 #![doc(alias = "VK_MVK_macos_surface")]
-use crate::vk;
-use core::ffi::CStr;
-use core::ptr;
-use core::mem::MaybeUninit;
-use crate::VkResult;
-use core::mem::transmute;
-use core::ffi;
+use crate::generated::prelude::*;
 ///Provided by [VK_MVK_macos_surface](crate::mvk::macos_surface)
 impl vk::StructureType {
     pub const MACOS_SURFACE_CREATE_INFO_MVK: Self = Self(1000123000);
@@ -86,13 +80,7 @@ impl Instance {
     }
 }
 pub(crate) mod items {
-    use core::marker::PhantomData;
-    use crate::vk;
-    use crate::TaggedStructure;
-    use core::ffi;
-    #[cfg(feature = "debug")]
-    use core::fmt as fmtd;
-    use core::ops::{BitOr, BitOrAssign, BitAnd, BitAndAssign, BitXor, BitXorAssign, Not};
+    use crate::generated::prelude::*;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]

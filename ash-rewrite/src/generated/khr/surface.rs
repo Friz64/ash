@@ -2,14 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_surface.html) · Extension `VK_KHR_surface`
 #![doc(alias = "VK_KHR_surface")]
-use crate::vk;
-use core::ffi::CStr;
-use core::ptr;
-use core::mem::transmute;
-use core::mem::MaybeUninit;
-use crate::VkResult;
-use alloc::vec::Vec;
-use core::ffi;
+use crate::generated::prelude::*;
 ///Provided by [VK_KHR_surface](crate::khr::surface)
 impl vk::Result {
     pub const ERROR_SURFACE_LOST_KHR: Self = Self(-1000000000);
@@ -280,12 +273,7 @@ impl Instance {
     }
 }
 pub(crate) mod items {
-    use crate::vk;
-    #[cfg(feature = "debug")]
-    use core::fmt as fmtd;
-    use core::ops::{BitOr, BitOrAssign, BitAnd, BitAndAssign, BitXor, BitXorAssign, Not};
-    use crate::Handle;
-    use core::fmt;
+    use crate::generated::prelude::*;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy, Default)]

@@ -2,8 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_dedicated_allocation.html) · Extension `VK_KHR_dedicated_allocation`
 #![doc(alias = "VK_KHR_dedicated_allocation")]
-use crate::vk;
-use core::ffi::CStr;
+use crate::generated::prelude::*;
 ///Provided by [VK_KHR_dedicated_allocation](crate::khr::dedicated_allocation)
 impl vk::StructureType {
     pub const MEMORY_DEDICATED_REQUIREMENTS_KHR: Self = Self::MEMORY_DEDICATED_REQUIREMENTS;
@@ -12,7 +11,7 @@ impl vk::StructureType {
 pub const SPEC_VERSION: u32 = 3;
 pub const NAME: &CStr = c"VK_KHR_dedicated_allocation";
 pub(crate) mod items {
-    use crate::vk;
+    use crate::generated::prelude::*;
     pub type MemoryDedicatedRequirementsKHR<'a> = vk::MemoryDedicatedRequirements<'a>;
     pub type MemoryDedicatedAllocateInfoKHR<'a> = vk::MemoryDedicatedAllocateInfo<'a>;
 }

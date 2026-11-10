@@ -2,8 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_scalar_block_layout.html) · Extension `VK_EXT_scalar_block_layout`
 #![doc(alias = "VK_EXT_scalar_block_layout")]
-use crate::vk;
-use core::ffi::CStr;
+use crate::generated::prelude::*;
 ///Provided by [VK_EXT_scalar_block_layout](crate::ext::scalar_block_layout)
 impl vk::StructureType {
     pub const PHYSICAL_DEVICE_SCALAR_BLOCK_LAYOUT_FEATURES_EXT: Self = Self::PHYSICAL_DEVICE_SCALAR_BLOCK_LAYOUT_FEATURES;
@@ -11,7 +10,7 @@ impl vk::StructureType {
 pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &CStr = c"VK_EXT_scalar_block_layout";
 pub(crate) mod items {
-    use crate::vk;
+    use crate::generated::prelude::*;
     pub type PhysicalDeviceScalarBlockLayoutFeaturesEXT<'a> = vk::PhysicalDeviceScalarBlockLayoutFeatures<
         'a,
     >;

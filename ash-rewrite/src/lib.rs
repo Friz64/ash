@@ -5,9 +5,10 @@ extern crate alloc;
 
 #[allow(
     unused_parens,
-    clippy::double_parens,
+    unused_imports,
     non_camel_case_types,
     unreachable_patterns,
+    clippy::double_parens,
     clippy::missing_transmute_annotations,
     clippy::missing_safety_doc,
     clippy::too_many_arguments

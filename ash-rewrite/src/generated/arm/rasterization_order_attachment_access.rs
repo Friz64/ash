@@ -2,8 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_ARM_rasterization_order_attachment_access.html) · Extension `VK_ARM_rasterization_order_attachment_access`
 #![doc(alias = "VK_ARM_rasterization_order_attachment_access")]
-use crate::vk;
-use core::ffi::CStr;
+use crate::generated::prelude::*;
 ///Provided by [VK_ARM_rasterization_order_attachment_access](crate::arm::rasterization_order_attachment_access)
 impl vk::StructureType {
     pub const PHYSICAL_DEVICE_RASTERIZATION_ORDER_ATTACHMENT_ACCESS_FEATURES_ARM: Self = Self::PHYSICAL_DEVICE_RASTERIZATION_ORDER_ATTACHMENT_ACCESS_FEATURES_EXT;
@@ -57,7 +56,7 @@ impl vk::SubpassDescriptionFlagBits {
 pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &CStr = c"VK_ARM_rasterization_order_attachment_access";
 pub(crate) mod items {
-    use crate::vk;
+    use crate::generated::prelude::*;
     pub type PhysicalDeviceRasterizationOrderAttachmentAccessFeaturesARM<'a> = vk::PhysicalDeviceRasterizationOrderAttachmentAccessFeaturesEXT<
         'a,
     >;

@@ -2,8 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_descriptor_indexing.html) · Extension `VK_EXT_descriptor_indexing`
 #![doc(alias = "VK_EXT_descriptor_indexing")]
-use crate::vk;
-use core::ffi::CStr;
+use crate::generated::prelude::*;
 ///Provided by [VK_EXT_descriptor_indexing](crate::ext::descriptor_indexing)
 impl vk::StructureType {
     pub const DESCRIPTOR_SET_LAYOUT_BINDING_FLAGS_CREATE_INFO_EXT: Self = Self::DESCRIPTOR_SET_LAYOUT_BINDING_FLAGS_CREATE_INFO;
@@ -61,7 +60,7 @@ impl vk::DescriptorBindingFlagBits {
 pub const SPEC_VERSION: u32 = 2;
 pub const NAME: &CStr = c"VK_EXT_descriptor_indexing";
 pub(crate) mod items {
-    use crate::vk;
+    use crate::generated::prelude::*;
     pub type PhysicalDeviceDescriptorIndexingFeaturesEXT<'a> = vk::PhysicalDeviceDescriptorIndexingFeatures<
         'a,
     >;

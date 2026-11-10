@@ -2,12 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_NVX_image_view_handle.html) · Extension `VK_NVX_image_view_handle`
 #![doc(alias = "VK_NVX_image_view_handle")]
-use crate::vk;
-use core::ffi::CStr;
-use core::mem::transmute;
-use core::mem::MaybeUninit;
-use crate::VkResult;
-use core::ffi;
+use crate::generated::prelude::*;
 ///Provided by [VK_NVX_image_view_handle](crate::nvx::image_view_handle)
 impl vk::StructureType {
     pub const IMAGE_VIEW_HANDLE_INFO_NVX: Self = Self(1000030000);
@@ -145,10 +140,7 @@ impl Device {
     }
 }
 pub(crate) mod items {
-    use core::marker::PhantomData;
-    use crate::vk;
-    use crate::TaggedStructure;
-    use core::ffi;
+    use crate::generated::prelude::*;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]

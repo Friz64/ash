@@ -9,21 +9,21 @@ impl Code for CMacro {
     fn code(&self, ctx: &Context, codemap: &mut CodeMap) {
         trace!("generating");
 
-        let output = OutputLocation::primary_location(self.required_by, GlobExport::Yes);
+        let output = OutputLocation::primary_of(self.required_by, GlobExport::Yes);
         let octx = codemap.octx(output, ctx);
         let name = octx.cmacro_tokens(self.name, false);
         let expr = CExprItem::tokens(self.cexpr.iter(), &octx);
         let code = if self.has_args() {
-            quote! {
-                pub const #name: u32 = #expr;
-            }
-        } else {
             let args = self.args.iter().map(|arg| format_ident!("{arg}"));
             quote! {
                 pub const fn #name(#(#args: u32),*) -> u32 { #expr }
             }
+        } else {
+            quote! {
+                pub const #name: u32 = #expr;
+            }
         };
 
-        octx.insert_tokens(code);
+        octx.emit_tokens(code);
     }
 }

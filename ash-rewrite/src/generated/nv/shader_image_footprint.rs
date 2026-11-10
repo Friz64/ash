@@ -2,8 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_NV_shader_image_footprint.html) · Extension `VK_NV_shader_image_footprint`
 #![doc(alias = "VK_NV_shader_image_footprint")]
-use crate::vk;
-use core::ffi::CStr;
+use crate::generated::prelude::*;
 ///Provided by [VK_NV_shader_image_footprint](crate::nv::shader_image_footprint)
 impl vk::StructureType {
     pub const PHYSICAL_DEVICE_SHADER_IMAGE_FOOTPRINT_FEATURES_NV: Self = Self(
@@ -13,11 +12,7 @@ impl vk::StructureType {
 pub const SPEC_VERSION: u32 = 2;
 pub const NAME: &CStr = c"VK_NV_shader_image_footprint";
 pub(crate) mod items {
-    use core::marker::PhantomData;
-    use crate::vk;
-    use crate::TaggedStructure;
-    use crate::Extends;
-    use core::ffi;
+    use crate::generated::prelude::*;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]

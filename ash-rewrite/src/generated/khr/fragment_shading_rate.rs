@@ -2,13 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_fragment_shading_rate.html) · Extension `VK_KHR_fragment_shading_rate`
 #![doc(alias = "VK_KHR_fragment_shading_rate")]
-use crate::vk;
-use core::ffi::CStr;
-use core::mem::transmute;
-use crate::VkResult;
-use core::ptr;
-use core::mem::MaybeUninit;
-use core::ffi;
+use crate::generated::prelude::*;
 ///Provided by [VK_KHR_fragment_shading_rate](crate::khr::fragment_shading_rate)
 impl vk::ImageLayout {
     pub const FRAGMENT_SHADING_RATE_ATTACHMENT_OPTIMAL_KHR: Self = Self(1000164003);
@@ -257,14 +251,7 @@ impl Instance {
     }
 }
 pub(crate) mod items {
-    use core::marker::PhantomData;
-    use crate::vk;
-    use crate::TaggedStructure;
-    use crate::Extends;
-    use core::ffi;
-    use core::mem::zeroed;
-    #[cfg(feature = "debug")]
-    use core::fmt as fmtd;
+    use crate::generated::prelude::*;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]

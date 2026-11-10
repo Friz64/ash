@@ -2,10 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_draw_indirect_count.html) · Extension `VK_KHR_draw_indirect_count`
 #![doc(alias = "VK_KHR_draw_indirect_count")]
-use core::ffi::CStr;
-use crate::vk;
-use core::mem::transmute;
-use core::ffi;
+use crate::generated::prelude::*;
 pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &CStr = c"VK_KHR_draw_indirect_count";
 #[derive(Clone)]
@@ -129,7 +126,7 @@ impl Device {
     }
 }
 pub(crate) mod items {
-    use crate::vk;
+    use crate::generated::prelude::*;
     pub type PFN_vkCmdDrawIndirectCountKHR = vk::PFN_vkCmdDrawIndirectCount;
     pub type PFN_vkCmdDrawIndexedIndirectCountKHR = vk::PFN_vkCmdDrawIndexedIndirectCount;
 }

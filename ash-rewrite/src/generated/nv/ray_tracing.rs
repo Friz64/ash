@@ -2,13 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_NV_ray_tracing.html) · Extension `VK_NV_ray_tracing`
 #![doc(alias = "VK_NV_ray_tracing")]
-use crate::vk;
-use core::ffi::CStr;
-use crate::VkResult;
-use core::mem::transmute;
-use core::ptr;
-use core::mem::MaybeUninit;
-use core::ffi;
+use crate::generated::prelude::*;
 ///Provided by [VK_NV_ray_tracing](crate::nv::ray_tracing)
 impl vk::DescriptorType {
     pub const ACCELERATION_STRUCTURE_NV: Self = Self(1000165000);
@@ -693,15 +687,7 @@ impl Device {
     }
 }
 pub(crate) mod items {
-    use core::marker::PhantomData;
-    use crate::vk;
-    use crate::TaggedStructure;
-    use core::ffi;
-    use crate::Extends;
-    #[cfg(feature = "debug")]
-    use core::fmt as fmtd;
-    use crate::Handle;
-    use core::fmt;
+    use crate::generated::prelude::*;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]

@@ -2,12 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_external_semaphore_fd.html) · Extension `VK_KHR_external_semaphore_fd`
 #![doc(alias = "VK_KHR_external_semaphore_fd")]
-use crate::vk;
-use core::ffi::CStr;
-use core::ffi;
-use core::mem::MaybeUninit;
-use crate::VkResult;
-use core::mem::transmute;
+use crate::generated::prelude::*;
 ///Provided by [VK_KHR_external_semaphore_fd](crate::khr::external_semaphore_fd)
 impl vk::StructureType {
     pub const IMPORT_SEMAPHORE_FD_INFO_KHR: Self = Self(1000079000);
@@ -93,10 +88,7 @@ impl Device {
     }
 }
 pub(crate) mod items {
-    use core::marker::PhantomData;
-    use crate::vk;
-    use crate::TaggedStructure;
-    use core::ffi;
+    use crate::generated::prelude::*;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]

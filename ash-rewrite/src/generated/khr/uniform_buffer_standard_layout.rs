@@ -2,8 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_uniform_buffer_standard_layout.html) · Extension `VK_KHR_uniform_buffer_standard_layout`
 #![doc(alias = "VK_KHR_uniform_buffer_standard_layout")]
-use crate::vk;
-use core::ffi::CStr;
+use crate::generated::prelude::*;
 ///Provided by [VK_KHR_uniform_buffer_standard_layout](crate::khr::uniform_buffer_standard_layout)
 impl vk::StructureType {
     pub const PHYSICAL_DEVICE_UNIFORM_BUFFER_STANDARD_LAYOUT_FEATURES_KHR: Self = Self::PHYSICAL_DEVICE_UNIFORM_BUFFER_STANDARD_LAYOUT_FEATURES;
@@ -11,7 +10,7 @@ impl vk::StructureType {
 pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &CStr = c"VK_KHR_uniform_buffer_standard_layout";
 pub(crate) mod items {
-    use crate::vk;
+    use crate::generated::prelude::*;
     pub type PhysicalDeviceUniformBufferStandardLayoutFeaturesKHR<'a> = vk::PhysicalDeviceUniformBufferStandardLayoutFeatures<
         'a,
     >;

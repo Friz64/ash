@@ -2,8 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_QCOM_fragment_density_map_offset.html) · Extension `VK_QCOM_fragment_density_map_offset`
 #![doc(alias = "VK_QCOM_fragment_density_map_offset")]
-use crate::vk;
-use core::ffi::CStr;
+use crate::generated::prelude::*;
 ///Provided by [VK_QCOM_fragment_density_map_offset](crate::qcom::fragment_density_map_offset)
 impl vk::StructureType {
     pub const PHYSICAL_DEVICE_FRAGMENT_DENSITY_MAP_OFFSET_FEATURES_QCOM: Self = Self::PHYSICAL_DEVICE_FRAGMENT_DENSITY_MAP_OFFSET_FEATURES_EXT;
@@ -23,7 +22,7 @@ impl vk::ImageCreateFlagBits {
 pub const SPEC_VERSION: u32 = 3;
 pub const NAME: &CStr = c"VK_QCOM_fragment_density_map_offset";
 pub(crate) mod items {
-    use crate::vk;
+    use crate::generated::prelude::*;
     pub type PhysicalDeviceFragmentDensityMapOffsetFeaturesQCOM<'a> = vk::PhysicalDeviceFragmentDensityMapOffsetFeaturesEXT<
         'a,
     >;

@@ -2,8 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_IMG_filter_cubic.html) · Extension `VK_IMG_filter_cubic`
 #![doc(alias = "VK_IMG_filter_cubic")]
-use crate::vk;
-use core::ffi::CStr;
+use crate::generated::prelude::*;
 ///Provided by [VK_IMG_filter_cubic](crate::img::filter_cubic)
 impl vk::Filter {
     pub const CUBIC_IMG: Self = Self::CUBIC_EXT;

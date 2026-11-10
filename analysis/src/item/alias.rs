@@ -9,7 +9,7 @@ use tracing::{instrument, trace};
 pub struct TypeAlias {
     pub required_by: RequiredBy,
     pub name: TypeName,
-    pub alias: TypeName,
+    pub target: TypeName,
 }
 
 impl NamedType for TypeAlias {
@@ -27,7 +27,7 @@ impl TypeAlias {
         Some(TypeAlias {
             required_by,
             name: xml.name,
-            alias: xml.alias,
+            target: xml.alias,
         })
     }
 }
@@ -36,7 +36,7 @@ impl TypeAlias {
 pub struct CommandAlias {
     pub required_by: RequiredBy,
     pub name: CommandName,
-    pub alias: CommandName,
+    pub target: CommandName,
 }
 
 impl CommandAlias {
@@ -48,7 +48,7 @@ impl CommandAlias {
         Some(CommandAlias {
             required_by,
             name: xml.name,
-            alias: xml.alias,
+            target: xml.alias,
         })
     }
 }

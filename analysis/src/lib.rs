@@ -6,7 +6,10 @@ pub mod name;
 pub mod rust;
 pub mod xml;
 
-use crate::name::{ExtensionName, TypeName};
+use crate::{
+    item::{RequiredBy, TypeItem},
+    name::{ExtensionName, TypeName},
+};
 use item::Items;
 use std::{collections::HashMap, ffi::OsStr, fs, path::Path};
 use tracing::{debug, error_span};
@@ -20,12 +23,23 @@ pub struct AnalysisResult {
 }
 
 impl AnalysisResult {
+    pub fn is_extension_provisional(&self, ext_name: ExtensionName) -> bool {
+        self.is_extension_provisional[&ext_name]
+    }
+
     pub fn type_has_lifetime(&self, type_name: TypeName) -> bool {
         self.type_has_lifetime[&type_name]
     }
 
-    pub fn is_extension_provisional(&self, ext_name: ExtensionName) -> bool {
-        self.is_extension_provisional[&ext_name]
+    pub fn type_required_by(&self, type_name: TypeName) -> RequiredBy {
+        self.items.types[&type_name].required_by(self.items)
+    }
+
+    pub fn resolve_type(&self, type_name: TypeName) -> &TypeItem {
+        match &self.items.types[&type_name] {
+            TypeItem::Alias(item) => &self.items.types[&item.target],
+            fine => fine,
+        }
     }
 }
 

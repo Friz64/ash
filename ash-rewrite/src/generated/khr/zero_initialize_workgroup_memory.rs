@@ -2,8 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_zero_initialize_workgroup_memory.html) · Extension `VK_KHR_zero_initialize_workgroup_memory`
 #![doc(alias = "VK_KHR_zero_initialize_workgroup_memory")]
-use crate::vk;
-use core::ffi::CStr;
+use crate::generated::prelude::*;
 ///Provided by [VK_KHR_zero_initialize_workgroup_memory](crate::khr::zero_initialize_workgroup_memory)
 impl vk::StructureType {
     pub const PHYSICAL_DEVICE_ZERO_INITIALIZE_WORKGROUP_MEMORY_FEATURES_KHR: Self = Self::PHYSICAL_DEVICE_ZERO_INITIALIZE_WORKGROUP_MEMORY_FEATURES;
@@ -11,7 +10,7 @@ impl vk::StructureType {
 pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &CStr = c"VK_KHR_zero_initialize_workgroup_memory";
 pub(crate) mod items {
-    use crate::vk;
+    use crate::generated::prelude::*;
     pub type PhysicalDeviceZeroInitializeWorkgroupMemoryFeaturesKHR<'a> = vk::PhysicalDeviceZeroInitializeWorkgroupMemoryFeatures<
         'a,
     >;

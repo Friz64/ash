@@ -2,13 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_get_physical_device_properties2.html) · Extension `VK_KHR_get_physical_device_properties2`
 #![doc(alias = "VK_KHR_get_physical_device_properties2")]
-use crate::vk;
-use core::ffi::CStr;
-use core::mem::MaybeUninit;
-use core::mem::transmute;
-use crate::VkResult;
-use core::ptr;
-use core::ffi;
+use crate::generated::prelude::*;
 ///Provided by [VK_KHR_get_physical_device_properties2](crate::khr::get_physical_device_properties2)
 impl vk::StructureType {
     pub const PHYSICAL_DEVICE_FEATURES_2_KHR: Self = Self::PHYSICAL_DEVICE_FEATURES_2;
@@ -313,7 +307,7 @@ impl Instance {
     }
 }
 pub(crate) mod items {
-    use crate::vk;
+    use crate::generated::prelude::*;
     pub type PhysicalDeviceFeatures2KHR<'a> = vk::PhysicalDeviceFeatures2<'a>;
     pub type PhysicalDeviceProperties2KHR<'a> = vk::PhysicalDeviceProperties2<'a>;
     pub type FormatProperties2KHR<'a> = vk::FormatProperties2<'a>;

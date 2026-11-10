@@ -2,12 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_map_memory2.html) · Extension `VK_KHR_map_memory2`
 #![doc(alias = "VK_KHR_map_memory2")]
-use crate::vk;
-use core::ffi::CStr;
-use core::ffi;
-use core::mem::MaybeUninit;
-use crate::VkResult;
-use core::mem::transmute;
+use crate::generated::prelude::*;
 ///Provided by [VK_KHR_map_memory2](crate::khr::map_memory2)
 impl vk::StructureType {
     pub const MEMORY_MAP_INFO_KHR: Self = Self::MEMORY_MAP_INFO;
@@ -93,7 +88,7 @@ impl Device {
     }
 }
 pub(crate) mod items {
-    use crate::vk;
+    use crate::generated::prelude::*;
     pub type MemoryMapInfoKHR<'a> = vk::MemoryMapInfo<'a>;
     pub type MemoryUnmapInfoKHR<'a> = vk::MemoryUnmapInfo<'a>;
     pub type MemoryUnmapFlagBitsKHR = vk::MemoryUnmapFlagBits;

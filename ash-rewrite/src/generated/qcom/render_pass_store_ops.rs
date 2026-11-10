@@ -2,8 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_QCOM_render_pass_store_ops.html) · Extension `VK_QCOM_render_pass_store_ops`
 #![doc(alias = "VK_QCOM_render_pass_store_ops")]
-use crate::vk;
-use core::ffi::CStr;
+use crate::generated::prelude::*;
 ///Provided by [VK_QCOM_render_pass_store_ops](crate::qcom::render_pass_store_ops)
 impl vk::AttachmentStoreOp {
     pub const NONE_QCOM: Self = Self::NONE;

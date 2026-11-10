@@ -2,14 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_AMD_gpa_interface.html) · Extension `VK_AMD_gpa_interface`
 #![doc(alias = "VK_AMD_gpa_interface")]
-use crate::vk;
-use core::ffi::CStr;
-use core::ptr;
-use core::mem::MaybeUninit;
-use crate::VkResult;
-use core::mem::transmute;
-use alloc::vec::Vec;
-use core::ffi;
+use crate::generated::prelude::*;
 ///Provided by [VK_AMD_gpa_interface](crate::amd::gpa_interface)
 impl vk::StructureType {
     pub const PHYSICAL_DEVICE_GPA_FEATURES_AMD: Self = Self(1000133000);
@@ -447,16 +440,7 @@ impl Device {
     }
 }
 pub(crate) mod items {
-    use crate::vk;
-    use core::marker::PhantomData;
-    use crate::TaggedStructure;
-    use crate::Extends;
-    use core::ffi;
-    #[cfg(feature = "debug")]
-    use core::fmt as fmtd;
-    use core::ops::{BitOr, BitOrAssign, BitAnd, BitAndAssign, BitXor, BitXorAssign, Not};
-    use crate::Handle;
-    use core::fmt;
+    use crate::generated::prelude::*;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy, Default)]

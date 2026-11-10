@@ -1,8 +1,5 @@
 use super::{Code, Context};
-use crate::{
-    Import,
-    output::{CodeMap, GlobExport, OutputLocation},
-};
+use crate::output::{CodeMap, GlobExport, OutputLocation};
 use analysis::{
     item::constant::{Constant, ConstantType},
     rust::RustTokens,
@@ -16,14 +13,15 @@ impl Code for Constant {
     fn code(&self, ctx: &Context, codemap: &mut CodeMap) {
         trace!("generating");
 
-        let output = OutputLocation::primary_location(self.required_by, GlobExport::Yes);
+        let output = OutputLocation::primary_of(self.required_by, GlobExport::Yes);
         let octx = codemap.octx(output, ctx);
         let mut name = octx.constant_token(self.name);
 
         for special in ["EXTENSION_NAME", "SPEC_VERSION"] {
             if self.name.original().ends_with(special) {
                 let new_name = octx.constant_token_from_prefix_stripped(special);
-                octx.insert_reexport(new_name.clone(), name);
+                octx.output().glob_export = GlobExport::No;
+                octx.emit_reexport(new_name.clone(), name);
                 name = new_name;
                 break;
             }
@@ -31,10 +29,7 @@ impl Code for Constant {
 
         let ty = match self.ty {
             ConstantType::Integer(primary_ty) => octx.primary_type_tokens(primary_ty),
-            ConstantType::String => {
-                octx.insert_import(Import::CoreFfiCStr);
-                quote! { &CStr }
-            }
+            ConstantType::String => quote! { &CStr },
         };
 
         let value = CExprItem::tokens(self.value.iter(), &octx);
@@ -43,6 +38,6 @@ impl Code for Constant {
             pub const #name: #ty = #value;
         };
 
-        octx.insert_tokens(code)
+        octx.emit_tokens(code)
     }
 }

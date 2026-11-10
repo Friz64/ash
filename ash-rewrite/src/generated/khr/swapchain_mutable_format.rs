@@ -2,8 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_swapchain_mutable_format.html) · Extension `VK_KHR_swapchain_mutable_format`
 #![doc(alias = "VK_KHR_swapchain_mutable_format")]
-use crate::vk;
-use core::ffi::CStr;
+use crate::generated::prelude::*;
 ///Provided by [VK_KHR_swapchain_mutable_format](crate::khr::swapchain_mutable_format)
 impl vk::SwapchainCreateFlagsKHR {
     pub const MUTABLE_FORMAT: Self = Self(

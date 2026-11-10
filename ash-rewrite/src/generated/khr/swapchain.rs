@@ -2,14 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_swapchain.html) · Extension `VK_KHR_swapchain`
 #![doc(alias = "VK_KHR_swapchain")]
-use crate::vk;
-use core::ffi::CStr;
-use core::ptr;
-use core::mem::MaybeUninit;
-use crate::VkResult;
-use core::mem::transmute;
-use alloc::vec::Vec;
-use core::ffi;
+use crate::generated::prelude::*;
 ///Provided by [VK_KHR_swapchain](crate::khr::swapchain)
 impl vk::ImageLayout {
     pub const PRESENT_SRC_KHR: Self = Self(1000001002);
@@ -404,17 +397,7 @@ impl Instance {
     }
 }
 pub(crate) mod items {
-    use core::marker::PhantomData;
-    use crate::vk;
-    use crate::TaggedStructure;
-    use core::ffi;
-    use core::mem::zeroed;
-    use crate::Extends;
-    #[cfg(feature = "debug")]
-    use core::fmt as fmtd;
-    use core::ops::{BitOr, BitOrAssign, BitAnd, BitAndAssign, BitXor, BitXorAssign, Not};
-    use crate::Handle;
-    use core::fmt;
+    use crate::generated::prelude::*;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]

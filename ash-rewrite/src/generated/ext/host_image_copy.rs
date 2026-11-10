@@ -2,12 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_host_image_copy.html) · Extension `VK_EXT_host_image_copy`
 #![doc(alias = "VK_EXT_host_image_copy")]
-use crate::vk;
-use core::ffi::CStr;
-use crate::VkResult;
-use core::mem::transmute;
-use core::mem::MaybeUninit;
-use core::ffi;
+use crate::generated::prelude::*;
 ///Provided by [VK_EXT_host_image_copy](crate::ext::host_image_copy)
 impl vk::StructureType {
     pub const PHYSICAL_DEVICE_HOST_IMAGE_COPY_FEATURES_EXT: Self = Self::PHYSICAL_DEVICE_HOST_IMAGE_COPY_FEATURES;
@@ -207,7 +202,7 @@ impl Device {
     }
 }
 pub(crate) mod items {
-    use crate::vk;
+    use crate::generated::prelude::*;
     pub type PhysicalDeviceHostImageCopyFeaturesEXT<'a> = vk::PhysicalDeviceHostImageCopyFeatures<
         'a,
     >;

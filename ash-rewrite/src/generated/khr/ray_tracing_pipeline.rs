@@ -2,12 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_ray_tracing_pipeline.html) · Extension `VK_KHR_ray_tracing_pipeline`
 #![doc(alias = "VK_KHR_ray_tracing_pipeline")]
-use crate::vk;
-use core::ffi::CStr;
-use core::mem::transmute;
-use crate::VkResult;
-use core::ffi;
-use core::ptr;
+use crate::generated::prelude::*;
 ///Provided by [VK_KHR_ray_tracing_pipeline](crate::khr::ray_tracing_pipeline)
 impl vk::PipelineBindPoint {
     pub const RAY_TRACING_KHR: Self = Self(1000165000);
@@ -428,13 +423,7 @@ impl Device {
     }
 }
 pub(crate) mod items {
-    use core::marker::PhantomData;
-    use crate::vk;
-    use crate::TaggedStructure;
-    use core::ffi;
-    use crate::Extends;
-    #[cfg(feature = "debug")]
-    use core::fmt as fmtd;
+    use crate::generated::prelude::*;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]

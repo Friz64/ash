@@ -2,8 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_video_encode_quantization_map.html) · Extension `VK_KHR_video_encode_quantization_map`
 #![doc(alias = "VK_KHR_video_encode_quantization_map")]
-use crate::vk;
-use core::ffi::CStr;
+use crate::generated::prelude::*;
 ///Provided by [VK_KHR_video_encode_quantization_map](crate::khr::video_encode_quantization_map)
 impl vk::ImageLayout {
     pub const VIDEO_ENCODE_QUANTIZATION_MAP_KHR: Self = Self(1000553000);
@@ -134,11 +133,7 @@ impl vk::VideoEncodeH265CapabilityFlagBitsKHR {
 pub const SPEC_VERSION: u32 = 2;
 pub const NAME: &CStr = c"VK_KHR_video_encode_quantization_map";
 pub(crate) mod items {
-    use core::marker::PhantomData;
-    use crate::vk;
-    use crate::TaggedStructure;
-    use crate::Extends;
-    use core::ffi;
+    use crate::generated::prelude::*;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]

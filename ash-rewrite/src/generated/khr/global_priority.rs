@@ -2,8 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_global_priority.html) · Extension `VK_KHR_global_priority`
 #![doc(alias = "VK_KHR_global_priority")]
-use crate::vk;
-use core::ffi::CStr;
+use crate::generated::prelude::*;
 ///Provided by [VK_KHR_global_priority](crate::khr::global_priority)
 impl vk::StructureType {
     pub const DEVICE_QUEUE_GLOBAL_PRIORITY_CREATE_INFO_KHR: Self = Self::DEVICE_QUEUE_GLOBAL_PRIORITY_CREATE_INFO;
@@ -24,7 +23,7 @@ impl vk::QueueGlobalPriority {
 pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &CStr = c"VK_KHR_global_priority";
 pub(crate) mod items {
-    use crate::vk;
+    use crate::generated::prelude::*;
     pub type DeviceQueueGlobalPriorityCreateInfoKHR<'a> = vk::DeviceQueueGlobalPriorityCreateInfo<
         'a,
     >;

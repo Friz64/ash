@@ -2,8 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_inline_uniform_block.html) · Extension `VK_EXT_inline_uniform_block`
 #![doc(alias = "VK_EXT_inline_uniform_block")]
-use crate::vk;
-use core::ffi::CStr;
+use crate::generated::prelude::*;
 ///Provided by [VK_EXT_inline_uniform_block](crate::ext::inline_uniform_block)
 impl vk::DescriptorType {
     pub const INLINE_UNIFORM_BLOCK_EXT: Self = Self::INLINE_UNIFORM_BLOCK;
@@ -18,7 +17,7 @@ impl vk::StructureType {
 pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &CStr = c"VK_EXT_inline_uniform_block";
 pub(crate) mod items {
-    use crate::vk;
+    use crate::generated::prelude::*;
     pub type PhysicalDeviceInlineUniformBlockFeaturesEXT<'a> = vk::PhysicalDeviceInlineUniformBlockFeatures<
         'a,
     >;

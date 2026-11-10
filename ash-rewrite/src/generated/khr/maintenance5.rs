@@ -2,11 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_maintenance5.html) · Extension `VK_KHR_maintenance5`
 #![doc(alias = "VK_KHR_maintenance5")]
-use crate::vk;
-use core::ffi::CStr;
-use core::mem::MaybeUninit;
-use core::mem::transmute;
-use core::ffi;
+use crate::generated::prelude::*;
 ///Provided by [VK_KHR_maintenance5](crate::khr::maintenance5)
 impl vk::Format {
     pub const A1B5G5R5_UNORM_PACK16_KHR: Self = Self::A1B5G5R5_UNORM_PACK16;
@@ -429,7 +425,7 @@ impl Device {
     }
 }
 pub(crate) mod items {
-    use crate::vk;
+    use crate::generated::prelude::*;
     pub type BufferUsageFlags2CreateInfoKHR<'a> = vk::BufferUsageFlags2CreateInfo<'a>;
     pub type PipelineCreateFlags2CreateInfoKHR<'a> = vk::PipelineCreateFlags2CreateInfo<
         'a,

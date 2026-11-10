@@ -1,6 +1,6 @@
 use super::{Code, Context};
 use crate::{
-    Import, Method, OutputContext,
+    Method, OutputContext,
     output::{CodeMap, GlobExport, OutputLocation},
     rules::BuilderRule,
 };
@@ -38,7 +38,7 @@ impl Code for Struct {
     #[instrument(skip(ctx, codemap))]
     fn code(&self, ctx: &Context, codemap: &mut CodeMap) {
         trace!("generating");
-        let output = OutputLocation::primary_location(self.required_by, GlobExport::Yes);
+        let output = OutputLocation::primary_of(self.required_by, GlobExport::Yes);
         let octx = codemap.octx(output, ctx);
         let lifetime = Lifetime(format_ident!("a"));
         let name = octx.type_tokens(self.name, false, Some(&lifetime));
@@ -79,7 +79,6 @@ impl Code for Struct {
         let mut lifetime_marker = TokenStream::new();
         let mut lifetime_marker_val = TokenStream::new();
         if ctx.type_has_lifetime(self.name) {
-            octx.insert_import(Import::CoreMarkerPhantomData);
             lifetime_marker = quote! { pub _marker: PhantomData<& #lifetime ()> };
             lifetime_marker_val = quote! { _marker: PhantomData };
         }
@@ -97,7 +96,6 @@ impl Code for Struct {
                 let provisional_guard =
                     is_provisional.then_some(quote! { #[cfg(feature = "provisional")] });
 
-                octx.insert_import(Import::CrateExtends);
                 let extends = octx.type_tokens(*ty, true, None);
                 quote! {
                     #provisional_guard
@@ -105,7 +103,6 @@ impl Code for Struct {
                 }
             });
 
-            octx.insert_import(Import::CrateTaggedStructure);
             quote! {
                 unsafe impl<#lifetime> TaggedStructure<#lifetime> for #name {
                     const STRUCTURE_TYPE: #structure_ty = #enum_;
@@ -144,7 +141,6 @@ impl Code for Struct {
                         quote! { #field_name: #enum_ }
                     } else if let Ty::Array(_, _) = &decl.ty {
                         custom_default = true;
-                        octx.insert_import(Import::CoreMemZeroed);
                         quote! { #field_name: unsafe { zeroed() } }
                     } else {
                         quote! { #field_name: Default::default() }
@@ -218,10 +214,7 @@ impl Code for Struct {
         let default = custom_default.then_some(default);
         let derive_debug =
             (!custom_debug).then_some(quote! { #[cfg_attr(feature = "debug", derive(Debug))] });
-        let debug = custom_debug.then(|| {
-            octx.insert_import(Import::DebugCoreFmt);
-            debug
-        });
+        let debug = custom_debug.then_some(debug);
 
         let derives = quote! {
             #derive_debug
@@ -235,17 +228,12 @@ impl Code for Struct {
                     _ if matches!(member.decl.name.original(), "sType" | "pNext") => quote! {},
                     Some(BuilderRule::Skip) => quote! {},
                     Some(BuilderRule::Replace(Method {
-                        imports,
                         attributes,
                         name_override,
                         inputs,
                         output,
                         content,
                     })) => {
-                        for &import in imports {
-                            octx.insert_import(import);
-                        }
-
                         let name = name_override
                             .clone()
                             .unwrap_or_else(|| method_name_token(member));
@@ -281,7 +269,7 @@ impl Code for Struct {
             }
         };
 
-        octx.insert_tokens(code)
+        octx.emit_tokens(code)
     }
 }
 
@@ -345,7 +333,6 @@ fn regular_builder(
             )
             .tokens(octx, Some(lifetime));
 
-            octx.insert_import(Import::CoreFfiCStr);
             let method_name_as_cstr = as_c_str_method_token(&method_name);
             quote! {
                 pub fn #method_name(mut self, #method_name: #ty) -> Self {
@@ -365,8 +352,6 @@ fn regular_builder(
         Ty::Array(Ty::CPrimary(CPrimaryType::Char), _)
             if member.length_at_depth(0) == Some(Length::NullTerminated) =>
         {
-            octx.insert_import(Import::CoreFfiCStr);
-            octx.insert_import(Import::CoreFfi);
             let method_name_as_cstr = as_c_str_method_token(&method_name);
             quote! {
                 pub fn #method_name(mut self, #method_name: &CStr) -> core::result::Result<Self, crate::CStrTooLargeForStaticArray> {
@@ -500,7 +485,7 @@ impl Code for Union {
     fn code(&self, ctx: &Context, codemap: &mut CodeMap) {
         trace!("generating");
 
-        let output = OutputLocation::primary_location(self.required_by, GlobExport::Yes);
+        let output = OutputLocation::primary_of(self.required_by, GlobExport::Yes);
         let octx = codemap.octx(output, ctx);
 
         let lifetime = Lifetime(format_ident!("a"));
@@ -512,8 +497,6 @@ impl Code for Union {
             (self.members.iter()).map(|decl| decl.to_rust().tokens(&octx, Some(&lifetime)));
 
         let name_string = name.to_string();
-        octx.insert_import(Import::CoreMemZeroed);
-        octx.insert_import(Import::DebugCoreFmt);
         let code = quote! {
             #[repr(C)]
             #[derive(Clone, Copy)]
@@ -535,6 +518,6 @@ impl Code for Union {
             }
         };
 
-        octx.insert_tokens(code)
+        octx.emit_tokens(code)
     }
 }

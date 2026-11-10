@@ -2,14 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_display.html) · Extension `VK_KHR_display`
 #![doc(alias = "VK_KHR_display")]
-use crate::vk;
-use core::ffi::CStr;
-use alloc::vec::Vec;
-use crate::VkResult;
-use core::mem::transmute;
-use core::ptr;
-use core::mem::MaybeUninit;
-use core::ffi;
+use crate::generated::prelude::*;
 ///Provided by [VK_KHR_display](crate::khr::display)
 impl vk::StructureType {
     pub const DISPLAY_MODE_CREATE_INFO_KHR: Self = Self(1000002000);
@@ -305,16 +298,7 @@ impl Instance {
     }
 }
 pub(crate) mod items {
-    use core::marker::PhantomData;
-    use crate::vk;
-    use core::ffi;
-    use core::ffi::CStr;
-    use crate::TaggedStructure;
-    #[cfg(feature = "debug")]
-    use core::fmt as fmtd;
-    use core::ops::{BitOr, BitOrAssign, BitAnd, BitAndAssign, BitXor, BitXorAssign, Not};
-    use crate::Handle;
-    use core::fmt;
+    use crate::generated::prelude::*;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy, Default)]

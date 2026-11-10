@@ -3,6 +3,7 @@
 //!Items provided by `vulkan_video_codecs_common`
 #![doc(alias = "vulkan_video_codecs_common")]
 pub(crate) mod items {
+    use crate::generated::prelude::*;
     pub const fn make_video_std_version(major: u32, minor: u32, patch: u32) -> u32 {
         ((((major)) << 22) | (((minor)) << 12) | ((patch)))
     }

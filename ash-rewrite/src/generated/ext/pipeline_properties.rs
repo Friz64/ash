@@ -2,12 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_pipeline_properties.html) · Extension `VK_EXT_pipeline_properties`
 #![doc(alias = "VK_EXT_pipeline_properties")]
-use crate::vk;
-use core::ffi::CStr;
-use core::mem::MaybeUninit;
-use crate::VkResult;
-use core::mem::transmute;
-use core::ffi;
+use crate::generated::prelude::*;
 ///Provided by [VK_EXT_pipeline_properties](crate::ext::pipeline_properties)
 impl vk::StructureType {
     pub const PIPELINE_PROPERTIES_IDENTIFIER_EXT: Self = Self(1000372000);
@@ -81,12 +76,7 @@ impl Device {
     }
 }
 pub(crate) mod items {
-    use core::marker::PhantomData;
-    use crate::vk;
-    use crate::TaggedStructure;
-    use core::ffi;
-    use core::mem::zeroed;
-    use crate::Extends;
+    use crate::generated::prelude::*;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]

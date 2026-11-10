@@ -2,8 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_NV_shader_subgroup_partitioned.html) · Extension `VK_NV_shader_subgroup_partitioned`
 #![doc(alias = "VK_NV_shader_subgroup_partitioned")]
-use crate::vk;
-use core::ffi::CStr;
+use crate::generated::prelude::*;
 ///Provided by [VK_NV_shader_subgroup_partitioned](crate::nv::shader_subgroup_partitioned)
 impl vk::SubgroupFeatureFlags {
     pub const PARTITIONED_NV: Self = Self(vk::SubgroupFeatureFlagBits::PARTITIONED_NV.0);

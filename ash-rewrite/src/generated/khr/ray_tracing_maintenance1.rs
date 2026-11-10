@@ -2,10 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_ray_tracing_maintenance1.html) · Extension `VK_KHR_ray_tracing_maintenance1`
 #![doc(alias = "VK_KHR_ray_tracing_maintenance1")]
-use crate::vk;
-use core::ffi::CStr;
-use core::mem::transmute;
-use core::ffi;
+use crate::generated::prelude::*;
 ///Provided by [VK_KHR_ray_tracing_maintenance1](crate::khr::ray_tracing_maintenance1)
 impl vk::QueryType {
     pub const ACCELERATION_STRUCTURE_SERIALIZATION_BOTTOM_LEVEL_POINTERS_KHR: Self = Self(
@@ -102,11 +99,7 @@ impl Device {
     }
 }
 pub(crate) mod items {
-    use crate::vk;
-    use core::marker::PhantomData;
-    use crate::TaggedStructure;
-    use crate::Extends;
-    use core::ffi;
+    use crate::generated::prelude::*;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy, Default)]

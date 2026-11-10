@@ -2,13 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_calibrated_timestamps.html) · Extension `VK_KHR_calibrated_timestamps`
 #![doc(alias = "VK_KHR_calibrated_timestamps")]
-use crate::vk;
-use core::ffi::CStr;
-use alloc::vec::Vec;
-use crate::VkResult;
-use core::mem::transmute;
-use core::mem::MaybeUninit;
-use core::ffi;
+use crate::generated::prelude::*;
 ///Provided by [VK_KHR_calibrated_timestamps](crate::khr::calibrated_timestamps)
 impl vk::StructureType {
     pub const CALIBRATED_TIMESTAMP_INFO_KHR: Self = Self(1000184000);
@@ -161,12 +155,7 @@ impl Device {
     }
 }
 pub(crate) mod items {
-    use core::marker::PhantomData;
-    use crate::vk;
-    use crate::TaggedStructure;
-    use core::ffi;
-    #[cfg(feature = "debug")]
-    use core::fmt as fmtd;
+    use crate::generated::prelude::*;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]

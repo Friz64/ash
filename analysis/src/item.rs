@@ -126,13 +126,6 @@ impl TypeItem {
             TypeItem::Handle(item) => item.required_by,
         }
     }
-
-    pub fn resolve_alias<'a>(&'a self, items: &'a Items) -> &'a TypeItem {
-        match self {
-            TypeItem::Alias(item) => &items.types[&item.alias],
-            fine => fine,
-        }
-    }
 }
 
 #[derive(Debug)]

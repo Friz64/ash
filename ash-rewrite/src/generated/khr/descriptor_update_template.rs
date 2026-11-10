@@ -2,13 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_descriptor_update_template.html) · Extension `VK_KHR_descriptor_update_template`
 #![doc(alias = "VK_KHR_descriptor_update_template")]
-use crate::vk;
-use core::ffi::CStr;
-use core::ptr;
-use core::mem::MaybeUninit;
-use crate::VkResult;
-use core::mem::transmute;
-use core::ffi;
+use crate::generated::prelude::*;
 ///Provided by [VK_KHR_descriptor_update_template](crate::khr::descriptor_update_template)
 impl vk::StructureType {
     pub const DESCRIPTOR_UPDATE_TEMPLATE_CREATE_INFO_KHR: Self = Self::DESCRIPTOR_UPDATE_TEMPLATE_CREATE_INFO;
@@ -208,7 +202,7 @@ impl Device {
     }
 }
 pub(crate) mod items {
-    use crate::vk;
+    use crate::generated::prelude::*;
     pub type DescriptorUpdateTemplateEntryKHR = vk::DescriptorUpdateTemplateEntry;
     pub type DescriptorUpdateTemplateCreateInfoKHR<'a> = vk::DescriptorUpdateTemplateCreateInfo<
         'a,

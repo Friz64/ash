@@ -2,10 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_dynamic_rendering_local_read.html) · Extension `VK_KHR_dynamic_rendering_local_read`
 #![doc(alias = "VK_KHR_dynamic_rendering_local_read")]
-use crate::vk;
-use core::ffi::CStr;
-use core::mem::transmute;
-use core::ffi;
+use crate::generated::prelude::*;
 ///Provided by [VK_KHR_dynamic_rendering_local_read](crate::khr::dynamic_rendering_local_read)
 impl vk::ImageLayout {
     pub const RENDERING_LOCAL_READ_KHR: Self = Self::RENDERING_LOCAL_READ;
@@ -108,7 +105,7 @@ impl Device {
     }
 }
 pub(crate) mod items {
-    use crate::vk;
+    use crate::generated::prelude::*;
     pub type PhysicalDeviceDynamicRenderingLocalReadFeaturesKHR<'a> = vk::PhysicalDeviceDynamicRenderingLocalReadFeatures<
         'a,
     >;

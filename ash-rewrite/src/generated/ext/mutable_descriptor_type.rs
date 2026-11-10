@@ -2,8 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_mutable_descriptor_type.html) · Extension `VK_EXT_mutable_descriptor_type`
 #![doc(alias = "VK_EXT_mutable_descriptor_type")]
-use crate::vk;
-use core::ffi::CStr;
+use crate::generated::prelude::*;
 ///Provided by [VK_EXT_mutable_descriptor_type](crate::ext::mutable_descriptor_type)
 impl vk::DescriptorType {
     pub const MUTABLE_EXT: Self = Self(1000351000);
@@ -38,11 +37,7 @@ impl vk::DescriptorPoolCreateFlagBits {
 pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &CStr = c"VK_EXT_mutable_descriptor_type";
 pub(crate) mod items {
-    use core::marker::PhantomData;
-    use crate::vk;
-    use crate::TaggedStructure;
-    use crate::Extends;
-    use core::ffi;
+    use crate::generated::prelude::*;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]

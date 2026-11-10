@@ -2,13 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_sampler_ycbcr_conversion.html) · Extension `VK_KHR_sampler_ycbcr_conversion`
 #![doc(alias = "VK_KHR_sampler_ycbcr_conversion")]
-use crate::vk;
-use core::ffi::CStr;
-use core::ptr;
-use core::mem::MaybeUninit;
-use crate::VkResult;
-use core::mem::transmute;
-use core::ffi;
+use crate::generated::prelude::*;
 ///Provided by [VK_KHR_sampler_ycbcr_conversion](crate::khr::sampler_ycbcr_conversion)
 impl vk::Format {
     pub const G8B8G8R8_422_UNORM_KHR: Self = Self::G8B8G8R8_422_UNORM;
@@ -247,7 +241,7 @@ impl Device {
     }
 }
 pub(crate) mod items {
-    use crate::vk;
+    use crate::generated::prelude::*;
     pub type SamplerYcbcrConversionInfoKHR<'a> = vk::SamplerYcbcrConversionInfo<'a>;
     pub type SamplerYcbcrConversionCreateInfoKHR<'a> = vk::SamplerYcbcrConversionCreateInfo<
         'a,

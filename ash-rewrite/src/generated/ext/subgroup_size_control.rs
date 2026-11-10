@@ -2,8 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_subgroup_size_control.html) · Extension `VK_EXT_subgroup_size_control`
 #![doc(alias = "VK_EXT_subgroup_size_control")]
-use crate::vk;
-use core::ffi::CStr;
+use crate::generated::prelude::*;
 ///Provided by [VK_EXT_subgroup_size_control](crate::ext::subgroup_size_control)
 impl vk::StructureType {
     pub const PHYSICAL_DEVICE_SUBGROUP_SIZE_CONTROL_PROPERTIES_EXT: Self = Self::PHYSICAL_DEVICE_SUBGROUP_SIZE_CONTROL_PROPERTIES;
@@ -27,7 +26,7 @@ impl vk::PipelineShaderStageCreateFlagBits {
 pub const SPEC_VERSION: u32 = 2;
 pub const NAME: &CStr = c"VK_EXT_subgroup_size_control";
 pub(crate) mod items {
-    use crate::vk;
+    use crate::generated::prelude::*;
     pub type PhysicalDeviceSubgroupSizeControlFeaturesEXT<'a> = vk::PhysicalDeviceSubgroupSizeControlFeatures<
         'a,
     >;

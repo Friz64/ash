@@ -2,14 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_VERSION_1_0.html) · Vulkan version 1.0
 #![doc(alias = "VK_VERSION_1_0")]
-use crate::vk;
-use core::mem::transmute;
-use core::ptr;
-use alloc::vec::Vec;
-use crate::VkResult;
-use core::ffi;
-use core::mem::MaybeUninit;
-use core::ffi::CStr;
+use crate::generated::prelude::*;
 ///Provided by [Vulkan 1.0](crate::vk1_0)
 impl ImageLayout {
     ///Implicit layout an image is when its contents are undefined due to various reasons (e.g. right after creation)
@@ -5332,19 +5325,7 @@ impl crate::Device {
     }
 }
 pub(crate) mod items {
-    use core::marker::PhantomData;
-    use crate::vk;
-    use core::ffi;
-    use core::mem::zeroed;
-    #[cfg(feature = "debug")]
-    use core::fmt as fmtd;
-    use core::ffi::CStr;
-    use crate::TaggedStructure;
-    use crate::Extends;
-    use core::fmt;
-    use core::ops::{BitOr, BitOrAssign, BitAnd, BitAndAssign, BitXor, BitXorAssign, Not};
-    use crate::Handle;
-    use core::ptr;
+    use crate::generated::prelude::*;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy, Default)]

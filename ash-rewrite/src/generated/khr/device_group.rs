@@ -2,13 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_device_group.html) · Extension `VK_KHR_device_group`
 #![doc(alias = "VK_KHR_device_group")]
-use crate::vk;
-use core::ffi::CStr;
-use core::mem::MaybeUninit;
-use crate::VkResult;
-use core::mem::transmute;
-use alloc::vec::Vec;
-use core::ffi;
+use crate::generated::prelude::*;
 ///Provided by [VK_KHR_device_group](crate::khr::device_group)
 impl vk::StructureType {
     pub const MEMORY_ALLOCATE_FLAGS_INFO_KHR: Self = Self::MEMORY_ALLOCATE_FLAGS_INFO;
@@ -370,7 +364,7 @@ impl Instance {
     }
 }
 pub(crate) mod items {
-    use crate::vk;
+    use crate::generated::prelude::*;
     pub type MemoryAllocateFlagsInfoKHR<'a> = vk::MemoryAllocateFlagsInfo<'a>;
     pub type BindBufferMemoryDeviceGroupInfoKHR<'a> = vk::BindBufferMemoryDeviceGroupInfo<
         'a,

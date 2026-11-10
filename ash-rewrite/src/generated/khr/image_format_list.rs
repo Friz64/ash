@@ -2,8 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_image_format_list.html) · Extension `VK_KHR_image_format_list`
 #![doc(alias = "VK_KHR_image_format_list")]
-use crate::vk;
-use core::ffi::CStr;
+use crate::generated::prelude::*;
 ///Provided by [VK_KHR_image_format_list](crate::khr::image_format_list)
 impl vk::StructureType {
     pub const IMAGE_FORMAT_LIST_CREATE_INFO_KHR: Self = Self::IMAGE_FORMAT_LIST_CREATE_INFO;
@@ -11,7 +10,7 @@ impl vk::StructureType {
 pub const SPEC_VERSION: u32 = 1;
 pub const NAME: &CStr = c"VK_KHR_image_format_list";
 pub(crate) mod items {
-    use crate::vk;
+    use crate::generated::prelude::*;
     pub type ImageFormatListCreateInfoKHR<'a> = vk::ImageFormatListCreateInfo<'a>;
 }
 pub use items::*;

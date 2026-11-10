@@ -2,8 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_EXT_sampler_filter_minmax.html) · Extension `VK_EXT_sampler_filter_minmax`
 #![doc(alias = "VK_EXT_sampler_filter_minmax")]
-use crate::vk;
-use core::ffi::CStr;
+use crate::generated::prelude::*;
 ///Provided by [VK_EXT_sampler_filter_minmax](crate::ext::sampler_filter_minmax)
 impl vk::StructureType {
     pub const PHYSICAL_DEVICE_SAMPLER_FILTER_MINMAX_PROPERTIES_EXT: Self = Self::PHYSICAL_DEVICE_SAMPLER_FILTER_MINMAX_PROPERTIES;
@@ -28,7 +27,7 @@ impl vk::FormatFeatureFlagBits {
 pub const SPEC_VERSION: u32 = 2;
 pub const NAME: &CStr = c"VK_EXT_sampler_filter_minmax";
 pub(crate) mod items {
-    use crate::vk;
+    use crate::generated::prelude::*;
     pub type PhysicalDeviceSamplerFilterMinmaxPropertiesEXT<'a> = vk::PhysicalDeviceSamplerFilterMinmaxProperties<
         'a,
     >;

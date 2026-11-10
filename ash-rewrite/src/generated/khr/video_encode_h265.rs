@@ -2,8 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_video_encode_h265.html) · Extension `VK_KHR_video_encode_h265`
 #![doc(alias = "VK_KHR_video_encode_h265")]
-use crate::vk;
-use core::ffi::CStr;
+use crate::generated::prelude::*;
 ///Provided by [VK_KHR_video_encode_h265](crate::khr::video_encode_h265)
 impl vk::StructureType {
     pub const VIDEO_ENCODE_H265_CAPABILITIES_KHR: Self = Self(1000039000);
@@ -234,14 +233,7 @@ impl VideoEncodeH265TransformBlockSizeFlagBitsKHR {
 pub const SPEC_VERSION: u32 = 14;
 pub const NAME: &CStr = c"VK_KHR_video_encode_h265";
 pub(crate) mod items {
-    use core::marker::PhantomData;
-    use crate::vk;
-    use crate::TaggedStructure;
-    use crate::Extends;
-    use core::ffi;
-    #[cfg(feature = "debug")]
-    use core::fmt as fmtd;
-    use core::ops::{BitOr, BitOrAssign, BitAnd, BitAndAssign, BitXor, BitXorAssign, Not};
+    use crate::generated::prelude::*;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]

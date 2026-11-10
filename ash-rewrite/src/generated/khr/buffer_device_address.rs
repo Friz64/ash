@@ -2,10 +2,7 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_KHR_buffer_device_address.html) · Extension `VK_KHR_buffer_device_address`
 #![doc(alias = "VK_KHR_buffer_device_address")]
-use crate::vk;
-use core::ffi::CStr;
-use core::mem::transmute;
-use core::ffi;
+use crate::generated::prelude::*;
 ///Provided by [VK_KHR_buffer_device_address](crate::khr::buffer_device_address)
 impl vk::StructureType {
     pub const PHYSICAL_DEVICE_BUFFER_DEVICE_ADDRESS_FEATURES_KHR: Self = Self::PHYSICAL_DEVICE_BUFFER_DEVICE_ADDRESS_FEATURES;
@@ -156,7 +153,7 @@ impl Device {
     }
 }
 pub(crate) mod items {
-    use crate::vk;
+    use crate::generated::prelude::*;
     pub type PhysicalDeviceBufferDeviceAddressFeaturesKHR<'a> = vk::PhysicalDeviceBufferDeviceAddressFeatures<
         'a,
     >;
