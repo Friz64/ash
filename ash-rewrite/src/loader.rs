@@ -57,7 +57,7 @@ mod loaded {
     }
 }
 
-use crate::{vk, VkResult};
+use crate::vk;
 use core::{ffi, fmt, mem};
 
 /// Holds the Vulkan functions independent of a particular instance
@@ -238,48 +238,6 @@ impl Entry {
     #[inline]
     pub fn static_fn(&self) -> &crate::StaticFn {
         &self.static_fn
-    }
-
-    /// <https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/vkEnumerateInstanceVersion.html>
-    ///
-    /// # Example
-    ///
-    /// ```no_run
-    /// # use ash_rewrite::{Entry, vk};
-    /// # fn main() -> Result<(), Box<dyn std::error::Error>> {
-    /// #[cfg(feature = "linked")]
-    /// let entry = Entry::linked();
-    /// #[cfg(feature = "loaded")]
-    /// let entry = unsafe { Entry::load() }?;
-    /// match unsafe { entry.try_enumerate_instance_version() }? {
-    ///     // Vulkan 1.1+
-    ///     Some(version) => {
-    ///         let major = vk::version_major(version);
-    ///         let minor = vk::version_minor(version);
-    ///         let patch = vk::version_patch(version);
-    ///     },
-    ///     // Vulkan 1.0
-    ///     None => {},
-    /// }
-    /// # Ok(()) }
-    /// ```
-    #[inline]
-    pub unsafe fn try_enumerate_instance_version(&self) -> VkResult<Option<u32>> {
-        let enumerate_instance_version: Option<vk::PFN_vkEnumerateInstanceVersion> = {
-            let name = ffi::CStr::from_bytes_with_nul_unchecked(b"vkEnumerateInstanceVersion\0");
-            mem::transmute((self.static_fn.get_instance_proc_addr)(
-                vk::Instance::null(),
-                name.as_ptr(),
-            ))
-        };
-        if let Some(enumerate_instance_version) = enumerate_instance_version {
-            let mut api_version = mem::MaybeUninit::uninit();
-            (enumerate_instance_version)(api_version.as_mut_ptr())
-                .assume_init_on_success(api_version)
-                .map(Some)
-        } else {
-            Ok(None)
-        }
     }
 }
 

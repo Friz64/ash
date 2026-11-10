@@ -237,6 +237,7 @@ impl Code for Struct {
                     Some(BuilderRule::Replace(Method {
                         imports,
                         attributes,
+                        name_override,
                         inputs,
                         output,
                         content,
@@ -245,7 +246,9 @@ impl Code for Struct {
                             octx.insert_import(import);
                         }
 
-                        let name = method_name_token(member);
+                        let name = name_override
+                            .clone()
+                            .unwrap_or_else(|| method_name_token(member));
                         quote! {
                            #attributes
                            pub fn #name(#inputs) #output { #content }

@@ -185,11 +185,13 @@ impl FromStr for Import {
     }
 }
 
-#[derive(Debug)]
+#[derive(Debug, Clone)]
 pub struct Method {
     pub imports: Vec<Import>,
     /// Also includes doc comments!
     pub attributes: TokenStream,
+    /// To be used in place of a default name
+    pub name_override: Option<Ident>,
     /// e.g. `&self, a: i32`
     pub inputs: TokenStream,
     /// e.g. `-> i32` or empty

@@ -287,22 +287,19 @@ pub fn generate_code(ctx: &Context, codemap: &mut CodeMap) {
 }
 
 fn method_code(
-    octx: &OutputContext,
+    _octx: &OutputContext,
     name: &Ident,
     command: &Command,
     function_type: FunctionType,
     Method {
-        imports,
+        imports: _,
         attributes,
+        name_override,
         inputs,
         output,
         content,
     }: &Method,
 ) -> TokenStream {
-    for &import in imports {
-        octx.insert_import(import);
-    }
-
     let description = match function_type {
         FunctionType::Static => "Static Function",
         FunctionType::Entry => "Entry Function",
@@ -310,6 +307,7 @@ fn method_code(
         FunctionType::Device => "Device Function",
     };
 
+    let name = name_override.as_ref().unwrap_or(name);
     let manual_page = crate::target_manual_page_doc_comment(command.name.original(), description);
     quote! {
         #[doc = #manual_page]
@@ -500,6 +498,7 @@ fn wrapper(
                 }
 
                 if maybe_single_return {
+                    // this is also completely broken when the type is c_void.....
                     single_return = Some((param.decl.name, to));
                 }
 

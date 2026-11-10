@@ -4,7 +4,15 @@ use proc_macro2::TokenStream;
 use quote::{ToTokens, TokenStreamExt};
 use std::collections::HashMap;
 
-fn import(attr: &syn::Attribute) -> Option<Import> {
+fn parse_name_attr(attr: &syn::Attribute) -> Option<syn::Ident> {
+    if !attr.path().is_ident("name") {
+        return None;
+    }
+
+    attr.parse_args::<syn::Ident>().ok()
+}
+
+fn parse_import_attr(attr: &syn::Attribute) -> Option<Import> {
     if !attr.path().is_ident("import") {
         return None;
     }
@@ -71,12 +79,13 @@ impl BuilderRules {
                             BuilderRule::Replace(Method {
                                 imports,
                                 attributes,
+                                name_override: None,
                                 inputs: impl_item_fn.sig.inputs.to_token_stream(),
                                 output: impl_item_fn.sig.output.to_token_stream(),
                                 content,
                             })
                         });
-                    } else if let Some(import) = import(&attr) {
+                    } else if let Some(import) = parse_import_attr(&attr) {
                         imports.push(import);
                     } else {
                         attr.to_tokens(&mut attributes)
@@ -108,12 +117,16 @@ impl WrapperRules {
                 panic!()
             };
 
+            let mut name = None;
             let mut imports = Vec::new();
             let mut attributes = TokenStream::new();
             for attr in &item_fn.attrs {
-                match import(attr) {
-                    Some(import) => imports.push(import),
-                    None => attr.to_tokens(&mut attributes),
+                if let Some(value) = parse_import_attr(attr) {
+                    imports.push(value);
+                } else if let Some(value) = parse_name_attr(attr) {
+                    name = Some(value);
+                } else {
+                    attr.to_tokens(&mut attributes);
                 }
             }
 
@@ -125,6 +138,7 @@ impl WrapperRules {
                 Method {
                     imports,
                     attributes,
+                    name_override: name,
                     inputs: item_fn.sig.inputs.to_token_stream(),
                     output: item_fn.sig.output.to_token_stream(),
                     content,

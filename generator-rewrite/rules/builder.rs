@@ -52,6 +52,7 @@ impl VkShaderModuleCreateInfo {
 
 impl VkAccelerationStructureVersionInfoKHR {
     #[replace]
+    #[import(CrateVk)]
     fn pVersionData(mut self, version_data: &'a [u8; 2 * vk::UUID_SIZE as usize]) -> Self {
         self.p_version_data = version_data.as_ptr();
         self
@@ -60,6 +61,7 @@ impl VkAccelerationStructureVersionInfoKHR {
 
 impl VkMicromapVersionInfoEXT {
     #[replace]
+    #[import(CrateVk)]
     fn pVersionData(mut self, version_data: &'a [u8; 2 * vk::UUID_SIZE as usize]) -> Self {
         self.p_version_data = version_data.as_ptr();
         self

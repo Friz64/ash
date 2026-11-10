@@ -3,8 +3,8 @@
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_VERSION_1_1.html) · Vulkan version 1.1
 #![doc(alias = "VK_VERSION_1_1")]
 use crate::vk;
-use core::mem::MaybeUninit;
 use core::mem::transmute;
+use core::mem::MaybeUninit;
 use crate::VkResult;
 use core::ptr;
 use core::ffi;
@@ -522,11 +522,46 @@ impl crate::Entry {
         &self.entry_fn_1_1
     }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkEnumerateInstanceVersion.html) · Entry Function
-    #[deprecated = "This function is unavailable and therefore panics on Vulkan 1.0, please use `try_enumerate_instance_version()` instead"]
-    pub unsafe fn enumerate_instance_version(&self) -> VkResult<u32> {
-        let mut api_version = MaybeUninit::uninit();
-        (self.entry_fn_1_1.enumerate_instance_version)(api_version.as_mut_ptr())
-            .assume_init_on_success(api_version)
+    /// # Example
+    ///
+    /// ```no_run
+    /// # use ash_rewrite::{Entry, vk};
+    /// # fn main() -> Result<(), Box<dyn std::error::Error>> {
+    /// #[cfg(feature = "linked")]
+    /// let entry = Entry::linked();
+    /// #[cfg(feature = "loaded")]
+    /// let entry = unsafe { Entry::load() }?;
+    /// match unsafe { entry.try_enumerate_instance_version() }? {
+    ///     // Vulkan 1.1+
+    ///     Some(version) => {
+    ///         let major = vk::version_major(version);
+    ///         let minor = vk::version_minor(version);
+    ///         let patch = vk::version_patch(version);
+    ///     },
+    ///     // Vulkan 1.0
+    ///     None => {},
+    /// }
+    /// # Ok(()) }
+    /// ```
+    pub unsafe fn try_enumerate_instance_version(&self) -> VkResult<Option<u32>> {
+        let enumerate_instance_version: Option<vk::PFN_vkEnumerateInstanceVersion> = {
+            transmute(
+                (self
+                    .static_fn
+                    .get_instance_proc_addr)(
+                    vk::Instance::null(),
+                    c"vkEnumerateInstanceVersion".as_ptr(),
+                ),
+            )
+        };
+        if let Some(enumerate_instance_version) = enumerate_instance_version {
+            let mut api_version = MaybeUninit::uninit();
+            (enumerate_instance_version)(api_version.as_mut_ptr())
+                .assume_init_on_success(api_version)
+                .map(Some)
+        } else {
+            Ok(None)
+        }
     }
 }
 #[derive(Clone)]

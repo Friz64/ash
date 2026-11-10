@@ -3,8 +3,8 @@
 //![Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_VERSION_1_0.html) · Vulkan version 1.0
 #![doc(alias = "VK_VERSION_1_0")]
 use crate::vk;
-use core::ptr;
 use core::mem::transmute;
+use core::ptr;
 use alloc::vec::Vec;
 use crate::VkResult;
 use core::ffi;
