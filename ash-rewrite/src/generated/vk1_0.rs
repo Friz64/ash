@@ -3657,10 +3657,14 @@ impl crate::Device {
             .reset_fences)(self.handle, fences.len() as _, fences.as_ptr())
             .result()
     }
-    ///vkGetFenceStatus
-    #[inline]
-    pub unsafe fn get_fence_status(&self, fence: vk::Fence) -> VkResult<()> {
-        (self.device_fn_1_0.get_fence_status)(self.handle, fence).result()
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkGetFenceStatus.html) · Device Function
+    pub unsafe fn get_fence_status(&self, fence: vk::Fence) -> VkResult<bool> {
+        let err_code = (self.device_fn_1_0.get_fence_status)(self.handle(), fence);
+        match err_code {
+            vk::Result::SUCCESS => Ok(true),
+            vk::Result::NOT_READY => Ok(false),
+            _ => Err(err_code),
+        }
     }
     ///vkWaitForFences
     #[inline]

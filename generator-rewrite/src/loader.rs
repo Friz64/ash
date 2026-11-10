@@ -157,7 +157,7 @@ pub fn generate_code(ctx: &Context, codemap: &mut CodeMap) {
 
                 quote! { #(#methods)* }
             } else {
-                wrapper(&octx, command, &wrapper_name, table_field)
+                wrapper_old(&octx, command, &wrapper_name, table_field)
             };
 
             table.wrappers.extend(code);
@@ -313,41 +313,67 @@ pub fn generate_code(ctx: &Context, codemap: &mut CodeMap) {
     }
 }
 
+/// the following acts a rough guidance for fixing this wrapper code
+///
+/// A. first argument is passed through self.handle into the call
+/// B. last argument is AllocationCallbacks, passed as match ... into the call
+/// C. return nothing
+/// D. instantiate 1 handle/DeviceSize/non-pnext/flags through MaybeUninit, pass along everything else
+///      call .assume_init() at end and return directly
+/// E. slice of (pnext?) structs is passed as .len() and .as_ptr() into the call (cause u32,*const)
+/// F. vk::Result return gets turned into `VkResult<()>`, with .result() called on the function directly
+/// G. instantiate 1 handle/void-pointer through MaybeUninit, pass along everything else
+///      call .assume_init_on_success() at end and return inside VkResult<>
+/// H. read_into_uninitialized_vector is used to return Vec<> of non-pnext, (cause *mut u32,*mut)
+///      (but it may return nothing so we don't VkResult<> and instead ;vk::Result::SUCCESS and unwrap)
+/// I. read_into_uninitialized_vector is used to return VkResult<Vec<u8>>, (cause *mut usize,*mut c_void)
+///      and we tell the closure that the type is actually u8
+/// J. *const and *mut arguments have the same u32 length,
+///      therefore we construct `Result<Vec<HANDLE>, (Vec<HANDLE>, vk::Result)>`
+/// K. `*const [f32; _]` is taken as &[ffi::c_float; 4 as _]
+/// L. two or more *const arrays have the same size, and are asserted to have the same length
+///      and we choose the first one in the call
+/// M. similar to H, but now there's a seperate _len method because it is pnext
+/// N. we wanted to return a struct like in D but it's pnext so we do `out: &mut`
+/// O. overridden because fancy
+/// P. Handle generics through objecttype="objectType"
+/// Q. similiar to H, but now there's multiple slices filled out of the same _len method
+/// R. similiar to N, but it's marked optional, so we actually do `out: Option<&mut`
+/// S. similiar to D, but it's a c_void so we actually don't return anything...
+///
+/// A B C   vkDestroyDevice
+/// A D     vkGetDeviceQueue/vkGetDeviceMemoryCommitment/vkGetBufferMemoryRequirements/vkGetDeviceGroupPeerMemoryFeatures
+/// E F     vkQueueSubmit
+/// F       vkQueueWaitIdle
+/// A F     vkDeviceWaitIdle/vkBindBufferMemory
+/// B G     vkAllocateMemory
+/// B C     vkFreeMemory
+/// G       vkMapMemory
+/// A C     vkUnmapMemory
+/// A E F   vkFlushMappedMemoryRanges
+/// A H     vkGetImageSparseMemoryRequirements
+/// A I     vkGetPipelineCacheData
+/// A J     vkCreateGraphicsPipelines/vkCreateShadersEXT (search for ">, (Vec<")
+/// C K     vkCmdSetBlendConstants
+/// C L     vkCmdBindVertexBuffers
+/// A M     vkGetImageSparseMemoryRequirements2
+/// A N     vkGetImageMemoryRequirements2
+/// O       vkGetQueryPoolResults
+/// A P     vkSetPrivateDataEXT
+/// Q       vkEnumeratePhysicalDeviceQueueFamilyPerformanceQueryCountersKHR
+/// A M N   vkGetPipelineBinaryDataKHR
+/// A M N R vkGetEncodedVideoSessionParametersKHR
+/// A F R   vkGetDeviceFaultInfoEXT
+/// A S     vkGetLatencyTimingsLegacyNV
+
 #[instrument(skip(octx))]
-fn wrapper(
+fn wrapper_old(
     octx: &OutputContext,
     command: &Command,
     name: &Ident,
     table_field: Ident,
 ) -> TokenStream {
     trace!("generating");
-
-    // match command.name.original() {
-    //     "vkEnumeratePhysicalDeviceQueueFamilyPerformanceQueryCountersKHR"
-    //     | "vkEnumeratePhysicalDeviceQueueFamilyPerformanceCountersByRegionARM"
-    //     | "vkGetPipelineBinaryDataKHR"
-    //     | "vkGetEncodedVideoSessionParametersKHR" => {
-    //         // todo
-    //         return quote! {};
-    //     }
-
-    //     "vkGetFenceStatus" => {
-    //         return quote! {
-    //             /// <https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/vkGetFenceStatus.html>
-    //             #[inline]
-    //             pub unsafe fn get_fence_status(&self, fence: vk::Fence) -> VkResult<bool> {
-    //                 let err_code = (self.device_fn_1_0.get_fence_status)(self.handle(), fence);
-    //                 match err_code {
-    //                     vk::Result::SUCCESS => Ok(true),
-    //                     vk::Result::NOT_READY => Ok(false),
-    //                     _ => Err(err_code),
-    //                 }
-    //             }
-    //         };
-    //     }
-
-    //     _ => (),
-    // }
 
     fn param_ident(name: VariableName) -> Ident {
         let stripped = crate::strip_leading_p(name.original()).to_snek_case();

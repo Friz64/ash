@@ -123,6 +123,15 @@ fn vkGetDeviceProcAddr(
     (self.instance_fn_1_0.get_device_proc_addr)(device, p_name)
 }
 
+fn vkGetFenceStatus(&self, fence: vk::Fence) -> VkResult<bool> {
+    let err_code = (self.device_fn_1_0.get_fence_status)(self.handle(), fence);
+    match err_code {
+        vk::Result::SUCCESS => Ok(true),
+        vk::Result::NOT_READY => Ok(false),
+        _ => Err(err_code),
+    }
+}
+
 /// wip
 fn vkEnumeratePhysicalDeviceQueueFamilyPerformanceQueryCountersKHR() {}
 /// wip
