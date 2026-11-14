@@ -148,7 +148,7 @@ impl Device {
             low_latency_mode as _,
             low_latency_boost as _,
             minimum_interval_us,
-        );
+        )
     }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkLatencySleepLegacyNV.html) · Device Function
     pub unsafe fn latency_sleep_legacy(
@@ -156,11 +156,11 @@ impl Device {
         signal_semaphore: vk::Semaphore,
         value: u64,
     ) {
-        (self.fp.latency_sleep_legacy)(self.handle, signal_semaphore, value);
+        (self.fp.latency_sleep_legacy)(self.handle, signal_semaphore, value)
     }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkSetLatencyMarkerLegacyNV.html) · Device Function
     pub unsafe fn set_latency_marker_legacy(&self, frame_id: u64, marker: u32) {
-        (self.fp.set_latency_marker_legacy)(self.handle, frame_id, marker);
+        (self.fp.set_latency_marker_legacy)(self.handle, frame_id, marker)
     }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkQueueNotifyOutOfBandLegacyNV.html) · Device Function
     pub unsafe fn queue_notify_out_of_band_legacy(
@@ -168,11 +168,11 @@ impl Device {
         queue: vk::Queue,
         queue_type: u32,
     ) {
-        (self.fp.queue_notify_out_of_band_legacy)(queue, queue_type);
+        (self.fp.queue_notify_out_of_band_legacy)(queue, queue_type)
     }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkShutdownLatencyDeviceLegacyNV.html) · Device Function
     pub unsafe fn shutdown_latency_device_legacy(&self) {
-        (self.fp.shutdown_latency_device_legacy)(self.handle);
+        (self.fp.shutdown_latency_device_legacy)(self.handle)
     }
 }
 pub(crate) mod items {

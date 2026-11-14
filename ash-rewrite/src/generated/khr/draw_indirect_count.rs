@@ -97,7 +97,7 @@ impl Device {
             count_buffer_offset,
             max_draw_count,
             stride,
-        );
+        )
     }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdDrawIndexedIndirectCount.html) · Device Function
     pub unsafe fn cmd_draw_indexed_indirect_count(
@@ -120,7 +120,7 @@ impl Device {
             count_buffer_offset,
             max_draw_count,
             stride,
-        );
+        )
     }
 }
 pub(crate) mod items {

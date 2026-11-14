@@ -976,7 +976,7 @@ impl crate::Device {
         command_buffer: vk::CommandBuffer,
         cull_mode: vk::CullModeFlags,
     ) {
-        (self.device_fn_1_3.cmd_set_cull_mode)(command_buffer, cull_mode);
+        (self.device_fn_1_3.cmd_set_cull_mode)(command_buffer, cull_mode)
     }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdSetFrontFace.html) · Device Function
     pub unsafe fn cmd_set_front_face(
@@ -984,7 +984,7 @@ impl crate::Device {
         command_buffer: vk::CommandBuffer,
         front_face: vk::FrontFace,
     ) {
-        (self.device_fn_1_3.cmd_set_front_face)(command_buffer, front_face);
+        (self.device_fn_1_3.cmd_set_front_face)(command_buffer, front_face)
     }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdSetPrimitiveTopology.html) · Device Function
     pub unsafe fn cmd_set_primitive_topology(
@@ -994,7 +994,7 @@ impl crate::Device {
     ) {
         (self
             .device_fn_1_3
-            .cmd_set_primitive_topology)(command_buffer, primitive_topology);
+            .cmd_set_primitive_topology)(command_buffer, primitive_topology)
     }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdSetViewportWithCount.html) · Device Function
     pub unsafe fn cmd_set_viewport_with_count(
@@ -1008,7 +1008,7 @@ impl crate::Device {
             command_buffer,
             viewports.len() as _,
             viewports.as_ptr(),
-        );
+        )
     }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdSetScissorWithCount.html) · Device Function
     pub unsafe fn cmd_set_scissor_with_count(
@@ -1022,7 +1022,7 @@ impl crate::Device {
             command_buffer,
             scissors.len() as _,
             scissors.as_ptr(),
-        );
+        )
     }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdBindVertexBuffers2.html) · Device Function
     pub unsafe fn cmd_bind_vertex_buffers2(
@@ -1044,7 +1044,7 @@ impl crate::Device {
             offsets.as_ptr(),
             sizes.as_ptr(),
             strides.as_ptr(),
-        );
+        )
     }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdSetDepthTestEnable.html) · Device Function
     pub unsafe fn cmd_set_depth_test_enable(
@@ -1054,7 +1054,7 @@ impl crate::Device {
     ) {
         (self
             .device_fn_1_3
-            .cmd_set_depth_test_enable)(command_buffer, depth_test_enable as _);
+            .cmd_set_depth_test_enable)(command_buffer, depth_test_enable as _)
     }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdSetDepthWriteEnable.html) · Device Function
     pub unsafe fn cmd_set_depth_write_enable(
@@ -1064,7 +1064,7 @@ impl crate::Device {
     ) {
         (self
             .device_fn_1_3
-            .cmd_set_depth_write_enable)(command_buffer, depth_write_enable as _);
+            .cmd_set_depth_write_enable)(command_buffer, depth_write_enable as _)
     }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdSetDepthCompareOp.html) · Device Function
     pub unsafe fn cmd_set_depth_compare_op(
@@ -1072,7 +1072,7 @@ impl crate::Device {
         command_buffer: vk::CommandBuffer,
         depth_compare_op: vk::CompareOp,
     ) {
-        (self.device_fn_1_3.cmd_set_depth_compare_op)(command_buffer, depth_compare_op);
+        (self.device_fn_1_3.cmd_set_depth_compare_op)(command_buffer, depth_compare_op)
     }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdSetDepthBoundsTestEnable.html) · Device Function
     pub unsafe fn cmd_set_depth_bounds_test_enable(
@@ -1085,7 +1085,7 @@ impl crate::Device {
             .cmd_set_depth_bounds_test_enable)(
             command_buffer,
             depth_bounds_test_enable as _,
-        );
+        )
     }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdSetStencilTestEnable.html) · Device Function
     pub unsafe fn cmd_set_stencil_test_enable(
@@ -1095,7 +1095,7 @@ impl crate::Device {
     ) {
         (self
             .device_fn_1_3
-            .cmd_set_stencil_test_enable)(command_buffer, stencil_test_enable as _);
+            .cmd_set_stencil_test_enable)(command_buffer, stencil_test_enable as _)
     }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdSetStencilOp.html) · Device Function
     pub unsafe fn cmd_set_stencil_op(
@@ -1116,7 +1116,7 @@ impl crate::Device {
             pass_op,
             depth_fail_op,
             compare_op,
-        );
+        )
     }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdSetRasterizerDiscardEnable.html) · Device Function
     pub unsafe fn cmd_set_rasterizer_discard_enable(
@@ -1129,7 +1129,7 @@ impl crate::Device {
             .cmd_set_rasterizer_discard_enable)(
             command_buffer,
             rasterizer_discard_enable as _,
-        );
+        )
     }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdSetDepthBiasEnable.html) · Device Function
     pub unsafe fn cmd_set_depth_bias_enable(
@@ -1139,7 +1139,7 @@ impl crate::Device {
     ) {
         (self
             .device_fn_1_3
-            .cmd_set_depth_bias_enable)(command_buffer, depth_bias_enable as _);
+            .cmd_set_depth_bias_enable)(command_buffer, depth_bias_enable as _)
     }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdSetPrimitiveRestartEnable.html) · Device Function
     pub unsafe fn cmd_set_primitive_restart_enable(
@@ -1152,7 +1152,7 @@ impl crate::Device {
             .cmd_set_primitive_restart_enable)(
             command_buffer,
             primitive_restart_enable as _,
-        );
+        )
     }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkDestroyPrivateDataSlot.html) · Device Function
     pub unsafe fn destroy_private_data_slot(
@@ -1162,13 +1162,12 @@ impl crate::Device {
     ) {
         (self
             .device_fn_1_3
-            .destroy_private_data_slot)(self.handle, private_data_slot, allocator);
+            .destroy_private_data_slot)(self.handle, private_data_slot, allocator)
     }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkSetPrivateData.html) · Device Function
-    pub unsafe fn set_private_data(
+    pub unsafe fn set_private_data<T: vk::Handle>(
         &self,
-        object_type: vk::ObjectType,
-        object_handle: u64,
+        object: T,
         private_data_slot: vk::PrivateDataSlot,
         data: u64,
     ) -> VkResult<()> {
@@ -1176,12 +1175,30 @@ impl crate::Device {
             .device_fn_1_3
             .set_private_data)(
                 self.handle,
-                object_type,
-                object_handle,
+                T::TYPE,
+                object.as_raw(),
                 private_data_slot,
                 data,
             )
             .result()
+    }
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkGetPrivateData.html) · Device Function
+    pub unsafe fn get_private_data<T: vk::Handle>(
+        &self,
+        object: T,
+        private_data_slot: vk::PrivateDataSlot,
+    ) -> u64 {
+        let mut data = MaybeUninit::uninit();
+        (self
+            .device_fn_1_3
+            .get_private_data)(
+            self.handle,
+            T::TYPE,
+            object.as_raw(),
+            private_data_slot,
+            data.as_mut_ptr(),
+        );
+        data.assume_init()
     }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdCopyBuffer2.html) · Device Function
     pub unsafe fn cmd_copy_buffer2(
@@ -1189,7 +1206,7 @@ impl crate::Device {
         command_buffer: vk::CommandBuffer,
         copy_buffer_info: &vk::CopyBufferInfo2<'_>,
     ) {
-        (self.device_fn_1_3.cmd_copy_buffer2)(command_buffer, copy_buffer_info);
+        (self.device_fn_1_3.cmd_copy_buffer2)(command_buffer, copy_buffer_info)
     }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdCopyImage2.html) · Device Function
     pub unsafe fn cmd_copy_image2(
@@ -1197,7 +1214,7 @@ impl crate::Device {
         command_buffer: vk::CommandBuffer,
         copy_image_info: &vk::CopyImageInfo2<'_>,
     ) {
-        (self.device_fn_1_3.cmd_copy_image2)(command_buffer, copy_image_info);
+        (self.device_fn_1_3.cmd_copy_image2)(command_buffer, copy_image_info)
     }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdBlitImage2.html) · Device Function
     pub unsafe fn cmd_blit_image2(
@@ -1205,7 +1222,7 @@ impl crate::Device {
         command_buffer: vk::CommandBuffer,
         blit_image_info: &vk::BlitImageInfo2<'_>,
     ) {
-        (self.device_fn_1_3.cmd_blit_image2)(command_buffer, blit_image_info);
+        (self.device_fn_1_3.cmd_blit_image2)(command_buffer, blit_image_info)
     }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdCopyBufferToImage2.html) · Device Function
     pub unsafe fn cmd_copy_buffer_to_image2(
@@ -1215,7 +1232,7 @@ impl crate::Device {
     ) {
         (self
             .device_fn_1_3
-            .cmd_copy_buffer_to_image2)(command_buffer, copy_buffer_to_image_info);
+            .cmd_copy_buffer_to_image2)(command_buffer, copy_buffer_to_image_info)
     }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdCopyImageToBuffer2.html) · Device Function
     pub unsafe fn cmd_copy_image_to_buffer2(
@@ -1225,7 +1242,7 @@ impl crate::Device {
     ) {
         (self
             .device_fn_1_3
-            .cmd_copy_image_to_buffer2)(command_buffer, copy_image_to_buffer_info);
+            .cmd_copy_image_to_buffer2)(command_buffer, copy_image_to_buffer_info)
     }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdResolveImage2.html) · Device Function
     pub unsafe fn cmd_resolve_image2(
@@ -1233,7 +1250,7 @@ impl crate::Device {
         command_buffer: vk::CommandBuffer,
         resolve_image_info: &vk::ResolveImageInfo2<'_>,
     ) {
-        (self.device_fn_1_3.cmd_resolve_image2)(command_buffer, resolve_image_info);
+        (self.device_fn_1_3.cmd_resolve_image2)(command_buffer, resolve_image_info)
     }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdSetEvent2.html) · Device Function
     pub unsafe fn cmd_set_event2(
@@ -1242,7 +1259,7 @@ impl crate::Device {
         event: vk::Event,
         dependency_info: &vk::DependencyInfo<'_>,
     ) {
-        (self.device_fn_1_3.cmd_set_event2)(command_buffer, event, dependency_info);
+        (self.device_fn_1_3.cmd_set_event2)(command_buffer, event, dependency_info)
     }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdResetEvent2.html) · Device Function
     pub unsafe fn cmd_reset_event2(
@@ -1251,7 +1268,7 @@ impl crate::Device {
         event: vk::Event,
         stage_mask: vk::PipelineStageFlags2,
     ) {
-        (self.device_fn_1_3.cmd_reset_event2)(command_buffer, event, stage_mask);
+        (self.device_fn_1_3.cmd_reset_event2)(command_buffer, event, stage_mask)
     }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdWaitEvents2.html) · Device Function
     pub unsafe fn cmd_wait_events2(
@@ -1267,7 +1284,7 @@ impl crate::Device {
             events.len() as _,
             events.as_ptr(),
             dependency_infos.as_ptr(),
-        );
+        )
     }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdPipelineBarrier2.html) · Device Function
     pub unsafe fn cmd_pipeline_barrier2(
@@ -1275,7 +1292,7 @@ impl crate::Device {
         command_buffer: vk::CommandBuffer,
         dependency_info: &vk::DependencyInfo<'_>,
     ) {
-        (self.device_fn_1_3.cmd_pipeline_barrier2)(command_buffer, dependency_info);
+        (self.device_fn_1_3.cmd_pipeline_barrier2)(command_buffer, dependency_info)
     }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkQueueSubmit2.html) · Device Function
     pub unsafe fn queue_submit2(
@@ -1299,7 +1316,7 @@ impl crate::Device {
     ) {
         (self
             .device_fn_1_3
-            .cmd_write_timestamp2)(command_buffer, stage, query_pool, query);
+            .cmd_write_timestamp2)(command_buffer, stage, query_pool, query)
     }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdBeginRendering.html) · Device Function
     pub unsafe fn cmd_begin_rendering(
@@ -1307,11 +1324,11 @@ impl crate::Device {
         command_buffer: vk::CommandBuffer,
         rendering_info: &vk::RenderingInfo<'_>,
     ) {
-        (self.device_fn_1_3.cmd_begin_rendering)(command_buffer, rendering_info);
+        (self.device_fn_1_3.cmd_begin_rendering)(command_buffer, rendering_info)
     }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdEndRendering.html) · Device Function
     pub unsafe fn cmd_end_rendering(&self, command_buffer: vk::CommandBuffer) {
-        (self.device_fn_1_3.cmd_end_rendering)(command_buffer);
+        (self.device_fn_1_3.cmd_end_rendering)(command_buffer)
     }
 }
 #[derive(Clone)]

@@ -99,7 +99,7 @@ impl Device {
         command_buffer: vk::CommandBuffer,
         tile_memory_bind_info: &vk::TileMemoryBindInfoQCOM<'_>,
     ) {
-        (self.fp.cmd_bind_tile_memory)(command_buffer, tile_memory_bind_info);
+        (self.fp.cmd_bind_tile_memory)(command_buffer, tile_memory_bind_info)
     }
 }
 pub(crate) mod items {

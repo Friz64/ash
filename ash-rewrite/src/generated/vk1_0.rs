@@ -1485,7 +1485,7 @@ impl crate::Instance {
     }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkDestroyInstance.html) · Instance Function
     pub unsafe fn destroy_instance(&self, allocator: &vk::AllocationCallbacks<'_>) {
-        (self.instance_fn_1_0.destroy_instance)(self.handle, allocator);
+        (self.instance_fn_1_0.destroy_instance)(self.handle, allocator)
     }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkGetDeviceProcAddr.html) · Instance Function
     pub unsafe fn get_device_proc_addr(
@@ -3151,7 +3151,7 @@ impl crate::Device {
     }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkDestroyDevice.html) · Device Function
     pub unsafe fn destroy_device(&self, allocator: &vk::AllocationCallbacks<'_>) {
-        (self.device_fn_1_0.destroy_device)(self.handle, allocator);
+        (self.device_fn_1_0.destroy_device)(self.handle, allocator)
     }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkQueueSubmit.html) · Device Function
     pub unsafe fn queue_submit(
@@ -3179,11 +3179,11 @@ impl crate::Device {
         memory: vk::DeviceMemory,
         allocator: &vk::AllocationCallbacks<'_>,
     ) {
-        (self.device_fn_1_0.free_memory)(self.handle, memory, allocator);
+        (self.device_fn_1_0.free_memory)(self.handle, memory, allocator)
     }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkUnmapMemory.html) · Device Function
     pub unsafe fn unmap_memory(&self, memory: vk::DeviceMemory) {
-        (self.device_fn_1_0.unmap_memory)(self.handle, memory);
+        (self.device_fn_1_0.unmap_memory)(self.handle, memory)
     }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkFlushMappedMemoryRanges.html) · Device Function
     pub unsafe fn flush_mapped_memory_ranges(
@@ -3253,7 +3253,7 @@ impl crate::Device {
         fence: vk::Fence,
         allocator: &vk::AllocationCallbacks<'_>,
     ) {
-        (self.device_fn_1_0.destroy_fence)(self.handle, fence, allocator);
+        (self.device_fn_1_0.destroy_fence)(self.handle, fence, allocator)
     }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkResetFences.html) · Device Function
     pub unsafe fn reset_fences(&self, fences: &[vk::Fence]) -> VkResult<()> {
@@ -3295,7 +3295,7 @@ impl crate::Device {
         semaphore: vk::Semaphore,
         allocator: &vk::AllocationCallbacks<'_>,
     ) {
-        (self.device_fn_1_0.destroy_semaphore)(self.handle, semaphore, allocator);
+        (self.device_fn_1_0.destroy_semaphore)(self.handle, semaphore, allocator)
     }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkDestroyEvent.html) · Device Function
     pub unsafe fn destroy_event(
@@ -3303,7 +3303,7 @@ impl crate::Device {
         event: vk::Event,
         allocator: &vk::AllocationCallbacks<'_>,
     ) {
-        (self.device_fn_1_0.destroy_event)(self.handle, event, allocator);
+        (self.device_fn_1_0.destroy_event)(self.handle, event, allocator)
     }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkGetEventStatus.html) · Device Function
     pub unsafe fn get_event_status(&self, event: vk::Event) -> VkResult<()> {
@@ -3323,7 +3323,7 @@ impl crate::Device {
         query_pool: vk::QueryPool,
         allocator: &vk::AllocationCallbacks<'_>,
     ) {
-        (self.device_fn_1_0.destroy_query_pool)(self.handle, query_pool, allocator);
+        (self.device_fn_1_0.destroy_query_pool)(self.handle, query_pool, allocator)
     }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkDestroyBuffer.html) · Device Function
     pub unsafe fn destroy_buffer(
@@ -3331,7 +3331,7 @@ impl crate::Device {
         buffer: vk::Buffer,
         allocator: &vk::AllocationCallbacks<'_>,
     ) {
-        (self.device_fn_1_0.destroy_buffer)(self.handle, buffer, allocator);
+        (self.device_fn_1_0.destroy_buffer)(self.handle, buffer, allocator)
     }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkDestroyBufferView.html) · Device Function
     pub unsafe fn destroy_buffer_view(
@@ -3339,7 +3339,7 @@ impl crate::Device {
         buffer_view: vk::BufferView,
         allocator: &vk::AllocationCallbacks<'_>,
     ) {
-        (self.device_fn_1_0.destroy_buffer_view)(self.handle, buffer_view, allocator);
+        (self.device_fn_1_0.destroy_buffer_view)(self.handle, buffer_view, allocator)
     }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkDestroyImage.html) · Device Function
     pub unsafe fn destroy_image(
@@ -3347,7 +3347,7 @@ impl crate::Device {
         image: vk::Image,
         allocator: &vk::AllocationCallbacks<'_>,
     ) {
-        (self.device_fn_1_0.destroy_image)(self.handle, image, allocator);
+        (self.device_fn_1_0.destroy_image)(self.handle, image, allocator)
     }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkDestroyImageView.html) · Device Function
     pub unsafe fn destroy_image_view(
@@ -3355,7 +3355,7 @@ impl crate::Device {
         image_view: vk::ImageView,
         allocator: &vk::AllocationCallbacks<'_>,
     ) {
-        (self.device_fn_1_0.destroy_image_view)(self.handle, image_view, allocator);
+        (self.device_fn_1_0.destroy_image_view)(self.handle, image_view, allocator)
     }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkDestroyShaderModule.html) · Device Function
     pub unsafe fn destroy_shader_module(
@@ -3363,9 +3363,7 @@ impl crate::Device {
         shader_module: vk::ShaderModule,
         allocator: &vk::AllocationCallbacks<'_>,
     ) {
-        (self
-            .device_fn_1_0
-            .destroy_shader_module)(self.handle, shader_module, allocator);
+        (self.device_fn_1_0.destroy_shader_module)(self.handle, shader_module, allocator)
     }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkDestroyPipelineCache.html) · Device Function
     pub unsafe fn destroy_pipeline_cache(
@@ -3375,7 +3373,7 @@ impl crate::Device {
     ) {
         (self
             .device_fn_1_0
-            .destroy_pipeline_cache)(self.handle, pipeline_cache, allocator);
+            .destroy_pipeline_cache)(self.handle, pipeline_cache, allocator)
     }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkMergePipelineCaches.html) · Device Function
     pub unsafe fn merge_pipeline_caches(
@@ -3399,7 +3397,7 @@ impl crate::Device {
         pipeline: vk::Pipeline,
         allocator: &vk::AllocationCallbacks<'_>,
     ) {
-        (self.device_fn_1_0.destroy_pipeline)(self.handle, pipeline, allocator);
+        (self.device_fn_1_0.destroy_pipeline)(self.handle, pipeline, allocator)
     }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkDestroyPipelineLayout.html) · Device Function
     pub unsafe fn destroy_pipeline_layout(
@@ -3409,7 +3407,7 @@ impl crate::Device {
     ) {
         (self
             .device_fn_1_0
-            .destroy_pipeline_layout)(self.handle, pipeline_layout, allocator);
+            .destroy_pipeline_layout)(self.handle, pipeline_layout, allocator)
     }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkDestroySampler.html) · Device Function
     pub unsafe fn destroy_sampler(
@@ -3417,7 +3415,7 @@ impl crate::Device {
         sampler: vk::Sampler,
         allocator: &vk::AllocationCallbacks<'_>,
     ) {
-        (self.device_fn_1_0.destroy_sampler)(self.handle, sampler, allocator);
+        (self.device_fn_1_0.destroy_sampler)(self.handle, sampler, allocator)
     }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkDestroyDescriptorSetLayout.html) · Device Function
     pub unsafe fn destroy_descriptor_set_layout(
@@ -3431,7 +3429,7 @@ impl crate::Device {
             self.handle,
             descriptor_set_layout,
             allocator,
-        );
+        )
     }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkDestroyDescriptorPool.html) · Device Function
     pub unsafe fn destroy_descriptor_pool(
@@ -3441,7 +3439,7 @@ impl crate::Device {
     ) {
         (self
             .device_fn_1_0
-            .destroy_descriptor_pool)(self.handle, descriptor_pool, allocator);
+            .destroy_descriptor_pool)(self.handle, descriptor_pool, allocator)
     }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkResetDescriptorPool.html) · Device Function
     pub unsafe fn reset_descriptor_pool(
@@ -3482,7 +3480,7 @@ impl crate::Device {
             descriptor_writes.as_ptr(),
             descriptor_copies.len() as _,
             descriptor_copies.as_ptr(),
-        );
+        )
     }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkDestroyFramebuffer.html) · Device Function
     pub unsafe fn destroy_framebuffer(
@@ -3490,7 +3488,7 @@ impl crate::Device {
         framebuffer: vk::Framebuffer,
         allocator: &vk::AllocationCallbacks<'_>,
     ) {
-        (self.device_fn_1_0.destroy_framebuffer)(self.handle, framebuffer, allocator);
+        (self.device_fn_1_0.destroy_framebuffer)(self.handle, framebuffer, allocator)
     }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkDestroyRenderPass.html) · Device Function
     pub unsafe fn destroy_render_pass(
@@ -3498,7 +3496,7 @@ impl crate::Device {
         render_pass: vk::RenderPass,
         allocator: &vk::AllocationCallbacks<'_>,
     ) {
-        (self.device_fn_1_0.destroy_render_pass)(self.handle, render_pass, allocator);
+        (self.device_fn_1_0.destroy_render_pass)(self.handle, render_pass, allocator)
     }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkDestroyCommandPool.html) · Device Function
     pub unsafe fn destroy_command_pool(
@@ -3506,7 +3504,7 @@ impl crate::Device {
         command_pool: vk::CommandPool,
         allocator: &vk::AllocationCallbacks<'_>,
     ) {
-        (self.device_fn_1_0.destroy_command_pool)(self.handle, command_pool, allocator);
+        (self.device_fn_1_0.destroy_command_pool)(self.handle, command_pool, allocator)
     }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkResetCommandPool.html) · Device Function
     pub unsafe fn reset_command_pool(
@@ -3530,7 +3528,7 @@ impl crate::Device {
             command_pool,
             command_buffers.len() as _,
             command_buffers.as_ptr(),
-        );
+        )
     }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkBeginCommandBuffer.html) · Device Function
     pub unsafe fn begin_command_buffer(
@@ -3564,7 +3562,7 @@ impl crate::Device {
     ) {
         (self
             .device_fn_1_0
-            .cmd_bind_pipeline)(command_buffer, pipeline_bind_point, pipeline);
+            .cmd_bind_pipeline)(command_buffer, pipeline_bind_point, pipeline)
     }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdSetViewport.html) · Device Function
     pub unsafe fn cmd_set_viewport(
@@ -3580,7 +3578,7 @@ impl crate::Device {
             first_viewport,
             viewports.len() as _,
             viewports.as_ptr(),
-        );
+        )
     }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdSetScissor.html) · Device Function
     pub unsafe fn cmd_set_scissor(
@@ -3596,7 +3594,7 @@ impl crate::Device {
             first_scissor,
             scissors.len() as _,
             scissors.as_ptr(),
-        );
+        )
     }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdSetLineWidth.html) · Device Function
     pub unsafe fn cmd_set_line_width(
@@ -3604,7 +3602,7 @@ impl crate::Device {
         command_buffer: vk::CommandBuffer,
         line_width: ffi::c_float,
     ) {
-        (self.device_fn_1_0.cmd_set_line_width)(command_buffer, line_width);
+        (self.device_fn_1_0.cmd_set_line_width)(command_buffer, line_width)
     }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdSetDepthBias.html) · Device Function
     pub unsafe fn cmd_set_depth_bias(
@@ -3621,7 +3619,7 @@ impl crate::Device {
             depth_bias_constant_factor,
             depth_bias_clamp,
             depth_bias_slope_factor,
-        );
+        )
     }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdSetBlendConstants.html) · Device Function
     pub unsafe fn cmd_set_blend_constants(
@@ -3629,7 +3627,7 @@ impl crate::Device {
         command_buffer: vk::CommandBuffer,
         blend_constants: &[ffi::c_float; 4 as _],
     ) {
-        (self.device_fn_1_0.cmd_set_blend_constants)(command_buffer, blend_constants);
+        (self.device_fn_1_0.cmd_set_blend_constants)(command_buffer, blend_constants)
     }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdSetDepthBounds.html) · Device Function
     pub unsafe fn cmd_set_depth_bounds(
@@ -3640,7 +3638,7 @@ impl crate::Device {
     ) {
         (self
             .device_fn_1_0
-            .cmd_set_depth_bounds)(command_buffer, min_depth_bounds, max_depth_bounds);
+            .cmd_set_depth_bounds)(command_buffer, min_depth_bounds, max_depth_bounds)
     }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdSetStencilCompareMask.html) · Device Function
     pub unsafe fn cmd_set_stencil_compare_mask(
@@ -3651,7 +3649,7 @@ impl crate::Device {
     ) {
         (self
             .device_fn_1_0
-            .cmd_set_stencil_compare_mask)(command_buffer, face_mask, compare_mask);
+            .cmd_set_stencil_compare_mask)(command_buffer, face_mask, compare_mask)
     }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdSetStencilWriteMask.html) · Device Function
     pub unsafe fn cmd_set_stencil_write_mask(
@@ -3662,7 +3660,7 @@ impl crate::Device {
     ) {
         (self
             .device_fn_1_0
-            .cmd_set_stencil_write_mask)(command_buffer, face_mask, write_mask);
+            .cmd_set_stencil_write_mask)(command_buffer, face_mask, write_mask)
     }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdSetStencilReference.html) · Device Function
     pub unsafe fn cmd_set_stencil_reference(
@@ -3673,7 +3671,7 @@ impl crate::Device {
     ) {
         (self
             .device_fn_1_0
-            .cmd_set_stencil_reference)(command_buffer, face_mask, reference);
+            .cmd_set_stencil_reference)(command_buffer, face_mask, reference)
     }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdBindDescriptorSets.html) · Device Function
     pub unsafe fn cmd_bind_descriptor_sets(
@@ -3696,7 +3694,7 @@ impl crate::Device {
             descriptor_sets.as_ptr(),
             dynamic_offsets.len() as _,
             dynamic_offsets.as_ptr(),
-        );
+        )
     }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdBindIndexBuffer.html) · Device Function
     pub unsafe fn cmd_bind_index_buffer(
@@ -3708,7 +3706,7 @@ impl crate::Device {
     ) {
         (self
             .device_fn_1_0
-            .cmd_bind_index_buffer)(command_buffer, buffer, offset, index_type);
+            .cmd_bind_index_buffer)(command_buffer, buffer, offset, index_type)
     }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdBindVertexBuffers.html) · Device Function
     pub unsafe fn cmd_bind_vertex_buffers(
@@ -3726,7 +3724,7 @@ impl crate::Device {
             buffers.len() as _,
             buffers.as_ptr(),
             offsets.as_ptr(),
-        );
+        )
     }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdDraw.html) · Device Function
     pub unsafe fn cmd_draw(
@@ -3745,7 +3743,7 @@ impl crate::Device {
             instance_count,
             first_vertex,
             first_instance,
-        );
+        )
     }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdDrawIndexed.html) · Device Function
     pub unsafe fn cmd_draw_indexed(
@@ -3766,7 +3764,7 @@ impl crate::Device {
             first_index,
             vertex_offset,
             first_instance,
-        );
+        )
     }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdDrawIndirect.html) · Device Function
     pub unsafe fn cmd_draw_indirect(
@@ -3779,7 +3777,7 @@ impl crate::Device {
     ) {
         (self
             .device_fn_1_0
-            .cmd_draw_indirect)(command_buffer, buffer, offset, draw_count, stride);
+            .cmd_draw_indirect)(command_buffer, buffer, offset, draw_count, stride)
     }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdDrawIndexedIndirect.html) · Device Function
     pub unsafe fn cmd_draw_indexed_indirect(
@@ -3798,7 +3796,7 @@ impl crate::Device {
             offset,
             draw_count,
             stride,
-        );
+        )
     }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdDispatch.html) · Device Function
     pub unsafe fn cmd_dispatch(
@@ -3810,7 +3808,7 @@ impl crate::Device {
     ) {
         (self
             .device_fn_1_0
-            .cmd_dispatch)(command_buffer, group_count_x, group_count_y, group_count_z);
+            .cmd_dispatch)(command_buffer, group_count_x, group_count_y, group_count_z)
     }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdDispatchIndirect.html) · Device Function
     pub unsafe fn cmd_dispatch_indirect(
@@ -3819,7 +3817,7 @@ impl crate::Device {
         buffer: vk::Buffer,
         offset: vk::DeviceSize,
     ) {
-        (self.device_fn_1_0.cmd_dispatch_indirect)(command_buffer, buffer, offset);
+        (self.device_fn_1_0.cmd_dispatch_indirect)(command_buffer, buffer, offset)
     }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdCopyBuffer.html) · Device Function
     pub unsafe fn cmd_copy_buffer(
@@ -3837,7 +3835,7 @@ impl crate::Device {
             dst_buffer,
             regions.len() as _,
             regions.as_ptr(),
-        );
+        )
     }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdCopyImage.html) · Device Function
     pub unsafe fn cmd_copy_image(
@@ -3859,7 +3857,7 @@ impl crate::Device {
             dst_image_layout,
             regions.len() as _,
             regions.as_ptr(),
-        );
+        )
     }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdBlitImage.html) · Device Function
     pub unsafe fn cmd_blit_image(
@@ -3883,7 +3881,7 @@ impl crate::Device {
             regions.len() as _,
             regions.as_ptr(),
             filter,
-        );
+        )
     }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdCopyBufferToImage.html) · Device Function
     pub unsafe fn cmd_copy_buffer_to_image(
@@ -3903,7 +3901,7 @@ impl crate::Device {
             dst_image_layout,
             regions.len() as _,
             regions.as_ptr(),
-        );
+        )
     }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdCopyImageToBuffer.html) · Device Function
     pub unsafe fn cmd_copy_image_to_buffer(
@@ -3923,7 +3921,7 @@ impl crate::Device {
             dst_buffer,
             regions.len() as _,
             regions.as_ptr(),
-        );
+        )
     }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdUpdateBuffer.html) · Device Function
     pub unsafe fn cmd_update_buffer(
@@ -3941,7 +3939,7 @@ impl crate::Device {
             dst_offset,
             data.len() as _,
             data.as_ptr(),
-        );
+        )
     }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdFillBuffer.html) · Device Function
     pub unsafe fn cmd_fill_buffer(
@@ -3954,7 +3952,7 @@ impl crate::Device {
     ) {
         (self
             .device_fn_1_0
-            .cmd_fill_buffer)(command_buffer, dst_buffer, dst_offset, size, data);
+            .cmd_fill_buffer)(command_buffer, dst_buffer, dst_offset, size, data)
     }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdClearColorImage.html) · Device Function
     pub unsafe fn cmd_clear_color_image(
@@ -3974,7 +3972,7 @@ impl crate::Device {
             color,
             ranges.len() as _,
             ranges.as_ptr(),
-        );
+        )
     }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdClearDepthStencilImage.html) · Device Function
     pub unsafe fn cmd_clear_depth_stencil_image(
@@ -3994,7 +3992,7 @@ impl crate::Device {
             depth_stencil,
             ranges.len() as _,
             ranges.as_ptr(),
-        );
+        )
     }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdClearAttachments.html) · Device Function
     pub unsafe fn cmd_clear_attachments(
@@ -4011,7 +4009,7 @@ impl crate::Device {
             attachments.as_ptr(),
             rects.len() as _,
             rects.as_ptr(),
-        );
+        )
     }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdResolveImage.html) · Device Function
     pub unsafe fn cmd_resolve_image(
@@ -4033,7 +4031,7 @@ impl crate::Device {
             dst_image_layout,
             regions.len() as _,
             regions.as_ptr(),
-        );
+        )
     }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdSetEvent.html) · Device Function
     pub unsafe fn cmd_set_event(
@@ -4042,7 +4040,7 @@ impl crate::Device {
         event: vk::Event,
         stage_mask: vk::PipelineStageFlags,
     ) {
-        (self.device_fn_1_0.cmd_set_event)(command_buffer, event, stage_mask);
+        (self.device_fn_1_0.cmd_set_event)(command_buffer, event, stage_mask)
     }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdResetEvent.html) · Device Function
     pub unsafe fn cmd_reset_event(
@@ -4051,7 +4049,7 @@ impl crate::Device {
         event: vk::Event,
         stage_mask: vk::PipelineStageFlags,
     ) {
-        (self.device_fn_1_0.cmd_reset_event)(command_buffer, event, stage_mask);
+        (self.device_fn_1_0.cmd_reset_event)(command_buffer, event, stage_mask)
     }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdWaitEvents.html) · Device Function
     pub unsafe fn cmd_wait_events(
@@ -4078,7 +4076,7 @@ impl crate::Device {
             buffer_memory_barriers.as_ptr(),
             image_memory_barriers.len() as _,
             image_memory_barriers.as_ptr(),
-        );
+        )
     }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdPipelineBarrier.html) · Device Function
     pub unsafe fn cmd_pipeline_barrier(
@@ -4104,7 +4102,7 @@ impl crate::Device {
             buffer_memory_barriers.as_ptr(),
             image_memory_barriers.len() as _,
             image_memory_barriers.as_ptr(),
-        );
+        )
     }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdBeginQuery.html) · Device Function
     pub unsafe fn cmd_begin_query(
@@ -4114,7 +4112,7 @@ impl crate::Device {
         query: u32,
         flags: vk::QueryControlFlags,
     ) {
-        (self.device_fn_1_0.cmd_begin_query)(command_buffer, query_pool, query, flags);
+        (self.device_fn_1_0.cmd_begin_query)(command_buffer, query_pool, query, flags)
     }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdEndQuery.html) · Device Function
     pub unsafe fn cmd_end_query(
@@ -4123,7 +4121,7 @@ impl crate::Device {
         query_pool: vk::QueryPool,
         query: u32,
     ) {
-        (self.device_fn_1_0.cmd_end_query)(command_buffer, query_pool, query);
+        (self.device_fn_1_0.cmd_end_query)(command_buffer, query_pool, query)
     }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdResetQueryPool.html) · Device Function
     pub unsafe fn cmd_reset_query_pool(
@@ -4135,7 +4133,7 @@ impl crate::Device {
     ) {
         (self
             .device_fn_1_0
-            .cmd_reset_query_pool)(command_buffer, query_pool, first_query, query_count);
+            .cmd_reset_query_pool)(command_buffer, query_pool, first_query, query_count)
     }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdWriteTimestamp.html) · Device Function
     pub unsafe fn cmd_write_timestamp(
@@ -4147,7 +4145,7 @@ impl crate::Device {
     ) {
         (self
             .device_fn_1_0
-            .cmd_write_timestamp)(command_buffer, pipeline_stage, query_pool, query);
+            .cmd_write_timestamp)(command_buffer, pipeline_stage, query_pool, query)
     }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdCopyQueryPoolResults.html) · Device Function
     pub unsafe fn cmd_copy_query_pool_results(
@@ -4172,7 +4170,7 @@ impl crate::Device {
             dst_offset,
             stride,
             flags,
-        );
+        )
     }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdPushConstants.html) · Device Function
     pub unsafe fn cmd_push_constants(
@@ -4192,7 +4190,7 @@ impl crate::Device {
             offset,
             values.len() as _,
             values.as_ptr(),
-        );
+        )
     }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdBeginRenderPass.html) · Device Function
     pub unsafe fn cmd_begin_render_pass(
@@ -4203,7 +4201,7 @@ impl crate::Device {
     ) {
         (self
             .device_fn_1_0
-            .cmd_begin_render_pass)(command_buffer, render_pass_begin, contents);
+            .cmd_begin_render_pass)(command_buffer, render_pass_begin, contents)
     }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdNextSubpass.html) · Device Function
     pub unsafe fn cmd_next_subpass(
@@ -4211,11 +4209,11 @@ impl crate::Device {
         command_buffer: vk::CommandBuffer,
         contents: vk::SubpassContents,
     ) {
-        (self.device_fn_1_0.cmd_next_subpass)(command_buffer, contents);
+        (self.device_fn_1_0.cmd_next_subpass)(command_buffer, contents)
     }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdEndRenderPass.html) · Device Function
     pub unsafe fn cmd_end_render_pass(&self, command_buffer: vk::CommandBuffer) {
-        (self.device_fn_1_0.cmd_end_render_pass)(command_buffer);
+        (self.device_fn_1_0.cmd_end_render_pass)(command_buffer)
     }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdExecuteCommands.html) · Device Function
     pub unsafe fn cmd_execute_commands(
@@ -4229,7 +4227,7 @@ impl crate::Device {
             command_buffer,
             command_buffers.len() as _,
             command_buffers.as_ptr(),
-        );
+        )
     }
 }
 pub(crate) mod items {

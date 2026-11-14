@@ -239,6 +239,7 @@ impl Code for Struct {
                          attributes,
                          safety,
                          name_override,
+                         generics,
                          inputs,
                          output,
                          content,
@@ -255,7 +256,7 @@ impl Code for Struct {
 
                         quote! {
                            #attributes
-                           pub #safety fn #name(#inputs) #output { #content }
+                           pub #safety fn #name #generics(#inputs) #output { #content }
                         }
                     },
                 ))

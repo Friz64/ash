@@ -123,7 +123,7 @@ impl Device {
         task_count: u32,
         first_task: u32,
     ) {
-        (self.fp.cmd_draw_mesh_tasks)(command_buffer, task_count, first_task);
+        (self.fp.cmd_draw_mesh_tasks)(command_buffer, task_count, first_task)
     }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdDrawMeshTasksIndirectNV.html) · Device Function
     pub unsafe fn cmd_draw_mesh_tasks_indirect(
@@ -142,7 +142,7 @@ impl Device {
             offset,
             draw_count,
             stride,
-        );
+        )
     }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdDrawMeshTasksIndirectCountNV.html) · Device Function
     pub unsafe fn cmd_draw_mesh_tasks_indirect_count(
@@ -165,7 +165,7 @@ impl Device {
             count_buffer_offset,
             max_draw_count,
             stride,
-        );
+        )
     }
 }
 pub(crate) mod items {

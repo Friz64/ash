@@ -296,7 +296,7 @@ impl Device {
             width,
             height,
             depth,
-        );
+        )
     }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdTraceRaysIndirectKHR.html) · Device Function
     pub unsafe fn cmd_trace_rays_indirect(
@@ -317,7 +317,7 @@ impl Device {
             hit_shader_binding_table,
             callable_shader_binding_table,
             indirect_device_address,
-        );
+        )
     }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkGetRayTracingShaderGroupStackSizeKHR.html) · Device Function
     pub unsafe fn get_ray_tracing_shader_group_stack_size(
@@ -325,7 +325,7 @@ impl Device {
         pipeline: vk::Pipeline,
         group: u32,
         group_shader: vk::ShaderGroupShaderKHR,
-    ) {
+    ) -> vk::DeviceSize {
         (self
             .fp
             .get_ray_tracing_shader_group_stack_size)(
@@ -333,7 +333,7 @@ impl Device {
             pipeline,
             group,
             group_shader,
-        );
+        )
     }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdSetRayTracingPipelineStackSizeKHR.html) · Device Function
     pub unsafe fn cmd_set_ray_tracing_pipeline_stack_size(
@@ -346,7 +346,7 @@ impl Device {
             .cmd_set_ray_tracing_pipeline_stack_size)(
             command_buffer,
             pipeline_stack_size,
-        );
+        )
     }
 }
 pub(crate) mod items {

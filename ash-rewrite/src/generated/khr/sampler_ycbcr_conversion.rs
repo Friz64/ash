@@ -208,7 +208,7 @@ impl Device {
     ) {
         (self
             .fp
-            .destroy_sampler_ycbcr_conversion)(self.handle, ycbcr_conversion, allocator);
+            .destroy_sampler_ycbcr_conversion)(self.handle, ycbcr_conversion, allocator)
     }
 }
 pub(crate) mod items {

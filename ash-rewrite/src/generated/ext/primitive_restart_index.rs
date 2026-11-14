@@ -69,7 +69,7 @@ impl Device {
     ) {
         (self
             .fp
-            .cmd_set_primitive_restart_index)(command_buffer, primitive_restart_index);
+            .cmd_set_primitive_restart_index)(command_buffer, primitive_restart_index)
     }
 }
 pub(crate) mod items {

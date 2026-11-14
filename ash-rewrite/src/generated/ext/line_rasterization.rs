@@ -82,7 +82,7 @@ impl Device {
             command_buffer,
             line_stipple_factor,
             line_stipple_pattern,
-        );
+        )
     }
 }
 pub(crate) mod items {

@@ -113,7 +113,7 @@ impl Device {
             first_discard_rectangle,
             discard_rectangles.len() as _,
             discard_rectangles.as_ptr(),
-        );
+        )
     }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdSetDiscardRectangleEnableEXT.html) · Device Function
     pub unsafe fn cmd_set_discard_rectangle_enable(
@@ -126,7 +126,7 @@ impl Device {
             .cmd_set_discard_rectangle_enable)(
             command_buffer,
             discard_rectangle_enable as _,
-        );
+        )
     }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdSetDiscardRectangleModeEXT.html) · Device Function
     pub unsafe fn cmd_set_discard_rectangle_mode(
@@ -134,7 +134,7 @@ impl Device {
         command_buffer: vk::CommandBuffer,
         discard_rectangle_mode: vk::DiscardRectangleModeEXT,
     ) {
-        (self.fp.cmd_set_discard_rectangle_mode)(command_buffer, discard_rectangle_mode);
+        (self.fp.cmd_set_discard_rectangle_mode)(command_buffer, discard_rectangle_mode)
     }
 }
 pub(crate) mod items {

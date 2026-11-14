@@ -123,14 +123,14 @@ impl Device {
             command_buffer,
             pipeline_bind_point,
             pipeline,
-        );
+        )
     }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkGetPipelineIndirectDeviceAddressNV.html) · Device Function
     pub unsafe fn get_pipeline_indirect_device_address(
         &self,
         info: &vk::PipelineIndirectDeviceAddressInfoNV<'_>,
-    ) {
-        (self.fp.get_pipeline_indirect_device_address)(self.handle, info);
+    ) -> vk::DeviceAddress {
+        (self.fp.get_pipeline_indirect_device_address)(self.handle, info)
     }
 }
 pub(crate) mod items {

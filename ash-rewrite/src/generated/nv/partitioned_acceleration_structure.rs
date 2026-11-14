@@ -138,7 +138,7 @@ impl Device {
     ) {
         (self
             .fp
-            .cmd_build_partitioned_acceleration_structures)(command_buffer, build_info);
+            .cmd_build_partitioned_acceleration_structures)(command_buffer, build_info)
     }
 }
 pub(crate) mod items {

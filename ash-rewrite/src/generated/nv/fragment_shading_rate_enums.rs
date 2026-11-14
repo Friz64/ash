@@ -101,7 +101,7 @@ impl Device {
             command_buffer,
             shading_rate,
             combiner_ops,
-        );
+        )
     }
 }
 pub(crate) mod items {

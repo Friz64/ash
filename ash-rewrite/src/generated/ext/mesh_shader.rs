@@ -154,7 +154,7 @@ impl Device {
             group_count_x,
             group_count_y,
             group_count_z,
-        );
+        )
     }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdDrawMeshTasksIndirectEXT.html) · Device Function
     pub unsafe fn cmd_draw_mesh_tasks_indirect(
@@ -173,7 +173,7 @@ impl Device {
             offset,
             draw_count,
             stride,
-        );
+        )
     }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdDrawMeshTasksIndirectCountEXT.html) · Device Function
     pub unsafe fn cmd_draw_mesh_tasks_indirect_count(
@@ -196,7 +196,7 @@ impl Device {
             count_buffer_offset,
             max_draw_count,
             stride,
-        );
+        )
     }
 }
 pub(crate) mod items {

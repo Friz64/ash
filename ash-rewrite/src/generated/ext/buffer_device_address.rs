@@ -88,8 +88,8 @@ impl Device {
     pub unsafe fn get_buffer_device_address(
         &self,
         info: &vk::BufferDeviceAddressInfo<'_>,
-    ) {
-        (self.fp.get_buffer_device_address)(self.handle, info);
+    ) -> vk::DeviceAddress {
+        (self.fp.get_buffer_device_address)(self.handle, info)
     }
 }
 pub(crate) mod items {

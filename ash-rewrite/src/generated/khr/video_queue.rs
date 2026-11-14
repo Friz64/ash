@@ -374,7 +374,7 @@ impl Device {
         video_session: vk::VideoSessionKHR,
         allocator: &vk::AllocationCallbacks<'_>,
     ) {
-        (self.fp.destroy_video_session)(self.handle, video_session, allocator);
+        (self.fp.destroy_video_session)(self.handle, video_session, allocator)
     }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkUpdateVideoSessionParametersKHR.html) · Device Function
     pub unsafe fn update_video_session_parameters(
@@ -403,7 +403,7 @@ impl Device {
             self.handle,
             video_session_parameters,
             allocator,
-        );
+        )
     }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkBindVideoSessionMemoryKHR.html) · Device Function
     pub unsafe fn bind_video_session_memory(
@@ -427,7 +427,7 @@ impl Device {
         command_buffer: vk::CommandBuffer,
         begin_info: &vk::VideoBeginCodingInfoKHR<'_>,
     ) {
-        (self.fp.cmd_begin_video_coding)(command_buffer, begin_info);
+        (self.fp.cmd_begin_video_coding)(command_buffer, begin_info)
     }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdControlVideoCodingKHR.html) · Device Function
     pub unsafe fn cmd_control_video_coding(
@@ -435,7 +435,7 @@ impl Device {
         command_buffer: vk::CommandBuffer,
         coding_control_info: &vk::VideoCodingControlInfoKHR<'_>,
     ) {
-        (self.fp.cmd_control_video_coding)(command_buffer, coding_control_info);
+        (self.fp.cmd_control_video_coding)(command_buffer, coding_control_info)
     }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdEndVideoCodingKHR.html) · Device Function
     pub unsafe fn cmd_end_video_coding(
@@ -443,7 +443,7 @@ impl Device {
         command_buffer: vk::CommandBuffer,
         end_coding_info: &vk::VideoEndCodingInfoKHR<'_>,
     ) {
-        (self.fp.cmd_end_video_coding)(command_buffer, end_coding_info);
+        (self.fp.cmd_end_video_coding)(command_buffer, end_coding_info)
     }
 }
 pub(crate) mod items {

@@ -202,7 +202,7 @@ impl Device {
             buffers.as_ptr(),
             offsets.as_ptr(),
             sizes.as_ptr(),
-        );
+        )
     }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdBeginTransformFeedbackEXT.html) · Device Function
     pub unsafe fn cmd_begin_transform_feedback(
@@ -220,7 +220,7 @@ impl Device {
             counter_buffers.len() as _,
             counter_buffers.as_ptr(),
             counter_buffer_offsets.as_ptr(),
-        );
+        )
     }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdEndTransformFeedbackEXT.html) · Device Function
     pub unsafe fn cmd_end_transform_feedback(
@@ -238,7 +238,7 @@ impl Device {
             counter_buffers.len() as _,
             counter_buffers.as_ptr(),
             counter_buffer_offsets.as_ptr(),
-        );
+        )
     }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdBeginQueryIndexedEXT.html) · Device Function
     pub unsafe fn cmd_begin_query_indexed(
@@ -251,7 +251,7 @@ impl Device {
     ) {
         (self
             .fp
-            .cmd_begin_query_indexed)(command_buffer, query_pool, query, flags, index);
+            .cmd_begin_query_indexed)(command_buffer, query_pool, query, flags, index)
     }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdEndQueryIndexedEXT.html) · Device Function
     pub unsafe fn cmd_end_query_indexed(
@@ -261,7 +261,7 @@ impl Device {
         query: u32,
         index: u32,
     ) {
-        (self.fp.cmd_end_query_indexed)(command_buffer, query_pool, query, index);
+        (self.fp.cmd_end_query_indexed)(command_buffer, query_pool, query, index)
     }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdDrawIndirectByteCountEXT.html) · Device Function
     pub unsafe fn cmd_draw_indirect_byte_count(
@@ -284,7 +284,7 @@ impl Device {
             counter_buffer_offset,
             counter_offset,
             vertex_stride,
-        );
+        )
     }
 }
 pub(crate) mod items {

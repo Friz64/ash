@@ -362,7 +362,7 @@ impl Device {
         command_buffer: vk::CommandBuffer,
         bind_info: &vk::BindHeapInfoEXT<'_>,
     ) {
-        (self.fp.cmd_bind_sampler_heap)(command_buffer, bind_info);
+        (self.fp.cmd_bind_sampler_heap)(command_buffer, bind_info)
     }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdBindResourceHeapEXT.html) · Device Function
     pub unsafe fn cmd_bind_resource_heap(
@@ -370,7 +370,7 @@ impl Device {
         command_buffer: vk::CommandBuffer,
         bind_info: &vk::BindHeapInfoEXT<'_>,
     ) {
-        (self.fp.cmd_bind_resource_heap)(command_buffer, bind_info);
+        (self.fp.cmd_bind_resource_heap)(command_buffer, bind_info)
     }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdPushDataEXT.html) · Device Function
     pub unsafe fn cmd_push_data(
@@ -378,11 +378,11 @@ impl Device {
         command_buffer: vk::CommandBuffer,
         push_data_info: &vk::PushDataInfoEXT<'_>,
     ) {
-        (self.fp.cmd_push_data)(command_buffer, push_data_info);
+        (self.fp.cmd_push_data)(command_buffer, push_data_info)
     }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkUnregisterCustomBorderColorEXT.html) · Device Function
     pub unsafe fn unregister_custom_border_color(&self, index: u32) {
-        (self.fp.unregister_custom_border_color)(self.handle, index);
+        (self.fp.unregister_custom_border_color)(self.handle, index)
     }
 }
 #[derive(Clone)]
@@ -440,8 +440,8 @@ impl Instance {
         &self,
         physical_device: vk::PhysicalDevice,
         descriptor_type: vk::DescriptorType,
-    ) {
-        (self.fp.get_physical_device_descriptor_size)(physical_device, descriptor_type);
+    ) -> vk::DeviceSize {
+        (self.fp.get_physical_device_descriptor_size)(physical_device, descriptor_type)
     }
 }
 pub(crate) mod items {

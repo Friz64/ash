@@ -198,7 +198,7 @@ impl Device {
         collection: vk::BufferCollectionFUCHSIA,
         allocator: &vk::AllocationCallbacks<'_>,
     ) {
-        (self.fp.destroy_buffer_collection)(self.handle, collection, allocator);
+        (self.fp.destroy_buffer_collection)(self.handle, collection, allocator)
     }
 }
 pub(crate) mod items {

@@ -94,7 +94,7 @@ impl Device {
             instance_count,
             first_instance,
             stride,
-        );
+        )
     }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdDrawMultiIndexedEXT.html) · Device Function
     pub unsafe fn cmd_draw_multi_indexed(
@@ -116,7 +116,7 @@ impl Device {
             first_instance,
             stride,
             vertex_offset,
-        );
+        )
     }
 }
 pub(crate) mod items {

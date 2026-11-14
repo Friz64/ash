@@ -395,7 +395,7 @@ impl Device {
         command_buffer: vk::CommandBuffer,
         copy_memory_info: &vk::CopyDeviceMemoryInfoKHR<'_>,
     ) {
-        (self.fp.cmd_copy_memory)(command_buffer, copy_memory_info);
+        (self.fp.cmd_copy_memory)(command_buffer, copy_memory_info)
     }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdCopyMemoryToImageKHR.html) · Device Function
     pub unsafe fn cmd_copy_memory_to_image(
@@ -403,7 +403,7 @@ impl Device {
         command_buffer: vk::CommandBuffer,
         copy_memory_info: &vk::CopyDeviceMemoryImageInfoKHR<'_>,
     ) {
-        (self.fp.cmd_copy_memory_to_image)(command_buffer, copy_memory_info);
+        (self.fp.cmd_copy_memory_to_image)(command_buffer, copy_memory_info)
     }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdCopyImageToMemoryKHR.html) · Device Function
     pub unsafe fn cmd_copy_image_to_memory(
@@ -411,7 +411,7 @@ impl Device {
         command_buffer: vk::CommandBuffer,
         copy_memory_info: &vk::CopyDeviceMemoryImageInfoKHR<'_>,
     ) {
-        (self.fp.cmd_copy_image_to_memory)(command_buffer, copy_memory_info);
+        (self.fp.cmd_copy_image_to_memory)(command_buffer, copy_memory_info)
     }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdUpdateMemoryKHR.html) · Device Function
     pub unsafe fn cmd_update_memory(
@@ -429,7 +429,7 @@ impl Device {
             dst_flags,
             data.len() as _,
             data.as_ptr(),
-        );
+        )
     }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdFillMemoryKHR.html) · Device Function
     pub unsafe fn cmd_fill_memory(
@@ -439,7 +439,7 @@ impl Device {
         dst_flags: vk::AddressCommandFlagsKHR,
         data: u32,
     ) {
-        (self.fp.cmd_fill_memory)(command_buffer, dst_range, dst_flags, data);
+        (self.fp.cmd_fill_memory)(command_buffer, dst_range, dst_flags, data)
     }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdCopyQueryPoolResultsToMemoryKHR.html) · Device Function
     pub unsafe fn cmd_copy_query_pool_results_to_memory(
@@ -462,7 +462,7 @@ impl Device {
             dst_range,
             dst_flags,
             query_result_flags,
-        );
+        )
     }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdBeginConditionalRendering2EXT.html) · Device Function
     pub unsafe fn cmd_begin_conditional_rendering2(
@@ -475,7 +475,7 @@ impl Device {
             .cmd_begin_conditional_rendering2)(
             command_buffer,
             conditional_rendering_begin,
-        );
+        )
     }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdBindTransformFeedbackBuffers2EXT.html) · Device Function
     pub unsafe fn cmd_bind_transform_feedback_buffers2(
@@ -491,7 +491,7 @@ impl Device {
             first_binding,
             binding_infos.len() as _,
             binding_infos.as_ptr(),
-        );
+        )
     }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdBeginTransformFeedback2EXT.html) · Device Function
     pub unsafe fn cmd_begin_transform_feedback2(
@@ -507,7 +507,7 @@ impl Device {
             first_counter_range,
             counter_infos.len() as _,
             counter_infos.as_ptr(),
-        );
+        )
     }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdEndTransformFeedback2EXT.html) · Device Function
     pub unsafe fn cmd_end_transform_feedback2(
@@ -523,7 +523,7 @@ impl Device {
             first_counter_range,
             counter_infos.len() as _,
             counter_infos.as_ptr(),
-        );
+        )
     }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdDrawIndirectByteCount2EXT.html) · Device Function
     pub unsafe fn cmd_draw_indirect_byte_count2(
@@ -544,7 +544,7 @@ impl Device {
             counter_info,
             counter_offset,
             vertex_stride,
-        );
+        )
     }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdWriteMarkerToMemoryAMD.html) · Device Function
     pub unsafe fn cmd_write_marker_to_memory(
@@ -552,7 +552,7 @@ impl Device {
         command_buffer: vk::CommandBuffer,
         info: &vk::MemoryMarkerInfoAMD<'_>,
     ) {
-        (self.fp.cmd_write_marker_to_memory)(command_buffer, info);
+        (self.fp.cmd_write_marker_to_memory)(command_buffer, info)
     }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdBindIndexBuffer3KHR.html) · Device Function
     pub unsafe fn cmd_bind_index_buffer3(
@@ -560,7 +560,7 @@ impl Device {
         command_buffer: vk::CommandBuffer,
         info: &vk::BindIndexBuffer3InfoKHR<'_>,
     ) {
-        (self.fp.cmd_bind_index_buffer3)(command_buffer, info);
+        (self.fp.cmd_bind_index_buffer3)(command_buffer, info)
     }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdBindVertexBuffers3KHR.html) · Device Function
     pub unsafe fn cmd_bind_vertex_buffers3(
@@ -576,7 +576,7 @@ impl Device {
             first_binding,
             binding_infos.len() as _,
             binding_infos.as_ptr(),
-        );
+        )
     }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdDrawIndirect2KHR.html) · Device Function
     pub unsafe fn cmd_draw_indirect2(
@@ -584,7 +584,7 @@ impl Device {
         command_buffer: vk::CommandBuffer,
         info: &vk::DrawIndirect2InfoKHR<'_>,
     ) {
-        (self.fp.cmd_draw_indirect2)(command_buffer, info);
+        (self.fp.cmd_draw_indirect2)(command_buffer, info)
     }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdDrawIndexedIndirect2KHR.html) · Device Function
     pub unsafe fn cmd_draw_indexed_indirect2(
@@ -592,7 +592,7 @@ impl Device {
         command_buffer: vk::CommandBuffer,
         info: &vk::DrawIndirect2InfoKHR<'_>,
     ) {
-        (self.fp.cmd_draw_indexed_indirect2)(command_buffer, info);
+        (self.fp.cmd_draw_indexed_indirect2)(command_buffer, info)
     }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdDrawIndirectCount2KHR.html) · Device Function
     pub unsafe fn cmd_draw_indirect_count2(
@@ -600,7 +600,7 @@ impl Device {
         command_buffer: vk::CommandBuffer,
         info: &vk::DrawIndirectCount2InfoKHR<'_>,
     ) {
-        (self.fp.cmd_draw_indirect_count2)(command_buffer, info);
+        (self.fp.cmd_draw_indirect_count2)(command_buffer, info)
     }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdDrawIndexedIndirectCount2KHR.html) · Device Function
     pub unsafe fn cmd_draw_indexed_indirect_count2(
@@ -608,7 +608,7 @@ impl Device {
         command_buffer: vk::CommandBuffer,
         info: &vk::DrawIndirectCount2InfoKHR<'_>,
     ) {
-        (self.fp.cmd_draw_indexed_indirect_count2)(command_buffer, info);
+        (self.fp.cmd_draw_indexed_indirect_count2)(command_buffer, info)
     }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdDrawMeshTasksIndirect2EXT.html) · Device Function
     pub unsafe fn cmd_draw_mesh_tasks_indirect2(
@@ -616,7 +616,7 @@ impl Device {
         command_buffer: vk::CommandBuffer,
         info: &vk::DrawIndirect2InfoKHR<'_>,
     ) {
-        (self.fp.cmd_draw_mesh_tasks_indirect2)(command_buffer, info);
+        (self.fp.cmd_draw_mesh_tasks_indirect2)(command_buffer, info)
     }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdDrawMeshTasksIndirectCount2EXT.html) · Device Function
     pub unsafe fn cmd_draw_mesh_tasks_indirect_count2(
@@ -624,7 +624,7 @@ impl Device {
         command_buffer: vk::CommandBuffer,
         info: &vk::DrawIndirectCount2InfoKHR<'_>,
     ) {
-        (self.fp.cmd_draw_mesh_tasks_indirect_count2)(command_buffer, info);
+        (self.fp.cmd_draw_mesh_tasks_indirect_count2)(command_buffer, info)
     }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdDispatchIndirect2KHR.html) · Device Function
     pub unsafe fn cmd_dispatch_indirect2(
@@ -632,7 +632,7 @@ impl Device {
         command_buffer: vk::CommandBuffer,
         info: &vk::DispatchIndirect2InfoKHR<'_>,
     ) {
-        (self.fp.cmd_dispatch_indirect2)(command_buffer, info);
+        (self.fp.cmd_dispatch_indirect2)(command_buffer, info)
     }
 }
 pub(crate) mod items {

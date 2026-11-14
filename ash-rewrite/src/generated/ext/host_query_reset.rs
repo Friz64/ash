@@ -64,7 +64,7 @@ impl Device {
         first_query: u32,
         query_count: u32,
     ) {
-        (self.fp.reset_query_pool)(self.handle, query_pool, first_query, query_count);
+        (self.fp.reset_query_pool)(self.handle, query_pool, first_query, query_count)
     }
 }
 pub(crate) mod items {

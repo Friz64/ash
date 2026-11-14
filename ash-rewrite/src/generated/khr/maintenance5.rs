@@ -370,7 +370,7 @@ impl Device {
     ) {
         (self
             .fp
-            .cmd_bind_index_buffer2)(command_buffer, buffer, offset, size, index_type);
+            .cmd_bind_index_buffer2)(command_buffer, buffer, offset, size, index_type)
     }
 }
 pub(crate) mod items {

@@ -92,7 +92,7 @@ impl Device {
         external_queue: vk::ExternalComputeQueueNV,
         allocator: &vk::AllocationCallbacks<'_>,
     ) {
-        (self.fp.destroy_external_compute_queue)(self.handle, external_queue, allocator);
+        (self.fp.destroy_external_compute_queue)(self.handle, external_queue, allocator)
     }
 }
 #[derive(Clone)]

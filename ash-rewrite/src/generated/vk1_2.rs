@@ -480,7 +480,7 @@ impl crate::Device {
     ) {
         (self
             .device_fn_1_2
-            .reset_query_pool)(self.handle, query_pool, first_query, query_count);
+            .reset_query_pool)(self.handle, query_pool, first_query, query_count)
     }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdBeginRenderPass2.html) · Device Function
     pub unsafe fn cmd_begin_render_pass2(
@@ -495,7 +495,7 @@ impl crate::Device {
             command_buffer,
             render_pass_begin,
             subpass_begin_info,
-        );
+        )
     }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdNextSubpass2.html) · Device Function
     pub unsafe fn cmd_next_subpass2(
@@ -506,7 +506,7 @@ impl crate::Device {
     ) {
         (self
             .device_fn_1_2
-            .cmd_next_subpass2)(command_buffer, subpass_begin_info, subpass_end_info);
+            .cmd_next_subpass2)(command_buffer, subpass_begin_info, subpass_end_info)
     }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdEndRenderPass2.html) · Device Function
     pub unsafe fn cmd_end_render_pass2(
@@ -514,7 +514,7 @@ impl crate::Device {
         command_buffer: vk::CommandBuffer,
         subpass_end_info: &vk::SubpassEndInfo<'_>,
     ) {
-        (self.device_fn_1_2.cmd_end_render_pass2)(command_buffer, subpass_end_info);
+        (self.device_fn_1_2.cmd_end_render_pass2)(command_buffer, subpass_end_info)
     }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkWaitSemaphores.html) · Device Function
     pub unsafe fn wait_semaphores(
@@ -552,7 +552,7 @@ impl crate::Device {
             count_buffer_offset,
             max_draw_count,
             stride,
-        );
+        )
     }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdDrawIndexedIndirectCount.html) · Device Function
     pub unsafe fn cmd_draw_indexed_indirect_count(
@@ -575,28 +575,28 @@ impl crate::Device {
             count_buffer_offset,
             max_draw_count,
             stride,
-        );
+        )
     }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkGetBufferOpaqueCaptureAddress.html) · Device Function
     pub unsafe fn get_buffer_opaque_capture_address(
         &self,
         info: &vk::BufferDeviceAddressInfo<'_>,
-    ) {
-        (self.device_fn_1_2.get_buffer_opaque_capture_address)(self.handle, info);
+    ) -> u64 {
+        (self.device_fn_1_2.get_buffer_opaque_capture_address)(self.handle, info)
     }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkGetBufferDeviceAddress.html) · Device Function
     pub unsafe fn get_buffer_device_address(
         &self,
         info: &vk::BufferDeviceAddressInfo<'_>,
-    ) {
-        (self.device_fn_1_2.get_buffer_device_address)(self.handle, info);
+    ) -> vk::DeviceAddress {
+        (self.device_fn_1_2.get_buffer_device_address)(self.handle, info)
     }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkGetDeviceMemoryOpaqueCaptureAddress.html) · Device Function
     pub unsafe fn get_device_memory_opaque_capture_address(
         &self,
         info: &vk::DeviceMemoryOpaqueCaptureAddressInfo<'_>,
-    ) {
-        (self.device_fn_1_2.get_device_memory_opaque_capture_address)(self.handle, info);
+    ) -> u64 {
+        (self.device_fn_1_2.get_device_memory_opaque_capture_address)(self.handle, info)
     }
 }
 pub(crate) mod items {

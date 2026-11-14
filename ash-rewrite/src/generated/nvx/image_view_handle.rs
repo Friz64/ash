@@ -96,26 +96,32 @@ impl Device {
         self.handle
     }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkGetImageViewHandleNVX.html) · Device Function
-    pub unsafe fn get_image_view_handle(&self, info: &vk::ImageViewHandleInfoNVX<'_>) {
-        (self.fp.get_image_view_handle)(self.handle, info);
+    pub unsafe fn get_image_view_handle(
+        &self,
+        info: &vk::ImageViewHandleInfoNVX<'_>,
+    ) -> u32 {
+        (self.fp.get_image_view_handle)(self.handle, info)
     }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkGetImageViewHandle64NVX.html) · Device Function
-    pub unsafe fn get_image_view_handle64(&self, info: &vk::ImageViewHandleInfoNVX<'_>) {
-        (self.fp.get_image_view_handle64)(self.handle, info);
+    pub unsafe fn get_image_view_handle64(
+        &self,
+        info: &vk::ImageViewHandleInfoNVX<'_>,
+    ) -> u64 {
+        (self.fp.get_image_view_handle64)(self.handle, info)
     }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkGetDeviceCombinedImageSamplerIndexNVX.html) · Device Function
     pub unsafe fn get_device_combined_image_sampler_index(
         &self,
         image_view_index: u64,
         sampler_index: u64,
-    ) {
+    ) -> u64 {
         (self
             .fp
             .get_device_combined_image_sampler_index)(
             self.handle,
             image_view_index,
             sampler_index,
-        );
+        )
     }
 }
 pub(crate) mod items {

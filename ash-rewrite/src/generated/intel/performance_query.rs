@@ -206,7 +206,7 @@ impl Device {
     }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkUninitializePerformanceApiINTEL.html) · Device Function
     pub unsafe fn uninitialize_performance_api(&self) {
-        (self.fp.uninitialize_performance_api)(self.handle);
+        (self.fp.uninitialize_performance_api)(self.handle)
     }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdSetPerformanceMarkerINTEL.html) · Device Function
     pub unsafe fn cmd_set_performance_marker(

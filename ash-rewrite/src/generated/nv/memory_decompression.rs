@@ -86,7 +86,7 @@ impl Device {
             command_buffer,
             decompress_memory_regions.len() as _,
             decompress_memory_regions.as_ptr(),
-        );
+        )
     }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdDecompressMemoryIndirectCountNV.html) · Device Function
     pub unsafe fn cmd_decompress_memory_indirect_count(
@@ -103,7 +103,7 @@ impl Device {
             indirect_commands_address,
             indirect_commands_count_address,
             stride,
-        );
+        )
     }
 }
 pub(crate) mod items {

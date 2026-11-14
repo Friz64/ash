@@ -303,7 +303,7 @@ impl Device {
         tensor: vk::TensorARM,
         allocator: &vk::AllocationCallbacks<'_>,
     ) {
-        (self.fp.destroy_tensor)(self.handle, tensor, allocator);
+        (self.fp.destroy_tensor)(self.handle, tensor, allocator)
     }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkDestroyTensorViewARM.html) · Device Function
     pub unsafe fn destroy_tensor_view(
@@ -311,7 +311,7 @@ impl Device {
         tensor_view: vk::TensorViewARM,
         allocator: &vk::AllocationCallbacks<'_>,
     ) {
-        (self.fp.destroy_tensor_view)(self.handle, tensor_view, allocator);
+        (self.fp.destroy_tensor_view)(self.handle, tensor_view, allocator)
     }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkBindTensorMemoryARM.html) · Device Function
     pub unsafe fn bind_tensor_memory(
@@ -329,7 +329,7 @@ impl Device {
         command_buffer: vk::CommandBuffer,
         copy_tensor_info: &vk::CopyTensorInfoARM<'_>,
     ) {
-        (self.fp.cmd_copy_tensor)(command_buffer, copy_tensor_info);
+        (self.fp.cmd_copy_tensor)(command_buffer, copy_tensor_info)
     }
 }
 #[derive(Clone)]

@@ -17,10 +17,10 @@ use analysis::{
     rust::{Lifetime, RustTokens},
 };
 use heck::{ToShoutySnekCase, ToSnekCase};
-use proc_macro2::TokenStream;
+use proc_macro2::{Group, TokenStream, TokenTree};
 use quote::{format_ident, quote};
 use regex::Regex;
-use std::{borrow::Cow, fmt::Display, io, ops::Deref, path::Path, sync::LazyLock};
+use std::{borrow::Cow, fmt::Display, io, mem, ops::Deref, path::Path, sync::LazyLock};
 use syn::Ident;
 use tracing::debug;
 
@@ -270,10 +270,26 @@ struct Function {
     pub safety: Safety,
     /// To be used in place of a default name
     pub name_override: Option<Ident>,
+    /// e.g. `<T: vk::Handle>` or empty
+    pub generics: TokenStream,
     /// e.g. `&self, a: i32`
     pub inputs: TokenStream,
     /// e.g. `-> i32` or empty
     pub output: TokenStream,
     /// e.g. `let b = a + 64; b`
     pub content: TokenStream,
+}
+
+fn replace_ident(tokens: TokenStream, from: &Ident, to: &Ident) -> TokenStream {
+    tokens
+        .into_iter()
+        .map(|tree| match tree {
+            TokenTree::Ident(ident) if &ident == from => TokenTree::Ident(to.clone()),
+            TokenTree::Group(group) => {
+                let new_tokens = replace_ident(group.stream(), from, to);
+                TokenTree::Group(Group::new(group.delimiter(), new_tokens))
+            }
+            other => other,
+        })
+        .collect()
 }

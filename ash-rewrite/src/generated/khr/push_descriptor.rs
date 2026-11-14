@@ -109,7 +109,7 @@ impl Device {
             set,
             descriptor_writes.len() as _,
             descriptor_writes.as_ptr(),
-        );
+        )
     }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdPushDescriptorSetWithTemplate.html) · Device Function
     pub unsafe fn cmd_push_descriptor_set_with_template(
@@ -128,7 +128,7 @@ impl Device {
             layout,
             set,
             data,
-        );
+        )
     }
 }
 pub(crate) mod items {

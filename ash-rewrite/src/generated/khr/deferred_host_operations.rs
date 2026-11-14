@@ -122,14 +122,14 @@ impl Device {
         operation: vk::DeferredOperationKHR,
         allocator: &vk::AllocationCallbacks<'_>,
     ) {
-        (self.fp.destroy_deferred_operation)(self.handle, operation, allocator);
+        (self.fp.destroy_deferred_operation)(self.handle, operation, allocator)
     }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkGetDeferredOperationMaxConcurrencyKHR.html) · Device Function
     pub unsafe fn get_deferred_operation_max_concurrency(
         &self,
         operation: vk::DeferredOperationKHR,
-    ) {
-        (self.fp.get_deferred_operation_max_concurrency)(self.handle, operation);
+    ) -> u32 {
+        (self.fp.get_deferred_operation_max_concurrency)(self.handle, operation)
     }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkGetDeferredOperationResultKHR.html) · Device Function
     pub unsafe fn get_deferred_operation_result(

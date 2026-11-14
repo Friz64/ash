@@ -158,7 +158,7 @@ impl Device {
     ) {
         (self
             .fp
-            .cmd_set_fragment_shading_rate)(command_buffer, fragment_size, combiner_ops);
+            .cmd_set_fragment_shading_rate)(command_buffer, fragment_size, combiner_ops)
     }
 }
 #[derive(Clone)]

@@ -214,7 +214,7 @@ impl Device {
         command_buffer: vk::CommandBuffer,
         cull_mode: vk::CullModeFlags,
     ) {
-        (self.fp.cmd_set_cull_mode)(command_buffer, cull_mode);
+        (self.fp.cmd_set_cull_mode)(command_buffer, cull_mode)
     }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdSetFrontFace.html) · Device Function
     pub unsafe fn cmd_set_front_face(
@@ -222,7 +222,7 @@ impl Device {
         command_buffer: vk::CommandBuffer,
         front_face: vk::FrontFace,
     ) {
-        (self.fp.cmd_set_front_face)(command_buffer, front_face);
+        (self.fp.cmd_set_front_face)(command_buffer, front_face)
     }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdSetPrimitiveTopology.html) · Device Function
     pub unsafe fn cmd_set_primitive_topology(
@@ -230,7 +230,7 @@ impl Device {
         command_buffer: vk::CommandBuffer,
         primitive_topology: vk::PrimitiveTopology,
     ) {
-        (self.fp.cmd_set_primitive_topology)(command_buffer, primitive_topology);
+        (self.fp.cmd_set_primitive_topology)(command_buffer, primitive_topology)
     }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdSetViewportWithCount.html) · Device Function
     pub unsafe fn cmd_set_viewport_with_count(
@@ -244,7 +244,7 @@ impl Device {
             command_buffer,
             viewports.len() as _,
             viewports.as_ptr(),
-        );
+        )
     }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdSetScissorWithCount.html) · Device Function
     pub unsafe fn cmd_set_scissor_with_count(
@@ -258,7 +258,7 @@ impl Device {
             command_buffer,
             scissors.len() as _,
             scissors.as_ptr(),
-        );
+        )
     }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdBindVertexBuffers2.html) · Device Function
     pub unsafe fn cmd_bind_vertex_buffers2(
@@ -280,7 +280,7 @@ impl Device {
             offsets.as_ptr(),
             sizes.as_ptr(),
             strides.as_ptr(),
-        );
+        )
     }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdSetDepthTestEnable.html) · Device Function
     pub unsafe fn cmd_set_depth_test_enable(
@@ -288,7 +288,7 @@ impl Device {
         command_buffer: vk::CommandBuffer,
         depth_test_enable: bool,
     ) {
-        (self.fp.cmd_set_depth_test_enable)(command_buffer, depth_test_enable as _);
+        (self.fp.cmd_set_depth_test_enable)(command_buffer, depth_test_enable as _)
     }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdSetDepthWriteEnable.html) · Device Function
     pub unsafe fn cmd_set_depth_write_enable(
@@ -296,7 +296,7 @@ impl Device {
         command_buffer: vk::CommandBuffer,
         depth_write_enable: bool,
     ) {
-        (self.fp.cmd_set_depth_write_enable)(command_buffer, depth_write_enable as _);
+        (self.fp.cmd_set_depth_write_enable)(command_buffer, depth_write_enable as _)
     }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdSetDepthCompareOp.html) · Device Function
     pub unsafe fn cmd_set_depth_compare_op(
@@ -304,7 +304,7 @@ impl Device {
         command_buffer: vk::CommandBuffer,
         depth_compare_op: vk::CompareOp,
     ) {
-        (self.fp.cmd_set_depth_compare_op)(command_buffer, depth_compare_op);
+        (self.fp.cmd_set_depth_compare_op)(command_buffer, depth_compare_op)
     }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdSetDepthBoundsTestEnable.html) · Device Function
     pub unsafe fn cmd_set_depth_bounds_test_enable(
@@ -317,7 +317,7 @@ impl Device {
             .cmd_set_depth_bounds_test_enable)(
             command_buffer,
             depth_bounds_test_enable as _,
-        );
+        )
     }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdSetStencilTestEnable.html) · Device Function
     pub unsafe fn cmd_set_stencil_test_enable(
@@ -325,7 +325,7 @@ impl Device {
         command_buffer: vk::CommandBuffer,
         stencil_test_enable: bool,
     ) {
-        (self.fp.cmd_set_stencil_test_enable)(command_buffer, stencil_test_enable as _);
+        (self.fp.cmd_set_stencil_test_enable)(command_buffer, stencil_test_enable as _)
     }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdSetStencilOp.html) · Device Function
     pub unsafe fn cmd_set_stencil_op(
@@ -346,7 +346,7 @@ impl Device {
             pass_op,
             depth_fail_op,
             compare_op,
-        );
+        )
     }
 }
 pub(crate) mod items {

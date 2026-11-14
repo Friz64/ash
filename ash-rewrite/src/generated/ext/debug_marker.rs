@@ -118,11 +118,11 @@ impl Device {
         command_buffer: vk::CommandBuffer,
         marker_info: &vk::DebugMarkerMarkerInfoEXT<'_>,
     ) {
-        (self.fp.cmd_debug_marker_begin)(command_buffer, marker_info);
+        (self.fp.cmd_debug_marker_begin)(command_buffer, marker_info)
     }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdDebugMarkerEndEXT.html) · Device Function
     pub unsafe fn cmd_debug_marker_end(&self, command_buffer: vk::CommandBuffer) {
-        (self.fp.cmd_debug_marker_end)(command_buffer);
+        (self.fp.cmd_debug_marker_end)(command_buffer)
     }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdDebugMarkerInsertEXT.html) · Device Function
     pub unsafe fn cmd_debug_marker_insert(
@@ -130,7 +130,7 @@ impl Device {
         command_buffer: vk::CommandBuffer,
         marker_info: &vk::DebugMarkerMarkerInfoEXT<'_>,
     ) {
-        (self.fp.cmd_debug_marker_insert)(command_buffer, marker_info);
+        (self.fp.cmd_debug_marker_insert)(command_buffer, marker_info)
     }
 }
 pub(crate) mod items {

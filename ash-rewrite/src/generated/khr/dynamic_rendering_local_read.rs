@@ -86,7 +86,7 @@ impl Device {
         command_buffer: vk::CommandBuffer,
         location_info: &vk::RenderingAttachmentLocationInfo<'_>,
     ) {
-        (self.fp.cmd_set_rendering_attachment_locations)(command_buffer, location_info);
+        (self.fp.cmd_set_rendering_attachment_locations)(command_buffer, location_info)
     }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdSetRenderingInputAttachmentIndices.html) · Device Function
     pub unsafe fn cmd_set_rendering_input_attachment_indices(
@@ -99,7 +99,7 @@ impl Device {
             .cmd_set_rendering_input_attachment_indices)(
             command_buffer,
             input_attachment_index_info,
-        );
+        )
     }
 }
 pub(crate) mod items {

@@ -96,7 +96,7 @@ impl Device {
             first_exclusive_scissor,
             exclusive_scissors.len() as _,
             exclusive_scissors.as_ptr(),
-        );
+        )
     }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdSetExclusiveScissorEnableNV.html) · Device Function
     pub unsafe fn cmd_set_exclusive_scissor_enable(
@@ -112,7 +112,7 @@ impl Device {
             first_exclusive_scissor,
             exclusive_scissor_enables.len() as _,
             exclusive_scissor_enables.as_ptr(),
-        );
+        )
     }
 }
 pub(crate) mod items {

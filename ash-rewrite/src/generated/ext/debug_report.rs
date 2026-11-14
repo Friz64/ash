@@ -159,7 +159,7 @@ impl Instance {
         callback: vk::DebugReportCallbackEXT,
         allocator: &vk::AllocationCallbacks<'_>,
     ) {
-        (self.fp.destroy_debug_report_callback)(self.handle, callback, allocator);
+        (self.fp.destroy_debug_report_callback)(self.handle, callback, allocator)
     }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkDebugReportMessageEXT.html) · Instance Function
     pub unsafe fn debug_report_message(
@@ -183,7 +183,7 @@ impl Instance {
             message_code,
             layer_prefix.map_or(ptr::null(), |s| s.as_ptr()),
             message.map_or(ptr::null(), |s| s.as_ptr()),
-        );
+        )
     }
 }
 pub(crate) mod items {

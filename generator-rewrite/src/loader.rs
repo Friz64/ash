@@ -124,7 +124,7 @@ pub fn generate_code(ctx: &Context, codemap: &mut CodeMap) {
             });
 
             let methods = ctx.wrapper_rules.get(resolved_name).map_or_else(
-                || itertools::Either::Left(wrapper(&octx, command, &table_field, &wrapper_name)),
+                || itertools::Either::Left(wrapper(&octx, command, &wrapper_name)),
                 itertools::Either::Right,
             );
 
@@ -133,6 +133,7 @@ pub fn generate_code(ctx: &Context, codemap: &mut CodeMap) {
                      attributes,
                      safety,
                      name_override,
+                     generics,
                      inputs,
                      output,
                      content,
@@ -152,10 +153,16 @@ pub fn generate_code(ctx: &Context, codemap: &mut CodeMap) {
                     let name = name_override.as_ref().unwrap_or(&wrapper_name);
                     let manual_page =
                         crate::manual_page_doc_comment(command.name.original(), description);
+                    let content = crate::replace_ident(
+                        content.clone(),
+                        &format_ident!("__table"),
+                        &table_field,
+                    );
+
                     quote! {
                         #[doc = #manual_page]
                         #attributes
-                        pub #safety fn #name(#inputs) #output { #content }
+                        pub #safety fn #name #generics(#inputs) #output { #content }
                     }
                 },
             );
@@ -517,12 +524,7 @@ impl WrapperCallArg {
     }
 }
 
-fn wrapper(
-    octx: &OutputContext,
-    command: &Command,
-    table_field: &Ident,
-    name: &Ident,
-) -> Vec<Function> {
+fn wrapper(octx: &OutputContext, command: &Command, name: &Ident) -> Vec<Function> {
     let wrapper_output = WrapperOutput::new(&octx.ctx(), command);
 
     let call_args: Vec<_> = command
@@ -541,7 +543,7 @@ fn wrapper(
     let inputs = quote! { &self, #( #param_code ),* };
 
     let arg_code = call_args.iter().map(|param| &param.value);
-    let call = quote! { (self.#table_field.#name)( #( #arg_code ),* ) };
+    let call = quote! { (self.__table.#name)( #( #arg_code ),* ) };
 
     match wrapper_output.params.as_slice() {
         [] => {
@@ -549,13 +551,16 @@ fn wrapper(
                 inputs,
                 output: if wrapper_output.result {
                     quote! { -> VkResult<()> }
+                } else if let Some(return_ty) = &command.return_type {
+                    let return_ty = return_ty.to_rust().tokens(octx, None);
+                    quote! { -> #return_ty }
                 } else {
                     quote! {}
                 },
                 content: if wrapper_output.result {
                     quote! { #call.result() }
                 } else {
-                    quote! { #call; }
+                    quote! { #call }
                 },
                 ..Default::default()
             }]

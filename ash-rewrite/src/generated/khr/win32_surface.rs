@@ -79,13 +79,13 @@ impl Instance {
         &self,
         physical_device: vk::PhysicalDevice,
         queue_family_index: u32,
-    ) {
+    ) -> vk::Bool32 {
         (self
             .fp
             .get_physical_device_win32_presentation_support)(
             physical_device,
             queue_family_index,
-        );
+        )
     }
 }
 pub(crate) mod items {

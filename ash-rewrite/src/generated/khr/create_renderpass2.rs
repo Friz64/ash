@@ -111,7 +111,7 @@ impl Device {
             command_buffer,
             render_pass_begin,
             subpass_begin_info,
-        );
+        )
     }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdNextSubpass2.html) · Device Function
     pub unsafe fn cmd_next_subpass2(
@@ -120,9 +120,7 @@ impl Device {
         subpass_begin_info: &vk::SubpassBeginInfo<'_>,
         subpass_end_info: &vk::SubpassEndInfo<'_>,
     ) {
-        (self
-            .fp
-            .cmd_next_subpass2)(command_buffer, subpass_begin_info, subpass_end_info);
+        (self.fp.cmd_next_subpass2)(command_buffer, subpass_begin_info, subpass_end_info)
     }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdEndRenderPass2.html) · Device Function
     pub unsafe fn cmd_end_render_pass2(
@@ -130,7 +128,7 @@ impl Device {
         command_buffer: vk::CommandBuffer,
         subpass_end_info: &vk::SubpassEndInfo<'_>,
     ) {
-        (self.fp.cmd_end_render_pass2)(command_buffer, subpass_end_info);
+        (self.fp.cmd_end_render_pass2)(command_buffer, subpass_end_info)
     }
 }
 pub(crate) mod items {

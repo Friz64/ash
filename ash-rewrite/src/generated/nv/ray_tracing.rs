@@ -463,7 +463,7 @@ impl Device {
             self.handle,
             acceleration_structure,
             allocator,
-        );
+        )
     }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkBindAccelerationStructureMemoryNV.html) · Device Function
     pub unsafe fn bind_acceleration_structure_memory(
@@ -487,7 +487,7 @@ impl Device {
         src: vk::AccelerationStructureNV,
         mode: vk::CopyAccelerationStructureModeKHR,
     ) {
-        (self.fp.cmd_copy_acceleration_structure)(command_buffer, dst, src, mode);
+        (self.fp.cmd_copy_acceleration_structure)(command_buffer, dst, src, mode)
     }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdWriteAccelerationStructuresPropertiesNV.html) · Device Function
     pub unsafe fn cmd_write_acceleration_structures_properties(
@@ -507,7 +507,7 @@ impl Device {
             query_type,
             query_pool,
             first_query,
-        );
+        )
     }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdBuildAccelerationStructureNV.html) · Device Function
     pub unsafe fn cmd_build_acceleration_structure(
@@ -534,7 +534,7 @@ impl Device {
             src,
             scratch,
             scratch_offset,
-        );
+        )
     }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdTraceRaysNV.html) · Device Function
     pub unsafe fn cmd_trace_rays(
@@ -573,7 +573,7 @@ impl Device {
             width,
             height,
             depth,
-        );
+        )
     }
 }
 pub(crate) mod items {

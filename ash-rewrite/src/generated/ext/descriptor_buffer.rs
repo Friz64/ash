@@ -356,7 +356,7 @@ impl Device {
             command_buffer,
             binding_infos.len() as _,
             binding_infos.as_ptr(),
-        );
+        )
     }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdSetDescriptorBufferOffsetsEXT.html) · Device Function
     pub unsafe fn cmd_set_descriptor_buffer_offsets(
@@ -378,7 +378,7 @@ impl Device {
             buffer_indices.len() as _,
             buffer_indices.as_ptr(),
             offsets.as_ptr(),
-        );
+        )
     }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdBindDescriptorBufferEmbeddedSamplersEXT.html) · Device Function
     pub unsafe fn cmd_bind_descriptor_buffer_embedded_samplers(
@@ -395,7 +395,7 @@ impl Device {
             pipeline_bind_point,
             layout,
             set,
-        );
+        )
     }
 }
 pub(crate) mod items {

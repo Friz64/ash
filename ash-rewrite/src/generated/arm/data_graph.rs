@@ -344,7 +344,7 @@ impl Device {
         session: vk::DataGraphPipelineSessionARM,
         allocator: &vk::AllocationCallbacks<'_>,
     ) {
-        (self.fp.destroy_data_graph_pipeline_session)(self.handle, session, allocator);
+        (self.fp.destroy_data_graph_pipeline_session)(self.handle, session, allocator)
     }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdDispatchDataGraphARM.html) · Device Function
     pub unsafe fn cmd_dispatch_data_graph(
@@ -353,7 +353,7 @@ impl Device {
         session: vk::DataGraphPipelineSessionARM,
         info: &vk::DataGraphPipelineDispatchInfoARM<'_>,
     ) {
-        (self.fp.cmd_dispatch_data_graph)(command_buffer, session, info);
+        (self.fp.cmd_dispatch_data_graph)(command_buffer, session, info)
     }
 }
 #[derive(Clone)]

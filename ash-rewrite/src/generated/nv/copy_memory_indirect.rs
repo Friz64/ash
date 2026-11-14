@@ -93,7 +93,7 @@ impl Device {
             copy_buffer_address,
             copy_count,
             stride,
-        );
+        )
     }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdCopyMemoryToImageIndirectNV.html) · Device Function
     pub unsafe fn cmd_copy_memory_to_image_indirect(
@@ -115,7 +115,7 @@ impl Device {
             dst_image,
             dst_image_layout,
             image_subresources.as_ptr(),
-        );
+        )
     }
 }
 pub(crate) mod items {

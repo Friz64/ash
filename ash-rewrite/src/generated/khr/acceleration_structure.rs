@@ -532,7 +532,7 @@ impl Device {
             self.handle,
             acceleration_structure,
             allocator,
-        );
+        )
     }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdCopyAccelerationStructureKHR.html) · Device Function
     pub unsafe fn cmd_copy_acceleration_structure(
@@ -540,7 +540,7 @@ impl Device {
         command_buffer: vk::CommandBuffer,
         info: &vk::CopyAccelerationStructureInfoKHR<'_>,
     ) {
-        (self.fp.cmd_copy_acceleration_structure)(command_buffer, info);
+        (self.fp.cmd_copy_acceleration_structure)(command_buffer, info)
     }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCopyAccelerationStructureKHR.html) · Device Function
     pub unsafe fn copy_acceleration_structure(
@@ -557,7 +557,7 @@ impl Device {
         command_buffer: vk::CommandBuffer,
         info: &vk::CopyAccelerationStructureToMemoryInfoKHR<'_>,
     ) {
-        (self.fp.cmd_copy_acceleration_structure_to_memory)(command_buffer, info);
+        (self.fp.cmd_copy_acceleration_structure_to_memory)(command_buffer, info)
     }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCopyAccelerationStructureToMemoryKHR.html) · Device Function
     pub unsafe fn copy_acceleration_structure_to_memory(
@@ -580,7 +580,7 @@ impl Device {
         command_buffer: vk::CommandBuffer,
         info: &vk::CopyMemoryToAccelerationStructureInfoKHR<'_>,
     ) {
-        (self.fp.cmd_copy_memory_to_acceleration_structure)(command_buffer, info);
+        (self.fp.cmd_copy_memory_to_acceleration_structure)(command_buffer, info)
     }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCopyMemoryToAccelerationStructureKHR.html) · Device Function
     pub unsafe fn copy_memory_to_acceleration_structure(
@@ -615,7 +615,7 @@ impl Device {
             query_type,
             query_pool,
             first_query,
-        );
+        )
     }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdBuildAccelerationStructuresKHR.html) · Device Function
     pub unsafe fn cmd_build_acceleration_structures(
@@ -704,8 +704,8 @@ impl Device {
     pub unsafe fn get_acceleration_structure_device_address(
         &self,
         info: &vk::AccelerationStructureDeviceAddressInfoKHR<'_>,
-    ) {
-        (self.fp.get_acceleration_structure_device_address)(self.handle, info);
+    ) -> vk::DeviceAddress {
+        (self.fp.get_acceleration_structure_device_address)(self.handle, info)
     }
 }
 pub(crate) mod items {

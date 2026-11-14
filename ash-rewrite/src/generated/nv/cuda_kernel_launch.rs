@@ -139,7 +139,7 @@ impl Device {
         module: vk::CudaModuleNV,
         allocator: &vk::AllocationCallbacks<'_>,
     ) {
-        (self.fp.destroy_cuda_module)(self.handle, module, allocator);
+        (self.fp.destroy_cuda_module)(self.handle, module, allocator)
     }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkDestroyCudaFunctionNV.html) · Device Function
     pub unsafe fn destroy_cuda_function(
@@ -147,7 +147,7 @@ impl Device {
         function: vk::CudaFunctionNV,
         allocator: &vk::AllocationCallbacks<'_>,
     ) {
-        (self.fp.destroy_cuda_function)(self.handle, function, allocator);
+        (self.fp.destroy_cuda_function)(self.handle, function, allocator)
     }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdCudaLaunchKernelNV.html) · Device Function
     pub unsafe fn cmd_cuda_launch_kernel(
@@ -155,7 +155,7 @@ impl Device {
         command_buffer: vk::CommandBuffer,
         launch_info: &vk::CudaLaunchInfoNV<'_>,
     ) {
-        (self.fp.cmd_cuda_launch_kernel)(command_buffer, launch_info);
+        (self.fp.cmd_cuda_launch_kernel)(command_buffer, launch_info)
     }
 }
 pub(crate) mod items {

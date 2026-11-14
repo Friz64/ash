@@ -70,7 +70,7 @@ impl Device {
             swapchains.len() as _,
             swapchains.as_ptr(),
             metadata.as_ptr(),
-        );
+        )
     }
 }
 pub(crate) mod items {

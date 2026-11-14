@@ -69,7 +69,7 @@ impl Device {
         command_buffer: vk::CommandBuffer,
         depth_bias_info: &vk::DepthBiasInfoEXT<'_>,
     ) {
-        (self.fp.cmd_set_depth_bias2)(command_buffer, depth_bias_info);
+        (self.fp.cmd_set_depth_bias2)(command_buffer, depth_bias_info)
     }
 }
 pub(crate) mod items {

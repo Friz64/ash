@@ -67,7 +67,7 @@ impl Device {
         swap_chain: vk::SwapchainKHR,
         local_dimming_enable: bool,
     ) {
-        (self.fp.set_local_dimming)(self.handle, swap_chain, local_dimming_enable as _);
+        (self.fp.set_local_dimming)(self.handle, swap_chain, local_dimming_enable as _)
     }
 }
 pub(crate) mod items {

@@ -143,7 +143,7 @@ impl Device {
             .cmd_set_descriptor_buffer_offsets2)(
             command_buffer,
             set_descriptor_buffer_offsets_info,
-        );
+        )
     }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdBindDescriptorBufferEmbeddedSamplers2EXT.html) · Device Function
     pub unsafe fn cmd_bind_descriptor_buffer_embedded_samplers2(
@@ -158,7 +158,7 @@ impl Device {
             .cmd_bind_descriptor_buffer_embedded_samplers2)(
             command_buffer,
             bind_descriptor_buffer_embedded_samplers_info,
-        );
+        )
     }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdBindDescriptorSets2.html) · Device Function
     pub unsafe fn cmd_bind_descriptor_sets2(
@@ -166,7 +166,7 @@ impl Device {
         command_buffer: vk::CommandBuffer,
         bind_descriptor_sets_info: &vk::BindDescriptorSetsInfo<'_>,
     ) {
-        (self.fp.cmd_bind_descriptor_sets2)(command_buffer, bind_descriptor_sets_info);
+        (self.fp.cmd_bind_descriptor_sets2)(command_buffer, bind_descriptor_sets_info)
     }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdPushConstants2.html) · Device Function
     pub unsafe fn cmd_push_constants2(
@@ -174,7 +174,7 @@ impl Device {
         command_buffer: vk::CommandBuffer,
         push_constants_info: &vk::PushConstantsInfo<'_>,
     ) {
-        (self.fp.cmd_push_constants2)(command_buffer, push_constants_info);
+        (self.fp.cmd_push_constants2)(command_buffer, push_constants_info)
     }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdPushDescriptorSet2.html) · Device Function
     pub unsafe fn cmd_push_descriptor_set2(
@@ -182,7 +182,7 @@ impl Device {
         command_buffer: vk::CommandBuffer,
         push_descriptor_set_info: &vk::PushDescriptorSetInfo<'_>,
     ) {
-        (self.fp.cmd_push_descriptor_set2)(command_buffer, push_descriptor_set_info);
+        (self.fp.cmd_push_descriptor_set2)(command_buffer, push_descriptor_set_info)
     }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdPushDescriptorSetWithTemplate2.html) · Device Function
     pub unsafe fn cmd_push_descriptor_set_with_template2(
@@ -197,7 +197,7 @@ impl Device {
             .cmd_push_descriptor_set_with_template2)(
             command_buffer,
             push_descriptor_set_with_template_info,
-        );
+        )
     }
 }
 pub(crate) mod items {

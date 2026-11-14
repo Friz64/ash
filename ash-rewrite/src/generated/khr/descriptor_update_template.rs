@@ -136,7 +136,7 @@ impl Device {
             self.handle,
             descriptor_update_template,
             allocator,
-        );
+        )
     }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkUpdateDescriptorSetWithTemplate.html) · Device Function
     pub unsafe fn update_descriptor_set_with_template(
@@ -152,7 +152,7 @@ impl Device {
             descriptor_set,
             descriptor_update_template,
             data,
-        );
+        )
     }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdPushDescriptorSetWithTemplate.html) · Device Function
     pub unsafe fn cmd_push_descriptor_set_with_template(
@@ -171,7 +171,7 @@ impl Device {
             layout,
             set,
             data,
-        );
+        )
     }
 }
 pub(crate) mod items {

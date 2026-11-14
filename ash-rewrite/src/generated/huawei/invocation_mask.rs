@@ -93,7 +93,7 @@ impl Device {
         image_view: vk::ImageView,
         image_layout: vk::ImageLayout,
     ) {
-        (self.fp.cmd_bind_invocation_mask)(command_buffer, image_view, image_layout);
+        (self.fp.cmd_bind_invocation_mask)(command_buffer, image_view, image_layout)
     }
 }
 pub(crate) mod items {

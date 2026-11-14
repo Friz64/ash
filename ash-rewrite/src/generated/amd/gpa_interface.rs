@@ -298,7 +298,7 @@ impl Device {
         gpa_session: vk::GpaSessionAMD,
         allocator: &vk::AllocationCallbacks<'_>,
     ) {
-        (self.fp.destroy_gpa_session)(self.handle, gpa_session, allocator);
+        (self.fp.destroy_gpa_session)(self.handle, gpa_session, allocator)
     }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdBeginGpaSessionAMD.html) · Device Function
     pub unsafe fn cmd_begin_gpa_session(
@@ -323,7 +323,7 @@ impl Device {
         gpa_session: vk::GpaSessionAMD,
         sample_id: u32,
     ) {
-        (self.fp.cmd_end_gpa_sample)(command_buffer, gpa_session, sample_id);
+        (self.fp.cmd_end_gpa_sample)(command_buffer, gpa_session, sample_id)
     }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkGetGpaSessionStatusAMD.html) · Device Function
     pub unsafe fn get_gpa_session_status(
@@ -345,7 +345,7 @@ impl Device {
         command_buffer: vk::CommandBuffer,
         gpa_session: vk::GpaSessionAMD,
     ) {
-        (self.fp.cmd_copy_gpa_session_results)(command_buffer, gpa_session);
+        (self.fp.cmd_copy_gpa_session_results)(command_buffer, gpa_session)
     }
 }
 pub(crate) mod items {

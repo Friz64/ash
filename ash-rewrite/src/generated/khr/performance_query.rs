@@ -201,7 +201,7 @@ impl Device {
     }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkReleaseProfilingLockKHR.html) · Device Function
     pub unsafe fn release_profiling_lock(&self) {
-        (self.fp.release_profiling_lock)(self.handle);
+        (self.fp.release_profiling_lock)(self.handle)
     }
 }
 pub(crate) mod items {

@@ -186,7 +186,7 @@ impl Device {
             command_buffer,
             infos.len() as _,
             infos.as_ptr(),
-        );
+        )
     }
 }
 pub(crate) mod items {

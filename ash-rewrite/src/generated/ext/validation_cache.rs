@@ -110,7 +110,7 @@ impl Device {
         validation_cache: vk::ValidationCacheEXT,
         allocator: &vk::AllocationCallbacks<'_>,
     ) {
-        (self.fp.destroy_validation_cache)(self.handle, validation_cache, allocator);
+        (self.fp.destroy_validation_cache)(self.handle, validation_cache, allocator)
     }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkMergeValidationCachesEXT.html) · Device Function
     pub unsafe fn merge_validation_caches(

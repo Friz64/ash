@@ -131,22 +131,22 @@ impl Device {
     pub unsafe fn get_buffer_opaque_capture_address(
         &self,
         info: &vk::BufferDeviceAddressInfo<'_>,
-    ) {
-        (self.fp.get_buffer_opaque_capture_address)(self.handle, info);
+    ) -> u64 {
+        (self.fp.get_buffer_opaque_capture_address)(self.handle, info)
     }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkGetBufferDeviceAddress.html) · Device Function
     pub unsafe fn get_buffer_device_address(
         &self,
         info: &vk::BufferDeviceAddressInfo<'_>,
-    ) {
-        (self.fp.get_buffer_device_address)(self.handle, info);
+    ) -> vk::DeviceAddress {
+        (self.fp.get_buffer_device_address)(self.handle, info)
     }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkGetDeviceMemoryOpaqueCaptureAddress.html) · Device Function
     pub unsafe fn get_device_memory_opaque_capture_address(
         &self,
         info: &vk::DeviceMemoryOpaqueCaptureAddressInfo<'_>,
-    ) {
-        (self.fp.get_device_memory_opaque_capture_address)(self.handle, info);
+    ) -> u64 {
+        (self.fp.get_device_memory_opaque_capture_address)(self.handle, info)
     }
 }
 pub(crate) mod items {

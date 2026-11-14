@@ -83,7 +83,7 @@ impl Device {
         command_buffer: vk::CommandBuffer,
         dispatch_parameters: &vk::DispatchParametersARM<'_>,
     ) {
-        (self.fp.cmd_set_dispatch_parameters)(command_buffer, dispatch_parameters);
+        (self.fp.cmd_set_dispatch_parameters)(command_buffer, dispatch_parameters)
     }
 }
 pub(crate) mod items {

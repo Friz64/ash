@@ -230,7 +230,7 @@ impl Device {
             .cmd_build_cluster_acceleration_structure_indirect)(
             command_buffer,
             command_infos,
-        );
+        )
     }
 }
 pub(crate) mod items {

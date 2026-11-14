@@ -122,7 +122,7 @@ impl Device {
             group_count_x,
             group_count_y,
             group_count_z,
-        );
+        )
     }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdDrawClusterIndirectHUAWEI.html) · Device Function
     pub unsafe fn cmd_draw_cluster_indirect(
@@ -131,7 +131,7 @@ impl Device {
         buffer: vk::Buffer,
         offset: vk::DeviceSize,
     ) {
-        (self.fp.cmd_draw_cluster_indirect)(command_buffer, buffer, offset);
+        (self.fp.cmd_draw_cluster_indirect)(command_buffer, buffer, offset)
     }
 }
 pub(crate) mod items {

@@ -205,7 +205,7 @@ impl Device {
         swapchain: vk::SwapchainKHR,
         allocator: &vk::AllocationCallbacks<'_>,
     ) {
-        (self.fp.destroy_swapchain)(self.handle, swapchain, allocator);
+        (self.fp.destroy_swapchain)(self.handle, swapchain, allocator)
     }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkQueuePresentKHR.html) · Device Function
     pub unsafe fn queue_present(

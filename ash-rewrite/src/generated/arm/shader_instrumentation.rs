@@ -212,9 +212,7 @@ impl Device {
         instrumentation: vk::ShaderInstrumentationARM,
         allocator: &vk::AllocationCallbacks<'_>,
     ) {
-        (self
-            .fp
-            .destroy_shader_instrumentation)(self.handle, instrumentation, allocator);
+        (self.fp.destroy_shader_instrumentation)(self.handle, instrumentation, allocator)
     }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdBeginShaderInstrumentationARM.html) · Device Function
     pub unsafe fn cmd_begin_shader_instrumentation(
@@ -222,21 +220,21 @@ impl Device {
         command_buffer: vk::CommandBuffer,
         instrumentation: vk::ShaderInstrumentationARM,
     ) {
-        (self.fp.cmd_begin_shader_instrumentation)(command_buffer, instrumentation);
+        (self.fp.cmd_begin_shader_instrumentation)(command_buffer, instrumentation)
     }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdEndShaderInstrumentationARM.html) · Device Function
     pub unsafe fn cmd_end_shader_instrumentation(
         &self,
         command_buffer: vk::CommandBuffer,
     ) {
-        (self.fp.cmd_end_shader_instrumentation)(command_buffer);
+        (self.fp.cmd_end_shader_instrumentation)(command_buffer)
     }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkClearShaderInstrumentationMetricsARM.html) · Device Function
     pub unsafe fn clear_shader_instrumentation_metrics(
         &self,
         instrumentation: vk::ShaderInstrumentationARM,
     ) {
-        (self.fp.clear_shader_instrumentation_metrics)(self.handle, instrumentation);
+        (self.fp.clear_shader_instrumentation_metrics)(self.handle, instrumentation)
     }
 }
 pub(crate) mod items {

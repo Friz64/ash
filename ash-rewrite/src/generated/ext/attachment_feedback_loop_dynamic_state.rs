@@ -71,7 +71,7 @@ impl Device {
         command_buffer: vk::CommandBuffer,
         aspect_mask: vk::ImageAspectFlags,
     ) {
-        (self.fp.cmd_set_attachment_feedback_loop_enable)(command_buffer, aspect_mask);
+        (self.fp.cmd_set_attachment_feedback_loop_enable)(command_buffer, aspect_mask)
     }
 }
 pub(crate) mod items {

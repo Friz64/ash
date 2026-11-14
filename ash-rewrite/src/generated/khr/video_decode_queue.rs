@@ -189,7 +189,7 @@ impl Device {
         command_buffer: vk::CommandBuffer,
         decode_info: &vk::VideoDecodeInfoKHR<'_>,
     ) {
-        (self.fp.cmd_decode_video)(command_buffer, decode_info);
+        (self.fp.cmd_decode_video)(command_buffer, decode_info)
     }
 }
 pub(crate) mod items {

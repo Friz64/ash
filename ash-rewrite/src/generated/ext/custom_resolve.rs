@@ -99,7 +99,7 @@ impl Device {
         command_buffer: vk::CommandBuffer,
         begin_custom_resolve_info: &vk::BeginCustomResolveInfoEXT<'_>,
     ) {
-        (self.fp.cmd_begin_custom_resolve)(command_buffer, begin_custom_resolve_info);
+        (self.fp.cmd_begin_custom_resolve)(command_buffer, begin_custom_resolve_info)
     }
 }
 pub(crate) mod items {

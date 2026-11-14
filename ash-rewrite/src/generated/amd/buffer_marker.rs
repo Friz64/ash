@@ -85,7 +85,7 @@ impl Device {
             dst_buffer,
             dst_offset,
             marker,
-        );
+        )
     }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdWriteBufferMarker2AMD.html) · Device Function
     pub unsafe fn cmd_write_buffer_marker2(
@@ -104,7 +104,7 @@ impl Device {
             dst_buffer,
             dst_offset,
             marker,
-        );
+        )
     }
 }
 pub(crate) mod items {

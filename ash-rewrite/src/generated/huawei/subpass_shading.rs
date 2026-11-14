@@ -98,7 +98,7 @@ impl Device {
     }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdSubpassShadingHUAWEI.html) · Device Function
     pub unsafe fn cmd_subpass_shading(&self, command_buffer: vk::CommandBuffer) {
-        (self.fp.cmd_subpass_shading)(command_buffer);
+        (self.fp.cmd_subpass_shading)(command_buffer)
     }
 }
 pub(crate) mod items {

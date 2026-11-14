@@ -81,7 +81,7 @@ impl Device {
             vertex_binding_descriptions.as_ptr(),
             vertex_attribute_descriptions.len() as _,
             vertex_attribute_descriptions.as_ptr(),
-        );
+        )
     }
 }
 pub(crate) mod items {

@@ -81,7 +81,7 @@ impl Device {
             command_buffer,
             depth_clamp_mode,
             depth_clamp_range,
-        );
+        )
     }
 }
 pub(crate) mod items {

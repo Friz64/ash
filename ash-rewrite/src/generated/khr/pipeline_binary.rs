@@ -145,7 +145,7 @@ impl Device {
         pipeline_binary: vk::PipelineBinaryKHR,
         allocator: &vk::AllocationCallbacks<'_>,
     ) {
-        (self.fp.destroy_pipeline_binary)(self.handle, pipeline_binary, allocator);
+        (self.fp.destroy_pipeline_binary)(self.handle, pipeline_binary, allocator)
     }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkReleaseCapturedPipelineDataKHR.html) · Device Function
     pub unsafe fn release_captured_pipeline_data(

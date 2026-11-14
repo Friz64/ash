@@ -311,7 +311,7 @@ impl Device {
         session: vk::OpticalFlowSessionNV,
         allocator: &vk::AllocationCallbacks<'_>,
     ) {
-        (self.fp.destroy_optical_flow_session)(self.handle, session, allocator);
+        (self.fp.destroy_optical_flow_session)(self.handle, session, allocator)
     }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkBindOpticalFlowSessionImageNV.html) · Device Function
     pub unsafe fn bind_optical_flow_session_image(
@@ -339,7 +339,7 @@ impl Device {
         session: vk::OpticalFlowSessionNV,
         execute_info: &vk::OpticalFlowExecuteInfoNV<'_>,
     ) {
-        (self.fp.cmd_optical_flow_execute)(command_buffer, session, execute_info);
+        (self.fp.cmd_optical_flow_execute)(command_buffer, session, execute_info)
     }
 }
 pub(crate) mod items {

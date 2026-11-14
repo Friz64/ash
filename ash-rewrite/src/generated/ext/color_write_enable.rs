@@ -73,7 +73,7 @@ impl Device {
             command_buffer,
             color_write_enables.len() as _,
             color_write_enables.as_ptr(),
-        );
+        )
     }
 }
 pub(crate) mod items {

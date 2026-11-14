@@ -4,7 +4,8 @@ pub mod depends;
 
 use crate::LibraryName;
 use crate::name::{
-    CMacroName, CommandName, ConstantName, EnumeratorName, ExtensionName, FuncPointerName, TypeName,
+    CMacroName, CommandName, ConstantName, EnumeratorName, ExtensionName, FuncPointerName,
+    TypeName, VariableName,
 };
 use cdecl::{CDecl, CDeclMode, CTok, CType};
 use cexpr::{CExprItem, CExprItems};
@@ -762,6 +763,7 @@ pub struct CommandParam {
     pub len: Vec<&'static str>,
     pub altlen: Vec<&'static str>,
     pub optional: Vec<bool>,
+    pub objecttype: Option<VariableName>,
 }
 
 impl CommandParam {
@@ -773,6 +775,7 @@ impl CommandParam {
             optional: attribute(node, "optional")
                 .map(|value| value.split(',').map(|s| s.parse().unwrap()).collect())
                 .unwrap_or_default(),
+            objecttype: attribute(node, "objecttype").map(VariableName::new),
         }
     }
 }

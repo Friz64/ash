@@ -75,7 +75,7 @@ impl Device {
             first_viewport,
             viewport_w_scalings.len() as _,
             viewport_w_scalings.as_ptr(),
-        );
+        )
     }
 }
 pub(crate) mod items {

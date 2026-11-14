@@ -327,7 +327,7 @@ impl Device {
             command_buffer,
             is_preprocessed as _,
             generated_commands_info,
-        );
+        )
     }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdPreprocessGeneratedCommandsEXT.html) · Device Function
     pub unsafe fn cmd_preprocess_generated_commands(
@@ -342,7 +342,7 @@ impl Device {
             command_buffer,
             generated_commands_info,
             state_command_buffer,
-        );
+        )
     }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkDestroyIndirectCommandsLayoutEXT.html) · Device Function
     pub unsafe fn destroy_indirect_commands_layout(
@@ -356,7 +356,7 @@ impl Device {
             self.handle,
             indirect_commands_layout,
             allocator,
-        );
+        )
     }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkDestroyIndirectExecutionSetEXT.html) · Device Function
     pub unsafe fn destroy_indirect_execution_set(
@@ -370,7 +370,7 @@ impl Device {
             self.handle,
             indirect_execution_set,
             allocator,
-        );
+        )
     }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkUpdateIndirectExecutionSetPipelineEXT.html) · Device Function
     pub unsafe fn update_indirect_execution_set_pipeline(
@@ -385,7 +385,7 @@ impl Device {
             indirect_execution_set,
             execution_set_writes.len() as _,
             execution_set_writes.as_ptr(),
-        );
+        )
     }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkUpdateIndirectExecutionSetShaderEXT.html) · Device Function
     pub unsafe fn update_indirect_execution_set_shader(
@@ -400,7 +400,7 @@ impl Device {
             indirect_execution_set,
             execution_set_writes.len() as _,
             execution_set_writes.as_ptr(),
-        );
+        )
     }
 }
 pub(crate) mod items {

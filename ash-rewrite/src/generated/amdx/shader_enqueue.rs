@@ -210,7 +210,7 @@ impl Device {
             execution_graph,
             scratch,
             scratch_size,
-        );
+        )
     }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdDispatchGraphAMDX.html) · Device Function
     pub unsafe fn cmd_dispatch_graph(
@@ -220,7 +220,7 @@ impl Device {
         scratch_size: vk::DeviceSize,
         count_info: &vk::DispatchGraphCountInfoAMDX,
     ) {
-        (self.fp.cmd_dispatch_graph)(command_buffer, scratch, scratch_size, count_info);
+        (self.fp.cmd_dispatch_graph)(command_buffer, scratch, scratch_size, count_info)
     }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdDispatchGraphIndirectAMDX.html) · Device Function
     pub unsafe fn cmd_dispatch_graph_indirect(
@@ -237,7 +237,7 @@ impl Device {
             scratch,
             scratch_size,
             count_info,
-        );
+        )
     }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdDispatchGraphIndirectCountAMDX.html) · Device Function
     pub unsafe fn cmd_dispatch_graph_indirect_count(
@@ -254,7 +254,7 @@ impl Device {
             scratch,
             scratch_size,
             count_info,
-        );
+        )
     }
 }
 pub(crate) mod items {

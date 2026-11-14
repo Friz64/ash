@@ -88,7 +88,7 @@ impl Device {
         command_buffer: vk::CommandBuffer,
         checkpoint_marker: &ffi::c_void,
     ) {
-        (self.fp.cmd_set_checkpoint)(command_buffer, checkpoint_marker);
+        (self.fp.cmd_set_checkpoint)(command_buffer, checkpoint_marker)
     }
 }
 pub(crate) mod items {

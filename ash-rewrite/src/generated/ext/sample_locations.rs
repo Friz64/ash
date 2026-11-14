@@ -79,7 +79,7 @@ impl Device {
         command_buffer: vk::CommandBuffer,
         sample_locations_info: &vk::SampleLocationsInfoEXT<'_>,
     ) {
-        (self.fp.cmd_set_sample_locations)(command_buffer, sample_locations_info);
+        (self.fp.cmd_set_sample_locations)(command_buffer, sample_locations_info)
     }
 }
 #[derive(Clone)]

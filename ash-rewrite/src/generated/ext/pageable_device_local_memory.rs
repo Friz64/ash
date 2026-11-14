@@ -64,7 +64,7 @@ impl Device {
         memory: vk::DeviceMemory,
         priority: ffi::c_float,
     ) {
-        (self.fp.set_device_memory_priority)(self.handle, memory, priority);
+        (self.fp.set_device_memory_priority)(self.handle, memory, priority)
     }
 }
 pub(crate) mod items {

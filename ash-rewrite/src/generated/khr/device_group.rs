@@ -204,7 +204,7 @@ impl Device {
         command_buffer: vk::CommandBuffer,
         device_mask: u32,
     ) {
-        (self.fp.cmd_set_device_mask)(command_buffer, device_mask);
+        (self.fp.cmd_set_device_mask)(command_buffer, device_mask)
     }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdDispatchBase.html) · Device Function
     pub unsafe fn cmd_dispatch_base(
@@ -227,7 +227,7 @@ impl Device {
             group_count_x,
             group_count_y,
             group_count_z,
-        );
+        )
     }
 }
 #[derive(Clone)]

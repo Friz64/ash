@@ -191,7 +191,7 @@ impl Instance {
         surface: vk::SurfaceKHR,
         allocator: &vk::AllocationCallbacks<'_>,
     ) {
-        (self.fp.destroy_surface)(self.handle, surface, allocator);
+        (self.fp.destroy_surface)(self.handle, surface, allocator)
     }
 }
 pub(crate) mod items {

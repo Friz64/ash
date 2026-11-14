@@ -1031,7 +1031,7 @@ impl crate::Device {
         command_pool: vk::CommandPool,
         flags: vk::CommandPoolTrimFlags,
     ) {
-        (self.device_fn_1_1.trim_command_pool)(self.handle, command_pool, flags);
+        (self.device_fn_1_1.trim_command_pool)(self.handle, command_pool, flags)
     }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkBindBufferMemory2.html) · Device Function
     pub unsafe fn bind_buffer_memory2(
@@ -1063,7 +1063,7 @@ impl crate::Device {
         command_buffer: vk::CommandBuffer,
         device_mask: u32,
     ) {
-        (self.device_fn_1_1.cmd_set_device_mask)(command_buffer, device_mask);
+        (self.device_fn_1_1.cmd_set_device_mask)(command_buffer, device_mask)
     }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdDispatchBase.html) · Device Function
     pub unsafe fn cmd_dispatch_base(
@@ -1086,7 +1086,7 @@ impl crate::Device {
             group_count_x,
             group_count_y,
             group_count_z,
-        );
+        )
     }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkDestroyDescriptorUpdateTemplate.html) · Device Function
     pub unsafe fn destroy_descriptor_update_template(
@@ -1100,7 +1100,7 @@ impl crate::Device {
             self.handle,
             descriptor_update_template,
             allocator,
-        );
+        )
     }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkUpdateDescriptorSetWithTemplate.html) · Device Function
     pub unsafe fn update_descriptor_set_with_template(
@@ -1116,7 +1116,7 @@ impl crate::Device {
             descriptor_set,
             descriptor_update_template,
             data,
-        );
+        )
     }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkDestroySamplerYcbcrConversion.html) · Device Function
     pub unsafe fn destroy_sampler_ycbcr_conversion(
@@ -1126,7 +1126,7 @@ impl crate::Device {
     ) {
         (self
             .device_fn_1_1
-            .destroy_sampler_ycbcr_conversion)(self.handle, ycbcr_conversion, allocator);
+            .destroy_sampler_ycbcr_conversion)(self.handle, ycbcr_conversion, allocator)
     }
 }
 pub(crate) mod items {

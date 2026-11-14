@@ -154,7 +154,7 @@ impl Device {
         swapchain: vk::SwapchainKHR,
         latency_marker_info: &vk::SetLatencyMarkerInfoNV<'_>,
     ) {
-        (self.fp.set_latency_marker)(self.handle, swapchain, latency_marker_info);
+        (self.fp.set_latency_marker)(self.handle, swapchain, latency_marker_info)
     }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkQueueNotifyOutOfBandNV.html) · Device Function
     pub unsafe fn queue_notify_out_of_band(
@@ -162,7 +162,7 @@ impl Device {
         queue: vk::Queue,
         queue_type_info: &vk::OutOfBandQueueTypeInfoNV<'_>,
     ) {
-        (self.fp.queue_notify_out_of_band)(queue, queue_type_info);
+        (self.fp.queue_notify_out_of_band)(queue, queue_type_info)
     }
 }
 pub(crate) mod items {

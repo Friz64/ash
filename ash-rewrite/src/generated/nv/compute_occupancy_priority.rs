@@ -68,7 +68,7 @@ impl Device {
         command_buffer: vk::CommandBuffer,
         parameters: &vk::ComputeOccupancyPriorityParametersNV<'_>,
     ) {
-        (self.fp.cmd_set_compute_occupancy_priority)(command_buffer, parameters);
+        (self.fp.cmd_set_compute_occupancy_priority)(command_buffer, parameters)
     }
 }
 pub(crate) mod items {

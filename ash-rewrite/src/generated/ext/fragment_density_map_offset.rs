@@ -80,7 +80,7 @@ impl Device {
         command_buffer: vk::CommandBuffer,
         rendering_end_info: &vk::RenderingEndInfoKHR<'_>,
     ) {
-        (self.fp.cmd_end_rendering2)(command_buffer, rendering_end_info);
+        (self.fp.cmd_end_rendering2)(command_buffer, rendering_end_info)
     }
 }
 pub(crate) mod items {

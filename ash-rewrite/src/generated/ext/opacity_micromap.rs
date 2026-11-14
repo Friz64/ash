@@ -409,7 +409,7 @@ impl Device {
         command_buffer: vk::CommandBuffer,
         infos: &[vk::MicromapBuildInfoEXT<'_>],
     ) {
-        (self.fp.cmd_build_micromaps)(command_buffer, infos.len() as _, infos.as_ptr());
+        (self.fp.cmd_build_micromaps)(command_buffer, infos.len() as _, infos.as_ptr())
     }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkBuildMicromapsEXT.html) · Device Function
     pub unsafe fn build_micromaps(
@@ -433,7 +433,7 @@ impl Device {
         micromap: vk::MicromapEXT,
         allocator: &vk::AllocationCallbacks<'_>,
     ) {
-        (self.fp.destroy_micromap)(self.handle, micromap, allocator);
+        (self.fp.destroy_micromap)(self.handle, micromap, allocator)
     }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdCopyMicromapEXT.html) · Device Function
     pub unsafe fn cmd_copy_micromap(
@@ -441,7 +441,7 @@ impl Device {
         command_buffer: vk::CommandBuffer,
         info: &vk::CopyMicromapInfoEXT<'_>,
     ) {
-        (self.fp.cmd_copy_micromap)(command_buffer, info);
+        (self.fp.cmd_copy_micromap)(command_buffer, info)
     }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCopyMicromapEXT.html) · Device Function
     pub unsafe fn copy_micromap(
@@ -457,7 +457,7 @@ impl Device {
         command_buffer: vk::CommandBuffer,
         info: &vk::CopyMicromapToMemoryInfoEXT<'_>,
     ) {
-        (self.fp.cmd_copy_micromap_to_memory)(command_buffer, info);
+        (self.fp.cmd_copy_micromap_to_memory)(command_buffer, info)
     }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCopyMicromapToMemoryEXT.html) · Device Function
     pub unsafe fn copy_micromap_to_memory(
@@ -473,7 +473,7 @@ impl Device {
         command_buffer: vk::CommandBuffer,
         info: &vk::CopyMemoryToMicromapInfoEXT<'_>,
     ) {
-        (self.fp.cmd_copy_memory_to_micromap)(command_buffer, info);
+        (self.fp.cmd_copy_memory_to_micromap)(command_buffer, info)
     }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCopyMemoryToMicromapEXT.html) · Device Function
     pub unsafe fn copy_memory_to_micromap(
@@ -501,7 +501,7 @@ impl Device {
             query_type,
             query_pool,
             first_query,
-        );
+        )
     }
 }
 pub(crate) mod items {

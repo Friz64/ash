@@ -70,7 +70,7 @@ impl Device {
     }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkAntiLagUpdateAMD.html) · Device Function
     pub unsafe fn anti_lag_update(&self, data: &vk::AntiLagDataAMD<'_>) {
-        (self.fp.anti_lag_update)(self.handle, data);
+        (self.fp.anti_lag_update)(self.handle, data)
     }
 }
 pub(crate) mod items {

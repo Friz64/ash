@@ -9,11 +9,13 @@
 //! you can use `#[name(<name override>)]`.
 //!
 //! Replacing an alias will not work. Make sure not to use alias names.
+//! The generator will automatically handle aliases. Because the function-pointer table may differ,
+//! you should use `self.__table` to access it the field.
 
 #[deprecated = "This function is unavailable and therefore panics on Vulkan 1.0, please use `try_enumerate_instance_version()` instead"]
 fn vkEnumerateInstanceVersion(&self) -> VkResult<u32> {
     let mut api_version = MaybeUninit::uninit();
-    (self.entry_fn_1_1.enumerate_instance_version)(api_version.as_mut_ptr())
+    (self.__table.enumerate_instance_version)(api_version.as_mut_ptr())
         .assume_init_on_success(api_version)
 }
 
@@ -127,7 +129,7 @@ fn vkGetDeviceProcAddr(
 }
 
 fn vkGetFenceStatus(&self, fence: vk::Fence) -> VkResult<bool> {
-    let err_code = (self.device_fn_1_0.get_fence_status)(self.handle(), fence);
+    let err_code = (self.__table.get_fence_status)(self.handle(), fence);
     match err_code {
         vk::Result::SUCCESS => Ok(true),
         vk::Result::NOT_READY => Ok(false),
@@ -152,7 +154,7 @@ fn vkCmdBuildAccelerationStructuresKHR(
         })
         .collect::<Vec<_>>();
 
-    (self.fp.cmd_build_acceleration_structures)(
+    (self.__table.cmd_build_acceleration_structures)(
         command_buffer,
         infos.len() as _,
         infos.as_ptr(),
@@ -181,7 +183,7 @@ fn vkCmdBuildAccelerationStructuresIndirectKHR(
         })
         .collect::<Vec<_>>();
 
-    (self.fp.cmd_build_acceleration_structures_indirect)(
+    (self.__table.cmd_build_acceleration_structures_indirect)(
         command_buffer,
         infos.len() as _,
         infos.as_ptr(),
@@ -208,7 +210,7 @@ fn vkBuildAccelerationStructuresKHR(
         })
         .collect::<Vec<_>>();
 
-    (self.fp.build_acceleration_structures)(
+    (self.__table.build_acceleration_structures)(
         self.handle,
         deferred_operation,
         infos.len() as _,
@@ -216,4 +218,36 @@ fn vkBuildAccelerationStructuresKHR(
         build_range_infos.as_ptr(),
     )
     .result()
+}
+
+fn vkSetPrivateData<T: vk::Handle>(
+    &self,
+    object: T,
+    private_data_slot: vk::PrivateDataSlot,
+    data: u64,
+) -> VkResult<()> {
+    (self.__table.set_private_data)(
+        self.handle,
+        T::TYPE,
+        object.as_raw(),
+        private_data_slot,
+        data,
+    )
+    .result()
+}
+
+pub unsafe fn vkGetPrivateData<T: vk::Handle>(
+    &self,
+    object: T,
+    private_data_slot: vk::PrivateDataSlot,
+) -> u64 {
+    let mut data = MaybeUninit::uninit();
+    (self.__table.get_private_data)(
+        self.handle,
+        T::TYPE,
+        object.as_raw(),
+        private_data_slot,
+        data.as_mut_ptr(),
+    );
+    data.assume_init()
 }

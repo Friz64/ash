@@ -94,7 +94,7 @@ impl Device {
         command_buffer: vk::CommandBuffer,
         indirect_device_address: vk::DeviceAddress,
     ) {
-        (self.fp.cmd_trace_rays_indirect2)(command_buffer, indirect_device_address);
+        (self.fp.cmd_trace_rays_indirect2)(command_buffer, indirect_device_address)
     }
 }
 pub(crate) mod items {
