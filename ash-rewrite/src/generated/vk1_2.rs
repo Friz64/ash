@@ -482,6 +482,26 @@ impl crate::Device {
             .device_fn_1_2
             .reset_query_pool)(self.handle, query_pool, first_query, query_count)
     }
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCreateRenderPass2.html) · Device Function
+    pub unsafe fn create_render_pass2(
+        &self,
+        create_info: &vk::RenderPassCreateInfo2<'_>,
+        allocator: Option<&vk::AllocationCallbacks<'_>>,
+    ) -> VkResult<vk::RenderPass> {
+        let mut render_pass = MaybeUninit::uninit();
+        (self
+            .device_fn_1_2
+            .create_render_pass2)(
+                self.handle,
+                create_info,
+                match allocator {
+                    Some(r) => r,
+                    None => ptr::null_mut(),
+                },
+                render_pass.as_mut_ptr(),
+            )
+            .assume_init_on_success(render_pass)
+    }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdBeginRenderPass2.html) · Device Function
     pub unsafe fn cmd_begin_render_pass2(
         &self,
@@ -515,6 +535,17 @@ impl crate::Device {
         subpass_end_info: &vk::SubpassEndInfo<'_>,
     ) {
         (self.device_fn_1_2.cmd_end_render_pass2)(command_buffer, subpass_end_info)
+    }
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkGetSemaphoreCounterValue.html) · Device Function
+    pub unsafe fn get_semaphore_counter_value(
+        &self,
+        semaphore: vk::Semaphore,
+    ) -> VkResult<u64> {
+        let mut value = MaybeUninit::uninit();
+        (self
+            .device_fn_1_2
+            .get_semaphore_counter_value)(self.handle, semaphore, value.as_mut_ptr())
+            .assume_init_on_success(value)
     }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkWaitSemaphores.html) · Device Function
     pub unsafe fn wait_semaphores(

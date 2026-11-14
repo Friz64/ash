@@ -172,6 +172,67 @@ impl Instance {
     pub fn instance(&self) -> vk::Instance {
         self.handle
     }
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCreateDisplayModeKHR.html) · Instance Function
+    pub unsafe fn create_display_mode(
+        &self,
+        physical_device: vk::PhysicalDevice,
+        display: vk::DisplayKHR,
+        create_info: &vk::DisplayModeCreateInfoKHR<'_>,
+        allocator: Option<&vk::AllocationCallbacks<'_>>,
+    ) -> VkResult<vk::DisplayModeKHR> {
+        let mut mode = MaybeUninit::uninit();
+        (self
+            .fp
+            .create_display_mode)(
+                physical_device,
+                display,
+                create_info,
+                match allocator {
+                    Some(r) => r,
+                    None => ptr::null_mut(),
+                },
+                mode.as_mut_ptr(),
+            )
+            .assume_init_on_success(mode)
+    }
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkGetDisplayPlaneCapabilitiesKHR.html) · Instance Function
+    pub unsafe fn get_display_plane_capabilities(
+        &self,
+        physical_device: vk::PhysicalDevice,
+        mode: vk::DisplayModeKHR,
+        plane_index: u32,
+    ) -> VkResult<vk::DisplayPlaneCapabilitiesKHR> {
+        let mut capabilities = MaybeUninit::uninit();
+        (self
+            .fp
+            .get_display_plane_capabilities)(
+                physical_device,
+                mode,
+                plane_index,
+                capabilities.as_mut_ptr(),
+            )
+            .assume_init_on_success(capabilities)
+    }
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCreateDisplayPlaneSurfaceKHR.html) · Instance Function
+    pub unsafe fn create_display_plane_surface(
+        &self,
+        create_info: &vk::DisplaySurfaceCreateInfoKHR<'_>,
+        allocator: Option<&vk::AllocationCallbacks<'_>>,
+    ) -> VkResult<vk::SurfaceKHR> {
+        let mut surface = MaybeUninit::uninit();
+        (self
+            .fp
+            .create_display_plane_surface)(
+                self.handle,
+                create_info,
+                match allocator {
+                    Some(r) => r,
+                    None => ptr::null_mut(),
+                },
+                surface.as_mut_ptr(),
+            )
+            .assume_init_on_success(surface)
+    }
 }
 pub(crate) mod items {
     use crate::internal_prelude::*;

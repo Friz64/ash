@@ -269,18 +269,41 @@ impl Device {
             group_index,
         )
     }
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCreateIndirectCommandsLayoutNV.html) · Device Function
+    pub unsafe fn create_indirect_commands_layout(
+        &self,
+        create_info: &vk::IndirectCommandsLayoutCreateInfoNV<'_>,
+        allocator: Option<&vk::AllocationCallbacks<'_>>,
+    ) -> VkResult<vk::IndirectCommandsLayoutNV> {
+        let mut indirect_commands_layout = MaybeUninit::uninit();
+        (self
+            .fp
+            .create_indirect_commands_layout)(
+                self.handle,
+                create_info,
+                match allocator {
+                    Some(r) => r,
+                    None => ptr::null_mut(),
+                },
+                indirect_commands_layout.as_mut_ptr(),
+            )
+            .assume_init_on_success(indirect_commands_layout)
+    }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkDestroyIndirectCommandsLayoutNV.html) · Device Function
     pub unsafe fn destroy_indirect_commands_layout(
         &self,
         indirect_commands_layout: vk::IndirectCommandsLayoutNV,
-        allocator: &vk::AllocationCallbacks<'_>,
+        allocator: Option<&vk::AllocationCallbacks<'_>>,
     ) {
         (self
             .fp
             .destroy_indirect_commands_layout)(
             self.handle,
             indirect_commands_layout,
-            allocator,
+            match allocator {
+                Some(r) => r,
+                None => ptr::null_mut(),
+            },
         )
     }
 }

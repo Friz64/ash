@@ -44,20 +44,19 @@ impl Decl {
 
 #[derive(Debug, Clone)]
 pub enum RustTy {
-    Registry(Ty),
+    Bind(Ty),
     Ref(Box<RustTy>, Mutability),
     ArrayRef(Box<RustTy>, Mutability, Option<ArrayLen>),
-    Unit,
-    Bool,
-    Custom {
-        custom_type: TokenStream,
+    Tokens(TokenStream),
+    WithGenerics {
+        tokens: TokenStream,
         generic_args: Vec<RustTy>,
     },
 }
 
 impl Ty {
     pub fn to_rust(&self) -> RustTy {
-        RustTy::Registry(self.clone())
+        RustTy::Bind(self.clone())
     }
 }
 
@@ -115,7 +114,7 @@ impl ArrayLen {
 impl RustTy {
     pub fn tokens(&self, toks: &impl RustTokens, lifetime: Option<&Lifetime>) -> TokenStream {
         match self {
-            RustTy::Registry(ty) => match ty {
+            RustTy::Bind(ty) => match ty {
                 Ty::ApiType(name) => toks.type_tokens(*name, true, lifetime),
                 Ty::ApiFuncPointer(name) => toks.func_pointer_tokens(*name, true),
                 Ty::CPrimary(base_ty) => toks.primary_type_tokens(*base_ty),
@@ -164,10 +163,9 @@ impl RustTy {
                     quote! { &#mutability [#ty #len] }
                 }
             }
-            RustTy::Unit => quote! { () },
-            RustTy::Bool => quote! { bool },
-            RustTy::Custom {
-                custom_type,
+            RustTy::Tokens(tokens) => tokens.clone(),
+            RustTy::WithGenerics {
+                tokens,
                 generic_args,
             } => {
                 let generic_args = (!generic_args.is_empty()).then(|| {
@@ -175,7 +173,7 @@ impl RustTy {
                     quote! { <#(#arg_tokens),*> }
                 });
 
-                quote! { #custom_type #generic_args }
+                quote! { #tokens #generic_args }
             }
         }
     }

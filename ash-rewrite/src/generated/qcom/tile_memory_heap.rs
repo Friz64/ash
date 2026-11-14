@@ -97,9 +97,17 @@ impl Device {
     pub unsafe fn cmd_bind_tile_memory(
         &self,
         command_buffer: vk::CommandBuffer,
-        tile_memory_bind_info: &vk::TileMemoryBindInfoQCOM<'_>,
+        tile_memory_bind_info: Option<&vk::TileMemoryBindInfoQCOM<'_>>,
     ) {
-        (self.fp.cmd_bind_tile_memory)(command_buffer, tile_memory_bind_info)
+        (self
+            .fp
+            .cmd_bind_tile_memory)(
+            command_buffer,
+            match tile_memory_bind_info {
+                Some(r) => r,
+                None => ptr::null_mut(),
+            },
+        )
     }
 }
 pub(crate) mod items {

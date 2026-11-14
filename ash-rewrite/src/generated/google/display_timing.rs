@@ -69,6 +69,21 @@ impl Device {
     pub fn device(&self) -> vk::Device {
         self.handle
     }
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkGetRefreshCycleDurationGOOGLE.html) · Device Function
+    pub unsafe fn get_refresh_cycle_duration(
+        &self,
+        swapchain: vk::SwapchainKHR,
+    ) -> VkResult<vk::RefreshCycleDurationGOOGLE> {
+        let mut display_timing_properties = MaybeUninit::uninit();
+        (self
+            .fp
+            .get_refresh_cycle_duration)(
+                self.handle,
+                swapchain,
+                display_timing_properties.as_mut_ptr(),
+            )
+            .assume_init_on_success(display_timing_properties)
+    }
 }
 pub(crate) mod items {
     use crate::internal_prelude::*;

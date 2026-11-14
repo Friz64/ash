@@ -330,6 +330,7 @@ impl Device {
         samplers: &[vk::SamplerCreateInfo<'_>],
         descriptors: &[vk::HostAddressRangeEXT<'_>],
     ) -> VkResult<()> {
+        assert_eq!(samplers.len(), descriptors.len());
         (self
             .fp
             .write_sampler_descriptors)(
@@ -346,6 +347,7 @@ impl Device {
         resources: &[vk::ResourceDescriptorInfoEXT<'_>],
         descriptors: &[vk::HostAddressRangeEXT<'_>],
     ) -> VkResult<()> {
+        assert_eq!(resources.len(), descriptors.len());
         (self
             .fp
             .write_resource_descriptors)(
@@ -379,6 +381,23 @@ impl Device {
         push_data_info: &vk::PushDataInfoEXT<'_>,
     ) {
         (self.fp.cmd_push_data)(command_buffer, push_data_info)
+    }
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkRegisterCustomBorderColorEXT.html) · Device Function
+    pub unsafe fn register_custom_border_color(
+        &self,
+        border_color: &vk::SamplerCustomBorderColorCreateInfoEXT<'_>,
+        request_index: bool,
+    ) -> VkResult<u32> {
+        let mut index = MaybeUninit::uninit();
+        (self
+            .fp
+            .register_custom_border_color)(
+                self.handle,
+                border_color,
+                request_index as _,
+                index.as_mut_ptr(),
+            )
+            .assume_init_on_success(index)
     }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkUnregisterCustomBorderColorEXT.html) · Device Function
     pub unsafe fn unregister_custom_border_color(&self, index: u32) {

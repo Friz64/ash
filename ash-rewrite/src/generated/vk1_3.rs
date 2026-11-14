@@ -1034,6 +1034,9 @@ impl crate::Device {
         sizes: &[vk::DeviceSize],
         strides: &[vk::DeviceSize],
     ) {
+        assert_eq!(buffers.len(), offsets.len());
+        assert_eq!(offsets.len(), sizes.len());
+        assert_eq!(sizes.len(), strides.len());
         (self
             .device_fn_1_3
             .cmd_bind_vertex_buffers2)(
@@ -1154,15 +1157,42 @@ impl crate::Device {
             primitive_restart_enable as _,
         )
     }
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCreatePrivateDataSlot.html) · Device Function
+    pub unsafe fn create_private_data_slot(
+        &self,
+        create_info: &vk::PrivateDataSlotCreateInfo<'_>,
+        allocator: Option<&vk::AllocationCallbacks<'_>>,
+    ) -> VkResult<vk::PrivateDataSlot> {
+        let mut private_data_slot = MaybeUninit::uninit();
+        (self
+            .device_fn_1_3
+            .create_private_data_slot)(
+                self.handle,
+                create_info,
+                match allocator {
+                    Some(r) => r,
+                    None => ptr::null_mut(),
+                },
+                private_data_slot.as_mut_ptr(),
+            )
+            .assume_init_on_success(private_data_slot)
+    }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkDestroyPrivateDataSlot.html) · Device Function
     pub unsafe fn destroy_private_data_slot(
         &self,
         private_data_slot: vk::PrivateDataSlot,
-        allocator: &vk::AllocationCallbacks<'_>,
+        allocator: Option<&vk::AllocationCallbacks<'_>>,
     ) {
         (self
             .device_fn_1_3
-            .destroy_private_data_slot)(self.handle, private_data_slot, allocator)
+            .destroy_private_data_slot)(
+            self.handle,
+            private_data_slot,
+            match allocator {
+                Some(r) => r,
+                None => ptr::null_mut(),
+            },
+        )
     }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkSetPrivateData.html) · Device Function
     pub unsafe fn set_private_data<T: vk::Handle>(
@@ -1277,6 +1307,7 @@ impl crate::Device {
         events: &[vk::Event],
         dependency_infos: &[vk::DependencyInfo<'_>],
     ) {
+        assert_eq!(events.len(), dependency_infos.len());
         (self
             .device_fn_1_3
             .cmd_wait_events2)(

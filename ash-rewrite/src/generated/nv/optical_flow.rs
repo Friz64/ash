@@ -305,13 +305,42 @@ impl Device {
     pub fn device(&self) -> vk::Device {
         self.handle
     }
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCreateOpticalFlowSessionNV.html) · Device Function
+    pub unsafe fn create_optical_flow_session(
+        &self,
+        create_info: &vk::OpticalFlowSessionCreateInfoNV<'_>,
+        allocator: Option<&vk::AllocationCallbacks<'_>>,
+    ) -> VkResult<vk::OpticalFlowSessionNV> {
+        let mut session = MaybeUninit::uninit();
+        (self
+            .fp
+            .create_optical_flow_session)(
+                self.handle,
+                create_info,
+                match allocator {
+                    Some(r) => r,
+                    None => ptr::null_mut(),
+                },
+                session.as_mut_ptr(),
+            )
+            .assume_init_on_success(session)
+    }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkDestroyOpticalFlowSessionNV.html) · Device Function
     pub unsafe fn destroy_optical_flow_session(
         &self,
         session: vk::OpticalFlowSessionNV,
-        allocator: &vk::AllocationCallbacks<'_>,
+        allocator: Option<&vk::AllocationCallbacks<'_>>,
     ) {
-        (self.fp.destroy_optical_flow_session)(self.handle, session, allocator)
+        (self
+            .fp
+            .destroy_optical_flow_session)(
+            self.handle,
+            session,
+            match allocator {
+                Some(r) => r,
+                None => ptr::null_mut(),
+            },
+        )
     }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkBindOpticalFlowSessionImageNV.html) · Device Function
     pub unsafe fn bind_optical_flow_session_image(

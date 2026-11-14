@@ -1484,8 +1484,19 @@ impl crate::Instance {
         &self.instance_fn_1_0
     }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkDestroyInstance.html) · Instance Function
-    pub unsafe fn destroy_instance(&self, allocator: &vk::AllocationCallbacks<'_>) {
-        (self.instance_fn_1_0.destroy_instance)(self.handle, allocator)
+    pub unsafe fn destroy_instance(
+        &self,
+        allocator: Option<&vk::AllocationCallbacks<'_>>,
+    ) {
+        (self
+            .instance_fn_1_0
+            .destroy_instance)(
+            self.handle,
+            match allocator {
+                Some(r) => r,
+                None => ptr::null_mut(),
+            },
+        )
     }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkGetDeviceProcAddr.html) · Instance Function
     pub unsafe fn get_device_proc_addr(
@@ -1494,6 +1505,82 @@ impl crate::Instance {
         p_name: *const ffi::c_char,
     ) -> vk::PFN_vkVoidFunction {
         (self.instance_fn_1_0.get_device_proc_addr)(device, p_name)
+    }
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkGetPhysicalDeviceProperties.html) · Instance Function
+    pub unsafe fn get_physical_device_properties(
+        &self,
+        physical_device: vk::PhysicalDevice,
+    ) -> vk::PhysicalDeviceProperties {
+        let mut properties = MaybeUninit::uninit();
+        (self
+            .instance_fn_1_0
+            .get_physical_device_properties)(physical_device, properties.as_mut_ptr());
+        properties.assume_init()
+    }
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkGetPhysicalDeviceMemoryProperties.html) · Instance Function
+    pub unsafe fn get_physical_device_memory_properties(
+        &self,
+        physical_device: vk::PhysicalDevice,
+    ) -> vk::PhysicalDeviceMemoryProperties {
+        let mut memory_properties = MaybeUninit::uninit();
+        (self
+            .instance_fn_1_0
+            .get_physical_device_memory_properties)(
+            physical_device,
+            memory_properties.as_mut_ptr(),
+        );
+        memory_properties.assume_init()
+    }
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkGetPhysicalDeviceFeatures.html) · Instance Function
+    pub unsafe fn get_physical_device_features(
+        &self,
+        physical_device: vk::PhysicalDevice,
+    ) -> vk::PhysicalDeviceFeatures {
+        let mut features = MaybeUninit::uninit();
+        (self
+            .instance_fn_1_0
+            .get_physical_device_features)(physical_device, features.as_mut_ptr());
+        features.assume_init()
+    }
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkGetPhysicalDeviceFormatProperties.html) · Instance Function
+    pub unsafe fn get_physical_device_format_properties(
+        &self,
+        physical_device: vk::PhysicalDevice,
+        format: vk::Format,
+    ) -> vk::FormatProperties {
+        let mut format_properties = MaybeUninit::uninit();
+        (self
+            .instance_fn_1_0
+            .get_physical_device_format_properties)(
+            physical_device,
+            format,
+            format_properties.as_mut_ptr(),
+        );
+        format_properties.assume_init()
+    }
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkGetPhysicalDeviceImageFormatProperties.html) · Instance Function
+    pub unsafe fn get_physical_device_image_format_properties(
+        &self,
+        physical_device: vk::PhysicalDevice,
+        format: vk::Format,
+        ty: vk::ImageType,
+        tiling: vk::ImageTiling,
+        usage: vk::ImageUsageFlags,
+        flags: vk::ImageCreateFlags,
+    ) -> VkResult<vk::ImageFormatProperties> {
+        let mut image_format_properties = MaybeUninit::uninit();
+        (self
+            .instance_fn_1_0
+            .get_physical_device_image_format_properties)(
+                physical_device,
+                format,
+                ty,
+                tiling,
+                usage,
+                flags,
+                image_format_properties.as_mut_ptr(),
+            )
+            .assume_init_on_success(image_format_properties)
     }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCreateDevice.html) · Instance Function
     /// # Safety
@@ -3150,8 +3237,36 @@ impl crate::Device {
         &self.device_fn_1_0
     }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkDestroyDevice.html) · Device Function
-    pub unsafe fn destroy_device(&self, allocator: &vk::AllocationCallbacks<'_>) {
-        (self.device_fn_1_0.destroy_device)(self.handle, allocator)
+    pub unsafe fn destroy_device(
+        &self,
+        allocator: Option<&vk::AllocationCallbacks<'_>>,
+    ) {
+        (self
+            .device_fn_1_0
+            .destroy_device)(
+            self.handle,
+            match allocator {
+                Some(r) => r,
+                None => ptr::null_mut(),
+            },
+        )
+    }
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkGetDeviceQueue.html) · Device Function
+    pub unsafe fn get_device_queue(
+        &self,
+        queue_family_index: u32,
+        queue_index: u32,
+    ) -> vk::Queue {
+        let mut queue = MaybeUninit::uninit();
+        (self
+            .device_fn_1_0
+            .get_device_queue)(
+            self.handle,
+            queue_family_index,
+            queue_index,
+            queue.as_mut_ptr(),
+        );
+        queue.assume_init()
     }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkQueueSubmit.html) · Device Function
     pub unsafe fn queue_submit(
@@ -3173,13 +3288,56 @@ impl crate::Device {
     pub unsafe fn device_wait_idle(&self) -> VkResult<()> {
         (self.device_fn_1_0.device_wait_idle)(self.handle).result()
     }
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkAllocateMemory.html) · Device Function
+    pub unsafe fn allocate_memory(
+        &self,
+        allocate_info: &vk::MemoryAllocateInfo<'_>,
+        allocator: Option<&vk::AllocationCallbacks<'_>>,
+    ) -> VkResult<vk::DeviceMemory> {
+        let mut memory = MaybeUninit::uninit();
+        (self
+            .device_fn_1_0
+            .allocate_memory)(
+                self.handle,
+                allocate_info,
+                match allocator {
+                    Some(r) => r,
+                    None => ptr::null_mut(),
+                },
+                memory.as_mut_ptr(),
+            )
+            .assume_init_on_success(memory)
+    }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkFreeMemory.html) · Device Function
     pub unsafe fn free_memory(
         &self,
         memory: vk::DeviceMemory,
-        allocator: &vk::AllocationCallbacks<'_>,
+        allocator: Option<&vk::AllocationCallbacks<'_>>,
     ) {
-        (self.device_fn_1_0.free_memory)(self.handle, memory, allocator)
+        (self
+            .device_fn_1_0
+            .free_memory)(
+            self.handle,
+            memory,
+            match allocator {
+                Some(r) => r,
+                None => ptr::null_mut(),
+            },
+        )
+    }
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkMapMemory.html) · Device Function
+    pub unsafe fn map_memory(
+        &self,
+        memory: vk::DeviceMemory,
+        offset: vk::DeviceSize,
+        size: vk::DeviceSize,
+        flags: vk::MemoryMapFlags,
+    ) -> VkResult<*mut ffi::c_void> {
+        let mut data = MaybeUninit::uninit();
+        (self
+            .device_fn_1_0
+            .map_memory)(self.handle, memory, offset, size, flags, data.as_mut_ptr())
+            .assume_init_on_success(data)
     }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkUnmapMemory.html) · Device Function
     pub unsafe fn unmap_memory(&self, memory: vk::DeviceMemory) {
@@ -3213,6 +3371,36 @@ impl crate::Device {
             )
             .result()
     }
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkGetDeviceMemoryCommitment.html) · Device Function
+    pub unsafe fn get_device_memory_commitment(
+        &self,
+        memory: vk::DeviceMemory,
+    ) -> vk::DeviceSize {
+        let mut committed_memory_in_bytes = MaybeUninit::uninit();
+        (self
+            .device_fn_1_0
+            .get_device_memory_commitment)(
+            self.handle,
+            memory,
+            committed_memory_in_bytes.as_mut_ptr(),
+        );
+        committed_memory_in_bytes.assume_init()
+    }
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkGetBufferMemoryRequirements.html) · Device Function
+    pub unsafe fn get_buffer_memory_requirements(
+        &self,
+        buffer: vk::Buffer,
+    ) -> vk::MemoryRequirements {
+        let mut memory_requirements = MaybeUninit::uninit();
+        (self
+            .device_fn_1_0
+            .get_buffer_memory_requirements)(
+            self.handle,
+            buffer,
+            memory_requirements.as_mut_ptr(),
+        );
+        memory_requirements.assume_init()
+    }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkBindBufferMemory.html) · Device Function
     pub unsafe fn bind_buffer_memory(
         &self,
@@ -3224,6 +3412,21 @@ impl crate::Device {
             .device_fn_1_0
             .bind_buffer_memory)(self.handle, buffer, memory, memory_offset)
             .result()
+    }
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkGetImageMemoryRequirements.html) · Device Function
+    pub unsafe fn get_image_memory_requirements(
+        &self,
+        image: vk::Image,
+    ) -> vk::MemoryRequirements {
+        let mut memory_requirements = MaybeUninit::uninit();
+        (self
+            .device_fn_1_0
+            .get_image_memory_requirements)(
+            self.handle,
+            image,
+            memory_requirements.as_mut_ptr(),
+        );
+        memory_requirements.assume_init()
     }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkBindImageMemory.html) · Device Function
     pub unsafe fn bind_image_memory(
@@ -3247,13 +3450,42 @@ impl crate::Device {
             .queue_bind_sparse)(queue, bind_info.len() as _, bind_info.as_ptr(), fence)
             .result()
     }
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCreateFence.html) · Device Function
+    pub unsafe fn create_fence(
+        &self,
+        create_info: &vk::FenceCreateInfo<'_>,
+        allocator: Option<&vk::AllocationCallbacks<'_>>,
+    ) -> VkResult<vk::Fence> {
+        let mut fence = MaybeUninit::uninit();
+        (self
+            .device_fn_1_0
+            .create_fence)(
+                self.handle,
+                create_info,
+                match allocator {
+                    Some(r) => r,
+                    None => ptr::null_mut(),
+                },
+                fence.as_mut_ptr(),
+            )
+            .assume_init_on_success(fence)
+    }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkDestroyFence.html) · Device Function
     pub unsafe fn destroy_fence(
         &self,
         fence: vk::Fence,
-        allocator: &vk::AllocationCallbacks<'_>,
+        allocator: Option<&vk::AllocationCallbacks<'_>>,
     ) {
-        (self.device_fn_1_0.destroy_fence)(self.handle, fence, allocator)
+        (self
+            .device_fn_1_0
+            .destroy_fence)(
+            self.handle,
+            fence,
+            match allocator {
+                Some(r) => r,
+                None => ptr::null_mut(),
+            },
+        )
     }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkResetFences.html) · Device Function
     pub unsafe fn reset_fences(&self, fences: &[vk::Fence]) -> VkResult<()> {
@@ -3289,21 +3521,79 @@ impl crate::Device {
             )
             .result()
     }
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCreateSemaphore.html) · Device Function
+    pub unsafe fn create_semaphore(
+        &self,
+        create_info: &vk::SemaphoreCreateInfo<'_>,
+        allocator: Option<&vk::AllocationCallbacks<'_>>,
+    ) -> VkResult<vk::Semaphore> {
+        let mut semaphore = MaybeUninit::uninit();
+        (self
+            .device_fn_1_0
+            .create_semaphore)(
+                self.handle,
+                create_info,
+                match allocator {
+                    Some(r) => r,
+                    None => ptr::null_mut(),
+                },
+                semaphore.as_mut_ptr(),
+            )
+            .assume_init_on_success(semaphore)
+    }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkDestroySemaphore.html) · Device Function
     pub unsafe fn destroy_semaphore(
         &self,
         semaphore: vk::Semaphore,
-        allocator: &vk::AllocationCallbacks<'_>,
+        allocator: Option<&vk::AllocationCallbacks<'_>>,
     ) {
-        (self.device_fn_1_0.destroy_semaphore)(self.handle, semaphore, allocator)
+        (self
+            .device_fn_1_0
+            .destroy_semaphore)(
+            self.handle,
+            semaphore,
+            match allocator {
+                Some(r) => r,
+                None => ptr::null_mut(),
+            },
+        )
+    }
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCreateEvent.html) · Device Function
+    pub unsafe fn create_event(
+        &self,
+        create_info: &vk::EventCreateInfo<'_>,
+        allocator: Option<&vk::AllocationCallbacks<'_>>,
+    ) -> VkResult<vk::Event> {
+        let mut event = MaybeUninit::uninit();
+        (self
+            .device_fn_1_0
+            .create_event)(
+                self.handle,
+                create_info,
+                match allocator {
+                    Some(r) => r,
+                    None => ptr::null_mut(),
+                },
+                event.as_mut_ptr(),
+            )
+            .assume_init_on_success(event)
     }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkDestroyEvent.html) · Device Function
     pub unsafe fn destroy_event(
         &self,
         event: vk::Event,
-        allocator: &vk::AllocationCallbacks<'_>,
+        allocator: Option<&vk::AllocationCallbacks<'_>>,
     ) {
-        (self.device_fn_1_0.destroy_event)(self.handle, event, allocator)
+        (self
+            .device_fn_1_0
+            .destroy_event)(
+            self.handle,
+            event,
+            match allocator {
+                Some(r) => r,
+                None => ptr::null_mut(),
+            },
+        )
     }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkGetEventStatus.html) · Device Function
     pub unsafe fn get_event_status(&self, event: vk::Event) -> VkResult<()> {
@@ -3317,63 +3607,321 @@ impl crate::Device {
     pub unsafe fn reset_event(&self, event: vk::Event) -> VkResult<()> {
         (self.device_fn_1_0.reset_event)(self.handle, event).result()
     }
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCreateQueryPool.html) · Device Function
+    pub unsafe fn create_query_pool(
+        &self,
+        create_info: &vk::QueryPoolCreateInfo<'_>,
+        allocator: Option<&vk::AllocationCallbacks<'_>>,
+    ) -> VkResult<vk::QueryPool> {
+        let mut query_pool = MaybeUninit::uninit();
+        (self
+            .device_fn_1_0
+            .create_query_pool)(
+                self.handle,
+                create_info,
+                match allocator {
+                    Some(r) => r,
+                    None => ptr::null_mut(),
+                },
+                query_pool.as_mut_ptr(),
+            )
+            .assume_init_on_success(query_pool)
+    }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkDestroyQueryPool.html) · Device Function
     pub unsafe fn destroy_query_pool(
         &self,
         query_pool: vk::QueryPool,
-        allocator: &vk::AllocationCallbacks<'_>,
+        allocator: Option<&vk::AllocationCallbacks<'_>>,
     ) {
-        (self.device_fn_1_0.destroy_query_pool)(self.handle, query_pool, allocator)
+        (self
+            .device_fn_1_0
+            .destroy_query_pool)(
+            self.handle,
+            query_pool,
+            match allocator {
+                Some(r) => r,
+                None => ptr::null_mut(),
+            },
+        )
+    }
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkGetQueryPoolResults.html) · Device Function
+    pub unsafe fn get_query_pool_results(
+        &self,
+        query_pool: vk::QueryPool,
+        first_query: u32,
+        query_count: u32,
+        data: &mut [u8],
+        stride: vk::DeviceSize,
+        flags: vk::QueryResultFlags,
+    ) -> VkResult<()> {
+        (self
+            .device_fn_1_0
+            .get_query_pool_results)(
+                self.handle,
+                query_pool,
+                first_query,
+                query_count,
+                data.len() as _,
+                data.as_mut_ptr().cast(),
+                stride,
+                flags,
+            )
+            .result()
+    }
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCreateBuffer.html) · Device Function
+    pub unsafe fn create_buffer(
+        &self,
+        create_info: &vk::BufferCreateInfo<'_>,
+        allocator: Option<&vk::AllocationCallbacks<'_>>,
+    ) -> VkResult<vk::Buffer> {
+        let mut buffer = MaybeUninit::uninit();
+        (self
+            .device_fn_1_0
+            .create_buffer)(
+                self.handle,
+                create_info,
+                match allocator {
+                    Some(r) => r,
+                    None => ptr::null_mut(),
+                },
+                buffer.as_mut_ptr(),
+            )
+            .assume_init_on_success(buffer)
     }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkDestroyBuffer.html) · Device Function
     pub unsafe fn destroy_buffer(
         &self,
         buffer: vk::Buffer,
-        allocator: &vk::AllocationCallbacks<'_>,
+        allocator: Option<&vk::AllocationCallbacks<'_>>,
     ) {
-        (self.device_fn_1_0.destroy_buffer)(self.handle, buffer, allocator)
+        (self
+            .device_fn_1_0
+            .destroy_buffer)(
+            self.handle,
+            buffer,
+            match allocator {
+                Some(r) => r,
+                None => ptr::null_mut(),
+            },
+        )
+    }
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCreateBufferView.html) · Device Function
+    pub unsafe fn create_buffer_view(
+        &self,
+        create_info: &vk::BufferViewCreateInfo<'_>,
+        allocator: Option<&vk::AllocationCallbacks<'_>>,
+    ) -> VkResult<vk::BufferView> {
+        let mut view = MaybeUninit::uninit();
+        (self
+            .device_fn_1_0
+            .create_buffer_view)(
+                self.handle,
+                create_info,
+                match allocator {
+                    Some(r) => r,
+                    None => ptr::null_mut(),
+                },
+                view.as_mut_ptr(),
+            )
+            .assume_init_on_success(view)
     }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkDestroyBufferView.html) · Device Function
     pub unsafe fn destroy_buffer_view(
         &self,
         buffer_view: vk::BufferView,
-        allocator: &vk::AllocationCallbacks<'_>,
+        allocator: Option<&vk::AllocationCallbacks<'_>>,
     ) {
-        (self.device_fn_1_0.destroy_buffer_view)(self.handle, buffer_view, allocator)
+        (self
+            .device_fn_1_0
+            .destroy_buffer_view)(
+            self.handle,
+            buffer_view,
+            match allocator {
+                Some(r) => r,
+                None => ptr::null_mut(),
+            },
+        )
+    }
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCreateImage.html) · Device Function
+    pub unsafe fn create_image(
+        &self,
+        create_info: &vk::ImageCreateInfo<'_>,
+        allocator: Option<&vk::AllocationCallbacks<'_>>,
+    ) -> VkResult<vk::Image> {
+        let mut image = MaybeUninit::uninit();
+        (self
+            .device_fn_1_0
+            .create_image)(
+                self.handle,
+                create_info,
+                match allocator {
+                    Some(r) => r,
+                    None => ptr::null_mut(),
+                },
+                image.as_mut_ptr(),
+            )
+            .assume_init_on_success(image)
     }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkDestroyImage.html) · Device Function
     pub unsafe fn destroy_image(
         &self,
         image: vk::Image,
-        allocator: &vk::AllocationCallbacks<'_>,
+        allocator: Option<&vk::AllocationCallbacks<'_>>,
     ) {
-        (self.device_fn_1_0.destroy_image)(self.handle, image, allocator)
+        (self
+            .device_fn_1_0
+            .destroy_image)(
+            self.handle,
+            image,
+            match allocator {
+                Some(r) => r,
+                None => ptr::null_mut(),
+            },
+        )
+    }
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkGetImageSubresourceLayout.html) · Device Function
+    pub unsafe fn get_image_subresource_layout(
+        &self,
+        image: vk::Image,
+        subresource: &vk::ImageSubresource,
+    ) -> vk::SubresourceLayout {
+        let mut layout = MaybeUninit::uninit();
+        (self
+            .device_fn_1_0
+            .get_image_subresource_layout)(
+            self.handle,
+            image,
+            subresource,
+            layout.as_mut_ptr(),
+        );
+        layout.assume_init()
+    }
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCreateImageView.html) · Device Function
+    pub unsafe fn create_image_view(
+        &self,
+        create_info: &vk::ImageViewCreateInfo<'_>,
+        allocator: Option<&vk::AllocationCallbacks<'_>>,
+    ) -> VkResult<vk::ImageView> {
+        let mut view = MaybeUninit::uninit();
+        (self
+            .device_fn_1_0
+            .create_image_view)(
+                self.handle,
+                create_info,
+                match allocator {
+                    Some(r) => r,
+                    None => ptr::null_mut(),
+                },
+                view.as_mut_ptr(),
+            )
+            .assume_init_on_success(view)
     }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkDestroyImageView.html) · Device Function
     pub unsafe fn destroy_image_view(
         &self,
         image_view: vk::ImageView,
-        allocator: &vk::AllocationCallbacks<'_>,
+        allocator: Option<&vk::AllocationCallbacks<'_>>,
     ) {
-        (self.device_fn_1_0.destroy_image_view)(self.handle, image_view, allocator)
+        (self
+            .device_fn_1_0
+            .destroy_image_view)(
+            self.handle,
+            image_view,
+            match allocator {
+                Some(r) => r,
+                None => ptr::null_mut(),
+            },
+        )
+    }
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCreateShaderModule.html) · Device Function
+    pub unsafe fn create_shader_module(
+        &self,
+        create_info: &vk::ShaderModuleCreateInfo<'_>,
+        allocator: Option<&vk::AllocationCallbacks<'_>>,
+    ) -> VkResult<vk::ShaderModule> {
+        let mut shader_module = MaybeUninit::uninit();
+        (self
+            .device_fn_1_0
+            .create_shader_module)(
+                self.handle,
+                create_info,
+                match allocator {
+                    Some(r) => r,
+                    None => ptr::null_mut(),
+                },
+                shader_module.as_mut_ptr(),
+            )
+            .assume_init_on_success(shader_module)
     }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkDestroyShaderModule.html) · Device Function
     pub unsafe fn destroy_shader_module(
         &self,
         shader_module: vk::ShaderModule,
-        allocator: &vk::AllocationCallbacks<'_>,
+        allocator: Option<&vk::AllocationCallbacks<'_>>,
     ) {
-        (self.device_fn_1_0.destroy_shader_module)(self.handle, shader_module, allocator)
+        (self
+            .device_fn_1_0
+            .destroy_shader_module)(
+            self.handle,
+            shader_module,
+            match allocator {
+                Some(r) => r,
+                None => ptr::null_mut(),
+            },
+        )
+    }
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCreatePipelineCache.html) · Device Function
+    pub unsafe fn create_pipeline_cache(
+        &self,
+        create_info: &vk::PipelineCacheCreateInfo<'_>,
+        allocator: Option<&vk::AllocationCallbacks<'_>>,
+    ) -> VkResult<vk::PipelineCache> {
+        let mut pipeline_cache = MaybeUninit::uninit();
+        (self
+            .device_fn_1_0
+            .create_pipeline_cache)(
+                self.handle,
+                create_info,
+                match allocator {
+                    Some(r) => r,
+                    None => ptr::null_mut(),
+                },
+                pipeline_cache.as_mut_ptr(),
+            )
+            .assume_init_on_success(pipeline_cache)
     }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkDestroyPipelineCache.html) · Device Function
     pub unsafe fn destroy_pipeline_cache(
         &self,
         pipeline_cache: vk::PipelineCache,
-        allocator: &vk::AllocationCallbacks<'_>,
+        allocator: Option<&vk::AllocationCallbacks<'_>>,
     ) {
         (self
             .device_fn_1_0
-            .destroy_pipeline_cache)(self.handle, pipeline_cache, allocator)
+            .destroy_pipeline_cache)(
+            self.handle,
+            pipeline_cache,
+            match allocator {
+                Some(r) => r,
+                None => ptr::null_mut(),
+            },
+        )
+    }
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkGetPipelineCacheData.html) · Device Function
+    pub unsafe fn get_pipeline_cache_data(
+        &self,
+        pipeline_cache: vk::PipelineCache,
+        data: &mut [u8],
+    ) -> VkResult<()> {
+        (self
+            .device_fn_1_0
+            .get_pipeline_cache_data)(
+                self.handle,
+                pipeline_cache,
+                data.len() as _,
+                data.as_mut_ptr().cast(),
+            )
+            .result()
     }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkMergePipelineCaches.html) · Device Function
     pub unsafe fn merge_pipeline_caches(
@@ -3395,51 +3943,166 @@ impl crate::Device {
     pub unsafe fn destroy_pipeline(
         &self,
         pipeline: vk::Pipeline,
-        allocator: &vk::AllocationCallbacks<'_>,
+        allocator: Option<&vk::AllocationCallbacks<'_>>,
     ) {
-        (self.device_fn_1_0.destroy_pipeline)(self.handle, pipeline, allocator)
+        (self
+            .device_fn_1_0
+            .destroy_pipeline)(
+            self.handle,
+            pipeline,
+            match allocator {
+                Some(r) => r,
+                None => ptr::null_mut(),
+            },
+        )
+    }
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCreatePipelineLayout.html) · Device Function
+    pub unsafe fn create_pipeline_layout(
+        &self,
+        create_info: &vk::PipelineLayoutCreateInfo<'_>,
+        allocator: Option<&vk::AllocationCallbacks<'_>>,
+    ) -> VkResult<vk::PipelineLayout> {
+        let mut pipeline_layout = MaybeUninit::uninit();
+        (self
+            .device_fn_1_0
+            .create_pipeline_layout)(
+                self.handle,
+                create_info,
+                match allocator {
+                    Some(r) => r,
+                    None => ptr::null_mut(),
+                },
+                pipeline_layout.as_mut_ptr(),
+            )
+            .assume_init_on_success(pipeline_layout)
     }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkDestroyPipelineLayout.html) · Device Function
     pub unsafe fn destroy_pipeline_layout(
         &self,
         pipeline_layout: vk::PipelineLayout,
-        allocator: &vk::AllocationCallbacks<'_>,
+        allocator: Option<&vk::AllocationCallbacks<'_>>,
     ) {
         (self
             .device_fn_1_0
-            .destroy_pipeline_layout)(self.handle, pipeline_layout, allocator)
+            .destroy_pipeline_layout)(
+            self.handle,
+            pipeline_layout,
+            match allocator {
+                Some(r) => r,
+                None => ptr::null_mut(),
+            },
+        )
+    }
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCreateSampler.html) · Device Function
+    pub unsafe fn create_sampler(
+        &self,
+        create_info: &vk::SamplerCreateInfo<'_>,
+        allocator: Option<&vk::AllocationCallbacks<'_>>,
+    ) -> VkResult<vk::Sampler> {
+        let mut sampler = MaybeUninit::uninit();
+        (self
+            .device_fn_1_0
+            .create_sampler)(
+                self.handle,
+                create_info,
+                match allocator {
+                    Some(r) => r,
+                    None => ptr::null_mut(),
+                },
+                sampler.as_mut_ptr(),
+            )
+            .assume_init_on_success(sampler)
     }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkDestroySampler.html) · Device Function
     pub unsafe fn destroy_sampler(
         &self,
         sampler: vk::Sampler,
-        allocator: &vk::AllocationCallbacks<'_>,
+        allocator: Option<&vk::AllocationCallbacks<'_>>,
     ) {
-        (self.device_fn_1_0.destroy_sampler)(self.handle, sampler, allocator)
+        (self
+            .device_fn_1_0
+            .destroy_sampler)(
+            self.handle,
+            sampler,
+            match allocator {
+                Some(r) => r,
+                None => ptr::null_mut(),
+            },
+        )
+    }
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCreateDescriptorSetLayout.html) · Device Function
+    pub unsafe fn create_descriptor_set_layout(
+        &self,
+        create_info: &vk::DescriptorSetLayoutCreateInfo<'_>,
+        allocator: Option<&vk::AllocationCallbacks<'_>>,
+    ) -> VkResult<vk::DescriptorSetLayout> {
+        let mut set_layout = MaybeUninit::uninit();
+        (self
+            .device_fn_1_0
+            .create_descriptor_set_layout)(
+                self.handle,
+                create_info,
+                match allocator {
+                    Some(r) => r,
+                    None => ptr::null_mut(),
+                },
+                set_layout.as_mut_ptr(),
+            )
+            .assume_init_on_success(set_layout)
     }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkDestroyDescriptorSetLayout.html) · Device Function
     pub unsafe fn destroy_descriptor_set_layout(
         &self,
         descriptor_set_layout: vk::DescriptorSetLayout,
-        allocator: &vk::AllocationCallbacks<'_>,
+        allocator: Option<&vk::AllocationCallbacks<'_>>,
     ) {
         (self
             .device_fn_1_0
             .destroy_descriptor_set_layout)(
             self.handle,
             descriptor_set_layout,
-            allocator,
+            match allocator {
+                Some(r) => r,
+                None => ptr::null_mut(),
+            },
         )
+    }
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCreateDescriptorPool.html) · Device Function
+    pub unsafe fn create_descriptor_pool(
+        &self,
+        create_info: &vk::DescriptorPoolCreateInfo<'_>,
+        allocator: Option<&vk::AllocationCallbacks<'_>>,
+    ) -> VkResult<vk::DescriptorPool> {
+        let mut descriptor_pool = MaybeUninit::uninit();
+        (self
+            .device_fn_1_0
+            .create_descriptor_pool)(
+                self.handle,
+                create_info,
+                match allocator {
+                    Some(r) => r,
+                    None => ptr::null_mut(),
+                },
+                descriptor_pool.as_mut_ptr(),
+            )
+            .assume_init_on_success(descriptor_pool)
     }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkDestroyDescriptorPool.html) · Device Function
     pub unsafe fn destroy_descriptor_pool(
         &self,
         descriptor_pool: vk::DescriptorPool,
-        allocator: &vk::AllocationCallbacks<'_>,
+        allocator: Option<&vk::AllocationCallbacks<'_>>,
     ) {
         (self
             .device_fn_1_0
-            .destroy_descriptor_pool)(self.handle, descriptor_pool, allocator)
+            .destroy_descriptor_pool)(
+            self.handle,
+            descriptor_pool,
+            match allocator {
+                Some(r) => r,
+                None => ptr::null_mut(),
+            },
+        )
     }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkResetDescriptorPool.html) · Device Function
     pub unsafe fn reset_descriptor_pool(
@@ -3449,6 +4112,21 @@ impl crate::Device {
     ) -> VkResult<()> {
         (self.device_fn_1_0.reset_descriptor_pool)(self.handle, descriptor_pool, flags)
             .result()
+    }
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkAllocateDescriptorSets.html) · Device Function
+    pub unsafe fn allocate_descriptor_sets(
+        &self,
+        allocate_info: &vk::DescriptorSetAllocateInfo<'_>,
+    ) -> VkResult<vk::DescriptorSet> {
+        let mut descriptor_sets = MaybeUninit::uninit();
+        (self
+            .device_fn_1_0
+            .allocate_descriptor_sets)(
+                self.handle,
+                allocate_info,
+                descriptor_sets.as_mut_ptr(),
+            )
+            .assume_init_on_success(descriptor_sets)
     }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkFreeDescriptorSets.html) · Device Function
     pub unsafe fn free_descriptor_sets(
@@ -3482,29 +4160,131 @@ impl crate::Device {
             descriptor_copies.as_ptr(),
         )
     }
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCreateFramebuffer.html) · Device Function
+    pub unsafe fn create_framebuffer(
+        &self,
+        create_info: &vk::FramebufferCreateInfo<'_>,
+        allocator: Option<&vk::AllocationCallbacks<'_>>,
+    ) -> VkResult<vk::Framebuffer> {
+        let mut framebuffer = MaybeUninit::uninit();
+        (self
+            .device_fn_1_0
+            .create_framebuffer)(
+                self.handle,
+                create_info,
+                match allocator {
+                    Some(r) => r,
+                    None => ptr::null_mut(),
+                },
+                framebuffer.as_mut_ptr(),
+            )
+            .assume_init_on_success(framebuffer)
+    }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkDestroyFramebuffer.html) · Device Function
     pub unsafe fn destroy_framebuffer(
         &self,
         framebuffer: vk::Framebuffer,
-        allocator: &vk::AllocationCallbacks<'_>,
+        allocator: Option<&vk::AllocationCallbacks<'_>>,
     ) {
-        (self.device_fn_1_0.destroy_framebuffer)(self.handle, framebuffer, allocator)
+        (self
+            .device_fn_1_0
+            .destroy_framebuffer)(
+            self.handle,
+            framebuffer,
+            match allocator {
+                Some(r) => r,
+                None => ptr::null_mut(),
+            },
+        )
+    }
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCreateRenderPass.html) · Device Function
+    pub unsafe fn create_render_pass(
+        &self,
+        create_info: &vk::RenderPassCreateInfo<'_>,
+        allocator: Option<&vk::AllocationCallbacks<'_>>,
+    ) -> VkResult<vk::RenderPass> {
+        let mut render_pass = MaybeUninit::uninit();
+        (self
+            .device_fn_1_0
+            .create_render_pass)(
+                self.handle,
+                create_info,
+                match allocator {
+                    Some(r) => r,
+                    None => ptr::null_mut(),
+                },
+                render_pass.as_mut_ptr(),
+            )
+            .assume_init_on_success(render_pass)
     }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkDestroyRenderPass.html) · Device Function
     pub unsafe fn destroy_render_pass(
         &self,
         render_pass: vk::RenderPass,
-        allocator: &vk::AllocationCallbacks<'_>,
+        allocator: Option<&vk::AllocationCallbacks<'_>>,
     ) {
-        (self.device_fn_1_0.destroy_render_pass)(self.handle, render_pass, allocator)
+        (self
+            .device_fn_1_0
+            .destroy_render_pass)(
+            self.handle,
+            render_pass,
+            match allocator {
+                Some(r) => r,
+                None => ptr::null_mut(),
+            },
+        )
+    }
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkGetRenderAreaGranularity.html) · Device Function
+    pub unsafe fn get_render_area_granularity(
+        &self,
+        render_pass: vk::RenderPass,
+    ) -> vk::Extent2D {
+        let mut granularity = MaybeUninit::uninit();
+        (self
+            .device_fn_1_0
+            .get_render_area_granularity)(
+            self.handle,
+            render_pass,
+            granularity.as_mut_ptr(),
+        );
+        granularity.assume_init()
+    }
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCreateCommandPool.html) · Device Function
+    pub unsafe fn create_command_pool(
+        &self,
+        create_info: &vk::CommandPoolCreateInfo<'_>,
+        allocator: Option<&vk::AllocationCallbacks<'_>>,
+    ) -> VkResult<vk::CommandPool> {
+        let mut command_pool = MaybeUninit::uninit();
+        (self
+            .device_fn_1_0
+            .create_command_pool)(
+                self.handle,
+                create_info,
+                match allocator {
+                    Some(r) => r,
+                    None => ptr::null_mut(),
+                },
+                command_pool.as_mut_ptr(),
+            )
+            .assume_init_on_success(command_pool)
     }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkDestroyCommandPool.html) · Device Function
     pub unsafe fn destroy_command_pool(
         &self,
         command_pool: vk::CommandPool,
-        allocator: &vk::AllocationCallbacks<'_>,
+        allocator: Option<&vk::AllocationCallbacks<'_>>,
     ) {
-        (self.device_fn_1_0.destroy_command_pool)(self.handle, command_pool, allocator)
+        (self
+            .device_fn_1_0
+            .destroy_command_pool)(
+            self.handle,
+            command_pool,
+            match allocator {
+                Some(r) => r,
+                None => ptr::null_mut(),
+            },
+        )
     }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkResetCommandPool.html) · Device Function
     pub unsafe fn reset_command_pool(
@@ -3514,6 +4294,21 @@ impl crate::Device {
     ) -> VkResult<()> {
         (self.device_fn_1_0.reset_command_pool)(self.handle, command_pool, flags)
             .result()
+    }
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkAllocateCommandBuffers.html) · Device Function
+    pub unsafe fn allocate_command_buffers(
+        &self,
+        allocate_info: &vk::CommandBufferAllocateInfo<'_>,
+    ) -> VkResult<vk::CommandBuffer> {
+        let mut command_buffers = MaybeUninit::uninit();
+        (self
+            .device_fn_1_0
+            .allocate_command_buffers)(
+                self.handle,
+                allocate_info,
+                command_buffers.as_mut_ptr(),
+            )
+            .assume_init_on_success(command_buffers)
     }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkFreeCommandBuffers.html) · Device Function
     pub unsafe fn free_command_buffers(
@@ -3716,6 +4511,7 @@ impl crate::Device {
         buffers: &[vk::Buffer],
         offsets: &[vk::DeviceSize],
     ) {
+        assert_eq!(buffers.len(), offsets.len());
         (self
             .device_fn_1_0
             .cmd_bind_vertex_buffers)(

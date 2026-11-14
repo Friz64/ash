@@ -74,6 +74,44 @@ impl Instance {
     pub fn instance(&self) -> vk::Instance {
         self.handle
     }
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCreateXcbSurfaceKHR.html) · Instance Function
+    pub unsafe fn create_xcb_surface(
+        &self,
+        create_info: &vk::XcbSurfaceCreateInfoKHR<'_>,
+        allocator: Option<&vk::AllocationCallbacks<'_>>,
+    ) -> VkResult<vk::SurfaceKHR> {
+        let mut surface = MaybeUninit::uninit();
+        (self
+            .fp
+            .create_xcb_surface)(
+                self.handle,
+                create_info,
+                match allocator {
+                    Some(r) => r,
+                    None => ptr::null_mut(),
+                },
+                surface.as_mut_ptr(),
+            )
+            .assume_init_on_success(surface)
+    }
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkGetPhysicalDeviceXcbPresentationSupportKHR.html) · Instance Function
+    pub unsafe fn get_physical_device_xcb_presentation_support(
+        &self,
+        physical_device: vk::PhysicalDevice,
+        queue_family_index: u32,
+        visual_id: vk::xcb_visualid_t,
+    ) -> vk::xcb_connection_t {
+        let mut connection = MaybeUninit::uninit();
+        (self
+            .fp
+            .get_physical_device_xcb_presentation_support)(
+            physical_device,
+            queue_family_index,
+            connection.as_mut_ptr(),
+            visual_id,
+        );
+        connection.assume_init()
+    }
 }
 pub(crate) mod items {
     use crate::internal_prelude::*;

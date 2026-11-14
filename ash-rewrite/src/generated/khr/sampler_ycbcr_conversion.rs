@@ -200,15 +200,42 @@ impl Device {
     pub fn device(&self) -> vk::Device {
         self.handle
     }
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCreateSamplerYcbcrConversion.html) · Device Function
+    pub unsafe fn create_sampler_ycbcr_conversion(
+        &self,
+        create_info: &vk::SamplerYcbcrConversionCreateInfo<'_>,
+        allocator: Option<&vk::AllocationCallbacks<'_>>,
+    ) -> VkResult<vk::SamplerYcbcrConversion> {
+        let mut ycbcr_conversion = MaybeUninit::uninit();
+        (self
+            .fp
+            .create_sampler_ycbcr_conversion)(
+                self.handle,
+                create_info,
+                match allocator {
+                    Some(r) => r,
+                    None => ptr::null_mut(),
+                },
+                ycbcr_conversion.as_mut_ptr(),
+            )
+            .assume_init_on_success(ycbcr_conversion)
+    }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkDestroySamplerYcbcrConversion.html) · Device Function
     pub unsafe fn destroy_sampler_ycbcr_conversion(
         &self,
         ycbcr_conversion: vk::SamplerYcbcrConversion,
-        allocator: &vk::AllocationCallbacks<'_>,
+        allocator: Option<&vk::AllocationCallbacks<'_>>,
     ) {
         (self
             .fp
-            .destroy_sampler_ycbcr_conversion)(self.handle, ycbcr_conversion, allocator)
+            .destroy_sampler_ycbcr_conversion)(
+            self.handle,
+            ycbcr_conversion,
+            match allocator {
+                Some(r) => r,
+                None => ptr::null_mut(),
+            },
+        )
     }
 }
 pub(crate) mod items {

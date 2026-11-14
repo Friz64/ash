@@ -156,6 +156,21 @@ impl Device {
     pub fn device(&self) -> vk::Device {
         self.handle
     }
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkGetDeviceGroupSurfacePresentModes2EXT.html) · Device Function
+    pub unsafe fn get_device_group_surface_present_modes2(
+        &self,
+        surface_info: &vk::PhysicalDeviceSurfaceInfo2KHR<'_>,
+    ) -> VkResult<vk::DeviceGroupPresentModeFlagsKHR> {
+        let mut modes = MaybeUninit::uninit();
+        (self
+            .fp
+            .get_device_group_surface_present_modes2)(
+                self.handle,
+                surface_info,
+                modes.as_mut_ptr(),
+            )
+            .assume_init_on_success(modes)
+    }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkAcquireFullScreenExclusiveModeEXT.html) · Device Function
     pub unsafe fn acquire_full_screen_exclusive_mode(
         &self,

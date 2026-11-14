@@ -103,13 +103,42 @@ impl Device {
     pub fn device(&self) -> vk::Device {
         self.handle
     }
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCreatePrivateDataSlot.html) · Device Function
+    pub unsafe fn create_private_data_slot(
+        &self,
+        create_info: &vk::PrivateDataSlotCreateInfo<'_>,
+        allocator: Option<&vk::AllocationCallbacks<'_>>,
+    ) -> VkResult<vk::PrivateDataSlot> {
+        let mut private_data_slot = MaybeUninit::uninit();
+        (self
+            .fp
+            .create_private_data_slot)(
+                self.handle,
+                create_info,
+                match allocator {
+                    Some(r) => r,
+                    None => ptr::null_mut(),
+                },
+                private_data_slot.as_mut_ptr(),
+            )
+            .assume_init_on_success(private_data_slot)
+    }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkDestroyPrivateDataSlot.html) · Device Function
     pub unsafe fn destroy_private_data_slot(
         &self,
         private_data_slot: vk::PrivateDataSlot,
-        allocator: &vk::AllocationCallbacks<'_>,
+        allocator: Option<&vk::AllocationCallbacks<'_>>,
     ) {
-        (self.fp.destroy_private_data_slot)(self.handle, private_data_slot, allocator)
+        (self
+            .fp
+            .destroy_private_data_slot)(
+            self.handle,
+            private_data_slot,
+            match allocator {
+                Some(r) => r,
+                None => ptr::null_mut(),
+            },
+        )
     }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkSetPrivateData.html) · Device Function
     pub unsafe fn set_private_data<T: vk::Handle>(

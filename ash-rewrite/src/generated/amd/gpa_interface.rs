@@ -292,13 +292,42 @@ impl Device {
     pub fn device(&self) -> vk::Device {
         self.handle
     }
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCreateGpaSessionAMD.html) · Device Function
+    pub unsafe fn create_gpa_session(
+        &self,
+        create_info: &vk::GpaSessionCreateInfoAMD<'_>,
+        allocator: Option<&vk::AllocationCallbacks<'_>>,
+    ) -> VkResult<vk::GpaSessionAMD> {
+        let mut gpa_session = MaybeUninit::uninit();
+        (self
+            .fp
+            .create_gpa_session)(
+                self.handle,
+                create_info,
+                match allocator {
+                    Some(r) => r,
+                    None => ptr::null_mut(),
+                },
+                gpa_session.as_mut_ptr(),
+            )
+            .assume_init_on_success(gpa_session)
+    }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkDestroyGpaSessionAMD.html) · Device Function
     pub unsafe fn destroy_gpa_session(
         &self,
         gpa_session: vk::GpaSessionAMD,
-        allocator: &vk::AllocationCallbacks<'_>,
+        allocator: Option<&vk::AllocationCallbacks<'_>>,
     ) {
-        (self.fp.destroy_gpa_session)(self.handle, gpa_session, allocator)
+        (self
+            .fp
+            .destroy_gpa_session)(
+            self.handle,
+            gpa_session,
+            match allocator {
+                Some(r) => r,
+                None => ptr::null_mut(),
+            },
+        )
     }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdBeginGpaSessionAMD.html) · Device Function
     pub unsafe fn cmd_begin_gpa_session(
@@ -316,6 +345,24 @@ impl Device {
     ) -> VkResult<()> {
         (self.fp.cmd_end_gpa_session)(command_buffer, gpa_session).result()
     }
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdBeginGpaSampleAMD.html) · Device Function
+    pub unsafe fn cmd_begin_gpa_sample(
+        &self,
+        command_buffer: vk::CommandBuffer,
+        gpa_session: vk::GpaSessionAMD,
+        gpa_sample_begin_info: &vk::GpaSampleBeginInfoAMD<'_>,
+    ) -> VkResult<u32> {
+        let mut sample_id = MaybeUninit::uninit();
+        (self
+            .fp
+            .cmd_begin_gpa_sample)(
+                command_buffer,
+                gpa_session,
+                gpa_sample_begin_info,
+                sample_id.as_mut_ptr(),
+            )
+            .assume_init_on_success(sample_id)
+    }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdEndGpaSampleAMD.html) · Device Function
     pub unsafe fn cmd_end_gpa_sample(
         &self,
@@ -331,6 +378,24 @@ impl Device {
         gpa_session: vk::GpaSessionAMD,
     ) -> VkResult<()> {
         (self.fp.get_gpa_session_status)(self.handle, gpa_session).result()
+    }
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkGetGpaSessionResultsAMD.html) · Device Function
+    pub unsafe fn get_gpa_session_results(
+        &self,
+        gpa_session: vk::GpaSessionAMD,
+        sample_id: u32,
+        data: &mut [u8],
+    ) -> VkResult<()> {
+        (self
+            .fp
+            .get_gpa_session_results)(
+                self.handle,
+                gpa_session,
+                sample_id,
+                data.len() as _,
+                data.as_mut_ptr().cast(),
+            )
+            .result()
     }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkResetGpaSessionAMD.html) · Device Function
     pub unsafe fn reset_gpa_session(

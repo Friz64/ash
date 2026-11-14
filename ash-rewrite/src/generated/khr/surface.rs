@@ -189,9 +189,52 @@ impl Instance {
     pub unsafe fn destroy_surface(
         &self,
         surface: vk::SurfaceKHR,
-        allocator: &vk::AllocationCallbacks<'_>,
+        allocator: Option<&vk::AllocationCallbacks<'_>>,
     ) {
-        (self.fp.destroy_surface)(self.handle, surface, allocator)
+        (self
+            .fp
+            .destroy_surface)(
+            self.handle,
+            surface,
+            match allocator {
+                Some(r) => r,
+                None => ptr::null_mut(),
+            },
+        )
+    }
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkGetPhysicalDeviceSurfaceSupportKHR.html) · Instance Function
+    pub unsafe fn get_physical_device_surface_support(
+        &self,
+        physical_device: vk::PhysicalDevice,
+        queue_family_index: u32,
+        surface: vk::SurfaceKHR,
+    ) -> VkResult<vk::Bool32> {
+        let mut supported = MaybeUninit::uninit();
+        (self
+            .fp
+            .get_physical_device_surface_support)(
+                physical_device,
+                queue_family_index,
+                surface,
+                supported.as_mut_ptr(),
+            )
+            .assume_init_on_success(supported)
+    }
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkGetPhysicalDeviceSurfaceCapabilitiesKHR.html) · Instance Function
+    pub unsafe fn get_physical_device_surface_capabilities(
+        &self,
+        physical_device: vk::PhysicalDevice,
+        surface: vk::SurfaceKHR,
+    ) -> VkResult<vk::SurfaceCapabilitiesKHR> {
+        let mut surface_capabilities = MaybeUninit::uninit();
+        (self
+            .fp
+            .get_physical_device_surface_capabilities)(
+                physical_device,
+                surface,
+                surface_capabilities.as_mut_ptr(),
+            )
+            .assume_init_on_success(surface_capabilities)
     }
 }
 pub(crate) mod items {

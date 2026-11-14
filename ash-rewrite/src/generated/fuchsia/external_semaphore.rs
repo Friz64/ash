@@ -82,6 +82,21 @@ impl Device {
     pub fn device(&self) -> vk::Device {
         self.handle
     }
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkGetSemaphoreZirconHandleFUCHSIA.html) · Device Function
+    pub unsafe fn get_semaphore_zircon_handle(
+        &self,
+        get_zircon_handle_info: &vk::SemaphoreGetZirconHandleInfoFUCHSIA<'_>,
+    ) -> VkResult<vk::zx_handle_t> {
+        let mut zircon_handle = MaybeUninit::uninit();
+        (self
+            .fp
+            .get_semaphore_zircon_handle)(
+                self.handle,
+                get_zircon_handle_info,
+                zircon_handle.as_mut_ptr(),
+            )
+            .assume_init_on_success(zircon_handle)
+    }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkImportSemaphoreZirconHandleFUCHSIA.html) · Device Function
     pub unsafe fn import_semaphore_zircon_handle(
         &self,

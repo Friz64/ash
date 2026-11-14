@@ -324,6 +324,26 @@ impl Device {
     pub fn device(&self) -> vk::Device {
         self.handle
     }
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCreateDataGraphPipelineSessionARM.html) · Device Function
+    pub unsafe fn create_data_graph_pipeline_session(
+        &self,
+        create_info: &vk::DataGraphPipelineSessionCreateInfoARM<'_>,
+        allocator: Option<&vk::AllocationCallbacks<'_>>,
+    ) -> VkResult<vk::DataGraphPipelineSessionARM> {
+        let mut session = MaybeUninit::uninit();
+        (self
+            .fp
+            .create_data_graph_pipeline_session)(
+                self.handle,
+                create_info,
+                match allocator {
+                    Some(r) => r,
+                    None => ptr::null_mut(),
+                },
+                session.as_mut_ptr(),
+            )
+            .assume_init_on_success(session)
+    }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkBindDataGraphPipelineSessionMemoryARM.html) · Device Function
     pub unsafe fn bind_data_graph_pipeline_session_memory(
         &self,
@@ -342,18 +362,36 @@ impl Device {
     pub unsafe fn destroy_data_graph_pipeline_session(
         &self,
         session: vk::DataGraphPipelineSessionARM,
-        allocator: &vk::AllocationCallbacks<'_>,
+        allocator: Option<&vk::AllocationCallbacks<'_>>,
     ) {
-        (self.fp.destroy_data_graph_pipeline_session)(self.handle, session, allocator)
+        (self
+            .fp
+            .destroy_data_graph_pipeline_session)(
+            self.handle,
+            session,
+            match allocator {
+                Some(r) => r,
+                None => ptr::null_mut(),
+            },
+        )
     }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdDispatchDataGraphARM.html) · Device Function
     pub unsafe fn cmd_dispatch_data_graph(
         &self,
         command_buffer: vk::CommandBuffer,
         session: vk::DataGraphPipelineSessionARM,
-        info: &vk::DataGraphPipelineDispatchInfoARM<'_>,
+        info: Option<&vk::DataGraphPipelineDispatchInfoARM<'_>>,
     ) {
-        (self.fp.cmd_dispatch_data_graph)(command_buffer, session, info)
+        (self
+            .fp
+            .cmd_dispatch_data_graph)(
+            command_buffer,
+            session,
+            match info {
+                Some(r) => r,
+                None => ptr::null_mut(),
+            },
+        )
     }
 }
 #[derive(Clone)]

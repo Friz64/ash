@@ -137,6 +137,22 @@ impl Instance {
     pub fn instance(&self) -> vk::Instance {
         self.handle
     }
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkGetPhysicalDeviceQueueFamilyPerformanceQueryPassesKHR.html) · Instance Function
+    pub unsafe fn get_physical_device_queue_family_performance_query_passes(
+        &self,
+        physical_device: vk::PhysicalDevice,
+        performance_query_create_info: &vk::QueryPoolPerformanceCreateInfoKHR<'_>,
+    ) -> u32 {
+        let mut num_passes = MaybeUninit::uninit();
+        (self
+            .fp
+            .get_physical_device_queue_family_performance_query_passes)(
+            physical_device,
+            performance_query_create_info,
+            num_passes.as_mut_ptr(),
+        );
+        num_passes.assume_init()
+    }
 }
 #[derive(Clone)]
 pub struct DeviceFn {

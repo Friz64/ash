@@ -104,7 +104,7 @@ impl Device {
         instance_count: u32,
         first_instance: u32,
         stride: u32,
-        vertex_offset: &i32,
+        vertex_offset: Option<&i32>,
     ) {
         (self
             .fp
@@ -115,7 +115,10 @@ impl Device {
             instance_count,
             first_instance,
             stride,
-            vertex_offset,
+            match vertex_offset {
+                Some(r) => r,
+                None => ptr::null_mut(),
+            },
         )
     }
 }

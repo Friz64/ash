@@ -68,6 +68,15 @@ impl Device {
     pub fn device(&self) -> vk::Device {
         self.handle
     }
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkMapMemory2.html) · Device Function
+    pub unsafe fn map_memory2(
+        &self,
+        memory_map_info: &vk::MemoryMapInfo<'_>,
+    ) -> VkResult<*mut ffi::c_void> {
+        let mut data = MaybeUninit::uninit();
+        (self.fp.map_memory2)(self.handle, memory_map_info, data.as_mut_ptr())
+            .assume_init_on_success(data)
+    }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkUnmapMemory2.html) · Device Function
     pub unsafe fn unmap_memory2(
         &self,

@@ -297,21 +297,79 @@ impl Device {
     pub fn device(&self) -> vk::Device {
         self.handle
     }
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCreateTensorARM.html) · Device Function
+    pub unsafe fn create_tensor(
+        &self,
+        create_info: &vk::TensorCreateInfoARM<'_>,
+        allocator: Option<&vk::AllocationCallbacks<'_>>,
+    ) -> VkResult<vk::TensorARM> {
+        let mut tensor = MaybeUninit::uninit();
+        (self
+            .fp
+            .create_tensor)(
+                self.handle,
+                create_info,
+                match allocator {
+                    Some(r) => r,
+                    None => ptr::null_mut(),
+                },
+                tensor.as_mut_ptr(),
+            )
+            .assume_init_on_success(tensor)
+    }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkDestroyTensorARM.html) · Device Function
     pub unsafe fn destroy_tensor(
         &self,
         tensor: vk::TensorARM,
-        allocator: &vk::AllocationCallbacks<'_>,
+        allocator: Option<&vk::AllocationCallbacks<'_>>,
     ) {
-        (self.fp.destroy_tensor)(self.handle, tensor, allocator)
+        (self
+            .fp
+            .destroy_tensor)(
+            self.handle,
+            tensor,
+            match allocator {
+                Some(r) => r,
+                None => ptr::null_mut(),
+            },
+        )
+    }
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCreateTensorViewARM.html) · Device Function
+    pub unsafe fn create_tensor_view(
+        &self,
+        create_info: &vk::TensorViewCreateInfoARM<'_>,
+        allocator: Option<&vk::AllocationCallbacks<'_>>,
+    ) -> VkResult<vk::TensorViewARM> {
+        let mut view = MaybeUninit::uninit();
+        (self
+            .fp
+            .create_tensor_view)(
+                self.handle,
+                create_info,
+                match allocator {
+                    Some(r) => r,
+                    None => ptr::null_mut(),
+                },
+                view.as_mut_ptr(),
+            )
+            .assume_init_on_success(view)
     }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkDestroyTensorViewARM.html) · Device Function
     pub unsafe fn destroy_tensor_view(
         &self,
         tensor_view: vk::TensorViewARM,
-        allocator: &vk::AllocationCallbacks<'_>,
+        allocator: Option<&vk::AllocationCallbacks<'_>>,
     ) {
-        (self.fp.destroy_tensor_view)(self.handle, tensor_view, allocator)
+        (self
+            .fp
+            .destroy_tensor_view)(
+            self.handle,
+            tensor_view,
+            match allocator {
+                Some(r) => r,
+                None => ptr::null_mut(),
+            },
+        )
     }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkBindTensorMemoryARM.html) · Device Function
     pub unsafe fn bind_tensor_memory(
@@ -330,6 +388,24 @@ impl Device {
         copy_tensor_info: &vk::CopyTensorInfoARM<'_>,
     ) {
         (self.fp.cmd_copy_tensor)(command_buffer, copy_tensor_info)
+    }
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkGetTensorOpaqueCaptureDescriptorDataARM.html) · Device Function
+    pub unsafe fn get_tensor_opaque_capture_descriptor_data(
+        &self,
+        info: &vk::TensorCaptureDescriptorDataInfoARM<'_>,
+        data: *mut ffi::c_void,
+    ) -> VkResult<()> {
+        (self.fp.get_tensor_opaque_capture_descriptor_data)(self.handle, info, data)
+            .result()
+    }
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkGetTensorViewOpaqueCaptureDescriptorDataARM.html) · Device Function
+    pub unsafe fn get_tensor_view_opaque_capture_descriptor_data(
+        &self,
+        info: &vk::TensorViewCaptureDescriptorDataInfoARM<'_>,
+        data: *mut ffi::c_void,
+    ) -> VkResult<()> {
+        (self.fp.get_tensor_view_opaque_capture_descriptor_data)(self.handle, info, data)
+            .result()
     }
 }
 #[derive(Clone)]

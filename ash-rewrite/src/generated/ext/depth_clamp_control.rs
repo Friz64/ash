@@ -73,14 +73,17 @@ impl Device {
         &self,
         command_buffer: vk::CommandBuffer,
         depth_clamp_mode: vk::DepthClampModeEXT,
-        depth_clamp_range: &vk::DepthClampRangeEXT,
+        depth_clamp_range: Option<&vk::DepthClampRangeEXT>,
     ) {
         (self
             .fp
             .cmd_set_depth_clamp_range)(
             command_buffer,
             depth_clamp_mode,
-            depth_clamp_range,
+            match depth_clamp_range {
+                Some(r) => r,
+                None => ptr::null_mut(),
+            },
         )
     }
 }

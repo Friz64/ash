@@ -524,14 +524,17 @@ impl Device {
     pub unsafe fn destroy_acceleration_structure(
         &self,
         acceleration_structure: vk::AccelerationStructureKHR,
-        allocator: &vk::AllocationCallbacks<'_>,
+        allocator: Option<&vk::AllocationCallbacks<'_>>,
     ) {
         (self
             .fp
             .destroy_acceleration_structure)(
             self.handle,
             acceleration_structure,
-            allocator,
+            match allocator {
+                Some(r) => r,
+                None => ptr::null_mut(),
+            },
         )
     }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdCopyAccelerationStructureKHR.html) · Device Function
@@ -616,6 +619,62 @@ impl Device {
             query_pool,
             first_query,
         )
+    }
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkWriteAccelerationStructuresPropertiesKHR.html) · Device Function
+    pub unsafe fn write_acceleration_structures_properties(
+        &self,
+        acceleration_structures: &[vk::AccelerationStructureKHR],
+        query_type: vk::QueryType,
+        data: &mut [u8],
+        stride: usize,
+    ) -> VkResult<()> {
+        (self
+            .fp
+            .write_acceleration_structures_properties)(
+                self.handle,
+                acceleration_structures.len() as _,
+                acceleration_structures.as_ptr(),
+                query_type,
+                data.len() as _,
+                data.as_mut_ptr().cast(),
+                stride,
+            )
+            .result()
+    }
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkGetDeviceAccelerationStructureCompatibilityKHR.html) · Device Function
+    pub unsafe fn get_device_acceleration_structure_compatibility(
+        &self,
+        version_info: &vk::AccelerationStructureVersionInfoKHR<'_>,
+    ) -> vk::AccelerationStructureCompatibilityKHR {
+        let mut compatibility = MaybeUninit::uninit();
+        (self
+            .fp
+            .get_device_acceleration_structure_compatibility)(
+            self.handle,
+            version_info,
+            compatibility.as_mut_ptr(),
+        );
+        compatibility.assume_init()
+    }
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCreateAccelerationStructureKHR.html) · Device Function
+    pub unsafe fn create_acceleration_structure(
+        &self,
+        create_info: &vk::AccelerationStructureCreateInfoKHR<'_>,
+        allocator: Option<&vk::AllocationCallbacks<'_>>,
+    ) -> VkResult<vk::AccelerationStructureKHR> {
+        let mut acceleration_structure = MaybeUninit::uninit();
+        (self
+            .fp
+            .create_acceleration_structure)(
+                self.handle,
+                create_info,
+                match allocator {
+                    Some(r) => r,
+                    None => ptr::null_mut(),
+                },
+                acceleration_structure.as_mut_ptr(),
+            )
+            .assume_init_on_success(acceleration_structure)
     }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdBuildAccelerationStructuresKHR.html) · Device Function
     pub unsafe fn cmd_build_acceleration_structures(

@@ -302,13 +302,42 @@ impl Instance {
     pub fn instance(&self) -> vk::Instance {
         self.handle
     }
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCreateDebugUtilsMessengerEXT.html) · Instance Function
+    pub unsafe fn create_debug_utils_messenger(
+        &self,
+        create_info: &vk::DebugUtilsMessengerCreateInfoEXT<'_>,
+        allocator: Option<&vk::AllocationCallbacks<'_>>,
+    ) -> VkResult<vk::DebugUtilsMessengerEXT> {
+        let mut messenger = MaybeUninit::uninit();
+        (self
+            .fp
+            .create_debug_utils_messenger)(
+                self.handle,
+                create_info,
+                match allocator {
+                    Some(r) => r,
+                    None => ptr::null_mut(),
+                },
+                messenger.as_mut_ptr(),
+            )
+            .assume_init_on_success(messenger)
+    }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkDestroyDebugUtilsMessengerEXT.html) · Instance Function
     pub unsafe fn destroy_debug_utils_messenger(
         &self,
         messenger: vk::DebugUtilsMessengerEXT,
-        allocator: &vk::AllocationCallbacks<'_>,
+        allocator: Option<&vk::AllocationCallbacks<'_>>,
     ) {
-        (self.fp.destroy_debug_utils_messenger)(self.handle, messenger, allocator)
+        (self
+            .fp
+            .destroy_debug_utils_messenger)(
+            self.handle,
+            messenger,
+            match allocator {
+                Some(r) => r,
+                None => ptr::null_mut(),
+            },
+        )
     }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkSubmitDebugUtilsMessageEXT.html) · Instance Function
     pub unsafe fn submit_debug_utils_message(

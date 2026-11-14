@@ -93,6 +93,21 @@ impl Device {
     pub fn device(&self) -> vk::Device {
         self.handle
     }
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkGetMemoryMetalHandleEXT.html) · Device Function
+    pub unsafe fn get_memory_metal_handle(
+        &self,
+        get_metal_handle_info: &vk::MemoryGetMetalHandleInfoEXT<'_>,
+    ) -> VkResult<*mut ffi::c_void> {
+        let mut handle = MaybeUninit::uninit();
+        (self
+            .fp
+            .get_memory_metal_handle)(
+                self.handle,
+                get_metal_handle_info,
+                handle.as_mut_ptr(),
+            )
+            .assume_init_on_success(handle)
+    }
 }
 pub(crate) mod items {
     use crate::internal_prelude::*;

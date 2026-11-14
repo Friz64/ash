@@ -232,6 +232,21 @@ impl Device {
     ) -> VkResult<()> {
         (self.fp.cmd_set_performance_override)(command_buffer, override_info).result()
     }
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkAcquirePerformanceConfigurationINTEL.html) · Device Function
+    pub unsafe fn acquire_performance_configuration(
+        &self,
+        acquire_info: &vk::PerformanceConfigurationAcquireInfoINTEL<'_>,
+    ) -> VkResult<vk::PerformanceConfigurationINTEL> {
+        let mut configuration = MaybeUninit::uninit();
+        (self
+            .fp
+            .acquire_performance_configuration)(
+                self.handle,
+                acquire_info,
+                configuration.as_mut_ptr(),
+            )
+            .assume_init_on_success(configuration)
+    }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkReleasePerformanceConfigurationINTEL.html) · Device Function
     pub unsafe fn release_performance_configuration(
         &self,
@@ -246,6 +261,15 @@ impl Device {
         configuration: vk::PerformanceConfigurationINTEL,
     ) -> VkResult<()> {
         (self.fp.queue_set_performance_configuration)(queue, configuration).result()
+    }
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkGetPerformanceParameterINTEL.html) · Device Function
+    pub unsafe fn get_performance_parameter(
+        &self,
+        parameter: vk::PerformanceParameterTypeINTEL,
+    ) -> VkResult<vk::PerformanceValueINTEL> {
+        let mut value = MaybeUninit::uninit();
+        (self.fp.get_performance_parameter)(self.handle, parameter, value.as_mut_ptr())
+            .assume_init_on_success(value)
     }
 }
 pub(crate) mod items {

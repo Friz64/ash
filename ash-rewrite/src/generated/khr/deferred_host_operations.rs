@@ -116,13 +116,40 @@ impl Device {
     pub fn device(&self) -> vk::Device {
         self.handle
     }
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCreateDeferredOperationKHR.html) · Device Function
+    pub unsafe fn create_deferred_operation(
+        &self,
+        allocator: Option<&vk::AllocationCallbacks<'_>>,
+    ) -> VkResult<vk::DeferredOperationKHR> {
+        let mut deferred_operation = MaybeUninit::uninit();
+        (self
+            .fp
+            .create_deferred_operation)(
+                self.handle,
+                match allocator {
+                    Some(r) => r,
+                    None => ptr::null_mut(),
+                },
+                deferred_operation.as_mut_ptr(),
+            )
+            .assume_init_on_success(deferred_operation)
+    }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkDestroyDeferredOperationKHR.html) · Device Function
     pub unsafe fn destroy_deferred_operation(
         &self,
         operation: vk::DeferredOperationKHR,
-        allocator: &vk::AllocationCallbacks<'_>,
+        allocator: Option<&vk::AllocationCallbacks<'_>>,
     ) {
-        (self.fp.destroy_deferred_operation)(self.handle, operation, allocator)
+        (self
+            .fp
+            .destroy_deferred_operation)(
+            self.handle,
+            operation,
+            match allocator {
+                Some(r) => r,
+                None => ptr::null_mut(),
+            },
+        )
     }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkGetDeferredOperationMaxConcurrencyKHR.html) · Device Function
     pub unsafe fn get_deferred_operation_max_concurrency(

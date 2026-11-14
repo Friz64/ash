@@ -195,6 +195,23 @@ impl Device {
     pub fn device(&self) -> vk::Device {
         self.handle
     }
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkGetExecutionGraphPipelineNodeIndexAMDX.html) · Device Function
+    pub unsafe fn get_execution_graph_pipeline_node_index(
+        &self,
+        execution_graph: vk::Pipeline,
+        node_info: &vk::PipelineShaderStageNodeCreateInfoAMDX<'_>,
+    ) -> VkResult<u32> {
+        let mut node_index = MaybeUninit::uninit();
+        (self
+            .fp
+            .get_execution_graph_pipeline_node_index)(
+                self.handle,
+                execution_graph,
+                node_info,
+                node_index.as_mut_ptr(),
+            )
+            .assume_init_on_success(node_index)
+    }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdInitializeGraphScratchMemoryAMDX.html) · Device Function
     pub unsafe fn cmd_initialize_graph_scratch_memory(
         &self,

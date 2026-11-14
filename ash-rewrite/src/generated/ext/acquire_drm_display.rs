@@ -74,6 +74,24 @@ impl Instance {
     ) -> VkResult<()> {
         (self.fp.acquire_drm_display)(physical_device, drm_fd, display).result()
     }
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkGetDrmDisplayEXT.html) · Instance Function
+    pub unsafe fn get_drm_display(
+        &self,
+        physical_device: vk::PhysicalDevice,
+        drm_fd: i32,
+        connector_id: u32,
+    ) -> VkResult<vk::DisplayKHR> {
+        let mut display = MaybeUninit::uninit();
+        (self
+            .fp
+            .get_drm_display)(
+                physical_device,
+                drm_fd,
+                connector_id,
+                display.as_mut_ptr(),
+            )
+            .assume_init_on_success(display)
+    }
 }
 pub(crate) mod items {
     use crate::internal_prelude::*;

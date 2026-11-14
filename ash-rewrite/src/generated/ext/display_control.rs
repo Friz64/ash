@@ -122,6 +122,65 @@ impl Device {
         (self.fp.display_power_control)(self.handle, display, display_power_info)
             .result()
     }
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkRegisterDeviceEventEXT.html) · Device Function
+    pub unsafe fn register_device_event(
+        &self,
+        device_event_info: &vk::DeviceEventInfoEXT<'_>,
+        allocator: Option<&vk::AllocationCallbacks<'_>>,
+    ) -> VkResult<vk::Fence> {
+        let mut fence = MaybeUninit::uninit();
+        (self
+            .fp
+            .register_device_event)(
+                self.handle,
+                device_event_info,
+                match allocator {
+                    Some(r) => r,
+                    None => ptr::null_mut(),
+                },
+                fence.as_mut_ptr(),
+            )
+            .assume_init_on_success(fence)
+    }
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkRegisterDisplayEventEXT.html) · Device Function
+    pub unsafe fn register_display_event(
+        &self,
+        display: vk::DisplayKHR,
+        display_event_info: &vk::DisplayEventInfoEXT<'_>,
+        allocator: Option<&vk::AllocationCallbacks<'_>>,
+    ) -> VkResult<vk::Fence> {
+        let mut fence = MaybeUninit::uninit();
+        (self
+            .fp
+            .register_display_event)(
+                self.handle,
+                display,
+                display_event_info,
+                match allocator {
+                    Some(r) => r,
+                    None => ptr::null_mut(),
+                },
+                fence.as_mut_ptr(),
+            )
+            .assume_init_on_success(fence)
+    }
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkGetSwapchainCounterEXT.html) · Device Function
+    pub unsafe fn get_swapchain_counter(
+        &self,
+        swapchain: vk::SwapchainKHR,
+        counter: vk::SurfaceCounterFlagBitsEXT,
+    ) -> VkResult<u64> {
+        let mut counter_value = MaybeUninit::uninit();
+        (self
+            .fp
+            .get_swapchain_counter)(
+                self.handle,
+                swapchain,
+                counter,
+                counter_value.as_mut_ptr(),
+            )
+            .assume_init_on_success(counter_value)
+    }
 }
 pub(crate) mod items {
     use crate::internal_prelude::*;

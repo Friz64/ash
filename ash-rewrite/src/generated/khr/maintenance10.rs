@@ -141,9 +141,17 @@ impl Device {
     pub unsafe fn cmd_end_rendering2(
         &self,
         command_buffer: vk::CommandBuffer,
-        rendering_end_info: &vk::RenderingEndInfoKHR<'_>,
+        rendering_end_info: Option<&vk::RenderingEndInfoKHR<'_>>,
     ) {
-        (self.fp.cmd_end_rendering2)(command_buffer, rendering_end_info)
+        (self
+            .fp
+            .cmd_end_rendering2)(
+            command_buffer,
+            match rendering_end_info {
+                Some(r) => r,
+                None => ptr::null_mut(),
+            },
+        )
     }
 }
 pub(crate) mod items {

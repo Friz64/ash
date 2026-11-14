@@ -1194,9 +1194,34 @@ impl Device {
     pub unsafe fn destroy_shader(
         &self,
         shader: vk::ShaderEXT,
-        allocator: &vk::AllocationCallbacks<'_>,
+        allocator: Option<&vk::AllocationCallbacks<'_>>,
     ) {
-        (self.fp.destroy_shader)(self.handle, shader, allocator)
+        (self
+            .fp
+            .destroy_shader)(
+            self.handle,
+            shader,
+            match allocator {
+                Some(r) => r,
+                None => ptr::null_mut(),
+            },
+        )
+    }
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkGetShaderBinaryDataEXT.html) · Device Function
+    pub unsafe fn get_shader_binary_data(
+        &self,
+        shader: vk::ShaderEXT,
+        data: &mut [u8],
+    ) -> VkResult<()> {
+        (self
+            .fp
+            .get_shader_binary_data)(
+                self.handle,
+                shader,
+                data.len() as _,
+                data.as_mut_ptr().cast(),
+            )
+            .result()
     }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdBindShadersEXT.html) · Device Function
     pub unsafe fn cmd_bind_shaders(
@@ -1205,6 +1230,7 @@ impl Device {
         stages: &[vk::ShaderStageFlagBits],
         shaders: &[vk::ShaderEXT],
     ) {
+        assert_eq!(stages.len(), shaders.len());
         (self
             .fp
             .cmd_bind_shaders)(
@@ -1219,14 +1245,17 @@ impl Device {
         &self,
         command_buffer: vk::CommandBuffer,
         depth_clamp_mode: vk::DepthClampModeEXT,
-        depth_clamp_range: &vk::DepthClampRangeEXT,
+        depth_clamp_range: Option<&vk::DepthClampRangeEXT>,
     ) {
         (self
             .fp
             .cmd_set_depth_clamp_range)(
             command_buffer,
             depth_clamp_mode,
-            depth_clamp_range,
+            match depth_clamp_range {
+                Some(r) => r,
+                None => ptr::null_mut(),
+            },
         )
     }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdSetCullMode.html) · Device Function
@@ -1291,6 +1320,9 @@ impl Device {
         sizes: &[vk::DeviceSize],
         strides: &[vk::DeviceSize],
     ) {
+        assert_eq!(buffers.len(), offsets.len());
+        assert_eq!(offsets.len(), sizes.len());
+        assert_eq!(sizes.len(), strides.len());
         (self
             .fp
             .cmd_bind_vertex_buffers2)(

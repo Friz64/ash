@@ -359,6 +359,21 @@ impl Device {
     pub fn device(&self) -> vk::Device {
         self.handle
     }
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkGetRenderingAreaGranularity.html) · Device Function
+    pub unsafe fn get_rendering_area_granularity(
+        &self,
+        rendering_area_info: &vk::RenderingAreaInfo<'_>,
+    ) -> vk::Extent2D {
+        let mut granularity = MaybeUninit::uninit();
+        (self
+            .fp
+            .get_rendering_area_granularity)(
+            self.handle,
+            rendering_area_info,
+            granularity.as_mut_ptr(),
+        );
+        granularity.assume_init()
+    }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdBindIndexBuffer2.html) · Device Function
     pub unsafe fn cmd_bind_index_buffer2(
         &self,

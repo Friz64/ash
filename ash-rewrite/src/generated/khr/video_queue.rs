@@ -368,13 +368,62 @@ impl Device {
     pub fn device(&self) -> vk::Device {
         self.handle
     }
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCreateVideoSessionKHR.html) · Device Function
+    pub unsafe fn create_video_session(
+        &self,
+        create_info: &vk::VideoSessionCreateInfoKHR<'_>,
+        allocator: Option<&vk::AllocationCallbacks<'_>>,
+    ) -> VkResult<vk::VideoSessionKHR> {
+        let mut video_session = MaybeUninit::uninit();
+        (self
+            .fp
+            .create_video_session)(
+                self.handle,
+                create_info,
+                match allocator {
+                    Some(r) => r,
+                    None => ptr::null_mut(),
+                },
+                video_session.as_mut_ptr(),
+            )
+            .assume_init_on_success(video_session)
+    }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkDestroyVideoSessionKHR.html) · Device Function
     pub unsafe fn destroy_video_session(
         &self,
         video_session: vk::VideoSessionKHR,
-        allocator: &vk::AllocationCallbacks<'_>,
+        allocator: Option<&vk::AllocationCallbacks<'_>>,
     ) {
-        (self.fp.destroy_video_session)(self.handle, video_session, allocator)
+        (self
+            .fp
+            .destroy_video_session)(
+            self.handle,
+            video_session,
+            match allocator {
+                Some(r) => r,
+                None => ptr::null_mut(),
+            },
+        )
+    }
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCreateVideoSessionParametersKHR.html) · Device Function
+    pub unsafe fn create_video_session_parameters(
+        &self,
+        create_info: &vk::VideoSessionParametersCreateInfoKHR<'_>,
+        allocator: Option<&vk::AllocationCallbacks<'_>>,
+    ) -> VkResult<vk::VideoSessionParametersKHR> {
+        let mut video_session_parameters = MaybeUninit::uninit();
+        (self
+            .fp
+            .create_video_session_parameters)(
+                self.handle,
+                create_info,
+                match allocator {
+                    Some(r) => r,
+                    None => ptr::null_mut(),
+                },
+                video_session_parameters.as_mut_ptr(),
+            )
+            .assume_init_on_success(video_session_parameters)
     }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkUpdateVideoSessionParametersKHR.html) · Device Function
     pub unsafe fn update_video_session_parameters(
@@ -395,14 +444,17 @@ impl Device {
     pub unsafe fn destroy_video_session_parameters(
         &self,
         video_session_parameters: vk::VideoSessionParametersKHR,
-        allocator: &vk::AllocationCallbacks<'_>,
+        allocator: Option<&vk::AllocationCallbacks<'_>>,
     ) {
         (self
             .fp
             .destroy_video_session_parameters)(
             self.handle,
             video_session_parameters,
-            allocator,
+            match allocator {
+                Some(r) => r,
+                None => ptr::null_mut(),
+            },
         )
     }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkBindVideoSessionMemoryKHR.html) · Device Function

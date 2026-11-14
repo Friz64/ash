@@ -393,25 +393,49 @@ impl Device {
     pub unsafe fn cmd_copy_memory(
         &self,
         command_buffer: vk::CommandBuffer,
-        copy_memory_info: &vk::CopyDeviceMemoryInfoKHR<'_>,
+        copy_memory_info: Option<&vk::CopyDeviceMemoryInfoKHR<'_>>,
     ) {
-        (self.fp.cmd_copy_memory)(command_buffer, copy_memory_info)
+        (self
+            .fp
+            .cmd_copy_memory)(
+            command_buffer,
+            match copy_memory_info {
+                Some(r) => r,
+                None => ptr::null_mut(),
+            },
+        )
     }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdCopyMemoryToImageKHR.html) · Device Function
     pub unsafe fn cmd_copy_memory_to_image(
         &self,
         command_buffer: vk::CommandBuffer,
-        copy_memory_info: &vk::CopyDeviceMemoryImageInfoKHR<'_>,
+        copy_memory_info: Option<&vk::CopyDeviceMemoryImageInfoKHR<'_>>,
     ) {
-        (self.fp.cmd_copy_memory_to_image)(command_buffer, copy_memory_info)
+        (self
+            .fp
+            .cmd_copy_memory_to_image)(
+            command_buffer,
+            match copy_memory_info {
+                Some(r) => r,
+                None => ptr::null_mut(),
+            },
+        )
     }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdCopyImageToMemoryKHR.html) · Device Function
     pub unsafe fn cmd_copy_image_to_memory(
         &self,
         command_buffer: vk::CommandBuffer,
-        copy_memory_info: &vk::CopyDeviceMemoryImageInfoKHR<'_>,
+        copy_memory_info: Option<&vk::CopyDeviceMemoryImageInfoKHR<'_>>,
     ) {
-        (self.fp.cmd_copy_image_to_memory)(command_buffer, copy_memory_info)
+        (self
+            .fp
+            .cmd_copy_image_to_memory)(
+            command_buffer,
+            match copy_memory_info {
+                Some(r) => r,
+                None => ptr::null_mut(),
+            },
+        )
     }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdUpdateMemoryKHR.html) · Device Function
     pub unsafe fn cmd_update_memory(
@@ -633,6 +657,26 @@ impl Device {
         info: &vk::DispatchIndirect2InfoKHR<'_>,
     ) {
         (self.fp.cmd_dispatch_indirect2)(command_buffer, info)
+    }
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCreateAccelerationStructure2KHR.html) · Device Function
+    pub unsafe fn create_acceleration_structure2(
+        &self,
+        create_info: &vk::AccelerationStructureCreateInfo2KHR<'_>,
+        allocator: Option<&vk::AllocationCallbacks<'_>>,
+    ) -> VkResult<vk::AccelerationStructureKHR> {
+        let mut acceleration_structure = MaybeUninit::uninit();
+        (self
+            .fp
+            .create_acceleration_structure2)(
+                self.handle,
+                create_info,
+                match allocator {
+                    Some(r) => r,
+                    None => ptr::null_mut(),
+                },
+                acceleration_structure.as_mut_ptr(),
+            )
+            .assume_init_on_success(acceleration_structure)
     }
 }
 pub(crate) mod items {

@@ -320,14 +320,8 @@ fn regular_builder(
         Ty::Ptr(Ty::CPrimary(CPrimaryType::Char), mutability)
             if member.length_at_depth(0) == Some(Length::NullTerminated) =>
         {
-            let ty = RustTy::Ref(
-                Box::new(RustTy::Custom {
-                    custom_type: quote! { CStr },
-                    generic_args: vec![],
-                }),
-                mutability,
-            )
-            .tokens(octx, Some(lifetime));
+            let ty = RustTy::Ref(Box::new(RustTy::Tokens(quote! { CStr })), mutability)
+                .tokens(octx, Some(lifetime));
 
             vec![
                 Function {

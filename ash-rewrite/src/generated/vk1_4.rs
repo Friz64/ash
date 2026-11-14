@@ -525,6 +525,21 @@ impl crate::Device {
     pub fn fp_v1_4(&self) -> &crate::DeviceFnV1_4 {
         &self.device_fn_1_4
     }
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkGetRenderingAreaGranularity.html) · Device Function
+    pub unsafe fn get_rendering_area_granularity(
+        &self,
+        rendering_area_info: &vk::RenderingAreaInfo<'_>,
+    ) -> vk::Extent2D {
+        let mut granularity = MaybeUninit::uninit();
+        (self
+            .device_fn_1_4
+            .get_rendering_area_granularity)(
+            self.handle,
+            rendering_area_info,
+            granularity.as_mut_ptr(),
+        );
+        granularity.assume_init()
+    }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdPushDescriptorSet.html) · Device Function
     pub unsafe fn cmd_push_descriptor_set(
         &self,
@@ -629,6 +644,15 @@ impl crate::Device {
                 transitions.as_ptr(),
             )
             .result()
+    }
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkMapMemory2.html) · Device Function
+    pub unsafe fn map_memory2(
+        &self,
+        memory_map_info: &vk::MemoryMapInfo<'_>,
+    ) -> VkResult<*mut ffi::c_void> {
+        let mut data = MaybeUninit::uninit();
+        (self.device_fn_1_4.map_memory2)(self.handle, memory_map_info, data.as_mut_ptr())
+            .assume_init_on_success(data)
     }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkUnmapMemory2.html) · Device Function
     pub unsafe fn unmap_memory2(

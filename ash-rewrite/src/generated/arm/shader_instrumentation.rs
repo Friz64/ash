@@ -206,13 +206,42 @@ impl Device {
     pub fn device(&self) -> vk::Device {
         self.handle
     }
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCreateShaderInstrumentationARM.html) · Device Function
+    pub unsafe fn create_shader_instrumentation(
+        &self,
+        create_info: &vk::ShaderInstrumentationCreateInfoARM<'_>,
+        allocator: Option<&vk::AllocationCallbacks<'_>>,
+    ) -> VkResult<vk::ShaderInstrumentationARM> {
+        let mut instrumentation = MaybeUninit::uninit();
+        (self
+            .fp
+            .create_shader_instrumentation)(
+                self.handle,
+                create_info,
+                match allocator {
+                    Some(r) => r,
+                    None => ptr::null_mut(),
+                },
+                instrumentation.as_mut_ptr(),
+            )
+            .assume_init_on_success(instrumentation)
+    }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkDestroyShaderInstrumentationARM.html) · Device Function
     pub unsafe fn destroy_shader_instrumentation(
         &self,
         instrumentation: vk::ShaderInstrumentationARM,
-        allocator: &vk::AllocationCallbacks<'_>,
+        allocator: Option<&vk::AllocationCallbacks<'_>>,
     ) {
-        (self.fp.destroy_shader_instrumentation)(self.handle, instrumentation, allocator)
+        (self
+            .fp
+            .destroy_shader_instrumentation)(
+            self.handle,
+            instrumentation,
+            match allocator {
+                Some(r) => r,
+                None => ptr::null_mut(),
+            },
+        )
     }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdBeginShaderInstrumentationARM.html) · Device Function
     pub unsafe fn cmd_begin_shader_instrumentation(
@@ -228,6 +257,25 @@ impl Device {
         command_buffer: vk::CommandBuffer,
     ) {
         (self.fp.cmd_end_shader_instrumentation)(command_buffer)
+    }
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkGetShaderInstrumentationValuesARM.html) · Device Function
+    pub unsafe fn get_shader_instrumentation_values(
+        &self,
+        instrumentation: vk::ShaderInstrumentationARM,
+        metric_values: *mut ffi::c_void,
+        flags: vk::ShaderInstrumentationValuesFlagsARM,
+    ) -> VkResult<u32> {
+        let mut metric_block_count = MaybeUninit::uninit();
+        (self
+            .fp
+            .get_shader_instrumentation_values)(
+                self.handle,
+                instrumentation,
+                metric_block_count.as_mut_ptr(),
+                metric_values,
+                flags,
+            )
+            .assume_init_on_success(metric_block_count)
     }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkClearShaderInstrumentationMetricsARM.html) · Device Function
     pub unsafe fn clear_shader_instrumentation_metrics(

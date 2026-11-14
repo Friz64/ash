@@ -97,9 +97,17 @@ impl Device {
     pub unsafe fn cmd_begin_custom_resolve(
         &self,
         command_buffer: vk::CommandBuffer,
-        begin_custom_resolve_info: &vk::BeginCustomResolveInfoEXT<'_>,
+        begin_custom_resolve_info: Option<&vk::BeginCustomResolveInfoEXT<'_>>,
     ) {
-        (self.fp.cmd_begin_custom_resolve)(command_buffer, begin_custom_resolve_info)
+        (self
+            .fp
+            .cmd_begin_custom_resolve)(
+            command_buffer,
+            match begin_custom_resolve_info {
+                Some(r) => r,
+                None => ptr::null_mut(),
+            },
+        )
     }
 }
 pub(crate) mod items {

@@ -57,6 +57,26 @@ impl Instance {
     pub fn instance(&self) -> vk::Instance {
         self.handle
     }
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCreateMetalSurfaceEXT.html) · Instance Function
+    pub unsafe fn create_metal_surface(
+        &self,
+        create_info: &vk::MetalSurfaceCreateInfoEXT<'_>,
+        allocator: Option<&vk::AllocationCallbacks<'_>>,
+    ) -> VkResult<vk::SurfaceKHR> {
+        let mut surface = MaybeUninit::uninit();
+        (self
+            .fp
+            .create_metal_surface)(
+                self.handle,
+                create_info,
+                match allocator {
+                    Some(r) => r,
+                    None => ptr::null_mut(),
+                },
+                surface.as_mut_ptr(),
+            )
+            .assume_init_on_success(surface)
+    }
 }
 pub(crate) mod items {
     use crate::internal_prelude::*;

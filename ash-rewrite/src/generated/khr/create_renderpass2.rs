@@ -98,6 +98,26 @@ impl Device {
     pub fn device(&self) -> vk::Device {
         self.handle
     }
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCreateRenderPass2.html) · Device Function
+    pub unsafe fn create_render_pass2(
+        &self,
+        create_info: &vk::RenderPassCreateInfo2<'_>,
+        allocator: Option<&vk::AllocationCallbacks<'_>>,
+    ) -> VkResult<vk::RenderPass> {
+        let mut render_pass = MaybeUninit::uninit();
+        (self
+            .fp
+            .create_render_pass2)(
+                self.handle,
+                create_info,
+                match allocator {
+                    Some(r) => r,
+                    None => ptr::null_mut(),
+                },
+                render_pass.as_mut_ptr(),
+            )
+            .assume_init_on_success(render_pass)
+    }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdBeginRenderPass2.html) · Device Function
     pub unsafe fn cmd_begin_render_pass2(
         &self,

@@ -471,6 +471,7 @@ impl Device {
         events: &[vk::Event],
         dependency_infos: &[vk::DependencyInfo<'_>],
     ) {
+        assert_eq!(events.len(), dependency_infos.len());
         (self
             .fp
             .cmd_wait_events2)(

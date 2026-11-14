@@ -65,6 +65,16 @@ impl Instance {
     pub fn instance(&self) -> vk::Instance {
         self.handle
     }
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkAcquireXlibDisplayEXT.html) · Instance Function
+    pub unsafe fn acquire_xlib_display(
+        &self,
+        physical_device: vk::PhysicalDevice,
+        display: vk::DisplayKHR,
+    ) -> VkResult<vk::Display> {
+        let mut dpy = MaybeUninit::uninit();
+        (self.fp.acquire_xlib_display)(physical_device, dpy.as_mut_ptr(), display)
+            .assume_init_on_success(dpy)
+    }
 }
 pub(crate) mod items {
     use crate::internal_prelude::*;

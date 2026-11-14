@@ -133,21 +133,95 @@ impl Device {
     pub fn device(&self) -> vk::Device {
         self.handle
     }
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCreateCudaModuleNV.html) · Device Function
+    pub unsafe fn create_cuda_module(
+        &self,
+        create_info: &vk::CudaModuleCreateInfoNV<'_>,
+        allocator: Option<&vk::AllocationCallbacks<'_>>,
+    ) -> VkResult<vk::CudaModuleNV> {
+        let mut module = MaybeUninit::uninit();
+        (self
+            .fp
+            .create_cuda_module)(
+                self.handle,
+                create_info,
+                match allocator {
+                    Some(r) => r,
+                    None => ptr::null_mut(),
+                },
+                module.as_mut_ptr(),
+            )
+            .assume_init_on_success(module)
+    }
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkGetCudaModuleCacheNV.html) · Device Function
+    pub unsafe fn get_cuda_module_cache(
+        &self,
+        module: vk::CudaModuleNV,
+        cache_data: &mut [u8],
+    ) -> VkResult<()> {
+        (self
+            .fp
+            .get_cuda_module_cache)(
+                self.handle,
+                module,
+                cache_data.len() as _,
+                cache_data.as_mut_ptr().cast(),
+            )
+            .result()
+    }
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCreateCudaFunctionNV.html) · Device Function
+    pub unsafe fn create_cuda_function(
+        &self,
+        create_info: &vk::CudaFunctionCreateInfoNV<'_>,
+        allocator: Option<&vk::AllocationCallbacks<'_>>,
+    ) -> VkResult<vk::CudaFunctionNV> {
+        let mut function = MaybeUninit::uninit();
+        (self
+            .fp
+            .create_cuda_function)(
+                self.handle,
+                create_info,
+                match allocator {
+                    Some(r) => r,
+                    None => ptr::null_mut(),
+                },
+                function.as_mut_ptr(),
+            )
+            .assume_init_on_success(function)
+    }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkDestroyCudaModuleNV.html) · Device Function
     pub unsafe fn destroy_cuda_module(
         &self,
         module: vk::CudaModuleNV,
-        allocator: &vk::AllocationCallbacks<'_>,
+        allocator: Option<&vk::AllocationCallbacks<'_>>,
     ) {
-        (self.fp.destroy_cuda_module)(self.handle, module, allocator)
+        (self
+            .fp
+            .destroy_cuda_module)(
+            self.handle,
+            module,
+            match allocator {
+                Some(r) => r,
+                None => ptr::null_mut(),
+            },
+        )
     }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkDestroyCudaFunctionNV.html) · Device Function
     pub unsafe fn destroy_cuda_function(
         &self,
         function: vk::CudaFunctionNV,
-        allocator: &vk::AllocationCallbacks<'_>,
+        allocator: Option<&vk::AllocationCallbacks<'_>>,
     ) {
-        (self.fp.destroy_cuda_function)(self.handle, function, allocator)
+        (self
+            .fp
+            .destroy_cuda_function)(
+            self.handle,
+            function,
+            match allocator {
+                Some(r) => r,
+                None => ptr::null_mut(),
+            },
+        )
     }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdCudaLaunchKernelNV.html) · Device Function
     pub unsafe fn cmd_cuda_launch_kernel(

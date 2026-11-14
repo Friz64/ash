@@ -143,17 +143,36 @@ impl Device {
     pub unsafe fn destroy_pipeline_binary(
         &self,
         pipeline_binary: vk::PipelineBinaryKHR,
-        allocator: &vk::AllocationCallbacks<'_>,
+        allocator: Option<&vk::AllocationCallbacks<'_>>,
     ) {
-        (self.fp.destroy_pipeline_binary)(self.handle, pipeline_binary, allocator)
+        (self
+            .fp
+            .destroy_pipeline_binary)(
+            self.handle,
+            pipeline_binary,
+            match allocator {
+                Some(r) => r,
+                None => ptr::null_mut(),
+            },
+        )
     }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkReleaseCapturedPipelineDataKHR.html) · Device Function
     pub unsafe fn release_captured_pipeline_data(
         &self,
         info: &vk::ReleaseCapturedPipelineDataInfoKHR<'_>,
-        allocator: &vk::AllocationCallbacks<'_>,
+        allocator: Option<&vk::AllocationCallbacks<'_>>,
     ) -> VkResult<()> {
-        (self.fp.release_captured_pipeline_data)(self.handle, info, allocator).result()
+        (self
+            .fp
+            .release_captured_pipeline_data)(
+                self.handle,
+                info,
+                match allocator {
+                    Some(r) => r,
+                    None => ptr::null_mut(),
+                },
+            )
+            .result()
     }
 }
 pub(crate) mod items {

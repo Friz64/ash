@@ -153,13 +153,42 @@ impl Instance {
     pub fn instance(&self) -> vk::Instance {
         self.handle
     }
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCreateDebugReportCallbackEXT.html) · Instance Function
+    pub unsafe fn create_debug_report_callback(
+        &self,
+        create_info: &vk::DebugReportCallbackCreateInfoEXT<'_>,
+        allocator: Option<&vk::AllocationCallbacks<'_>>,
+    ) -> VkResult<vk::DebugReportCallbackEXT> {
+        let mut callback = MaybeUninit::uninit();
+        (self
+            .fp
+            .create_debug_report_callback)(
+                self.handle,
+                create_info,
+                match allocator {
+                    Some(r) => r,
+                    None => ptr::null_mut(),
+                },
+                callback.as_mut_ptr(),
+            )
+            .assume_init_on_success(callback)
+    }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkDestroyDebugReportCallbackEXT.html) · Instance Function
     pub unsafe fn destroy_debug_report_callback(
         &self,
         callback: vk::DebugReportCallbackEXT,
-        allocator: &vk::AllocationCallbacks<'_>,
+        allocator: Option<&vk::AllocationCallbacks<'_>>,
     ) {
-        (self.fp.destroy_debug_report_callback)(self.handle, callback, allocator)
+        (self
+            .fp
+            .destroy_debug_report_callback)(
+            self.handle,
+            callback,
+            match allocator {
+                Some(r) => r,
+                None => ptr::null_mut(),
+            },
+        )
     }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkDebugReportMessageEXT.html) · Instance Function
     pub unsafe fn debug_report_message(

@@ -344,32 +344,78 @@ impl Device {
             state_command_buffer,
         )
     }
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCreateIndirectCommandsLayoutEXT.html) · Device Function
+    pub unsafe fn create_indirect_commands_layout(
+        &self,
+        create_info: &vk::IndirectCommandsLayoutCreateInfoEXT<'_>,
+        allocator: Option<&vk::AllocationCallbacks<'_>>,
+    ) -> VkResult<vk::IndirectCommandsLayoutEXT> {
+        let mut indirect_commands_layout = MaybeUninit::uninit();
+        (self
+            .fp
+            .create_indirect_commands_layout)(
+                self.handle,
+                create_info,
+                match allocator {
+                    Some(r) => r,
+                    None => ptr::null_mut(),
+                },
+                indirect_commands_layout.as_mut_ptr(),
+            )
+            .assume_init_on_success(indirect_commands_layout)
+    }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkDestroyIndirectCommandsLayoutEXT.html) · Device Function
     pub unsafe fn destroy_indirect_commands_layout(
         &self,
         indirect_commands_layout: vk::IndirectCommandsLayoutEXT,
-        allocator: &vk::AllocationCallbacks<'_>,
+        allocator: Option<&vk::AllocationCallbacks<'_>>,
     ) {
         (self
             .fp
             .destroy_indirect_commands_layout)(
             self.handle,
             indirect_commands_layout,
-            allocator,
+            match allocator {
+                Some(r) => r,
+                None => ptr::null_mut(),
+            },
         )
+    }
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCreateIndirectExecutionSetEXT.html) · Device Function
+    pub unsafe fn create_indirect_execution_set(
+        &self,
+        create_info: &vk::IndirectExecutionSetCreateInfoEXT<'_>,
+        allocator: Option<&vk::AllocationCallbacks<'_>>,
+    ) -> VkResult<vk::IndirectExecutionSetEXT> {
+        let mut indirect_execution_set = MaybeUninit::uninit();
+        (self
+            .fp
+            .create_indirect_execution_set)(
+                self.handle,
+                create_info,
+                match allocator {
+                    Some(r) => r,
+                    None => ptr::null_mut(),
+                },
+                indirect_execution_set.as_mut_ptr(),
+            )
+            .assume_init_on_success(indirect_execution_set)
     }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkDestroyIndirectExecutionSetEXT.html) · Device Function
     pub unsafe fn destroy_indirect_execution_set(
         &self,
         indirect_execution_set: vk::IndirectExecutionSetEXT,
-        allocator: &vk::AllocationCallbacks<'_>,
+        allocator: Option<&vk::AllocationCallbacks<'_>>,
     ) {
         (self
             .fp
             .destroy_indirect_execution_set)(
             self.handle,
             indirect_execution_set,
-            allocator,
+            match allocator {
+                Some(r) => r,
+                None => ptr::null_mut(),
+            },
         )
     }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkUpdateIndirectExecutionSetPipelineEXT.html) · Device Function

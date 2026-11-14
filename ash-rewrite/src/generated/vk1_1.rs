@@ -1033,6 +1033,25 @@ impl crate::Device {
     ) {
         (self.device_fn_1_1.trim_command_pool)(self.handle, command_pool, flags)
     }
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkGetDeviceGroupPeerMemoryFeatures.html) · Device Function
+    pub unsafe fn get_device_group_peer_memory_features(
+        &self,
+        heap_index: u32,
+        local_device_index: u32,
+        remote_device_index: u32,
+    ) -> vk::PeerMemoryFeatureFlags {
+        let mut peer_memory_features = MaybeUninit::uninit();
+        (self
+            .device_fn_1_1
+            .get_device_group_peer_memory_features)(
+            self.handle,
+            heap_index,
+            local_device_index,
+            remote_device_index,
+            peer_memory_features.as_mut_ptr(),
+        );
+        peer_memory_features.assume_init()
+    }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkBindBufferMemory2.html) · Device Function
     pub unsafe fn bind_buffer_memory2(
         &self,
@@ -1088,18 +1107,41 @@ impl crate::Device {
             group_count_z,
         )
     }
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCreateDescriptorUpdateTemplate.html) · Device Function
+    pub unsafe fn create_descriptor_update_template(
+        &self,
+        create_info: &vk::DescriptorUpdateTemplateCreateInfo<'_>,
+        allocator: Option<&vk::AllocationCallbacks<'_>>,
+    ) -> VkResult<vk::DescriptorUpdateTemplate> {
+        let mut descriptor_update_template = MaybeUninit::uninit();
+        (self
+            .device_fn_1_1
+            .create_descriptor_update_template)(
+                self.handle,
+                create_info,
+                match allocator {
+                    Some(r) => r,
+                    None => ptr::null_mut(),
+                },
+                descriptor_update_template.as_mut_ptr(),
+            )
+            .assume_init_on_success(descriptor_update_template)
+    }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkDestroyDescriptorUpdateTemplate.html) · Device Function
     pub unsafe fn destroy_descriptor_update_template(
         &self,
         descriptor_update_template: vk::DescriptorUpdateTemplate,
-        allocator: &vk::AllocationCallbacks<'_>,
+        allocator: Option<&vk::AllocationCallbacks<'_>>,
     ) {
         (self
             .device_fn_1_1
             .destroy_descriptor_update_template)(
             self.handle,
             descriptor_update_template,
-            allocator,
+            match allocator {
+                Some(r) => r,
+                None => ptr::null_mut(),
+            },
         )
     }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkUpdateDescriptorSetWithTemplate.html) · Device Function
@@ -1118,15 +1160,53 @@ impl crate::Device {
             data,
         )
     }
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCreateSamplerYcbcrConversion.html) · Device Function
+    pub unsafe fn create_sampler_ycbcr_conversion(
+        &self,
+        create_info: &vk::SamplerYcbcrConversionCreateInfo<'_>,
+        allocator: Option<&vk::AllocationCallbacks<'_>>,
+    ) -> VkResult<vk::SamplerYcbcrConversion> {
+        let mut ycbcr_conversion = MaybeUninit::uninit();
+        (self
+            .device_fn_1_1
+            .create_sampler_ycbcr_conversion)(
+                self.handle,
+                create_info,
+                match allocator {
+                    Some(r) => r,
+                    None => ptr::null_mut(),
+                },
+                ycbcr_conversion.as_mut_ptr(),
+            )
+            .assume_init_on_success(ycbcr_conversion)
+    }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkDestroySamplerYcbcrConversion.html) · Device Function
     pub unsafe fn destroy_sampler_ycbcr_conversion(
         &self,
         ycbcr_conversion: vk::SamplerYcbcrConversion,
-        allocator: &vk::AllocationCallbacks<'_>,
+        allocator: Option<&vk::AllocationCallbacks<'_>>,
     ) {
         (self
             .device_fn_1_1
-            .destroy_sampler_ycbcr_conversion)(self.handle, ycbcr_conversion, allocator)
+            .destroy_sampler_ycbcr_conversion)(
+            self.handle,
+            ycbcr_conversion,
+            match allocator {
+                Some(r) => r,
+                None => ptr::null_mut(),
+            },
+        )
+    }
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkGetDeviceQueue2.html) · Device Function
+    pub unsafe fn get_device_queue2(
+        &self,
+        queue_info: &vk::DeviceQueueInfo2<'_>,
+    ) -> vk::Queue {
+        let mut queue = MaybeUninit::uninit();
+        (self
+            .device_fn_1_1
+            .get_device_queue2)(self.handle, queue_info, queue.as_mut_ptr());
+        queue.assume_init()
     }
 }
 pub(crate) mod items {

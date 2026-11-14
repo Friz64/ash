@@ -162,6 +162,26 @@ impl Device {
     pub fn device(&self) -> vk::Device {
         self.handle
     }
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCreateBufferCollectionFUCHSIA.html) · Device Function
+    pub unsafe fn create_buffer_collection(
+        &self,
+        create_info: &vk::BufferCollectionCreateInfoFUCHSIA<'_>,
+        allocator: Option<&vk::AllocationCallbacks<'_>>,
+    ) -> VkResult<vk::BufferCollectionFUCHSIA> {
+        let mut collection = MaybeUninit::uninit();
+        (self
+            .fp
+            .create_buffer_collection)(
+                self.handle,
+                create_info,
+                match allocator {
+                    Some(r) => r,
+                    None => ptr::null_mut(),
+                },
+                collection.as_mut_ptr(),
+            )
+            .assume_init_on_success(collection)
+    }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkSetBufferCollectionBufferConstraintsFUCHSIA.html) · Device Function
     pub unsafe fn set_buffer_collection_buffer_constraints(
         &self,
@@ -196,9 +216,18 @@ impl Device {
     pub unsafe fn destroy_buffer_collection(
         &self,
         collection: vk::BufferCollectionFUCHSIA,
-        allocator: &vk::AllocationCallbacks<'_>,
+        allocator: Option<&vk::AllocationCallbacks<'_>>,
     ) {
-        (self.fp.destroy_buffer_collection)(self.handle, collection, allocator)
+        (self
+            .fp
+            .destroy_buffer_collection)(
+            self.handle,
+            collection,
+            match allocator {
+                Some(r) => r,
+                None => ptr::null_mut(),
+            },
+        )
     }
 }
 pub(crate) mod items {

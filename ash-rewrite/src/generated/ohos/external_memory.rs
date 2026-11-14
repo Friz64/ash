@@ -83,6 +83,15 @@ impl Device {
     pub fn device(&self) -> vk::Device {
         self.handle
     }
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkGetMemoryNativeBufferOHOS.html) · Device Function
+    pub unsafe fn get_memory_native_buffer(
+        &self,
+        info: &vk::MemoryGetNativeBufferInfoOHOS<'_>,
+    ) -> VkResult<*mut vk::OH_NativeBuffer> {
+        let mut buffer = MaybeUninit::uninit();
+        (self.fp.get_memory_native_buffer)(self.handle, info, buffer.as_mut_ptr())
+            .assume_init_on_success(buffer)
+    }
 }
 pub(crate) mod items {
     use crate::internal_prelude::*;
