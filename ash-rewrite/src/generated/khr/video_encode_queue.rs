@@ -292,23 +292,6 @@ impl Instance {
     pub fn instance(&self) -> vk::Instance {
         self.handle
     }
-    ///vkGetPhysicalDeviceVideoEncodeQualityLevelPropertiesKHR
-    #[inline]
-    pub unsafe fn get_physical_device_video_encode_quality_level_properties(
-        &self,
-        physical_device: vk::PhysicalDevice,
-        quality_level_info: &vk::PhysicalDeviceVideoEncodeQualityLevelInfoKHR<'_>,
-    ) -> VkResult<vk::VideoEncodeQualityLevelPropertiesKHR<'_>> {
-        let mut quality_level_properties = MaybeUninit::uninit();
-        (self
-            .fp
-            .get_physical_device_video_encode_quality_level_properties)(
-                physical_device,
-                quality_level_info,
-                quality_level_properties.as_mut_ptr(),
-            )
-            .assume_init_on_success(quality_level_properties)
-    }
 }
 #[derive(Clone)]
 pub struct DeviceFn {
@@ -374,17 +357,13 @@ impl Device {
     pub fn device(&self) -> vk::Device {
         self.handle
     }
-    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkGetEncodedVideoSessionParametersKHR.html) · Device Function
-    /// wip
-    pub unsafe fn get_encoded_video_session_parameters() {}
-    ///vkCmdEncodeVideoKHR
-    #[inline]
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdEncodeVideoKHR.html) · Device Function
     pub unsafe fn cmd_encode_video(
         &self,
         command_buffer: vk::CommandBuffer,
         encode_info: &vk::VideoEncodeInfoKHR<'_>,
     ) {
-        (self.fp.cmd_encode_video)(command_buffer, encode_info)
+        (self.fp.cmd_encode_video)(command_buffer, encode_info);
     }
 }
 pub(crate) mod items {

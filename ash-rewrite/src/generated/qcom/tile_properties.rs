@@ -78,60 +78,6 @@ impl Device {
     pub fn device(&self) -> vk::Device {
         self.handle
     }
-    ///vkGetFramebufferTilePropertiesQCOM
-    #[inline]
-    pub unsafe fn get_framebuffer_tile_properties_len(
-        &self,
-        framebuffer: vk::Framebuffer,
-    ) -> VkResult<usize> {
-        let mut properties_count = MaybeUninit::uninit();
-        (self
-            .fp
-            .get_framebuffer_tile_properties)(
-                self.handle,
-                framebuffer,
-                properties_count.as_mut_ptr(),
-                ptr::null_mut(),
-            )
-            .assume_init_on_success(properties_count)
-            .map(|c| c as usize)
-    }
-    ///vkGetFramebufferTilePropertiesQCOM
-    #[inline]
-    pub unsafe fn get_framebuffer_tile_properties(
-        &self,
-        framebuffer: vk::Framebuffer,
-        properties: &mut [vk::TilePropertiesQCOM<'_>],
-    ) -> VkResult<()> {
-        let mut properties_count = properties.len() as _;
-        (self
-            .fp
-            .get_framebuffer_tile_properties)(
-                self.handle,
-                framebuffer,
-                &mut properties_count,
-                properties.as_mut_ptr(),
-            )
-            .result()?;
-        assert_eq!(properties_count as usize, properties.len());
-        Ok(())
-    }
-    ///vkGetDynamicRenderingTilePropertiesQCOM
-    #[inline]
-    pub unsafe fn get_dynamic_rendering_tile_properties(
-        &self,
-        rendering_info: &vk::RenderingInfo<'_>,
-    ) -> VkResult<vk::TilePropertiesQCOM<'_>> {
-        let mut properties = MaybeUninit::uninit();
-        (self
-            .fp
-            .get_dynamic_rendering_tile_properties)(
-                self.handle,
-                rendering_info,
-                properties.as_mut_ptr(),
-            )
-            .assume_init_on_success(properties)
-    }
 }
 pub(crate) mod items {
     use crate::internal_prelude::*;

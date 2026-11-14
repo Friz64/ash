@@ -68,23 +68,6 @@ impl Instance {
     pub fn instance(&self) -> vk::Instance {
         self.handle
     }
-    ///vkGetPhysicalDeviceSurfaceCapabilities2EXT
-    #[inline]
-    pub unsafe fn get_physical_device_surface_capabilities2(
-        &self,
-        physical_device: vk::PhysicalDevice,
-        surface: vk::SurfaceKHR,
-    ) -> VkResult<vk::SurfaceCapabilities2EXT<'_>> {
-        let mut surface_capabilities = MaybeUninit::uninit();
-        (self
-            .fp
-            .get_physical_device_surface_capabilities2)(
-                physical_device,
-                surface,
-                surface_capabilities.as_mut_ptr(),
-            )
-            .assume_init_on_success(surface_capabilities)
-    }
 }
 pub(crate) mod items {
     use crate::internal_prelude::*;

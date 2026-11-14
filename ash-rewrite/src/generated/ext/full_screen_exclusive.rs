@@ -74,22 +74,6 @@ impl Instance {
     pub fn instance(&self) -> vk::Instance {
         self.handle
     }
-    ///vkGetPhysicalDeviceSurfacePresentModes2EXT
-    #[inline]
-    pub unsafe fn get_physical_device_surface_present_modes2(
-        &self,
-        physical_device: vk::PhysicalDevice,
-        surface_info: &vk::PhysicalDeviceSurfaceInfo2KHR<'_>,
-    ) -> VkResult<Vec<vk::PresentModeKHR>> {
-        crate::read_into_uninitialized_vector(|present_mode_count, present_modes| (self
-            .fp
-            .get_physical_device_surface_present_modes2)(
-            physical_device,
-            surface_info,
-            present_mode_count,
-            present_modes,
-        ))
-    }
 }
 #[derive(Clone)]
 pub struct DeviceFn {
@@ -172,32 +156,14 @@ impl Device {
     pub fn device(&self) -> vk::Device {
         self.handle
     }
-    ///vkGetDeviceGroupSurfacePresentModes2EXT
-    #[inline]
-    pub unsafe fn get_device_group_surface_present_modes2(
-        &self,
-        surface_info: &vk::PhysicalDeviceSurfaceInfo2KHR<'_>,
-    ) -> VkResult<vk::DeviceGroupPresentModeFlagsKHR> {
-        let mut modes = MaybeUninit::uninit();
-        (self
-            .fp
-            .get_device_group_surface_present_modes2)(
-                self.handle,
-                surface_info,
-                modes.as_mut_ptr(),
-            )
-            .assume_init_on_success(modes)
-    }
-    ///vkAcquireFullScreenExclusiveModeEXT
-    #[inline]
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkAcquireFullScreenExclusiveModeEXT.html) · Device Function
     pub unsafe fn acquire_full_screen_exclusive_mode(
         &self,
         swapchain: vk::SwapchainKHR,
     ) -> VkResult<()> {
         (self.fp.acquire_full_screen_exclusive_mode)(self.handle, swapchain).result()
     }
-    ///vkReleaseFullScreenExclusiveModeEXT
-    #[inline]
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkReleaseFullScreenExclusiveModeEXT.html) · Device Function
     pub unsafe fn release_full_screen_exclusive_mode(
         &self,
         swapchain: vk::SwapchainKHR,

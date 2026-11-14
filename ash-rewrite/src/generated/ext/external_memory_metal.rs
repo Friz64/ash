@@ -93,40 +93,6 @@ impl Device {
     pub fn device(&self) -> vk::Device {
         self.handle
     }
-    ///vkGetMemoryMetalHandleEXT
-    #[inline]
-    pub unsafe fn get_memory_metal_handle(
-        &self,
-        get_metal_handle_info: &vk::MemoryGetMetalHandleInfoEXT<'_>,
-    ) -> VkResult<*mut ffi::c_void> {
-        let mut handle = MaybeUninit::uninit();
-        (self
-            .fp
-            .get_memory_metal_handle)(
-                self.handle,
-                get_metal_handle_info,
-                handle.as_mut_ptr(),
-            )
-            .assume_init_on_success(handle)
-    }
-    ///vkGetMemoryMetalHandlePropertiesEXT
-    #[inline]
-    pub unsafe fn get_memory_metal_handle_properties(
-        &self,
-        handle_type: vk::ExternalMemoryHandleTypeFlagBits,
-        handle: &ffi::c_void,
-    ) -> VkResult<vk::MemoryMetalHandlePropertiesEXT<'_>> {
-        let mut memory_metal_handle_properties = MaybeUninit::uninit();
-        (self
-            .fp
-            .get_memory_metal_handle_properties)(
-                self.handle,
-                handle_type,
-                handle,
-                memory_metal_handle_properties.as_mut_ptr(),
-            )
-            .assume_init_on_success(memory_metal_handle_properties)
-    }
 }
 pub(crate) mod items {
     use crate::internal_prelude::*;

@@ -58,24 +58,6 @@ impl Device {
     pub fn device(&self) -> vk::Device {
         self.handle
     }
-    ///vkGetMemoryWin32HandleNV
-    #[inline]
-    pub unsafe fn get_memory_win32_handle(
-        &self,
-        memory: vk::DeviceMemory,
-        handle_type: vk::ExternalMemoryHandleTypeFlagsNV,
-    ) -> VkResult<vk::HANDLE> {
-        let mut handle = MaybeUninit::uninit();
-        (self
-            .fp
-            .get_memory_win32_handle)(
-                self.handle,
-                memory,
-                handle_type,
-                handle.as_mut_ptr(),
-            )
-            .assume_init_on_success(handle)
-    }
 }
 pub(crate) mod items {
     use crate::internal_prelude::*;

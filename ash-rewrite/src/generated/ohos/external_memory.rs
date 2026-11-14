@@ -83,28 +83,6 @@ impl Device {
     pub fn device(&self) -> vk::Device {
         self.handle
     }
-    ///vkGetNativeBufferPropertiesOHOS
-    #[inline]
-    pub unsafe fn get_native_buffer_properties(
-        &self,
-        buffer: &vk::OH_NativeBuffer,
-    ) -> VkResult<vk::NativeBufferPropertiesOHOS<'_>> {
-        let mut properties = MaybeUninit::uninit();
-        (self
-            .fp
-            .get_native_buffer_properties)(self.handle, buffer, properties.as_mut_ptr())
-            .assume_init_on_success(properties)
-    }
-    ///vkGetMemoryNativeBufferOHOS
-    #[inline]
-    pub unsafe fn get_memory_native_buffer(
-        &self,
-        info: &vk::MemoryGetNativeBufferInfoOHOS<'_>,
-    ) -> VkResult<*mut vk::OH_NativeBuffer> {
-        let mut buffer = MaybeUninit::uninit();
-        (self.fp.get_memory_native_buffer)(self.handle, info, buffer.as_mut_ptr())
-            .assume_init_on_success(buffer)
-    }
 }
 pub(crate) mod items {
     use crate::internal_prelude::*;

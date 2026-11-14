@@ -57,15 +57,14 @@ impl Device {
     pub fn device(&self) -> vk::Device {
         self.handle
     }
-    ///vkResetQueryPool
-    #[inline]
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkResetQueryPool.html) · Device Function
     pub unsafe fn reset_query_pool(
         &self,
         query_pool: vk::QueryPool,
         first_query: u32,
         query_count: u32,
     ) {
-        (self.fp.reset_query_pool)(self.handle, query_pool, first_query, query_count)
+        (self.fp.reset_query_pool)(self.handle, query_pool, first_query, query_count);
     }
 }
 pub(crate) mod items {

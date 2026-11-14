@@ -118,92 +118,29 @@ impl Device {
     pub fn device(&self) -> vk::Device {
         self.handle
     }
-    ///vkCreateCuModuleNVX
-    #[inline]
-    pub unsafe fn create_cu_module(
-        &self,
-        create_info: &vk::CuModuleCreateInfoNVX<'_>,
-        allocator: Option<&vk::AllocationCallbacks<'_>>,
-    ) -> VkResult<vk::CuModuleNVX> {
-        let mut module = MaybeUninit::uninit();
-        (self
-            .fp
-            .create_cu_module)(
-                self.handle,
-                create_info,
-                match allocator {
-                    Some(inner) => inner,
-                    None => ptr::null_mut(),
-                },
-                module.as_mut_ptr(),
-            )
-            .assume_init_on_success(module)
-    }
-    ///vkCreateCuFunctionNVX
-    #[inline]
-    pub unsafe fn create_cu_function(
-        &self,
-        create_info: &vk::CuFunctionCreateInfoNVX<'_>,
-        allocator: Option<&vk::AllocationCallbacks<'_>>,
-    ) -> VkResult<vk::CuFunctionNVX> {
-        let mut function = MaybeUninit::uninit();
-        (self
-            .fp
-            .create_cu_function)(
-                self.handle,
-                create_info,
-                match allocator {
-                    Some(inner) => inner,
-                    None => ptr::null_mut(),
-                },
-                function.as_mut_ptr(),
-            )
-            .assume_init_on_success(function)
-    }
-    ///vkDestroyCuModuleNVX
-    #[inline]
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkDestroyCuModuleNVX.html) · Device Function
     pub unsafe fn destroy_cu_module(
         &self,
         module: vk::CuModuleNVX,
-        allocator: Option<&vk::AllocationCallbacks<'_>>,
+        allocator: &vk::AllocationCallbacks<'_>,
     ) {
-        (self
-            .fp
-            .destroy_cu_module)(
-            self.handle,
-            module,
-            match allocator {
-                Some(inner) => inner,
-                None => ptr::null_mut(),
-            },
-        )
+        (self.fp.destroy_cu_module)(self.handle, module, allocator);
     }
-    ///vkDestroyCuFunctionNVX
-    #[inline]
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkDestroyCuFunctionNVX.html) · Device Function
     pub unsafe fn destroy_cu_function(
         &self,
         function: vk::CuFunctionNVX,
-        allocator: Option<&vk::AllocationCallbacks<'_>>,
+        allocator: &vk::AllocationCallbacks<'_>,
     ) {
-        (self
-            .fp
-            .destroy_cu_function)(
-            self.handle,
-            function,
-            match allocator {
-                Some(inner) => inner,
-                None => ptr::null_mut(),
-            },
-        )
+        (self.fp.destroy_cu_function)(self.handle, function, allocator);
     }
-    ///vkCmdCuLaunchKernelNVX
-    #[inline]
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdCuLaunchKernelNVX.html) · Device Function
     pub unsafe fn cmd_cu_launch_kernel(
         &self,
         command_buffer: vk::CommandBuffer,
         launch_info: &vk::CuLaunchInfoNVX<'_>,
     ) {
-        (self.fp.cmd_cu_launch_kernel)(command_buffer, launch_info)
+        (self.fp.cmd_cu_launch_kernel)(command_buffer, launch_info);
     }
 }
 pub(crate) mod items {

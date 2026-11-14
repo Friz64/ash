@@ -72,8 +72,7 @@ impl Device {
     pub fn device(&self) -> vk::Device {
         self.handle
     }
-    ///vkReleaseSwapchainImagesKHR
-    #[inline]
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkReleaseSwapchainImagesKHR.html) · Device Function
     pub unsafe fn release_swapchain_images(
         &self,
         release_info: &vk::ReleaseSwapchainImagesInfoKHR<'_>,

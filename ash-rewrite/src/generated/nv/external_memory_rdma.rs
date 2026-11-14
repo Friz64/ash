@@ -77,22 +77,6 @@ impl Device {
     pub fn device(&self) -> vk::Device {
         self.handle
     }
-    ///vkGetMemoryRemoteAddressNV
-    #[inline]
-    pub unsafe fn get_memory_remote_address(
-        &self,
-        memory_get_remote_address_info: &vk::MemoryGetRemoteAddressInfoNV<'_>,
-    ) -> VkResult<vk::RemoteAddressNV> {
-        let mut address = MaybeUninit::uninit();
-        (self
-            .fp
-            .get_memory_remote_address)(
-                self.handle,
-                memory_get_remote_address_info,
-                address.as_mut_ptr(),
-            )
-            .assume_init_on_success(address)
-    }
 }
 pub(crate) mod items {
     use crate::internal_prelude::*;

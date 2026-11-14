@@ -69,8 +69,7 @@ impl Device {
     pub fn device(&self) -> vk::Device {
         self.handle
     }
-    ///vkCmdSetLineStipple
-    #[inline]
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdSetLineStipple.html) · Device Function
     pub unsafe fn cmd_set_line_stipple(
         &self,
         command_buffer: vk::CommandBuffer,
@@ -83,7 +82,7 @@ impl Device {
             command_buffer,
             line_stipple_factor,
             line_stipple_pattern,
-        )
+        );
     }
 }
 pub(crate) mod items {

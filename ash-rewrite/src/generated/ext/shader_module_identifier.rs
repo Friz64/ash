@@ -81,38 +81,6 @@ impl Device {
     pub fn device(&self) -> vk::Device {
         self.handle
     }
-    ///vkGetShaderModuleIdentifierEXT
-    #[inline]
-    pub unsafe fn get_shader_module_identifier(
-        &self,
-        shader_module: vk::ShaderModule,
-    ) -> vk::ShaderModuleIdentifierEXT<'_> {
-        let mut identifier = MaybeUninit::uninit();
-        (self
-            .fp
-            .get_shader_module_identifier)(
-            self.handle,
-            shader_module,
-            identifier.as_mut_ptr(),
-        );
-        identifier.assume_init()
-    }
-    ///vkGetShaderModuleCreateInfoIdentifierEXT
-    #[inline]
-    pub unsafe fn get_shader_module_create_info_identifier(
-        &self,
-        create_info: &vk::ShaderModuleCreateInfo<'_>,
-    ) -> vk::ShaderModuleIdentifierEXT<'_> {
-        let mut identifier = MaybeUninit::uninit();
-        (self
-            .fp
-            .get_shader_module_create_info_identifier)(
-            self.handle,
-            create_info,
-            identifier.as_mut_ptr(),
-        );
-        identifier.assume_init()
-    }
 }
 pub(crate) mod items {
     use crate::internal_prelude::*;

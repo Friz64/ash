@@ -19,6 +19,8 @@ pub enum Length {
 pub struct RegularMember {
     pub decl: Decl,
     pub lengths: Vec<Length>,
+    /// All other members whose length is defined by this member
+    pub length_of: Vec<VariableName>,
 }
 
 impl RegularMember {
@@ -146,7 +148,33 @@ impl Struct {
                     p_next = Some(mutability);
                 }
 
-                members.push(Member::Regular(RegularMember { decl, lengths }));
+                members.push(Member::Regular(RegularMember {
+                    decl,
+                    lengths,
+                    length_of: Vec::new(), // filled in second pass
+                }));
+            }
+        }
+
+        // for each member `a`, check every other member `b`,
+        // and find out if `a` determines the length of `b`
+        for a_idx in 0..members.len() {
+            for b_idx in 0..members.len() {
+                let Ok([Member::Regular(a), Member::Regular(b)]) =
+                    members.get_disjoint_mut([a_idx, b_idx])
+                else {
+                    continue;
+                };
+
+                if b.lengths.iter().any(|length| {
+                    if let Length::DefinedByMember(defined_by_member) = length {
+                        defined_by_member == &a.decl.name
+                    } else {
+                        false
+                    }
+                }) {
+                    a.length_of.push(b.decl.name);
+                }
             }
         }
 

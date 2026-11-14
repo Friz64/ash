@@ -69,24 +69,7 @@ impl Device {
     pub fn device(&self) -> vk::Device {
         self.handle
     }
-    ///vkGetFenceWin32HandleKHR
-    #[inline]
-    pub unsafe fn get_fence_win32_handle(
-        &self,
-        get_win32_handle_info: &vk::FenceGetWin32HandleInfoKHR<'_>,
-    ) -> VkResult<vk::HANDLE> {
-        let mut handle = MaybeUninit::uninit();
-        (self
-            .fp
-            .get_fence_win32_handle)(
-                self.handle,
-                get_win32_handle_info,
-                handle.as_mut_ptr(),
-            )
-            .assume_init_on_success(handle)
-    }
-    ///vkImportFenceWin32HandleKHR
-    #[inline]
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkImportFenceWin32HandleKHR.html) · Device Function
     pub unsafe fn import_fence_win32_handle(
         &self,
         import_fence_win32_handle_info: &vk::ImportFenceWin32HandleInfoKHR<'_>,

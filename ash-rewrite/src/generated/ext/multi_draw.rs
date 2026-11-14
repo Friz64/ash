@@ -76,8 +76,7 @@ impl Device {
     pub fn device(&self) -> vk::Device {
         self.handle
     }
-    ///vkCmdDrawMultiEXT
-    #[inline]
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdDrawMultiEXT.html) · Device Function
     pub unsafe fn cmd_draw_multi(
         &self,
         command_buffer: vk::CommandBuffer,
@@ -95,10 +94,9 @@ impl Device {
             instance_count,
             first_instance,
             stride,
-        )
+        );
     }
-    ///vkCmdDrawMultiIndexedEXT
-    #[inline]
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdDrawMultiIndexedEXT.html) · Device Function
     pub unsafe fn cmd_draw_multi_indexed(
         &self,
         command_buffer: vk::CommandBuffer,
@@ -106,7 +104,7 @@ impl Device {
         instance_count: u32,
         first_instance: u32,
         stride: u32,
-        vertex_offset: Option<&i32>,
+        vertex_offset: &i32,
     ) {
         (self
             .fp
@@ -117,11 +115,8 @@ impl Device {
             instance_count,
             first_instance,
             stride,
-            match vertex_offset {
-                Some(inner) => inner,
-                None => ptr::null_mut(),
-            },
-        )
+            vertex_offset,
+        );
     }
 }
 pub(crate) mod items {

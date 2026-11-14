@@ -88,14 +88,13 @@ impl Device {
     pub fn device(&self) -> vk::Device {
         self.handle
     }
-    ///vkCmdTraceRaysIndirect2KHR
-    #[inline]
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdTraceRaysIndirect2KHR.html) · Device Function
     pub unsafe fn cmd_trace_rays_indirect2(
         &self,
         command_buffer: vk::CommandBuffer,
         indirect_device_address: vk::DeviceAddress,
     ) {
-        (self.fp.cmd_trace_rays_indirect2)(command_buffer, indirect_device_address)
+        (self.fp.cmd_trace_rays_indirect2)(command_buffer, indirect_device_address);
     }
 }
 pub(crate) mod items {

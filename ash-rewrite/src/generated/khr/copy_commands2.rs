@@ -120,59 +120,53 @@ impl Device {
     pub fn device(&self) -> vk::Device {
         self.handle
     }
-    ///vkCmdCopyBuffer2
-    #[inline]
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdCopyBuffer2.html) · Device Function
     pub unsafe fn cmd_copy_buffer2(
         &self,
         command_buffer: vk::CommandBuffer,
         copy_buffer_info: &vk::CopyBufferInfo2<'_>,
     ) {
-        (self.fp.cmd_copy_buffer2)(command_buffer, copy_buffer_info)
+        (self.fp.cmd_copy_buffer2)(command_buffer, copy_buffer_info);
     }
-    ///vkCmdCopyImage2
-    #[inline]
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdCopyImage2.html) · Device Function
     pub unsafe fn cmd_copy_image2(
         &self,
         command_buffer: vk::CommandBuffer,
         copy_image_info: &vk::CopyImageInfo2<'_>,
     ) {
-        (self.fp.cmd_copy_image2)(command_buffer, copy_image_info)
+        (self.fp.cmd_copy_image2)(command_buffer, copy_image_info);
     }
-    ///vkCmdBlitImage2
-    #[inline]
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdBlitImage2.html) · Device Function
     pub unsafe fn cmd_blit_image2(
         &self,
         command_buffer: vk::CommandBuffer,
         blit_image_info: &vk::BlitImageInfo2<'_>,
     ) {
-        (self.fp.cmd_blit_image2)(command_buffer, blit_image_info)
+        (self.fp.cmd_blit_image2)(command_buffer, blit_image_info);
     }
-    ///vkCmdCopyBufferToImage2
-    #[inline]
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdCopyBufferToImage2.html) · Device Function
     pub unsafe fn cmd_copy_buffer_to_image2(
         &self,
         command_buffer: vk::CommandBuffer,
         copy_buffer_to_image_info: &vk::CopyBufferToImageInfo2<'_>,
     ) {
-        (self.fp.cmd_copy_buffer_to_image2)(command_buffer, copy_buffer_to_image_info)
+        (self.fp.cmd_copy_buffer_to_image2)(command_buffer, copy_buffer_to_image_info);
     }
-    ///vkCmdCopyImageToBuffer2
-    #[inline]
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdCopyImageToBuffer2.html) · Device Function
     pub unsafe fn cmd_copy_image_to_buffer2(
         &self,
         command_buffer: vk::CommandBuffer,
         copy_image_to_buffer_info: &vk::CopyImageToBufferInfo2<'_>,
     ) {
-        (self.fp.cmd_copy_image_to_buffer2)(command_buffer, copy_image_to_buffer_info)
+        (self.fp.cmd_copy_image_to_buffer2)(command_buffer, copy_image_to_buffer_info);
     }
-    ///vkCmdResolveImage2
-    #[inline]
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdResolveImage2.html) · Device Function
     pub unsafe fn cmd_resolve_image2(
         &self,
         command_buffer: vk::CommandBuffer,
         resolve_image_info: &vk::ResolveImageInfo2<'_>,
     ) {
-        (self.fp.cmd_resolve_image2)(command_buffer, resolve_image_info)
+        (self.fp.cmd_resolve_image2)(command_buffer, resolve_image_info);
     }
 }
 pub(crate) mod items {

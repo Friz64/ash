@@ -101,22 +101,6 @@ impl Device {
     pub fn device(&self) -> vk::Device {
         self.handle
     }
-    ///vkGetImageDrmFormatModifierPropertiesEXT
-    #[inline]
-    pub unsafe fn get_image_drm_format_modifier_properties(
-        &self,
-        image: vk::Image,
-    ) -> VkResult<vk::ImageDrmFormatModifierPropertiesEXT<'_>> {
-        let mut properties = MaybeUninit::uninit();
-        (self
-            .fp
-            .get_image_drm_format_modifier_properties)(
-                self.handle,
-                image,
-                properties.as_mut_ptr(),
-            )
-            .assume_init_on_success(properties)
-    }
 }
 pub(crate) mod items {
     use crate::internal_prelude::*;

@@ -111,50 +111,6 @@ impl Device {
     pub fn device(&self) -> vk::Device {
         self.handle
     }
-    ///vkGetDeviceFaultReportsKHR
-    #[inline]
-    pub unsafe fn get_device_fault_reports_len(&self, timeout: u64) -> VkResult<usize> {
-        let mut fault_counts = MaybeUninit::uninit();
-        (self
-            .fp
-            .get_device_fault_reports)(
-                self.handle,
-                timeout,
-                fault_counts.as_mut_ptr(),
-                ptr::null_mut(),
-            )
-            .assume_init_on_success(fault_counts)
-            .map(|c| c as usize)
-    }
-    ///vkGetDeviceFaultReportsKHR
-    #[inline]
-    pub unsafe fn get_device_fault_reports(
-        &self,
-        timeout: u64,
-        fault_info: &mut [vk::DeviceFaultInfoKHR<'_>],
-    ) -> VkResult<()> {
-        let mut fault_counts = fault_info.len() as _;
-        (self
-            .fp
-            .get_device_fault_reports)(
-                self.handle,
-                timeout,
-                &mut fault_counts,
-                fault_info.as_mut_ptr(),
-            )
-            .result()?;
-        assert_eq!(fault_counts as usize, fault_info.len());
-        Ok(())
-    }
-    ///vkGetDeviceFaultDebugInfoKHR
-    #[inline]
-    pub unsafe fn get_device_fault_debug_info(
-        &self,
-    ) -> VkResult<vk::DeviceFaultDebugInfoKHR<'_>> {
-        let mut debug_info = MaybeUninit::uninit();
-        (self.fp.get_device_fault_debug_info)(self.handle, debug_info.as_mut_ptr())
-            .assume_init_on_success(debug_info)
-    }
 }
 pub(crate) mod items {
     use crate::internal_prelude::*;

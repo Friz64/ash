@@ -66,8 +66,7 @@ impl Device {
     pub fn device(&self) -> vk::Device {
         self.handle
     }
-    ///vkCmdSetVertexInputEXT
-    #[inline]
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdSetVertexInputEXT.html) · Device Function
     pub unsafe fn cmd_set_vertex_input(
         &self,
         command_buffer: vk::CommandBuffer,
@@ -82,7 +81,7 @@ impl Device {
             vertex_binding_descriptions.as_ptr(),
             vertex_attribute_descriptions.len() as _,
             vertex_attribute_descriptions.as_ptr(),
-        )
+        );
     }
 }
 pub(crate) mod items {

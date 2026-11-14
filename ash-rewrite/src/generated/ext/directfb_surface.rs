@@ -75,44 +75,6 @@ impl Instance {
     pub fn instance(&self) -> vk::Instance {
         self.handle
     }
-    ///vkCreateDirectFBSurfaceEXT
-    #[inline]
-    pub unsafe fn create_direct_fb_surface(
-        &self,
-        create_info: &vk::DirectFBSurfaceCreateInfoEXT<'_>,
-        allocator: Option<&vk::AllocationCallbacks<'_>>,
-    ) -> VkResult<vk::SurfaceKHR> {
-        let mut surface = MaybeUninit::uninit();
-        (self
-            .fp
-            .create_direct_fb_surface)(
-                self.handle,
-                create_info,
-                match allocator {
-                    Some(inner) => inner,
-                    None => ptr::null_mut(),
-                },
-                surface.as_mut_ptr(),
-            )
-            .assume_init_on_success(surface)
-    }
-    ///vkGetPhysicalDeviceDirectFBPresentationSupportEXT
-    #[inline]
-    pub unsafe fn get_physical_device_direct_fb_presentation_support(
-        &self,
-        physical_device: vk::PhysicalDevice,
-        queue_family_index: u32,
-    ) -> vk::IDirectFB {
-        let mut dfb = MaybeUninit::uninit();
-        (self
-            .fp
-            .get_physical_device_direct_fb_presentation_support)(
-            physical_device,
-            queue_family_index,
-            dfb.as_mut_ptr(),
-        );
-        dfb.assume_init()
-    }
 }
 pub(crate) mod items {
     use crate::internal_prelude::*;

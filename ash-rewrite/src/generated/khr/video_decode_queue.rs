@@ -183,14 +183,13 @@ impl Device {
     pub fn device(&self) -> vk::Device {
         self.handle
     }
-    ///vkCmdDecodeVideoKHR
-    #[inline]
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdDecodeVideoKHR.html) · Device Function
     pub unsafe fn cmd_decode_video(
         &self,
         command_buffer: vk::CommandBuffer,
         decode_info: &vk::VideoDecodeInfoKHR<'_>,
     ) {
-        (self.fp.cmd_decode_video)(command_buffer, decode_info)
+        (self.fp.cmd_decode_video)(command_buffer, decode_info);
     }
 }
 pub(crate) mod items {

@@ -471,8 +471,7 @@ impl crate::Device {
     pub fn fp_v1_2(&self) -> &crate::DeviceFnV1_2 {
         &self.device_fn_1_2
     }
-    ///vkResetQueryPool
-    #[inline]
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkResetQueryPool.html) · Device Function
     pub unsafe fn reset_query_pool(
         &self,
         query_pool: vk::QueryPool,
@@ -481,31 +480,9 @@ impl crate::Device {
     ) {
         (self
             .device_fn_1_2
-            .reset_query_pool)(self.handle, query_pool, first_query, query_count)
+            .reset_query_pool)(self.handle, query_pool, first_query, query_count);
     }
-    ///vkCreateRenderPass2
-    #[inline]
-    pub unsafe fn create_render_pass2(
-        &self,
-        create_info: &vk::RenderPassCreateInfo2<'_>,
-        allocator: Option<&vk::AllocationCallbacks<'_>>,
-    ) -> VkResult<vk::RenderPass> {
-        let mut render_pass = MaybeUninit::uninit();
-        (self
-            .device_fn_1_2
-            .create_render_pass2)(
-                self.handle,
-                create_info,
-                match allocator {
-                    Some(inner) => inner,
-                    None => ptr::null_mut(),
-                },
-                render_pass.as_mut_ptr(),
-            )
-            .assume_init_on_success(render_pass)
-    }
-    ///vkCmdBeginRenderPass2
-    #[inline]
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdBeginRenderPass2.html) · Device Function
     pub unsafe fn cmd_begin_render_pass2(
         &self,
         command_buffer: vk::CommandBuffer,
@@ -518,10 +495,9 @@ impl crate::Device {
             command_buffer,
             render_pass_begin,
             subpass_begin_info,
-        )
+        );
     }
-    ///vkCmdNextSubpass2
-    #[inline]
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdNextSubpass2.html) · Device Function
     pub unsafe fn cmd_next_subpass2(
         &self,
         command_buffer: vk::CommandBuffer,
@@ -530,31 +506,17 @@ impl crate::Device {
     ) {
         (self
             .device_fn_1_2
-            .cmd_next_subpass2)(command_buffer, subpass_begin_info, subpass_end_info)
+            .cmd_next_subpass2)(command_buffer, subpass_begin_info, subpass_end_info);
     }
-    ///vkCmdEndRenderPass2
-    #[inline]
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdEndRenderPass2.html) · Device Function
     pub unsafe fn cmd_end_render_pass2(
         &self,
         command_buffer: vk::CommandBuffer,
         subpass_end_info: &vk::SubpassEndInfo<'_>,
     ) {
-        (self.device_fn_1_2.cmd_end_render_pass2)(command_buffer, subpass_end_info)
+        (self.device_fn_1_2.cmd_end_render_pass2)(command_buffer, subpass_end_info);
     }
-    ///vkGetSemaphoreCounterValue
-    #[inline]
-    pub unsafe fn get_semaphore_counter_value(
-        &self,
-        semaphore: vk::Semaphore,
-    ) -> VkResult<u64> {
-        let mut value = MaybeUninit::uninit();
-        (self
-            .device_fn_1_2
-            .get_semaphore_counter_value)(self.handle, semaphore, value.as_mut_ptr())
-            .assume_init_on_success(value)
-    }
-    ///vkWaitSemaphores
-    #[inline]
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkWaitSemaphores.html) · Device Function
     pub unsafe fn wait_semaphores(
         &self,
         wait_info: &vk::SemaphoreWaitInfo<'_>,
@@ -562,16 +524,14 @@ impl crate::Device {
     ) -> VkResult<()> {
         (self.device_fn_1_2.wait_semaphores)(self.handle, wait_info, timeout).result()
     }
-    ///vkSignalSemaphore
-    #[inline]
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkSignalSemaphore.html) · Device Function
     pub unsafe fn signal_semaphore(
         &self,
         signal_info: &vk::SemaphoreSignalInfo<'_>,
     ) -> VkResult<()> {
         (self.device_fn_1_2.signal_semaphore)(self.handle, signal_info).result()
     }
-    ///vkCmdDrawIndirectCount
-    #[inline]
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdDrawIndirectCount.html) · Device Function
     pub unsafe fn cmd_draw_indirect_count(
         &self,
         command_buffer: vk::CommandBuffer,
@@ -592,10 +552,9 @@ impl crate::Device {
             count_buffer_offset,
             max_draw_count,
             stride,
-        )
+        );
     }
-    ///vkCmdDrawIndexedIndirectCount
-    #[inline]
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdDrawIndexedIndirectCount.html) · Device Function
     pub unsafe fn cmd_draw_indexed_indirect_count(
         &self,
         command_buffer: vk::CommandBuffer,
@@ -616,31 +575,28 @@ impl crate::Device {
             count_buffer_offset,
             max_draw_count,
             stride,
-        )
+        );
     }
-    ///vkGetBufferOpaqueCaptureAddress
-    #[inline]
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkGetBufferOpaqueCaptureAddress.html) · Device Function
     pub unsafe fn get_buffer_opaque_capture_address(
         &self,
         info: &vk::BufferDeviceAddressInfo<'_>,
-    ) -> u64 {
-        (self.device_fn_1_2.get_buffer_opaque_capture_address)(self.handle, info)
+    ) {
+        (self.device_fn_1_2.get_buffer_opaque_capture_address)(self.handle, info);
     }
-    ///vkGetBufferDeviceAddress
-    #[inline]
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkGetBufferDeviceAddress.html) · Device Function
     pub unsafe fn get_buffer_device_address(
         &self,
         info: &vk::BufferDeviceAddressInfo<'_>,
-    ) -> vk::DeviceAddress {
-        (self.device_fn_1_2.get_buffer_device_address)(self.handle, info)
+    ) {
+        (self.device_fn_1_2.get_buffer_device_address)(self.handle, info);
     }
-    ///vkGetDeviceMemoryOpaqueCaptureAddress
-    #[inline]
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkGetDeviceMemoryOpaqueCaptureAddress.html) · Device Function
     pub unsafe fn get_device_memory_opaque_capture_address(
         &self,
         info: &vk::DeviceMemoryOpaqueCaptureAddressInfo<'_>,
-    ) -> u64 {
-        (self.device_fn_1_2.get_device_memory_opaque_capture_address)(self.handle, info)
+    ) {
+        (self.device_fn_1_2.get_device_memory_opaque_capture_address)(self.handle, info);
     }
 }
 pub(crate) mod items {

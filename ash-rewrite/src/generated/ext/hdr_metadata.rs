@@ -57,22 +57,20 @@ impl Device {
     pub fn device(&self) -> vk::Device {
         self.handle
     }
-    ///vkSetHdrMetadataEXT
-    #[inline]
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkSetHdrMetadataEXT.html) · Device Function
     pub unsafe fn set_hdr_metadata(
         &self,
         swapchains: &[vk::SwapchainKHR],
         metadata: &[vk::HdrMetadataEXT<'_>],
     ) {
-        assert_eq!(swapchains.len(), metadata.len());
         (self
             .fp
             .set_hdr_metadata)(
             self.handle,
-            metadata.len() as _,
+            swapchains.len() as _,
             swapchains.as_ptr(),
             metadata.as_ptr(),
-        )
+        );
     }
 }
 pub(crate) mod items {

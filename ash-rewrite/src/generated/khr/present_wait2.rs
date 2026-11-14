@@ -68,8 +68,7 @@ impl Device {
     pub fn device(&self) -> vk::Device {
         self.handle
     }
-    ///vkWaitForPresent2KHR
-    #[inline]
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkWaitForPresent2KHR.html) · Device Function
     pub unsafe fn wait_for_present2(
         &self,
         swapchain: vk::SwapchainKHR,

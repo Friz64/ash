@@ -134,64 +134,45 @@ impl Device {
     pub fn device(&self) -> vk::Device {
         self.handle
     }
-    ///vkSetLatencySleepModeLegacyNV
-    #[inline]
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkSetLatencySleepModeLegacyNV.html) · Device Function
     pub unsafe fn set_latency_sleep_mode_legacy(
         &self,
-        low_latency_mode: vk::Bool32,
-        low_latency_boost: vk::Bool32,
+        low_latency_mode: bool,
+        low_latency_boost: bool,
         minimum_interval_us: u32,
     ) {
         (self
             .fp
             .set_latency_sleep_mode_legacy)(
             self.handle,
-            low_latency_mode,
-            low_latency_boost,
+            low_latency_mode as _,
+            low_latency_boost as _,
             minimum_interval_us,
-        )
+        );
     }
-    ///vkLatencySleepLegacyNV
-    #[inline]
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkLatencySleepLegacyNV.html) · Device Function
     pub unsafe fn latency_sleep_legacy(
         &self,
         signal_semaphore: vk::Semaphore,
         value: u64,
     ) {
-        (self.fp.latency_sleep_legacy)(self.handle, signal_semaphore, value)
+        (self.fp.latency_sleep_legacy)(self.handle, signal_semaphore, value);
     }
-    ///vkSetLatencyMarkerLegacyNV
-    #[inline]
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkSetLatencyMarkerLegacyNV.html) · Device Function
     pub unsafe fn set_latency_marker_legacy(&self, frame_id: u64, marker: u32) {
-        (self.fp.set_latency_marker_legacy)(self.handle, frame_id, marker)
+        (self.fp.set_latency_marker_legacy)(self.handle, frame_id, marker);
     }
-    ///vkGetLatencyTimingsLegacyNV
-    #[inline]
-    pub unsafe fn get_latency_timings_legacy(&self) -> ffi::c_void {
-        let mut timings = MaybeUninit::uninit();
-        (self.fp.get_latency_timings_legacy)(self.handle, timings.as_mut_ptr());
-        timings.assume_init()
-    }
-    ///vkQueueNotifyOutOfBandLegacyNV
-    #[inline]
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkQueueNotifyOutOfBandLegacyNV.html) · Device Function
     pub unsafe fn queue_notify_out_of_band_legacy(
         &self,
         queue: vk::Queue,
         queue_type: u32,
     ) {
-        (self.fp.queue_notify_out_of_band_legacy)(queue, queue_type)
+        (self.fp.queue_notify_out_of_band_legacy)(queue, queue_type);
     }
-    ///vkGetSleepStatusLegacyNV
-    #[inline]
-    pub unsafe fn get_sleep_status_legacy(&self) -> vk::Bool32 {
-        let mut low_latency_mode = MaybeUninit::uninit();
-        (self.fp.get_sleep_status_legacy)(self.handle, low_latency_mode.as_mut_ptr());
-        low_latency_mode.assume_init()
-    }
-    ///vkShutdownLatencyDeviceLegacyNV
-    #[inline]
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkShutdownLatencyDeviceLegacyNV.html) · Device Function
     pub unsafe fn shutdown_latency_device_legacy(&self) {
-        (self.fp.shutdown_latency_device_legacy)(self.handle)
+        (self.fp.shutdown_latency_device_legacy)(self.handle);
     }
 }
 pub(crate) mod items {

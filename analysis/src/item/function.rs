@@ -7,6 +7,7 @@ use crate::{
         cexpr::{self, CExprItems},
     },
 };
+use indexmap::IndexMap;
 use tracing::{instrument, trace};
 
 #[derive(Debug)]
@@ -45,6 +46,8 @@ pub enum Length {
 pub struct CommandParam {
     pub decl: Decl,
     pub length: Option<Length>,
+    /// All other params whose length is defined by this param
+    pub length_of: Vec<VariableName>,
     pub optional: Vec<bool>,
 }
 
@@ -58,7 +61,7 @@ impl CommandParam {
 pub struct Command {
     pub required_by: RequiredBy,
     pub name: CommandName,
-    pub params: Vec<CommandParam>,
+    pub params: IndexMap<VariableName, CommandParam>,
     pub return_type: Option<Ty>,
 }
 
@@ -68,7 +71,7 @@ impl Command {
         let required_by = *require_map.command.get(&xml.name)?;
         trace!("constructing");
 
-        let params = (xml.params.iter())
+        let mut params: Vec<CommandParam> = (xml.params.iter())
             .map(|param| {
                 let len_slice = if param.altlen.is_empty() {
                     param.len.as_slice()
@@ -95,15 +98,33 @@ impl Command {
                 CommandParam {
                     decl: Decl::from_c(require_map, &param.c_decl),
                     length,
+                    length_of: Vec::new(), // filled in second pass
                     optional: param.optional.clone(),
                 }
             })
             .collect();
 
+        // for each param `a`, check every other param `b`,
+        // and find out if `a` determines the length of `b`
+        for a_idx in 0..params.len() {
+            for b_idx in 0..params.len() {
+                let Ok([a, b]) = params.get_disjoint_mut([a_idx, b_idx]) else {
+                    continue;
+                };
+
+                if matches!(b.length, Some(Length::DefinedByParam(name)) if name == a.decl.name) {
+                    a.length_of.push(b.decl.name);
+                }
+            }
+        }
+
         Some(Command {
             required_by,
             name: xml.name,
-            params,
+            params: params
+                .into_iter()
+                .map(|param| (param.decl.name, param))
+                .collect(),
             return_type: (xml.return_type.as_ref()).map(|c_type| Ty::from_c(require_map, c_type)),
         })
     }

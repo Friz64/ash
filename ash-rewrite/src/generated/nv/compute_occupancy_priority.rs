@@ -62,14 +62,13 @@ impl Device {
     pub fn device(&self) -> vk::Device {
         self.handle
     }
-    ///vkCmdSetComputeOccupancyPriorityNV
-    #[inline]
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdSetComputeOccupancyPriorityNV.html) · Device Function
     pub unsafe fn cmd_set_compute_occupancy_priority(
         &self,
         command_buffer: vk::CommandBuffer,
         parameters: &vk::ComputeOccupancyPriorityParametersNV<'_>,
     ) {
-        (self.fp.cmd_set_compute_occupancy_priority)(command_buffer, parameters)
+        (self.fp.cmd_set_compute_occupancy_priority)(command_buffer, parameters);
     }
 }
 pub(crate) mod items {

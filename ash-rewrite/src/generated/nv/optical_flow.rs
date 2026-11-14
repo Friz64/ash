@@ -214,46 +214,6 @@ impl Instance {
     pub fn instance(&self) -> vk::Instance {
         self.handle
     }
-    ///vkGetPhysicalDeviceOpticalFlowImageFormatsNV
-    #[inline]
-    pub unsafe fn get_physical_device_optical_flow_image_formats_len(
-        &self,
-        physical_device: vk::PhysicalDevice,
-        optical_flow_image_format_info: &vk::OpticalFlowImageFormatInfoNV<'_>,
-    ) -> VkResult<usize> {
-        let mut format_count = MaybeUninit::uninit();
-        (self
-            .fp
-            .get_physical_device_optical_flow_image_formats)(
-                physical_device,
-                optical_flow_image_format_info,
-                format_count.as_mut_ptr(),
-                ptr::null_mut(),
-            )
-            .assume_init_on_success(format_count)
-            .map(|c| c as usize)
-    }
-    ///vkGetPhysicalDeviceOpticalFlowImageFormatsNV
-    #[inline]
-    pub unsafe fn get_physical_device_optical_flow_image_formats(
-        &self,
-        physical_device: vk::PhysicalDevice,
-        optical_flow_image_format_info: &vk::OpticalFlowImageFormatInfoNV<'_>,
-        image_format_properties: &mut [vk::OpticalFlowImageFormatPropertiesNV<'_>],
-    ) -> VkResult<()> {
-        let mut format_count = image_format_properties.len() as _;
-        (self
-            .fp
-            .get_physical_device_optical_flow_image_formats)(
-                physical_device,
-                optical_flow_image_format_info,
-                &mut format_count,
-                image_format_properties.as_mut_ptr(),
-            )
-            .result()?;
-        assert_eq!(format_count as usize, image_format_properties.len());
-        Ok(())
-    }
 }
 #[derive(Clone)]
 pub struct DeviceFn {
@@ -345,47 +305,15 @@ impl Device {
     pub fn device(&self) -> vk::Device {
         self.handle
     }
-    ///vkCreateOpticalFlowSessionNV
-    #[inline]
-    pub unsafe fn create_optical_flow_session(
-        &self,
-        create_info: &vk::OpticalFlowSessionCreateInfoNV<'_>,
-        allocator: Option<&vk::AllocationCallbacks<'_>>,
-    ) -> VkResult<vk::OpticalFlowSessionNV> {
-        let mut session = MaybeUninit::uninit();
-        (self
-            .fp
-            .create_optical_flow_session)(
-                self.handle,
-                create_info,
-                match allocator {
-                    Some(inner) => inner,
-                    None => ptr::null_mut(),
-                },
-                session.as_mut_ptr(),
-            )
-            .assume_init_on_success(session)
-    }
-    ///vkDestroyOpticalFlowSessionNV
-    #[inline]
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkDestroyOpticalFlowSessionNV.html) · Device Function
     pub unsafe fn destroy_optical_flow_session(
         &self,
         session: vk::OpticalFlowSessionNV,
-        allocator: Option<&vk::AllocationCallbacks<'_>>,
+        allocator: &vk::AllocationCallbacks<'_>,
     ) {
-        (self
-            .fp
-            .destroy_optical_flow_session)(
-            self.handle,
-            session,
-            match allocator {
-                Some(inner) => inner,
-                None => ptr::null_mut(),
-            },
-        )
+        (self.fp.destroy_optical_flow_session)(self.handle, session, allocator);
     }
-    ///vkBindOpticalFlowSessionImageNV
-    #[inline]
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkBindOpticalFlowSessionImageNV.html) · Device Function
     pub unsafe fn bind_optical_flow_session_image(
         &self,
         session: vk::OpticalFlowSessionNV,
@@ -404,15 +332,14 @@ impl Device {
             )
             .result()
     }
-    ///vkCmdOpticalFlowExecuteNV
-    #[inline]
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdOpticalFlowExecuteNV.html) · Device Function
     pub unsafe fn cmd_optical_flow_execute(
         &self,
         command_buffer: vk::CommandBuffer,
         session: vk::OpticalFlowSessionNV,
         execute_info: &vk::OpticalFlowExecuteInfoNV<'_>,
     ) {
-        (self.fp.cmd_optical_flow_execute)(command_buffer, session, execute_info)
+        (self.fp.cmd_optical_flow_execute)(command_buffer, session, execute_info);
     }
 }
 pub(crate) mod items {

@@ -61,22 +61,6 @@ impl Device {
     pub fn device(&self) -> vk::Device {
         self.handle
     }
-    ///vkGetDescriptorSetLayoutSupport
-    #[inline]
-    pub unsafe fn get_descriptor_set_layout_support(
-        &self,
-        create_info: &vk::DescriptorSetLayoutCreateInfo<'_>,
-    ) -> vk::DescriptorSetLayoutSupport<'_> {
-        let mut support = MaybeUninit::uninit();
-        (self
-            .fp
-            .get_descriptor_set_layout_support)(
-            self.handle,
-            create_info,
-            support.as_mut_ptr(),
-        );
-        support.assume_init()
-    }
 }
 pub(crate) mod items {
     use crate::internal_prelude::*;

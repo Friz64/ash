@@ -88,8 +88,7 @@ impl Device {
     pub fn device(&self) -> vk::Device {
         self.handle
     }
-    ///vkCmdSetFragmentShadingRateEnumNV
-    #[inline]
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdSetFragmentShadingRateEnumNV.html) · Device Function
     pub unsafe fn cmd_set_fragment_shading_rate_enum(
         &self,
         command_buffer: vk::CommandBuffer,
@@ -102,7 +101,7 @@ impl Device {
             command_buffer,
             shading_rate,
             combiner_ops,
-        )
+        );
     }
 }
 pub(crate) mod items {

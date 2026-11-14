@@ -153,47 +153,15 @@ impl Instance {
     pub fn instance(&self) -> vk::Instance {
         self.handle
     }
-    ///vkCreateDebugReportCallbackEXT
-    #[inline]
-    pub unsafe fn create_debug_report_callback(
-        &self,
-        create_info: &vk::DebugReportCallbackCreateInfoEXT<'_>,
-        allocator: Option<&vk::AllocationCallbacks<'_>>,
-    ) -> VkResult<vk::DebugReportCallbackEXT> {
-        let mut callback = MaybeUninit::uninit();
-        (self
-            .fp
-            .create_debug_report_callback)(
-                self.handle,
-                create_info,
-                match allocator {
-                    Some(inner) => inner,
-                    None => ptr::null_mut(),
-                },
-                callback.as_mut_ptr(),
-            )
-            .assume_init_on_success(callback)
-    }
-    ///vkDestroyDebugReportCallbackEXT
-    #[inline]
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkDestroyDebugReportCallbackEXT.html) · Instance Function
     pub unsafe fn destroy_debug_report_callback(
         &self,
         callback: vk::DebugReportCallbackEXT,
-        allocator: Option<&vk::AllocationCallbacks<'_>>,
+        allocator: &vk::AllocationCallbacks<'_>,
     ) {
-        (self
-            .fp
-            .destroy_debug_report_callback)(
-            self.handle,
-            callback,
-            match allocator {
-                Some(inner) => inner,
-                None => ptr::null_mut(),
-            },
-        )
+        (self.fp.destroy_debug_report_callback)(self.handle, callback, allocator);
     }
-    ///vkDebugReportMessageEXT
-    #[inline]
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkDebugReportMessageEXT.html) · Instance Function
     pub unsafe fn debug_report_message(
         &self,
         flags: vk::DebugReportFlagsEXT,
@@ -215,7 +183,7 @@ impl Instance {
             message_code,
             layer_prefix.map_or(ptr::null(), |s| s.as_ptr()),
             message.map_or(ptr::null(), |s| s.as_ptr()),
-        )
+        );
     }
 }
 pub(crate) mod items {

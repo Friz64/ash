@@ -116,61 +116,29 @@ impl Device {
     pub fn device(&self) -> vk::Device {
         self.handle
     }
-    ///vkCreateDeferredOperationKHR
-    #[inline]
-    pub unsafe fn create_deferred_operation(
-        &self,
-        allocator: Option<&vk::AllocationCallbacks<'_>>,
-    ) -> VkResult<vk::DeferredOperationKHR> {
-        let mut deferred_operation = MaybeUninit::uninit();
-        (self
-            .fp
-            .create_deferred_operation)(
-                self.handle,
-                match allocator {
-                    Some(inner) => inner,
-                    None => ptr::null_mut(),
-                },
-                deferred_operation.as_mut_ptr(),
-            )
-            .assume_init_on_success(deferred_operation)
-    }
-    ///vkDestroyDeferredOperationKHR
-    #[inline]
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkDestroyDeferredOperationKHR.html) · Device Function
     pub unsafe fn destroy_deferred_operation(
         &self,
         operation: vk::DeferredOperationKHR,
-        allocator: Option<&vk::AllocationCallbacks<'_>>,
+        allocator: &vk::AllocationCallbacks<'_>,
     ) {
-        (self
-            .fp
-            .destroy_deferred_operation)(
-            self.handle,
-            operation,
-            match allocator {
-                Some(inner) => inner,
-                None => ptr::null_mut(),
-            },
-        )
+        (self.fp.destroy_deferred_operation)(self.handle, operation, allocator);
     }
-    ///vkGetDeferredOperationMaxConcurrencyKHR
-    #[inline]
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkGetDeferredOperationMaxConcurrencyKHR.html) · Device Function
     pub unsafe fn get_deferred_operation_max_concurrency(
         &self,
         operation: vk::DeferredOperationKHR,
-    ) -> u32 {
-        (self.fp.get_deferred_operation_max_concurrency)(self.handle, operation)
+    ) {
+        (self.fp.get_deferred_operation_max_concurrency)(self.handle, operation);
     }
-    ///vkGetDeferredOperationResultKHR
-    #[inline]
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkGetDeferredOperationResultKHR.html) · Device Function
     pub unsafe fn get_deferred_operation_result(
         &self,
         operation: vk::DeferredOperationKHR,
     ) -> VkResult<()> {
         (self.fp.get_deferred_operation_result)(self.handle, operation).result()
     }
-    ///vkDeferredOperationJoinKHR
-    #[inline]
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkDeferredOperationJoinKHR.html) · Device Function
     pub unsafe fn deferred_operation_join(
         &self,
         operation: vk::DeferredOperationKHR,

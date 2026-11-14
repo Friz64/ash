@@ -85,40 +85,6 @@ impl Device {
     pub fn device(&self) -> vk::Device {
         self.handle
     }
-    ///vkGetMemoryZirconHandleFUCHSIA
-    #[inline]
-    pub unsafe fn get_memory_zircon_handle(
-        &self,
-        get_zircon_handle_info: &vk::MemoryGetZirconHandleInfoFUCHSIA<'_>,
-    ) -> VkResult<vk::zx_handle_t> {
-        let mut zircon_handle = MaybeUninit::uninit();
-        (self
-            .fp
-            .get_memory_zircon_handle)(
-                self.handle,
-                get_zircon_handle_info,
-                zircon_handle.as_mut_ptr(),
-            )
-            .assume_init_on_success(zircon_handle)
-    }
-    ///vkGetMemoryZirconHandlePropertiesFUCHSIA
-    #[inline]
-    pub unsafe fn get_memory_zircon_handle_properties(
-        &self,
-        handle_type: vk::ExternalMemoryHandleTypeFlagBits,
-        zircon_handle: vk::zx_handle_t,
-    ) -> VkResult<vk::MemoryZirconHandlePropertiesFUCHSIA<'_>> {
-        let mut memory_zircon_handle_properties = MaybeUninit::uninit();
-        (self
-            .fp
-            .get_memory_zircon_handle_properties)(
-                self.handle,
-                handle_type,
-                zircon_handle,
-                memory_zircon_handle_properties.as_mut_ptr(),
-            )
-            .assume_init_on_success(memory_zircon_handle_properties)
-    }
 }
 pub(crate) mod items {
     use crate::internal_prelude::*;

@@ -130,24 +130,7 @@ impl Device {
     pub fn device(&self) -> vk::Device {
         self.handle
     }
-    ///vkGetPartitionedAccelerationStructuresBuildSizesNV
-    #[inline]
-    pub unsafe fn get_partitioned_acceleration_structures_build_sizes(
-        &self,
-        info: &vk::PartitionedAccelerationStructureInstancesInputNV<'_>,
-    ) -> vk::AccelerationStructureBuildSizesInfoKHR<'_> {
-        let mut size_info = MaybeUninit::uninit();
-        (self
-            .fp
-            .get_partitioned_acceleration_structures_build_sizes)(
-            self.handle,
-            info,
-            size_info.as_mut_ptr(),
-        );
-        size_info.assume_init()
-    }
-    ///vkCmdBuildPartitionedAccelerationStructuresNV
-    #[inline]
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdBuildPartitionedAccelerationStructuresNV.html) · Device Function
     pub unsafe fn cmd_build_partitioned_acceleration_structures(
         &self,
         command_buffer: vk::CommandBuffer,
@@ -155,7 +138,7 @@ impl Device {
     ) {
         (self
             .fp
-            .cmd_build_partitioned_acceleration_structures)(command_buffer, build_info)
+            .cmd_build_partitioned_acceleration_structures)(command_buffer, build_info);
     }
 }
 pub(crate) mod items {

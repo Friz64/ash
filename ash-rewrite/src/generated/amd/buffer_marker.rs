@@ -68,8 +68,7 @@ impl Device {
     pub fn device(&self) -> vk::Device {
         self.handle
     }
-    ///vkCmdWriteBufferMarkerAMD
-    #[inline]
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdWriteBufferMarkerAMD.html) · Device Function
     pub unsafe fn cmd_write_buffer_marker(
         &self,
         command_buffer: vk::CommandBuffer,
@@ -86,10 +85,9 @@ impl Device {
             dst_buffer,
             dst_offset,
             marker,
-        )
+        );
     }
-    ///vkCmdWriteBufferMarker2AMD
-    #[inline]
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdWriteBufferMarker2AMD.html) · Device Function
     pub unsafe fn cmd_write_buffer_marker2(
         &self,
         command_buffer: vk::CommandBuffer,
@@ -106,7 +104,7 @@ impl Device {
             dst_buffer,
             dst_offset,
             marker,
-        )
+        );
     }
 }
 pub(crate) mod items {

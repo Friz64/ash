@@ -68,15 +68,6 @@ impl Device {
     pub fn device(&self) -> vk::Device {
         self.handle
     }
-    ///vkGetDeviceFaultInfoEXT
-    #[inline]
-    pub unsafe fn get_device_fault_info(
-        &self,
-        fault_counts: &mut vk::DeviceFaultCountsEXT<'_>,
-        fault_info: &mut vk::DeviceFaultInfoEXT<'_>,
-    ) -> VkResult<()> {
-        (self.fp.get_device_fault_info)(self.handle, fault_counts, fault_info).result()
-    }
 }
 pub(crate) mod items {
     use crate::internal_prelude::*;

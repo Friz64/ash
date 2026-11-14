@@ -58,22 +58,6 @@ impl Device {
     pub fn device(&self) -> vk::Device {
         self.handle
     }
-    ///vkGetPipelinePropertiesEXT
-    #[inline]
-    pub unsafe fn get_pipeline_properties(
-        &self,
-        pipeline_info: &vk::PipelineInfoKHR<'_>,
-    ) -> VkResult<vk::BaseOutStructure<'_>> {
-        let mut pipeline_properties = MaybeUninit::uninit();
-        (self
-            .fp
-            .get_pipeline_properties)(
-                self.handle,
-                pipeline_info,
-                pipeline_properties.as_mut_ptr(),
-            )
-            .assume_init_on_success(pipeline_properties)
-    }
 }
 pub(crate) mod items {
     use crate::internal_prelude::*;

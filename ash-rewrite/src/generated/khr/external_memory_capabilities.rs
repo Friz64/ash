@@ -118,23 +118,6 @@ impl Instance {
     pub fn instance(&self) -> vk::Instance {
         self.handle
     }
-    ///vkGetPhysicalDeviceExternalBufferProperties
-    #[inline]
-    pub unsafe fn get_physical_device_external_buffer_properties(
-        &self,
-        physical_device: vk::PhysicalDevice,
-        external_buffer_info: &vk::PhysicalDeviceExternalBufferInfo<'_>,
-    ) -> vk::ExternalBufferProperties<'_> {
-        let mut external_buffer_properties = MaybeUninit::uninit();
-        (self
-            .fp
-            .get_physical_device_external_buffer_properties)(
-            physical_device,
-            external_buffer_info,
-            external_buffer_properties.as_mut_ptr(),
-        );
-        external_buffer_properties.assume_init()
-    }
 }
 pub(crate) mod items {
     use crate::internal_prelude::*;

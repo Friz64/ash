@@ -68,24 +68,20 @@ impl Device {
     pub fn device(&self) -> vk::Device {
         self.handle
     }
-    ///vkCmdSetDepthClampRangeEXT
-    #[inline]
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdSetDepthClampRangeEXT.html) · Device Function
     pub unsafe fn cmd_set_depth_clamp_range(
         &self,
         command_buffer: vk::CommandBuffer,
         depth_clamp_mode: vk::DepthClampModeEXT,
-        depth_clamp_range: Option<&vk::DepthClampRangeEXT>,
+        depth_clamp_range: &vk::DepthClampRangeEXT,
     ) {
         (self
             .fp
             .cmd_set_depth_clamp_range)(
             command_buffer,
             depth_clamp_mode,
-            match depth_clamp_range {
-                Some(inner) => inner,
-                None => ptr::null_mut(),
-            },
-        )
+            depth_clamp_range,
+        );
     }
 }
 pub(crate) mod items {

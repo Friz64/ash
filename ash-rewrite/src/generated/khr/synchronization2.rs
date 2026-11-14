@@ -446,55 +446,49 @@ impl Device {
     pub fn device(&self) -> vk::Device {
         self.handle
     }
-    ///vkCmdSetEvent2
-    #[inline]
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdSetEvent2.html) · Device Function
     pub unsafe fn cmd_set_event2(
         &self,
         command_buffer: vk::CommandBuffer,
         event: vk::Event,
         dependency_info: &vk::DependencyInfo<'_>,
     ) {
-        (self.fp.cmd_set_event2)(command_buffer, event, dependency_info)
+        (self.fp.cmd_set_event2)(command_buffer, event, dependency_info);
     }
-    ///vkCmdResetEvent2
-    #[inline]
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdResetEvent2.html) · Device Function
     pub unsafe fn cmd_reset_event2(
         &self,
         command_buffer: vk::CommandBuffer,
         event: vk::Event,
         stage_mask: vk::PipelineStageFlags2,
     ) {
-        (self.fp.cmd_reset_event2)(command_buffer, event, stage_mask)
+        (self.fp.cmd_reset_event2)(command_buffer, event, stage_mask);
     }
-    ///vkCmdWaitEvents2
-    #[inline]
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdWaitEvents2.html) · Device Function
     pub unsafe fn cmd_wait_events2(
         &self,
         command_buffer: vk::CommandBuffer,
         events: &[vk::Event],
         dependency_infos: &[vk::DependencyInfo<'_>],
     ) {
-        assert_eq!(events.len(), dependency_infos.len());
         (self
             .fp
             .cmd_wait_events2)(
             command_buffer,
-            dependency_infos.len() as _,
+            events.len() as _,
             events.as_ptr(),
             dependency_infos.as_ptr(),
-        )
+        );
     }
-    ///vkCmdPipelineBarrier2
-    #[inline]
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdPipelineBarrier2.html) · Device Function
     pub unsafe fn cmd_pipeline_barrier2(
         &self,
         command_buffer: vk::CommandBuffer,
         dependency_info: &vk::DependencyInfo<'_>,
     ) {
-        (self.fp.cmd_pipeline_barrier2)(command_buffer, dependency_info)
+        (self.fp.cmd_pipeline_barrier2)(command_buffer, dependency_info);
     }
-    ///vkQueueSubmit2
-    #[inline]
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkQueueSubmit2.html) · Device Function
     pub unsafe fn queue_submit2(
         &self,
         queue: vk::Queue,
@@ -504,8 +498,7 @@ impl Device {
         (self.fp.queue_submit2)(queue, submits.len() as _, submits.as_ptr(), fence)
             .result()
     }
-    ///vkCmdWriteTimestamp2
-    #[inline]
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdWriteTimestamp2.html) · Device Function
     pub unsafe fn cmd_write_timestamp2(
         &self,
         command_buffer: vk::CommandBuffer,
@@ -513,7 +506,7 @@ impl Device {
         query_pool: vk::QueryPool,
         query: u32,
     ) {
-        (self.fp.cmd_write_timestamp2)(command_buffer, stage, query_pool, query)
+        (self.fp.cmd_write_timestamp2)(command_buffer, stage, query_pool, query);
     }
 }
 pub(crate) mod items {

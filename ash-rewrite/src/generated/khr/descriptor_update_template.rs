@@ -124,47 +124,21 @@ impl Device {
     pub fn device(&self) -> vk::Device {
         self.handle
     }
-    ///vkCreateDescriptorUpdateTemplate
-    #[inline]
-    pub unsafe fn create_descriptor_update_template(
-        &self,
-        create_info: &vk::DescriptorUpdateTemplateCreateInfo<'_>,
-        allocator: Option<&vk::AllocationCallbacks<'_>>,
-    ) -> VkResult<vk::DescriptorUpdateTemplate> {
-        let mut descriptor_update_template = MaybeUninit::uninit();
-        (self
-            .fp
-            .create_descriptor_update_template)(
-                self.handle,
-                create_info,
-                match allocator {
-                    Some(inner) => inner,
-                    None => ptr::null_mut(),
-                },
-                descriptor_update_template.as_mut_ptr(),
-            )
-            .assume_init_on_success(descriptor_update_template)
-    }
-    ///vkDestroyDescriptorUpdateTemplate
-    #[inline]
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkDestroyDescriptorUpdateTemplate.html) · Device Function
     pub unsafe fn destroy_descriptor_update_template(
         &self,
         descriptor_update_template: vk::DescriptorUpdateTemplate,
-        allocator: Option<&vk::AllocationCallbacks<'_>>,
+        allocator: &vk::AllocationCallbacks<'_>,
     ) {
         (self
             .fp
             .destroy_descriptor_update_template)(
             self.handle,
             descriptor_update_template,
-            match allocator {
-                Some(inner) => inner,
-                None => ptr::null_mut(),
-            },
-        )
+            allocator,
+        );
     }
-    ///vkUpdateDescriptorSetWithTemplate
-    #[inline]
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkUpdateDescriptorSetWithTemplate.html) · Device Function
     pub unsafe fn update_descriptor_set_with_template(
         &self,
         descriptor_set: vk::DescriptorSet,
@@ -178,10 +152,9 @@ impl Device {
             descriptor_set,
             descriptor_update_template,
             data,
-        )
+        );
     }
-    ///vkCmdPushDescriptorSetWithTemplate
-    #[inline]
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdPushDescriptorSetWithTemplate.html) · Device Function
     pub unsafe fn cmd_push_descriptor_set_with_template(
         &self,
         command_buffer: vk::CommandBuffer,
@@ -198,7 +171,7 @@ impl Device {
             layout,
             set,
             data,
-        )
+        );
     }
 }
 pub(crate) mod items {

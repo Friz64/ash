@@ -162,29 +162,7 @@ impl Device {
     pub fn device(&self) -> vk::Device {
         self.handle
     }
-    ///vkCreateBufferCollectionFUCHSIA
-    #[inline]
-    pub unsafe fn create_buffer_collection(
-        &self,
-        create_info: &vk::BufferCollectionCreateInfoFUCHSIA<'_>,
-        allocator: Option<&vk::AllocationCallbacks<'_>>,
-    ) -> VkResult<vk::BufferCollectionFUCHSIA> {
-        let mut collection = MaybeUninit::uninit();
-        (self
-            .fp
-            .create_buffer_collection)(
-                self.handle,
-                create_info,
-                match allocator {
-                    Some(inner) => inner,
-                    None => ptr::null_mut(),
-                },
-                collection.as_mut_ptr(),
-            )
-            .assume_init_on_success(collection)
-    }
-    ///vkSetBufferCollectionBufferConstraintsFUCHSIA
-    #[inline]
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkSetBufferCollectionBufferConstraintsFUCHSIA.html) · Device Function
     pub unsafe fn set_buffer_collection_buffer_constraints(
         &self,
         collection: vk::BufferCollectionFUCHSIA,
@@ -199,8 +177,7 @@ impl Device {
             )
             .result()
     }
-    ///vkSetBufferCollectionImageConstraintsFUCHSIA
-    #[inline]
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkSetBufferCollectionImageConstraintsFUCHSIA.html) · Device Function
     pub unsafe fn set_buffer_collection_image_constraints(
         &self,
         collection: vk::BufferCollectionFUCHSIA,
@@ -215,39 +192,13 @@ impl Device {
             )
             .result()
     }
-    ///vkDestroyBufferCollectionFUCHSIA
-    #[inline]
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkDestroyBufferCollectionFUCHSIA.html) · Device Function
     pub unsafe fn destroy_buffer_collection(
         &self,
         collection: vk::BufferCollectionFUCHSIA,
-        allocator: Option<&vk::AllocationCallbacks<'_>>,
+        allocator: &vk::AllocationCallbacks<'_>,
     ) {
-        (self
-            .fp
-            .destroy_buffer_collection)(
-            self.handle,
-            collection,
-            match allocator {
-                Some(inner) => inner,
-                None => ptr::null_mut(),
-            },
-        )
-    }
-    ///vkGetBufferCollectionPropertiesFUCHSIA
-    #[inline]
-    pub unsafe fn get_buffer_collection_properties(
-        &self,
-        collection: vk::BufferCollectionFUCHSIA,
-    ) -> VkResult<vk::BufferCollectionPropertiesFUCHSIA<'_>> {
-        let mut properties = MaybeUninit::uninit();
-        (self
-            .fp
-            .get_buffer_collection_properties)(
-                self.handle,
-                collection,
-                properties.as_mut_ptr(),
-            )
-            .assume_init_on_success(properties)
+        (self.fp.destroy_buffer_collection)(self.handle, collection, allocator);
     }
 }
 pub(crate) mod items {

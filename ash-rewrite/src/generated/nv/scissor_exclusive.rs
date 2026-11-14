@@ -82,8 +82,7 @@ impl Device {
     pub fn device(&self) -> vk::Device {
         self.handle
     }
-    ///vkCmdSetExclusiveScissorNV
-    #[inline]
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdSetExclusiveScissorNV.html) · Device Function
     pub unsafe fn cmd_set_exclusive_scissor(
         &self,
         command_buffer: vk::CommandBuffer,
@@ -97,10 +96,9 @@ impl Device {
             first_exclusive_scissor,
             exclusive_scissors.len() as _,
             exclusive_scissors.as_ptr(),
-        )
+        );
     }
-    ///vkCmdSetExclusiveScissorEnableNV
-    #[inline]
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdSetExclusiveScissorEnableNV.html) · Device Function
     pub unsafe fn cmd_set_exclusive_scissor_enable(
         &self,
         command_buffer: vk::CommandBuffer,
@@ -114,7 +112,7 @@ impl Device {
             first_exclusive_scissor,
             exclusive_scissor_enables.len() as _,
             exclusive_scissor_enables.as_ptr(),
-        )
+        );
     }
 }
 pub(crate) mod items {

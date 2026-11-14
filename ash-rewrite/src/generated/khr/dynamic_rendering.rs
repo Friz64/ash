@@ -85,19 +85,17 @@ impl Device {
     pub fn device(&self) -> vk::Device {
         self.handle
     }
-    ///vkCmdBeginRendering
-    #[inline]
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdBeginRendering.html) · Device Function
     pub unsafe fn cmd_begin_rendering(
         &self,
         command_buffer: vk::CommandBuffer,
         rendering_info: &vk::RenderingInfo<'_>,
     ) {
-        (self.fp.cmd_begin_rendering)(command_buffer, rendering_info)
+        (self.fp.cmd_begin_rendering)(command_buffer, rendering_info);
     }
-    ///vkCmdEndRendering
-    #[inline]
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdEndRendering.html) · Device Function
     pub unsafe fn cmd_end_rendering(&self, command_buffer: vk::CommandBuffer) {
-        (self.fp.cmd_end_rendering)(command_buffer)
+        (self.fp.cmd_end_rendering)(command_buffer);
     }
 }
 pub(crate) mod items {

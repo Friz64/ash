@@ -185,91 +185,13 @@ impl Instance {
     pub fn instance(&self) -> vk::Instance {
         self.handle
     }
-    ///vkDestroySurfaceKHR
-    #[inline]
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkDestroySurfaceKHR.html) · Instance Function
     pub unsafe fn destroy_surface(
         &self,
         surface: vk::SurfaceKHR,
-        allocator: Option<&vk::AllocationCallbacks<'_>>,
+        allocator: &vk::AllocationCallbacks<'_>,
     ) {
-        (self
-            .fp
-            .destroy_surface)(
-            self.handle,
-            surface,
-            match allocator {
-                Some(inner) => inner,
-                None => ptr::null_mut(),
-            },
-        )
-    }
-    ///vkGetPhysicalDeviceSurfaceSupportKHR
-    #[inline]
-    pub unsafe fn get_physical_device_surface_support(
-        &self,
-        physical_device: vk::PhysicalDevice,
-        queue_family_index: u32,
-        surface: vk::SurfaceKHR,
-    ) -> VkResult<vk::Bool32> {
-        let mut supported = MaybeUninit::uninit();
-        (self
-            .fp
-            .get_physical_device_surface_support)(
-                physical_device,
-                queue_family_index,
-                surface,
-                supported.as_mut_ptr(),
-            )
-            .assume_init_on_success(supported)
-    }
-    ///vkGetPhysicalDeviceSurfaceCapabilitiesKHR
-    #[inline]
-    pub unsafe fn get_physical_device_surface_capabilities(
-        &self,
-        physical_device: vk::PhysicalDevice,
-        surface: vk::SurfaceKHR,
-    ) -> VkResult<vk::SurfaceCapabilitiesKHR> {
-        let mut surface_capabilities = MaybeUninit::uninit();
-        (self
-            .fp
-            .get_physical_device_surface_capabilities)(
-                physical_device,
-                surface,
-                surface_capabilities.as_mut_ptr(),
-            )
-            .assume_init_on_success(surface_capabilities)
-    }
-    ///vkGetPhysicalDeviceSurfaceFormatsKHR
-    #[inline]
-    pub unsafe fn get_physical_device_surface_formats(
-        &self,
-        physical_device: vk::PhysicalDevice,
-        surface: vk::SurfaceKHR,
-    ) -> VkResult<Vec<vk::SurfaceFormatKHR>> {
-        crate::read_into_uninitialized_vector(|surface_format_count, surface_formats| (self
-            .fp
-            .get_physical_device_surface_formats)(
-            physical_device,
-            surface,
-            surface_format_count,
-            surface_formats,
-        ))
-    }
-    ///vkGetPhysicalDeviceSurfacePresentModesKHR
-    #[inline]
-    pub unsafe fn get_physical_device_surface_present_modes(
-        &self,
-        physical_device: vk::PhysicalDevice,
-        surface: vk::SurfaceKHR,
-    ) -> VkResult<Vec<vk::PresentModeKHR>> {
-        crate::read_into_uninitialized_vector(|present_mode_count, present_modes| (self
-            .fp
-            .get_physical_device_surface_present_modes)(
-            physical_device,
-            surface,
-            present_mode_count,
-            present_modes,
-        ))
+        (self.fp.destroy_surface)(self.handle, surface, allocator);
     }
 }
 pub(crate) mod items {

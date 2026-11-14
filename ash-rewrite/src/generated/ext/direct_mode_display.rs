@@ -51,8 +51,7 @@ impl Instance {
     pub fn instance(&self) -> vk::Instance {
         self.handle
     }
-    ///vkReleaseDisplayEXT
-    #[inline]
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkReleaseDisplayEXT.html) · Instance Function
     pub unsafe fn release_display(
         &self,
         physical_device: vk::PhysicalDevice,

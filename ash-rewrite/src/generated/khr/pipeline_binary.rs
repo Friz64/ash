@@ -139,85 +139,21 @@ impl Device {
     pub fn device(&self) -> vk::Device {
         self.handle
     }
-    ///vkCreatePipelineBinariesKHR
-    #[inline]
-    pub unsafe fn create_pipeline_binaries(
-        &self,
-        create_info: &vk::PipelineBinaryCreateInfoKHR<'_>,
-        allocator: Option<&vk::AllocationCallbacks<'_>>,
-    ) -> VkResult<vk::PipelineBinaryHandlesInfoKHR<'_>> {
-        let mut binaries = MaybeUninit::uninit();
-        (self
-            .fp
-            .create_pipeline_binaries)(
-                self.handle,
-                create_info,
-                match allocator {
-                    Some(inner) => inner,
-                    None => ptr::null_mut(),
-                },
-                binaries.as_mut_ptr(),
-            )
-            .assume_init_on_success(binaries)
-    }
-    ///vkDestroyPipelineBinaryKHR
-    #[inline]
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkDestroyPipelineBinaryKHR.html) · Device Function
     pub unsafe fn destroy_pipeline_binary(
         &self,
         pipeline_binary: vk::PipelineBinaryKHR,
-        allocator: Option<&vk::AllocationCallbacks<'_>>,
+        allocator: &vk::AllocationCallbacks<'_>,
     ) {
-        (self
-            .fp
-            .destroy_pipeline_binary)(
-            self.handle,
-            pipeline_binary,
-            match allocator {
-                Some(inner) => inner,
-                None => ptr::null_mut(),
-            },
-        )
+        (self.fp.destroy_pipeline_binary)(self.handle, pipeline_binary, allocator);
     }
-    ///vkGetPipelineKeyKHR
-    #[inline]
-    pub unsafe fn get_pipeline_key(
-        &self,
-        pipeline_create_info: Option<&vk::PipelineCreateInfoKHR<'_>>,
-    ) -> VkResult<vk::PipelineBinaryKeyKHR<'_>> {
-        let mut pipeline_key = MaybeUninit::uninit();
-        (self
-            .fp
-            .get_pipeline_key)(
-                self.handle,
-                match pipeline_create_info {
-                    Some(inner) => inner,
-                    None => ptr::null_mut(),
-                },
-                pipeline_key.as_mut_ptr(),
-            )
-            .assume_init_on_success(pipeline_key)
-    }
-    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkGetPipelineBinaryDataKHR.html) · Device Function
-    /// wip
-    pub unsafe fn get_pipeline_binary_data() {}
-    ///vkReleaseCapturedPipelineDataKHR
-    #[inline]
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkReleaseCapturedPipelineDataKHR.html) · Device Function
     pub unsafe fn release_captured_pipeline_data(
         &self,
         info: &vk::ReleaseCapturedPipelineDataInfoKHR<'_>,
-        allocator: Option<&vk::AllocationCallbacks<'_>>,
+        allocator: &vk::AllocationCallbacks<'_>,
     ) -> VkResult<()> {
-        (self
-            .fp
-            .release_captured_pipeline_data)(
-                self.handle,
-                info,
-                match allocator {
-                    Some(inner) => inner,
-                    None => ptr::null_mut(),
-                },
-            )
-            .result()
+        (self.fp.release_captured_pipeline_data)(self.handle, info, allocator).result()
     }
 }
 pub(crate) mod items {

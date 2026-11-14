@@ -154,18 +154,16 @@ impl Device {
     pub fn device(&self) -> vk::Device {
         self.handle
     }
-    ///vkCmdBindShadingRateImageNV
-    #[inline]
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdBindShadingRateImageNV.html) · Device Function
     pub unsafe fn cmd_bind_shading_rate_image(
         &self,
         command_buffer: vk::CommandBuffer,
         image_view: vk::ImageView,
         image_layout: vk::ImageLayout,
     ) {
-        (self.fp.cmd_bind_shading_rate_image)(command_buffer, image_view, image_layout)
+        (self.fp.cmd_bind_shading_rate_image)(command_buffer, image_view, image_layout);
     }
-    ///vkCmdSetViewportShadingRatePaletteNV
-    #[inline]
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdSetViewportShadingRatePaletteNV.html) · Device Function
     pub unsafe fn cmd_set_viewport_shading_rate_palette(
         &self,
         command_buffer: vk::CommandBuffer,
@@ -179,10 +177,9 @@ impl Device {
             first_viewport,
             shading_rate_palettes.len() as _,
             shading_rate_palettes.as_ptr(),
-        )
+        );
     }
-    ///vkCmdSetCoarseSampleOrderNV
-    #[inline]
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdSetCoarseSampleOrderNV.html) · Device Function
     pub unsafe fn cmd_set_coarse_sample_order(
         &self,
         command_buffer: vk::CommandBuffer,
@@ -196,7 +193,7 @@ impl Device {
             sample_order_type,
             custom_sample_orders.len() as _,
             custom_sample_orders.as_ptr(),
-        )
+        );
     }
 }
 pub(crate) mod items {

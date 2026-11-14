@@ -63,31 +63,13 @@ impl Instance {
     pub fn instance(&self) -> vk::Instance {
         self.handle
     }
-    ///vkAcquireWinrtDisplayNV
-    #[inline]
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkAcquireWinrtDisplayNV.html) · Instance Function
     pub unsafe fn acquire_winrt_display(
         &self,
         physical_device: vk::PhysicalDevice,
         display: vk::DisplayKHR,
     ) -> VkResult<()> {
         (self.fp.acquire_winrt_display)(physical_device, display).result()
-    }
-    ///vkGetWinrtDisplayNV
-    #[inline]
-    pub unsafe fn get_winrt_display(
-        &self,
-        physical_device: vk::PhysicalDevice,
-        device_relative_id: u32,
-    ) -> VkResult<vk::DisplayKHR> {
-        let mut display = MaybeUninit::uninit();
-        (self
-            .fp
-            .get_winrt_display)(
-                physical_device,
-                device_relative_id,
-                display.as_mut_ptr(),
-            )
-            .assume_init_on_success(display)
     }
 }
 pub(crate) mod items {

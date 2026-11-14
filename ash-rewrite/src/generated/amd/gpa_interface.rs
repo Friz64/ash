@@ -292,65 +292,15 @@ impl Device {
     pub fn device(&self) -> vk::Device {
         self.handle
     }
-    ///vkCreateGpaSessionAMD
-    #[inline]
-    pub unsafe fn create_gpa_session(
-        &self,
-        create_info: &vk::GpaSessionCreateInfoAMD<'_>,
-        allocator: Option<&vk::AllocationCallbacks<'_>>,
-    ) -> VkResult<vk::GpaSessionAMD> {
-        let mut gpa_session = MaybeUninit::uninit();
-        (self
-            .fp
-            .create_gpa_session)(
-                self.handle,
-                create_info,
-                match allocator {
-                    Some(inner) => inner,
-                    None => ptr::null_mut(),
-                },
-                gpa_session.as_mut_ptr(),
-            )
-            .assume_init_on_success(gpa_session)
-    }
-    ///vkDestroyGpaSessionAMD
-    #[inline]
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkDestroyGpaSessionAMD.html) · Device Function
     pub unsafe fn destroy_gpa_session(
         &self,
         gpa_session: vk::GpaSessionAMD,
-        allocator: Option<&vk::AllocationCallbacks<'_>>,
+        allocator: &vk::AllocationCallbacks<'_>,
     ) {
-        (self
-            .fp
-            .destroy_gpa_session)(
-            self.handle,
-            gpa_session,
-            match allocator {
-                Some(inner) => inner,
-                None => ptr::null_mut(),
-            },
-        )
+        (self.fp.destroy_gpa_session)(self.handle, gpa_session, allocator);
     }
-    ///vkSetGpaDeviceClockModeAMD
-    #[inline]
-    pub unsafe fn set_gpa_device_clock_mode(
-        &self,
-    ) -> VkResult<vk::GpaDeviceClockModeInfoAMD<'_>> {
-        let mut info = MaybeUninit::uninit();
-        (self.fp.set_gpa_device_clock_mode)(self.handle, info.as_mut_ptr())
-            .assume_init_on_success(info)
-    }
-    ///vkGetGpaDeviceClockInfoAMD
-    #[inline]
-    pub unsafe fn get_gpa_device_clock_info(
-        &self,
-    ) -> VkResult<vk::GpaDeviceGetClockInfoAMD<'_>> {
-        let mut info = MaybeUninit::uninit();
-        (self.fp.get_gpa_device_clock_info)(self.handle, info.as_mut_ptr())
-            .assume_init_on_success(info)
-    }
-    ///vkCmdBeginGpaSessionAMD
-    #[inline]
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdBeginGpaSessionAMD.html) · Device Function
     pub unsafe fn cmd_begin_gpa_session(
         &self,
         command_buffer: vk::CommandBuffer,
@@ -358,8 +308,7 @@ impl Device {
     ) -> VkResult<()> {
         (self.fp.cmd_begin_gpa_session)(command_buffer, gpa_session).result()
     }
-    ///vkCmdEndGpaSessionAMD
-    #[inline]
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdEndGpaSessionAMD.html) · Device Function
     pub unsafe fn cmd_end_gpa_session(
         &self,
         command_buffer: vk::CommandBuffer,
@@ -367,76 +316,36 @@ impl Device {
     ) -> VkResult<()> {
         (self.fp.cmd_end_gpa_session)(command_buffer, gpa_session).result()
     }
-    ///vkCmdBeginGpaSampleAMD
-    #[inline]
-    pub unsafe fn cmd_begin_gpa_sample(
-        &self,
-        command_buffer: vk::CommandBuffer,
-        gpa_session: vk::GpaSessionAMD,
-        gpa_sample_begin_info: &vk::GpaSampleBeginInfoAMD<'_>,
-    ) -> VkResult<u32> {
-        let mut sample_id = MaybeUninit::uninit();
-        (self
-            .fp
-            .cmd_begin_gpa_sample)(
-                command_buffer,
-                gpa_session,
-                gpa_sample_begin_info,
-                sample_id.as_mut_ptr(),
-            )
-            .assume_init_on_success(sample_id)
-    }
-    ///vkCmdEndGpaSampleAMD
-    #[inline]
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdEndGpaSampleAMD.html) · Device Function
     pub unsafe fn cmd_end_gpa_sample(
         &self,
         command_buffer: vk::CommandBuffer,
         gpa_session: vk::GpaSessionAMD,
         sample_id: u32,
     ) {
-        (self.fp.cmd_end_gpa_sample)(command_buffer, gpa_session, sample_id)
+        (self.fp.cmd_end_gpa_sample)(command_buffer, gpa_session, sample_id);
     }
-    ///vkGetGpaSessionStatusAMD
-    #[inline]
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkGetGpaSessionStatusAMD.html) · Device Function
     pub unsafe fn get_gpa_session_status(
         &self,
         gpa_session: vk::GpaSessionAMD,
     ) -> VkResult<()> {
         (self.fp.get_gpa_session_status)(self.handle, gpa_session).result()
     }
-    ///vkGetGpaSessionResultsAMD
-    #[inline]
-    pub unsafe fn get_gpa_session_results(
-        &self,
-        gpa_session: vk::GpaSessionAMD,
-        sample_id: u32,
-    ) -> VkResult<Vec<ffi::c_void>> {
-        crate::read_into_uninitialized_vector(|size_in_bytes, data| (self
-            .fp
-            .get_gpa_session_results)(
-            self.handle,
-            gpa_session,
-            sample_id,
-            size_in_bytes,
-            data,
-        ))
-    }
-    ///vkResetGpaSessionAMD
-    #[inline]
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkResetGpaSessionAMD.html) · Device Function
     pub unsafe fn reset_gpa_session(
         &self,
         gpa_session: vk::GpaSessionAMD,
     ) -> VkResult<()> {
         (self.fp.reset_gpa_session)(self.handle, gpa_session).result()
     }
-    ///vkCmdCopyGpaSessionResultsAMD
-    #[inline]
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdCopyGpaSessionResultsAMD.html) · Device Function
     pub unsafe fn cmd_copy_gpa_session_results(
         &self,
         command_buffer: vk::CommandBuffer,
         gpa_session: vk::GpaSessionAMD,
     ) {
-        (self.fp.cmd_copy_gpa_session_results)(command_buffer, gpa_session)
+        (self.fp.cmd_copy_gpa_session_results)(command_buffer, gpa_session);
     }
 }
 pub(crate) mod items {

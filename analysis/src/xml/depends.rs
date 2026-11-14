@@ -1,12 +1,12 @@
 use crate::{
-    name::{TypeName, VariableName},
+    name::{ExtensionName, TypeName, VariableName},
     xml::Version,
 };
 
 #[derive(Clone, Debug, PartialEq, Eq)]
 pub enum Depends {
     Core(Version),
-    Extension(&'static str),
+    Extension(ExtensionName),
     Feature {
         feature_struct: TypeName,
         feature_member: VariableName,
@@ -94,7 +94,7 @@ impl Depends {
                         feature_member: VariableName::new(feature_member),
                     }
                 } else {
-                    Depends::Extension(tok)
+                    Depends::Extension(ExtensionName::new(tok))
                 };
 
                 top(&mut items)?.extend(new);
@@ -126,10 +126,14 @@ mod tests {
                     Box::new(Or(
                         Box::new(And(
                             Box::new(And(
-                                Box::new(Extension("VK_KHR_bind_memory2")),
-                                Box::new(Extension("VK_KHR_get_physical_device_properties2")),
+                                Box::new(Extension(ExtensionName::new("VK_KHR_bind_memory2"))),
+                                Box::new(Extension(ExtensionName::new(
+                                    "VK_KHR_get_physical_device_properties2"
+                                ))),
                             )),
-                            Box::new(Extension("VK_KHR_sampler_ycbcr_conversion")),
+                            Box::new(Extension(ExtensionName::new(
+                                "VK_KHR_sampler_ycbcr_conversion"
+                            ))),
                         )),
                         Box::new(Core(Version {
                             api: "VK",
@@ -137,7 +141,7 @@ mod tests {
                             minor: 1
                         })),
                     )),
-                    Box::new(Extension("VK_KHR_image_format_list"))
+                    Box::new(Extension(ExtensionName::new("VK_KHR_image_format_list")))
                 )),
                 Box::new(Core(Version {
                     api: "VK",
@@ -153,7 +157,7 @@ mod tests {
             ),
             Ok(And(
                 Box::new(Or(
-                    Box::new(Extension("VK_KHR_dynamic_rendering")),
+                    Box::new(Extension(ExtensionName::new("VK_KHR_dynamic_rendering"))),
                     Box::new(Core(Version {
                         api: "VK",
                         major: 1,
@@ -161,7 +165,7 @@ mod tests {
                     }))
                 )),
                 Box::new(Or(
-                    Box::new(Extension("VK_KHR_maintenance5")),
+                    Box::new(Extension(ExtensionName::new("VK_KHR_maintenance5"))),
                     Box::new(Core(Version {
                         api: "VK",
                         major: 1,
@@ -177,7 +181,9 @@ mod tests {
                     VkPhysicalDeviceMeshShaderFeaturesEXT::primitiveFragmentShadingRateMeshShader"
             ),
             Ok(And(
-                Box::new(Extension("VK_KHR_fragment_shading_rate")),
+                Box::new(Extension(ExtensionName::new(
+                    "VK_KHR_fragment_shading_rate"
+                ))),
                 Box::new(Feature {
                     feature_struct: TypeName::new("VkPhysicalDeviceMeshShaderFeaturesEXT"),
                     feature_member: VariableName::new("primitiveFragmentShadingRateMeshShader")
@@ -202,12 +208,18 @@ mod tests {
             Depends::from_str("aa)"),
             Err(DependsParseError::UnbalancedBrackets)
         );
-        assert_eq!(Depends::from_str("(((a)))"), Ok(Extension("a")));
+        assert_eq!(
+            Depends::from_str("(((a)))"),
+            Ok(Extension(ExtensionName::new("a")))
+        );
         assert_eq!(
             Depends::from_str("(((((a,((((b,((((c)))))))))))))"),
             Ok(Or(
-                Box::new(Extension("a")),
-                Box::new(Or(Box::new(Extension("b")), Box::new(Extension("c")))),
+                Box::new(Extension(ExtensionName::new("a"))),
+                Box::new(Or(
+                    Box::new(Extension(ExtensionName::new("b"))),
+                    Box::new(Extension(ExtensionName::new("c")))
+                )),
             ))
         );
     }

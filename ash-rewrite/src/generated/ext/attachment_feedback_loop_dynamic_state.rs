@@ -65,14 +65,13 @@ impl Device {
     pub fn device(&self) -> vk::Device {
         self.handle
     }
-    ///vkCmdSetAttachmentFeedbackLoopEnableEXT
-    #[inline]
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdSetAttachmentFeedbackLoopEnableEXT.html) · Device Function
     pub unsafe fn cmd_set_attachment_feedback_loop_enable(
         &self,
         command_buffer: vk::CommandBuffer,
         aspect_mask: vk::ImageAspectFlags,
     ) {
-        (self.fp.cmd_set_attachment_feedback_loop_enable)(command_buffer, aspect_mask)
+        (self.fp.cmd_set_attachment_feedback_loop_enable)(command_buffer, aspect_mask);
     }
 }
 pub(crate) mod items {

@@ -65,29 +65,6 @@ impl Instance {
     pub fn instance(&self) -> vk::Instance {
         self.handle
     }
-    ///vkAcquireXlibDisplayEXT
-    #[inline]
-    pub unsafe fn acquire_xlib_display(
-        &self,
-        physical_device: vk::PhysicalDevice,
-        display: vk::DisplayKHR,
-    ) -> VkResult<vk::Display> {
-        let mut dpy = MaybeUninit::uninit();
-        (self.fp.acquire_xlib_display)(physical_device, dpy.as_mut_ptr(), display)
-            .assume_init_on_success(dpy)
-    }
-    ///vkGetRandROutputDisplayEXT
-    #[inline]
-    pub unsafe fn get_rand_r_output_display(
-        &self,
-        physical_device: vk::PhysicalDevice,
-        dpy: &mut vk::Display,
-        rr_output: vk::RROutput,
-        display: &mut vk::DisplayKHR,
-    ) -> VkResult<()> {
-        (self.fp.get_rand_r_output_display)(physical_device, dpy, rr_output, display)
-            .result()
-    }
 }
 pub(crate) mod items {
     use crate::internal_prelude::*;

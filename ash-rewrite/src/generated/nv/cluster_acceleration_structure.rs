@@ -219,24 +219,7 @@ impl Device {
     pub fn device(&self) -> vk::Device {
         self.handle
     }
-    ///vkGetClusterAccelerationStructureBuildSizesNV
-    #[inline]
-    pub unsafe fn get_cluster_acceleration_structure_build_sizes(
-        &self,
-        info: &vk::ClusterAccelerationStructureInputInfoNV<'_>,
-    ) -> vk::AccelerationStructureBuildSizesInfoKHR<'_> {
-        let mut size_info = MaybeUninit::uninit();
-        (self
-            .fp
-            .get_cluster_acceleration_structure_build_sizes)(
-            self.handle,
-            info,
-            size_info.as_mut_ptr(),
-        );
-        size_info.assume_init()
-    }
-    ///vkCmdBuildClusterAccelerationStructureIndirectNV
-    #[inline]
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdBuildClusterAccelerationStructureIndirectNV.html) · Device Function
     pub unsafe fn cmd_build_cluster_acceleration_structure_indirect(
         &self,
         command_buffer: vk::CommandBuffer,
@@ -247,7 +230,7 @@ impl Device {
             .cmd_build_cluster_acceleration_structure_indirect)(
             command_buffer,
             command_infos,
-        )
+        );
     }
 }
 pub(crate) mod items {

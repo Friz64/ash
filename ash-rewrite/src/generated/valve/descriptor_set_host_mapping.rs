@@ -80,38 +80,6 @@ impl Device {
     pub fn device(&self) -> vk::Device {
         self.handle
     }
-    ///vkGetDescriptorSetLayoutHostMappingInfoVALVE
-    #[inline]
-    pub unsafe fn get_descriptor_set_layout_host_mapping_info(
-        &self,
-        binding_reference: &vk::DescriptorSetBindingReferenceVALVE<'_>,
-    ) -> vk::DescriptorSetLayoutHostMappingInfoVALVE<'_> {
-        let mut host_mapping = MaybeUninit::uninit();
-        (self
-            .fp
-            .get_descriptor_set_layout_host_mapping_info)(
-            self.handle,
-            binding_reference,
-            host_mapping.as_mut_ptr(),
-        );
-        host_mapping.assume_init()
-    }
-    ///vkGetDescriptorSetHostMappingVALVE
-    #[inline]
-    pub unsafe fn get_descriptor_set_host_mapping(
-        &self,
-        descriptor_set: vk::DescriptorSet,
-    ) -> *mut ffi::c_void {
-        let mut data = MaybeUninit::uninit();
-        (self
-            .fp
-            .get_descriptor_set_host_mapping)(
-            self.handle,
-            descriptor_set,
-            data.as_mut_ptr(),
-        );
-        data.assume_init()
-    }
 }
 pub(crate) mod items {
     use crate::internal_prelude::*;

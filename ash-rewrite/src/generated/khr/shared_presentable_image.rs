@@ -64,8 +64,7 @@ impl Device {
     pub fn device(&self) -> vk::Device {
         self.handle
     }
-    ///vkGetSwapchainStatusKHR
-    #[inline]
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkGetSwapchainStatusKHR.html) · Device Function
     pub unsafe fn get_swapchain_status(
         &self,
         swapchain: vk::SwapchainKHR,

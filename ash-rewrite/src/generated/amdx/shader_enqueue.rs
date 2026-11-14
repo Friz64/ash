@@ -195,67 +195,7 @@ impl Device {
     pub fn device(&self) -> vk::Device {
         self.handle
     }
-    ///vkGetExecutionGraphPipelineScratchSizeAMDX
-    #[inline]
-    pub unsafe fn get_execution_graph_pipeline_scratch_size(
-        &self,
-        execution_graph: vk::Pipeline,
-    ) -> VkResult<vk::ExecutionGraphPipelineScratchSizeAMDX<'_>> {
-        let mut size_info = MaybeUninit::uninit();
-        (self
-            .fp
-            .get_execution_graph_pipeline_scratch_size)(
-                self.handle,
-                execution_graph,
-                size_info.as_mut_ptr(),
-            )
-            .assume_init_on_success(size_info)
-    }
-    ///vkGetExecutionGraphPipelineNodeIndexAMDX
-    #[inline]
-    pub unsafe fn get_execution_graph_pipeline_node_index(
-        &self,
-        execution_graph: vk::Pipeline,
-        node_info: &vk::PipelineShaderStageNodeCreateInfoAMDX<'_>,
-    ) -> VkResult<u32> {
-        let mut node_index = MaybeUninit::uninit();
-        (self
-            .fp
-            .get_execution_graph_pipeline_node_index)(
-                self.handle,
-                execution_graph,
-                node_info,
-                node_index.as_mut_ptr(),
-            )
-            .assume_init_on_success(node_index)
-    }
-    ///vkCreateExecutionGraphPipelinesAMDX
-    #[inline]
-    pub unsafe fn create_execution_graph_pipelines(
-        &self,
-        pipeline_cache: vk::PipelineCache,
-        create_infos: &[vk::ExecutionGraphPipelineCreateInfoAMDX<'_>],
-        allocator: Option<&vk::AllocationCallbacks<'_>>,
-        pipelines: &mut [vk::Pipeline],
-    ) -> VkResult<()> {
-        assert_eq!(create_infos.len(), pipelines.len());
-        (self
-            .fp
-            .create_execution_graph_pipelines)(
-                self.handle,
-                pipeline_cache,
-                pipelines.len() as _,
-                create_infos.as_ptr(),
-                match allocator {
-                    Some(inner) => inner,
-                    None => ptr::null_mut(),
-                },
-                pipelines.as_mut_ptr(),
-            )
-            .result()
-    }
-    ///vkCmdInitializeGraphScratchMemoryAMDX
-    #[inline]
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdInitializeGraphScratchMemoryAMDX.html) · Device Function
     pub unsafe fn cmd_initialize_graph_scratch_memory(
         &self,
         command_buffer: vk::CommandBuffer,
@@ -270,10 +210,9 @@ impl Device {
             execution_graph,
             scratch,
             scratch_size,
-        )
+        );
     }
-    ///vkCmdDispatchGraphAMDX
-    #[inline]
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdDispatchGraphAMDX.html) · Device Function
     pub unsafe fn cmd_dispatch_graph(
         &self,
         command_buffer: vk::CommandBuffer,
@@ -281,10 +220,9 @@ impl Device {
         scratch_size: vk::DeviceSize,
         count_info: &vk::DispatchGraphCountInfoAMDX,
     ) {
-        (self.fp.cmd_dispatch_graph)(command_buffer, scratch, scratch_size, count_info)
+        (self.fp.cmd_dispatch_graph)(command_buffer, scratch, scratch_size, count_info);
     }
-    ///vkCmdDispatchGraphIndirectAMDX
-    #[inline]
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdDispatchGraphIndirectAMDX.html) · Device Function
     pub unsafe fn cmd_dispatch_graph_indirect(
         &self,
         command_buffer: vk::CommandBuffer,
@@ -299,10 +237,9 @@ impl Device {
             scratch,
             scratch_size,
             count_info,
-        )
+        );
     }
-    ///vkCmdDispatchGraphIndirectCountAMDX
-    #[inline]
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdDispatchGraphIndirectCountAMDX.html) · Device Function
     pub unsafe fn cmd_dispatch_graph_indirect_count(
         &self,
         command_buffer: vk::CommandBuffer,
@@ -317,7 +254,7 @@ impl Device {
             scratch,
             scratch_size,
             count_info,
-        )
+        );
     }
 }
 pub(crate) mod items {

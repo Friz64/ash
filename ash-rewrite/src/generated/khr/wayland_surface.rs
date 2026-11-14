@@ -75,44 +75,6 @@ impl Instance {
     pub fn instance(&self) -> vk::Instance {
         self.handle
     }
-    ///vkCreateWaylandSurfaceKHR
-    #[inline]
-    pub unsafe fn create_wayland_surface(
-        &self,
-        create_info: &vk::WaylandSurfaceCreateInfoKHR<'_>,
-        allocator: Option<&vk::AllocationCallbacks<'_>>,
-    ) -> VkResult<vk::SurfaceKHR> {
-        let mut surface = MaybeUninit::uninit();
-        (self
-            .fp
-            .create_wayland_surface)(
-                self.handle,
-                create_info,
-                match allocator {
-                    Some(inner) => inner,
-                    None => ptr::null_mut(),
-                },
-                surface.as_mut_ptr(),
-            )
-            .assume_init_on_success(surface)
-    }
-    ///vkGetPhysicalDeviceWaylandPresentationSupportKHR
-    #[inline]
-    pub unsafe fn get_physical_device_wayland_presentation_support(
-        &self,
-        physical_device: vk::PhysicalDevice,
-        queue_family_index: u32,
-    ) -> vk::wl_display {
-        let mut display = MaybeUninit::uninit();
-        (self
-            .fp
-            .get_physical_device_wayland_presentation_support)(
-            physical_device,
-            queue_family_index,
-            display.as_mut_ptr(),
-        );
-        display.assume_init()
-    }
 }
 pub(crate) mod items {
     use crate::internal_prelude::*;

@@ -403,38 +403,15 @@ impl Device {
     pub fn device(&self) -> vk::Device {
         self.handle
     }
-    ///vkCreateMicromapEXT
-    #[inline]
-    pub unsafe fn create_micromap(
-        &self,
-        create_info: &vk::MicromapCreateInfoEXT<'_>,
-        allocator: Option<&vk::AllocationCallbacks<'_>>,
-    ) -> VkResult<vk::MicromapEXT> {
-        let mut micromap = MaybeUninit::uninit();
-        (self
-            .fp
-            .create_micromap)(
-                self.handle,
-                create_info,
-                match allocator {
-                    Some(inner) => inner,
-                    None => ptr::null_mut(),
-                },
-                micromap.as_mut_ptr(),
-            )
-            .assume_init_on_success(micromap)
-    }
-    ///vkCmdBuildMicromapsEXT
-    #[inline]
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdBuildMicromapsEXT.html) · Device Function
     pub unsafe fn cmd_build_micromaps(
         &self,
         command_buffer: vk::CommandBuffer,
         infos: &[vk::MicromapBuildInfoEXT<'_>],
     ) {
-        (self.fp.cmd_build_micromaps)(command_buffer, infos.len() as _, infos.as_ptr())
+        (self.fp.cmd_build_micromaps)(command_buffer, infos.len() as _, infos.as_ptr());
     }
-    ///vkBuildMicromapsEXT
-    #[inline]
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkBuildMicromapsEXT.html) · Device Function
     pub unsafe fn build_micromaps(
         &self,
         deferred_operation: vk::DeferredOperationKHR,
@@ -450,35 +427,23 @@ impl Device {
             )
             .result()
     }
-    ///vkDestroyMicromapEXT
-    #[inline]
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkDestroyMicromapEXT.html) · Device Function
     pub unsafe fn destroy_micromap(
         &self,
         micromap: vk::MicromapEXT,
-        allocator: Option<&vk::AllocationCallbacks<'_>>,
+        allocator: &vk::AllocationCallbacks<'_>,
     ) {
-        (self
-            .fp
-            .destroy_micromap)(
-            self.handle,
-            micromap,
-            match allocator {
-                Some(inner) => inner,
-                None => ptr::null_mut(),
-            },
-        )
+        (self.fp.destroy_micromap)(self.handle, micromap, allocator);
     }
-    ///vkCmdCopyMicromapEXT
-    #[inline]
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdCopyMicromapEXT.html) · Device Function
     pub unsafe fn cmd_copy_micromap(
         &self,
         command_buffer: vk::CommandBuffer,
         info: &vk::CopyMicromapInfoEXT<'_>,
     ) {
-        (self.fp.cmd_copy_micromap)(command_buffer, info)
+        (self.fp.cmd_copy_micromap)(command_buffer, info);
     }
-    ///vkCopyMicromapEXT
-    #[inline]
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCopyMicromapEXT.html) · Device Function
     pub unsafe fn copy_micromap(
         &self,
         deferred_operation: vk::DeferredOperationKHR,
@@ -486,17 +451,15 @@ impl Device {
     ) -> VkResult<()> {
         (self.fp.copy_micromap)(self.handle, deferred_operation, info).result()
     }
-    ///vkCmdCopyMicromapToMemoryEXT
-    #[inline]
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdCopyMicromapToMemoryEXT.html) · Device Function
     pub unsafe fn cmd_copy_micromap_to_memory(
         &self,
         command_buffer: vk::CommandBuffer,
         info: &vk::CopyMicromapToMemoryInfoEXT<'_>,
     ) {
-        (self.fp.cmd_copy_micromap_to_memory)(command_buffer, info)
+        (self.fp.cmd_copy_micromap_to_memory)(command_buffer, info);
     }
-    ///vkCopyMicromapToMemoryEXT
-    #[inline]
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCopyMicromapToMemoryEXT.html) · Device Function
     pub unsafe fn copy_micromap_to_memory(
         &self,
         deferred_operation: vk::DeferredOperationKHR,
@@ -504,17 +467,15 @@ impl Device {
     ) -> VkResult<()> {
         (self.fp.copy_micromap_to_memory)(self.handle, deferred_operation, info).result()
     }
-    ///vkCmdCopyMemoryToMicromapEXT
-    #[inline]
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdCopyMemoryToMicromapEXT.html) · Device Function
     pub unsafe fn cmd_copy_memory_to_micromap(
         &self,
         command_buffer: vk::CommandBuffer,
         info: &vk::CopyMemoryToMicromapInfoEXT<'_>,
     ) {
-        (self.fp.cmd_copy_memory_to_micromap)(command_buffer, info)
+        (self.fp.cmd_copy_memory_to_micromap)(command_buffer, info);
     }
-    ///vkCopyMemoryToMicromapEXT
-    #[inline]
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCopyMemoryToMicromapEXT.html) · Device Function
     pub unsafe fn copy_memory_to_micromap(
         &self,
         deferred_operation: vk::DeferredOperationKHR,
@@ -522,8 +483,7 @@ impl Device {
     ) -> VkResult<()> {
         (self.fp.copy_memory_to_micromap)(self.handle, deferred_operation, info).result()
     }
-    ///vkCmdWriteMicromapsPropertiesEXT
-    #[inline]
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdWriteMicromapsPropertiesEXT.html) · Device Function
     pub unsafe fn cmd_write_micromaps_properties(
         &self,
         command_buffer: vk::CommandBuffer,
@@ -541,63 +501,7 @@ impl Device {
             query_type,
             query_pool,
             first_query,
-        )
-    }
-    ///vkWriteMicromapsPropertiesEXT
-    #[inline]
-    pub unsafe fn write_micromaps_properties(
-        &self,
-        micromaps: &[vk::MicromapEXT],
-        query_type: vk::QueryType,
-        data: &mut [u8],
-        stride: usize,
-    ) -> VkResult<()> {
-        (self
-            .fp
-            .write_micromaps_properties)(
-                self.handle,
-                micromaps.len() as _,
-                micromaps.as_ptr(),
-                query_type,
-                data.len() as _,
-                data.as_mut_ptr().cast(),
-                stride,
-            )
-            .result()
-    }
-    ///vkGetDeviceMicromapCompatibilityEXT
-    #[inline]
-    pub unsafe fn get_device_micromap_compatibility(
-        &self,
-        version_info: &vk::MicromapVersionInfoEXT<'_>,
-    ) -> vk::AccelerationStructureCompatibilityKHR {
-        let mut compatibility = MaybeUninit::uninit();
-        (self
-            .fp
-            .get_device_micromap_compatibility)(
-            self.handle,
-            version_info,
-            compatibility.as_mut_ptr(),
         );
-        compatibility.assume_init()
-    }
-    ///vkGetMicromapBuildSizesEXT
-    #[inline]
-    pub unsafe fn get_micromap_build_sizes(
-        &self,
-        build_type: vk::AccelerationStructureBuildTypeKHR,
-        build_info: &vk::MicromapBuildInfoEXT<'_>,
-    ) -> vk::MicromapBuildSizesInfoEXT<'_> {
-        let mut size_info = MaybeUninit::uninit();
-        (self
-            .fp
-            .get_micromap_build_sizes)(
-            self.handle,
-            build_type,
-            build_info,
-            size_info.as_mut_ptr(),
-        );
-        size_info.assume_init()
     }
 }
 pub(crate) mod items {

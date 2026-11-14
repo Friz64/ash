@@ -107,8 +107,7 @@ impl Device {
     pub fn device(&self) -> vk::Device {
         self.handle
     }
-    ///vkCmdDrawClusterHUAWEI
-    #[inline]
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdDrawClusterHUAWEI.html) · Device Function
     pub unsafe fn cmd_draw_cluster(
         &self,
         command_buffer: vk::CommandBuffer,
@@ -123,17 +122,16 @@ impl Device {
             group_count_x,
             group_count_y,
             group_count_z,
-        )
+        );
     }
-    ///vkCmdDrawClusterIndirectHUAWEI
-    #[inline]
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdDrawClusterIndirectHUAWEI.html) · Device Function
     pub unsafe fn cmd_draw_cluster_indirect(
         &self,
         command_buffer: vk::CommandBuffer,
         buffer: vk::Buffer,
         offset: vk::DeviceSize,
     ) {
-        (self.fp.cmd_draw_cluster_indirect)(command_buffer, buffer, offset)
+        (self.fp.cmd_draw_cluster_indirect)(command_buffer, buffer, offset);
     }
 }
 pub(crate) mod items {

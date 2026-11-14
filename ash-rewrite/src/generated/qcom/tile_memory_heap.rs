@@ -93,22 +93,13 @@ impl Device {
     pub fn device(&self) -> vk::Device {
         self.handle
     }
-    ///vkCmdBindTileMemoryQCOM
-    #[inline]
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdBindTileMemoryQCOM.html) · Device Function
     pub unsafe fn cmd_bind_tile_memory(
         &self,
         command_buffer: vk::CommandBuffer,
-        tile_memory_bind_info: Option<&vk::TileMemoryBindInfoQCOM<'_>>,
+        tile_memory_bind_info: &vk::TileMemoryBindInfoQCOM<'_>,
     ) {
-        (self
-            .fp
-            .cmd_bind_tile_memory)(
-            command_buffer,
-            match tile_memory_bind_info {
-                Some(inner) => inner,
-                None => ptr::null_mut(),
-            },
-        )
+        (self.fp.cmd_bind_tile_memory)(command_buffer, tile_memory_bind_info);
     }
 }
 pub(crate) mod items {

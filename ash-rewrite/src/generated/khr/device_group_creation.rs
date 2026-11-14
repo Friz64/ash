@@ -71,41 +71,6 @@ impl Instance {
     pub fn instance(&self) -> vk::Instance {
         self.handle
     }
-    ///vkEnumeratePhysicalDeviceGroups
-    #[inline]
-    pub unsafe fn enumerate_physical_device_groups_len(&self) -> VkResult<usize> {
-        let mut physical_device_group_count = MaybeUninit::uninit();
-        (self
-            .fp
-            .enumerate_physical_device_groups)(
-                self.handle,
-                physical_device_group_count.as_mut_ptr(),
-                ptr::null_mut(),
-            )
-            .assume_init_on_success(physical_device_group_count)
-            .map(|c| c as usize)
-    }
-    ///vkEnumeratePhysicalDeviceGroups
-    #[inline]
-    pub unsafe fn enumerate_physical_device_groups(
-        &self,
-        physical_device_group_properties: &mut [vk::PhysicalDeviceGroupProperties<'_>],
-    ) -> VkResult<()> {
-        let mut physical_device_group_count = physical_device_group_properties.len()
-            as _;
-        (self
-            .fp
-            .enumerate_physical_device_groups)(
-                self.handle,
-                &mut physical_device_group_count,
-                physical_device_group_properties.as_mut_ptr(),
-            )
-            .result()?;
-        assert_eq!(
-            physical_device_group_count as usize, physical_device_group_properties.len()
-        );
-        Ok(())
-    }
 }
 pub(crate) mod items {
     use crate::internal_prelude::*;

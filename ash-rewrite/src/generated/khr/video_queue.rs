@@ -195,63 +195,6 @@ impl Instance {
     pub fn instance(&self) -> vk::Instance {
         self.handle
     }
-    ///vkGetPhysicalDeviceVideoCapabilitiesKHR
-    #[inline]
-    pub unsafe fn get_physical_device_video_capabilities(
-        &self,
-        physical_device: vk::PhysicalDevice,
-        video_profile: &vk::VideoProfileInfoKHR<'_>,
-    ) -> VkResult<vk::VideoCapabilitiesKHR<'_>> {
-        let mut capabilities = MaybeUninit::uninit();
-        (self
-            .fp
-            .get_physical_device_video_capabilities)(
-                physical_device,
-                video_profile,
-                capabilities.as_mut_ptr(),
-            )
-            .assume_init_on_success(capabilities)
-    }
-    ///vkGetPhysicalDeviceVideoFormatPropertiesKHR
-    #[inline]
-    pub unsafe fn get_physical_device_video_format_properties_len(
-        &self,
-        physical_device: vk::PhysicalDevice,
-        video_format_info: &vk::PhysicalDeviceVideoFormatInfoKHR<'_>,
-    ) -> VkResult<usize> {
-        let mut video_format_property_count = MaybeUninit::uninit();
-        (self
-            .fp
-            .get_physical_device_video_format_properties)(
-                physical_device,
-                video_format_info,
-                video_format_property_count.as_mut_ptr(),
-                ptr::null_mut(),
-            )
-            .assume_init_on_success(video_format_property_count)
-            .map(|c| c as usize)
-    }
-    ///vkGetPhysicalDeviceVideoFormatPropertiesKHR
-    #[inline]
-    pub unsafe fn get_physical_device_video_format_properties(
-        &self,
-        physical_device: vk::PhysicalDevice,
-        video_format_info: &vk::PhysicalDeviceVideoFormatInfoKHR<'_>,
-        video_format_properties: &mut [vk::VideoFormatPropertiesKHR<'_>],
-    ) -> VkResult<()> {
-        let mut video_format_property_count = video_format_properties.len() as _;
-        (self
-            .fp
-            .get_physical_device_video_format_properties)(
-                physical_device,
-                video_format_info,
-                &mut video_format_property_count,
-                video_format_properties.as_mut_ptr(),
-            )
-            .result()?;
-        assert_eq!(video_format_property_count as usize, video_format_properties.len());
-        Ok(())
-    }
 }
 #[derive(Clone)]
 pub struct DeviceFn {
@@ -425,68 +368,15 @@ impl Device {
     pub fn device(&self) -> vk::Device {
         self.handle
     }
-    ///vkCreateVideoSessionKHR
-    #[inline]
-    pub unsafe fn create_video_session(
-        &self,
-        create_info: &vk::VideoSessionCreateInfoKHR<'_>,
-        allocator: Option<&vk::AllocationCallbacks<'_>>,
-    ) -> VkResult<vk::VideoSessionKHR> {
-        let mut video_session = MaybeUninit::uninit();
-        (self
-            .fp
-            .create_video_session)(
-                self.handle,
-                create_info,
-                match allocator {
-                    Some(inner) => inner,
-                    None => ptr::null_mut(),
-                },
-                video_session.as_mut_ptr(),
-            )
-            .assume_init_on_success(video_session)
-    }
-    ///vkDestroyVideoSessionKHR
-    #[inline]
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkDestroyVideoSessionKHR.html) · Device Function
     pub unsafe fn destroy_video_session(
         &self,
         video_session: vk::VideoSessionKHR,
-        allocator: Option<&vk::AllocationCallbacks<'_>>,
+        allocator: &vk::AllocationCallbacks<'_>,
     ) {
-        (self
-            .fp
-            .destroy_video_session)(
-            self.handle,
-            video_session,
-            match allocator {
-                Some(inner) => inner,
-                None => ptr::null_mut(),
-            },
-        )
+        (self.fp.destroy_video_session)(self.handle, video_session, allocator);
     }
-    ///vkCreateVideoSessionParametersKHR
-    #[inline]
-    pub unsafe fn create_video_session_parameters(
-        &self,
-        create_info: &vk::VideoSessionParametersCreateInfoKHR<'_>,
-        allocator: Option<&vk::AllocationCallbacks<'_>>,
-    ) -> VkResult<vk::VideoSessionParametersKHR> {
-        let mut video_session_parameters = MaybeUninit::uninit();
-        (self
-            .fp
-            .create_video_session_parameters)(
-                self.handle,
-                create_info,
-                match allocator {
-                    Some(inner) => inner,
-                    None => ptr::null_mut(),
-                },
-                video_session_parameters.as_mut_ptr(),
-            )
-            .assume_init_on_success(video_session_parameters)
-    }
-    ///vkUpdateVideoSessionParametersKHR
-    #[inline]
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkUpdateVideoSessionParametersKHR.html) · Device Function
     pub unsafe fn update_video_session_parameters(
         &self,
         video_session_parameters: vk::VideoSessionParametersKHR,
@@ -501,64 +391,21 @@ impl Device {
             )
             .result()
     }
-    ///vkDestroyVideoSessionParametersKHR
-    #[inline]
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkDestroyVideoSessionParametersKHR.html) · Device Function
     pub unsafe fn destroy_video_session_parameters(
         &self,
         video_session_parameters: vk::VideoSessionParametersKHR,
-        allocator: Option<&vk::AllocationCallbacks<'_>>,
+        allocator: &vk::AllocationCallbacks<'_>,
     ) {
         (self
             .fp
             .destroy_video_session_parameters)(
             self.handle,
             video_session_parameters,
-            match allocator {
-                Some(inner) => inner,
-                None => ptr::null_mut(),
-            },
-        )
+            allocator,
+        );
     }
-    ///vkGetVideoSessionMemoryRequirementsKHR
-    #[inline]
-    pub unsafe fn get_video_session_memory_requirements_len(
-        &self,
-        video_session: vk::VideoSessionKHR,
-    ) -> VkResult<usize> {
-        let mut memory_requirements_count = MaybeUninit::uninit();
-        (self
-            .fp
-            .get_video_session_memory_requirements)(
-                self.handle,
-                video_session,
-                memory_requirements_count.as_mut_ptr(),
-                ptr::null_mut(),
-            )
-            .assume_init_on_success(memory_requirements_count)
-            .map(|c| c as usize)
-    }
-    ///vkGetVideoSessionMemoryRequirementsKHR
-    #[inline]
-    pub unsafe fn get_video_session_memory_requirements(
-        &self,
-        video_session: vk::VideoSessionKHR,
-        memory_requirements: &mut [vk::VideoSessionMemoryRequirementsKHR<'_>],
-    ) -> VkResult<()> {
-        let mut memory_requirements_count = memory_requirements.len() as _;
-        (self
-            .fp
-            .get_video_session_memory_requirements)(
-                self.handle,
-                video_session,
-                &mut memory_requirements_count,
-                memory_requirements.as_mut_ptr(),
-            )
-            .result()?;
-        assert_eq!(memory_requirements_count as usize, memory_requirements.len());
-        Ok(())
-    }
-    ///vkBindVideoSessionMemoryKHR
-    #[inline]
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkBindVideoSessionMemoryKHR.html) · Device Function
     pub unsafe fn bind_video_session_memory(
         &self,
         video_session: vk::VideoSessionKHR,
@@ -574,32 +421,29 @@ impl Device {
             )
             .result()
     }
-    ///vkCmdBeginVideoCodingKHR
-    #[inline]
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdBeginVideoCodingKHR.html) · Device Function
     pub unsafe fn cmd_begin_video_coding(
         &self,
         command_buffer: vk::CommandBuffer,
         begin_info: &vk::VideoBeginCodingInfoKHR<'_>,
     ) {
-        (self.fp.cmd_begin_video_coding)(command_buffer, begin_info)
+        (self.fp.cmd_begin_video_coding)(command_buffer, begin_info);
     }
-    ///vkCmdControlVideoCodingKHR
-    #[inline]
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdControlVideoCodingKHR.html) · Device Function
     pub unsafe fn cmd_control_video_coding(
         &self,
         command_buffer: vk::CommandBuffer,
         coding_control_info: &vk::VideoCodingControlInfoKHR<'_>,
     ) {
-        (self.fp.cmd_control_video_coding)(command_buffer, coding_control_info)
+        (self.fp.cmd_control_video_coding)(command_buffer, coding_control_info);
     }
-    ///vkCmdEndVideoCodingKHR
-    #[inline]
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdEndVideoCodingKHR.html) · Device Function
     pub unsafe fn cmd_end_video_coding(
         &self,
         command_buffer: vk::CommandBuffer,
         end_coding_info: &vk::VideoEndCodingInfoKHR<'_>,
     ) {
-        (self.fp.cmd_end_video_coding)(command_buffer, end_coding_info)
+        (self.fp.cmd_end_video_coding)(command_buffer, end_coding_info);
     }
 }
 pub(crate) mod items {

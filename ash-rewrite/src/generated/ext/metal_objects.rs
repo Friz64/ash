@@ -96,13 +96,6 @@ impl Device {
     pub fn device(&self) -> vk::Device {
         self.handle
     }
-    ///vkExportMetalObjectsEXT
-    #[inline]
-    pub unsafe fn export_metal_objects(&self) -> vk::ExportMetalObjectsInfoEXT<'_> {
-        let mut metal_objects_info = MaybeUninit::uninit();
-        (self.fp.export_metal_objects)(self.handle, metal_objects_info.as_mut_ptr());
-        metal_objects_info.assume_init()
-    }
 }
 pub(crate) mod items {
     use crate::internal_prelude::*;

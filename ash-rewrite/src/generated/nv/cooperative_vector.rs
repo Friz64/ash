@@ -100,42 +100,6 @@ impl Instance {
     pub fn instance(&self) -> vk::Instance {
         self.handle
     }
-    ///vkGetPhysicalDeviceCooperativeVectorPropertiesNV
-    #[inline]
-    pub unsafe fn get_physical_device_cooperative_vector_properties_len(
-        &self,
-        physical_device: vk::PhysicalDevice,
-    ) -> VkResult<usize> {
-        let mut property_count = MaybeUninit::uninit();
-        (self
-            .fp
-            .get_physical_device_cooperative_vector_properties)(
-                physical_device,
-                property_count.as_mut_ptr(),
-                ptr::null_mut(),
-            )
-            .assume_init_on_success(property_count)
-            .map(|c| c as usize)
-    }
-    ///vkGetPhysicalDeviceCooperativeVectorPropertiesNV
-    #[inline]
-    pub unsafe fn get_physical_device_cooperative_vector_properties(
-        &self,
-        physical_device: vk::PhysicalDevice,
-        properties: &mut [vk::CooperativeVectorPropertiesNV<'_>],
-    ) -> VkResult<()> {
-        let mut property_count = properties.len() as _;
-        (self
-            .fp
-            .get_physical_device_cooperative_vector_properties)(
-                physical_device,
-                &mut property_count,
-                properties.as_mut_ptr(),
-            )
-            .result()?;
-        assert_eq!(property_count as usize, properties.len());
-        Ok(())
-    }
 }
 #[derive(Clone)]
 pub struct DeviceFn {
@@ -203,16 +167,14 @@ impl Device {
     pub fn device(&self) -> vk::Device {
         self.handle
     }
-    ///vkConvertCooperativeVectorMatrixNV
-    #[inline]
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkConvertCooperativeVectorMatrixNV.html) · Device Function
     pub unsafe fn convert_cooperative_vector_matrix(
         &self,
         info: &vk::ConvertCooperativeVectorMatrixInfoNV<'_>,
     ) -> VkResult<()> {
         (self.fp.convert_cooperative_vector_matrix)(self.handle, info).result()
     }
-    ///vkCmdConvertCooperativeVectorMatrixNV
-    #[inline]
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdConvertCooperativeVectorMatrixNV.html) · Device Function
     pub unsafe fn cmd_convert_cooperative_vector_matrix(
         &self,
         command_buffer: vk::CommandBuffer,
@@ -224,7 +186,7 @@ impl Device {
             command_buffer,
             infos.len() as _,
             infos.as_ptr(),
-        )
+        );
     }
 }
 pub(crate) mod items {

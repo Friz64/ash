@@ -69,40 +69,6 @@ impl Device {
     pub fn device(&self) -> vk::Device {
         self.handle
     }
-    ///vkGetRefreshCycleDurationGOOGLE
-    #[inline]
-    pub unsafe fn get_refresh_cycle_duration(
-        &self,
-        swapchain: vk::SwapchainKHR,
-    ) -> VkResult<vk::RefreshCycleDurationGOOGLE> {
-        let mut display_timing_properties = MaybeUninit::uninit();
-        (self
-            .fp
-            .get_refresh_cycle_duration)(
-                self.handle,
-                swapchain,
-                display_timing_properties.as_mut_ptr(),
-            )
-            .assume_init_on_success(display_timing_properties)
-    }
-    ///vkGetPastPresentationTimingGOOGLE
-    #[inline]
-    pub unsafe fn get_past_presentation_timing(
-        &self,
-        swapchain: vk::SwapchainKHR,
-    ) -> VkResult<Vec<vk::PastPresentationTimingGOOGLE>> {
-        crate::read_into_uninitialized_vector(|
-            presentation_timing_count,
-            presentation_timings|
-        (self
-            .fp
-            .get_past_presentation_timing)(
-            self.handle,
-            swapchain,
-            presentation_timing_count,
-            presentation_timings,
-        ))
-    }
 }
 pub(crate) mod items {
     use crate::internal_prelude::*;

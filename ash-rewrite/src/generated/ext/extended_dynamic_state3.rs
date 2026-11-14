@@ -508,92 +508,77 @@ impl Device {
     pub fn device(&self) -> vk::Device {
         self.handle
     }
-    ///vkCmdSetTessellationDomainOriginEXT
-    #[inline]
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdSetTessellationDomainOriginEXT.html) · Device Function
     pub unsafe fn cmd_set_tessellation_domain_origin(
         &self,
         command_buffer: vk::CommandBuffer,
         domain_origin: vk::TessellationDomainOrigin,
     ) {
-        (self.fp.cmd_set_tessellation_domain_origin)(command_buffer, domain_origin)
+        (self.fp.cmd_set_tessellation_domain_origin)(command_buffer, domain_origin);
     }
-    ///vkCmdSetDepthClampEnableEXT
-    #[inline]
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdSetDepthClampEnableEXT.html) · Device Function
     pub unsafe fn cmd_set_depth_clamp_enable(
         &self,
         command_buffer: vk::CommandBuffer,
-        depth_clamp_enable: vk::Bool32,
+        depth_clamp_enable: bool,
     ) {
-        (self.fp.cmd_set_depth_clamp_enable)(command_buffer, depth_clamp_enable)
+        (self.fp.cmd_set_depth_clamp_enable)(command_buffer, depth_clamp_enable as _);
     }
-    ///vkCmdSetPolygonModeEXT
-    #[inline]
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdSetPolygonModeEXT.html) · Device Function
     pub unsafe fn cmd_set_polygon_mode(
         &self,
         command_buffer: vk::CommandBuffer,
         polygon_mode: vk::PolygonMode,
     ) {
-        (self.fp.cmd_set_polygon_mode)(command_buffer, polygon_mode)
+        (self.fp.cmd_set_polygon_mode)(command_buffer, polygon_mode);
     }
-    ///vkCmdSetRasterizationSamplesEXT
-    #[inline]
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdSetRasterizationSamplesEXT.html) · Device Function
     pub unsafe fn cmd_set_rasterization_samples(
         &self,
         command_buffer: vk::CommandBuffer,
         rasterization_samples: vk::SampleCountFlagBits,
     ) {
-        (self.fp.cmd_set_rasterization_samples)(command_buffer, rasterization_samples)
+        (self.fp.cmd_set_rasterization_samples)(command_buffer, rasterization_samples);
     }
-    ///vkCmdSetSampleMaskEXT
-    #[inline]
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdSetSampleMaskEXT.html) · Device Function
     pub unsafe fn cmd_set_sample_mask(
         &self,
         command_buffer: vk::CommandBuffer,
         samples: vk::SampleCountFlagBits,
-        sample_mask: Option<&vk::SampleMask>,
+        sample_mask: *const vk::SampleMask,
     ) {
-        (self
-            .fp
-            .cmd_set_sample_mask)(
-            command_buffer,
-            samples,
-            match sample_mask {
-                Some(inner) => inner,
-                None => ptr::null_mut(),
-            },
-        )
+        (self.fp.cmd_set_sample_mask)(command_buffer, samples, sample_mask);
     }
-    ///vkCmdSetAlphaToCoverageEnableEXT
-    #[inline]
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdSetAlphaToCoverageEnableEXT.html) · Device Function
     pub unsafe fn cmd_set_alpha_to_coverage_enable(
         &self,
         command_buffer: vk::CommandBuffer,
-        alpha_to_coverage_enable: vk::Bool32,
+        alpha_to_coverage_enable: bool,
     ) {
         (self
             .fp
-            .cmd_set_alpha_to_coverage_enable)(command_buffer, alpha_to_coverage_enable)
+            .cmd_set_alpha_to_coverage_enable)(
+            command_buffer,
+            alpha_to_coverage_enable as _,
+        );
     }
-    ///vkCmdSetAlphaToOneEnableEXT
-    #[inline]
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdSetAlphaToOneEnableEXT.html) · Device Function
     pub unsafe fn cmd_set_alpha_to_one_enable(
         &self,
         command_buffer: vk::CommandBuffer,
-        alpha_to_one_enable: vk::Bool32,
+        alpha_to_one_enable: bool,
     ) {
-        (self.fp.cmd_set_alpha_to_one_enable)(command_buffer, alpha_to_one_enable)
+        (self.fp.cmd_set_alpha_to_one_enable)(command_buffer, alpha_to_one_enable as _);
     }
-    ///vkCmdSetLogicOpEnableEXT
-    #[inline]
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdSetLogicOpEnableEXT.html) · Device Function
     pub unsafe fn cmd_set_logic_op_enable(
         &self,
         command_buffer: vk::CommandBuffer,
-        logic_op_enable: vk::Bool32,
+        logic_op_enable: bool,
     ) {
-        (self.fp.cmd_set_logic_op_enable)(command_buffer, logic_op_enable)
+        (self.fp.cmd_set_logic_op_enable)(command_buffer, logic_op_enable as _);
     }
-    ///vkCmdSetColorBlendEnableEXT
-    #[inline]
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdSetColorBlendEnableEXT.html) · Device Function
     pub unsafe fn cmd_set_color_blend_enable(
         &self,
         command_buffer: vk::CommandBuffer,
@@ -607,10 +592,9 @@ impl Device {
             first_attachment,
             color_blend_enables.len() as _,
             color_blend_enables.as_ptr(),
-        )
+        );
     }
-    ///vkCmdSetColorBlendEquationEXT
-    #[inline]
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdSetColorBlendEquationEXT.html) · Device Function
     pub unsafe fn cmd_set_color_blend_equation(
         &self,
         command_buffer: vk::CommandBuffer,
@@ -624,10 +608,9 @@ impl Device {
             first_attachment,
             color_blend_equations.len() as _,
             color_blend_equations.as_ptr(),
-        )
+        );
     }
-    ///vkCmdSetColorWriteMaskEXT
-    #[inline]
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdSetColorWriteMaskEXT.html) · Device Function
     pub unsafe fn cmd_set_color_write_mask(
         &self,
         command_buffer: vk::CommandBuffer,
@@ -641,19 +624,17 @@ impl Device {
             first_attachment,
             color_write_masks.len() as _,
             color_write_masks.as_ptr(),
-        )
+        );
     }
-    ///vkCmdSetRasterizationStreamEXT
-    #[inline]
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdSetRasterizationStreamEXT.html) · Device Function
     pub unsafe fn cmd_set_rasterization_stream(
         &self,
         command_buffer: vk::CommandBuffer,
         rasterization_stream: u32,
     ) {
-        (self.fp.cmd_set_rasterization_stream)(command_buffer, rasterization_stream)
+        (self.fp.cmd_set_rasterization_stream)(command_buffer, rasterization_stream);
     }
-    ///vkCmdSetConservativeRasterizationModeEXT
-    #[inline]
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdSetConservativeRasterizationModeEXT.html) · Device Function
     pub unsafe fn cmd_set_conservative_rasterization_mode(
         &self,
         command_buffer: vk::CommandBuffer,
@@ -664,10 +645,9 @@ impl Device {
             .cmd_set_conservative_rasterization_mode)(
             command_buffer,
             conservative_rasterization_mode,
-        )
+        );
     }
-    ///vkCmdSetExtraPrimitiveOverestimationSizeEXT
-    #[inline]
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdSetExtraPrimitiveOverestimationSizeEXT.html) · Device Function
     pub unsafe fn cmd_set_extra_primitive_overestimation_size(
         &self,
         command_buffer: vk::CommandBuffer,
@@ -678,30 +658,30 @@ impl Device {
             .cmd_set_extra_primitive_overestimation_size)(
             command_buffer,
             extra_primitive_overestimation_size,
-        )
+        );
     }
-    ///vkCmdSetDepthClipEnableEXT
-    #[inline]
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdSetDepthClipEnableEXT.html) · Device Function
     pub unsafe fn cmd_set_depth_clip_enable(
         &self,
         command_buffer: vk::CommandBuffer,
-        depth_clip_enable: vk::Bool32,
+        depth_clip_enable: bool,
     ) {
-        (self.fp.cmd_set_depth_clip_enable)(command_buffer, depth_clip_enable)
+        (self.fp.cmd_set_depth_clip_enable)(command_buffer, depth_clip_enable as _);
     }
-    ///vkCmdSetSampleLocationsEnableEXT
-    #[inline]
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdSetSampleLocationsEnableEXT.html) · Device Function
     pub unsafe fn cmd_set_sample_locations_enable(
         &self,
         command_buffer: vk::CommandBuffer,
-        sample_locations_enable: vk::Bool32,
+        sample_locations_enable: bool,
     ) {
         (self
             .fp
-            .cmd_set_sample_locations_enable)(command_buffer, sample_locations_enable)
+            .cmd_set_sample_locations_enable)(
+            command_buffer,
+            sample_locations_enable as _,
+        );
     }
-    ///vkCmdSetColorBlendAdvancedEXT
-    #[inline]
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdSetColorBlendAdvancedEXT.html) · Device Function
     pub unsafe fn cmd_set_color_blend_advanced(
         &self,
         command_buffer: vk::CommandBuffer,
@@ -715,19 +695,17 @@ impl Device {
             first_attachment,
             color_blend_advanced.len() as _,
             color_blend_advanced.as_ptr(),
-        )
+        );
     }
-    ///vkCmdSetProvokingVertexModeEXT
-    #[inline]
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdSetProvokingVertexModeEXT.html) · Device Function
     pub unsafe fn cmd_set_provoking_vertex_mode(
         &self,
         command_buffer: vk::CommandBuffer,
         provoking_vertex_mode: vk::ProvokingVertexModeEXT,
     ) {
-        (self.fp.cmd_set_provoking_vertex_mode)(command_buffer, provoking_vertex_mode)
+        (self.fp.cmd_set_provoking_vertex_mode)(command_buffer, provoking_vertex_mode);
     }
-    ///vkCmdSetLineRasterizationModeEXT
-    #[inline]
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdSetLineRasterizationModeEXT.html) · Device Function
     pub unsafe fn cmd_set_line_rasterization_mode(
         &self,
         command_buffer: vk::CommandBuffer,
@@ -735,44 +713,43 @@ impl Device {
     ) {
         (self
             .fp
-            .cmd_set_line_rasterization_mode)(command_buffer, line_rasterization_mode)
+            .cmd_set_line_rasterization_mode)(command_buffer, line_rasterization_mode);
     }
-    ///vkCmdSetLineStippleEnableEXT
-    #[inline]
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdSetLineStippleEnableEXT.html) · Device Function
     pub unsafe fn cmd_set_line_stipple_enable(
         &self,
         command_buffer: vk::CommandBuffer,
-        stippled_line_enable: vk::Bool32,
+        stippled_line_enable: bool,
     ) {
-        (self.fp.cmd_set_line_stipple_enable)(command_buffer, stippled_line_enable)
+        (self.fp.cmd_set_line_stipple_enable)(command_buffer, stippled_line_enable as _);
     }
-    ///vkCmdSetDepthClipNegativeOneToOneEXT
-    #[inline]
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdSetDepthClipNegativeOneToOneEXT.html) · Device Function
     pub unsafe fn cmd_set_depth_clip_negative_one_to_one(
         &self,
         command_buffer: vk::CommandBuffer,
-        negative_one_to_one: vk::Bool32,
+        negative_one_to_one: bool,
     ) {
         (self
             .fp
-            .cmd_set_depth_clip_negative_one_to_one)(command_buffer, negative_one_to_one)
+            .cmd_set_depth_clip_negative_one_to_one)(
+            command_buffer,
+            negative_one_to_one as _,
+        );
     }
-    ///vkCmdSetViewportWScalingEnableNV
-    #[inline]
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdSetViewportWScalingEnableNV.html) · Device Function
     pub unsafe fn cmd_set_viewport_w_scaling_enable(
         &self,
         command_buffer: vk::CommandBuffer,
-        viewport_w_scaling_enable: vk::Bool32,
+        viewport_w_scaling_enable: bool,
     ) {
         (self
             .fp
             .cmd_set_viewport_w_scaling_enable)(
             command_buffer,
-            viewport_w_scaling_enable,
-        )
+            viewport_w_scaling_enable as _,
+        );
     }
-    ///vkCmdSetViewportSwizzleNV
-    #[inline]
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdSetViewportSwizzleNV.html) · Device Function
     pub unsafe fn cmd_set_viewport_swizzle(
         &self,
         command_buffer: vk::CommandBuffer,
@@ -786,21 +763,22 @@ impl Device {
             first_viewport,
             viewport_swizzles.len() as _,
             viewport_swizzles.as_ptr(),
-        )
+        );
     }
-    ///vkCmdSetCoverageToColorEnableNV
-    #[inline]
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdSetCoverageToColorEnableNV.html) · Device Function
     pub unsafe fn cmd_set_coverage_to_color_enable(
         &self,
         command_buffer: vk::CommandBuffer,
-        coverage_to_color_enable: vk::Bool32,
+        coverage_to_color_enable: bool,
     ) {
         (self
             .fp
-            .cmd_set_coverage_to_color_enable)(command_buffer, coverage_to_color_enable)
+            .cmd_set_coverage_to_color_enable)(
+            command_buffer,
+            coverage_to_color_enable as _,
+        );
     }
-    ///vkCmdSetCoverageToColorLocationNV
-    #[inline]
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdSetCoverageToColorLocationNV.html) · Device Function
     pub unsafe fn cmd_set_coverage_to_color_location(
         &self,
         command_buffer: vk::CommandBuffer,
@@ -811,10 +789,9 @@ impl Device {
             .cmd_set_coverage_to_color_location)(
             command_buffer,
             coverage_to_color_location,
-        )
+        );
     }
-    ///vkCmdSetCoverageModulationModeNV
-    #[inline]
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdSetCoverageModulationModeNV.html) · Device Function
     pub unsafe fn cmd_set_coverage_modulation_mode(
         &self,
         command_buffer: vk::CommandBuffer,
@@ -822,24 +799,22 @@ impl Device {
     ) {
         (self
             .fp
-            .cmd_set_coverage_modulation_mode)(command_buffer, coverage_modulation_mode)
+            .cmd_set_coverage_modulation_mode)(command_buffer, coverage_modulation_mode);
     }
-    ///vkCmdSetCoverageModulationTableEnableNV
-    #[inline]
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdSetCoverageModulationTableEnableNV.html) · Device Function
     pub unsafe fn cmd_set_coverage_modulation_table_enable(
         &self,
         command_buffer: vk::CommandBuffer,
-        coverage_modulation_table_enable: vk::Bool32,
+        coverage_modulation_table_enable: bool,
     ) {
         (self
             .fp
             .cmd_set_coverage_modulation_table_enable)(
             command_buffer,
-            coverage_modulation_table_enable,
-        )
+            coverage_modulation_table_enable as _,
+        );
     }
-    ///vkCmdSetCoverageModulationTableNV
-    #[inline]
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdSetCoverageModulationTableNV.html) · Device Function
     pub unsafe fn cmd_set_coverage_modulation_table(
         &self,
         command_buffer: vk::CommandBuffer,
@@ -851,24 +826,22 @@ impl Device {
             command_buffer,
             coverage_modulation_table.len() as _,
             coverage_modulation_table.as_ptr(),
-        )
+        );
     }
-    ///vkCmdSetShadingRateImageEnableNV
-    #[inline]
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdSetShadingRateImageEnableNV.html) · Device Function
     pub unsafe fn cmd_set_shading_rate_image_enable(
         &self,
         command_buffer: vk::CommandBuffer,
-        shading_rate_image_enable: vk::Bool32,
+        shading_rate_image_enable: bool,
     ) {
         (self
             .fp
             .cmd_set_shading_rate_image_enable)(
             command_buffer,
-            shading_rate_image_enable,
-        )
+            shading_rate_image_enable as _,
+        );
     }
-    ///vkCmdSetCoverageReductionModeNV
-    #[inline]
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdSetCoverageReductionModeNV.html) · Device Function
     pub unsafe fn cmd_set_coverage_reduction_mode(
         &self,
         command_buffer: vk::CommandBuffer,
@@ -876,21 +849,20 @@ impl Device {
     ) {
         (self
             .fp
-            .cmd_set_coverage_reduction_mode)(command_buffer, coverage_reduction_mode)
+            .cmd_set_coverage_reduction_mode)(command_buffer, coverage_reduction_mode);
     }
-    ///vkCmdSetRepresentativeFragmentTestEnableNV
-    #[inline]
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdSetRepresentativeFragmentTestEnableNV.html) · Device Function
     pub unsafe fn cmd_set_representative_fragment_test_enable(
         &self,
         command_buffer: vk::CommandBuffer,
-        representative_fragment_test_enable: vk::Bool32,
+        representative_fragment_test_enable: bool,
     ) {
         (self
             .fp
             .cmd_set_representative_fragment_test_enable)(
             command_buffer,
-            representative_fragment_test_enable,
-        )
+            representative_fragment_test_enable as _,
+        );
     }
 }
 pub(crate) mod items {

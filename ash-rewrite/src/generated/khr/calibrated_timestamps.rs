@@ -69,20 +69,6 @@ impl Instance {
     pub fn instance(&self) -> vk::Instance {
         self.handle
     }
-    ///vkGetPhysicalDeviceCalibrateableTimeDomainsKHR
-    #[inline]
-    pub unsafe fn get_physical_device_calibrateable_time_domains(
-        &self,
-        physical_device: vk::PhysicalDevice,
-    ) -> VkResult<Vec<vk::TimeDomainKHR>> {
-        crate::read_into_uninitialized_vector(|time_domain_count, time_domains| (self
-            .fp
-            .get_physical_device_calibrateable_time_domains)(
-            physical_device,
-            time_domain_count,
-            time_domains,
-        ))
-    }
 }
 #[derive(Clone)]
 pub struct DeviceFn {
@@ -132,26 +118,6 @@ impl Device {
     #[inline]
     pub fn device(&self) -> vk::Device {
         self.handle
-    }
-    ///vkGetCalibratedTimestampsKHR
-    #[inline]
-    pub unsafe fn get_calibrated_timestamps(
-        &self,
-        timestamp_infos: &[vk::CalibratedTimestampInfoKHR<'_>],
-        timestamps: &mut [u64],
-    ) -> VkResult<u64> {
-        let mut max_deviation = MaybeUninit::uninit();
-        assert_eq!(timestamp_infos.len(), timestamps.len());
-        (self
-            .fp
-            .get_calibrated_timestamps)(
-                self.handle,
-                timestamps.len() as _,
-                timestamp_infos.as_ptr(),
-                timestamps.as_mut_ptr(),
-                max_deviation.as_mut_ptr(),
-            )
-            .assume_init_on_success(max_deviation)
     }
 }
 pub(crate) mod items {

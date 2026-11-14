@@ -763,235 +763,6 @@ impl crate::Instance {
     pub fn fp_v1_1(&self) -> &crate::InstanceFnV1_1 {
         &self.instance_fn_1_1
     }
-    ///vkGetPhysicalDeviceFeatures2
-    #[inline]
-    pub unsafe fn get_physical_device_features2(
-        &self,
-        physical_device: vk::PhysicalDevice,
-    ) -> vk::PhysicalDeviceFeatures2<'_> {
-        let mut features = MaybeUninit::uninit();
-        (self
-            .instance_fn_1_1
-            .get_physical_device_features2)(physical_device, features.as_mut_ptr());
-        features.assume_init()
-    }
-    ///vkGetPhysicalDeviceProperties2
-    #[inline]
-    pub unsafe fn get_physical_device_properties2(
-        &self,
-        physical_device: vk::PhysicalDevice,
-    ) -> vk::PhysicalDeviceProperties2<'_> {
-        let mut properties = MaybeUninit::uninit();
-        (self
-            .instance_fn_1_1
-            .get_physical_device_properties2)(physical_device, properties.as_mut_ptr());
-        properties.assume_init()
-    }
-    ///vkGetPhysicalDeviceFormatProperties2
-    #[inline]
-    pub unsafe fn get_physical_device_format_properties2(
-        &self,
-        physical_device: vk::PhysicalDevice,
-        format: vk::Format,
-    ) -> vk::FormatProperties2<'_> {
-        let mut format_properties = MaybeUninit::uninit();
-        (self
-            .instance_fn_1_1
-            .get_physical_device_format_properties2)(
-            physical_device,
-            format,
-            format_properties.as_mut_ptr(),
-        );
-        format_properties.assume_init()
-    }
-    ///vkGetPhysicalDeviceImageFormatProperties2
-    #[inline]
-    pub unsafe fn get_physical_device_image_format_properties2(
-        &self,
-        physical_device: vk::PhysicalDevice,
-        image_format_info: &vk::PhysicalDeviceImageFormatInfo2<'_>,
-    ) -> VkResult<vk::ImageFormatProperties2<'_>> {
-        let mut image_format_properties = MaybeUninit::uninit();
-        (self
-            .instance_fn_1_1
-            .get_physical_device_image_format_properties2)(
-                physical_device,
-                image_format_info,
-                image_format_properties.as_mut_ptr(),
-            )
-            .assume_init_on_success(image_format_properties)
-    }
-    ///vkGetPhysicalDeviceQueueFamilyProperties2
-    #[inline]
-    pub unsafe fn get_physical_device_queue_family_properties2_len(
-        &self,
-        physical_device: vk::PhysicalDevice,
-    ) -> usize {
-        let mut queue_family_property_count = MaybeUninit::uninit();
-        (self
-            .instance_fn_1_1
-            .get_physical_device_queue_family_properties2)(
-            physical_device,
-            queue_family_property_count.as_mut_ptr(),
-            ptr::null_mut(),
-        );
-        queue_family_property_count.assume_init() as usize
-    }
-    ///vkGetPhysicalDeviceQueueFamilyProperties2
-    #[inline]
-    pub unsafe fn get_physical_device_queue_family_properties2(
-        &self,
-        physical_device: vk::PhysicalDevice,
-        queue_family_properties: &mut [vk::QueueFamilyProperties2<'_>],
-    ) {
-        let mut queue_family_property_count = queue_family_properties.len() as _;
-        (self
-            .instance_fn_1_1
-            .get_physical_device_queue_family_properties2)(
-            physical_device,
-            &mut queue_family_property_count,
-            queue_family_properties.as_mut_ptr(),
-        );
-        assert_eq!(queue_family_property_count as usize, queue_family_properties.len());
-    }
-    ///vkGetPhysicalDeviceMemoryProperties2
-    #[inline]
-    pub unsafe fn get_physical_device_memory_properties2(
-        &self,
-        physical_device: vk::PhysicalDevice,
-    ) -> vk::PhysicalDeviceMemoryProperties2<'_> {
-        let mut memory_properties = MaybeUninit::uninit();
-        (self
-            .instance_fn_1_1
-            .get_physical_device_memory_properties2)(
-            physical_device,
-            memory_properties.as_mut_ptr(),
-        );
-        memory_properties.assume_init()
-    }
-    ///vkGetPhysicalDeviceSparseImageFormatProperties2
-    #[inline]
-    pub unsafe fn get_physical_device_sparse_image_format_properties2_len(
-        &self,
-        physical_device: vk::PhysicalDevice,
-        format_info: &vk::PhysicalDeviceSparseImageFormatInfo2<'_>,
-    ) -> usize {
-        let mut property_count = MaybeUninit::uninit();
-        (self
-            .instance_fn_1_1
-            .get_physical_device_sparse_image_format_properties2)(
-            physical_device,
-            format_info,
-            property_count.as_mut_ptr(),
-            ptr::null_mut(),
-        );
-        property_count.assume_init() as usize
-    }
-    ///vkGetPhysicalDeviceSparseImageFormatProperties2
-    #[inline]
-    pub unsafe fn get_physical_device_sparse_image_format_properties2(
-        &self,
-        physical_device: vk::PhysicalDevice,
-        format_info: &vk::PhysicalDeviceSparseImageFormatInfo2<'_>,
-        properties: &mut [vk::SparseImageFormatProperties2<'_>],
-    ) {
-        let mut property_count = properties.len() as _;
-        (self
-            .instance_fn_1_1
-            .get_physical_device_sparse_image_format_properties2)(
-            physical_device,
-            format_info,
-            &mut property_count,
-            properties.as_mut_ptr(),
-        );
-        assert_eq!(property_count as usize, properties.len());
-    }
-    ///vkGetPhysicalDeviceExternalBufferProperties
-    #[inline]
-    pub unsafe fn get_physical_device_external_buffer_properties(
-        &self,
-        physical_device: vk::PhysicalDevice,
-        external_buffer_info: &vk::PhysicalDeviceExternalBufferInfo<'_>,
-    ) -> vk::ExternalBufferProperties<'_> {
-        let mut external_buffer_properties = MaybeUninit::uninit();
-        (self
-            .instance_fn_1_1
-            .get_physical_device_external_buffer_properties)(
-            physical_device,
-            external_buffer_info,
-            external_buffer_properties.as_mut_ptr(),
-        );
-        external_buffer_properties.assume_init()
-    }
-    ///vkGetPhysicalDeviceExternalSemaphoreProperties
-    #[inline]
-    pub unsafe fn get_physical_device_external_semaphore_properties(
-        &self,
-        physical_device: vk::PhysicalDevice,
-        external_semaphore_info: &vk::PhysicalDeviceExternalSemaphoreInfo<'_>,
-    ) -> vk::ExternalSemaphoreProperties<'_> {
-        let mut external_semaphore_properties = MaybeUninit::uninit();
-        (self
-            .instance_fn_1_1
-            .get_physical_device_external_semaphore_properties)(
-            physical_device,
-            external_semaphore_info,
-            external_semaphore_properties.as_mut_ptr(),
-        );
-        external_semaphore_properties.assume_init()
-    }
-    ///vkGetPhysicalDeviceExternalFenceProperties
-    #[inline]
-    pub unsafe fn get_physical_device_external_fence_properties(
-        &self,
-        physical_device: vk::PhysicalDevice,
-        external_fence_info: &vk::PhysicalDeviceExternalFenceInfo<'_>,
-    ) -> vk::ExternalFenceProperties<'_> {
-        let mut external_fence_properties = MaybeUninit::uninit();
-        (self
-            .instance_fn_1_1
-            .get_physical_device_external_fence_properties)(
-            physical_device,
-            external_fence_info,
-            external_fence_properties.as_mut_ptr(),
-        );
-        external_fence_properties.assume_init()
-    }
-    ///vkEnumeratePhysicalDeviceGroups
-    #[inline]
-    pub unsafe fn enumerate_physical_device_groups_len(&self) -> VkResult<usize> {
-        let mut physical_device_group_count = MaybeUninit::uninit();
-        (self
-            .instance_fn_1_1
-            .enumerate_physical_device_groups)(
-                self.handle,
-                physical_device_group_count.as_mut_ptr(),
-                ptr::null_mut(),
-            )
-            .assume_init_on_success(physical_device_group_count)
-            .map(|c| c as usize)
-    }
-    ///vkEnumeratePhysicalDeviceGroups
-    #[inline]
-    pub unsafe fn enumerate_physical_device_groups(
-        &self,
-        physical_device_group_properties: &mut [vk::PhysicalDeviceGroupProperties<'_>],
-    ) -> VkResult<()> {
-        let mut physical_device_group_count = physical_device_group_properties.len()
-            as _;
-        (self
-            .instance_fn_1_1
-            .enumerate_physical_device_groups)(
-                self.handle,
-                &mut physical_device_group_count,
-                physical_device_group_properties.as_mut_ptr(),
-            )
-            .result()?;
-        assert_eq!(
-            physical_device_group_count as usize, physical_device_group_properties.len()
-        );
-        Ok(())
-    }
 }
 #[derive(Clone)]
 pub struct DeviceFnV1_1 {
@@ -1254,37 +1025,15 @@ impl crate::Device {
     pub fn fp_v1_1(&self) -> &crate::DeviceFnV1_1 {
         &self.device_fn_1_1
     }
-    ///vkTrimCommandPool
-    #[inline]
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkTrimCommandPool.html) · Device Function
     pub unsafe fn trim_command_pool(
         &self,
         command_pool: vk::CommandPool,
         flags: vk::CommandPoolTrimFlags,
     ) {
-        (self.device_fn_1_1.trim_command_pool)(self.handle, command_pool, flags)
+        (self.device_fn_1_1.trim_command_pool)(self.handle, command_pool, flags);
     }
-    ///vkGetDeviceGroupPeerMemoryFeatures
-    #[inline]
-    pub unsafe fn get_device_group_peer_memory_features(
-        &self,
-        heap_index: u32,
-        local_device_index: u32,
-        remote_device_index: u32,
-    ) -> vk::PeerMemoryFeatureFlags {
-        let mut peer_memory_features = MaybeUninit::uninit();
-        (self
-            .device_fn_1_1
-            .get_device_group_peer_memory_features)(
-            self.handle,
-            heap_index,
-            local_device_index,
-            remote_device_index,
-            peer_memory_features.as_mut_ptr(),
-        );
-        peer_memory_features.assume_init()
-    }
-    ///vkBindBufferMemory2
-    #[inline]
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkBindBufferMemory2.html) · Device Function
     pub unsafe fn bind_buffer_memory2(
         &self,
         bind_infos: &[vk::BindBufferMemoryInfo<'_>],
@@ -1298,8 +1047,7 @@ impl crate::Device {
             )
             .result()
     }
-    ///vkBindImageMemory2
-    #[inline]
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkBindImageMemory2.html) · Device Function
     pub unsafe fn bind_image_memory2(
         &self,
         bind_infos: &[vk::BindImageMemoryInfo<'_>],
@@ -1309,17 +1057,15 @@ impl crate::Device {
             .bind_image_memory2)(self.handle, bind_infos.len() as _, bind_infos.as_ptr())
             .result()
     }
-    ///vkCmdSetDeviceMask
-    #[inline]
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdSetDeviceMask.html) · Device Function
     pub unsafe fn cmd_set_device_mask(
         &self,
         command_buffer: vk::CommandBuffer,
         device_mask: u32,
     ) {
-        (self.device_fn_1_1.cmd_set_device_mask)(command_buffer, device_mask)
+        (self.device_fn_1_1.cmd_set_device_mask)(command_buffer, device_mask);
     }
-    ///vkCmdDispatchBase
-    #[inline]
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdDispatchBase.html) · Device Function
     pub unsafe fn cmd_dispatch_base(
         &self,
         command_buffer: vk::CommandBuffer,
@@ -1340,49 +1086,23 @@ impl crate::Device {
             group_count_x,
             group_count_y,
             group_count_z,
-        )
+        );
     }
-    ///vkCreateDescriptorUpdateTemplate
-    #[inline]
-    pub unsafe fn create_descriptor_update_template(
-        &self,
-        create_info: &vk::DescriptorUpdateTemplateCreateInfo<'_>,
-        allocator: Option<&vk::AllocationCallbacks<'_>>,
-    ) -> VkResult<vk::DescriptorUpdateTemplate> {
-        let mut descriptor_update_template = MaybeUninit::uninit();
-        (self
-            .device_fn_1_1
-            .create_descriptor_update_template)(
-                self.handle,
-                create_info,
-                match allocator {
-                    Some(inner) => inner,
-                    None => ptr::null_mut(),
-                },
-                descriptor_update_template.as_mut_ptr(),
-            )
-            .assume_init_on_success(descriptor_update_template)
-    }
-    ///vkDestroyDescriptorUpdateTemplate
-    #[inline]
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkDestroyDescriptorUpdateTemplate.html) · Device Function
     pub unsafe fn destroy_descriptor_update_template(
         &self,
         descriptor_update_template: vk::DescriptorUpdateTemplate,
-        allocator: Option<&vk::AllocationCallbacks<'_>>,
+        allocator: &vk::AllocationCallbacks<'_>,
     ) {
         (self
             .device_fn_1_1
             .destroy_descriptor_update_template)(
             self.handle,
             descriptor_update_template,
-            match allocator {
-                Some(inner) => inner,
-                None => ptr::null_mut(),
-            },
-        )
+            allocator,
+        );
     }
-    ///vkUpdateDescriptorSetWithTemplate
-    #[inline]
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkUpdateDescriptorSetWithTemplate.html) · Device Function
     pub unsafe fn update_descriptor_set_with_template(
         &self,
         descriptor_set: vk::DescriptorSet,
@@ -1396,143 +1116,17 @@ impl crate::Device {
             descriptor_set,
             descriptor_update_template,
             data,
-        )
-    }
-    ///vkGetBufferMemoryRequirements2
-    #[inline]
-    pub unsafe fn get_buffer_memory_requirements2(
-        &self,
-        info: &vk::BufferMemoryRequirementsInfo2<'_>,
-    ) -> vk::MemoryRequirements2<'_> {
-        let mut memory_requirements = MaybeUninit::uninit();
-        (self
-            .device_fn_1_1
-            .get_buffer_memory_requirements2)(
-            self.handle,
-            info,
-            memory_requirements.as_mut_ptr(),
-        );
-        memory_requirements.assume_init()
-    }
-    ///vkGetImageMemoryRequirements2
-    #[inline]
-    pub unsafe fn get_image_memory_requirements2(
-        &self,
-        info: &vk::ImageMemoryRequirementsInfo2<'_>,
-    ) -> vk::MemoryRequirements2<'_> {
-        let mut memory_requirements = MaybeUninit::uninit();
-        (self
-            .device_fn_1_1
-            .get_image_memory_requirements2)(
-            self.handle,
-            info,
-            memory_requirements.as_mut_ptr(),
-        );
-        memory_requirements.assume_init()
-    }
-    ///vkGetImageSparseMemoryRequirements2
-    #[inline]
-    pub unsafe fn get_image_sparse_memory_requirements2_len(
-        &self,
-        info: &vk::ImageSparseMemoryRequirementsInfo2<'_>,
-    ) -> usize {
-        let mut sparse_memory_requirement_count = MaybeUninit::uninit();
-        (self
-            .device_fn_1_1
-            .get_image_sparse_memory_requirements2)(
-            self.handle,
-            info,
-            sparse_memory_requirement_count.as_mut_ptr(),
-            ptr::null_mut(),
-        );
-        sparse_memory_requirement_count.assume_init() as usize
-    }
-    ///vkGetImageSparseMemoryRequirements2
-    #[inline]
-    pub unsafe fn get_image_sparse_memory_requirements2(
-        &self,
-        info: &vk::ImageSparseMemoryRequirementsInfo2<'_>,
-        sparse_memory_requirements: &mut [vk::SparseImageMemoryRequirements2<'_>],
-    ) {
-        let mut sparse_memory_requirement_count = sparse_memory_requirements.len() as _;
-        (self
-            .device_fn_1_1
-            .get_image_sparse_memory_requirements2)(
-            self.handle,
-            info,
-            &mut sparse_memory_requirement_count,
-            sparse_memory_requirements.as_mut_ptr(),
-        );
-        assert_eq!(
-            sparse_memory_requirement_count as usize, sparse_memory_requirements.len()
         );
     }
-    ///vkCreateSamplerYcbcrConversion
-    #[inline]
-    pub unsafe fn create_sampler_ycbcr_conversion(
-        &self,
-        create_info: &vk::SamplerYcbcrConversionCreateInfo<'_>,
-        allocator: Option<&vk::AllocationCallbacks<'_>>,
-    ) -> VkResult<vk::SamplerYcbcrConversion> {
-        let mut ycbcr_conversion = MaybeUninit::uninit();
-        (self
-            .device_fn_1_1
-            .create_sampler_ycbcr_conversion)(
-                self.handle,
-                create_info,
-                match allocator {
-                    Some(inner) => inner,
-                    None => ptr::null_mut(),
-                },
-                ycbcr_conversion.as_mut_ptr(),
-            )
-            .assume_init_on_success(ycbcr_conversion)
-    }
-    ///vkDestroySamplerYcbcrConversion
-    #[inline]
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkDestroySamplerYcbcrConversion.html) · Device Function
     pub unsafe fn destroy_sampler_ycbcr_conversion(
         &self,
         ycbcr_conversion: vk::SamplerYcbcrConversion,
-        allocator: Option<&vk::AllocationCallbacks<'_>>,
+        allocator: &vk::AllocationCallbacks<'_>,
     ) {
         (self
             .device_fn_1_1
-            .destroy_sampler_ycbcr_conversion)(
-            self.handle,
-            ycbcr_conversion,
-            match allocator {
-                Some(inner) => inner,
-                None => ptr::null_mut(),
-            },
-        )
-    }
-    ///vkGetDeviceQueue2
-    #[inline]
-    pub unsafe fn get_device_queue2(
-        &self,
-        queue_info: &vk::DeviceQueueInfo2<'_>,
-    ) -> vk::Queue {
-        let mut queue = MaybeUninit::uninit();
-        (self
-            .device_fn_1_1
-            .get_device_queue2)(self.handle, queue_info, queue.as_mut_ptr());
-        queue.assume_init()
-    }
-    ///vkGetDescriptorSetLayoutSupport
-    #[inline]
-    pub unsafe fn get_descriptor_set_layout_support(
-        &self,
-        create_info: &vk::DescriptorSetLayoutCreateInfo<'_>,
-    ) -> vk::DescriptorSetLayoutSupport<'_> {
-        let mut support = MaybeUninit::uninit();
-        (self
-            .device_fn_1_1
-            .get_descriptor_set_layout_support)(
-            self.handle,
-            create_info,
-            support.as_mut_ptr(),
-        );
-        support.assume_init()
+            .destroy_sampler_ycbcr_conversion)(self.handle, ycbcr_conversion, allocator);
     }
 }
 pub(crate) mod items {

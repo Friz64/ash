@@ -62,29 +62,6 @@ impl Device {
     pub fn device(&self) -> vk::Device {
         self.handle
     }
-    ///vkCreateSharedSwapchainsKHR
-    #[inline]
-    pub unsafe fn create_shared_swapchains(
-        &self,
-        create_infos: &[vk::SwapchainCreateInfoKHR<'_>],
-        allocator: Option<&vk::AllocationCallbacks<'_>>,
-        swapchains: &mut [vk::SwapchainKHR],
-    ) -> VkResult<()> {
-        assert_eq!(create_infos.len(), swapchains.len());
-        (self
-            .fp
-            .create_shared_swapchains)(
-                self.handle,
-                swapchains.len() as _,
-                create_infos.as_ptr(),
-                match allocator {
-                    Some(inner) => inner,
-                    None => ptr::null_mut(),
-                },
-                swapchains.as_mut_ptr(),
-            )
-            .result()
-    }
 }
 pub(crate) mod items {
     use crate::internal_prelude::*;

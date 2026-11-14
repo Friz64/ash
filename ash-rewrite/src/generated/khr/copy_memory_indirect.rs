@@ -107,17 +107,15 @@ impl Device {
     pub fn device(&self) -> vk::Device {
         self.handle
     }
-    ///vkCmdCopyMemoryIndirectKHR
-    #[inline]
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdCopyMemoryIndirectKHR.html) · Device Function
     pub unsafe fn cmd_copy_memory_indirect(
         &self,
         command_buffer: vk::CommandBuffer,
         copy_memory_indirect_info: &vk::CopyMemoryIndirectInfoKHR<'_>,
     ) {
-        (self.fp.cmd_copy_memory_indirect)(command_buffer, copy_memory_indirect_info)
+        (self.fp.cmd_copy_memory_indirect)(command_buffer, copy_memory_indirect_info);
     }
-    ///vkCmdCopyMemoryToImageIndirectKHR
-    #[inline]
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdCopyMemoryToImageIndirectKHR.html) · Device Function
     pub unsafe fn cmd_copy_memory_to_image_indirect(
         &self,
         command_buffer: vk::CommandBuffer,
@@ -128,7 +126,7 @@ impl Device {
             .cmd_copy_memory_to_image_indirect)(
             command_buffer,
             copy_memory_to_image_indirect_info,
-        )
+        );
     }
 }
 pub(crate) mod items {

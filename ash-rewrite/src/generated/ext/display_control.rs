@@ -113,8 +113,7 @@ impl Device {
     pub fn device(&self) -> vk::Device {
         self.handle
     }
-    ///vkDisplayPowerControlEXT
-    #[inline]
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkDisplayPowerControlEXT.html) · Device Function
     pub unsafe fn display_power_control(
         &self,
         display: vk::DisplayKHR,
@@ -122,68 +121,6 @@ impl Device {
     ) -> VkResult<()> {
         (self.fp.display_power_control)(self.handle, display, display_power_info)
             .result()
-    }
-    ///vkRegisterDeviceEventEXT
-    #[inline]
-    pub unsafe fn register_device_event(
-        &self,
-        device_event_info: &vk::DeviceEventInfoEXT<'_>,
-        allocator: Option<&vk::AllocationCallbacks<'_>>,
-    ) -> VkResult<vk::Fence> {
-        let mut fence = MaybeUninit::uninit();
-        (self
-            .fp
-            .register_device_event)(
-                self.handle,
-                device_event_info,
-                match allocator {
-                    Some(inner) => inner,
-                    None => ptr::null_mut(),
-                },
-                fence.as_mut_ptr(),
-            )
-            .assume_init_on_success(fence)
-    }
-    ///vkRegisterDisplayEventEXT
-    #[inline]
-    pub unsafe fn register_display_event(
-        &self,
-        display: vk::DisplayKHR,
-        display_event_info: &vk::DisplayEventInfoEXT<'_>,
-        allocator: Option<&vk::AllocationCallbacks<'_>>,
-    ) -> VkResult<vk::Fence> {
-        let mut fence = MaybeUninit::uninit();
-        (self
-            .fp
-            .register_display_event)(
-                self.handle,
-                display,
-                display_event_info,
-                match allocator {
-                    Some(inner) => inner,
-                    None => ptr::null_mut(),
-                },
-                fence.as_mut_ptr(),
-            )
-            .assume_init_on_success(fence)
-    }
-    ///vkGetSwapchainCounterEXT
-    #[inline]
-    pub unsafe fn get_swapchain_counter(
-        &self,
-        swapchain: vk::SwapchainKHR,
-        counter: vk::SurfaceCounterFlagBitsEXT,
-    ) -> VkResult<u64> {
-        let mut counter_value = MaybeUninit::uninit();
-        (self
-            .fp
-            .get_swapchain_counter)(
-                self.handle,
-                swapchain,
-                counter,
-                counter_value.as_mut_ptr(),
-            )
-            .assume_init_on_success(counter_value)
     }
 }
 pub(crate) mod items {

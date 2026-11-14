@@ -73,42 +73,6 @@ impl Instance {
     pub fn instance(&self) -> vk::Instance {
         self.handle
     }
-    ///vkGetPhysicalDeviceSupportedFramebufferMixedSamplesCombinationsNV
-    #[inline]
-    pub unsafe fn get_physical_device_supported_framebuffer_mixed_samples_combinations_len(
-        &self,
-        physical_device: vk::PhysicalDevice,
-    ) -> VkResult<usize> {
-        let mut combination_count = MaybeUninit::uninit();
-        (self
-            .fp
-            .get_physical_device_supported_framebuffer_mixed_samples_combinations)(
-                physical_device,
-                combination_count.as_mut_ptr(),
-                ptr::null_mut(),
-            )
-            .assume_init_on_success(combination_count)
-            .map(|c| c as usize)
-    }
-    ///vkGetPhysicalDeviceSupportedFramebufferMixedSamplesCombinationsNV
-    #[inline]
-    pub unsafe fn get_physical_device_supported_framebuffer_mixed_samples_combinations(
-        &self,
-        physical_device: vk::PhysicalDevice,
-        combinations: &mut [vk::FramebufferMixedSamplesCombinationNV<'_>],
-    ) -> VkResult<()> {
-        let mut combination_count = combinations.len() as _;
-        (self
-            .fp
-            .get_physical_device_supported_framebuffer_mixed_samples_combinations)(
-                physical_device,
-                &mut combination_count,
-                combinations.as_mut_ptr(),
-            )
-            .result()?;
-        assert_eq!(combination_count as usize, combinations.len());
-        Ok(())
-    }
 }
 pub(crate) mod items {
     use crate::internal_prelude::*;

@@ -970,95 +970,23 @@ impl crate::Device {
     pub fn fp_v1_3(&self) -> &crate::DeviceFnV1_3 {
         &self.device_fn_1_3
     }
-    ///vkGetDeviceBufferMemoryRequirements
-    #[inline]
-    pub unsafe fn get_device_buffer_memory_requirements(
-        &self,
-        info: &vk::DeviceBufferMemoryRequirements<'_>,
-    ) -> vk::MemoryRequirements2<'_> {
-        let mut memory_requirements = MaybeUninit::uninit();
-        (self
-            .device_fn_1_3
-            .get_device_buffer_memory_requirements)(
-            self.handle,
-            info,
-            memory_requirements.as_mut_ptr(),
-        );
-        memory_requirements.assume_init()
-    }
-    ///vkGetDeviceImageMemoryRequirements
-    #[inline]
-    pub unsafe fn get_device_image_memory_requirements(
-        &self,
-        info: &vk::DeviceImageMemoryRequirements<'_>,
-    ) -> vk::MemoryRequirements2<'_> {
-        let mut memory_requirements = MaybeUninit::uninit();
-        (self
-            .device_fn_1_3
-            .get_device_image_memory_requirements)(
-            self.handle,
-            info,
-            memory_requirements.as_mut_ptr(),
-        );
-        memory_requirements.assume_init()
-    }
-    ///vkGetDeviceImageSparseMemoryRequirements
-    #[inline]
-    pub unsafe fn get_device_image_sparse_memory_requirements_len(
-        &self,
-        info: &vk::DeviceImageMemoryRequirements<'_>,
-    ) -> usize {
-        let mut sparse_memory_requirement_count = MaybeUninit::uninit();
-        (self
-            .device_fn_1_3
-            .get_device_image_sparse_memory_requirements)(
-            self.handle,
-            info,
-            sparse_memory_requirement_count.as_mut_ptr(),
-            ptr::null_mut(),
-        );
-        sparse_memory_requirement_count.assume_init() as usize
-    }
-    ///vkGetDeviceImageSparseMemoryRequirements
-    #[inline]
-    pub unsafe fn get_device_image_sparse_memory_requirements(
-        &self,
-        info: &vk::DeviceImageMemoryRequirements<'_>,
-        sparse_memory_requirements: &mut [vk::SparseImageMemoryRequirements2<'_>],
-    ) {
-        let mut sparse_memory_requirement_count = sparse_memory_requirements.len() as _;
-        (self
-            .device_fn_1_3
-            .get_device_image_sparse_memory_requirements)(
-            self.handle,
-            info,
-            &mut sparse_memory_requirement_count,
-            sparse_memory_requirements.as_mut_ptr(),
-        );
-        assert_eq!(
-            sparse_memory_requirement_count as usize, sparse_memory_requirements.len()
-        );
-    }
-    ///vkCmdSetCullMode
-    #[inline]
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdSetCullMode.html) · Device Function
     pub unsafe fn cmd_set_cull_mode(
         &self,
         command_buffer: vk::CommandBuffer,
         cull_mode: vk::CullModeFlags,
     ) {
-        (self.device_fn_1_3.cmd_set_cull_mode)(command_buffer, cull_mode)
+        (self.device_fn_1_3.cmd_set_cull_mode)(command_buffer, cull_mode);
     }
-    ///vkCmdSetFrontFace
-    #[inline]
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdSetFrontFace.html) · Device Function
     pub unsafe fn cmd_set_front_face(
         &self,
         command_buffer: vk::CommandBuffer,
         front_face: vk::FrontFace,
     ) {
-        (self.device_fn_1_3.cmd_set_front_face)(command_buffer, front_face)
+        (self.device_fn_1_3.cmd_set_front_face)(command_buffer, front_face);
     }
-    ///vkCmdSetPrimitiveTopology
-    #[inline]
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdSetPrimitiveTopology.html) · Device Function
     pub unsafe fn cmd_set_primitive_topology(
         &self,
         command_buffer: vk::CommandBuffer,
@@ -1066,10 +994,9 @@ impl crate::Device {
     ) {
         (self
             .device_fn_1_3
-            .cmd_set_primitive_topology)(command_buffer, primitive_topology)
+            .cmd_set_primitive_topology)(command_buffer, primitive_topology);
     }
-    ///vkCmdSetViewportWithCount
-    #[inline]
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdSetViewportWithCount.html) · Device Function
     pub unsafe fn cmd_set_viewport_with_count(
         &self,
         command_buffer: vk::CommandBuffer,
@@ -1081,10 +1008,9 @@ impl crate::Device {
             command_buffer,
             viewports.len() as _,
             viewports.as_ptr(),
-        )
+        );
     }
-    ///vkCmdSetScissorWithCount
-    #[inline]
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdSetScissorWithCount.html) · Device Function
     pub unsafe fn cmd_set_scissor_with_count(
         &self,
         command_buffer: vk::CommandBuffer,
@@ -1096,10 +1022,9 @@ impl crate::Device {
             command_buffer,
             scissors.len() as _,
             scissors.as_ptr(),
-        )
+        );
     }
-    ///vkCmdBindVertexBuffers2
-    #[inline]
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdBindVertexBuffers2.html) · Device Function
     pub unsafe fn cmd_bind_vertex_buffers2(
         &self,
         command_buffer: vk::CommandBuffer,
@@ -1109,74 +1034,70 @@ impl crate::Device {
         sizes: &[vk::DeviceSize],
         strides: &[vk::DeviceSize],
     ) {
-        assert_eq!(sizes.len(), strides.len());
-        assert_eq!(offsets.len(), sizes.len());
-        assert_eq!(buffers.len(), offsets.len());
         (self
             .device_fn_1_3
             .cmd_bind_vertex_buffers2)(
             command_buffer,
             first_binding,
-            strides.len() as _,
+            buffers.len() as _,
             buffers.as_ptr(),
             offsets.as_ptr(),
             sizes.as_ptr(),
             strides.as_ptr(),
-        )
+        );
     }
-    ///vkCmdSetDepthTestEnable
-    #[inline]
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdSetDepthTestEnable.html) · Device Function
     pub unsafe fn cmd_set_depth_test_enable(
         &self,
         command_buffer: vk::CommandBuffer,
-        depth_test_enable: vk::Bool32,
-    ) {
-        (self.device_fn_1_3.cmd_set_depth_test_enable)(command_buffer, depth_test_enable)
-    }
-    ///vkCmdSetDepthWriteEnable
-    #[inline]
-    pub unsafe fn cmd_set_depth_write_enable(
-        &self,
-        command_buffer: vk::CommandBuffer,
-        depth_write_enable: vk::Bool32,
+        depth_test_enable: bool,
     ) {
         (self
             .device_fn_1_3
-            .cmd_set_depth_write_enable)(command_buffer, depth_write_enable)
+            .cmd_set_depth_test_enable)(command_buffer, depth_test_enable as _);
     }
-    ///vkCmdSetDepthCompareOp
-    #[inline]
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdSetDepthWriteEnable.html) · Device Function
+    pub unsafe fn cmd_set_depth_write_enable(
+        &self,
+        command_buffer: vk::CommandBuffer,
+        depth_write_enable: bool,
+    ) {
+        (self
+            .device_fn_1_3
+            .cmd_set_depth_write_enable)(command_buffer, depth_write_enable as _);
+    }
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdSetDepthCompareOp.html) · Device Function
     pub unsafe fn cmd_set_depth_compare_op(
         &self,
         command_buffer: vk::CommandBuffer,
         depth_compare_op: vk::CompareOp,
     ) {
-        (self.device_fn_1_3.cmd_set_depth_compare_op)(command_buffer, depth_compare_op)
+        (self.device_fn_1_3.cmd_set_depth_compare_op)(command_buffer, depth_compare_op);
     }
-    ///vkCmdSetDepthBoundsTestEnable
-    #[inline]
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdSetDepthBoundsTestEnable.html) · Device Function
     pub unsafe fn cmd_set_depth_bounds_test_enable(
         &self,
         command_buffer: vk::CommandBuffer,
-        depth_bounds_test_enable: vk::Bool32,
+        depth_bounds_test_enable: bool,
     ) {
         (self
             .device_fn_1_3
-            .cmd_set_depth_bounds_test_enable)(command_buffer, depth_bounds_test_enable)
+            .cmd_set_depth_bounds_test_enable)(
+            command_buffer,
+            depth_bounds_test_enable as _,
+        );
     }
-    ///vkCmdSetStencilTestEnable
-    #[inline]
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdSetStencilTestEnable.html) · Device Function
     pub unsafe fn cmd_set_stencil_test_enable(
         &self,
         command_buffer: vk::CommandBuffer,
-        stencil_test_enable: vk::Bool32,
+        stencil_test_enable: bool,
     ) {
         (self
             .device_fn_1_3
-            .cmd_set_stencil_test_enable)(command_buffer, stencil_test_enable)
+            .cmd_set_stencil_test_enable)(command_buffer, stencil_test_enable as _);
     }
-    ///vkCmdSetStencilOp
-    #[inline]
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdSetStencilOp.html) · Device Function
     pub unsafe fn cmd_set_stencil_op(
         &self,
         command_buffer: vk::CommandBuffer,
@@ -1195,83 +1116,55 @@ impl crate::Device {
             pass_op,
             depth_fail_op,
             compare_op,
-        )
+        );
     }
-    ///vkCmdSetRasterizerDiscardEnable
-    #[inline]
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdSetRasterizerDiscardEnable.html) · Device Function
     pub unsafe fn cmd_set_rasterizer_discard_enable(
         &self,
         command_buffer: vk::CommandBuffer,
-        rasterizer_discard_enable: vk::Bool32,
+        rasterizer_discard_enable: bool,
     ) {
         (self
             .device_fn_1_3
             .cmd_set_rasterizer_discard_enable)(
             command_buffer,
-            rasterizer_discard_enable,
-        )
+            rasterizer_discard_enable as _,
+        );
     }
-    ///vkCmdSetDepthBiasEnable
-    #[inline]
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdSetDepthBiasEnable.html) · Device Function
     pub unsafe fn cmd_set_depth_bias_enable(
         &self,
         command_buffer: vk::CommandBuffer,
-        depth_bias_enable: vk::Bool32,
+        depth_bias_enable: bool,
     ) {
-        (self.device_fn_1_3.cmd_set_depth_bias_enable)(command_buffer, depth_bias_enable)
+        (self
+            .device_fn_1_3
+            .cmd_set_depth_bias_enable)(command_buffer, depth_bias_enable as _);
     }
-    ///vkCmdSetPrimitiveRestartEnable
-    #[inline]
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdSetPrimitiveRestartEnable.html) · Device Function
     pub unsafe fn cmd_set_primitive_restart_enable(
         &self,
         command_buffer: vk::CommandBuffer,
-        primitive_restart_enable: vk::Bool32,
+        primitive_restart_enable: bool,
     ) {
         (self
             .device_fn_1_3
-            .cmd_set_primitive_restart_enable)(command_buffer, primitive_restart_enable)
+            .cmd_set_primitive_restart_enable)(
+            command_buffer,
+            primitive_restart_enable as _,
+        );
     }
-    ///vkCreatePrivateDataSlot
-    #[inline]
-    pub unsafe fn create_private_data_slot(
-        &self,
-        create_info: &vk::PrivateDataSlotCreateInfo<'_>,
-        allocator: Option<&vk::AllocationCallbacks<'_>>,
-    ) -> VkResult<vk::PrivateDataSlot> {
-        let mut private_data_slot = MaybeUninit::uninit();
-        (self
-            .device_fn_1_3
-            .create_private_data_slot)(
-                self.handle,
-                create_info,
-                match allocator {
-                    Some(inner) => inner,
-                    None => ptr::null_mut(),
-                },
-                private_data_slot.as_mut_ptr(),
-            )
-            .assume_init_on_success(private_data_slot)
-    }
-    ///vkDestroyPrivateDataSlot
-    #[inline]
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkDestroyPrivateDataSlot.html) · Device Function
     pub unsafe fn destroy_private_data_slot(
         &self,
         private_data_slot: vk::PrivateDataSlot,
-        allocator: Option<&vk::AllocationCallbacks<'_>>,
+        allocator: &vk::AllocationCallbacks<'_>,
     ) {
         (self
             .device_fn_1_3
-            .destroy_private_data_slot)(
-            self.handle,
-            private_data_slot,
-            match allocator {
-                Some(inner) => inner,
-                None => ptr::null_mut(),
-            },
-        )
+            .destroy_private_data_slot)(self.handle, private_data_slot, allocator);
     }
-    ///vkSetPrivateData
-    #[inline]
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkSetPrivateData.html) · Device Function
     pub unsafe fn set_private_data(
         &self,
         object_type: vk::ObjectType,
@@ -1290,55 +1183,31 @@ impl crate::Device {
             )
             .result()
     }
-    ///vkGetPrivateData
-    #[inline]
-    pub unsafe fn get_private_data(
-        &self,
-        object_type: vk::ObjectType,
-        object_handle: u64,
-        private_data_slot: vk::PrivateDataSlot,
-    ) -> u64 {
-        let mut data = MaybeUninit::uninit();
-        (self
-            .device_fn_1_3
-            .get_private_data)(
-            self.handle,
-            object_type,
-            object_handle,
-            private_data_slot,
-            data.as_mut_ptr(),
-        );
-        data.assume_init()
-    }
-    ///vkCmdCopyBuffer2
-    #[inline]
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdCopyBuffer2.html) · Device Function
     pub unsafe fn cmd_copy_buffer2(
         &self,
         command_buffer: vk::CommandBuffer,
         copy_buffer_info: &vk::CopyBufferInfo2<'_>,
     ) {
-        (self.device_fn_1_3.cmd_copy_buffer2)(command_buffer, copy_buffer_info)
+        (self.device_fn_1_3.cmd_copy_buffer2)(command_buffer, copy_buffer_info);
     }
-    ///vkCmdCopyImage2
-    #[inline]
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdCopyImage2.html) · Device Function
     pub unsafe fn cmd_copy_image2(
         &self,
         command_buffer: vk::CommandBuffer,
         copy_image_info: &vk::CopyImageInfo2<'_>,
     ) {
-        (self.device_fn_1_3.cmd_copy_image2)(command_buffer, copy_image_info)
+        (self.device_fn_1_3.cmd_copy_image2)(command_buffer, copy_image_info);
     }
-    ///vkCmdBlitImage2
-    #[inline]
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdBlitImage2.html) · Device Function
     pub unsafe fn cmd_blit_image2(
         &self,
         command_buffer: vk::CommandBuffer,
         blit_image_info: &vk::BlitImageInfo2<'_>,
     ) {
-        (self.device_fn_1_3.cmd_blit_image2)(command_buffer, blit_image_info)
+        (self.device_fn_1_3.cmd_blit_image2)(command_buffer, blit_image_info);
     }
-    ///vkCmdCopyBufferToImage2
-    #[inline]
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdCopyBufferToImage2.html) · Device Function
     pub unsafe fn cmd_copy_buffer_to_image2(
         &self,
         command_buffer: vk::CommandBuffer,
@@ -1346,10 +1215,9 @@ impl crate::Device {
     ) {
         (self
             .device_fn_1_3
-            .cmd_copy_buffer_to_image2)(command_buffer, copy_buffer_to_image_info)
+            .cmd_copy_buffer_to_image2)(command_buffer, copy_buffer_to_image_info);
     }
-    ///vkCmdCopyImageToBuffer2
-    #[inline]
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdCopyImageToBuffer2.html) · Device Function
     pub unsafe fn cmd_copy_image_to_buffer2(
         &self,
         command_buffer: vk::CommandBuffer,
@@ -1357,66 +1225,59 @@ impl crate::Device {
     ) {
         (self
             .device_fn_1_3
-            .cmd_copy_image_to_buffer2)(command_buffer, copy_image_to_buffer_info)
+            .cmd_copy_image_to_buffer2)(command_buffer, copy_image_to_buffer_info);
     }
-    ///vkCmdResolveImage2
-    #[inline]
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdResolveImage2.html) · Device Function
     pub unsafe fn cmd_resolve_image2(
         &self,
         command_buffer: vk::CommandBuffer,
         resolve_image_info: &vk::ResolveImageInfo2<'_>,
     ) {
-        (self.device_fn_1_3.cmd_resolve_image2)(command_buffer, resolve_image_info)
+        (self.device_fn_1_3.cmd_resolve_image2)(command_buffer, resolve_image_info);
     }
-    ///vkCmdSetEvent2
-    #[inline]
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdSetEvent2.html) · Device Function
     pub unsafe fn cmd_set_event2(
         &self,
         command_buffer: vk::CommandBuffer,
         event: vk::Event,
         dependency_info: &vk::DependencyInfo<'_>,
     ) {
-        (self.device_fn_1_3.cmd_set_event2)(command_buffer, event, dependency_info)
+        (self.device_fn_1_3.cmd_set_event2)(command_buffer, event, dependency_info);
     }
-    ///vkCmdResetEvent2
-    #[inline]
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdResetEvent2.html) · Device Function
     pub unsafe fn cmd_reset_event2(
         &self,
         command_buffer: vk::CommandBuffer,
         event: vk::Event,
         stage_mask: vk::PipelineStageFlags2,
     ) {
-        (self.device_fn_1_3.cmd_reset_event2)(command_buffer, event, stage_mask)
+        (self.device_fn_1_3.cmd_reset_event2)(command_buffer, event, stage_mask);
     }
-    ///vkCmdWaitEvents2
-    #[inline]
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdWaitEvents2.html) · Device Function
     pub unsafe fn cmd_wait_events2(
         &self,
         command_buffer: vk::CommandBuffer,
         events: &[vk::Event],
         dependency_infos: &[vk::DependencyInfo<'_>],
     ) {
-        assert_eq!(events.len(), dependency_infos.len());
         (self
             .device_fn_1_3
             .cmd_wait_events2)(
             command_buffer,
-            dependency_infos.len() as _,
+            events.len() as _,
             events.as_ptr(),
             dependency_infos.as_ptr(),
-        )
+        );
     }
-    ///vkCmdPipelineBarrier2
-    #[inline]
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdPipelineBarrier2.html) · Device Function
     pub unsafe fn cmd_pipeline_barrier2(
         &self,
         command_buffer: vk::CommandBuffer,
         dependency_info: &vk::DependencyInfo<'_>,
     ) {
-        (self.device_fn_1_3.cmd_pipeline_barrier2)(command_buffer, dependency_info)
+        (self.device_fn_1_3.cmd_pipeline_barrier2)(command_buffer, dependency_info);
     }
-    ///vkQueueSubmit2
-    #[inline]
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkQueueSubmit2.html) · Device Function
     pub unsafe fn queue_submit2(
         &self,
         queue: vk::Queue,
@@ -1428,8 +1289,7 @@ impl crate::Device {
             .queue_submit2)(queue, submits.len() as _, submits.as_ptr(), fence)
             .result()
     }
-    ///vkCmdWriteTimestamp2
-    #[inline]
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdWriteTimestamp2.html) · Device Function
     pub unsafe fn cmd_write_timestamp2(
         &self,
         command_buffer: vk::CommandBuffer,
@@ -1439,21 +1299,19 @@ impl crate::Device {
     ) {
         (self
             .device_fn_1_3
-            .cmd_write_timestamp2)(command_buffer, stage, query_pool, query)
+            .cmd_write_timestamp2)(command_buffer, stage, query_pool, query);
     }
-    ///vkCmdBeginRendering
-    #[inline]
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdBeginRendering.html) · Device Function
     pub unsafe fn cmd_begin_rendering(
         &self,
         command_buffer: vk::CommandBuffer,
         rendering_info: &vk::RenderingInfo<'_>,
     ) {
-        (self.device_fn_1_3.cmd_begin_rendering)(command_buffer, rendering_info)
+        (self.device_fn_1_3.cmd_begin_rendering)(command_buffer, rendering_info);
     }
-    ///vkCmdEndRendering
-    #[inline]
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdEndRendering.html) · Device Function
     pub unsafe fn cmd_end_rendering(&self, command_buffer: vk::CommandBuffer) {
-        (self.device_fn_1_3.cmd_end_rendering)(command_buffer)
+        (self.device_fn_1_3.cmd_end_rendering)(command_buffer);
     }
 }
 #[derive(Clone)]
@@ -1491,42 +1349,6 @@ impl crate::Instance {
     #[inline]
     pub fn fp_v1_3(&self) -> &crate::InstanceFnV1_3 {
         &self.instance_fn_1_3
-    }
-    ///vkGetPhysicalDeviceToolProperties
-    #[inline]
-    pub unsafe fn get_physical_device_tool_properties_len(
-        &self,
-        physical_device: vk::PhysicalDevice,
-    ) -> VkResult<usize> {
-        let mut tool_count = MaybeUninit::uninit();
-        (self
-            .instance_fn_1_3
-            .get_physical_device_tool_properties)(
-                physical_device,
-                tool_count.as_mut_ptr(),
-                ptr::null_mut(),
-            )
-            .assume_init_on_success(tool_count)
-            .map(|c| c as usize)
-    }
-    ///vkGetPhysicalDeviceToolProperties
-    #[inline]
-    pub unsafe fn get_physical_device_tool_properties(
-        &self,
-        physical_device: vk::PhysicalDevice,
-        tool_properties: &mut [vk::PhysicalDeviceToolProperties<'_>],
-    ) -> VkResult<()> {
-        let mut tool_count = tool_properties.len() as _;
-        (self
-            .instance_fn_1_3
-            .get_physical_device_tool_properties)(
-                physical_device,
-                &mut tool_count,
-                tool_properties.as_mut_ptr(),
-            )
-            .result()?;
-        assert_eq!(tool_count as usize, tool_properties.len());
-        Ok(())
     }
 }
 pub(crate) mod items {

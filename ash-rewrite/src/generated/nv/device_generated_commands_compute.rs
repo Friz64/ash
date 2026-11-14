@@ -110,8 +110,7 @@ impl Device {
     pub fn device(&self) -> vk::Device {
         self.handle
     }
-    ///vkCmdUpdatePipelineIndirectBufferNV
-    #[inline]
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdUpdatePipelineIndirectBufferNV.html) · Device Function
     pub unsafe fn cmd_update_pipeline_indirect_buffer(
         &self,
         command_buffer: vk::CommandBuffer,
@@ -124,31 +123,14 @@ impl Device {
             command_buffer,
             pipeline_bind_point,
             pipeline,
-        )
-    }
-    ///vkGetPipelineIndirectMemoryRequirementsNV
-    #[inline]
-    pub unsafe fn get_pipeline_indirect_memory_requirements(
-        &self,
-        create_info: &vk::ComputePipelineCreateInfo<'_>,
-    ) -> vk::MemoryRequirements2<'_> {
-        let mut memory_requirements = MaybeUninit::uninit();
-        (self
-            .fp
-            .get_pipeline_indirect_memory_requirements)(
-            self.handle,
-            create_info,
-            memory_requirements.as_mut_ptr(),
         );
-        memory_requirements.assume_init()
     }
-    ///vkGetPipelineIndirectDeviceAddressNV
-    #[inline]
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkGetPipelineIndirectDeviceAddressNV.html) · Device Function
     pub unsafe fn get_pipeline_indirect_device_address(
         &self,
         info: &vk::PipelineIndirectDeviceAddressInfoNV<'_>,
-    ) -> vk::DeviceAddress {
-        (self.fp.get_pipeline_indirect_device_address)(self.handle, info)
+    ) {
+        (self.fp.get_pipeline_indirect_device_address)(self.handle, info);
     }
 }
 pub(crate) mod items {

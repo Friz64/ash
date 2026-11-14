@@ -359,24 +359,7 @@ impl Device {
     pub fn device(&self) -> vk::Device {
         self.handle
     }
-    ///vkGetRenderingAreaGranularity
-    #[inline]
-    pub unsafe fn get_rendering_area_granularity(
-        &self,
-        rendering_area_info: &vk::RenderingAreaInfo<'_>,
-    ) -> vk::Extent2D {
-        let mut granularity = MaybeUninit::uninit();
-        (self
-            .fp
-            .get_rendering_area_granularity)(
-            self.handle,
-            rendering_area_info,
-            granularity.as_mut_ptr(),
-        );
-        granularity.assume_init()
-    }
-    ///vkCmdBindIndexBuffer2
-    #[inline]
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdBindIndexBuffer2.html) · Device Function
     pub unsafe fn cmd_bind_index_buffer2(
         &self,
         command_buffer: vk::CommandBuffer,
@@ -387,41 +370,7 @@ impl Device {
     ) {
         (self
             .fp
-            .cmd_bind_index_buffer2)(command_buffer, buffer, offset, size, index_type)
-    }
-    ///vkGetImageSubresourceLayout2
-    #[inline]
-    pub unsafe fn get_image_subresource_layout2(
-        &self,
-        image: vk::Image,
-        subresource: &vk::ImageSubresource2<'_>,
-    ) -> vk::SubresourceLayout2<'_> {
-        let mut layout = MaybeUninit::uninit();
-        (self
-            .fp
-            .get_image_subresource_layout2)(
-            self.handle,
-            image,
-            subresource,
-            layout.as_mut_ptr(),
-        );
-        layout.assume_init()
-    }
-    ///vkGetDeviceImageSubresourceLayout
-    #[inline]
-    pub unsafe fn get_device_image_subresource_layout(
-        &self,
-        info: &vk::DeviceImageSubresourceInfo<'_>,
-    ) -> vk::SubresourceLayout2<'_> {
-        let mut layout = MaybeUninit::uninit();
-        (self
-            .fp
-            .get_device_image_subresource_layout)(
-            self.handle,
-            info,
-            layout.as_mut_ptr(),
-        );
-        layout.assume_init()
+            .cmd_bind_index_buffer2)(command_buffer, buffer, offset, size, index_type);
     }
 }
 pub(crate) mod items {

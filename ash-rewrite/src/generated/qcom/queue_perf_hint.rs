@@ -64,8 +64,7 @@ impl Device {
     pub fn device(&self) -> vk::Device {
         self.handle
     }
-    ///vkQueueSetPerfHintQCOM
-    #[inline]
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkQueueSetPerfHintQCOM.html) · Device Function
     pub unsafe fn queue_set_perf_hint(
         &self,
         queue: vk::Queue,

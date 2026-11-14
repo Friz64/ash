@@ -443,8 +443,7 @@ impl Device {
     pub fn device(&self) -> vk::Device {
         self.handle
     }
-    ///vkCompileDeferredNV
-    #[inline]
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCompileDeferredNV.html) · Device Function
     pub unsafe fn compile_deferred(
         &self,
         pipeline: vk::Pipeline,
@@ -452,63 +451,21 @@ impl Device {
     ) -> VkResult<()> {
         (self.fp.compile_deferred)(self.handle, pipeline, shader).result()
     }
-    ///vkCreateAccelerationStructureNV
-    #[inline]
-    pub unsafe fn create_acceleration_structure(
-        &self,
-        create_info: &vk::AccelerationStructureCreateInfoNV<'_>,
-        allocator: Option<&vk::AllocationCallbacks<'_>>,
-    ) -> VkResult<vk::AccelerationStructureNV> {
-        let mut acceleration_structure = MaybeUninit::uninit();
-        (self
-            .fp
-            .create_acceleration_structure)(
-                self.handle,
-                create_info,
-                match allocator {
-                    Some(inner) => inner,
-                    None => ptr::null_mut(),
-                },
-                acceleration_structure.as_mut_ptr(),
-            )
-            .assume_init_on_success(acceleration_structure)
-    }
-    ///vkDestroyAccelerationStructureNV
-    #[inline]
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkDestroyAccelerationStructureNV.html) · Device Function
     pub unsafe fn destroy_acceleration_structure(
         &self,
         acceleration_structure: vk::AccelerationStructureNV,
-        allocator: Option<&vk::AllocationCallbacks<'_>>,
+        allocator: &vk::AllocationCallbacks<'_>,
     ) {
         (self
             .fp
             .destroy_acceleration_structure)(
             self.handle,
             acceleration_structure,
-            match allocator {
-                Some(inner) => inner,
-                None => ptr::null_mut(),
-            },
-        )
-    }
-    ///vkGetAccelerationStructureMemoryRequirementsNV
-    #[inline]
-    pub unsafe fn get_acceleration_structure_memory_requirements(
-        &self,
-        info: &vk::AccelerationStructureMemoryRequirementsInfoNV<'_>,
-    ) -> vk::MemoryRequirements2<'_> {
-        let mut memory_requirements = MaybeUninit::uninit();
-        (self
-            .fp
-            .get_acceleration_structure_memory_requirements)(
-            self.handle,
-            info,
-            memory_requirements.as_mut_ptr(),
+            allocator,
         );
-        memory_requirements.assume_init()
     }
-    ///vkBindAccelerationStructureMemoryNV
-    #[inline]
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkBindAccelerationStructureMemoryNV.html) · Device Function
     pub unsafe fn bind_acceleration_structure_memory(
         &self,
         bind_infos: &[vk::BindAccelerationStructureMemoryInfoNV<'_>],
@@ -522,8 +479,7 @@ impl Device {
             )
             .result()
     }
-    ///vkCmdCopyAccelerationStructureNV
-    #[inline]
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdCopyAccelerationStructureNV.html) · Device Function
     pub unsafe fn cmd_copy_acceleration_structure(
         &self,
         command_buffer: vk::CommandBuffer,
@@ -531,10 +487,9 @@ impl Device {
         src: vk::AccelerationStructureNV,
         mode: vk::CopyAccelerationStructureModeKHR,
     ) {
-        (self.fp.cmd_copy_acceleration_structure)(command_buffer, dst, src, mode)
+        (self.fp.cmd_copy_acceleration_structure)(command_buffer, dst, src, mode);
     }
-    ///vkCmdWriteAccelerationStructuresPropertiesNV
-    #[inline]
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdWriteAccelerationStructuresPropertiesNV.html) · Device Function
     pub unsafe fn cmd_write_acceleration_structures_properties(
         &self,
         command_buffer: vk::CommandBuffer,
@@ -552,17 +507,16 @@ impl Device {
             query_type,
             query_pool,
             first_query,
-        )
+        );
     }
-    ///vkCmdBuildAccelerationStructureNV
-    #[inline]
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdBuildAccelerationStructureNV.html) · Device Function
     pub unsafe fn cmd_build_acceleration_structure(
         &self,
         command_buffer: vk::CommandBuffer,
         info: &vk::AccelerationStructureInfoNV<'_>,
         instance_data: vk::Buffer,
         instance_offset: vk::DeviceSize,
-        update: vk::Bool32,
+        update: bool,
         dst: vk::AccelerationStructureNV,
         src: vk::AccelerationStructureNV,
         scratch: vk::Buffer,
@@ -575,15 +529,14 @@ impl Device {
             info,
             instance_data,
             instance_offset,
-            update,
+            update as _,
             dst,
             src,
             scratch,
             scratch_offset,
-        )
+        );
     }
-    ///vkCmdTraceRaysNV
-    #[inline]
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdTraceRaysNV.html) · Device Function
     pub unsafe fn cmd_trace_rays(
         &self,
         command_buffer: vk::CommandBuffer,
@@ -620,70 +573,7 @@ impl Device {
             width,
             height,
             depth,
-        )
-    }
-    ///vkGetAccelerationStructureHandleNV
-    #[inline]
-    pub unsafe fn get_acceleration_structure_handle(
-        &self,
-        acceleration_structure: vk::AccelerationStructureNV,
-        data: &mut [u8],
-    ) -> VkResult<()> {
-        (self
-            .fp
-            .get_acceleration_structure_handle)(
-                self.handle,
-                acceleration_structure,
-                data.len() as _,
-                data.as_mut_ptr().cast(),
-            )
-            .result()
-    }
-    ///vkCreateRayTracingPipelinesNV
-    #[inline]
-    pub unsafe fn create_ray_tracing_pipelines(
-        &self,
-        pipeline_cache: vk::PipelineCache,
-        create_infos: &[vk::RayTracingPipelineCreateInfoNV<'_>],
-        allocator: Option<&vk::AllocationCallbacks<'_>>,
-        pipelines: &mut [vk::Pipeline],
-    ) -> VkResult<()> {
-        assert_eq!(create_infos.len(), pipelines.len());
-        (self
-            .fp
-            .create_ray_tracing_pipelines)(
-                self.handle,
-                pipeline_cache,
-                pipelines.len() as _,
-                create_infos.as_ptr(),
-                match allocator {
-                    Some(inner) => inner,
-                    None => ptr::null_mut(),
-                },
-                pipelines.as_mut_ptr(),
-            )
-            .result()
-    }
-    ///vkGetRayTracingShaderGroupHandlesKHR
-    #[inline]
-    pub unsafe fn get_ray_tracing_shader_group_handles(
-        &self,
-        pipeline: vk::Pipeline,
-        first_group: u32,
-        group_count: u32,
-        data: &mut [u8],
-    ) -> VkResult<()> {
-        (self
-            .fp
-            .get_ray_tracing_shader_group_handles)(
-                self.handle,
-                pipeline,
-                first_group,
-                group_count,
-                data.len() as _,
-                data.as_mut_ptr().cast(),
-            )
-            .result()
+        );
     }
 }
 pub(crate) mod items {

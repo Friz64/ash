@@ -117,8 +117,7 @@ impl Device {
     pub fn device(&self) -> vk::Device {
         self.handle
     }
-    ///vkCmdBeginConditionalRenderingEXT
-    #[inline]
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdBeginConditionalRenderingEXT.html) · Device Function
     pub unsafe fn cmd_begin_conditional_rendering(
         &self,
         command_buffer: vk::CommandBuffer,
@@ -129,15 +128,14 @@ impl Device {
             .cmd_begin_conditional_rendering)(
             command_buffer,
             conditional_rendering_begin,
-        )
+        );
     }
-    ///vkCmdEndConditionalRenderingEXT
-    #[inline]
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdEndConditionalRenderingEXT.html) · Device Function
     pub unsafe fn cmd_end_conditional_rendering(
         &self,
         command_buffer: vk::CommandBuffer,
     ) {
-        (self.fp.cmd_end_conditional_rendering)(command_buffer)
+        (self.fp.cmd_end_conditional_rendering)(command_buffer);
     }
 }
 pub(crate) mod items {

@@ -324,112 +324,7 @@ impl Device {
     pub fn device(&self) -> vk::Device {
         self.handle
     }
-    ///vkCreateDataGraphPipelinesARM
-    #[inline]
-    pub unsafe fn create_data_graph_pipelines(
-        &self,
-        deferred_operation: vk::DeferredOperationKHR,
-        pipeline_cache: vk::PipelineCache,
-        create_infos: &[vk::DataGraphPipelineCreateInfoARM<'_>],
-        allocator: Option<&vk::AllocationCallbacks<'_>>,
-        pipelines: &mut [vk::Pipeline],
-    ) -> VkResult<()> {
-        assert_eq!(create_infos.len(), pipelines.len());
-        (self
-            .fp
-            .create_data_graph_pipelines)(
-                self.handle,
-                deferred_operation,
-                pipeline_cache,
-                pipelines.len() as _,
-                create_infos.as_ptr(),
-                match allocator {
-                    Some(inner) => inner,
-                    None => ptr::null_mut(),
-                },
-                pipelines.as_mut_ptr(),
-            )
-            .result()
-    }
-    ///vkCreateDataGraphPipelineSessionARM
-    #[inline]
-    pub unsafe fn create_data_graph_pipeline_session(
-        &self,
-        create_info: &vk::DataGraphPipelineSessionCreateInfoARM<'_>,
-        allocator: Option<&vk::AllocationCallbacks<'_>>,
-    ) -> VkResult<vk::DataGraphPipelineSessionARM> {
-        let mut session = MaybeUninit::uninit();
-        (self
-            .fp
-            .create_data_graph_pipeline_session)(
-                self.handle,
-                create_info,
-                match allocator {
-                    Some(inner) => inner,
-                    None => ptr::null_mut(),
-                },
-                session.as_mut_ptr(),
-            )
-            .assume_init_on_success(session)
-    }
-    ///vkGetDataGraphPipelineSessionBindPointRequirementsARM
-    #[inline]
-    pub unsafe fn get_data_graph_pipeline_session_bind_point_requirements_len(
-        &self,
-        info: &vk::DataGraphPipelineSessionBindPointRequirementsInfoARM<'_>,
-    ) -> VkResult<usize> {
-        let mut bind_point_requirement_count = MaybeUninit::uninit();
-        (self
-            .fp
-            .get_data_graph_pipeline_session_bind_point_requirements)(
-                self.handle,
-                info,
-                bind_point_requirement_count.as_mut_ptr(),
-                ptr::null_mut(),
-            )
-            .assume_init_on_success(bind_point_requirement_count)
-            .map(|c| c as usize)
-    }
-    ///vkGetDataGraphPipelineSessionBindPointRequirementsARM
-    #[inline]
-    pub unsafe fn get_data_graph_pipeline_session_bind_point_requirements(
-        &self,
-        info: &vk::DataGraphPipelineSessionBindPointRequirementsInfoARM<'_>,
-        bind_point_requirements: &mut [vk::DataGraphPipelineSessionBindPointRequirementARM<
-            '_,
-        >],
-    ) -> VkResult<()> {
-        let mut bind_point_requirement_count = bind_point_requirements.len() as _;
-        (self
-            .fp
-            .get_data_graph_pipeline_session_bind_point_requirements)(
-                self.handle,
-                info,
-                &mut bind_point_requirement_count,
-                bind_point_requirements.as_mut_ptr(),
-            )
-            .result()?;
-        assert_eq!(bind_point_requirement_count as usize, bind_point_requirements.len());
-        Ok(())
-    }
-    ///vkGetDataGraphPipelineSessionMemoryRequirementsARM
-    #[inline]
-    pub unsafe fn get_data_graph_pipeline_session_memory_requirements(
-        &self,
-        info: &vk::DataGraphPipelineSessionMemoryRequirementsInfoARM<'_>,
-    ) -> vk::MemoryRequirements2<'_> {
-        let mut memory_requirements = MaybeUninit::uninit();
-        (self
-            .fp
-            .get_data_graph_pipeline_session_memory_requirements)(
-            self.handle,
-            info,
-            memory_requirements.as_mut_ptr(),
-        );
-        memory_requirements.assume_init()
-    }
-    ///vkBindDataGraphPipelineSessionMemoryARM
-    #[inline]
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkBindDataGraphPipelineSessionMemoryARM.html) · Device Function
     pub unsafe fn bind_data_graph_pipeline_session_memory(
         &self,
         bind_infos: &[vk::BindDataGraphPipelineSessionMemoryInfoARM<'_>],
@@ -443,74 +338,22 @@ impl Device {
             )
             .result()
     }
-    ///vkDestroyDataGraphPipelineSessionARM
-    #[inline]
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkDestroyDataGraphPipelineSessionARM.html) · Device Function
     pub unsafe fn destroy_data_graph_pipeline_session(
         &self,
         session: vk::DataGraphPipelineSessionARM,
-        allocator: Option<&vk::AllocationCallbacks<'_>>,
+        allocator: &vk::AllocationCallbacks<'_>,
     ) {
-        (self
-            .fp
-            .destroy_data_graph_pipeline_session)(
-            self.handle,
-            session,
-            match allocator {
-                Some(inner) => inner,
-                None => ptr::null_mut(),
-            },
-        )
+        (self.fp.destroy_data_graph_pipeline_session)(self.handle, session, allocator);
     }
-    ///vkCmdDispatchDataGraphARM
-    #[inline]
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdDispatchDataGraphARM.html) · Device Function
     pub unsafe fn cmd_dispatch_data_graph(
         &self,
         command_buffer: vk::CommandBuffer,
         session: vk::DataGraphPipelineSessionARM,
-        info: Option<&vk::DataGraphPipelineDispatchInfoARM<'_>>,
+        info: &vk::DataGraphPipelineDispatchInfoARM<'_>,
     ) {
-        (self
-            .fp
-            .cmd_dispatch_data_graph)(
-            command_buffer,
-            session,
-            match info {
-                Some(inner) => inner,
-                None => ptr::null_mut(),
-            },
-        )
-    }
-    ///vkGetDataGraphPipelineAvailablePropertiesARM
-    #[inline]
-    pub unsafe fn get_data_graph_pipeline_available_properties(
-        &self,
-        pipeline_info: &vk::DataGraphPipelineInfoARM<'_>,
-    ) -> VkResult<Vec<vk::DataGraphPipelinePropertyARM>> {
-        crate::read_into_uninitialized_vector(|properties_count, properties| (self
-            .fp
-            .get_data_graph_pipeline_available_properties)(
-            self.handle,
-            pipeline_info,
-            properties_count,
-            properties,
-        ))
-    }
-    ///vkGetDataGraphPipelinePropertiesARM
-    #[inline]
-    pub unsafe fn get_data_graph_pipeline_properties(
-        &self,
-        pipeline_info: &vk::DataGraphPipelineInfoARM<'_>,
-        properties: &mut [vk::DataGraphPipelinePropertyQueryResultARM<'_>],
-    ) -> VkResult<()> {
-        (self
-            .fp
-            .get_data_graph_pipeline_properties)(
-                self.handle,
-                pipeline_info,
-                properties.len() as _,
-                properties.as_mut_ptr(),
-            )
-            .result()
+        (self.fp.cmd_dispatch_data_graph)(command_buffer, session, info);
     }
 }
 #[derive(Clone)]
@@ -588,71 +431,6 @@ impl Instance {
     #[inline]
     pub fn instance(&self) -> vk::Instance {
         self.handle
-    }
-    ///vkGetPhysicalDeviceQueueFamilyDataGraphPropertiesARM
-    #[inline]
-    pub unsafe fn get_physical_device_queue_family_data_graph_properties_len(
-        &self,
-        physical_device: vk::PhysicalDevice,
-        queue_family_index: u32,
-    ) -> VkResult<usize> {
-        let mut queue_family_data_graph_property_count = MaybeUninit::uninit();
-        (self
-            .fp
-            .get_physical_device_queue_family_data_graph_properties)(
-                physical_device,
-                queue_family_index,
-                queue_family_data_graph_property_count.as_mut_ptr(),
-                ptr::null_mut(),
-            )
-            .assume_init_on_success(queue_family_data_graph_property_count)
-            .map(|c| c as usize)
-    }
-    ///vkGetPhysicalDeviceQueueFamilyDataGraphPropertiesARM
-    #[inline]
-    pub unsafe fn get_physical_device_queue_family_data_graph_properties(
-        &self,
-        physical_device: vk::PhysicalDevice,
-        queue_family_index: u32,
-        queue_family_data_graph_properties: &mut [vk::QueueFamilyDataGraphPropertiesARM<
-            '_,
-        >],
-    ) -> VkResult<()> {
-        let mut queue_family_data_graph_property_count = queue_family_data_graph_properties
-            .len() as _;
-        (self
-            .fp
-            .get_physical_device_queue_family_data_graph_properties)(
-                physical_device,
-                queue_family_index,
-                &mut queue_family_data_graph_property_count,
-                queue_family_data_graph_properties.as_mut_ptr(),
-            )
-            .result()?;
-        assert_eq!(
-            queue_family_data_graph_property_count as usize,
-            queue_family_data_graph_properties.len()
-        );
-        Ok(())
-    }
-    ///vkGetPhysicalDeviceQueueFamilyDataGraphProcessingEnginePropertiesARM
-    #[inline]
-    pub unsafe fn get_physical_device_queue_family_data_graph_processing_engine_properties(
-        &self,
-        physical_device: vk::PhysicalDevice,
-        queue_family_data_graph_processing_engine_info: &vk::PhysicalDeviceQueueFamilyDataGraphProcessingEngineInfoARM<
-            '_,
-        >,
-    ) -> vk::QueueFamilyDataGraphProcessingEnginePropertiesARM<'_> {
-        let mut queue_family_data_graph_processing_engine_properties = MaybeUninit::uninit();
-        (self
-            .fp
-            .get_physical_device_queue_family_data_graph_processing_engine_properties)(
-            physical_device,
-            queue_family_data_graph_processing_engine_info,
-            queue_family_data_graph_processing_engine_properties.as_mut_ptr(),
-        );
-        queue_family_data_graph_processing_engine_properties.assume_init()
     }
 }
 pub(crate) mod items {

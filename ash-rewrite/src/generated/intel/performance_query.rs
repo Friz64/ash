@@ -197,21 +197,18 @@ impl Device {
     pub fn device(&self) -> vk::Device {
         self.handle
     }
-    ///vkInitializePerformanceApiINTEL
-    #[inline]
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkInitializePerformanceApiINTEL.html) · Device Function
     pub unsafe fn initialize_performance_api(
         &self,
         initialize_info: &vk::InitializePerformanceApiInfoINTEL<'_>,
     ) -> VkResult<()> {
         (self.fp.initialize_performance_api)(self.handle, initialize_info).result()
     }
-    ///vkUninitializePerformanceApiINTEL
-    #[inline]
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkUninitializePerformanceApiINTEL.html) · Device Function
     pub unsafe fn uninitialize_performance_api(&self) {
-        (self.fp.uninitialize_performance_api)(self.handle)
+        (self.fp.uninitialize_performance_api)(self.handle);
     }
-    ///vkCmdSetPerformanceMarkerINTEL
-    #[inline]
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdSetPerformanceMarkerINTEL.html) · Device Function
     pub unsafe fn cmd_set_performance_marker(
         &self,
         command_buffer: vk::CommandBuffer,
@@ -219,8 +216,7 @@ impl Device {
     ) -> VkResult<()> {
         (self.fp.cmd_set_performance_marker)(command_buffer, marker_info).result()
     }
-    ///vkCmdSetPerformanceStreamMarkerINTEL
-    #[inline]
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdSetPerformanceStreamMarkerINTEL.html) · Device Function
     pub unsafe fn cmd_set_performance_stream_marker(
         &self,
         command_buffer: vk::CommandBuffer,
@@ -228,8 +224,7 @@ impl Device {
     ) -> VkResult<()> {
         (self.fp.cmd_set_performance_stream_marker)(command_buffer, marker_info).result()
     }
-    ///vkCmdSetPerformanceOverrideINTEL
-    #[inline]
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdSetPerformanceOverrideINTEL.html) · Device Function
     pub unsafe fn cmd_set_performance_override(
         &self,
         command_buffer: vk::CommandBuffer,
@@ -237,48 +232,20 @@ impl Device {
     ) -> VkResult<()> {
         (self.fp.cmd_set_performance_override)(command_buffer, override_info).result()
     }
-    ///vkAcquirePerformanceConfigurationINTEL
-    #[inline]
-    pub unsafe fn acquire_performance_configuration(
-        &self,
-        acquire_info: &vk::PerformanceConfigurationAcquireInfoINTEL<'_>,
-    ) -> VkResult<vk::PerformanceConfigurationINTEL> {
-        let mut configuration = MaybeUninit::uninit();
-        (self
-            .fp
-            .acquire_performance_configuration)(
-                self.handle,
-                acquire_info,
-                configuration.as_mut_ptr(),
-            )
-            .assume_init_on_success(configuration)
-    }
-    ///vkReleasePerformanceConfigurationINTEL
-    #[inline]
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkReleasePerformanceConfigurationINTEL.html) · Device Function
     pub unsafe fn release_performance_configuration(
         &self,
         configuration: vk::PerformanceConfigurationINTEL,
     ) -> VkResult<()> {
         (self.fp.release_performance_configuration)(self.handle, configuration).result()
     }
-    ///vkQueueSetPerformanceConfigurationINTEL
-    #[inline]
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkQueueSetPerformanceConfigurationINTEL.html) · Device Function
     pub unsafe fn queue_set_performance_configuration(
         &self,
         queue: vk::Queue,
         configuration: vk::PerformanceConfigurationINTEL,
     ) -> VkResult<()> {
         (self.fp.queue_set_performance_configuration)(queue, configuration).result()
-    }
-    ///vkGetPerformanceParameterINTEL
-    #[inline]
-    pub unsafe fn get_performance_parameter(
-        &self,
-        parameter: vk::PerformanceParameterTypeINTEL,
-    ) -> VkResult<vk::PerformanceValueINTEL> {
-        let mut value = MaybeUninit::uninit();
-        (self.fp.get_performance_parameter)(self.handle, parameter, value.as_mut_ptr())
-            .assume_init_on_success(value)
     }
 }
 pub(crate) mod items {

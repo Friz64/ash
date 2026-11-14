@@ -57,27 +57,6 @@ impl Instance {
     pub fn instance(&self) -> vk::Instance {
         self.handle
     }
-    ///vkCreateHeadlessSurfaceEXT
-    #[inline]
-    pub unsafe fn create_headless_surface(
-        &self,
-        create_info: &vk::HeadlessSurfaceCreateInfoEXT<'_>,
-        allocator: Option<&vk::AllocationCallbacks<'_>>,
-    ) -> VkResult<vk::SurfaceKHR> {
-        let mut surface = MaybeUninit::uninit();
-        (self
-            .fp
-            .create_headless_surface)(
-                self.handle,
-                create_info,
-                match allocator {
-                    Some(inner) => inner,
-                    None => ptr::null_mut(),
-                },
-                surface.as_mut_ptr(),
-            )
-            .assume_init_on_success(surface)
-    }
 }
 pub(crate) mod items {
     use crate::internal_prelude::*;

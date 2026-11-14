@@ -133,102 +133,29 @@ impl Device {
     pub fn device(&self) -> vk::Device {
         self.handle
     }
-    ///vkCreateCudaModuleNV
-    #[inline]
-    pub unsafe fn create_cuda_module(
-        &self,
-        create_info: &vk::CudaModuleCreateInfoNV<'_>,
-        allocator: Option<&vk::AllocationCallbacks<'_>>,
-    ) -> VkResult<vk::CudaModuleNV> {
-        let mut module = MaybeUninit::uninit();
-        (self
-            .fp
-            .create_cuda_module)(
-                self.handle,
-                create_info,
-                match allocator {
-                    Some(inner) => inner,
-                    None => ptr::null_mut(),
-                },
-                module.as_mut_ptr(),
-            )
-            .assume_init_on_success(module)
-    }
-    ///vkGetCudaModuleCacheNV
-    #[inline]
-    pub unsafe fn get_cuda_module_cache(
-        &self,
-        module: vk::CudaModuleNV,
-    ) -> VkResult<Vec<ffi::c_void>> {
-        crate::read_into_uninitialized_vector(|cache_size, cache_data| (self
-            .fp
-            .get_cuda_module_cache)(self.handle, module, cache_size, cache_data))
-    }
-    ///vkCreateCudaFunctionNV
-    #[inline]
-    pub unsafe fn create_cuda_function(
-        &self,
-        create_info: &vk::CudaFunctionCreateInfoNV<'_>,
-        allocator: Option<&vk::AllocationCallbacks<'_>>,
-    ) -> VkResult<vk::CudaFunctionNV> {
-        let mut function = MaybeUninit::uninit();
-        (self
-            .fp
-            .create_cuda_function)(
-                self.handle,
-                create_info,
-                match allocator {
-                    Some(inner) => inner,
-                    None => ptr::null_mut(),
-                },
-                function.as_mut_ptr(),
-            )
-            .assume_init_on_success(function)
-    }
-    ///vkDestroyCudaModuleNV
-    #[inline]
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkDestroyCudaModuleNV.html) · Device Function
     pub unsafe fn destroy_cuda_module(
         &self,
         module: vk::CudaModuleNV,
-        allocator: Option<&vk::AllocationCallbacks<'_>>,
+        allocator: &vk::AllocationCallbacks<'_>,
     ) {
-        (self
-            .fp
-            .destroy_cuda_module)(
-            self.handle,
-            module,
-            match allocator {
-                Some(inner) => inner,
-                None => ptr::null_mut(),
-            },
-        )
+        (self.fp.destroy_cuda_module)(self.handle, module, allocator);
     }
-    ///vkDestroyCudaFunctionNV
-    #[inline]
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkDestroyCudaFunctionNV.html) · Device Function
     pub unsafe fn destroy_cuda_function(
         &self,
         function: vk::CudaFunctionNV,
-        allocator: Option<&vk::AllocationCallbacks<'_>>,
+        allocator: &vk::AllocationCallbacks<'_>,
     ) {
-        (self
-            .fp
-            .destroy_cuda_function)(
-            self.handle,
-            function,
-            match allocator {
-                Some(inner) => inner,
-                None => ptr::null_mut(),
-            },
-        )
+        (self.fp.destroy_cuda_function)(self.handle, function, allocator);
     }
-    ///vkCmdCudaLaunchKernelNV
-    #[inline]
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdCudaLaunchKernelNV.html) · Device Function
     pub unsafe fn cmd_cuda_launch_kernel(
         &self,
         command_buffer: vk::CommandBuffer,
         launch_info: &vk::CudaLaunchInfoNV<'_>,
     ) {
-        (self.fp.cmd_cuda_launch_kernel)(command_buffer, launch_info)
+        (self.fp.cmd_cuda_launch_kernel)(command_buffer, launch_info);
     }
 }
 pub(crate) mod items {

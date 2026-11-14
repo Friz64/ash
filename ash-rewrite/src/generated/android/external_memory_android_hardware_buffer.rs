@@ -94,34 +94,6 @@ impl Device {
     pub fn device(&self) -> vk::Device {
         self.handle
     }
-    ///vkGetAndroidHardwareBufferPropertiesANDROID
-    #[inline]
-    pub unsafe fn get_android_hardware_buffer_properties(
-        &self,
-        buffer: &vk::AHardwareBuffer,
-    ) -> VkResult<vk::AndroidHardwareBufferPropertiesANDROID<'_>> {
-        let mut properties = MaybeUninit::uninit();
-        (self
-            .fp
-            .get_android_hardware_buffer_properties)(
-                self.handle,
-                buffer,
-                properties.as_mut_ptr(),
-            )
-            .assume_init_on_success(properties)
-    }
-    ///vkGetMemoryAndroidHardwareBufferANDROID
-    #[inline]
-    pub unsafe fn get_memory_android_hardware_buffer(
-        &self,
-        info: &vk::MemoryGetAndroidHardwareBufferInfoANDROID<'_>,
-    ) -> VkResult<*mut vk::AHardwareBuffer> {
-        let mut buffer = MaybeUninit::uninit();
-        (self
-            .fp
-            .get_memory_android_hardware_buffer)(self.handle, info, buffer.as_mut_ptr())
-            .assume_init_on_success(buffer)
-    }
 }
 pub(crate) mod items {
     use crate::internal_prelude::*;

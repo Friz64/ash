@@ -103,23 +103,6 @@ impl Instance {
     pub fn instance(&self) -> vk::Instance {
         self.handle
     }
-    ///vkGetPhysicalDeviceExternalSemaphoreProperties
-    #[inline]
-    pub unsafe fn get_physical_device_external_semaphore_properties(
-        &self,
-        physical_device: vk::PhysicalDevice,
-        external_semaphore_info: &vk::PhysicalDeviceExternalSemaphoreInfo<'_>,
-    ) -> vk::ExternalSemaphoreProperties<'_> {
-        let mut external_semaphore_properties = MaybeUninit::uninit();
-        (self
-            .fp
-            .get_physical_device_external_semaphore_properties)(
-            physical_device,
-            external_semaphore_info,
-            external_semaphore_properties.as_mut_ptr(),
-        );
-        external_semaphore_properties.assume_init()
-    }
 }
 pub(crate) mod items {
     use crate::internal_prelude::*;

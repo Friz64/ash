@@ -79,24 +79,6 @@ impl Device {
     pub fn device(&self) -> vk::Device {
         self.handle
     }
-    ///vkGetMemoryHostPointerPropertiesEXT
-    #[inline]
-    pub unsafe fn get_memory_host_pointer_properties(
-        &self,
-        handle_type: vk::ExternalMemoryHandleTypeFlagBits,
-        host_pointer: &ffi::c_void,
-    ) -> VkResult<vk::MemoryHostPointerPropertiesEXT<'_>> {
-        let mut memory_host_pointer_properties = MaybeUninit::uninit();
-        (self
-            .fp
-            .get_memory_host_pointer_properties)(
-                self.handle,
-                handle_type,
-                host_pointer,
-                memory_host_pointer_properties.as_mut_ptr(),
-            )
-            .assume_init_on_success(memory_host_pointer_properties)
-    }
 }
 pub(crate) mod items {
     use crate::internal_prelude::*;

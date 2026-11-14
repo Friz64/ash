@@ -97,18 +97,7 @@ impl Device {
     pub fn device(&self) -> vk::Device {
         self.handle
     }
-    ///vkGetSemaphoreCounterValue
-    #[inline]
-    pub unsafe fn get_semaphore_counter_value(
-        &self,
-        semaphore: vk::Semaphore,
-    ) -> VkResult<u64> {
-        let mut value = MaybeUninit::uninit();
-        (self.fp.get_semaphore_counter_value)(self.handle, semaphore, value.as_mut_ptr())
-            .assume_init_on_success(value)
-    }
-    ///vkWaitSemaphores
-    #[inline]
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkWaitSemaphores.html) · Device Function
     pub unsafe fn wait_semaphores(
         &self,
         wait_info: &vk::SemaphoreWaitInfo<'_>,
@@ -116,8 +105,7 @@ impl Device {
     ) -> VkResult<()> {
         (self.fp.wait_semaphores)(self.handle, wait_info, timeout).result()
     }
-    ///vkSignalSemaphore
-    #[inline]
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkSignalSemaphore.html) · Device Function
     pub unsafe fn signal_semaphore(
         &self,
         signal_info: &vk::SemaphoreSignalInfo<'_>,

@@ -104,57 +104,15 @@ impl Device {
     pub fn device(&self) -> vk::Device {
         self.handle
     }
-    ///vkCreateValidationCacheEXT
-    #[inline]
-    pub unsafe fn create_validation_cache(
-        &self,
-        create_info: &vk::ValidationCacheCreateInfoEXT<'_>,
-        allocator: Option<&vk::AllocationCallbacks<'_>>,
-    ) -> VkResult<vk::ValidationCacheEXT> {
-        let mut validation_cache = MaybeUninit::uninit();
-        (self
-            .fp
-            .create_validation_cache)(
-                self.handle,
-                create_info,
-                match allocator {
-                    Some(inner) => inner,
-                    None => ptr::null_mut(),
-                },
-                validation_cache.as_mut_ptr(),
-            )
-            .assume_init_on_success(validation_cache)
-    }
-    ///vkDestroyValidationCacheEXT
-    #[inline]
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkDestroyValidationCacheEXT.html) · Device Function
     pub unsafe fn destroy_validation_cache(
         &self,
         validation_cache: vk::ValidationCacheEXT,
-        allocator: Option<&vk::AllocationCallbacks<'_>>,
+        allocator: &vk::AllocationCallbacks<'_>,
     ) {
-        (self
-            .fp
-            .destroy_validation_cache)(
-            self.handle,
-            validation_cache,
-            match allocator {
-                Some(inner) => inner,
-                None => ptr::null_mut(),
-            },
-        )
+        (self.fp.destroy_validation_cache)(self.handle, validation_cache, allocator);
     }
-    ///vkGetValidationCacheDataEXT
-    #[inline]
-    pub unsafe fn get_validation_cache_data(
-        &self,
-        validation_cache: vk::ValidationCacheEXT,
-    ) -> VkResult<Vec<ffi::c_void>> {
-        crate::read_into_uninitialized_vector(|data_size, data| (self
-            .fp
-            .get_validation_cache_data)(self.handle, validation_cache, data_size, data))
-    }
-    ///vkMergeValidationCachesEXT
-    #[inline]
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkMergeValidationCachesEXT.html) · Device Function
     pub unsafe fn merge_validation_caches(
         &self,
         dst_cache: vk::ValidationCacheEXT,

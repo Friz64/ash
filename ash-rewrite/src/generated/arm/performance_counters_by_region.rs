@@ -76,9 +76,6 @@ impl Instance {
     pub fn instance(&self) -> vk::Instance {
         self.handle
     }
-    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkEnumeratePhysicalDeviceQueueFamilyPerformanceCountersByRegionARM.html) · Instance Function
-    /// wip
-    pub unsafe fn enumerate_physical_device_queue_family_performance_counters_by_region() {}
 }
 pub(crate) mod items {
     use crate::internal_prelude::*;

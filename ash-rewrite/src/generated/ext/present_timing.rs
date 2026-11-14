@@ -182,8 +182,7 @@ impl Device {
     pub fn device(&self) -> vk::Device {
         self.handle
     }
-    ///vkSetSwapchainPresentTimingQueueSizeEXT
-    #[inline]
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkSetSwapchainPresentTimingQueueSizeEXT.html) · Device Function
     pub unsafe fn set_swapchain_present_timing_queue_size(
         &self,
         swapchain: vk::SwapchainKHR,
@@ -191,58 +190,6 @@ impl Device {
     ) -> VkResult<()> {
         (self.fp.set_swapchain_present_timing_queue_size)(self.handle, swapchain, size)
             .result()
-    }
-    ///vkGetSwapchainTimingPropertiesEXT
-    #[inline]
-    pub unsafe fn get_swapchain_timing_properties(
-        &self,
-        swapchain: vk::SwapchainKHR,
-        swapchain_timing_properties: &mut vk::SwapchainTimingPropertiesEXT<'_>,
-        swapchain_timing_properties_counter: &mut u64,
-    ) -> VkResult<()> {
-        (self
-            .fp
-            .get_swapchain_timing_properties)(
-                self.handle,
-                swapchain,
-                swapchain_timing_properties,
-                swapchain_timing_properties_counter,
-            )
-            .result()
-    }
-    ///vkGetSwapchainTimeDomainPropertiesEXT
-    #[inline]
-    pub unsafe fn get_swapchain_time_domain_properties(
-        &self,
-        swapchain: vk::SwapchainKHR,
-        swapchain_time_domain_properties: &mut vk::SwapchainTimeDomainPropertiesEXT<'_>,
-        time_domains_counter: &mut u64,
-    ) -> VkResult<()> {
-        (self
-            .fp
-            .get_swapchain_time_domain_properties)(
-                self.handle,
-                swapchain,
-                swapchain_time_domain_properties,
-                time_domains_counter,
-            )
-            .result()
-    }
-    ///vkGetPastPresentationTimingEXT
-    #[inline]
-    pub unsafe fn get_past_presentation_timing(
-        &self,
-        past_presentation_timing_info: &vk::PastPresentationTimingInfoEXT<'_>,
-    ) -> VkResult<vk::PastPresentationTimingPropertiesEXT<'_>> {
-        let mut past_presentation_timing_properties = MaybeUninit::uninit();
-        (self
-            .fp
-            .get_past_presentation_timing)(
-                self.handle,
-                past_presentation_timing_info,
-                past_presentation_timing_properties.as_mut_ptr(),
-            )
-            .assume_init_on_success(past_presentation_timing_properties)
     }
 }
 pub(crate) mod items {

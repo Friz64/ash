@@ -324,127 +324,65 @@ impl Device {
     pub fn device(&self) -> vk::Device {
         self.handle
     }
-    ///vkWriteSamplerDescriptorsEXT
-    #[inline]
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkWriteSamplerDescriptorsEXT.html) · Device Function
     pub unsafe fn write_sampler_descriptors(
         &self,
         samplers: &[vk::SamplerCreateInfo<'_>],
         descriptors: &[vk::HostAddressRangeEXT<'_>],
     ) -> VkResult<()> {
-        assert_eq!(samplers.len(), descriptors.len());
         (self
             .fp
             .write_sampler_descriptors)(
                 self.handle,
-                descriptors.len() as _,
+                samplers.len() as _,
                 samplers.as_ptr(),
                 descriptors.as_ptr(),
             )
             .result()
     }
-    ///vkWriteResourceDescriptorsEXT
-    #[inline]
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkWriteResourceDescriptorsEXT.html) · Device Function
     pub unsafe fn write_resource_descriptors(
         &self,
         resources: &[vk::ResourceDescriptorInfoEXT<'_>],
         descriptors: &[vk::HostAddressRangeEXT<'_>],
     ) -> VkResult<()> {
-        assert_eq!(resources.len(), descriptors.len());
         (self
             .fp
             .write_resource_descriptors)(
                 self.handle,
-                descriptors.len() as _,
+                resources.len() as _,
                 resources.as_ptr(),
                 descriptors.as_ptr(),
             )
             .result()
     }
-    ///vkCmdBindSamplerHeapEXT
-    #[inline]
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdBindSamplerHeapEXT.html) · Device Function
     pub unsafe fn cmd_bind_sampler_heap(
         &self,
         command_buffer: vk::CommandBuffer,
         bind_info: &vk::BindHeapInfoEXT<'_>,
     ) {
-        (self.fp.cmd_bind_sampler_heap)(command_buffer, bind_info)
+        (self.fp.cmd_bind_sampler_heap)(command_buffer, bind_info);
     }
-    ///vkCmdBindResourceHeapEXT
-    #[inline]
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdBindResourceHeapEXT.html) · Device Function
     pub unsafe fn cmd_bind_resource_heap(
         &self,
         command_buffer: vk::CommandBuffer,
         bind_info: &vk::BindHeapInfoEXT<'_>,
     ) {
-        (self.fp.cmd_bind_resource_heap)(command_buffer, bind_info)
+        (self.fp.cmd_bind_resource_heap)(command_buffer, bind_info);
     }
-    ///vkCmdPushDataEXT
-    #[inline]
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdPushDataEXT.html) · Device Function
     pub unsafe fn cmd_push_data(
         &self,
         command_buffer: vk::CommandBuffer,
         push_data_info: &vk::PushDataInfoEXT<'_>,
     ) {
-        (self.fp.cmd_push_data)(command_buffer, push_data_info)
+        (self.fp.cmd_push_data)(command_buffer, push_data_info);
     }
-    ///vkRegisterCustomBorderColorEXT
-    #[inline]
-    pub unsafe fn register_custom_border_color(
-        &self,
-        border_color: &vk::SamplerCustomBorderColorCreateInfoEXT<'_>,
-        request_index: vk::Bool32,
-    ) -> VkResult<u32> {
-        let mut index = MaybeUninit::uninit();
-        (self
-            .fp
-            .register_custom_border_color)(
-                self.handle,
-                border_color,
-                request_index,
-                index.as_mut_ptr(),
-            )
-            .assume_init_on_success(index)
-    }
-    ///vkUnregisterCustomBorderColorEXT
-    #[inline]
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkUnregisterCustomBorderColorEXT.html) · Device Function
     pub unsafe fn unregister_custom_border_color(&self, index: u32) {
-        (self.fp.unregister_custom_border_color)(self.handle, index)
-    }
-    ///vkGetImageOpaqueCaptureDataEXT
-    #[inline]
-    pub unsafe fn get_image_opaque_capture_data(
-        &self,
-        images: &[vk::Image],
-        datas: &mut [vk::HostAddressRangeEXT<'_>],
-    ) -> VkResult<()> {
-        assert_eq!(images.len(), datas.len());
-        (self
-            .fp
-            .get_image_opaque_capture_data)(
-                self.handle,
-                datas.len() as _,
-                images.as_ptr(),
-                datas.as_mut_ptr(),
-            )
-            .result()
-    }
-    ///vkGetTensorOpaqueCaptureDataARM
-    #[inline]
-    pub unsafe fn get_tensor_opaque_capture_data(
-        &self,
-        tensors: &[vk::TensorARM],
-        datas: &mut [vk::HostAddressRangeEXT<'_>],
-    ) -> VkResult<()> {
-        assert_eq!(tensors.len(), datas.len());
-        (self
-            .fp
-            .get_tensor_opaque_capture_data)(
-                self.handle,
-                datas.len() as _,
-                tensors.as_ptr(),
-                datas.as_mut_ptr(),
-            )
-            .result()
+        (self.fp.unregister_custom_border_color)(self.handle, index);
     }
 }
 #[derive(Clone)]
@@ -497,14 +435,13 @@ impl Instance {
     pub fn instance(&self) -> vk::Instance {
         self.handle
     }
-    ///vkGetPhysicalDeviceDescriptorSizeEXT
-    #[inline]
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkGetPhysicalDeviceDescriptorSizeEXT.html) · Instance Function
     pub unsafe fn get_physical_device_descriptor_size(
         &self,
         physical_device: vk::PhysicalDevice,
         descriptor_type: vk::DescriptorType,
-    ) -> vk::DeviceSize {
-        (self.fp.get_physical_device_descriptor_size)(physical_device, descriptor_type)
+    ) {
+        (self.fp.get_physical_device_descriptor_size)(physical_device, descriptor_type);
     }
 }
 pub(crate) mod items {

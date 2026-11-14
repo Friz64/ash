@@ -96,26 +96,9 @@ impl Device {
     pub fn device(&self) -> vk::Device {
         self.handle
     }
-    ///vkGetDeviceSubpassShadingMaxWorkgroupSizeHUAWEI
-    #[inline]
-    pub unsafe fn get_device_subpass_shading_max_workgroup_size(
-        &self,
-        renderpass: vk::RenderPass,
-    ) -> VkResult<vk::Extent2D> {
-        let mut max_workgroup_size = MaybeUninit::uninit();
-        (self
-            .fp
-            .get_device_subpass_shading_max_workgroup_size)(
-                self.handle,
-                renderpass,
-                max_workgroup_size.as_mut_ptr(),
-            )
-            .assume_init_on_success(max_workgroup_size)
-    }
-    ///vkCmdSubpassShadingHUAWEI
-    #[inline]
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdSubpassShadingHUAWEI.html) · Device Function
     pub unsafe fn cmd_subpass_shading(&self, command_buffer: vk::CommandBuffer) {
-        (self.fp.cmd_subpass_shading)(command_buffer)
+        (self.fp.cmd_subpass_shading)(command_buffer);
     }
 }
 pub(crate) mod items {

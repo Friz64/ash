@@ -63,14 +63,13 @@ impl Device {
     pub fn device(&self) -> vk::Device {
         self.handle
     }
-    ///vkCmdSetDepthBias2EXT
-    #[inline]
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdSetDepthBias2EXT.html) · Device Function
     pub unsafe fn cmd_set_depth_bias2(
         &self,
         command_buffer: vk::CommandBuffer,
         depth_bias_info: &vk::DepthBiasInfoEXT<'_>,
     ) {
-        (self.fp.cmd_set_depth_bias2)(command_buffer, depth_bias_info)
+        (self.fp.cmd_set_depth_bias2)(command_buffer, depth_bias_info);
     }
 }
 pub(crate) mod items {

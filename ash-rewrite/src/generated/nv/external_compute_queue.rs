@@ -86,44 +86,13 @@ impl Device {
     pub fn device(&self) -> vk::Device {
         self.handle
     }
-    ///vkCreateExternalComputeQueueNV
-    #[inline]
-    pub unsafe fn create_external_compute_queue(
-        &self,
-        create_info: &vk::ExternalComputeQueueCreateInfoNV<'_>,
-        allocator: Option<&vk::AllocationCallbacks<'_>>,
-    ) -> VkResult<vk::ExternalComputeQueueNV> {
-        let mut external_queue = MaybeUninit::uninit();
-        (self
-            .fp
-            .create_external_compute_queue)(
-                self.handle,
-                create_info,
-                match allocator {
-                    Some(inner) => inner,
-                    None => ptr::null_mut(),
-                },
-                external_queue.as_mut_ptr(),
-            )
-            .assume_init_on_success(external_queue)
-    }
-    ///vkDestroyExternalComputeQueueNV
-    #[inline]
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkDestroyExternalComputeQueueNV.html) · Device Function
     pub unsafe fn destroy_external_compute_queue(
         &self,
         external_queue: vk::ExternalComputeQueueNV,
-        allocator: Option<&vk::AllocationCallbacks<'_>>,
+        allocator: &vk::AllocationCallbacks<'_>,
     ) {
-        (self
-            .fp
-            .destroy_external_compute_queue)(
-            self.handle,
-            external_queue,
-            match allocator {
-                Some(inner) => inner,
-                None => ptr::null_mut(),
-            },
-        )
+        (self.fp.destroy_external_compute_queue)(self.handle, external_queue, allocator);
     }
 }
 #[derive(Clone)]

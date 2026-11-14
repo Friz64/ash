@@ -230,7 +230,7 @@ impl Code for Struct {
                     Some(BuilderRule::Replace(methods)) => methods.clone(),
                     rule @ (Some(BuilderRule::Keep) | None) => {
                         let keep = matches!(rule, Some(BuilderRule::Keep));
-                        regular_builder(&octx, self, member, &lifetime, keep)
+                        regular_builder(&octx, member, &lifetime, keep)
                     }
                 };
 
@@ -285,7 +285,6 @@ impl Code for Struct {
 
 fn regular_builder(
     octx: &OutputContext,
-    structure: &Struct,
     member: &RegularMember,
     lifetime: &Lifetime,
     keep: bool,
@@ -293,22 +292,8 @@ fn regular_builder(
     let field_name = octx.variable_token(member.decl.name);
     let method_name = method_name_token(member);
 
-    if !keep && {
-        // does any member have its length defined by this member?
-        structure.members.iter().any(|any_member| {
-            if let Member::Regular(RegularMember { decl: _, lengths }) = any_member {
-                lengths.iter().any(|length| {
-                    if let Length::DefinedByMember(defined_by_member) = length {
-                        defined_by_member == &member.decl.name
-                    } else {
-                        false
-                    }
-                })
-            } else {
-                false
-            }
-        })
-    } {
+    let is_length_method = !member.length_of.is_empty();
+    if !keep && is_length_method {
         return vec![];
     }
 
@@ -393,7 +378,8 @@ fn regular_builder(
         {
             let length_name = octx.variable_token(length_member);
             let slice_ty = array_element_ty(element_ty);
-            let slice = RustTy::Slice(Box::new(slice_ty), Mutability::Not, None).tokens(octx, None);
+            let slice =
+                RustTy::ArrayRef(Box::new(slice_ty), Mutability::Not, None).tokens(octx, None);
             vec![
                 Function {
                     inputs: quote! { mut self, #method_name: #slice },
@@ -435,7 +421,7 @@ fn regular_builder(
 
             let len_name = octx.variable_token(length_member);
             let slice =
-                RustTy::Slice(Box::new(slice_ty), mutability, None).tokens(octx, Some(lifetime));
+                RustTy::ArrayRef(Box::new(slice_ty), mutability, None).tokens(octx, Some(lifetime));
             vec![Function {
                 inputs: quote! { mut self, #method_name: #slice },
                 output: quote! { -> Self },

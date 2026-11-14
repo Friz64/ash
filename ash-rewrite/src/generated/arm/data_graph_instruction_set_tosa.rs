@@ -84,25 +84,6 @@ impl Instance {
     pub fn instance(&self) -> vk::Instance {
         self.handle
     }
-    ///vkGetPhysicalDeviceQueueFamilyDataGraphEngineOperationPropertiesARM
-    #[inline]
-    pub unsafe fn get_physical_device_queue_family_data_graph_engine_operation_properties(
-        &self,
-        physical_device: vk::PhysicalDevice,
-        queue_family_index: u32,
-        queue_family_data_graph_properties: &vk::QueueFamilyDataGraphPropertiesARM<'_>,
-    ) -> VkResult<vk::BaseOutStructure<'_>> {
-        let mut properties = MaybeUninit::uninit();
-        (self
-            .fp
-            .get_physical_device_queue_family_data_graph_engine_operation_properties)(
-                physical_device,
-                queue_family_index,
-                queue_family_data_graph_properties,
-                properties.as_mut_ptr(),
-            )
-            .assume_init_on_success(properties)
-    }
 }
 pub(crate) mod items {
     use crate::internal_prelude::*;

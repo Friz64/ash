@@ -65,8 +65,7 @@ impl Instance {
     pub fn instance(&self) -> vk::Instance {
         self.handle
     }
-    ///vkAcquireDrmDisplayEXT
-    #[inline]
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkAcquireDrmDisplayEXT.html) · Instance Function
     pub unsafe fn acquire_drm_display(
         &self,
         physical_device: vk::PhysicalDevice,
@@ -74,25 +73,6 @@ impl Instance {
         display: vk::DisplayKHR,
     ) -> VkResult<()> {
         (self.fp.acquire_drm_display)(physical_device, drm_fd, display).result()
-    }
-    ///vkGetDrmDisplayEXT
-    #[inline]
-    pub unsafe fn get_drm_display(
-        &self,
-        physical_device: vk::PhysicalDevice,
-        drm_fd: i32,
-        connector_id: u32,
-    ) -> VkResult<vk::DisplayKHR> {
-        let mut display = MaybeUninit::uninit();
-        (self
-            .fp
-            .get_drm_display)(
-                physical_device,
-                drm_fd,
-                connector_id,
-                display.as_mut_ptr(),
-            )
-            .assume_init_on_success(display)
     }
 }
 pub(crate) mod items {

@@ -170,67 +170,59 @@ impl Device {
     pub fn device(&self) -> vk::Device {
         self.handle
     }
-    ///vkSetDebugUtilsObjectNameEXT
-    #[inline]
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkSetDebugUtilsObjectNameEXT.html) · Device Function
     pub unsafe fn set_debug_utils_object_name(
         &self,
         name_info: &vk::DebugUtilsObjectNameInfoEXT<'_>,
     ) -> VkResult<()> {
         (self.fp.set_debug_utils_object_name)(self.handle, name_info).result()
     }
-    ///vkSetDebugUtilsObjectTagEXT
-    #[inline]
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkSetDebugUtilsObjectTagEXT.html) · Device Function
     pub unsafe fn set_debug_utils_object_tag(
         &self,
         tag_info: &vk::DebugUtilsObjectTagInfoEXT<'_>,
     ) -> VkResult<()> {
         (self.fp.set_debug_utils_object_tag)(self.handle, tag_info).result()
     }
-    ///vkQueueBeginDebugUtilsLabelEXT
-    #[inline]
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkQueueBeginDebugUtilsLabelEXT.html) · Device Function
     pub unsafe fn queue_begin_debug_utils_label(
         &self,
         queue: vk::Queue,
         label_info: &vk::DebugUtilsLabelEXT<'_>,
     ) {
-        (self.fp.queue_begin_debug_utils_label)(queue, label_info)
+        (self.fp.queue_begin_debug_utils_label)(queue, label_info);
     }
-    ///vkQueueEndDebugUtilsLabelEXT
-    #[inline]
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkQueueEndDebugUtilsLabelEXT.html) · Device Function
     pub unsafe fn queue_end_debug_utils_label(&self, queue: vk::Queue) {
-        (self.fp.queue_end_debug_utils_label)(queue)
+        (self.fp.queue_end_debug_utils_label)(queue);
     }
-    ///vkQueueInsertDebugUtilsLabelEXT
-    #[inline]
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkQueueInsertDebugUtilsLabelEXT.html) · Device Function
     pub unsafe fn queue_insert_debug_utils_label(
         &self,
         queue: vk::Queue,
         label_info: &vk::DebugUtilsLabelEXT<'_>,
     ) {
-        (self.fp.queue_insert_debug_utils_label)(queue, label_info)
+        (self.fp.queue_insert_debug_utils_label)(queue, label_info);
     }
-    ///vkCmdBeginDebugUtilsLabelEXT
-    #[inline]
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdBeginDebugUtilsLabelEXT.html) · Device Function
     pub unsafe fn cmd_begin_debug_utils_label(
         &self,
         command_buffer: vk::CommandBuffer,
         label_info: &vk::DebugUtilsLabelEXT<'_>,
     ) {
-        (self.fp.cmd_begin_debug_utils_label)(command_buffer, label_info)
+        (self.fp.cmd_begin_debug_utils_label)(command_buffer, label_info);
     }
-    ///vkCmdEndDebugUtilsLabelEXT
-    #[inline]
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdEndDebugUtilsLabelEXT.html) · Device Function
     pub unsafe fn cmd_end_debug_utils_label(&self, command_buffer: vk::CommandBuffer) {
-        (self.fp.cmd_end_debug_utils_label)(command_buffer)
+        (self.fp.cmd_end_debug_utils_label)(command_buffer);
     }
-    ///vkCmdInsertDebugUtilsLabelEXT
-    #[inline]
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdInsertDebugUtilsLabelEXT.html) · Device Function
     pub unsafe fn cmd_insert_debug_utils_label(
         &self,
         command_buffer: vk::CommandBuffer,
         label_info: &vk::DebugUtilsLabelEXT<'_>,
     ) {
-        (self.fp.cmd_insert_debug_utils_label)(command_buffer, label_info)
+        (self.fp.cmd_insert_debug_utils_label)(command_buffer, label_info);
     }
 }
 #[derive(Clone)]
@@ -310,47 +302,15 @@ impl Instance {
     pub fn instance(&self) -> vk::Instance {
         self.handle
     }
-    ///vkCreateDebugUtilsMessengerEXT
-    #[inline]
-    pub unsafe fn create_debug_utils_messenger(
-        &self,
-        create_info: &vk::DebugUtilsMessengerCreateInfoEXT<'_>,
-        allocator: Option<&vk::AllocationCallbacks<'_>>,
-    ) -> VkResult<vk::DebugUtilsMessengerEXT> {
-        let mut messenger = MaybeUninit::uninit();
-        (self
-            .fp
-            .create_debug_utils_messenger)(
-                self.handle,
-                create_info,
-                match allocator {
-                    Some(inner) => inner,
-                    None => ptr::null_mut(),
-                },
-                messenger.as_mut_ptr(),
-            )
-            .assume_init_on_success(messenger)
-    }
-    ///vkDestroyDebugUtilsMessengerEXT
-    #[inline]
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkDestroyDebugUtilsMessengerEXT.html) · Instance Function
     pub unsafe fn destroy_debug_utils_messenger(
         &self,
         messenger: vk::DebugUtilsMessengerEXT,
-        allocator: Option<&vk::AllocationCallbacks<'_>>,
+        allocator: &vk::AllocationCallbacks<'_>,
     ) {
-        (self
-            .fp
-            .destroy_debug_utils_messenger)(
-            self.handle,
-            messenger,
-            match allocator {
-                Some(inner) => inner,
-                None => ptr::null_mut(),
-            },
-        )
+        (self.fp.destroy_debug_utils_messenger)(self.handle, messenger, allocator);
     }
-    ///vkSubmitDebugUtilsMessageEXT
-    #[inline]
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkSubmitDebugUtilsMessageEXT.html) · Instance Function
     pub unsafe fn submit_debug_utils_message(
         &self,
         message_severity: vk::DebugUtilsMessageSeverityFlagBitsEXT,
@@ -364,7 +324,7 @@ impl Instance {
             message_severity,
             message_types,
             callback_data,
-        )
+        );
     }
 }
 pub(crate) mod items {

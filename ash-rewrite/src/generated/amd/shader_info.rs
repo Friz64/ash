@@ -61,25 +61,6 @@ impl Device {
     pub fn device(&self) -> vk::Device {
         self.handle
     }
-    ///vkGetShaderInfoAMD
-    #[inline]
-    pub unsafe fn get_shader_info(
-        &self,
-        pipeline: vk::Pipeline,
-        shader_stage: vk::ShaderStageFlagBits,
-        info_type: vk::ShaderInfoTypeAMD,
-    ) -> VkResult<Vec<ffi::c_void>> {
-        crate::read_into_uninitialized_vector(|info_size, info| (self
-            .fp
-            .get_shader_info)(
-            self.handle,
-            pipeline,
-            shader_stage,
-            info_type,
-            info_size,
-            info,
-        ))
-    }
 }
 pub(crate) mod items {
     use crate::internal_prelude::*;

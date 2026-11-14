@@ -297,102 +297,23 @@ impl Device {
     pub fn device(&self) -> vk::Device {
         self.handle
     }
-    ///vkCreateTensorARM
-    #[inline]
-    pub unsafe fn create_tensor(
-        &self,
-        create_info: &vk::TensorCreateInfoARM<'_>,
-        allocator: Option<&vk::AllocationCallbacks<'_>>,
-    ) -> VkResult<vk::TensorARM> {
-        let mut tensor = MaybeUninit::uninit();
-        (self
-            .fp
-            .create_tensor)(
-                self.handle,
-                create_info,
-                match allocator {
-                    Some(inner) => inner,
-                    None => ptr::null_mut(),
-                },
-                tensor.as_mut_ptr(),
-            )
-            .assume_init_on_success(tensor)
-    }
-    ///vkDestroyTensorARM
-    #[inline]
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkDestroyTensorARM.html) · Device Function
     pub unsafe fn destroy_tensor(
         &self,
         tensor: vk::TensorARM,
-        allocator: Option<&vk::AllocationCallbacks<'_>>,
+        allocator: &vk::AllocationCallbacks<'_>,
     ) {
-        (self
-            .fp
-            .destroy_tensor)(
-            self.handle,
-            tensor,
-            match allocator {
-                Some(inner) => inner,
-                None => ptr::null_mut(),
-            },
-        )
+        (self.fp.destroy_tensor)(self.handle, tensor, allocator);
     }
-    ///vkCreateTensorViewARM
-    #[inline]
-    pub unsafe fn create_tensor_view(
-        &self,
-        create_info: &vk::TensorViewCreateInfoARM<'_>,
-        allocator: Option<&vk::AllocationCallbacks<'_>>,
-    ) -> VkResult<vk::TensorViewARM> {
-        let mut view = MaybeUninit::uninit();
-        (self
-            .fp
-            .create_tensor_view)(
-                self.handle,
-                create_info,
-                match allocator {
-                    Some(inner) => inner,
-                    None => ptr::null_mut(),
-                },
-                view.as_mut_ptr(),
-            )
-            .assume_init_on_success(view)
-    }
-    ///vkDestroyTensorViewARM
-    #[inline]
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkDestroyTensorViewARM.html) · Device Function
     pub unsafe fn destroy_tensor_view(
         &self,
         tensor_view: vk::TensorViewARM,
-        allocator: Option<&vk::AllocationCallbacks<'_>>,
+        allocator: &vk::AllocationCallbacks<'_>,
     ) {
-        (self
-            .fp
-            .destroy_tensor_view)(
-            self.handle,
-            tensor_view,
-            match allocator {
-                Some(inner) => inner,
-                None => ptr::null_mut(),
-            },
-        )
+        (self.fp.destroy_tensor_view)(self.handle, tensor_view, allocator);
     }
-    ///vkGetTensorMemoryRequirementsARM
-    #[inline]
-    pub unsafe fn get_tensor_memory_requirements(
-        &self,
-        info: &vk::TensorMemoryRequirementsInfoARM<'_>,
-    ) -> vk::MemoryRequirements2<'_> {
-        let mut memory_requirements = MaybeUninit::uninit();
-        (self
-            .fp
-            .get_tensor_memory_requirements)(
-            self.handle,
-            info,
-            memory_requirements.as_mut_ptr(),
-        );
-        memory_requirements.assume_init()
-    }
-    ///vkBindTensorMemoryARM
-    #[inline]
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkBindTensorMemoryARM.html) · Device Function
     pub unsafe fn bind_tensor_memory(
         &self,
         bind_infos: &[vk::BindTensorMemoryInfoARM<'_>],
@@ -402,62 +323,13 @@ impl Device {
             .bind_tensor_memory)(self.handle, bind_infos.len() as _, bind_infos.as_ptr())
             .result()
     }
-    ///vkGetDeviceTensorMemoryRequirementsARM
-    #[inline]
-    pub unsafe fn get_device_tensor_memory_requirements(
-        &self,
-        info: &vk::DeviceTensorMemoryRequirementsARM<'_>,
-    ) -> vk::MemoryRequirements2<'_> {
-        let mut memory_requirements = MaybeUninit::uninit();
-        (self
-            .fp
-            .get_device_tensor_memory_requirements)(
-            self.handle,
-            info,
-            memory_requirements.as_mut_ptr(),
-        );
-        memory_requirements.assume_init()
-    }
-    ///vkCmdCopyTensorARM
-    #[inline]
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdCopyTensorARM.html) · Device Function
     pub unsafe fn cmd_copy_tensor(
         &self,
         command_buffer: vk::CommandBuffer,
         copy_tensor_info: &vk::CopyTensorInfoARM<'_>,
     ) {
-        (self.fp.cmd_copy_tensor)(command_buffer, copy_tensor_info)
-    }
-    ///vkGetTensorOpaqueCaptureDescriptorDataARM
-    #[inline]
-    pub unsafe fn get_tensor_opaque_capture_descriptor_data(
-        &self,
-        info: &vk::TensorCaptureDescriptorDataInfoARM<'_>,
-    ) -> VkResult<ffi::c_void> {
-        let mut data = MaybeUninit::uninit();
-        (self
-            .fp
-            .get_tensor_opaque_capture_descriptor_data)(
-                self.handle,
-                info,
-                data.as_mut_ptr(),
-            )
-            .assume_init_on_success(data)
-    }
-    ///vkGetTensorViewOpaqueCaptureDescriptorDataARM
-    #[inline]
-    pub unsafe fn get_tensor_view_opaque_capture_descriptor_data(
-        &self,
-        info: &vk::TensorViewCaptureDescriptorDataInfoARM<'_>,
-    ) -> VkResult<ffi::c_void> {
-        let mut data = MaybeUninit::uninit();
-        (self
-            .fp
-            .get_tensor_view_opaque_capture_descriptor_data)(
-                self.handle,
-                info,
-                data.as_mut_ptr(),
-            )
-            .assume_init_on_success(data)
+        (self.fp.cmd_copy_tensor)(command_buffer, copy_tensor_info);
     }
 }
 #[derive(Clone)]
@@ -512,23 +384,6 @@ impl Instance {
     #[inline]
     pub fn instance(&self) -> vk::Instance {
         self.handle
-    }
-    ///vkGetPhysicalDeviceExternalTensorPropertiesARM
-    #[inline]
-    pub unsafe fn get_physical_device_external_tensor_properties(
-        &self,
-        physical_device: vk::PhysicalDevice,
-        external_tensor_info: &vk::PhysicalDeviceExternalTensorInfoARM<'_>,
-    ) -> vk::ExternalTensorPropertiesARM<'_> {
-        let mut external_tensor_properties = MaybeUninit::uninit();
-        (self
-            .fp
-            .get_physical_device_external_tensor_properties)(
-            physical_device,
-            external_tensor_info,
-            external_tensor_properties.as_mut_ptr(),
-        );
-        external_tensor_properties.assume_init()
     }
 }
 pub(crate) mod items {

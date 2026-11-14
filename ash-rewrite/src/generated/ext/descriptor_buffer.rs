@@ -344,58 +344,7 @@ impl Device {
     pub fn device(&self) -> vk::Device {
         self.handle
     }
-    ///vkGetDescriptorSetLayoutSizeEXT
-    #[inline]
-    pub unsafe fn get_descriptor_set_layout_size(
-        &self,
-        layout: vk::DescriptorSetLayout,
-    ) -> vk::DeviceSize {
-        let mut layout_size_in_bytes = MaybeUninit::uninit();
-        (self
-            .fp
-            .get_descriptor_set_layout_size)(
-            self.handle,
-            layout,
-            layout_size_in_bytes.as_mut_ptr(),
-        );
-        layout_size_in_bytes.assume_init()
-    }
-    ///vkGetDescriptorSetLayoutBindingOffsetEXT
-    #[inline]
-    pub unsafe fn get_descriptor_set_layout_binding_offset(
-        &self,
-        layout: vk::DescriptorSetLayout,
-        binding: u32,
-    ) -> vk::DeviceSize {
-        let mut offset = MaybeUninit::uninit();
-        (self
-            .fp
-            .get_descriptor_set_layout_binding_offset)(
-            self.handle,
-            layout,
-            binding,
-            offset.as_mut_ptr(),
-        );
-        offset.assume_init()
-    }
-    ///vkGetDescriptorEXT
-    #[inline]
-    pub unsafe fn get_descriptor(
-        &self,
-        descriptor_info: &vk::DescriptorGetInfoEXT<'_>,
-        descriptor: &mut [u8],
-    ) {
-        (self
-            .fp
-            .get_descriptor)(
-            self.handle,
-            descriptor_info,
-            descriptor.len() as _,
-            descriptor.as_mut_ptr().cast(),
-        )
-    }
-    ///vkCmdBindDescriptorBuffersEXT
-    #[inline]
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdBindDescriptorBuffersEXT.html) · Device Function
     pub unsafe fn cmd_bind_descriptor_buffers(
         &self,
         command_buffer: vk::CommandBuffer,
@@ -407,10 +356,9 @@ impl Device {
             command_buffer,
             binding_infos.len() as _,
             binding_infos.as_ptr(),
-        )
+        );
     }
-    ///vkCmdSetDescriptorBufferOffsetsEXT
-    #[inline]
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdSetDescriptorBufferOffsetsEXT.html) · Device Function
     pub unsafe fn cmd_set_descriptor_buffer_offsets(
         &self,
         command_buffer: vk::CommandBuffer,
@@ -420,7 +368,6 @@ impl Device {
         buffer_indices: &[u32],
         offsets: &[vk::DeviceSize],
     ) {
-        assert_eq!(buffer_indices.len(), offsets.len());
         (self
             .fp
             .cmd_set_descriptor_buffer_offsets)(
@@ -428,13 +375,12 @@ impl Device {
             pipeline_bind_point,
             layout,
             first_set,
-            offsets.len() as _,
+            buffer_indices.len() as _,
             buffer_indices.as_ptr(),
             offsets.as_ptr(),
-        )
+        );
     }
-    ///vkCmdBindDescriptorBufferEmbeddedSamplersEXT
-    #[inline]
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdBindDescriptorBufferEmbeddedSamplersEXT.html) · Device Function
     pub unsafe fn cmd_bind_descriptor_buffer_embedded_samplers(
         &self,
         command_buffer: vk::CommandBuffer,
@@ -449,87 +395,7 @@ impl Device {
             pipeline_bind_point,
             layout,
             set,
-        )
-    }
-    ///vkGetBufferOpaqueCaptureDescriptorDataEXT
-    #[inline]
-    pub unsafe fn get_buffer_opaque_capture_descriptor_data(
-        &self,
-        info: &vk::BufferCaptureDescriptorDataInfoEXT<'_>,
-    ) -> VkResult<ffi::c_void> {
-        let mut data = MaybeUninit::uninit();
-        (self
-            .fp
-            .get_buffer_opaque_capture_descriptor_data)(
-                self.handle,
-                info,
-                data.as_mut_ptr(),
-            )
-            .assume_init_on_success(data)
-    }
-    ///vkGetImageOpaqueCaptureDescriptorDataEXT
-    #[inline]
-    pub unsafe fn get_image_opaque_capture_descriptor_data(
-        &self,
-        info: &vk::ImageCaptureDescriptorDataInfoEXT<'_>,
-    ) -> VkResult<ffi::c_void> {
-        let mut data = MaybeUninit::uninit();
-        (self
-            .fp
-            .get_image_opaque_capture_descriptor_data)(
-                self.handle,
-                info,
-                data.as_mut_ptr(),
-            )
-            .assume_init_on_success(data)
-    }
-    ///vkGetImageViewOpaqueCaptureDescriptorDataEXT
-    #[inline]
-    pub unsafe fn get_image_view_opaque_capture_descriptor_data(
-        &self,
-        info: &vk::ImageViewCaptureDescriptorDataInfoEXT<'_>,
-    ) -> VkResult<ffi::c_void> {
-        let mut data = MaybeUninit::uninit();
-        (self
-            .fp
-            .get_image_view_opaque_capture_descriptor_data)(
-                self.handle,
-                info,
-                data.as_mut_ptr(),
-            )
-            .assume_init_on_success(data)
-    }
-    ///vkGetSamplerOpaqueCaptureDescriptorDataEXT
-    #[inline]
-    pub unsafe fn get_sampler_opaque_capture_descriptor_data(
-        &self,
-        info: &vk::SamplerCaptureDescriptorDataInfoEXT<'_>,
-    ) -> VkResult<ffi::c_void> {
-        let mut data = MaybeUninit::uninit();
-        (self
-            .fp
-            .get_sampler_opaque_capture_descriptor_data)(
-                self.handle,
-                info,
-                data.as_mut_ptr(),
-            )
-            .assume_init_on_success(data)
-    }
-    ///vkGetAccelerationStructureOpaqueCaptureDescriptorDataEXT
-    #[inline]
-    pub unsafe fn get_acceleration_structure_opaque_capture_descriptor_data(
-        &self,
-        info: &vk::AccelerationStructureCaptureDescriptorDataInfoEXT<'_>,
-    ) -> VkResult<ffi::c_void> {
-        let mut data = MaybeUninit::uninit();
-        (self
-            .fp
-            .get_acceleration_structure_opaque_capture_descriptor_data)(
-                self.handle,
-                info,
-                data.as_mut_ptr(),
-            )
-            .assume_init_on_success(data)
+        );
     }
 }
 pub(crate) mod items {

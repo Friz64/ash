@@ -117,57 +117,55 @@ impl Device {
     pub fn device(&self) -> vk::Device {
         self.handle
     }
-    ///vkCmdSetPatchControlPointsEXT
-    #[inline]
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdSetPatchControlPointsEXT.html) · Device Function
     pub unsafe fn cmd_set_patch_control_points(
         &self,
         command_buffer: vk::CommandBuffer,
         patch_control_points: u32,
     ) {
-        (self.fp.cmd_set_patch_control_points)(command_buffer, patch_control_points)
+        (self.fp.cmd_set_patch_control_points)(command_buffer, patch_control_points);
     }
-    ///vkCmdSetLogicOpEXT
-    #[inline]
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdSetLogicOpEXT.html) · Device Function
     pub unsafe fn cmd_set_logic_op(
         &self,
         command_buffer: vk::CommandBuffer,
         logic_op: vk::LogicOp,
     ) {
-        (self.fp.cmd_set_logic_op)(command_buffer, logic_op)
+        (self.fp.cmd_set_logic_op)(command_buffer, logic_op);
     }
-    ///vkCmdSetRasterizerDiscardEnable
-    #[inline]
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdSetRasterizerDiscardEnable.html) · Device Function
     pub unsafe fn cmd_set_rasterizer_discard_enable(
         &self,
         command_buffer: vk::CommandBuffer,
-        rasterizer_discard_enable: vk::Bool32,
+        rasterizer_discard_enable: bool,
     ) {
         (self
             .fp
             .cmd_set_rasterizer_discard_enable)(
             command_buffer,
-            rasterizer_discard_enable,
-        )
+            rasterizer_discard_enable as _,
+        );
     }
-    ///vkCmdSetDepthBiasEnable
-    #[inline]
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdSetDepthBiasEnable.html) · Device Function
     pub unsafe fn cmd_set_depth_bias_enable(
         &self,
         command_buffer: vk::CommandBuffer,
-        depth_bias_enable: vk::Bool32,
+        depth_bias_enable: bool,
     ) {
-        (self.fp.cmd_set_depth_bias_enable)(command_buffer, depth_bias_enable)
+        (self.fp.cmd_set_depth_bias_enable)(command_buffer, depth_bias_enable as _);
     }
-    ///vkCmdSetPrimitiveRestartEnable
-    #[inline]
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdSetPrimitiveRestartEnable.html) · Device Function
     pub unsafe fn cmd_set_primitive_restart_enable(
         &self,
         command_buffer: vk::CommandBuffer,
-        primitive_restart_enable: vk::Bool32,
+        primitive_restart_enable: bool,
     ) {
         (self
             .fp
-            .cmd_set_primitive_restart_enable)(command_buffer, primitive_restart_enable)
+            .cmd_set_primitive_restart_enable)(
+            command_buffer,
+            primitive_restart_enable as _,
+        );
     }
 }
 pub(crate) mod items {

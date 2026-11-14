@@ -79,63 +79,6 @@ impl Instance {
     pub fn instance(&self) -> vk::Instance {
         self.handle
     }
-    ///vkGetPhysicalDeviceSurfaceCapabilities2KHR
-    #[inline]
-    pub unsafe fn get_physical_device_surface_capabilities2(
-        &self,
-        physical_device: vk::PhysicalDevice,
-        surface_info: &vk::PhysicalDeviceSurfaceInfo2KHR<'_>,
-    ) -> VkResult<vk::SurfaceCapabilities2KHR<'_>> {
-        let mut surface_capabilities = MaybeUninit::uninit();
-        (self
-            .fp
-            .get_physical_device_surface_capabilities2)(
-                physical_device,
-                surface_info,
-                surface_capabilities.as_mut_ptr(),
-            )
-            .assume_init_on_success(surface_capabilities)
-    }
-    ///vkGetPhysicalDeviceSurfaceFormats2KHR
-    #[inline]
-    pub unsafe fn get_physical_device_surface_formats2_len(
-        &self,
-        physical_device: vk::PhysicalDevice,
-        surface_info: &vk::PhysicalDeviceSurfaceInfo2KHR<'_>,
-    ) -> VkResult<usize> {
-        let mut surface_format_count = MaybeUninit::uninit();
-        (self
-            .fp
-            .get_physical_device_surface_formats2)(
-                physical_device,
-                surface_info,
-                surface_format_count.as_mut_ptr(),
-                ptr::null_mut(),
-            )
-            .assume_init_on_success(surface_format_count)
-            .map(|c| c as usize)
-    }
-    ///vkGetPhysicalDeviceSurfaceFormats2KHR
-    #[inline]
-    pub unsafe fn get_physical_device_surface_formats2(
-        &self,
-        physical_device: vk::PhysicalDevice,
-        surface_info: &vk::PhysicalDeviceSurfaceInfo2KHR<'_>,
-        surface_formats: &mut [vk::SurfaceFormat2KHR<'_>],
-    ) -> VkResult<()> {
-        let mut surface_format_count = surface_formats.len() as _;
-        (self
-            .fp
-            .get_physical_device_surface_formats2)(
-                physical_device,
-                surface_info,
-                &mut surface_format_count,
-                surface_formats.as_mut_ptr(),
-            )
-            .result()?;
-        assert_eq!(surface_format_count as usize, surface_formats.len());
-        Ok(())
-    }
 }
 pub(crate) mod items {
     use crate::internal_prelude::*;

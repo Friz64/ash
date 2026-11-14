@@ -99,8 +99,7 @@ impl Device {
     pub fn device(&self) -> vk::Device {
         self.handle
     }
-    ///vkCmdSetDiscardRectangleEXT
-    #[inline]
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdSetDiscardRectangleEXT.html) · Device Function
     pub unsafe fn cmd_set_discard_rectangle(
         &self,
         command_buffer: vk::CommandBuffer,
@@ -114,27 +113,28 @@ impl Device {
             first_discard_rectangle,
             discard_rectangles.len() as _,
             discard_rectangles.as_ptr(),
-        )
+        );
     }
-    ///vkCmdSetDiscardRectangleEnableEXT
-    #[inline]
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdSetDiscardRectangleEnableEXT.html) · Device Function
     pub unsafe fn cmd_set_discard_rectangle_enable(
         &self,
         command_buffer: vk::CommandBuffer,
-        discard_rectangle_enable: vk::Bool32,
+        discard_rectangle_enable: bool,
     ) {
         (self
             .fp
-            .cmd_set_discard_rectangle_enable)(command_buffer, discard_rectangle_enable)
+            .cmd_set_discard_rectangle_enable)(
+            command_buffer,
+            discard_rectangle_enable as _,
+        );
     }
-    ///vkCmdSetDiscardRectangleModeEXT
-    #[inline]
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdSetDiscardRectangleModeEXT.html) · Device Function
     pub unsafe fn cmd_set_discard_rectangle_mode(
         &self,
         command_buffer: vk::CommandBuffer,
         discard_rectangle_mode: vk::DiscardRectangleModeEXT,
     ) {
-        (self.fp.cmd_set_discard_rectangle_mode)(command_buffer, discard_rectangle_mode)
+        (self.fp.cmd_set_discard_rectangle_mode)(command_buffer, discard_rectangle_mode);
     }
 }
 pub(crate) mod items {

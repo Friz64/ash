@@ -77,14 +77,13 @@ impl Device {
     pub fn device(&self) -> vk::Device {
         self.handle
     }
-    ///vkCmdSetDispatchParametersARM
-    #[inline]
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdSetDispatchParametersARM.html) · Device Function
     pub unsafe fn cmd_set_dispatch_parameters(
         &self,
         command_buffer: vk::CommandBuffer,
         dispatch_parameters: &vk::DispatchParametersARM<'_>,
     ) {
-        (self.fp.cmd_set_dispatch_parameters)(command_buffer, dispatch_parameters)
+        (self.fp.cmd_set_dispatch_parameters)(command_buffer, dispatch_parameters);
     }
 }
 pub(crate) mod items {

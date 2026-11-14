@@ -68,18 +68,7 @@ impl Device {
     pub fn device(&self) -> vk::Device {
         self.handle
     }
-    ///vkGetSemaphoreFdKHR
-    #[inline]
-    pub unsafe fn get_semaphore_fd(
-        &self,
-        get_fd_info: &vk::SemaphoreGetFdInfoKHR<'_>,
-    ) -> VkResult<ffi::c_int> {
-        let mut fd = MaybeUninit::uninit();
-        (self.fp.get_semaphore_fd)(self.handle, get_fd_info, fd.as_mut_ptr())
-            .assume_init_on_success(fd)
-    }
-    ///vkImportSemaphoreFdKHR
-    #[inline]
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkImportSemaphoreFdKHR.html) · Device Function
     pub unsafe fn import_semaphore_fd(
         &self,
         import_semaphore_fd_info: &vk::ImportSemaphoreFdInfoKHR<'_>,

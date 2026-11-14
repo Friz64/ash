@@ -75,44 +75,6 @@ impl Instance {
     pub fn instance(&self) -> vk::Instance {
         self.handle
     }
-    ///vkCreateScreenSurfaceQNX
-    #[inline]
-    pub unsafe fn create_screen_surface(
-        &self,
-        create_info: &vk::ScreenSurfaceCreateInfoQNX<'_>,
-        allocator: Option<&vk::AllocationCallbacks<'_>>,
-    ) -> VkResult<vk::SurfaceKHR> {
-        let mut surface = MaybeUninit::uninit();
-        (self
-            .fp
-            .create_screen_surface)(
-                self.handle,
-                create_info,
-                match allocator {
-                    Some(inner) => inner,
-                    None => ptr::null_mut(),
-                },
-                surface.as_mut_ptr(),
-            )
-            .assume_init_on_success(surface)
-    }
-    ///vkGetPhysicalDeviceScreenPresentationSupportQNX
-    #[inline]
-    pub unsafe fn get_physical_device_screen_presentation_support(
-        &self,
-        physical_device: vk::PhysicalDevice,
-        queue_family_index: u32,
-    ) -> vk::_screen_window {
-        let mut window = MaybeUninit::uninit();
-        (self
-            .fp
-            .get_physical_device_screen_presentation_support)(
-            physical_device,
-            queue_family_index,
-            window.as_mut_ptr(),
-        );
-        window.assume_init()
-    }
 }
 pub(crate) mod items {
     use crate::internal_prelude::*;

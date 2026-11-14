@@ -82,74 +82,13 @@ impl Device {
     pub fn device(&self) -> vk::Device {
         self.handle
     }
-    ///vkCmdSetCheckpointNV
-    #[inline]
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdSetCheckpointNV.html) · Device Function
     pub unsafe fn cmd_set_checkpoint(
         &self,
         command_buffer: vk::CommandBuffer,
         checkpoint_marker: &ffi::c_void,
     ) {
-        (self.fp.cmd_set_checkpoint)(command_buffer, checkpoint_marker)
-    }
-    ///vkGetQueueCheckpointDataNV
-    #[inline]
-    pub unsafe fn get_queue_checkpoint_data_len(&self, queue: vk::Queue) -> usize {
-        let mut checkpoint_data_count = MaybeUninit::uninit();
-        (self
-            .fp
-            .get_queue_checkpoint_data)(
-            queue,
-            checkpoint_data_count.as_mut_ptr(),
-            ptr::null_mut(),
-        );
-        checkpoint_data_count.assume_init() as usize
-    }
-    ///vkGetQueueCheckpointDataNV
-    #[inline]
-    pub unsafe fn get_queue_checkpoint_data(
-        &self,
-        queue: vk::Queue,
-        checkpoint_data: &mut [vk::CheckpointDataNV<'_>],
-    ) {
-        let mut checkpoint_data_count = checkpoint_data.len() as _;
-        (self
-            .fp
-            .get_queue_checkpoint_data)(
-            queue,
-            &mut checkpoint_data_count,
-            checkpoint_data.as_mut_ptr(),
-        );
-        assert_eq!(checkpoint_data_count as usize, checkpoint_data.len());
-    }
-    ///vkGetQueueCheckpointData2NV
-    #[inline]
-    pub unsafe fn get_queue_checkpoint_data2_len(&self, queue: vk::Queue) -> usize {
-        let mut checkpoint_data_count = MaybeUninit::uninit();
-        (self
-            .fp
-            .get_queue_checkpoint_data2)(
-            queue,
-            checkpoint_data_count.as_mut_ptr(),
-            ptr::null_mut(),
-        );
-        checkpoint_data_count.assume_init() as usize
-    }
-    ///vkGetQueueCheckpointData2NV
-    #[inline]
-    pub unsafe fn get_queue_checkpoint_data2(
-        &self,
-        queue: vk::Queue,
-        checkpoint_data: &mut [vk::CheckpointData2NV<'_>],
-    ) {
-        let mut checkpoint_data_count = checkpoint_data.len() as _;
-        (self
-            .fp
-            .get_queue_checkpoint_data2)(
-            queue,
-            &mut checkpoint_data_count,
-            checkpoint_data.as_mut_ptr(),
-        );
-        assert_eq!(checkpoint_data_count as usize, checkpoint_data.len());
+        (self.fp.cmd_set_checkpoint)(command_buffer, checkpoint_marker);
     }
 }
 pub(crate) mod items {

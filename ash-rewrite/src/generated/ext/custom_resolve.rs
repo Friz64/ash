@@ -93,22 +93,13 @@ impl Device {
     pub fn device(&self) -> vk::Device {
         self.handle
     }
-    ///vkCmdBeginCustomResolveEXT
-    #[inline]
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdBeginCustomResolveEXT.html) · Device Function
     pub unsafe fn cmd_begin_custom_resolve(
         &self,
         command_buffer: vk::CommandBuffer,
-        begin_custom_resolve_info: Option<&vk::BeginCustomResolveInfoEXT<'_>>,
+        begin_custom_resolve_info: &vk::BeginCustomResolveInfoEXT<'_>,
     ) {
-        (self
-            .fp
-            .cmd_begin_custom_resolve)(
-            command_buffer,
-            match begin_custom_resolve_info {
-                Some(inner) => inner,
-                None => ptr::null_mut(),
-            },
-        )
+        (self.fp.cmd_begin_custom_resolve)(command_buffer, begin_custom_resolve_info);
     }
 }
 pub(crate) mod items {

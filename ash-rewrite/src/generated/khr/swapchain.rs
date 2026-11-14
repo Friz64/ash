@@ -199,132 +199,21 @@ impl Device {
     pub fn device(&self) -> vk::Device {
         self.handle
     }
-    ///vkCreateSwapchainKHR
-    #[inline]
-    pub unsafe fn create_swapchain(
-        &self,
-        create_info: &vk::SwapchainCreateInfoKHR<'_>,
-        allocator: Option<&vk::AllocationCallbacks<'_>>,
-    ) -> VkResult<vk::SwapchainKHR> {
-        let mut swapchain = MaybeUninit::uninit();
-        (self
-            .fp
-            .create_swapchain)(
-                self.handle,
-                create_info,
-                match allocator {
-                    Some(inner) => inner,
-                    None => ptr::null_mut(),
-                },
-                swapchain.as_mut_ptr(),
-            )
-            .assume_init_on_success(swapchain)
-    }
-    ///vkDestroySwapchainKHR
-    #[inline]
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkDestroySwapchainKHR.html) · Device Function
     pub unsafe fn destroy_swapchain(
         &self,
         swapchain: vk::SwapchainKHR,
-        allocator: Option<&vk::AllocationCallbacks<'_>>,
+        allocator: &vk::AllocationCallbacks<'_>,
     ) {
-        (self
-            .fp
-            .destroy_swapchain)(
-            self.handle,
-            swapchain,
-            match allocator {
-                Some(inner) => inner,
-                None => ptr::null_mut(),
-            },
-        )
+        (self.fp.destroy_swapchain)(self.handle, swapchain, allocator);
     }
-    ///vkGetSwapchainImagesKHR
-    #[inline]
-    pub unsafe fn get_swapchain_images(
-        &self,
-        swapchain: vk::SwapchainKHR,
-    ) -> VkResult<Vec<vk::Image>> {
-        crate::read_into_uninitialized_vector(|swapchain_image_count, swapchain_images| (self
-            .fp
-            .get_swapchain_images)(
-            self.handle,
-            swapchain,
-            swapchain_image_count,
-            swapchain_images,
-        ))
-    }
-    ///vkAcquireNextImageKHR
-    #[inline]
-    pub unsafe fn acquire_next_image(
-        &self,
-        swapchain: vk::SwapchainKHR,
-        timeout: u64,
-        semaphore: vk::Semaphore,
-        fence: vk::Fence,
-    ) -> VkResult<u32> {
-        let mut image_index = MaybeUninit::uninit();
-        (self
-            .fp
-            .acquire_next_image)(
-                self.handle,
-                swapchain,
-                timeout,
-                semaphore,
-                fence,
-                image_index.as_mut_ptr(),
-            )
-            .assume_init_on_success(image_index)
-    }
-    ///vkQueuePresentKHR
-    #[inline]
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkQueuePresentKHR.html) · Device Function
     pub unsafe fn queue_present(
         &self,
         queue: vk::Queue,
         present_info: &vk::PresentInfoKHR<'_>,
     ) -> VkResult<()> {
         (self.fp.queue_present)(queue, present_info).result()
-    }
-    ///vkGetDeviceGroupPresentCapabilitiesKHR
-    #[inline]
-    pub unsafe fn get_device_group_present_capabilities(
-        &self,
-    ) -> VkResult<vk::DeviceGroupPresentCapabilitiesKHR<'_>> {
-        let mut device_group_present_capabilities = MaybeUninit::uninit();
-        (self
-            .fp
-            .get_device_group_present_capabilities)(
-                self.handle,
-                device_group_present_capabilities.as_mut_ptr(),
-            )
-            .assume_init_on_success(device_group_present_capabilities)
-    }
-    ///vkGetDeviceGroupSurfacePresentModesKHR
-    #[inline]
-    pub unsafe fn get_device_group_surface_present_modes(
-        &self,
-        surface: vk::SurfaceKHR,
-    ) -> VkResult<vk::DeviceGroupPresentModeFlagsKHR> {
-        let mut modes = MaybeUninit::uninit();
-        (self
-            .fp
-            .get_device_group_surface_present_modes)(
-                self.handle,
-                surface,
-                modes.as_mut_ptr(),
-            )
-            .assume_init_on_success(modes)
-    }
-    ///vkAcquireNextImage2KHR
-    #[inline]
-    pub unsafe fn acquire_next_image2(
-        &self,
-        acquire_info: &vk::AcquireNextImageInfoKHR<'_>,
-    ) -> VkResult<u32> {
-        let mut image_index = MaybeUninit::uninit();
-        (self
-            .fp
-            .acquire_next_image2)(self.handle, acquire_info, image_index.as_mut_ptr())
-            .assume_init_on_success(image_index)
     }
 }
 #[derive(Clone)]
@@ -378,22 +267,6 @@ impl Instance {
     #[inline]
     pub fn instance(&self) -> vk::Instance {
         self.handle
-    }
-    ///vkGetPhysicalDevicePresentRectanglesKHR
-    #[inline]
-    pub unsafe fn get_physical_device_present_rectangles(
-        &self,
-        physical_device: vk::PhysicalDevice,
-        surface: vk::SurfaceKHR,
-    ) -> VkResult<Vec<vk::Rect2D>> {
-        crate::read_into_uninitialized_vector(|rect_count, rects| (self
-            .fp
-            .get_physical_device_present_rectangles)(
-            physical_device,
-            surface,
-            rect_count,
-            rects,
-        ))
     }
 }
 pub(crate) mod items {

@@ -6,15 +6,15 @@ use analysis::{
     decl::{CPrimaryType, Mutability, Ty},
     item::{
         CommandItem, RequireLocation, TypeItem,
-        function::{Command, Length},
+        function::{Command, CommandParam, Length},
     },
     name::{CommandName, TypeName, VariableName},
-    rust::{RustTokens, RustTy},
+    rust::{RustDecl, RustTokens, RustTy},
 };
 use heck::ToSnekCase;
 use indexmap::IndexMap;
 use proc_macro2::{Literal, TokenStream};
-use quote::{format_ident, quote};
+use quote::{ToTokens, format_ident, quote};
 use std::ffi::CString;
 use syn::Ident;
 use tracing::{debug, instrument, trace};
@@ -35,7 +35,7 @@ impl FunctionType {
             return FunctionType::Instance;
         }
 
-        let first_param = command.params.first().expect("cmds should have params");
+        let (_name, first_param) = command.params.first().expect("cmds should have params");
         match first_param.decl.ty {
             Ty::ApiType(name) if name == TypeName::VK_DEVICE => FunctionType::Device,
             Ty::ApiType(name) if name == TypeName::VK_COMMAND_BUFFER => FunctionType::Device,
@@ -108,6 +108,7 @@ pub fn generate_code(ctx: &Context, codemap: &mut CodeMap) {
             },
             CommandItem::Command(command) => (command.name, command.required_by, command),
         };
+        let resolved_name = command.name;
 
         let function_type = FunctionType::of_command(command);
         for output in OutputLocation::all_of(required_by, GlobExport::No) {
@@ -122,50 +123,49 @@ pub fn generate_code(ctx: &Context, codemap: &mut CodeMap) {
                 pub #wrapper_name: #command_ty,
             });
 
-            let code = if let Some(methods) = ctx.wrapper_rules.get(name) {
-                let methods = methods.iter().map(
-                    |Function {
-                         attributes,
-                         safety,
-                         name_override,
-                         inputs,
-                         output,
-                         content,
-                     }| {
-                        let safety = match safety {
-                            Safety::Default | Safety::Unsafe => quote! { unsafe },
-                            Safety::Safe => quote! {},
-                        };
+            let methods = ctx.wrapper_rules.get(resolved_name).map_or_else(
+                || itertools::Either::Left(wrapper(&octx, command, &table_field, &wrapper_name)),
+                itertools::Either::Right,
+            );
 
-                        let description = match function_type {
-                            FunctionType::Static => "Static Function",
-                            FunctionType::Entry => "Entry Function",
-                            FunctionType::Instance => "Instance Function",
-                            FunctionType::Device => "Device Function",
-                        };
+            let methods_code = methods.iter().map(
+                |Function {
+                     attributes,
+                     safety,
+                     name_override,
+                     inputs,
+                     output,
+                     content,
+                 }| {
+                    let safety = match safety {
+                        Safety::Default | Safety::Unsafe => quote! { unsafe },
+                        Safety::Safe => quote! {},
+                    };
 
-                        let name = name_override.as_ref().unwrap_or(&wrapper_name);
-                        let manual_page =
-                            crate::manual_page_doc_comment(command.name.original(), description);
-                        quote! {
-                            #[doc = #manual_page]
-                            #attributes
-                            pub #safety fn #name(#inputs) #output { #content }
-                        }
-                    },
-                );
+                    let description = match function_type {
+                        FunctionType::Static => "Static Function",
+                        FunctionType::Entry => "Entry Function",
+                        FunctionType::Instance => "Instance Function",
+                        FunctionType::Device => "Device Function",
+                    };
 
-                quote! { #(#methods)* }
-            } else {
-                wrapper_old(&octx, command, &wrapper_name, table_field)
-            };
+                    let name = name_override.as_ref().unwrap_or(&wrapper_name);
+                    let manual_page =
+                        crate::manual_page_doc_comment(command.name.original(), description);
+                    quote! {
+                        #[doc = #manual_page]
+                        #attributes
+                        pub #safety fn #name(#inputs) #output { #content }
+                    }
+                },
+            );
 
-            table.wrappers.extend(code);
+            table.wrappers.extend(quote! { #(#methods_code)* });
 
             let panic_msg = format!("unable to load {}", name.original());
             let cstr = Literal::c_string(&CString::new(name.original()).unwrap());
 
-            let params = command.params.iter().map(|param| {
+            let params = command.params.values().map(|param| {
                 let ty = (param.decl.ty).to_rust().tokens(&octx, None);
                 quote! { _: #ty }
             });
@@ -337,7 +337,7 @@ pub fn generate_code(ctx: &Context, codemap: &mut CodeMap) {
 /// N. we wanted to return a struct like in D but it's pnext so we do `out: &mut`
 /// O. overridden because fancy
 /// P. Handle generics through objecttype="objectType"
-/// Q. similiar to H, but now there's multiple slices filled out of the same _len method
+/// Q. similiar to M, but now there's multiple slices filled out of the same _len method
 /// R. similiar to N, but it's marked optional, so we actually do `out: Option<&mut`
 /// S. similiar to D, but it's a c_void so we actually don't return anything...
 ///
@@ -365,386 +365,201 @@ pub fn generate_code(ctx: &Context, codemap: &mut CodeMap) {
 /// A M N R vkGetEncodedVideoSessionParametersKHR
 /// A F R   vkGetDeviceFaultInfoEXT
 /// A S     vkGetLatencyTimingsLegacyNV
+struct _A;
 
-#[instrument(skip(octx))]
-fn wrapper_old(
-    octx: &OutputContext,
-    command: &Command,
-    name: &Ident,
-    table_field: Ident,
-) -> TokenStream {
-    trace!("generating");
+#[derive(Debug)]
+struct WrapperOutputParam<'a> {
+    param: &'a CommandParam,
+    array: bool,
+    tagged: bool,
+}
 
-    fn param_ident(name: VariableName) -> Ident {
-        let stripped = crate::strip_leading_p(name.original()).to_snek_case();
-        crate::escape_ident(&stripped)
-    }
+impl<'a> WrapperOutputParam<'a> {}
 
-    struct WrapperParam {
-        call_arg: TokenStream,
-        /// if this is `None`, then the parameter will not be exposed
-        public_type: Option<RustTy>,
-    }
+#[derive(Debug)]
+struct WrapperOutput<'a> {
+    result: bool,
+    params: Vec<WrapperOutputParam<'a>>,
+}
 
-    let mut wrapper_params: IndexMap<VariableName, Option<WrapperParam>> = (command.params.iter())
-        .map(|param| (param.decl.name, None))
-        .collect();
-    let mut length_calculations: IndexMap<VariableName, Vec<TokenStream>> = IndexMap::new();
+impl<'a> WrapperOutput<'a> {
+    fn new(ctx: &Context, command: &'a Command) -> WrapperOutput<'a> {
+        let result =
+            matches!(command.return_type, Some(Ty::ApiType(name)) if name == TypeName::VK_RESULT);
 
-    enum MultiCallKind {
-        ReadIntoUninitializedVector,
-        SeperateLenMethod,
-    }
-
-    struct MultiCallLength {
-        kind: MultiCallKind,
-        count: VariableName,
-        data: VariableName,
-        element: &'static Ty,
-    }
-
-    let mut multi_call_length = None;
-    let mut maybe_single_return = true;
-    let mut single_return = None;
-    for (i, param) in command.params.iter().enumerate() {
-        let name = param_ident(param.decl.name);
-
-        let mut call_arg;
-        let public_type;
-        match &param.decl.ty {
-            Ty::Ptr(Ty::CPrimary(CPrimaryType::Char), Mutability::Not)
-                if matches!(param.length, Some(Length::NullTerminated)) =>
-            {
-                call_arg = quote! { #name.map_or(ptr::null(), |s| s.as_ptr()) };
-                public_type = Some(RustTy::Custom {
-                    custom_type: quote! { Option },
-                    generic_args: vec![RustTy::Ref(
-                        Box::new(RustTy::Custom {
-                            custom_type: quote! { CStr },
-                            generic_args: vec![],
-                        }),
-                        Mutability::Not,
-                    )],
-                });
-            }
-            Ty::Ptr(element, Mutability::Mut)
-                if let Some(Length::DefinedByParam(length_param)) = param.length
-                    && let Ty::Ptr(.., Mutability::Mut) = {
-                        let length_param = (command.params.iter())
-                            .find(|other_param| other_param.decl.name == length_param)
-                            .unwrap();
-                        &length_param.decl.ty
-                    } =>
-            {
-                let length_param_name = param_ident(length_param);
-                let length_wrapper_param = &mut wrapper_params[&length_param];
-
-                assert!(
-                    length_wrapper_param.is_none(),
-                    "only one multi call length parameter is supported"
-                );
-
-                let kind = if let Ty::ApiType(element_type) = element
-                    && let TypeItem::Struct(struct_) = octx.ctx().resolve_type(*element_type)
-                    && let Some(Mutability::Mut) = struct_.p_next
+        let params: Vec<_> = command
+            .params
+            .values()
+            .filter(|param| {
+                param.length_of.is_empty() && matches!(&param.decl.ty, Ty::Ptr(_, Mutability::Mut))
+            })
+            .filter_map(|param| {
+                if param.length_of.is_empty()
+                    && let Ty::Ptr(to, Mutability::Mut) = &param.decl.ty
                 {
-                    call_arg = quote! { #name.as_mut_ptr() };
-                    public_type = Some(RustTy::Slice(
-                        Box::new(element.to_rust()),
-                        Mutability::Mut,
-                        None,
-                    ));
+                    let mut array = false;
+                    if param.optional == [true]
+                        && let Some(Length::DefinedByParam(length_param)) = &param.length
+                        && command.params[length_param].optional == [false, true]
+                    {
+                        array = true;
+                    }
 
-                    *length_wrapper_param = Some(WrapperParam {
-                        call_arg: quote! { &mut #length_param_name },
-                        public_type: None,
+                    let mut tagged = false;
+                    if let Ty::ApiType(name) = to
+                        && let TypeItem::Struct(struct_) = ctx.resolve_type(*name)
+                        && struct_.p_next.is_some()
+                    {
+                        tagged = true;
+                    }
+
+                    return Some(WrapperOutputParam {
+                        param,
+                        array,
+                        tagged,
                     });
-
-                    MultiCallKind::SeperateLenMethod
-                } else {
-                    call_arg = quote! { #name };
-                    public_type = None;
-
-                    *length_wrapper_param = Some(WrapperParam {
-                        call_arg: quote! { #length_param_name },
-                        public_type: None,
-                    });
-
-                    MultiCallKind::ReadIntoUninitializedVector
-                };
-
-                multi_call_length = Some(MultiCallLength {
-                    kind,
-                    count: length_param,
-                    data: param.decl.name,
-                    element,
-                });
-            }
-            &Ty::Ptr(element, mutability)
-                if let Some(Length::DefinedByParam(length_param)) = param.length =>
-            {
-                let mut element = element.clone();
-                call_arg = match mutability {
-                    Mutability::Mut => quote! { #name.as_mut_ptr() },
-                    Mutability::Not => quote! { #name.as_ptr() },
-                };
-
-                if let Ty::CPrimary(CPrimaryType::Void) = element {
-                    element = Ty::CPrimary(CPrimaryType::UInt8);
-                    call_arg = quote! { #call_arg.cast() };
                 }
 
-                public_type = Some(RustTy::Slice(Box::new(element.to_rust()), mutability, None));
-                wrapper_params[&length_param] = Some(WrapperParam {
-                    call_arg: quote! { #name.len() as _ },
-                    public_type: None,
-                });
+                None
+            })
+            .collect();
 
-                length_calculations
-                    .entry(length_param)
-                    .or_default()
-                    .push(quote! { #name.len() });
-            }
-            &Ty::ApiType(type_name)
+        WrapperOutput { result, params }
+    }
+}
+
+fn param_ident(name: VariableName) -> Ident {
+    let stripped = crate::strip_leading_p(name.original()).to_snek_case();
+    crate::escape_ident(&stripped)
+}
+
+#[derive(Debug)]
+struct WrapperParam {
+    name: VariableName,
+    ty: RustTy,
+}
+
+#[derive(Debug)]
+struct WrapperCallArg {
+    param: Option<WrapperParam>,
+    value: TokenStream,
+}
+
+impl WrapperCallArg {
+    fn new(param: &CommandParam, _wrapper_output: &WrapperOutput) -> WrapperCallArg {
+        if let Some(length_of) = param.length_of.first() {
+            let length_of = param_ident(*length_of);
+            return WrapperCallArg {
+                param: None,
+                value: quote! { #length_of.len() as _ },
+            };
+        }
+
+        let name = param.decl.name;
+        let ident = param_ident(name);
+        match (&param.decl.ty, &param.length) {
+            (
+                Ty::Ptr(Ty::CPrimary(CPrimaryType::Char), Mutability::Not),
+                Some(Length::NullTerminated),
+            ) => WrapperCallArg {
+                param: Some(WrapperParam {
+                    name,
+                    ty: RustTy::Custom {
+                        custom_type: quote! { Option },
+                        generic_args: vec![RustTy::Ref(
+                            Box::new(RustTy::Custom {
+                                custom_type: quote! { CStr },
+                                generic_args: vec![],
+                            }),
+                            Mutability::Not,
+                        )],
+                    },
+                }),
+                value: quote! { #ident.map_or(ptr::null(), |s| s.as_ptr()) },
+            },
+            (&Ty::ApiType(type_name), _) if type_name == TypeName::VK_BOOL32 => WrapperCallArg {
+                param: Some(WrapperParam {
+                    name,
+                    ty: RustTy::Bool,
+                }),
+                value: quote! { #ident as _ },
+            },
+            (&Ty::ApiType(type_name), _)
                 if type_name == TypeName::VK_INSTANCE || type_name == TypeName::VK_DEVICE =>
             {
-                call_arg = quote! { self.handle };
-                public_type = None;
-            }
-            Ty::Ptr(to, Mutability::Mut) => {
-                if single_return.is_some() {
-                    single_return = None;
-                    maybe_single_return = false;
+                WrapperCallArg {
+                    param: None,
+                    value: quote! { self.handle },
                 }
-
-                if maybe_single_return {
-                    // this is also completely broken when the type is c_void.....
-                    single_return = Some((param.decl.name, to));
-                }
-
-                continue;
             }
-            &Ty::Ptr(to, mutability) if param.optional_at_depth(0) == Some(true) => {
-                call_arg = match mutability {
-                    Mutability::Mut => quote! { match #name {
-                        Some(inner) => inner,
-                        None => ptr::null(),
-                    } },
-                    Mutability::Not => quote! { match #name {
-                        Some(inner) => inner,
-                        None => ptr::null_mut(),
-                    } },
-                };
-
-                public_type = Some(RustTy::Custom {
-                    custom_type: quote! { Option },
-                    generic_args: vec![RustTy::Ref(Box::new(to.to_rust()), mutability)],
-                });
-            }
-            _ => continue,
-        };
-
-        *wrapper_params.values_mut().nth(i).unwrap() = Some(WrapperParam {
-            call_arg,
-            public_type,
-        })
+            (Ty::Ptr(to, Mutability::Not), None) => WrapperCallArg {
+                param: Some(WrapperParam {
+                    name,
+                    ty: RustTy::Ref(Box::new(to.to_rust()), Mutability::Not),
+                }),
+                value: quote! { #ident },
+            },
+            (Ty::Ptr(to, Mutability::Not), Some(Length::DefinedByParam(_))) => WrapperCallArg {
+                param: Some(WrapperParam {
+                    name,
+                    ty: RustTy::ArrayRef(Box::new(to.to_rust()), Mutability::Not, None),
+                }),
+                value: quote! { #ident.as_ptr() },
+            },
+            _ => WrapperCallArg {
+                param: Some(WrapperParam {
+                    name,
+                    ty: param.decl.ty.to_rust(),
+                }),
+                value: quote! { #ident },
+            },
+        }
     }
+}
 
-    let mut call_args_map: IndexMap<VariableName, TokenStream> = wrapper_params
-        .iter()
-        .map(|(&name, wrapper)| {
-            let value = match wrapper {
-                Some(wrapper) => wrapper.call_arg.clone(),
-                None => {
-                    let name = param_ident(name);
-                    quote! { #name }
-                }
-            };
+fn wrapper(
+    octx: &OutputContext,
+    command: &Command,
+    table_field: &Ident,
+    name: &Ident,
+) -> Vec<Function> {
+    let wrapper_output = WrapperOutput::new(&octx.ctx(), command);
 
-            (name, value)
-        })
-        .collect();
-
-    let mut public_params_map: IndexMap<VariableName, TokenStream> = command
+    let call_args: Vec<_> = command
         .params
-        .iter()
-        .enumerate()
-        .filter_map(|(i, param)| {
-            let ty = if let Some(wrapper) = wrapper_params.values().nth(i).unwrap() {
-                &wrapper.public_type
-            } else if let Ty::Ptr(to, mutability) = param.decl.ty {
-                &Some(RustTy::Ref(Box::new(to.to_rust()), mutability))
-            } else {
-                &Some(param.decl.ty.to_rust())
-            };
-
-            ty.as_ref().map(|ty| {
-                let name = param_ident(param.decl.name);
-                let ty_tokens = ty.tokens(octx, None);
-                (param.decl.name, quote! { #name: #ty_tokens })
-            })
-        })
+        .values()
+        .map(|param| WrapperCallArg::new(param, &wrapper_output))
         .collect();
 
-    let returns_result = matches!(command.return_type, Some(Ty::ApiType(TypeName::VK_RESULT)));
-    if multi_call_length.is_none()
-        && let Some((single_return, ..)) = single_return
-    {
-        let name = param_ident(single_return);
-        call_args_map[&single_return] = quote! { #name.as_mut_ptr() };
-        public_params_map.shift_remove(&single_return);
-    }
-
-    let call_args = call_args_map.values();
-    let mut content = quote! { (self.#table_field.#name)( #( #call_args ),* ) };
-    for calculation in length_calculations.values() {
-        for [a, b] in calculation.array_windows() {
-            content = quote! {
-                assert_eq!(#a, #b);
-                #content
-            };
-        }
-    }
-
-    let doc = command.name.original(); // TODO: improve
-
-    let mut len_method = None;
-    let ret_ty;
-    if let Some(multi_call_length) = multi_call_length {
-        let count = param_ident(multi_call_length.count);
-        let data = param_ident(multi_call_length.data);
-        match multi_call_length.kind {
-            MultiCallKind::ReadIntoUninitializedVector => {
-                let mut ret_ty_value = RustTy::Custom {
-                    custom_type: quote! { Vec },
-                    generic_args: vec![multi_call_length.element.to_rust()],
-                };
-
-                if returns_result {
-                    content =
-                        quote! { crate::read_into_uninitialized_vector(|#count, #data| #content) };
-                    ret_ty_value = RustTy::Custom {
-                        custom_type: quote! { VkResult },
-                        generic_args: vec![ret_ty_value],
-                    };
-                } else {
-                    content = quote! {
-                        crate::read_into_uninitialized_vector(|#count, #data| {
-                            #content;
-                            vk::Result::SUCCESS
-                        }).unwrap()
-                    };
-                }
-
-                ret_ty = Some(ret_ty_value);
-            }
-            MultiCallKind::SeperateLenMethod => {
-                if returns_result {
-                    content = quote! { #content.result()? };
-                }
-
-                content = quote! {
-                    let mut #count = #data.len() as _;
-                    #content;
-                    assert_eq!(#count as usize, #data.len());
-                };
-
-                if returns_result {
-                    content = quote! { #content Ok(()) }
-                }
-
-                ret_ty = returns_result.then(|| RustTy::Custom {
-                    custom_type: quote! { VkResult },
-                    generic_args: vec![RustTy::Unit],
-                });
-
-                // TODO: refactor this code. it's ugly
-                let mut public_params_map = public_params_map.clone();
-                public_params_map.shift_remove(&multi_call_length.data);
-                let mut call_args_map = call_args_map.clone();
-                call_args_map[&multi_call_length.count] = quote! { #count.as_mut_ptr() };
-                call_args_map[&multi_call_length.data] = quote! { ptr::null_mut() };
-
-                let name_len = format_ident!("{name}_len");
-                let public_params = public_params_map.values();
-                let call_args = call_args_map.values();
-                let mut content = quote! { (self.#table_field.#name)( #( #call_args ),* ) };
-                let ret = if returns_result {
-                    content = quote! {
-                        #content
-                            .assume_init_on_success(#count)
-                            .map(|c| c as usize)
-                    };
-
-                    quote! { -> VkResult<usize> }
-                } else {
-                    content = quote! {
-                        #content;
-                        #count.assume_init() as usize
-                    };
-
-                    quote! { -> usize }
-                };
-
-                len_method = Some(quote! {
-                    #[doc = #doc]
-                    #[inline]
-                    pub unsafe fn #name_len(&self #( , #public_params )*) #ret {
-                        let mut #count = MaybeUninit::uninit();
-                        #content
-                    }
-                });
-            }
-        }
-    } else if returns_result {
-        if let Some((single_return, ..)) = single_return {
-            let name = param_ident(single_return);
-            content = quote! {
-                let mut #name = MaybeUninit::uninit();
-                #content
-            };
-
-            let name = param_ident(single_return);
-            content = quote! { #content.assume_init_on_success(#name) };
-        } else {
-            content = quote! { #content.result() };
-        }
-
-        ret_ty = Some(RustTy::Custom {
-            custom_type: quote! { VkResult },
-            generic_args: vec![match single_return {
-                Some((_name, ty)) => ty.to_rust(),
-                _ => RustTy::Unit,
-            }],
-        });
-    } else {
-        if let Some((single_return, ty)) = single_return {
-            let name = param_ident(single_return);
-            content = quote! {
-                let mut #name = MaybeUninit::uninit();
-                #content;
-                #name.assume_init()
-            };
-
-            ret_ty = Some(ty.to_rust());
-        } else {
-            ret_ty = command.return_type.as_ref().map(|ty| ty.to_rust());
-        }
-    };
-
-    let ret = ret_ty.map(|ty| {
-        let tokens = ty.tokens(octx, None);
-        quote! { -> #tokens }
+    let param_code = call_args.iter().filter_map(|call_arg| {
+        call_arg.param.as_ref().map(|wrapper_param| {
+            let ident = param_ident(wrapper_param.name);
+            let ty = wrapper_param.ty.tokens(octx, None);
+            quote! { #ident: #ty }
+        })
     });
+    let inputs = quote! { &self, #( #param_code ),* };
 
-    let public_params = public_params_map.values();
-    quote! {
-        #len_method
+    let arg_code = call_args.iter().map(|param| &param.value);
+    let call = quote! { (self.#table_field.#name)( #( #arg_code ),* ) };
 
-        #[doc = #doc]
-        #[inline]
-        pub unsafe fn #name(&self #( , #public_params )*) #ret {
-            #content
+    match wrapper_output.params.as_slice() {
+        [] => {
+            vec![Function {
+                inputs,
+                output: if wrapper_output.result {
+                    quote! { -> VkResult<()> }
+                } else {
+                    quote! {}
+                },
+                content: if wrapper_output.result {
+                    quote! { #call.result() }
+                } else {
+                    quote! { #call; }
+                },
+                ..Default::default()
+            }]
         }
+        _ => vec![],
     }
 }

@@ -273,8 +273,7 @@ impl Device {
     pub fn device(&self) -> vk::Device {
         self.handle
     }
-    ///vkCmdTraceRaysKHR
-    #[inline]
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdTraceRaysKHR.html) · Device Function
     pub unsafe fn cmd_trace_rays(
         &self,
         command_buffer: vk::CommandBuffer,
@@ -297,79 +296,9 @@ impl Device {
             width,
             height,
             depth,
-        )
+        );
     }
-    ///vkGetRayTracingShaderGroupHandlesKHR
-    #[inline]
-    pub unsafe fn get_ray_tracing_shader_group_handles(
-        &self,
-        pipeline: vk::Pipeline,
-        first_group: u32,
-        group_count: u32,
-        data: &mut [u8],
-    ) -> VkResult<()> {
-        (self
-            .fp
-            .get_ray_tracing_shader_group_handles)(
-                self.handle,
-                pipeline,
-                first_group,
-                group_count,
-                data.len() as _,
-                data.as_mut_ptr().cast(),
-            )
-            .result()
-    }
-    ///vkGetRayTracingCaptureReplayShaderGroupHandlesKHR
-    #[inline]
-    pub unsafe fn get_ray_tracing_capture_replay_shader_group_handles(
-        &self,
-        pipeline: vk::Pipeline,
-        first_group: u32,
-        group_count: u32,
-        data: &mut [u8],
-    ) -> VkResult<()> {
-        (self
-            .fp
-            .get_ray_tracing_capture_replay_shader_group_handles)(
-                self.handle,
-                pipeline,
-                first_group,
-                group_count,
-                data.len() as _,
-                data.as_mut_ptr().cast(),
-            )
-            .result()
-    }
-    ///vkCreateRayTracingPipelinesKHR
-    #[inline]
-    pub unsafe fn create_ray_tracing_pipelines(
-        &self,
-        deferred_operation: vk::DeferredOperationKHR,
-        pipeline_cache: vk::PipelineCache,
-        create_infos: &[vk::RayTracingPipelineCreateInfoKHR<'_>],
-        allocator: Option<&vk::AllocationCallbacks<'_>>,
-        pipelines: &mut [vk::Pipeline],
-    ) -> VkResult<()> {
-        assert_eq!(create_infos.len(), pipelines.len());
-        (self
-            .fp
-            .create_ray_tracing_pipelines)(
-                self.handle,
-                deferred_operation,
-                pipeline_cache,
-                pipelines.len() as _,
-                create_infos.as_ptr(),
-                match allocator {
-                    Some(inner) => inner,
-                    None => ptr::null_mut(),
-                },
-                pipelines.as_mut_ptr(),
-            )
-            .result()
-    }
-    ///vkCmdTraceRaysIndirectKHR
-    #[inline]
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdTraceRaysIndirectKHR.html) · Device Function
     pub unsafe fn cmd_trace_rays_indirect(
         &self,
         command_buffer: vk::CommandBuffer,
@@ -388,16 +317,15 @@ impl Device {
             hit_shader_binding_table,
             callable_shader_binding_table,
             indirect_device_address,
-        )
+        );
     }
-    ///vkGetRayTracingShaderGroupStackSizeKHR
-    #[inline]
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkGetRayTracingShaderGroupStackSizeKHR.html) · Device Function
     pub unsafe fn get_ray_tracing_shader_group_stack_size(
         &self,
         pipeline: vk::Pipeline,
         group: u32,
         group_shader: vk::ShaderGroupShaderKHR,
-    ) -> vk::DeviceSize {
+    ) {
         (self
             .fp
             .get_ray_tracing_shader_group_stack_size)(
@@ -405,10 +333,9 @@ impl Device {
             pipeline,
             group,
             group_shader,
-        )
+        );
     }
-    ///vkCmdSetRayTracingPipelineStackSizeKHR
-    #[inline]
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdSetRayTracingPipelineStackSizeKHR.html) · Device Function
     pub unsafe fn cmd_set_ray_tracing_pipeline_stack_size(
         &self,
         command_buffer: vk::CommandBuffer,
@@ -419,7 +346,7 @@ impl Device {
             .cmd_set_ray_tracing_pipeline_stack_size)(
             command_buffer,
             pipeline_stack_size,
-        )
+        );
     }
 }
 pub(crate) mod items {

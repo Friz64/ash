@@ -118,32 +118,29 @@ impl Device {
     pub fn device(&self) -> vk::Device {
         self.handle
     }
-    ///vkCmdDispatchTileQCOM
-    #[inline]
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdDispatchTileQCOM.html) · Device Function
     pub unsafe fn cmd_dispatch_tile(
         &self,
         command_buffer: vk::CommandBuffer,
         dispatch_tile_info: &vk::DispatchTileInfoQCOM<'_>,
     ) {
-        (self.fp.cmd_dispatch_tile)(command_buffer, dispatch_tile_info)
+        (self.fp.cmd_dispatch_tile)(command_buffer, dispatch_tile_info);
     }
-    ///vkCmdBeginPerTileExecutionQCOM
-    #[inline]
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdBeginPerTileExecutionQCOM.html) · Device Function
     pub unsafe fn cmd_begin_per_tile_execution(
         &self,
         command_buffer: vk::CommandBuffer,
         per_tile_begin_info: &vk::PerTileBeginInfoQCOM<'_>,
     ) {
-        (self.fp.cmd_begin_per_tile_execution)(command_buffer, per_tile_begin_info)
+        (self.fp.cmd_begin_per_tile_execution)(command_buffer, per_tile_begin_info);
     }
-    ///vkCmdEndPerTileExecutionQCOM
-    #[inline]
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdEndPerTileExecutionQCOM.html) · Device Function
     pub unsafe fn cmd_end_per_tile_execution(
         &self,
         command_buffer: vk::CommandBuffer,
         per_tile_end_info: &vk::PerTileEndInfoQCOM<'_>,
     ) {
-        (self.fp.cmd_end_per_tile_execution)(command_buffer, per_tile_end_info)
+        (self.fp.cmd_end_per_tile_execution)(command_buffer, per_tile_end_info);
     }
 }
 pub(crate) mod items {

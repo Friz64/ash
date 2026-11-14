@@ -1,11 +1,14 @@
 //! This file describes "special cases" that are used to supplement the automatic wrapper generation
-//! in cases where we want to integrate it into our loader abstraction or provide a "nicer" API.
+//! in cases where the information in the XML is not sufficient, we want to provide a "nicer" API,
+//! or we want to integrate it into our loader abstraction.
 //!
 //! All function listed in this file will be used to replace the ones that would be auto-generated.
 //!
 //! Note that the command name must match the original one in vk.xml,
 //! the generator will adjust it on its own accord. If this is not what you want,
 //! you can use `#[name(<name override>)]`.
+//!
+//! Replacing an alias will not work. Make sure not to use alias names.
 
 #[deprecated = "This function is unavailable and therefore panics on Vulkan 1.0, please use `try_enumerate_instance_version()` instead"]
 fn vkEnumerateInstanceVersion(&self) -> VkResult<u32> {
@@ -132,11 +135,85 @@ fn vkGetFenceStatus(&self, fence: vk::Fence) -> VkResult<bool> {
     }
 }
 
-/// wip
-fn vkEnumeratePhysicalDeviceQueueFamilyPerformanceQueryCountersKHR() {}
-/// wip
-fn vkEnumeratePhysicalDeviceQueueFamilyPerformanceCountersByRegionARM() {}
-/// wip
-fn vkGetPipelineBinaryDataKHR() {}
-/// wip
-fn vkGetEncodedVideoSessionParametersKHR() {}
+fn vkCmdBuildAccelerationStructuresKHR(
+    &self,
+    command_buffer: vk::CommandBuffer,
+    infos: &[vk::AccelerationStructureBuildGeometryInfoKHR<'_>],
+    build_range_infos: &[&[vk::AccelerationStructureBuildRangeInfoKHR]],
+) {
+    assert_eq!(infos.len(), build_range_infos.len());
+
+    let build_range_infos = build_range_infos
+        .iter()
+        .zip(infos.iter())
+        .map(|(range_info, info)| {
+            assert_eq!(range_info.len(), info.geometry_count as usize);
+            range_info.as_ptr()
+        })
+        .collect::<Vec<_>>();
+
+    (self.fp.cmd_build_acceleration_structures)(
+        command_buffer,
+        infos.len() as _,
+        infos.as_ptr(),
+        build_range_infos.as_ptr(),
+    );
+}
+
+fn vkCmdBuildAccelerationStructuresIndirectKHR(
+    &self,
+    command_buffer: vk::CommandBuffer,
+    infos: &[vk::AccelerationStructureBuildGeometryInfoKHR<'_>],
+    indirect_device_addresses: &[vk::DeviceAddress],
+    indirect_strides: &[u32],
+    max_primitive_counts: &[&[u32]],
+) {
+    assert_eq!(infos.len(), indirect_device_addresses.len());
+    assert_eq!(infos.len(), indirect_strides.len());
+    assert_eq!(infos.len(), max_primitive_counts.len());
+
+    let max_primitive_counts = max_primitive_counts
+        .iter()
+        .zip(infos.iter())
+        .map(|(cnt, info)| {
+            assert_eq!(cnt.len(), info.geometry_count as usize);
+            cnt.as_ptr()
+        })
+        .collect::<Vec<_>>();
+
+    (self.fp.cmd_build_acceleration_structures_indirect)(
+        command_buffer,
+        infos.len() as _,
+        infos.as_ptr(),
+        indirect_device_addresses.as_ptr(),
+        indirect_strides.as_ptr(),
+        max_primitive_counts.as_ptr(),
+    );
+}
+
+fn vkBuildAccelerationStructuresKHR(
+    &self,
+    deferred_operation: vk::DeferredOperationKHR,
+    infos: &[vk::AccelerationStructureBuildGeometryInfoKHR<'_>],
+    build_range_infos: &[&[vk::AccelerationStructureBuildRangeInfoKHR]],
+) -> VkResult<()> {
+    assert_eq!(infos.len(), build_range_infos.len());
+
+    let build_range_infos = build_range_infos
+        .iter()
+        .zip(infos.iter())
+        .map(|(range_info, info)| {
+            assert_eq!(range_info.len(), info.geometry_count as usize);
+            range_info.as_ptr()
+        })
+        .collect::<Vec<_>>();
+
+    (self.fp.build_acceleration_structures)(
+        self.handle,
+        deferred_operation,
+        infos.len() as _,
+        infos.as_ptr(),
+        build_range_infos.as_ptr(),
+    )
+    .result()
+}

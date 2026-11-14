@@ -61,8 +61,7 @@ impl Device {
     pub fn device(&self) -> vk::Device {
         self.handle
     }
-    ///vkCmdSetPrimitiveRestartIndexEXT
-    #[inline]
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdSetPrimitiveRestartIndexEXT.html) · Device Function
     pub unsafe fn cmd_set_primitive_restart_index(
         &self,
         command_buffer: vk::CommandBuffer,
@@ -70,7 +69,7 @@ impl Device {
     ) {
         (self
             .fp
-            .cmd_set_primitive_restart_index)(command_buffer, primitive_restart_index)
+            .cmd_set_primitive_restart_index)(command_buffer, primitive_restart_index);
     }
 }
 pub(crate) mod items {

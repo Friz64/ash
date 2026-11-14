@@ -99,23 +99,6 @@ impl Instance {
     pub fn instance(&self) -> vk::Instance {
         self.handle
     }
-    ///vkGetPhysicalDeviceExternalFenceProperties
-    #[inline]
-    pub unsafe fn get_physical_device_external_fence_properties(
-        &self,
-        physical_device: vk::PhysicalDevice,
-        external_fence_info: &vk::PhysicalDeviceExternalFenceInfo<'_>,
-    ) -> vk::ExternalFenceProperties<'_> {
-        let mut external_fence_properties = MaybeUninit::uninit();
-        (self
-            .fp
-            .get_physical_device_external_fence_properties)(
-            physical_device,
-            external_fence_info,
-            external_fence_properties.as_mut_ptr(),
-        );
-        external_fence_properties.assume_init()
-    }
 }
 pub(crate) mod items {
     use crate::internal_prelude::*;

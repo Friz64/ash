@@ -143,32 +143,28 @@ impl Device {
     pub fn device(&self) -> vk::Device {
         self.handle
     }
-    ///vkCopyMemoryToImage
-    #[inline]
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCopyMemoryToImage.html) · Device Function
     pub unsafe fn copy_memory_to_image(
         &self,
         copy_memory_to_image_info: &vk::CopyMemoryToImageInfo<'_>,
     ) -> VkResult<()> {
         (self.fp.copy_memory_to_image)(self.handle, copy_memory_to_image_info).result()
     }
-    ///vkCopyImageToMemory
-    #[inline]
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCopyImageToMemory.html) · Device Function
     pub unsafe fn copy_image_to_memory(
         &self,
         copy_image_to_memory_info: &vk::CopyImageToMemoryInfo<'_>,
     ) -> VkResult<()> {
         (self.fp.copy_image_to_memory)(self.handle, copy_image_to_memory_info).result()
     }
-    ///vkCopyImageToImage
-    #[inline]
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCopyImageToImage.html) · Device Function
     pub unsafe fn copy_image_to_image(
         &self,
         copy_image_to_image_info: &vk::CopyImageToImageInfo<'_>,
     ) -> VkResult<()> {
         (self.fp.copy_image_to_image)(self.handle, copy_image_to_image_info).result()
     }
-    ///vkTransitionImageLayout
-    #[inline]
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkTransitionImageLayout.html) · Device Function
     pub unsafe fn transition_image_layout(
         &self,
         transitions: &[vk::HostImageLayoutTransitionInfo<'_>],
@@ -181,24 +177,6 @@ impl Device {
                 transitions.as_ptr(),
             )
             .result()
-    }
-    ///vkGetImageSubresourceLayout2
-    #[inline]
-    pub unsafe fn get_image_subresource_layout2(
-        &self,
-        image: vk::Image,
-        subresource: &vk::ImageSubresource2<'_>,
-    ) -> vk::SubresourceLayout2<'_> {
-        let mut layout = MaybeUninit::uninit();
-        (self
-            .fp
-            .get_image_subresource_layout2)(
-            self.handle,
-            image,
-            subresource,
-            layout.as_mut_ptr(),
-        );
-        layout.assume_init()
     }
 }
 pub(crate) mod items {

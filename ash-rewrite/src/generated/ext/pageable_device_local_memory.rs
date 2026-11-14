@@ -58,14 +58,13 @@ impl Device {
     pub fn device(&self) -> vk::Device {
         self.handle
     }
-    ///vkSetDeviceMemoryPriorityEXT
-    #[inline]
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkSetDeviceMemoryPriorityEXT.html) · Device Function
     pub unsafe fn set_device_memory_priority(
         &self,
         memory: vk::DeviceMemory,
         priority: ffi::c_float,
     ) {
-        (self.fp.set_device_memory_priority)(self.handle, memory, priority)
+        (self.fp.set_device_memory_priority)(self.handle, memory, priority);
     }
 }
 pub(crate) mod items {

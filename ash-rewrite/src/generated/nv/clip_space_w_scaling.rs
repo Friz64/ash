@@ -61,8 +61,7 @@ impl Device {
     pub fn device(&self) -> vk::Device {
         self.handle
     }
-    ///vkCmdSetViewportWScalingNV
-    #[inline]
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdSetViewportWScalingNV.html) · Device Function
     pub unsafe fn cmd_set_viewport_w_scaling(
         &self,
         command_buffer: vk::CommandBuffer,
@@ -76,7 +75,7 @@ impl Device {
             first_viewport,
             viewport_w_scalings.len() as _,
             viewport_w_scalings.as_ptr(),
-        )
+        );
     }
 }
 pub(crate) mod items {

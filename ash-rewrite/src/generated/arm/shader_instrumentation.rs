@@ -75,42 +75,6 @@ impl Instance {
     pub fn instance(&self) -> vk::Instance {
         self.handle
     }
-    ///vkEnumeratePhysicalDeviceShaderInstrumentationMetricsARM
-    #[inline]
-    pub unsafe fn enumerate_physical_device_shader_instrumentation_metrics_len(
-        &self,
-        physical_device: vk::PhysicalDevice,
-    ) -> VkResult<usize> {
-        let mut description_count = MaybeUninit::uninit();
-        (self
-            .fp
-            .enumerate_physical_device_shader_instrumentation_metrics)(
-                physical_device,
-                description_count.as_mut_ptr(),
-                ptr::null_mut(),
-            )
-            .assume_init_on_success(description_count)
-            .map(|c| c as usize)
-    }
-    ///vkEnumeratePhysicalDeviceShaderInstrumentationMetricsARM
-    #[inline]
-    pub unsafe fn enumerate_physical_device_shader_instrumentation_metrics(
-        &self,
-        physical_device: vk::PhysicalDevice,
-        descriptions: &mut [vk::ShaderInstrumentationMetricDescriptionARM<'_>],
-    ) -> VkResult<()> {
-        let mut description_count = descriptions.len() as _;
-        (self
-            .fp
-            .enumerate_physical_device_shader_instrumentation_metrics)(
-                physical_device,
-                &mut description_count,
-                descriptions.as_mut_ptr(),
-            )
-            .result()?;
-        assert_eq!(description_count as usize, descriptions.len());
-        Ok(())
-    }
 }
 #[derive(Clone)]
 pub struct DeviceFn {
@@ -242,89 +206,37 @@ impl Device {
     pub fn device(&self) -> vk::Device {
         self.handle
     }
-    ///vkCreateShaderInstrumentationARM
-    #[inline]
-    pub unsafe fn create_shader_instrumentation(
-        &self,
-        create_info: &vk::ShaderInstrumentationCreateInfoARM<'_>,
-        allocator: Option<&vk::AllocationCallbacks<'_>>,
-    ) -> VkResult<vk::ShaderInstrumentationARM> {
-        let mut instrumentation = MaybeUninit::uninit();
-        (self
-            .fp
-            .create_shader_instrumentation)(
-                self.handle,
-                create_info,
-                match allocator {
-                    Some(inner) => inner,
-                    None => ptr::null_mut(),
-                },
-                instrumentation.as_mut_ptr(),
-            )
-            .assume_init_on_success(instrumentation)
-    }
-    ///vkDestroyShaderInstrumentationARM
-    #[inline]
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkDestroyShaderInstrumentationARM.html) · Device Function
     pub unsafe fn destroy_shader_instrumentation(
         &self,
         instrumentation: vk::ShaderInstrumentationARM,
-        allocator: Option<&vk::AllocationCallbacks<'_>>,
+        allocator: &vk::AllocationCallbacks<'_>,
     ) {
         (self
             .fp
-            .destroy_shader_instrumentation)(
-            self.handle,
-            instrumentation,
-            match allocator {
-                Some(inner) => inner,
-                None => ptr::null_mut(),
-            },
-        )
+            .destroy_shader_instrumentation)(self.handle, instrumentation, allocator);
     }
-    ///vkCmdBeginShaderInstrumentationARM
-    #[inline]
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdBeginShaderInstrumentationARM.html) · Device Function
     pub unsafe fn cmd_begin_shader_instrumentation(
         &self,
         command_buffer: vk::CommandBuffer,
         instrumentation: vk::ShaderInstrumentationARM,
     ) {
-        (self.fp.cmd_begin_shader_instrumentation)(command_buffer, instrumentation)
+        (self.fp.cmd_begin_shader_instrumentation)(command_buffer, instrumentation);
     }
-    ///vkCmdEndShaderInstrumentationARM
-    #[inline]
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdEndShaderInstrumentationARM.html) · Device Function
     pub unsafe fn cmd_end_shader_instrumentation(
         &self,
         command_buffer: vk::CommandBuffer,
     ) {
-        (self.fp.cmd_end_shader_instrumentation)(command_buffer)
+        (self.fp.cmd_end_shader_instrumentation)(command_buffer);
     }
-    ///vkGetShaderInstrumentationValuesARM
-    #[inline]
-    pub unsafe fn get_shader_instrumentation_values(
-        &self,
-        instrumentation: vk::ShaderInstrumentationARM,
-        metric_block_count: &mut u32,
-        metric_values: &mut ffi::c_void,
-        flags: vk::ShaderInstrumentationValuesFlagsARM,
-    ) -> VkResult<()> {
-        (self
-            .fp
-            .get_shader_instrumentation_values)(
-                self.handle,
-                instrumentation,
-                metric_block_count,
-                metric_values,
-                flags,
-            )
-            .result()
-    }
-    ///vkClearShaderInstrumentationMetricsARM
-    #[inline]
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkClearShaderInstrumentationMetricsARM.html) · Device Function
     pub unsafe fn clear_shader_instrumentation_metrics(
         &self,
         instrumentation: vk::ShaderInstrumentationARM,
     ) {
-        (self.fp.clear_shader_instrumentation_metrics)(self.handle, instrumentation)
+        (self.fp.clear_shader_instrumentation_metrics)(self.handle, instrumentation);
     }
 }
 pub(crate) mod items {

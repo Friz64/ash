@@ -86,15 +86,14 @@ impl Device {
     pub fn device(&self) -> vk::Device {
         self.handle
     }
-    ///vkCmdBindInvocationMaskHUAWEI
-    #[inline]
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdBindInvocationMaskHUAWEI.html) · Device Function
     pub unsafe fn cmd_bind_invocation_mask(
         &self,
         command_buffer: vk::CommandBuffer,
         image_view: vk::ImageView,
         image_layout: vk::ImageLayout,
     ) {
-        (self.fp.cmd_bind_invocation_mask)(command_buffer, image_view, image_layout)
+        (self.fp.cmd_bind_invocation_mask)(command_buffer, image_view, image_layout);
     }
 }
 pub(crate) mod items {

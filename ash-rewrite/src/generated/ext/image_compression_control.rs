@@ -175,24 +175,6 @@ impl Device {
     pub fn device(&self) -> vk::Device {
         self.handle
     }
-    ///vkGetImageSubresourceLayout2
-    #[inline]
-    pub unsafe fn get_image_subresource_layout2(
-        &self,
-        image: vk::Image,
-        subresource: &vk::ImageSubresource2<'_>,
-    ) -> vk::SubresourceLayout2<'_> {
-        let mut layout = MaybeUninit::uninit();
-        (self
-            .fp
-            .get_image_subresource_layout2)(
-            self.handle,
-            image,
-            subresource,
-            layout.as_mut_ptr(),
-        );
-        layout.assume_init()
-    }
 }
 pub(crate) mod items {
     use crate::internal_prelude::*;

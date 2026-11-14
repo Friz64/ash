@@ -76,8 +76,7 @@ impl Device {
     pub fn device(&self) -> vk::Device {
         self.handle
     }
-    ///vkCmdDrawIndirectCount
-    #[inline]
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdDrawIndirectCount.html) · Device Function
     pub unsafe fn cmd_draw_indirect_count(
         &self,
         command_buffer: vk::CommandBuffer,
@@ -98,10 +97,9 @@ impl Device {
             count_buffer_offset,
             max_draw_count,
             stride,
-        )
+        );
     }
-    ///vkCmdDrawIndexedIndirectCount
-    #[inline]
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdDrawIndexedIndirectCount.html) · Device Function
     pub unsafe fn cmd_draw_indexed_indirect_count(
         &self,
         command_buffer: vk::CommandBuffer,
@@ -122,7 +120,7 @@ impl Device {
             count_buffer_offset,
             max_draw_count,
             stride,
-        )
+        );
     }
 }
 pub(crate) mod items {

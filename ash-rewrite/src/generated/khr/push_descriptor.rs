@@ -91,8 +91,7 @@ impl Device {
     pub fn device(&self) -> vk::Device {
         self.handle
     }
-    ///vkCmdPushDescriptorSet
-    #[inline]
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdPushDescriptorSet.html) · Device Function
     pub unsafe fn cmd_push_descriptor_set(
         &self,
         command_buffer: vk::CommandBuffer,
@@ -110,10 +109,9 @@ impl Device {
             set,
             descriptor_writes.len() as _,
             descriptor_writes.as_ptr(),
-        )
+        );
     }
-    ///vkCmdPushDescriptorSetWithTemplate
-    #[inline]
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdPushDescriptorSetWithTemplate.html) · Device Function
     pub unsafe fn cmd_push_descriptor_set_with_template(
         &self,
         command_buffer: vk::CommandBuffer,
@@ -130,7 +128,7 @@ impl Device {
             layout,
             set,
             data,
-        )
+        );
     }
 }
 pub(crate) mod items {

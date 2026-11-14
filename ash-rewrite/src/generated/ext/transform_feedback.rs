@@ -184,8 +184,7 @@ impl Device {
     pub fn device(&self) -> vk::Device {
         self.handle
     }
-    ///vkCmdBindTransformFeedbackBuffersEXT
-    #[inline]
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdBindTransformFeedbackBuffersEXT.html) · Device Function
     pub unsafe fn cmd_bind_transform_feedback_buffers(
         &self,
         command_buffer: vk::CommandBuffer,
@@ -194,21 +193,18 @@ impl Device {
         offsets: &[vk::DeviceSize],
         sizes: &[vk::DeviceSize],
     ) {
-        assert_eq!(offsets.len(), sizes.len());
-        assert_eq!(buffers.len(), offsets.len());
         (self
             .fp
             .cmd_bind_transform_feedback_buffers)(
             command_buffer,
             first_binding,
-            sizes.len() as _,
+            buffers.len() as _,
             buffers.as_ptr(),
             offsets.as_ptr(),
             sizes.as_ptr(),
-        )
+        );
     }
-    ///vkCmdBeginTransformFeedbackEXT
-    #[inline]
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdBeginTransformFeedbackEXT.html) · Device Function
     pub unsafe fn cmd_begin_transform_feedback(
         &self,
         command_buffer: vk::CommandBuffer,
@@ -216,19 +212,17 @@ impl Device {
         counter_buffers: &[vk::Buffer],
         counter_buffer_offsets: &[vk::DeviceSize],
     ) {
-        assert_eq!(counter_buffers.len(), counter_buffer_offsets.len());
         (self
             .fp
             .cmd_begin_transform_feedback)(
             command_buffer,
             first_counter_buffer,
-            counter_buffer_offsets.len() as _,
+            counter_buffers.len() as _,
             counter_buffers.as_ptr(),
             counter_buffer_offsets.as_ptr(),
-        )
+        );
     }
-    ///vkCmdEndTransformFeedbackEXT
-    #[inline]
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdEndTransformFeedbackEXT.html) · Device Function
     pub unsafe fn cmd_end_transform_feedback(
         &self,
         command_buffer: vk::CommandBuffer,
@@ -236,19 +230,17 @@ impl Device {
         counter_buffers: &[vk::Buffer],
         counter_buffer_offsets: &[vk::DeviceSize],
     ) {
-        assert_eq!(counter_buffers.len(), counter_buffer_offsets.len());
         (self
             .fp
             .cmd_end_transform_feedback)(
             command_buffer,
             first_counter_buffer,
-            counter_buffer_offsets.len() as _,
+            counter_buffers.len() as _,
             counter_buffers.as_ptr(),
             counter_buffer_offsets.as_ptr(),
-        )
+        );
     }
-    ///vkCmdBeginQueryIndexedEXT
-    #[inline]
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdBeginQueryIndexedEXT.html) · Device Function
     pub unsafe fn cmd_begin_query_indexed(
         &self,
         command_buffer: vk::CommandBuffer,
@@ -259,10 +251,9 @@ impl Device {
     ) {
         (self
             .fp
-            .cmd_begin_query_indexed)(command_buffer, query_pool, query, flags, index)
+            .cmd_begin_query_indexed)(command_buffer, query_pool, query, flags, index);
     }
-    ///vkCmdEndQueryIndexedEXT
-    #[inline]
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdEndQueryIndexedEXT.html) · Device Function
     pub unsafe fn cmd_end_query_indexed(
         &self,
         command_buffer: vk::CommandBuffer,
@@ -270,10 +261,9 @@ impl Device {
         query: u32,
         index: u32,
     ) {
-        (self.fp.cmd_end_query_indexed)(command_buffer, query_pool, query, index)
+        (self.fp.cmd_end_query_indexed)(command_buffer, query_pool, query, index);
     }
-    ///vkCmdDrawIndirectByteCountEXT
-    #[inline]
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdDrawIndirectByteCountEXT.html) · Device Function
     pub unsafe fn cmd_draw_indirect_byte_count(
         &self,
         command_buffer: vk::CommandBuffer,
@@ -294,7 +284,7 @@ impl Device {
             counter_buffer_offset,
             counter_offset,
             vertex_stride,
-        )
+        );
     }
 }
 pub(crate) mod items {

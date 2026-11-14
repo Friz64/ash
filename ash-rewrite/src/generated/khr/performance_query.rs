@@ -137,26 +137,6 @@ impl Instance {
     pub fn instance(&self) -> vk::Instance {
         self.handle
     }
-    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkEnumeratePhysicalDeviceQueueFamilyPerformanceQueryCountersKHR.html) · Instance Function
-    /// wip
-    pub unsafe fn enumerate_physical_device_queue_family_performance_query_counters() {}
-    ///vkGetPhysicalDeviceQueueFamilyPerformanceQueryPassesKHR
-    #[inline]
-    pub unsafe fn get_physical_device_queue_family_performance_query_passes(
-        &self,
-        physical_device: vk::PhysicalDevice,
-        performance_query_create_info: &vk::QueryPoolPerformanceCreateInfoKHR<'_>,
-    ) -> u32 {
-        let mut num_passes = MaybeUninit::uninit();
-        (self
-            .fp
-            .get_physical_device_queue_family_performance_query_passes)(
-            physical_device,
-            performance_query_create_info,
-            num_passes.as_mut_ptr(),
-        );
-        num_passes.assume_init()
-    }
 }
 #[derive(Clone)]
 pub struct DeviceFn {
@@ -212,18 +192,16 @@ impl Device {
     pub fn device(&self) -> vk::Device {
         self.handle
     }
-    ///vkAcquireProfilingLockKHR
-    #[inline]
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkAcquireProfilingLockKHR.html) · Device Function
     pub unsafe fn acquire_profiling_lock(
         &self,
         info: &vk::AcquireProfilingLockInfoKHR<'_>,
     ) -> VkResult<()> {
         (self.fp.acquire_profiling_lock)(self.handle, info).result()
     }
-    ///vkReleaseProfilingLockKHR
-    #[inline]
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkReleaseProfilingLockKHR.html) · Device Function
     pub unsafe fn release_profiling_lock(&self) {
-        (self.fp.release_profiling_lock)(self.handle)
+        (self.fp.release_profiling_lock)(self.handle);
     }
 }
 pub(crate) mod items {

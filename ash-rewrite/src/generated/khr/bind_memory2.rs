@@ -77,8 +77,7 @@ impl Device {
     pub fn device(&self) -> vk::Device {
         self.handle
     }
-    ///vkBindBufferMemory2
-    #[inline]
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkBindBufferMemory2.html) · Device Function
     pub unsafe fn bind_buffer_memory2(
         &self,
         bind_infos: &[vk::BindBufferMemoryInfo<'_>],
@@ -92,8 +91,7 @@ impl Device {
             )
             .result()
     }
-    ///vkBindImageMemory2
-    #[inline]
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkBindImageMemory2.html) · Device Function
     pub unsafe fn bind_image_memory2(
         &self,
         bind_infos: &[vk::BindImageMemoryInfo<'_>],

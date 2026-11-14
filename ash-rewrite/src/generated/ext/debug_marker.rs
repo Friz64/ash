@@ -98,44 +98,39 @@ impl Device {
     pub fn device(&self) -> vk::Device {
         self.handle
     }
-    ///vkDebugMarkerSetObjectNameEXT
-    #[inline]
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkDebugMarkerSetObjectNameEXT.html) · Device Function
     pub unsafe fn debug_marker_set_object_name(
         &self,
         name_info: &vk::DebugMarkerObjectNameInfoEXT<'_>,
     ) -> VkResult<()> {
         (self.fp.debug_marker_set_object_name)(self.handle, name_info).result()
     }
-    ///vkDebugMarkerSetObjectTagEXT
-    #[inline]
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkDebugMarkerSetObjectTagEXT.html) · Device Function
     pub unsafe fn debug_marker_set_object_tag(
         &self,
         tag_info: &vk::DebugMarkerObjectTagInfoEXT<'_>,
     ) -> VkResult<()> {
         (self.fp.debug_marker_set_object_tag)(self.handle, tag_info).result()
     }
-    ///vkCmdDebugMarkerBeginEXT
-    #[inline]
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdDebugMarkerBeginEXT.html) · Device Function
     pub unsafe fn cmd_debug_marker_begin(
         &self,
         command_buffer: vk::CommandBuffer,
         marker_info: &vk::DebugMarkerMarkerInfoEXT<'_>,
     ) {
-        (self.fp.cmd_debug_marker_begin)(command_buffer, marker_info)
+        (self.fp.cmd_debug_marker_begin)(command_buffer, marker_info);
     }
-    ///vkCmdDebugMarkerEndEXT
-    #[inline]
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdDebugMarkerEndEXT.html) · Device Function
     pub unsafe fn cmd_debug_marker_end(&self, command_buffer: vk::CommandBuffer) {
-        (self.fp.cmd_debug_marker_end)(command_buffer)
+        (self.fp.cmd_debug_marker_end)(command_buffer);
     }
-    ///vkCmdDebugMarkerInsertEXT
-    #[inline]
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdDebugMarkerInsertEXT.html) · Device Function
     pub unsafe fn cmd_debug_marker_insert(
         &self,
         command_buffer: vk::CommandBuffer,
         marker_info: &vk::DebugMarkerMarkerInfoEXT<'_>,
     ) {
-        (self.fp.cmd_debug_marker_insert)(command_buffer, marker_info)
+        (self.fp.cmd_debug_marker_insert)(command_buffer, marker_info);
     }
 }
 pub(crate) mod items {

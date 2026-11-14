@@ -61,27 +61,6 @@ impl Instance {
     pub fn instance(&self) -> vk::Instance {
         self.handle
     }
-    ///vkCreateStreamDescriptorSurfaceGGP
-    #[inline]
-    pub unsafe fn create_stream_descriptor_surface(
-        &self,
-        create_info: &vk::StreamDescriptorSurfaceCreateInfoGGP<'_>,
-        allocator: Option<&vk::AllocationCallbacks<'_>>,
-    ) -> VkResult<vk::SurfaceKHR> {
-        let mut surface = MaybeUninit::uninit();
-        (self
-            .fp
-            .create_stream_descriptor_surface)(
-                self.handle,
-                create_info,
-                match allocator {
-                    Some(inner) => inner,
-                    None => ptr::null_mut(),
-                },
-                surface.as_mut_ptr(),
-            )
-            .assume_init_on_success(surface)
-    }
 }
 pub(crate) mod items {
     use crate::internal_prelude::*;

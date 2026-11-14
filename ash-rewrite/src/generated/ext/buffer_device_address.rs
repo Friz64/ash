@@ -84,13 +84,12 @@ impl Device {
     pub fn device(&self) -> vk::Device {
         self.handle
     }
-    ///vkGetBufferDeviceAddress
-    #[inline]
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkGetBufferDeviceAddress.html) · Device Function
     pub unsafe fn get_buffer_device_address(
         &self,
         info: &vk::BufferDeviceAddressInfo<'_>,
-    ) -> vk::DeviceAddress {
-        (self.fp.get_buffer_device_address)(self.handle, info)
+    ) {
+        (self.fp.get_buffer_device_address)(self.handle, info);
     }
 }
 pub(crate) mod items {

@@ -126,17 +126,15 @@ impl Device {
     pub fn device(&self) -> vk::Device {
         self.handle
     }
-    ///vkCmdDecompressMemoryEXT
-    #[inline]
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdDecompressMemoryEXT.html) · Device Function
     pub unsafe fn cmd_decompress_memory(
         &self,
         command_buffer: vk::CommandBuffer,
         decompress_memory_info_ext: &vk::DecompressMemoryInfoEXT<'_>,
     ) {
-        (self.fp.cmd_decompress_memory)(command_buffer, decompress_memory_info_ext)
+        (self.fp.cmd_decompress_memory)(command_buffer, decompress_memory_info_ext);
     }
-    ///vkCmdDecompressMemoryIndirectCountEXT
-    #[inline]
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdDecompressMemoryIndirectCountEXT.html) · Device Function
     pub unsafe fn cmd_decompress_memory_indirect_count(
         &self,
         command_buffer: vk::CommandBuffer,
@@ -155,7 +153,7 @@ impl Device {
             indirect_commands_count_address,
             max_decompression_count,
             stride,
-        )
+        );
     }
 }
 pub(crate) mod items {

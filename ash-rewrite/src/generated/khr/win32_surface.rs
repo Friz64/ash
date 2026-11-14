@@ -74,40 +74,18 @@ impl Instance {
     pub fn instance(&self) -> vk::Instance {
         self.handle
     }
-    ///vkCreateWin32SurfaceKHR
-    #[inline]
-    pub unsafe fn create_win32_surface(
-        &self,
-        create_info: &vk::Win32SurfaceCreateInfoKHR<'_>,
-        allocator: Option<&vk::AllocationCallbacks<'_>>,
-    ) -> VkResult<vk::SurfaceKHR> {
-        let mut surface = MaybeUninit::uninit();
-        (self
-            .fp
-            .create_win32_surface)(
-                self.handle,
-                create_info,
-                match allocator {
-                    Some(inner) => inner,
-                    None => ptr::null_mut(),
-                },
-                surface.as_mut_ptr(),
-            )
-            .assume_init_on_success(surface)
-    }
-    ///vkGetPhysicalDeviceWin32PresentationSupportKHR
-    #[inline]
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkGetPhysicalDeviceWin32PresentationSupportKHR.html) · Instance Function
     pub unsafe fn get_physical_device_win32_presentation_support(
         &self,
         physical_device: vk::PhysicalDevice,
         queue_family_index: u32,
-    ) -> vk::Bool32 {
+    ) {
         (self
             .fp
             .get_physical_device_win32_presentation_support)(
             physical_device,
             queue_family_index,
-        )
+        );
     }
 }
 pub(crate) mod items {

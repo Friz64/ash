@@ -77,46 +77,6 @@ impl Instance {
     pub fn instance(&self) -> vk::Instance {
         self.handle
     }
-    ///vkGetPhysicalDeviceCooperativeMatrixProperties2EXT
-    #[inline]
-    pub unsafe fn get_physical_device_cooperative_matrix_properties2_len(
-        &self,
-        physical_device: vk::PhysicalDevice,
-        cooperative_matrix_info: &vk::PhysicalDeviceCooperativeMatrixInfo2EXT<'_>,
-    ) -> VkResult<usize> {
-        let mut property_count = MaybeUninit::uninit();
-        (self
-            .fp
-            .get_physical_device_cooperative_matrix_properties2)(
-                physical_device,
-                cooperative_matrix_info,
-                property_count.as_mut_ptr(),
-                ptr::null_mut(),
-            )
-            .assume_init_on_success(property_count)
-            .map(|c| c as usize)
-    }
-    ///vkGetPhysicalDeviceCooperativeMatrixProperties2EXT
-    #[inline]
-    pub unsafe fn get_physical_device_cooperative_matrix_properties2(
-        &self,
-        physical_device: vk::PhysicalDevice,
-        cooperative_matrix_info: &vk::PhysicalDeviceCooperativeMatrixInfo2EXT<'_>,
-        properties: &mut [vk::CooperativeMatrixProperties2EXT<'_>],
-    ) -> VkResult<()> {
-        let mut property_count = properties.len() as _;
-        (self
-            .fp
-            .get_physical_device_cooperative_matrix_properties2)(
-                physical_device,
-                cooperative_matrix_info,
-                &mut property_count,
-                properties.as_mut_ptr(),
-            )
-            .result()?;
-        assert_eq!(property_count as usize, properties.len());
-        Ok(())
-    }
 }
 pub(crate) mod items {
     use crate::internal_prelude::*;

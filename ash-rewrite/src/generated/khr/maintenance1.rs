@@ -80,14 +80,13 @@ impl Device {
     pub fn device(&self) -> vk::Device {
         self.handle
     }
-    ///vkTrimCommandPool
-    #[inline]
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkTrimCommandPool.html) · Device Function
     pub unsafe fn trim_command_pool(
         &self,
         command_pool: vk::CommandPool,
         flags: vk::CommandPoolTrimFlags,
     ) {
-        (self.fp.trim_command_pool)(self.handle, command_pool, flags)
+        (self.fp.trim_command_pool)(self.handle, command_pool, flags);
     }
 }
 pub(crate) mod items {

@@ -61,14 +61,13 @@ impl Device {
     pub fn device(&self) -> vk::Device {
         self.handle
     }
-    ///vkSetLocalDimmingAMD
-    #[inline]
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkSetLocalDimmingAMD.html) · Device Function
     pub unsafe fn set_local_dimming(
         &self,
         swap_chain: vk::SwapchainKHR,
-        local_dimming_enable: vk::Bool32,
+        local_dimming_enable: bool,
     ) {
-        (self.fp.set_local_dimming)(self.handle, swap_chain, local_dimming_enable)
+        (self.fp.set_local_dimming)(self.handle, swap_chain, local_dimming_enable as _);
     }
 }
 pub(crate) mod items {

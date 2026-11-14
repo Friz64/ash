@@ -61,8 +61,7 @@ impl Device {
     pub fn device(&self) -> vk::Device {
         self.handle
     }
-    ///vkCmdSetColorWriteEnableEXT
-    #[inline]
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdSetColorWriteEnableEXT.html) · Device Function
     pub unsafe fn cmd_set_color_write_enable(
         &self,
         command_buffer: vk::CommandBuffer,
@@ -74,7 +73,7 @@ impl Device {
             command_buffer,
             color_write_enables.len() as _,
             color_write_enables.as_ptr(),
-        )
+        );
     }
 }
 pub(crate) mod items {

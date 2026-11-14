@@ -72,18 +72,6 @@ impl Device {
     pub fn device(&self) -> vk::Device {
         self.handle
     }
-    ///vkGetScreenBufferPropertiesQNX
-    #[inline]
-    pub unsafe fn get_screen_buffer_properties(
-        &self,
-        buffer: &vk::_screen_buffer,
-    ) -> VkResult<vk::ScreenBufferPropertiesQNX<'_>> {
-        let mut properties = MaybeUninit::uninit();
-        (self
-            .fp
-            .get_screen_buffer_properties)(self.handle, buffer, properties.as_mut_ptr())
-            .assume_init_on_success(properties)
-    }
 }
 pub(crate) mod items {
     use crate::internal_prelude::*;

@@ -99,33 +99,6 @@ impl Instance {
     pub fn instance(&self) -> vk::Instance {
         self.handle
     }
-    ///vkGetPhysicalDeviceExternalImageFormatPropertiesNV
-    #[inline]
-    pub unsafe fn get_physical_device_external_image_format_properties(
-        &self,
-        physical_device: vk::PhysicalDevice,
-        format: vk::Format,
-        ty: vk::ImageType,
-        tiling: vk::ImageTiling,
-        usage: vk::ImageUsageFlags,
-        flags: vk::ImageCreateFlags,
-        external_handle_type: vk::ExternalMemoryHandleTypeFlagsNV,
-    ) -> VkResult<vk::ExternalImageFormatPropertiesNV> {
-        let mut external_image_format_properties = MaybeUninit::uninit();
-        (self
-            .fp
-            .get_physical_device_external_image_format_properties)(
-                physical_device,
-                format,
-                ty,
-                tiling,
-                usage,
-                flags,
-                external_handle_type,
-                external_image_format_properties.as_mut_ptr(),
-            )
-            .assume_init_on_success(external_image_format_properties)
-    }
 }
 pub(crate) mod items {
     use crate::internal_prelude::*;

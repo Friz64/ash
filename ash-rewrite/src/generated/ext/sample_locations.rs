@@ -73,14 +73,13 @@ impl Device {
     pub fn device(&self) -> vk::Device {
         self.handle
     }
-    ///vkCmdSetSampleLocationsEXT
-    #[inline]
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdSetSampleLocationsEXT.html) · Device Function
     pub unsafe fn cmd_set_sample_locations(
         &self,
         command_buffer: vk::CommandBuffer,
         sample_locations_info: &vk::SampleLocationsInfoEXT<'_>,
     ) {
-        (self.fp.cmd_set_sample_locations)(command_buffer, sample_locations_info)
+        (self.fp.cmd_set_sample_locations)(command_buffer, sample_locations_info);
     }
 }
 #[derive(Clone)]
@@ -133,23 +132,6 @@ impl Instance {
     #[inline]
     pub fn instance(&self) -> vk::Instance {
         self.handle
-    }
-    ///vkGetPhysicalDeviceMultisamplePropertiesEXT
-    #[inline]
-    pub unsafe fn get_physical_device_multisample_properties(
-        &self,
-        physical_device: vk::PhysicalDevice,
-        samples: vk::SampleCountFlagBits,
-    ) -> vk::MultisamplePropertiesEXT<'_> {
-        let mut multisample_properties = MaybeUninit::uninit();
-        (self
-            .fp
-            .get_physical_device_multisample_properties)(
-            physical_device,
-            samples,
-            multisample_properties.as_mut_ptr(),
-        );
-        multisample_properties.assume_init()
     }
 }
 pub(crate) mod items {

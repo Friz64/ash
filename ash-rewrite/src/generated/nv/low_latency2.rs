@@ -131,8 +131,7 @@ impl Device {
     pub fn device(&self) -> vk::Device {
         self.handle
     }
-    ///vkSetLatencySleepModeNV
-    #[inline]
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkSetLatencySleepModeNV.html) · Device Function
     pub unsafe fn set_latency_sleep_mode(
         &self,
         swapchain: vk::SwapchainKHR,
@@ -141,8 +140,7 @@ impl Device {
         (self.fp.set_latency_sleep_mode)(self.handle, swapchain, sleep_mode_info)
             .result()
     }
-    ///vkLatencySleepNV
-    #[inline]
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkLatencySleepNV.html) · Device Function
     pub unsafe fn latency_sleep(
         &self,
         swapchain: vk::SwapchainKHR,
@@ -150,39 +148,21 @@ impl Device {
     ) -> VkResult<()> {
         (self.fp.latency_sleep)(self.handle, swapchain, sleep_info).result()
     }
-    ///vkSetLatencyMarkerNV
-    #[inline]
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkSetLatencyMarkerNV.html) · Device Function
     pub unsafe fn set_latency_marker(
         &self,
         swapchain: vk::SwapchainKHR,
         latency_marker_info: &vk::SetLatencyMarkerInfoNV<'_>,
     ) {
-        (self.fp.set_latency_marker)(self.handle, swapchain, latency_marker_info)
+        (self.fp.set_latency_marker)(self.handle, swapchain, latency_marker_info);
     }
-    ///vkGetLatencyTimingsNV
-    #[inline]
-    pub unsafe fn get_latency_timings(
-        &self,
-        swapchain: vk::SwapchainKHR,
-    ) -> vk::GetLatencyMarkerInfoNV<'_> {
-        let mut latency_marker_info = MaybeUninit::uninit();
-        (self
-            .fp
-            .get_latency_timings)(
-            self.handle,
-            swapchain,
-            latency_marker_info.as_mut_ptr(),
-        );
-        latency_marker_info.assume_init()
-    }
-    ///vkQueueNotifyOutOfBandNV
-    #[inline]
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkQueueNotifyOutOfBandNV.html) · Device Function
     pub unsafe fn queue_notify_out_of_band(
         &self,
         queue: vk::Queue,
         queue_type_info: &vk::OutOfBandQueueTypeInfoNV<'_>,
     ) {
-        (self.fp.queue_notify_out_of_band)(queue, queue_type_info)
+        (self.fp.queue_notify_out_of_band)(queue, queue_type_info);
     }
 }
 pub(crate) mod items {

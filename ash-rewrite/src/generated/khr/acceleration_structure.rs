@@ -520,35 +520,29 @@ impl Device {
     pub fn device(&self) -> vk::Device {
         self.handle
     }
-    ///vkDestroyAccelerationStructureKHR
-    #[inline]
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkDestroyAccelerationStructureKHR.html) · Device Function
     pub unsafe fn destroy_acceleration_structure(
         &self,
         acceleration_structure: vk::AccelerationStructureKHR,
-        allocator: Option<&vk::AllocationCallbacks<'_>>,
+        allocator: &vk::AllocationCallbacks<'_>,
     ) {
         (self
             .fp
             .destroy_acceleration_structure)(
             self.handle,
             acceleration_structure,
-            match allocator {
-                Some(inner) => inner,
-                None => ptr::null_mut(),
-            },
-        )
+            allocator,
+        );
     }
-    ///vkCmdCopyAccelerationStructureKHR
-    #[inline]
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdCopyAccelerationStructureKHR.html) · Device Function
     pub unsafe fn cmd_copy_acceleration_structure(
         &self,
         command_buffer: vk::CommandBuffer,
         info: &vk::CopyAccelerationStructureInfoKHR<'_>,
     ) {
-        (self.fp.cmd_copy_acceleration_structure)(command_buffer, info)
+        (self.fp.cmd_copy_acceleration_structure)(command_buffer, info);
     }
-    ///vkCopyAccelerationStructureKHR
-    #[inline]
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCopyAccelerationStructureKHR.html) · Device Function
     pub unsafe fn copy_acceleration_structure(
         &self,
         deferred_operation: vk::DeferredOperationKHR,
@@ -557,17 +551,15 @@ impl Device {
         (self.fp.copy_acceleration_structure)(self.handle, deferred_operation, info)
             .result()
     }
-    ///vkCmdCopyAccelerationStructureToMemoryKHR
-    #[inline]
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdCopyAccelerationStructureToMemoryKHR.html) · Device Function
     pub unsafe fn cmd_copy_acceleration_structure_to_memory(
         &self,
         command_buffer: vk::CommandBuffer,
         info: &vk::CopyAccelerationStructureToMemoryInfoKHR<'_>,
     ) {
-        (self.fp.cmd_copy_acceleration_structure_to_memory)(command_buffer, info)
+        (self.fp.cmd_copy_acceleration_structure_to_memory)(command_buffer, info);
     }
-    ///vkCopyAccelerationStructureToMemoryKHR
-    #[inline]
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCopyAccelerationStructureToMemoryKHR.html) · Device Function
     pub unsafe fn copy_acceleration_structure_to_memory(
         &self,
         deferred_operation: vk::DeferredOperationKHR,
@@ -582,17 +574,15 @@ impl Device {
             )
             .result()
     }
-    ///vkCmdCopyMemoryToAccelerationStructureKHR
-    #[inline]
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdCopyMemoryToAccelerationStructureKHR.html) · Device Function
     pub unsafe fn cmd_copy_memory_to_acceleration_structure(
         &self,
         command_buffer: vk::CommandBuffer,
         info: &vk::CopyMemoryToAccelerationStructureInfoKHR<'_>,
     ) {
-        (self.fp.cmd_copy_memory_to_acceleration_structure)(command_buffer, info)
+        (self.fp.cmd_copy_memory_to_acceleration_structure)(command_buffer, info);
     }
-    ///vkCopyMemoryToAccelerationStructureKHR
-    #[inline]
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCopyMemoryToAccelerationStructureKHR.html) · Device Function
     pub unsafe fn copy_memory_to_acceleration_structure(
         &self,
         deferred_operation: vk::DeferredOperationKHR,
@@ -607,8 +597,7 @@ impl Device {
             )
             .result()
     }
-    ///vkCmdWriteAccelerationStructuresPropertiesKHR
-    #[inline]
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdWriteAccelerationStructuresPropertiesKHR.html) · Device Function
     pub unsafe fn cmd_write_acceleration_structures_properties(
         &self,
         command_buffer: vk::CommandBuffer,
@@ -626,159 +615,97 @@ impl Device {
             query_type,
             query_pool,
             first_query,
-        )
-    }
-    ///vkWriteAccelerationStructuresPropertiesKHR
-    #[inline]
-    pub unsafe fn write_acceleration_structures_properties(
-        &self,
-        acceleration_structures: &[vk::AccelerationStructureKHR],
-        query_type: vk::QueryType,
-        data: &mut [u8],
-        stride: usize,
-    ) -> VkResult<()> {
-        (self
-            .fp
-            .write_acceleration_structures_properties)(
-                self.handle,
-                acceleration_structures.len() as _,
-                acceleration_structures.as_ptr(),
-                query_type,
-                data.len() as _,
-                data.as_mut_ptr().cast(),
-                stride,
-            )
-            .result()
-    }
-    ///vkGetDeviceAccelerationStructureCompatibilityKHR
-    #[inline]
-    pub unsafe fn get_device_acceleration_structure_compatibility(
-        &self,
-        version_info: &vk::AccelerationStructureVersionInfoKHR<'_>,
-    ) -> vk::AccelerationStructureCompatibilityKHR {
-        let mut compatibility = MaybeUninit::uninit();
-        (self
-            .fp
-            .get_device_acceleration_structure_compatibility)(
-            self.handle,
-            version_info,
-            compatibility.as_mut_ptr(),
         );
-        compatibility.assume_init()
     }
-    ///vkCreateAccelerationStructureKHR
-    #[inline]
-    pub unsafe fn create_acceleration_structure(
-        &self,
-        create_info: &vk::AccelerationStructureCreateInfoKHR<'_>,
-        allocator: Option<&vk::AllocationCallbacks<'_>>,
-    ) -> VkResult<vk::AccelerationStructureKHR> {
-        let mut acceleration_structure = MaybeUninit::uninit();
-        (self
-            .fp
-            .create_acceleration_structure)(
-                self.handle,
-                create_info,
-                match allocator {
-                    Some(inner) => inner,
-                    None => ptr::null_mut(),
-                },
-                acceleration_structure.as_mut_ptr(),
-            )
-            .assume_init_on_success(acceleration_structure)
-    }
-    ///vkCmdBuildAccelerationStructuresKHR
-    #[inline]
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdBuildAccelerationStructuresKHR.html) · Device Function
     pub unsafe fn cmd_build_acceleration_structures(
         &self,
         command_buffer: vk::CommandBuffer,
         infos: &[vk::AccelerationStructureBuildGeometryInfoKHR<'_>],
-        build_range_infos: &[*const vk::AccelerationStructureBuildRangeInfoKHR],
+        build_range_infos: &[&[vk::AccelerationStructureBuildRangeInfoKHR]],
     ) {
         assert_eq!(infos.len(), build_range_infos.len());
+        let build_range_infos = build_range_infos
+            .iter()
+            .zip(infos.iter())
+            .map(|(range_info, info)| {
+                assert_eq!(range_info.len(), info.geometry_count as usize);
+                range_info.as_ptr()
+            })
+            .collect::<Vec<_>>();
         (self
             .fp
             .cmd_build_acceleration_structures)(
             command_buffer,
-            build_range_infos.len() as _,
+            infos.len() as _,
             infos.as_ptr(),
             build_range_infos.as_ptr(),
-        )
+        );
     }
-    ///vkCmdBuildAccelerationStructuresIndirectKHR
-    #[inline]
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdBuildAccelerationStructuresIndirectKHR.html) · Device Function
     pub unsafe fn cmd_build_acceleration_structures_indirect(
         &self,
         command_buffer: vk::CommandBuffer,
         infos: &[vk::AccelerationStructureBuildGeometryInfoKHR<'_>],
         indirect_device_addresses: &[vk::DeviceAddress],
         indirect_strides: &[u32],
-        max_primitive_counts: &[*const u32],
+        max_primitive_counts: &[&[u32]],
     ) {
-        assert_eq!(indirect_strides.len(), max_primitive_counts.len());
-        assert_eq!(indirect_device_addresses.len(), indirect_strides.len());
         assert_eq!(infos.len(), indirect_device_addresses.len());
+        assert_eq!(infos.len(), indirect_strides.len());
+        assert_eq!(infos.len(), max_primitive_counts.len());
+        let max_primitive_counts = max_primitive_counts
+            .iter()
+            .zip(infos.iter())
+            .map(|(cnt, info)| {
+                assert_eq!(cnt.len(), info.geometry_count as usize);
+                cnt.as_ptr()
+            })
+            .collect::<Vec<_>>();
         (self
             .fp
             .cmd_build_acceleration_structures_indirect)(
             command_buffer,
-            max_primitive_counts.len() as _,
+            infos.len() as _,
             infos.as_ptr(),
             indirect_device_addresses.as_ptr(),
             indirect_strides.as_ptr(),
             max_primitive_counts.as_ptr(),
-        )
+        );
     }
-    ///vkBuildAccelerationStructuresKHR
-    #[inline]
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkBuildAccelerationStructuresKHR.html) · Device Function
     pub unsafe fn build_acceleration_structures(
         &self,
         deferred_operation: vk::DeferredOperationKHR,
         infos: &[vk::AccelerationStructureBuildGeometryInfoKHR<'_>],
-        build_range_infos: &[*const vk::AccelerationStructureBuildRangeInfoKHR],
+        build_range_infos: &[&[vk::AccelerationStructureBuildRangeInfoKHR]],
     ) -> VkResult<()> {
         assert_eq!(infos.len(), build_range_infos.len());
+        let build_range_infos = build_range_infos
+            .iter()
+            .zip(infos.iter())
+            .map(|(range_info, info)| {
+                assert_eq!(range_info.len(), info.geometry_count as usize);
+                range_info.as_ptr()
+            })
+            .collect::<Vec<_>>();
         (self
             .fp
             .build_acceleration_structures)(
                 self.handle,
                 deferred_operation,
-                build_range_infos.len() as _,
+                infos.len() as _,
                 infos.as_ptr(),
                 build_range_infos.as_ptr(),
             )
             .result()
     }
-    ///vkGetAccelerationStructureDeviceAddressKHR
-    #[inline]
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkGetAccelerationStructureDeviceAddressKHR.html) · Device Function
     pub unsafe fn get_acceleration_structure_device_address(
         &self,
         info: &vk::AccelerationStructureDeviceAddressInfoKHR<'_>,
-    ) -> vk::DeviceAddress {
-        (self.fp.get_acceleration_structure_device_address)(self.handle, info)
-    }
-    ///vkGetAccelerationStructureBuildSizesKHR
-    #[inline]
-    pub unsafe fn get_acceleration_structure_build_sizes(
-        &self,
-        build_type: vk::AccelerationStructureBuildTypeKHR,
-        build_info: &vk::AccelerationStructureBuildGeometryInfoKHR<'_>,
-        max_primitive_counts: Option<&u32>,
-    ) -> vk::AccelerationStructureBuildSizesInfoKHR<'_> {
-        let mut size_info = MaybeUninit::uninit();
-        (self
-            .fp
-            .get_acceleration_structure_build_sizes)(
-            self.handle,
-            build_type,
-            build_info,
-            match max_primitive_counts {
-                Some(inner) => inner,
-                None => ptr::null_mut(),
-            },
-            size_info.as_mut_ptr(),
-        );
-        size_info.assume_init()
+    ) {
+        (self.fp.get_acceleration_structure_device_address)(self.handle, info);
     }
 }
 pub(crate) mod items {

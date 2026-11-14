@@ -227,24 +227,22 @@ impl Device {
     pub fn device(&self) -> vk::Device {
         self.handle
     }
-    ///vkCmdExecuteGeneratedCommandsNV
-    #[inline]
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdExecuteGeneratedCommandsNV.html) · Device Function
     pub unsafe fn cmd_execute_generated_commands(
         &self,
         command_buffer: vk::CommandBuffer,
-        is_preprocessed: vk::Bool32,
+        is_preprocessed: bool,
         generated_commands_info: &vk::GeneratedCommandsInfoNV<'_>,
     ) {
         (self
             .fp
             .cmd_execute_generated_commands)(
             command_buffer,
-            is_preprocessed,
+            is_preprocessed as _,
             generated_commands_info,
-        )
+        );
     }
-    ///vkCmdPreprocessGeneratedCommandsNV
-    #[inline]
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdPreprocessGeneratedCommandsNV.html) · Device Function
     pub unsafe fn cmd_preprocess_generated_commands(
         &self,
         command_buffer: vk::CommandBuffer,
@@ -252,10 +250,9 @@ impl Device {
     ) {
         (self
             .fp
-            .cmd_preprocess_generated_commands)(command_buffer, generated_commands_info)
+            .cmd_preprocess_generated_commands)(command_buffer, generated_commands_info);
     }
-    ///vkCmdBindPipelineShaderGroupNV
-    #[inline]
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdBindPipelineShaderGroupNV.html) · Device Function
     pub unsafe fn cmd_bind_pipeline_shader_group(
         &self,
         command_buffer: vk::CommandBuffer,
@@ -270,62 +267,21 @@ impl Device {
             pipeline_bind_point,
             pipeline,
             group_index,
-        )
-    }
-    ///vkGetGeneratedCommandsMemoryRequirementsNV
-    #[inline]
-    pub unsafe fn get_generated_commands_memory_requirements(
-        &self,
-        info: &vk::GeneratedCommandsMemoryRequirementsInfoNV<'_>,
-    ) -> vk::MemoryRequirements2<'_> {
-        let mut memory_requirements = MaybeUninit::uninit();
-        (self
-            .fp
-            .get_generated_commands_memory_requirements)(
-            self.handle,
-            info,
-            memory_requirements.as_mut_ptr(),
         );
-        memory_requirements.assume_init()
     }
-    ///vkCreateIndirectCommandsLayoutNV
-    #[inline]
-    pub unsafe fn create_indirect_commands_layout(
-        &self,
-        create_info: &vk::IndirectCommandsLayoutCreateInfoNV<'_>,
-        allocator: Option<&vk::AllocationCallbacks<'_>>,
-    ) -> VkResult<vk::IndirectCommandsLayoutNV> {
-        let mut indirect_commands_layout = MaybeUninit::uninit();
-        (self
-            .fp
-            .create_indirect_commands_layout)(
-                self.handle,
-                create_info,
-                match allocator {
-                    Some(inner) => inner,
-                    None => ptr::null_mut(),
-                },
-                indirect_commands_layout.as_mut_ptr(),
-            )
-            .assume_init_on_success(indirect_commands_layout)
-    }
-    ///vkDestroyIndirectCommandsLayoutNV
-    #[inline]
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkDestroyIndirectCommandsLayoutNV.html) · Device Function
     pub unsafe fn destroy_indirect_commands_layout(
         &self,
         indirect_commands_layout: vk::IndirectCommandsLayoutNV,
-        allocator: Option<&vk::AllocationCallbacks<'_>>,
+        allocator: &vk::AllocationCallbacks<'_>,
     ) {
         (self
             .fp
             .destroy_indirect_commands_layout)(
             self.handle,
             indirect_commands_layout,
-            match allocator {
-                Some(inner) => inner,
-                None => ptr::null_mut(),
-            },
-        )
+            allocator,
+        );
     }
 }
 pub(crate) mod items {

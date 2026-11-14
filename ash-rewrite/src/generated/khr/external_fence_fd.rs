@@ -68,18 +68,7 @@ impl Device {
     pub fn device(&self) -> vk::Device {
         self.handle
     }
-    ///vkGetFenceFdKHR
-    #[inline]
-    pub unsafe fn get_fence_fd(
-        &self,
-        get_fd_info: &vk::FenceGetFdInfoKHR<'_>,
-    ) -> VkResult<ffi::c_int> {
-        let mut fd = MaybeUninit::uninit();
-        (self.fp.get_fence_fd)(self.handle, get_fd_info, fd.as_mut_ptr())
-            .assume_init_on_success(fd)
-    }
-    ///vkImportFenceFdKHR
-    #[inline]
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkImportFenceFdKHR.html) · Device Function
     pub unsafe fn import_fence_fd(
         &self,
         import_fence_fd_info: &vk::ImportFenceFdInfoKHR<'_>,

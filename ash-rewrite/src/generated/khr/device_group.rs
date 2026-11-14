@@ -198,79 +198,15 @@ impl Device {
     pub fn device(&self) -> vk::Device {
         self.handle
     }
-    ///vkGetDeviceGroupPresentCapabilitiesKHR
-    #[inline]
-    pub unsafe fn get_device_group_present_capabilities(
-        &self,
-    ) -> VkResult<vk::DeviceGroupPresentCapabilitiesKHR<'_>> {
-        let mut device_group_present_capabilities = MaybeUninit::uninit();
-        (self
-            .fp
-            .get_device_group_present_capabilities)(
-                self.handle,
-                device_group_present_capabilities.as_mut_ptr(),
-            )
-            .assume_init_on_success(device_group_present_capabilities)
-    }
-    ///vkGetDeviceGroupSurfacePresentModesKHR
-    #[inline]
-    pub unsafe fn get_device_group_surface_present_modes(
-        &self,
-        surface: vk::SurfaceKHR,
-    ) -> VkResult<vk::DeviceGroupPresentModeFlagsKHR> {
-        let mut modes = MaybeUninit::uninit();
-        (self
-            .fp
-            .get_device_group_surface_present_modes)(
-                self.handle,
-                surface,
-                modes.as_mut_ptr(),
-            )
-            .assume_init_on_success(modes)
-    }
-    ///vkAcquireNextImage2KHR
-    #[inline]
-    pub unsafe fn acquire_next_image2(
-        &self,
-        acquire_info: &vk::AcquireNextImageInfoKHR<'_>,
-    ) -> VkResult<u32> {
-        let mut image_index = MaybeUninit::uninit();
-        (self
-            .fp
-            .acquire_next_image2)(self.handle, acquire_info, image_index.as_mut_ptr())
-            .assume_init_on_success(image_index)
-    }
-    ///vkGetDeviceGroupPeerMemoryFeatures
-    #[inline]
-    pub unsafe fn get_device_group_peer_memory_features(
-        &self,
-        heap_index: u32,
-        local_device_index: u32,
-        remote_device_index: u32,
-    ) -> vk::PeerMemoryFeatureFlags {
-        let mut peer_memory_features = MaybeUninit::uninit();
-        (self
-            .fp
-            .get_device_group_peer_memory_features)(
-            self.handle,
-            heap_index,
-            local_device_index,
-            remote_device_index,
-            peer_memory_features.as_mut_ptr(),
-        );
-        peer_memory_features.assume_init()
-    }
-    ///vkCmdSetDeviceMask
-    #[inline]
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdSetDeviceMask.html) · Device Function
     pub unsafe fn cmd_set_device_mask(
         &self,
         command_buffer: vk::CommandBuffer,
         device_mask: u32,
     ) {
-        (self.fp.cmd_set_device_mask)(command_buffer, device_mask)
+        (self.fp.cmd_set_device_mask)(command_buffer, device_mask);
     }
-    ///vkCmdDispatchBase
-    #[inline]
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdDispatchBase.html) · Device Function
     pub unsafe fn cmd_dispatch_base(
         &self,
         command_buffer: vk::CommandBuffer,
@@ -291,7 +227,7 @@ impl Device {
             group_count_x,
             group_count_y,
             group_count_z,
-        )
+        );
     }
 }
 #[derive(Clone)]
@@ -345,22 +281,6 @@ impl Instance {
     #[inline]
     pub fn instance(&self) -> vk::Instance {
         self.handle
-    }
-    ///vkGetPhysicalDevicePresentRectanglesKHR
-    #[inline]
-    pub unsafe fn get_physical_device_present_rectangles(
-        &self,
-        physical_device: vk::PhysicalDevice,
-        surface: vk::SurfaceKHR,
-    ) -> VkResult<Vec<vk::Rect2D>> {
-        crate::read_into_uninitialized_vector(|rect_count, rects| (self
-            .fp
-            .get_physical_device_present_rectangles)(
-            physical_device,
-            surface,
-            rect_count,
-            rects,
-        ))
     }
 }
 pub(crate) mod items {

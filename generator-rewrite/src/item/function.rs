@@ -40,7 +40,7 @@ impl Code for Command {
         let name = octx.command_tokens(self.name, false);
         let params = self
             .params
-            .iter()
+            .values()
             .map(|param| param.decl.to_rust().tokens(&octx, None));
         let ret = self.return_type.as_ref().map(|ty| {
             let rust_ty = ty.to_rust().tokens(&octx, None);
