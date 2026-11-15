@@ -243,27 +243,36 @@ impl Device {
         timeout: u64,
         semaphore: vk::Semaphore,
         fence: vk::Fence,
-    ) -> VkResult<u32> {
-        let mut image_index = MaybeUninit::uninit();
-        (self
+    ) -> VkResult<(u32, bool)> {
+        let mut index = MaybeUninit::uninit();
+        let err_code = (self
             .fp
             .acquire_next_image)(
-                self.handle,
-                swapchain,
-                timeout,
-                semaphore,
-                fence,
-                image_index.as_mut_ptr(),
-            )
-            .assume_init_on_success(image_index)
+            self.handle,
+            swapchain,
+            timeout,
+            semaphore,
+            fence,
+            index.as_mut_ptr(),
+        );
+        match err_code {
+            vk::Result::SUCCESS => Ok((index.assume_init(), false)),
+            vk::Result::SUBOPTIMAL_KHR => Ok((index.assume_init(), true)),
+            _ => Err(err_code),
+        }
     }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkQueuePresentKHR.html) · Device Function
     pub unsafe fn queue_present(
         &self,
         queue: vk::Queue,
         present_info: &vk::PresentInfoKHR<'_>,
-    ) -> VkResult<()> {
-        (self.fp.queue_present)(queue, present_info).result()
+    ) -> VkResult<bool> {
+        let err_code = (self.fp.queue_present)(queue, present_info);
+        match err_code {
+            vk::Result::SUCCESS => Ok(false),
+            vk::Result::SUBOPTIMAL_KHR => Ok(true),
+            _ => Err(err_code),
+        }
     }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkGetDeviceGroupSurfacePresentModesKHR.html) · Device Function
     pub unsafe fn get_device_group_surface_present_modes(

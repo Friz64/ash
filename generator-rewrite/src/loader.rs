@@ -9,15 +9,15 @@ use analysis::{
         function::{Command, CommandParam, Length},
     },
     name::{CommandName, TypeName, VariableName},
-    rust::{RustDecl, RustTokens, RustTy},
+    rust::{RustTokens, RustTy},
 };
 use heck::ToSnekCase;
 use indexmap::IndexMap;
 use proc_macro2::{Literal, TokenStream};
-use quote::{ToTokens, format_ident, quote};
+use quote::{format_ident, quote};
 use std::{ffi::CString, ptr};
 use syn::Ident;
-use tracing::{debug, instrument, trace};
+use tracing::debug;
 
 #[derive(Debug, Clone, Copy, Hash, PartialEq, Eq)]
 pub enum FunctionType {
@@ -490,18 +490,17 @@ impl WrapperCallArg {
 
         match (&param.decl.ty, &param.length) {
             (
-                Ty::Ptr(Ty::CPrimary(CPrimaryType::Void), Mutability::Mut),
+                &Ty::Ptr(Ty::CPrimary(CPrimaryType::Void), mutability),
                 Some(Length::DefinedByParam(_)),
             ) => WrapperCallArg {
                 param: Some(WrapperParam {
                     name,
-                    ty: RustTy::ArrayRef(
-                        Box::new(RustTy::Tokens(quote! { u8 })),
-                        Mutability::Mut,
-                        None,
-                    ),
+                    ty: RustTy::ArrayRef(Box::new(RustTy::Tokens(quote! { u8 })), mutability, None),
                 }),
-                value: quote! { #ident.as_mut_ptr().cast() },
+                value: match mutability {
+                    Mutability::Not => quote! { #ident.as_ptr().cast() },
+                    Mutability::Mut => quote! { #ident.as_mut_ptr().cast() },
+                },
             },
             (
                 Ty::Ptr(Ty::CPrimary(CPrimaryType::Char), Mutability::Not),

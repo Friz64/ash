@@ -4725,7 +4725,7 @@ impl crate::Device {
         command_buffer: vk::CommandBuffer,
         dst_buffer: vk::Buffer,
         dst_offset: vk::DeviceSize,
-        data: &[ffi::c_void],
+        data: &[u8],
     ) {
         (self
             .device_fn_1_0
@@ -4734,7 +4734,7 @@ impl crate::Device {
             dst_buffer,
             dst_offset,
             data.len() as _,
-            data.as_ptr(),
+            data.as_ptr().cast(),
         )
     }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdFillBuffer.html) · Device Function
@@ -4975,7 +4975,7 @@ impl crate::Device {
         layout: vk::PipelineLayout,
         stage_flags: vk::ShaderStageFlags,
         offset: u32,
-        values: &[ffi::c_void],
+        values: &[u8],
     ) {
         (self
             .device_fn_1_0
@@ -4985,7 +4985,7 @@ impl crate::Device {
             stage_flags,
             offset,
             values.len() as _,
-            values.as_ptr(),
+            values.as_ptr().cast(),
         )
     }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdBeginRenderPass.html) · Device Function

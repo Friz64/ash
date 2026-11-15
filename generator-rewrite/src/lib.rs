@@ -20,7 +20,7 @@ use heck::{ToShoutySnekCase, ToSnekCase};
 use proc_macro2::{Group, TokenStream, TokenTree};
 use quote::{format_ident, quote};
 use regex::Regex;
-use std::{borrow::Cow, fmt::Display, io, mem, ops::Deref, path::Path, sync::LazyLock};
+use std::{borrow::Cow, fmt::Display, io, ops::Deref, path::Path, sync::LazyLock};
 use syn::Ident;
 use tracing::debug;
 

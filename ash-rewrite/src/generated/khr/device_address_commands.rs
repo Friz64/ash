@@ -443,7 +443,7 @@ impl Device {
         command_buffer: vk::CommandBuffer,
         dst_range: &vk::DeviceAddressRangeKHR,
         dst_flags: vk::AddressCommandFlagsKHR,
-        data: &[ffi::c_void],
+        data: &[u8],
     ) {
         (self
             .fp
@@ -452,7 +452,7 @@ impl Device {
             dst_range,
             dst_flags,
             data.len() as _,
-            data.as_ptr(),
+            data.as_ptr().cast(),
         )
     }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdFillMemoryKHR.html) · Device Function

@@ -251,3 +251,39 @@ pub unsafe fn vkGetPrivateData<T: vk::Handle>(
     );
     data.assume_init()
 }
+
+fn vkAcquireNextImageKHR(
+    &self,
+    swapchain: vk::SwapchainKHR,
+    timeout: u64,
+    semaphore: vk::Semaphore,
+    fence: vk::Fence,
+) -> VkResult<(u32, bool)> {
+    let mut index = MaybeUninit::uninit();
+    let err_code = (self.__table.acquire_next_image)(
+        self.handle,
+        swapchain,
+        timeout,
+        semaphore,
+        fence,
+        index.as_mut_ptr(),
+    );
+    match err_code {
+        vk::Result::SUCCESS => Ok((index.assume_init(), false)),
+        vk::Result::SUBOPTIMAL_KHR => Ok((index.assume_init(), true)),
+        _ => Err(err_code),
+    }
+}
+
+fn vkQueuePresentKHR(
+    &self,
+    queue: vk::Queue,
+    present_info: &vk::PresentInfoKHR<'_>,
+) -> VkResult<bool> {
+    let err_code = (self.__table.queue_present)(queue, present_info);
+    match err_code {
+        vk::Result::SUCCESS => Ok(false),
+        vk::Result::SUBOPTIMAL_KHR => Ok(true),
+        _ => Err(err_code),
+    }
+}
