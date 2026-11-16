@@ -278,3 +278,21 @@ fn vkQueuePresentKHR(
         _ => Err(err_code),
     }
 }
+
+fn vkAllocateDescriptorSets(
+    &self,
+    allocate_info: &vk::DescriptorSetAllocateInfo<'_>,
+) -> VkResult<Vec<vk::DescriptorSet>> {
+    let mut desc_set = Vec::with_capacity(allocate_info.descriptor_set_count as usize);
+    (self.__table.allocate_descriptor_sets)(self.handle(), allocate_info, desc_set.as_mut_ptr())
+        .set_vec_len_on_success(desc_set, allocate_info.descriptor_set_count as usize)
+}
+
+fn vkAllocateCommandBuffers(
+    &self,
+    allocate_info: &vk::CommandBufferAllocateInfo<'_>,
+) -> VkResult<Vec<vk::CommandBuffer>> {
+    let mut buffers = Vec::with_capacity(allocate_info.command_buffer_count as usize);
+    (self.__table.allocate_command_buffers)(self.handle(), allocate_info, buffers.as_mut_ptr())
+        .set_vec_len_on_success(buffers, allocate_info.command_buffer_count as usize)
+}

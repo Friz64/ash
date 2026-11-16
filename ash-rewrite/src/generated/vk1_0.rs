@@ -4077,16 +4077,21 @@ impl crate::Device {
     pub unsafe fn allocate_descriptor_sets(
         &self,
         allocate_info: &vk::DescriptorSetAllocateInfo<'_>,
-    ) -> VkResult<vk::DescriptorSet> {
-        let mut descriptor_sets = MaybeUninit::uninit();
+    ) -> VkResult<Vec<vk::DescriptorSet>> {
+        let mut desc_set = Vec::with_capacity(
+            allocate_info.descriptor_set_count as usize,
+        );
         (self
             .device_fn_1_0
             .allocate_descriptor_sets)(
-                self.handle,
+                self.handle(),
                 allocate_info,
-                descriptor_sets.as_mut_ptr(),
+                desc_set.as_mut_ptr(),
             )
-            .assume_init_on_success(descriptor_sets)
+            .set_vec_len_on_success(
+                desc_set,
+                allocate_info.descriptor_set_count as usize,
+            )
     }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkFreeDescriptorSets.html) · Device Function
     pub unsafe fn free_descriptor_sets(
@@ -4259,16 +4264,18 @@ impl crate::Device {
     pub unsafe fn allocate_command_buffers(
         &self,
         allocate_info: &vk::CommandBufferAllocateInfo<'_>,
-    ) -> VkResult<vk::CommandBuffer> {
-        let mut command_buffers = MaybeUninit::uninit();
+    ) -> VkResult<Vec<vk::CommandBuffer>> {
+        let mut buffers = Vec::with_capacity(
+            allocate_info.command_buffer_count as usize,
+        );
         (self
             .device_fn_1_0
             .allocate_command_buffers)(
-                self.handle,
+                self.handle(),
                 allocate_info,
-                command_buffers.as_mut_ptr(),
+                buffers.as_mut_ptr(),
             )
-            .assume_init_on_success(command_buffers)
+            .set_vec_len_on_success(buffers, allocate_info.command_buffer_count as usize)
     }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkFreeCommandBuffers.html) · Device Function
     pub unsafe fn free_command_buffers(
