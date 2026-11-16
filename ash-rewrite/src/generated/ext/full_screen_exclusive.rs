@@ -74,6 +74,21 @@ impl Instance {
     pub fn instance(&self) -> vk::Instance {
         self.handle
     }
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkGetPhysicalDeviceSurfacePresentModes2EXT.html) · Instance Function
+    pub unsafe fn get_physical_device_surface_present_modes2(
+        &self,
+        physical_device: vk::PhysicalDevice,
+        surface_info: &vk::PhysicalDeviceSurfaceInfo2KHR<'_>,
+    ) -> VkResult<Vec<vk::PresentModeKHR>> {
+        read_into_uninitialized_vector(|present_mode_count, present_modes| (self
+            .fp
+            .get_physical_device_surface_present_modes2)(
+            physical_device,
+            surface_info,
+            present_mode_count,
+            present_modes,
+        ))
+    }
 }
 #[derive(Clone)]
 pub struct DeviceFn {

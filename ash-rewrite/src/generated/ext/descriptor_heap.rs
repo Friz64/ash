@@ -403,6 +403,52 @@ impl Device {
     pub unsafe fn unregister_custom_border_color(&self, index: u32) {
         (self.fp.unregister_custom_border_color)(self.handle, index)
     }
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkGetImageOpaqueCaptureDataEXT.html) · Device Function
+    pub unsafe fn get_image_opaque_capture_data(
+        &self,
+        images: &[vk::Image],
+    ) -> core::result::Result<
+        Vec<vk::HostAddressRangeEXT<'_>>,
+        (Vec<vk::HostAddressRangeEXT<'_>>, vk::Result),
+    > {
+        let mut datas = Vec::with_capacity(images.len());
+        let err_code = (self
+            .fp
+            .get_image_opaque_capture_data)(
+            self.handle,
+            datas.len() as _,
+            images.as_ptr(),
+            datas.as_mut_ptr(),
+        );
+        datas.set_len(images.len());
+        match err_code {
+            vk::Result::SUCCESS => Ok(datas),
+            _ => Err((datas, err_code)),
+        }
+    }
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkGetTensorOpaqueCaptureDataARM.html) · Device Function
+    pub unsafe fn get_tensor_opaque_capture_data(
+        &self,
+        tensors: &[vk::TensorARM],
+    ) -> core::result::Result<
+        Vec<vk::HostAddressRangeEXT<'_>>,
+        (Vec<vk::HostAddressRangeEXT<'_>>, vk::Result),
+    > {
+        let mut datas = Vec::with_capacity(tensors.len());
+        let err_code = (self
+            .fp
+            .get_tensor_opaque_capture_data)(
+            self.handle,
+            datas.len() as _,
+            tensors.as_ptr(),
+            datas.as_mut_ptr(),
+        );
+        datas.set_len(tensors.len());
+        match err_code {
+            vk::Result::SUCCESS => Ok(datas),
+            _ => Err((datas, err_code)),
+        }
+    }
 }
 #[derive(Clone)]
 pub struct InstanceFn {

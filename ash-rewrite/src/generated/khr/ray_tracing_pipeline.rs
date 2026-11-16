@@ -298,6 +298,75 @@ impl Device {
             depth,
         )
     }
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkGetRayTracingShaderGroupHandlesKHR.html) · Device Function
+    pub unsafe fn get_ray_tracing_shader_group_handles(
+        &self,
+        pipeline: vk::Pipeline,
+        first_group: u32,
+        group_count: u32,
+        data: &mut [u8],
+    ) -> VkResult<()> {
+        (self
+            .fp
+            .get_ray_tracing_shader_group_handles)(
+                self.handle,
+                pipeline,
+                first_group,
+                group_count,
+                data.len() as _,
+                data.as_mut_ptr().cast(),
+            )
+            .result()
+    }
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkGetRayTracingCaptureReplayShaderGroupHandlesKHR.html) · Device Function
+    pub unsafe fn get_ray_tracing_capture_replay_shader_group_handles(
+        &self,
+        pipeline: vk::Pipeline,
+        first_group: u32,
+        group_count: u32,
+        data: &mut [u8],
+    ) -> VkResult<()> {
+        (self
+            .fp
+            .get_ray_tracing_capture_replay_shader_group_handles)(
+                self.handle,
+                pipeline,
+                first_group,
+                group_count,
+                data.len() as _,
+                data.as_mut_ptr().cast(),
+            )
+            .result()
+    }
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCreateRayTracingPipelinesKHR.html) · Device Function
+    pub unsafe fn create_ray_tracing_pipelines(
+        &self,
+        deferred_operation: vk::DeferredOperationKHR,
+        pipeline_cache: vk::PipelineCache,
+        create_infos: &[vk::RayTracingPipelineCreateInfoKHR<'_>],
+        allocator: Option<&vk::AllocationCallbacks<'_>>,
+    ) -> core::result::Result<Vec<vk::Pipeline>, (Vec<vk::Pipeline>, vk::Result)> {
+        let mut pipelines = Vec::with_capacity(create_infos.len());
+        let err_code = (self
+            .fp
+            .create_ray_tracing_pipelines)(
+            self.handle,
+            deferred_operation,
+            pipeline_cache,
+            pipelines.len() as _,
+            create_infos.as_ptr(),
+            match allocator {
+                Some(r) => r,
+                None => ptr::null_mut(),
+            },
+            pipelines.as_mut_ptr(),
+        );
+        pipelines.set_len(create_infos.len());
+        match err_code {
+            vk::Result::SUCCESS => Ok(pipelines),
+            _ => Err((pipelines, err_code)),
+        }
+    }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdTraceRaysIndirectKHR.html) · Device Function
     pub unsafe fn cmd_trace_rays_indirect(
         &self,

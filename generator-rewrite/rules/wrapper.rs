@@ -10,7 +10,7 @@
 //!
 //! Replacing an alias will not work. Make sure not to use alias names.
 //! The generator will automatically handle aliases. Because the function-pointer table may differ,
-//! you should use `self.__table` to access it the field.
+//! you should use `self.__table` to access the field.
 
 #[deprecated = "This function is unavailable and therefore panics on Vulkan 1.0, please use `try_enumerate_instance_version()` instead"]
 fn vkEnumerateInstanceVersion(&self) -> VkResult<u32> {
@@ -295,4 +295,25 @@ fn vkAllocateCommandBuffers(
     let mut buffers = Vec::with_capacity(allocate_info.command_buffer_count as usize);
     (self.__table.allocate_command_buffers)(self.handle(), allocate_info, buffers.as_mut_ptr())
         .set_vec_len_on_success(buffers, allocate_info.command_buffer_count as usize)
+}
+
+fn vkGetQueryPoolResults<T>(
+    &self,
+    query_pool: vk::QueryPool,
+    first_query: u32,
+    data: &mut [T],
+    flags: vk::QueryResultFlags,
+) -> VkResult<()> {
+    let data_size = mem::size_of_val(data);
+    (self.__table.get_query_pool_results)(
+        self.handle(),
+        query_pool,
+        first_query,
+        data.len() as u32,
+        data_size,
+        data.as_mut_ptr().cast(),
+        mem::size_of::<T>() as _,
+        flags,
+    )
+    .result()
 }

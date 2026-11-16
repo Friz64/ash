@@ -62,6 +62,34 @@ impl Device {
     pub fn device(&self) -> vk::Device {
         self.handle
     }
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCreateSharedSwapchainsKHR.html) · Device Function
+    pub unsafe fn create_shared_swapchains(
+        &self,
+        create_infos: &[vk::SwapchainCreateInfoKHR<'_>],
+        allocator: Option<&vk::AllocationCallbacks<'_>>,
+    ) -> core::result::Result<
+        Vec<vk::SwapchainKHR>,
+        (Vec<vk::SwapchainKHR>, vk::Result),
+    > {
+        let mut swapchains = Vec::with_capacity(create_infos.len());
+        let err_code = (self
+            .fp
+            .create_shared_swapchains)(
+            self.handle,
+            swapchains.len() as _,
+            create_infos.as_ptr(),
+            match allocator {
+                Some(r) => r,
+                None => ptr::null_mut(),
+            },
+            swapchains.as_mut_ptr(),
+        );
+        swapchains.set_len(create_infos.len());
+        match err_code {
+            vk::Result::SUCCESS => Ok(swapchains),
+            _ => Err((swapchains, err_code)),
+        }
+    }
 }
 pub(crate) mod items {
     use crate::internal_prelude::*;

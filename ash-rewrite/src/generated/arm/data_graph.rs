@@ -324,6 +324,35 @@ impl Device {
     pub fn device(&self) -> vk::Device {
         self.handle
     }
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCreateDataGraphPipelinesARM.html) · Device Function
+    pub unsafe fn create_data_graph_pipelines(
+        &self,
+        deferred_operation: vk::DeferredOperationKHR,
+        pipeline_cache: vk::PipelineCache,
+        create_infos: &[vk::DataGraphPipelineCreateInfoARM<'_>],
+        allocator: Option<&vk::AllocationCallbacks<'_>>,
+    ) -> core::result::Result<Vec<vk::Pipeline>, (Vec<vk::Pipeline>, vk::Result)> {
+        let mut pipelines = Vec::with_capacity(create_infos.len());
+        let err_code = (self
+            .fp
+            .create_data_graph_pipelines)(
+            self.handle,
+            deferred_operation,
+            pipeline_cache,
+            pipelines.len() as _,
+            create_infos.as_ptr(),
+            match allocator {
+                Some(r) => r,
+                None => ptr::null_mut(),
+            },
+            pipelines.as_mut_ptr(),
+        );
+        pipelines.set_len(create_infos.len());
+        match err_code {
+            vk::Result::SUCCESS => Ok(pipelines),
+            _ => Err((pipelines, err_code)),
+        }
+    }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCreateDataGraphPipelineSessionARM.html) · Device Function
     pub unsafe fn create_data_graph_pipeline_session(
         &self,
@@ -392,6 +421,20 @@ impl Device {
                 None => ptr::null_mut(),
             },
         )
+    }
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkGetDataGraphPipelineAvailablePropertiesARM.html) · Device Function
+    pub unsafe fn get_data_graph_pipeline_available_properties(
+        &self,
+        pipeline_info: &vk::DataGraphPipelineInfoARM<'_>,
+    ) -> VkResult<Vec<vk::DataGraphPipelinePropertyARM>> {
+        read_into_uninitialized_vector(|properties_count, properties| (self
+            .fp
+            .get_data_graph_pipeline_available_properties)(
+            self.handle,
+            pipeline_info,
+            properties_count,
+            properties,
+        ))
     }
 }
 #[derive(Clone)]

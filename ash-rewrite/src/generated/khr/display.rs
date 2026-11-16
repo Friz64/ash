@@ -172,6 +172,62 @@ impl Instance {
     pub fn instance(&self) -> vk::Instance {
         self.handle
     }
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkGetPhysicalDeviceDisplayPropertiesKHR.html) · Instance Function
+    pub unsafe fn get_physical_device_display_properties(
+        &self,
+        physical_device: vk::PhysicalDevice,
+    ) -> VkResult<Vec<vk::DisplayPropertiesKHR<'_>>> {
+        read_into_uninitialized_vector(|property_count, properties| (self
+            .fp
+            .get_physical_device_display_properties)(
+            physical_device,
+            property_count,
+            properties,
+        ))
+    }
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkGetPhysicalDeviceDisplayPlanePropertiesKHR.html) · Instance Function
+    pub unsafe fn get_physical_device_display_plane_properties(
+        &self,
+        physical_device: vk::PhysicalDevice,
+    ) -> VkResult<Vec<vk::DisplayPlanePropertiesKHR>> {
+        read_into_uninitialized_vector(|property_count, properties| (self
+            .fp
+            .get_physical_device_display_plane_properties)(
+            physical_device,
+            property_count,
+            properties,
+        ))
+    }
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkGetDisplayPlaneSupportedDisplaysKHR.html) · Instance Function
+    pub unsafe fn get_display_plane_supported_displays(
+        &self,
+        physical_device: vk::PhysicalDevice,
+        plane_index: u32,
+    ) -> VkResult<Vec<vk::DisplayKHR>> {
+        read_into_uninitialized_vector(|display_count, displays| (self
+            .fp
+            .get_display_plane_supported_displays)(
+            physical_device,
+            plane_index,
+            display_count,
+            displays,
+        ))
+    }
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkGetDisplayModePropertiesKHR.html) · Instance Function
+    pub unsafe fn get_display_mode_properties(
+        &self,
+        physical_device: vk::PhysicalDevice,
+        display: vk::DisplayKHR,
+    ) -> VkResult<Vec<vk::DisplayModePropertiesKHR>> {
+        read_into_uninitialized_vector(|property_count, properties| (self
+            .fp
+            .get_display_mode_properties)(
+            physical_device,
+            display,
+            property_count,
+            properties,
+        ))
+    }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCreateDisplayModeKHR.html) · Instance Function
     pub unsafe fn create_display_mode(
         &self,

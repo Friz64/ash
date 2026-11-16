@@ -237,6 +237,36 @@ impl Instance {
             )
             .assume_init_on_success(surface_capabilities)
     }
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkGetPhysicalDeviceSurfaceFormatsKHR.html) · Instance Function
+    pub unsafe fn get_physical_device_surface_formats(
+        &self,
+        physical_device: vk::PhysicalDevice,
+        surface: vk::SurfaceKHR,
+    ) -> VkResult<Vec<vk::SurfaceFormatKHR>> {
+        read_into_uninitialized_vector(|surface_format_count, surface_formats| (self
+            .fp
+            .get_physical_device_surface_formats)(
+            physical_device,
+            surface,
+            surface_format_count,
+            surface_formats,
+        ))
+    }
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkGetPhysicalDeviceSurfacePresentModesKHR.html) · Instance Function
+    pub unsafe fn get_physical_device_surface_present_modes(
+        &self,
+        physical_device: vk::PhysicalDevice,
+        surface: vk::SurfaceKHR,
+    ) -> VkResult<Vec<vk::PresentModeKHR>> {
+        read_into_uninitialized_vector(|present_mode_count, present_modes| (self
+            .fp
+            .get_physical_device_surface_present_modes)(
+            physical_device,
+            surface,
+            present_mode_count,
+            present_modes,
+        ))
+    }
 }
 pub(crate) mod items {
     use crate::internal_prelude::*;

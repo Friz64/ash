@@ -1190,6 +1190,31 @@ impl Device {
             vertex_attribute_descriptions.as_ptr(),
         )
     }
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCreateShadersEXT.html) · Device Function
+    pub unsafe fn create_shaders(
+        &self,
+        create_infos: &[vk::ShaderCreateInfoEXT<'_>],
+        allocator: Option<&vk::AllocationCallbacks<'_>>,
+    ) -> core::result::Result<Vec<vk::ShaderEXT>, (Vec<vk::ShaderEXT>, vk::Result)> {
+        let mut shaders = Vec::with_capacity(create_infos.len());
+        let err_code = (self
+            .fp
+            .create_shaders)(
+            self.handle,
+            shaders.len() as _,
+            create_infos.as_ptr(),
+            match allocator {
+                Some(r) => r,
+                None => ptr::null_mut(),
+            },
+            shaders.as_mut_ptr(),
+        );
+        shaders.set_len(create_infos.len());
+        match err_code {
+            vk::Result::SUCCESS => Ok(shaders),
+            _ => Err((shaders, err_code)),
+        }
+    }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkDestroyShaderEXT.html) · Device Function
     pub unsafe fn destroy_shader(
         &self,
@@ -1206,6 +1231,22 @@ impl Device {
                 None => ptr::null_mut(),
             },
         )
+    }
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkGetShaderBinaryDataEXT.html) · Device Function
+    pub unsafe fn get_shader_binary_data(
+        &self,
+        shader: vk::ShaderEXT,
+        data: &mut [u8],
+    ) -> VkResult<()> {
+        (self
+            .fp
+            .get_shader_binary_data)(
+                self.handle,
+                shader,
+                data.len() as _,
+                data.as_mut_ptr().cast(),
+            )
+            .result()
     }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdBindShadersEXT.html) · Device Function
     pub unsafe fn cmd_bind_shaders(

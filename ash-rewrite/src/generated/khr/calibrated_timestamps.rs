@@ -69,6 +69,19 @@ impl Instance {
     pub fn instance(&self) -> vk::Instance {
         self.handle
     }
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkGetPhysicalDeviceCalibrateableTimeDomainsKHR.html) · Instance Function
+    pub unsafe fn get_physical_device_calibrateable_time_domains(
+        &self,
+        physical_device: vk::PhysicalDevice,
+    ) -> VkResult<Vec<vk::TimeDomainKHR>> {
+        read_into_uninitialized_vector(|time_domain_count, time_domains| (self
+            .fp
+            .get_physical_device_calibrateable_time_domains)(
+            physical_device,
+            time_domain_count,
+            time_domains,
+        ))
+    }
 }
 #[derive(Clone)]
 pub struct DeviceFn {

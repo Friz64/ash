@@ -532,6 +532,27 @@ impl Device {
             first_query,
         )
     }
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkWriteMicromapsPropertiesEXT.html) · Device Function
+    pub unsafe fn write_micromaps_properties(
+        &self,
+        micromaps: &[vk::MicromapEXT],
+        query_type: vk::QueryType,
+        data: &mut [u8],
+        stride: usize,
+    ) -> VkResult<()> {
+        (self
+            .fp
+            .write_micromaps_properties)(
+                self.handle,
+                micromaps.len() as _,
+                micromaps.as_ptr(),
+                query_type,
+                data.len() as _,
+                data.as_mut_ptr().cast(),
+                stride,
+            )
+            .result()
+    }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkGetDeviceMicromapCompatibilityEXT.html) · Device Function
     pub unsafe fn get_device_micromap_compatibility(
         &self,

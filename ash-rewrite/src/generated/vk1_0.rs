@@ -1266,6 +1266,27 @@ impl crate::Entry {
             .assume_init_on_success(instance)?;
         Ok(crate::Instance::load(&self.static_fn, instance))
     }
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkEnumerateInstanceLayerProperties.html) · Entry Function
+    pub unsafe fn enumerate_instance_layer_properties(
+        &self,
+    ) -> VkResult<Vec<vk::LayerProperties>> {
+        read_into_uninitialized_vector(|property_count, properties| (self
+            .entry_fn_1_0
+            .enumerate_instance_layer_properties)(property_count, properties))
+    }
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkEnumerateInstanceExtensionProperties.html) · Entry Function
+    pub unsafe fn enumerate_instance_extension_properties(
+        &self,
+        layer_name: Option<&CStr>,
+    ) -> VkResult<Vec<vk::ExtensionProperties>> {
+        read_into_uninitialized_vector(|property_count, properties| (self
+            .entry_fn_1_0
+            .enumerate_instance_extension_properties)(
+            layer_name.map_or(ptr::null(), |s| s.as_ptr()),
+            property_count,
+            properties,
+        ))
+    }
 }
 #[derive(Clone)]
 pub struct InstanceFnV1_0 {
@@ -1498,6 +1519,18 @@ impl crate::Instance {
             },
         )
     }
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkEnumeratePhysicalDevices.html) · Instance Function
+    pub unsafe fn enumerate_physical_devices(
+        &self,
+    ) -> VkResult<Vec<vk::PhysicalDevice>> {
+        read_into_uninitialized_vector(|physical_device_count, physical_devices| (self
+            .instance_fn_1_0
+            .enumerate_physical_devices)(
+            self.handle,
+            physical_device_count,
+            physical_devices,
+        ))
+    }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkGetDeviceProcAddr.html) · Instance Function
     pub unsafe fn get_device_proc_addr(
         &self,
@@ -1516,6 +1549,26 @@ impl crate::Instance {
             .instance_fn_1_0
             .get_physical_device_properties)(physical_device, properties.as_mut_ptr());
         properties.assume_init()
+    }
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkGetPhysicalDeviceQueueFamilyProperties.html) · Instance Function
+    pub unsafe fn get_physical_device_queue_family_properties(
+        &self,
+        physical_device: vk::PhysicalDevice,
+    ) -> Vec<vk::QueueFamilyProperties> {
+        read_into_uninitialized_vector(|
+                queue_family_property_count,
+                queue_family_properties|
+            {
+                (self
+                    .instance_fn_1_0
+                    .get_physical_device_queue_family_properties)(
+                    physical_device,
+                    queue_family_property_count,
+                    queue_family_properties,
+                );
+                vk::Result::SUCCESS
+            })
+            .unwrap()
     }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkGetPhysicalDeviceMemoryProperties.html) · Instance Function
     pub unsafe fn get_physical_device_memory_properties(
@@ -1612,6 +1665,61 @@ impl crate::Instance {
             )
             .assume_init_on_success(device)?;
         Ok(crate::Device::load(&self.instance_fn_1_0, device))
+    }
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkEnumerateDeviceLayerProperties.html) · Instance Function
+    pub unsafe fn enumerate_device_layer_properties(
+        &self,
+        physical_device: vk::PhysicalDevice,
+    ) -> VkResult<Vec<vk::LayerProperties>> {
+        read_into_uninitialized_vector(|property_count, properties| (self
+            .instance_fn_1_0
+            .enumerate_device_layer_properties)(
+            physical_device,
+            property_count,
+            properties,
+        ))
+    }
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkEnumerateDeviceExtensionProperties.html) · Instance Function
+    pub unsafe fn enumerate_device_extension_properties(
+        &self,
+        physical_device: vk::PhysicalDevice,
+        layer_name: Option<&CStr>,
+    ) -> VkResult<Vec<vk::ExtensionProperties>> {
+        read_into_uninitialized_vector(|property_count, properties| (self
+            .instance_fn_1_0
+            .enumerate_device_extension_properties)(
+            physical_device,
+            layer_name.map_or(ptr::null(), |s| s.as_ptr()),
+            property_count,
+            properties,
+        ))
+    }
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkGetPhysicalDeviceSparseImageFormatProperties.html) · Instance Function
+    pub unsafe fn get_physical_device_sparse_image_format_properties(
+        &self,
+        physical_device: vk::PhysicalDevice,
+        format: vk::Format,
+        ty: vk::ImageType,
+        samples: vk::SampleCountFlagBits,
+        usage: vk::ImageUsageFlags,
+        tiling: vk::ImageTiling,
+    ) -> Vec<vk::SparseImageFormatProperties> {
+        read_into_uninitialized_vector(|property_count, properties| {
+                (self
+                    .instance_fn_1_0
+                    .get_physical_device_sparse_image_format_properties)(
+                    physical_device,
+                    format,
+                    ty,
+                    samples,
+                    usage,
+                    tiling,
+                    property_count,
+                    properties,
+                );
+                vk::Result::SUCCESS
+            })
+            .unwrap()
     }
 }
 #[derive(Clone)]
@@ -3438,6 +3546,27 @@ impl crate::Device {
         (self.device_fn_1_0.bind_image_memory)(self.handle, image, memory, memory_offset)
             .result()
     }
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkGetImageSparseMemoryRequirements.html) · Device Function
+    pub unsafe fn get_image_sparse_memory_requirements(
+        &self,
+        image: vk::Image,
+    ) -> Vec<vk::SparseImageMemoryRequirements> {
+        read_into_uninitialized_vector(|
+                sparse_memory_requirement_count,
+                sparse_memory_requirements|
+            {
+                (self
+                    .device_fn_1_0
+                    .get_image_sparse_memory_requirements)(
+                    self.handle,
+                    image,
+                    sparse_memory_requirement_count,
+                    sparse_memory_requirements,
+                );
+                vk::Result::SUCCESS
+            })
+            .unwrap()
+    }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkQueueBindSparse.html) · Device Function
     pub unsafe fn queue_bind_sparse(
         &self,
@@ -3643,6 +3772,29 @@ impl crate::Device {
                 None => ptr::null_mut(),
             },
         )
+    }
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkGetQueryPoolResults.html) · Device Function
+    pub unsafe fn get_query_pool_results<T>(
+        &self,
+        query_pool: vk::QueryPool,
+        first_query: u32,
+        data: &mut [T],
+        flags: vk::QueryResultFlags,
+    ) -> VkResult<()> {
+        let data_size = mem::size_of_val(data);
+        (self
+            .device_fn_1_0
+            .get_query_pool_results)(
+                self.handle(),
+                query_pool,
+                first_query,
+                data.len() as u32,
+                data_size,
+                data.as_mut_ptr().cast(),
+                mem::size_of::<T>() as _,
+                flags,
+            )
+            .result()
     }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCreateBuffer.html) · Device Function
     pub unsafe fn create_buffer(
@@ -3883,6 +4035,22 @@ impl crate::Device {
             },
         )
     }
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkGetPipelineCacheData.html) · Device Function
+    pub unsafe fn get_pipeline_cache_data(
+        &self,
+        pipeline_cache: vk::PipelineCache,
+        data: &mut [u8],
+    ) -> VkResult<()> {
+        (self
+            .device_fn_1_0
+            .get_pipeline_cache_data)(
+                self.handle,
+                pipeline_cache,
+                data.len() as _,
+                data.as_mut_ptr().cast(),
+            )
+            .result()
+    }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkMergePipelineCaches.html) · Device Function
     pub unsafe fn merge_pipeline_caches(
         &self,
@@ -3898,6 +4066,60 @@ impl crate::Device {
                 src_caches.as_ptr(),
             )
             .result()
+    }
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCreateGraphicsPipelines.html) · Device Function
+    pub unsafe fn create_graphics_pipelines(
+        &self,
+        pipeline_cache: vk::PipelineCache,
+        create_infos: &[vk::GraphicsPipelineCreateInfo<'_>],
+        allocator: Option<&vk::AllocationCallbacks<'_>>,
+    ) -> core::result::Result<Vec<vk::Pipeline>, (Vec<vk::Pipeline>, vk::Result)> {
+        let mut pipelines = Vec::with_capacity(create_infos.len());
+        let err_code = (self
+            .device_fn_1_0
+            .create_graphics_pipelines)(
+            self.handle,
+            pipeline_cache,
+            pipelines.len() as _,
+            create_infos.as_ptr(),
+            match allocator {
+                Some(r) => r,
+                None => ptr::null_mut(),
+            },
+            pipelines.as_mut_ptr(),
+        );
+        pipelines.set_len(create_infos.len());
+        match err_code {
+            vk::Result::SUCCESS => Ok(pipelines),
+            _ => Err((pipelines, err_code)),
+        }
+    }
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCreateComputePipelines.html) · Device Function
+    pub unsafe fn create_compute_pipelines(
+        &self,
+        pipeline_cache: vk::PipelineCache,
+        create_infos: &[vk::ComputePipelineCreateInfo<'_>],
+        allocator: Option<&vk::AllocationCallbacks<'_>>,
+    ) -> core::result::Result<Vec<vk::Pipeline>, (Vec<vk::Pipeline>, vk::Result)> {
+        let mut pipelines = Vec::with_capacity(create_infos.len());
+        let err_code = (self
+            .device_fn_1_0
+            .create_compute_pipelines)(
+            self.handle,
+            pipeline_cache,
+            pipelines.len() as _,
+            create_infos.as_ptr(),
+            match allocator {
+                Some(r) => r,
+                None => ptr::null_mut(),
+            },
+            pipelines.as_mut_ptr(),
+        );
+        pipelines.set_len(create_infos.len());
+        match err_code {
+            vk::Result::SUCCESS => Ok(pipelines),
+            _ => Err((pipelines, err_code)),
+        }
     }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkDestroyPipeline.html) · Device Function
     pub unsafe fn destroy_pipeline(

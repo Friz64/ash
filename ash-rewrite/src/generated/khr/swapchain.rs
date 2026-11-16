@@ -236,6 +236,20 @@ impl Device {
             },
         )
     }
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkGetSwapchainImagesKHR.html) · Device Function
+    pub unsafe fn get_swapchain_images(
+        &self,
+        swapchain: vk::SwapchainKHR,
+    ) -> VkResult<Vec<vk::Image>> {
+        read_into_uninitialized_vector(|swapchain_image_count, swapchain_images| (self
+            .fp
+            .get_swapchain_images)(
+            self.handle,
+            swapchain,
+            swapchain_image_count,
+            swapchain_images,
+        ))
+    }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkAcquireNextImageKHR.html) · Device Function
     pub unsafe fn acquire_next_image(
         &self,
@@ -352,6 +366,21 @@ impl Instance {
     #[inline]
     pub fn instance(&self) -> vk::Instance {
         self.handle
+    }
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkGetPhysicalDevicePresentRectanglesKHR.html) · Instance Function
+    pub unsafe fn get_physical_device_present_rectangles(
+        &self,
+        physical_device: vk::PhysicalDevice,
+        surface: vk::SurfaceKHR,
+    ) -> VkResult<Vec<vk::Rect2D>> {
+        read_into_uninitialized_vector(|rect_count, rects| (self
+            .fp
+            .get_physical_device_present_rectangles)(
+            physical_device,
+            surface,
+            rect_count,
+            rects,
+        ))
     }
 }
 pub(crate) mod items {

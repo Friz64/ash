@@ -327,6 +327,21 @@ impl Instance {
     pub fn instance(&self) -> vk::Instance {
         self.handle
     }
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkGetPhysicalDevicePresentRectanglesKHR.html) · Instance Function
+    pub unsafe fn get_physical_device_present_rectangles(
+        &self,
+        physical_device: vk::PhysicalDevice,
+        surface: vk::SurfaceKHR,
+    ) -> VkResult<Vec<vk::Rect2D>> {
+        read_into_uninitialized_vector(|rect_count, rects| (self
+            .fp
+            .get_physical_device_present_rectangles)(
+            physical_device,
+            surface,
+            rect_count,
+            rects,
+        ))
+    }
 }
 pub(crate) mod items {
     use crate::internal_prelude::*;

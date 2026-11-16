@@ -84,6 +84,20 @@ impl Device {
             )
             .assume_init_on_success(display_timing_properties)
     }
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkGetPastPresentationTimingGOOGLE.html) · Device Function
+    pub unsafe fn get_past_presentation_timing(
+        &self,
+        swapchain: vk::SwapchainKHR,
+    ) -> VkResult<Vec<vk::PastPresentationTimingGOOGLE>> {
+        read_into_uninitialized_vector(|presentation_timing_count, presentation_timings| (self
+            .fp
+            .get_past_presentation_timing)(
+            self.handle,
+            swapchain,
+            presentation_timing_count,
+            presentation_timings,
+        ))
+    }
 }
 pub(crate) mod items {
     use crate::internal_prelude::*;
