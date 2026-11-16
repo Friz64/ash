@@ -251,8 +251,8 @@ struct Function {
     pub safety: Safety,
     /// To be used in place of a default name
     pub name_override: Option<Ident>,
-    /// e.g. `<T: vk::Handle>` or empty
-    pub generics: TokenStream,
+    /// e.g. Some(`T: vk::Handle`)
+    pub generic_params: Option<TokenStream>,
     /// e.g. `&self, a: i32`
     pub inputs: TokenStream,
     /// e.g. `-> i32` or empty

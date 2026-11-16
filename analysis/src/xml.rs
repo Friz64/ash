@@ -515,6 +515,7 @@ pub struct StructMember {
     pub len: Vec<&'static str>,
     pub altlen: Vec<&'static str>,
     pub optional: Vec<bool>,
+    pub objecttype: Option<VariableName>,
     pub deprecated: Option<Deprecated>,
 }
 
@@ -528,6 +529,7 @@ impl StructMember {
             optional: attribute(node, "optional")
                 .map(|value| value.split(',').map(|s| s.parse().unwrap()).collect())
                 .unwrap_or_default(),
+            objecttype: attribute(node, "objecttype").map(VariableName::new),
             deprecated: Deprecated::from_node(node),
         }
     }

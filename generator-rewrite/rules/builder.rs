@@ -66,3 +66,25 @@ impl VkMicromapVersionInfoEXT {
         self
     }
 }
+
+impl VkDebugMarkerObjectNameInfoEXT {
+    #[keep]
+    fn objectType();
+
+    #[replace]
+    fn object(mut self, object: u64) -> Self {
+        self.object = object;
+        self
+    }
+}
+
+impl VkDebugMarkerObjectTagInfoEXT {
+    #[keep]
+    fn objectType();
+
+    #[replace]
+    fn object(mut self, object: u64) -> Self {
+        self.object = object;
+        self
+    }
+}

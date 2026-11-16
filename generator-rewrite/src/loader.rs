@@ -133,7 +133,7 @@ pub fn generate_code(ctx: &Context, codemap: &mut CodeMap) {
                      attributes,
                      safety,
                      name_override,
-                     generics,
+                     generic_params,
                      inputs,
                      output,
                      content,
@@ -159,6 +159,7 @@ pub fn generate_code(ctx: &Context, codemap: &mut CodeMap) {
                         &table_field,
                     );
 
+                    let generics = generic_params.as_ref().map(|params| quote! { <#params> });
                     quote! {
                         #[doc = #manual_page]
                         #attributes
@@ -451,10 +452,11 @@ struct WrapperParam {
     ty: RustTy,
 }
 
-#[derive(Debug)]
+#[derive(Debug, Default)]
 struct WrapperCallArg {
     param: Option<WrapperParam>,
     value: TokenStream,
+    generic_param: Option<TokenStream>,
 }
 
 impl WrapperCallArg {
@@ -462,13 +464,30 @@ impl WrapperCallArg {
         if let Some(length_of) = param.length_of.first() {
             let length_of = param_ident(*length_of);
             return WrapperCallArg {
-                param: None,
                 value: quote! { #length_of.len() as _ },
+                ..Default::default()
             };
         }
 
         let name = param.decl.name;
         let ident = param_ident(name);
+
+        if param.object_type_of.is_some() {
+            return WrapperCallArg {
+                value: quote! { T::TYPE },
+                ..Default::default()
+            };
+        } else if param.object_handle_of.is_some() {
+            return WrapperCallArg {
+                param: Some(WrapperParam {
+                    name,
+                    ty: RustTy::Tokens(quote! { T }),
+                }),
+                value: quote! { #ident.as_raw() },
+                generic_param: Some(quote! { T: Handle }),
+            };
+        }
+
         if let Some(output_param) = wrapper_output
             .params
             .iter()
@@ -477,8 +496,8 @@ impl WrapperCallArg {
             match (output_param.array, output_param.tagged) {
                 (false, false) => {
                     return WrapperCallArg {
-                        param: None,
                         value: quote! { #ident.as_mut_ptr() },
+                        ..Default::default()
                     };
                 }
                 // todo
@@ -501,6 +520,7 @@ impl WrapperCallArg {
                     Mutability::Not => quote! { #ident.as_ptr().cast() },
                     Mutability::Mut => quote! { #ident.as_mut_ptr().cast() },
                 },
+                ..Default::default()
             },
             (
                 Ty::Ptr(Ty::CPrimary(CPrimaryType::Char), Mutability::Not),
@@ -520,6 +540,7 @@ impl WrapperCallArg {
                     },
                 }),
                 value: quote! { #ident.map_or(ptr::null(), |s| s.as_ptr()) },
+                ..Default::default()
             },
             (&Ty::ApiType(type_name), None) if type_name == TypeName::VK_BOOL32 => WrapperCallArg {
                 param: Some(WrapperParam {
@@ -527,13 +548,14 @@ impl WrapperCallArg {
                     ty: RustTy::Tokens(quote! { bool }),
                 }),
                 value: quote! { #ident as _ },
+                ..Default::default()
             },
             (&Ty::ApiType(type_name), None)
                 if type_name == TypeName::VK_INSTANCE || type_name == TypeName::VK_DEVICE =>
             {
                 WrapperCallArg {
-                    param: None,
                     value: quote! { self.handle },
+                    ..Default::default()
                 }
             }
             (Ty::Ptr(to, Mutability::Not), None) if param.optional == [true] => WrapperCallArg {
@@ -550,6 +572,7 @@ impl WrapperCallArg {
                         None => ptr::null_mut(),
                     }
                 },
+                ..Default::default()
             },
             (Ty::Ptr(to, Mutability::Not), None) if !to.is_opaque() => WrapperCallArg {
                 param: Some(WrapperParam {
@@ -557,6 +580,7 @@ impl WrapperCallArg {
                     ty: RustTy::Ref(Box::new(to.to_rust()), Mutability::Not),
                 }),
                 value: quote! { #ident },
+                ..Default::default()
             },
             (Ty::Ptr(to, Mutability::Not), Some(Length::DefinedByParam(_))) => WrapperCallArg {
                 param: Some(WrapperParam {
@@ -564,6 +588,7 @@ impl WrapperCallArg {
                     ty: RustTy::ArrayRef(Box::new(to.to_rust()), Mutability::Not, None),
                 }),
                 value: quote! { #ident.as_ptr() },
+                ..Default::default()
             },
             _ => WrapperCallArg {
                 param: Some(WrapperParam {
@@ -571,6 +596,7 @@ impl WrapperCallArg {
                     ty: param.decl.ty.to_rust(),
                 }),
                 value: quote! { #ident },
+                ..Default::default()
             },
         }
     }
@@ -584,6 +610,13 @@ fn wrapper(octx: &OutputContext, command: &Command, name: &Ident) -> Vec<Functio
         .values()
         .map(|param| WrapperCallArg::new(param, &wrapper_output))
         .collect();
+
+    let mut generic_param_iter = call_args
+        .iter()
+        .filter_map(|call_arg| call_arg.generic_param.as_ref())
+        .peekable();
+    let has_generic_params = generic_param_iter.peek().is_some();
+    let generic_params = has_generic_params.then(|| quote! { #(#generic_param_iter),* });
 
     let param_code = call_args.iter().filter_map(|call_arg| {
         call_arg.param.as_ref().map(|wrapper_param| {
@@ -614,6 +647,7 @@ fn wrapper(octx: &OutputContext, command: &Command, name: &Ident) -> Vec<Functio
             };
 
             vec![Function {
+                generic_params,
                 inputs,
                 output: if wrapper_output.result {
                     quote! { -> VkResult<()> }
@@ -646,6 +680,7 @@ fn wrapper(octx: &OutputContext, command: &Command, name: &Ident) -> Vec<Functio
 
             let inner_ty = output.inner_ty.to_rust().tokens(&**octx, None);
             vec![Function {
+                generic_params,
                 inputs,
                 output: if wrapper_output.result {
                     quote! { -> VkResult<#inner_ty> }

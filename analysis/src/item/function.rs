@@ -48,6 +48,10 @@ pub struct CommandParam {
     pub length: Option<Length>,
     /// All other params whose length is defined by this param
     pub length_of: Vec<VariableName>,
+    /// The object type of this params object handle
+    pub object_handle_of: Option<VariableName>,
+    /// The object handle whose type is defined by this param
+    pub object_type_of: Option<VariableName>,
     pub optional: Vec<bool>,
 }
 
@@ -99,6 +103,8 @@ impl Command {
                     decl: Decl::from_c(require_map, &param.c_decl),
                     length,
                     length_of: Vec::new(), // filled in second pass
+                    object_handle_of: param.objecttype,
+                    object_type_of: None, // filled in second pass
                     optional: param.optional.clone(),
                 }
             })
@@ -106,6 +112,7 @@ impl Command {
 
         // for each param `a`, check every other param `b`,
         // and find out if `a` determines the length of `b`
+        // or if `a` holds the object type of object handle `b`
         for a_idx in 0..params.len() {
             for b_idx in 0..params.len() {
                 let Ok([a, b]) = params.get_disjoint_mut([a_idx, b_idx]) else {
@@ -114,6 +121,10 @@ impl Command {
 
                 if matches!(b.length, Some(Length::DefinedByParam(name)) if name == a.decl.name) {
                     a.length_of.push(b.decl.name);
+                }
+
+                if b.object_handle_of == Some(a.decl.name) {
+                    a.object_type_of = Some(b.decl.name);
                 }
             }
         }

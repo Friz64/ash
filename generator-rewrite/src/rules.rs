@@ -67,11 +67,14 @@ impl BuilderRules {
                         rule = Box::new(move |attributes| {
                             let mut content = TokenStream::new();
                             content.append_all(&impl_item_fn.block.stmts);
+
+                            let has_generics = impl_item_fn.sig.generics.lt_token.is_some();
                             BuilderRule::Replace(vec![Function {
                                 attributes,
                                 safety: map_safety(&impl_item_fn.sig.safety),
                                 name_override,
-                                generics: impl_item_fn.sig.generics.to_token_stream(),
+                                generic_params: has_generics
+                                    .then(|| impl_item_fn.sig.generics.params.to_token_stream()),
                                 inputs: impl_item_fn.sig.inputs.to_token_stream(),
                                 output: impl_item_fn.sig.output.to_token_stream(),
                                 content,
@@ -135,11 +138,13 @@ impl WrapperRules {
             let command_name = CommandName::new(item_fn.sig.ident.to_string().leak());
             let mut content = TokenStream::new();
             content.append_all(&item_fn.block.stmts);
+
+            let has_generics = item_fn.sig.generics.lt_token.is_some();
             output.entry(command_name).or_default().push(Function {
                 attributes,
                 safety: map_safety(&item_fn.sig.safety),
                 name_override: name,
-                generics: item_fn.sig.generics.to_token_stream(),
+                generic_params: has_generics.then(|| item_fn.sig.generics.params.to_token_stream()),
                 inputs: item_fn.sig.inputs.to_token_stream(),
                 output: item_fn.sig.output.to_token_stream(),
                 content,

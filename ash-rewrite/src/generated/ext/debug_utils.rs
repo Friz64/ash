@@ -393,12 +393,9 @@ pub(crate) mod items {
         }
     }
     impl<'a> DebugUtilsObjectNameInfoEXT<'a> {
-        pub fn object_type(mut self, object_type: vk::ObjectType) -> Self {
-            self.object_type = object_type;
-            self
-        }
-        pub fn object_handle(mut self, object_handle: u64) -> Self {
-            self.object_handle = object_handle;
+        pub fn object_handle<T: Handle>(mut self, object_handle: T) -> Self {
+            self.object_handle = object_handle.as_raw();
+            self.object_type = T::TYPE;
             self
         }
         pub fn object_name(mut self, object_name: &'a CStr) -> Self {
@@ -446,12 +443,9 @@ pub(crate) mod items {
         }
     }
     impl<'a> DebugUtilsObjectTagInfoEXT<'a> {
-        pub fn object_type(mut self, object_type: vk::ObjectType) -> Self {
-            self.object_type = object_type;
-            self
-        }
-        pub fn object_handle(mut self, object_handle: u64) -> Self {
-            self.object_handle = object_handle;
+        pub fn object_handle<T: Handle>(mut self, object_handle: T) -> Self {
+            self.object_handle = object_handle.as_raw();
+            self.object_type = T::TYPE;
             self
         }
         pub fn tag_name(mut self, tag_name: u64) -> Self {

@@ -239,7 +239,7 @@ impl Code for Struct {
                          attributes,
                          safety,
                          name_override,
-                         generics,
+                         generic_params,
                          inputs,
                          output,
                          content,
@@ -254,6 +254,7 @@ impl Code for Struct {
                             None => method_name_token(member),
                         };
 
+                        let generics = generic_params.map(|params| quote! { <#params> });
                         quote! {
                            #attributes
                            pub #safety fn #name #generics(#inputs) #output { #content }
@@ -294,8 +295,24 @@ fn regular_builder(
     let method_name = method_name_token(member);
 
     let is_length_method = !member.length_of.is_empty();
-    if !keep && is_length_method {
+    let is_object_type = member.object_type_of.is_some();
+    if !keep && (is_length_method || is_object_type) {
         return vec![];
+    }
+
+    if let Some(object_type) = member.object_handle_of {
+        let object_type = octx.variable_token(object_type);
+        return vec![Function {
+            generic_params: Some(quote! { T: Handle }),
+            inputs: quote! { mut self, #field_name: T },
+            output: quote! { -> Self },
+            content: quote! {
+                self.#field_name = #field_name.as_raw();
+                self.#object_type = T::TYPE;
+                self
+            },
+            ..Default::default()
+        }];
     }
 
     let array_element_ty = |element_ty: &Ty| {
@@ -313,7 +330,7 @@ fn regular_builder(
             vec![Function {
                 inputs: quote! { mut self, #field_name: bool },
                 output: quote! { -> Self },
-                content: quote! {  self.#field_name = #field_name.into(); self },
+                content: quote! { self.#field_name = #field_name.into(); self },
                 ..Default::default()
             }]
         }

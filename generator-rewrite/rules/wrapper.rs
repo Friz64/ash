@@ -220,36 +220,27 @@ fn vkBuildAccelerationStructuresKHR(
     .result()
 }
 
-fn vkSetPrivateData<T: vk::Handle>(
+// `Handle` trait assumes the object type to be `vk::ObjectType`, this function is an outlier
+fn vkDebugReportMessageEXT(
     &self,
-    object: T,
-    private_data_slot: vk::PrivateDataSlot,
-    data: u64,
-) -> VkResult<()> {
-    (self.__table.set_private_data)(
+    flags: vk::DebugReportFlagsEXT,
+    object_type: vk::DebugReportObjectTypeEXT,
+    object: u64,
+    location: usize,
+    message_code: i32,
+    layer_prefix: Option<&CStr>,
+    message: Option<&CStr>,
+) {
+    (self.__table.debug_report_message)(
         self.handle,
-        T::TYPE,
-        object.as_raw(),
-        private_data_slot,
-        data,
+        flags,
+        object_type,
+        object,
+        location,
+        message_code,
+        layer_prefix.map_or(ptr::null(), |s| s.as_ptr()),
+        message.map_or(ptr::null(), |s| s.as_ptr()),
     )
-    .result()
-}
-
-pub unsafe fn vkGetPrivateData<T: vk::Handle>(
-    &self,
-    object: T,
-    private_data_slot: vk::PrivateDataSlot,
-) -> u64 {
-    let mut data = MaybeUninit::uninit();
-    (self.__table.get_private_data)(
-        self.handle,
-        T::TYPE,
-        object.as_raw(),
-        private_data_slot,
-        data.as_mut_ptr(),
-    );
-    data.assume_init()
 }
 
 fn vkAcquireNextImageKHR(

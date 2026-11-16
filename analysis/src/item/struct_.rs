@@ -21,6 +21,10 @@ pub struct RegularMember {
     pub lengths: Vec<Length>,
     /// All other members whose length is defined by this member
     pub length_of: Vec<VariableName>,
+    /// The object type of this members object handle
+    pub object_handle_of: Option<VariableName>,
+    /// The object handle whose type is defined by this member
+    pub object_type_of: Option<VariableName>,
 }
 
 impl RegularMember {
@@ -152,12 +156,15 @@ impl Struct {
                     decl,
                     lengths,
                     length_of: Vec::new(), // filled in second pass
+                    object_handle_of: member.objecttype,
+                    object_type_of: None, // filled in second pass
                 }));
             }
         }
 
         // for each member `a`, check every other member `b`,
         // and find out if `a` determines the length of `b`
+        // or if `a` holds the object type of object handle `b`
         for a_idx in 0..members.len() {
             for b_idx in 0..members.len() {
                 let Ok([Member::Regular(a), Member::Regular(b)]) =
@@ -174,6 +181,10 @@ impl Struct {
                     }
                 }) {
                     a.length_of.push(b.decl.name);
+                }
+
+                if b.object_handle_of == Some(a.decl.name) {
+                    a.object_type_of = Some(b.decl.name);
                 }
             }
         }

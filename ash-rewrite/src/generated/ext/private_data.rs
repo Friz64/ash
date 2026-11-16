@@ -141,9 +141,9 @@ impl Device {
         )
     }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkSetPrivateData.html) · Device Function
-    pub unsafe fn set_private_data<T: vk::Handle>(
+    pub unsafe fn set_private_data<T: Handle>(
         &self,
-        object: T,
+        object_handle: T,
         private_data_slot: vk::PrivateDataSlot,
         data: u64,
     ) -> VkResult<()> {
@@ -152,16 +152,16 @@ impl Device {
             .set_private_data)(
                 self.handle,
                 T::TYPE,
-                object.as_raw(),
+                object_handle.as_raw(),
                 private_data_slot,
                 data,
             )
             .result()
     }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkGetPrivateData.html) · Device Function
-    pub unsafe fn get_private_data<T: vk::Handle>(
+    pub unsafe fn get_private_data<T: Handle>(
         &self,
-        object: T,
+        object_handle: T,
         private_data_slot: vk::PrivateDataSlot,
     ) -> u64 {
         let mut data = MaybeUninit::uninit();
@@ -170,7 +170,7 @@ impl Device {
             .get_private_data)(
             self.handle,
             T::TYPE,
-            object.as_raw(),
+            object_handle.as_raw(),
             private_data_slot,
             data.as_mut_ptr(),
         );
