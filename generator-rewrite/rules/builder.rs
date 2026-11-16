@@ -88,3 +88,18 @@ impl VkDebugMarkerObjectTagInfoEXT {
         self
     }
 }
+
+impl VkPipelineMultisampleStateCreateInfo {
+    /// Sets `p_sample_mask` to `null` if the slice is empty. The mask will be treated as if it has all bits set to `1`.
+    ///
+    /// See Vulkan Manual Page for more details.
+    #[replace]
+    fn pSampleMask(mut self, sample_mask: &'a [SampleMask]) -> Self {
+        self.p_sample_mask = if sample_mask.is_empty() {
+            core::ptr::null()
+        } else {
+            sample_mask.as_ptr()
+        };
+        self
+    }
+}
