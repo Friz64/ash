@@ -1,6 +1,7 @@
 mod item;
 pub mod loader;
 mod output;
+mod platform_types;
 mod rules;
 
 use crate::{
@@ -9,10 +10,9 @@ use crate::{
 };
 use analysis::{
     Analysis, AnalysisResult,
-    decl::CPrimaryType,
     name::{
-        CMacroName, CommandName, ConstantName, EnumeratorName, FuncPointerName, TypeName,
-        VariableName,
+        CMacroName, CommandName, ConstantName, EnumeratorName, FuncPointerName, PlatformTypeName,
+        TypeName, VariableName,
     },
     rust::{Lifetime, RustTokens},
 };
@@ -229,29 +229,10 @@ impl RustTokens for OutputContext<'_, '_> {
         quote! { #path #ident }
     }
 
-    fn platform_type_tokens(&self, raw: &str, qualified: bool) -> TokenStream {
-        let ident: Ident = syn::parse_str(raw).unwrap();
+    fn platform_type_tokens(&self, name: PlatformTypeName, qualified: bool) -> TokenStream {
+        let ident: Ident = syn::parse_str(name.original()).unwrap();
         let path = qualified.then(|| quote! { vk:: });
         quote! { #path #ident }
-    }
-
-    fn primary_type_tokens(&self, primary_ty: CPrimaryType) -> TokenStream {
-        match primary_ty {
-            CPrimaryType::Void => quote! { ffi::c_void },
-            CPrimaryType::Char => quote! { ffi::c_char },
-            CPrimaryType::Int => quote! { ffi::c_int },
-            CPrimaryType::Float => quote! { ffi::c_float },
-            CPrimaryType::Double => quote! { ffi::c_double },
-            CPrimaryType::Int8 => quote! { i8 },
-            CPrimaryType::UInt8 => quote! { u8 },
-            CPrimaryType::Int16 => quote! { i16 },
-            CPrimaryType::UInt16 => quote! { u16 },
-            CPrimaryType::Int32 => quote! { i32 },
-            CPrimaryType::UInt32 => quote! { u32 },
-            CPrimaryType::Int64 => quote! { i64 },
-            CPrimaryType::UInt64 => quote! { u64 },
-            CPrimaryType::Size => quote! { usize },
-        }
     }
 }
 

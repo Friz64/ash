@@ -551,7 +551,7 @@ impl WrapperCallArg {
                     }
                 },
             },
-            (Ty::Ptr(to, Mutability::Not), None) => WrapperCallArg {
+            (Ty::Ptr(to, Mutability::Not), None) if !to.is_opaque() => WrapperCallArg {
                 param: Some(WrapperParam {
                     name,
                     ty: RustTy::Ref(Box::new(to.to_rust()), Mutability::Not),

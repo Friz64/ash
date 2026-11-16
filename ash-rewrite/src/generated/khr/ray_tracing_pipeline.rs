@@ -448,7 +448,7 @@ pub(crate) mod items {
         }
         pub fn shader_group_capture_replay_handle(
             mut self,
-            shader_group_capture_replay_handle: &'a ffi::c_void,
+            shader_group_capture_replay_handle: *const ffi::c_void,
         ) -> Self {
             self.p_shader_group_capture_replay_handle = shader_group_capture_replay_handle;
             self

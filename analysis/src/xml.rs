@@ -91,7 +91,7 @@ fn node_span_field(node: &Node) -> String {
 }
 
 impl CDecl<'static> {
-    fn from_xml(mode: CDeclMode, children: roxmltree::Children<'_, 'static>) -> CDecl<'static> {
+    pub fn from_xml(mode: CDeclMode, children: roxmltree::Children<'_, 'static>) -> CDecl<'static> {
         let mut c_tokens = vec![];
         for child in children {
             match child.node_type() {

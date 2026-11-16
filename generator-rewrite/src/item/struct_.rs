@@ -429,9 +429,10 @@ fn regular_builder(
             }]
         }
         Ty::Ptr(base, mutability)
-            if member
-                .length_at_depth(0)
-                .is_none_or(|l| l == Length::Count(1)) =>
+            if !base.is_opaque()
+                && member
+                    .length_at_depth(0)
+                    .is_none_or(|l| l == Length::Count(1)) =>
         {
             let ty = RustTy::Ref(Box::new(base.to_rust()), mutability).tokens(octx, Some(lifetime));
             vec![Function {

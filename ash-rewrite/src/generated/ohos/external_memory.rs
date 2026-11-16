@@ -285,7 +285,7 @@ pub(crate) mod items {
         }
     }
     impl<'a> ImportNativeBufferInfoOHOS<'a> {
-        pub fn buffer(mut self, buffer: &'a mut vk::OH_NativeBuffer) -> Self {
+        pub fn buffer(mut self, buffer: *mut vk::OH_NativeBuffer) -> Self {
             self.buffer = buffer;
             self
         }

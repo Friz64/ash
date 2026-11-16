@@ -1,0 +1,73 @@
+<types>
+    <!-- X11/X.h -->
+    <type>typedef <type>unsigned long</type> <name>XID</name>;</type>
+    <type>typedef <type>unsigned long</type> <name>RROutput</name>;</type>
+    <type>typedef <type>unsigned long</type> <name>VisualID</name>;</type>
+    <type>typedef <type>unsigned long</type> <name>Window</name>;</type>
+    <!-- X11/Xlib.h -->
+    <type>typedef <type>void</type> <name>Display</name>;</type>
+
+    <!-- xcb/xch.h -->
+    <type>typedef <type>void</type> <name>xcb_connection_t</name>;</type>
+    <!-- xcb/xproto.h -->
+    <type>typedef <type>uint32_t</type> <name>xcb_window_t</name>;</type>
+    <type>typedef <type>uint32_t</type> <name>xcb_visualid_t</name>;</type>
+
+    <!-- mirclient/mir_toolkit/client_types.h -->
+    <type>typedef <type>void</type> <name>MirConnection</name>;</type>
+    <type>typedef <type>void</type> <name>MirSurface</name>;</type>
+
+    <!-- BaseTsd.h -->
+    <type>typedef <type>void</type>* <name>HANDLE</name>;</type>
+    <type>typedef <type>void</type>* <name>HINSTANCE</name>;</type>
+    <type>typedef <type>void</type>* <name>HWND</name>;</type>
+    <type>typedef <type>void</type>* <name>HMONITOR</name>;</type>
+    <type>typedef <type>unsigned long</type> <name>DWORD</name>;</type>
+    <type>typedef const <type>uint16_t</type>* <name>LPCWSTR</name>;</type>
+    <!-- wtypesbase.h -->
+    <type>typedef <type>void</type> <name>SECURITY_ATTRIBUTES</name>;</type>
+
+    <!-- wayland-client-protocol.h -->
+    <type>typedef <type>void</type> <name>wl_display</name>;</type>
+    <type>typedef <type>void</type> <name>wl_surface</name>;</type>
+
+    <!-- zircon/types.h -->
+    <type>typedef <type>uint32_t</type> <name>zx_handle_t</name>;</type>
+
+    <!-- QNX screen/screen.h -->
+    <type>typedef <type>void</type> <name>_screen_buffer</name>;</type>
+    <type>typedef <type>void</type> <name>_screen_context</name>;</type>
+    <type>typedef <type>void</type> <name>_screen_window</name>;</type>
+
+    <!-- android/native_window.h -->
+    <type>typedef <type>void</type> <name>ANativeWindow</name>;</type>
+    <!-- android/hardware_buffer.h -->
+    <type>typedef <type>void</type> <name>AHardwareBuffer</name>;</type>
+    
+    <!-- Apple Core Animation -->
+    <type>typedef <type>void</type> <name>CAMetalLayer</name>;</type>
+    <!-- Apple Core Graphics -->
+    <type>typedef <type>void</type>* <name>IOSurfaceRef</name>;</type>
+    <!-- Metal API -->
+    <type>typedef <type>void</type>* <name>MTLBuffer_id</name>;</type>
+    <type>typedef <type>void</type>* <name>MTLCommandQueue_id</name>;</type>
+    <type>typedef <type>void</type>* <name>MTLDevice_id</name>;</type>
+    <type>typedef <type>void</type>* <name>MTLSharedEvent_id</name>;</type>
+    <type>typedef <type>void</type>* <name>MTLTexture_id</name>;</type>
+
+    <!-- https://github.com/google/gapid/commit/22aafebec4638c6aaa77667096bca30f6e842d95#diff-ab3ab4a7d89b4fc8a344ff4e9332865f268ea1669ee379c1b516a954ecc2e7a6R20-R21 -->
+    <type>typedef <type>uint32_t</type> <name>GgpStreamDescriptor</name>;</type>
+    <type>typedef <type>uint64_t</type> <name>GgpFrameToken</name>;</type>
+
+    <!-- directfb.h -->
+    <type>typedef <type>void</type> <name>IDirectFB</name>;</type>
+    <type>typedef <type>void</type> <name>IDirectFBSurface</name>;</type>
+
+    <!-- OpenHarmonyOS native_buffer/native_buffer.h -->
+    <type>typedef <type>void</type> <name>OH_NativeBuffer</name>;</type>
+    <type>typedef <type>void</type> <name>OHNativeWindow</name>;</type>
+
+    <!-- Samsung ??? -->
+    <type>typedef <type>void</type> <name>ubm_device</name>;</type>
+    <type>typedef <type>void</type> <name>ubm_surface</name>;</type>
+</types>

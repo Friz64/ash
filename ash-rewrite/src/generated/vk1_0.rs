@@ -5536,7 +5536,7 @@ pub(crate) mod items {
     unsafe impl Send for AllocationCallbacks<'_> {}
     unsafe impl Sync for AllocationCallbacks<'_> {}
     impl<'a> AllocationCallbacks<'a> {
-        pub fn user_data(mut self, user_data: &'a mut ffi::c_void) -> Self {
+        pub fn user_data(mut self, user_data: *mut ffi::c_void) -> Self {
             self.p_user_data = user_data;
             self
         }

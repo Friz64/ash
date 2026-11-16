@@ -111,7 +111,7 @@ pub(crate) mod items {
             self.flags = flags;
             self
         }
-        pub fn window(mut self, window: &'a mut ffi::c_void) -> Self {
+        pub fn window(mut self, window: *mut ffi::c_void) -> Self {
             self.window = window;
             self
         }

@@ -702,7 +702,7 @@ pub(crate) mod items {
             self.size = size;
             self
         }
-        pub fn private_data(mut self, private_data: &'a ffi::c_void) -> Self {
+        pub fn private_data(mut self, private_data: *const ffi::c_void) -> Self {
             self.p_private_data = private_data;
             self
         }

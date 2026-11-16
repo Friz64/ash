@@ -175,9 +175,10 @@ impl Items {
                     RequireType::FuncPointer(name) => {
                         extend(require_map.func_pointer.entry(*name), library, location);
                     }
-                    // TODO? in ash these are covered by platform_types.rs, so let's just ignore those :P
-                    RequireType::External(_name) => continue,
-                };
+                    // This could be used to detect platform types, but unfortunately it doesn't
+                    // cover all of them, so we just ignore those because they aren't useful.
+                    RequireType::External(_name) => (),
+                }
             }
 
             for RequireConstant { name, .. } in &require.constants {

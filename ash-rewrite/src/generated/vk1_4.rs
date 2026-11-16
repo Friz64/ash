@@ -567,7 +567,7 @@ impl crate::Device {
         descriptor_update_template: vk::DescriptorUpdateTemplate,
         layout: vk::PipelineLayout,
         set: u32,
-        data: &ffi::c_void,
+        data: *const ffi::c_void,
     ) {
         (self
             .device_fn_1_4
@@ -2118,7 +2118,7 @@ pub(crate) mod items {
         }
     }
     impl<'a> MemoryToImageCopy<'a> {
-        pub fn host_pointer(mut self, host_pointer: &'a ffi::c_void) -> Self {
+        pub fn host_pointer(mut self, host_pointer: *const ffi::c_void) -> Self {
             self.p_host_pointer = host_pointer;
             self
         }
@@ -2181,7 +2181,7 @@ pub(crate) mod items {
         }
     }
     impl<'a> ImageToMemoryCopy<'a> {
-        pub fn host_pointer(mut self, host_pointer: &'a mut ffi::c_void) -> Self {
+        pub fn host_pointer(mut self, host_pointer: *mut ffi::c_void) -> Self {
             self.p_host_pointer = host_pointer;
             self
         }
@@ -3131,7 +3131,7 @@ pub(crate) mod items {
             self.set = set;
             self
         }
-        pub fn data(mut self, data: &'a ffi::c_void) -> Self {
+        pub fn data(mut self, data: *const ffi::c_void) -> Self {
             self.p_data = data;
             self
         }

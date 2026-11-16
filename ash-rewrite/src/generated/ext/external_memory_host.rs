@@ -118,7 +118,7 @@ pub(crate) mod items {
             self.handle_type = handle_type;
             self
         }
-        pub fn host_pointer(mut self, host_pointer: &'a mut ffi::c_void) -> Self {
+        pub fn host_pointer(mut self, host_pointer: *mut ffi::c_void) -> Self {
             self.p_host_pointer = host_pointer;
             self
         }

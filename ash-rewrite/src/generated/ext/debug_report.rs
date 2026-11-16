@@ -259,7 +259,7 @@ pub(crate) mod items {
             self.pfn_callback = pfn_callback;
             self
         }
-        pub fn user_data(mut self, user_data: &'a mut ffi::c_void) -> Self {
+        pub fn user_data(mut self, user_data: *mut ffi::c_void) -> Self {
             self.p_user_data = user_data;
             self
         }

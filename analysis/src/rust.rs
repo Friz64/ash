@@ -1,8 +1,8 @@
 use crate::{
     decl::{ArrayLen, CPrimaryType, Decl, Mutability, Ty},
     name::{
-        CMacroName, CommandName, ConstantName, EnumeratorName, FuncPointerName, TypeName,
-        VariableName,
+        CMacroName, CommandName, ConstantName, EnumeratorName, FuncPointerName, PlatformTypeName,
+        TypeName, VariableName,
     },
     xml::cexpr::CExprItem,
 };
@@ -85,9 +85,27 @@ pub trait RustTokens {
 
     fn cmacro_tokens(&self, name: CMacroName, qualified: bool) -> TokenStream;
 
-    fn platform_type_tokens(&self, raw: &str, qualified: bool) -> TokenStream;
+    fn platform_type_tokens(&self, name: PlatformTypeName, qualified: bool) -> TokenStream;
 
-    fn primary_type_tokens(&self, primary_ty: CPrimaryType) -> TokenStream;
+    fn primary_type_tokens(&self, primary_ty: CPrimaryType) -> TokenStream {
+        match primary_ty {
+            CPrimaryType::Void => quote! { ffi::c_void },
+            CPrimaryType::Char => quote! { ffi::c_char },
+            CPrimaryType::Int => quote! { ffi::c_int },
+            CPrimaryType::UnsignedLong => quote! { ffi::c_ulong },
+            CPrimaryType::Float => quote! { ffi::c_float },
+            CPrimaryType::Double => quote! { ffi::c_double },
+            CPrimaryType::Int8 => quote! { i8 },
+            CPrimaryType::UInt8 => quote! { u8 },
+            CPrimaryType::Int16 => quote! { i16 },
+            CPrimaryType::UInt16 => quote! { u16 },
+            CPrimaryType::Int32 => quote! { i32 },
+            CPrimaryType::UInt32 => quote! { u32 },
+            CPrimaryType::Int64 => quote! { i64 },
+            CPrimaryType::UInt64 => quote! { u64 },
+            CPrimaryType::Size => quote! { usize },
+        }
+    }
 }
 
 impl RustDecl {
@@ -118,7 +136,7 @@ impl RustTy {
                 Ty::ApiType(name) => toks.type_tokens(*name, true, lifetime),
                 Ty::ApiFuncPointer(name) => toks.func_pointer_tokens(*name, true),
                 Ty::CPrimary(base_ty) => toks.primary_type_tokens(*base_ty),
-                Ty::Platform(raw) => toks.platform_type_tokens(raw, true),
+                Ty::Platform(name) => toks.platform_type_tokens(*name, true),
                 Ty::Ptr(ty, mutability) => {
                     let mutability = match mutability {
                         Mutability::Not => quote! { const },

@@ -86,7 +86,7 @@ impl Device {
     pub unsafe fn cmd_set_checkpoint(
         &self,
         command_buffer: vk::CommandBuffer,
-        checkpoint_marker: &ffi::c_void,
+        checkpoint_marker: *const ffi::c_void,
     ) {
         (self.fp.cmd_set_checkpoint)(command_buffer, checkpoint_marker)
     }
@@ -159,10 +159,7 @@ pub(crate) mod items {
             self.stage = stage;
             self
         }
-        pub fn checkpoint_marker(
-            mut self,
-            checkpoint_marker: &'a mut ffi::c_void,
-        ) -> Self {
+        pub fn checkpoint_marker(mut self, checkpoint_marker: *mut ffi::c_void) -> Self {
             self.p_checkpoint_marker = checkpoint_marker;
             self
         }
@@ -233,10 +230,7 @@ pub(crate) mod items {
             self.stage = stage;
             self
         }
-        pub fn checkpoint_marker(
-            mut self,
-            checkpoint_marker: &'a mut ffi::c_void,
-        ) -> Self {
+        pub fn checkpoint_marker(mut self, checkpoint_marker: *mut ffi::c_void) -> Self {
             self.p_checkpoint_marker = checkpoint_marker;
             self
         }

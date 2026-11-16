@@ -138,7 +138,7 @@ pub(crate) mod items {
         }
     }
     impl<'a> MemoryMapPlacedInfoEXT<'a> {
-        pub fn placed_address(mut self, placed_address: &'a mut ffi::c_void) -> Self {
+        pub fn placed_address(mut self, placed_address: *mut ffi::c_void) -> Self {
             self.p_placed_address = placed_address;
             self
         }

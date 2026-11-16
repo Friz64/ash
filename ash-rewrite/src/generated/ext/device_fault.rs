@@ -227,7 +227,7 @@ pub(crate) mod items {
         }
         pub fn vendor_binary_data(
             mut self,
-            vendor_binary_data: &'a mut ffi::c_void,
+            vendor_binary_data: *mut ffi::c_void,
         ) -> Self {
             self.p_vendor_binary_data = vendor_binary_data;
             self

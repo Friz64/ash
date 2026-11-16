@@ -135,7 +135,7 @@ pub(crate) mod items {
         }
     }
     impl<'a> ImportAndroidHardwareBufferInfoANDROID<'a> {
-        pub fn buffer(mut self, buffer: &'a mut vk::AHardwareBuffer) -> Self {
+        pub fn buffer(mut self, buffer: *mut vk::AHardwareBuffer) -> Self {
             self.buffer = buffer;
             self
         }

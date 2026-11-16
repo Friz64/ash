@@ -16,8 +16,6 @@ extern crate alloc;
 mod generated;
 mod internal_prelude;
 mod loader;
-/// Type definitions for platform-specific external types
-pub mod platform_types;
 
 use alloc::vec::Vec;
 use core::{mem, ptr};

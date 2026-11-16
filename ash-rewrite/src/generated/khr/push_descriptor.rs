@@ -118,7 +118,7 @@ impl Device {
         descriptor_update_template: vk::DescriptorUpdateTemplate,
         layout: vk::PipelineLayout,
         set: u32,
-        data: &ffi::c_void,
+        data: *const ffi::c_void,
     ) {
         (self
             .fp

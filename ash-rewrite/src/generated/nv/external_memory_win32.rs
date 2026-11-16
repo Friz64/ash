@@ -148,7 +148,7 @@ pub(crate) mod items {
         }
     }
     impl<'a> ExportMemoryWin32HandleInfoNV<'a> {
-        pub fn attributes(mut self, attributes: &'a vk::SECURITY_ATTRIBUTES) -> Self {
+        pub fn attributes(mut self, attributes: *const vk::SECURITY_ATTRIBUTES) -> Self {
             self.p_attributes = attributes;
             self
         }

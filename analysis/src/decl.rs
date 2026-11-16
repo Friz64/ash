@@ -1,6 +1,7 @@
 use crate::{
     item::RequireMap,
-    name::{ConstantName, FuncPointerName, TypeName, VariableName},
+    name::{ConstantName, FuncPointerName, PlatformTypeName, TypeName, VariableName},
+    platform_types::PLATFORM_TYPES,
     xml::cdecl::{CArrayLen, CDecl, CType},
 };
 
@@ -30,6 +31,7 @@ pub enum CPrimaryType {
     Void,
     Char,
     Int,
+    UnsignedLong,
     Float,
     Double,
     Int8,
@@ -49,6 +51,7 @@ impl CPrimaryType {
             "void" => Some(CPrimaryType::Void),
             "char" => Some(CPrimaryType::Char),
             "int" => Some(CPrimaryType::Int),
+            "unsigned long" => Some(CPrimaryType::UnsignedLong),
             "float" => Some(CPrimaryType::Float),
             "double" => Some(CPrimaryType::Double),
             "int8_t" => Some(CPrimaryType::Int8),
@@ -76,7 +79,7 @@ pub enum Ty {
     ApiType(TypeName),
     ApiFuncPointer(FuncPointerName),
     CPrimary(CPrimaryType),
-    Platform(&'static str),
+    Platform(PlatformTypeName),
     Ptr(&'static Ty, Mutability),
     Array(&'static Ty, ArrayLen),
 }
@@ -95,8 +98,10 @@ impl Ty {
                     .contains_key(&FuncPointerName::new(name))
                 {
                     Ty::ApiFuncPointer(FuncPointerName::new(name))
+                } else if PLATFORM_TYPES.contains_key(&PlatformTypeName::new(name)) {
+                    Ty::Platform(PlatformTypeName::new(name))
                 } else {
-                    Ty::Platform(name)
+                    panic!("unknown type {name:?}");
                 }
             }
             CType::Ptr {
@@ -120,5 +125,17 @@ impl Ty {
             ),
             CType::Func { .. } => unreachable!("unused after Vulkan-Headers 339"),
         }
+    }
+
+    pub fn is_opaque(&self) -> bool {
+        if let Ty::CPrimary(CPrimaryType::Void) = self {
+            return true;
+        }
+
+        if let Ty::Platform(name) = self {
+            return PLATFORM_TYPES.get(name).unwrap().is_opaque();
+        }
+
+        false
     }
 }

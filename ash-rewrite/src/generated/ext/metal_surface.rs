@@ -111,7 +111,7 @@ pub(crate) mod items {
             self.flags = flags;
             self
         }
-        pub fn layer(mut self, layer: &'a vk::CAMetalLayer) -> Self {
+        pub fn layer(mut self, layer: *const vk::CAMetalLayer) -> Self {
             self.p_layer = layer;
             self
         }

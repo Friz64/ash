@@ -150,7 +150,7 @@ pub(crate) mod items {
             self.flags = flags;
             self
         }
-        pub fn dpy(mut self, dpy: &'a mut vk::Display) -> Self {
+        pub fn dpy(mut self, dpy: *mut vk::Display) -> Self {
             self.dpy = dpy;
             self
         }

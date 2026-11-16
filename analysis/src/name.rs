@@ -177,3 +177,16 @@ impl ExtensionName {
         }
     }
 }
+
+#[derive(Debug, PartialEq, Eq, Hash, Clone, Copy)]
+pub struct PlatformTypeName(&'static str);
+
+impl PlatformTypeName {
+    pub const fn new(original: &'static str) -> Self {
+        Self(original)
+    }
+
+    pub const fn original(&self) -> &'static str {
+        self.0
+    }
+}

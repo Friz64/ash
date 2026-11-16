@@ -1149,7 +1149,7 @@ impl crate::Device {
         &self,
         descriptor_set: vk::DescriptorSet,
         descriptor_update_template: vk::DescriptorUpdateTemplate,
-        data: &ffi::c_void,
+        data: *const ffi::c_void,
     ) {
         (self
             .device_fn_1_1

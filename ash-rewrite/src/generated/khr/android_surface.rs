@@ -111,7 +111,7 @@ pub(crate) mod items {
             self.flags = flags;
             self
         }
-        pub fn window(mut self, window: &'a mut vk::ANativeWindow) -> Self {
+        pub fn window(mut self, window: *mut vk::ANativeWindow) -> Self {
             self.window = window;
             self
         }

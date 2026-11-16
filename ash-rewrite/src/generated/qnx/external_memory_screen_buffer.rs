@@ -102,7 +102,7 @@ pub(crate) mod items {
         }
     }
     impl<'a> ImportScreenBufferInfoQNX<'a> {
-        pub fn buffer(mut self, buffer: &'a mut vk::_screen_buffer) -> Self {
+        pub fn buffer(mut self, buffer: *mut vk::_screen_buffer) -> Self {
             self.buffer = buffer;
             self
         }

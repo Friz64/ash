@@ -111,7 +111,7 @@ pub(crate) mod items {
             self.flags = flags;
             self
         }
-        pub fn view(mut self, view: &'a ffi::c_void) -> Self {
+        pub fn view(mut self, view: *const ffi::c_void) -> Self {
             self.p_view = view;
             self
         }

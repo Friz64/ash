@@ -147,7 +147,7 @@ pub(crate) mod items {
             self.handle_type = handle_type;
             self
         }
-        pub fn handle(mut self, handle: &'a mut ffi::c_void) -> Self {
+        pub fn handle(mut self, handle: *mut ffi::c_void) -> Self {
             self.handle = handle;
             self
         }

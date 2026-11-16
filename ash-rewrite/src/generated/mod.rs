@@ -2,6 +2,8 @@
 #![cfg_attr(rustfmt, rustfmt_skip)]
 /// A re-export of all items
 pub mod vk;
+/// Type definitions for platform-specific external types
+pub mod platform_types;
 pub mod vk1_0;
 pub mod vk1_1;
 pub mod vk1_2;

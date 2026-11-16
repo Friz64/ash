@@ -147,11 +147,11 @@ pub(crate) mod items {
             self.flags = flags;
             self
         }
-        pub fn context(mut self, context: &'a mut vk::_screen_context) -> Self {
+        pub fn context(mut self, context: *mut vk::_screen_context) -> Self {
             self.context = context;
             self
         }
-        pub fn window(mut self, window: &'a mut vk::_screen_window) -> Self {
+        pub fn window(mut self, window: *mut vk::_screen_window) -> Self {
             self.window = window;
             self
         }

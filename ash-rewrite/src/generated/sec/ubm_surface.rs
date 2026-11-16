@@ -145,11 +145,11 @@ pub(crate) mod items {
             self.flags = flags;
             self
         }
-        pub fn device(mut self, device: &'a mut vk::ubm_device) -> Self {
+        pub fn device(mut self, device: *mut vk::ubm_device) -> Self {
             self.device = device;
             self
         }
-        pub fn surface(mut self, surface: &'a mut vk::ubm_surface) -> Self {
+        pub fn surface(mut self, surface: *mut vk::ubm_surface) -> Self {
             self.surface = surface;
             self
         }

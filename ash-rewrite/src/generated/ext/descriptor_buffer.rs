@@ -1282,7 +1282,7 @@ pub(crate) mod items {
     impl<'a> OpaqueCaptureDescriptorDataCreateInfoEXT<'a> {
         pub fn opaque_capture_descriptor_data(
             mut self,
-            opaque_capture_descriptor_data: &'a ffi::c_void,
+            opaque_capture_descriptor_data: *const ffi::c_void,
         ) -> Self {
             self.opaque_capture_descriptor_data = opaque_capture_descriptor_data;
             self

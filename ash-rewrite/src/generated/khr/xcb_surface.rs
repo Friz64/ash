@@ -148,7 +148,7 @@ pub(crate) mod items {
             self.flags = flags;
             self
         }
-        pub fn connection(mut self, connection: &'a mut vk::xcb_connection_t) -> Self {
+        pub fn connection(mut self, connection: *mut vk::xcb_connection_t) -> Self {
             self.connection = connection;
             self
         }

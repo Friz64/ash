@@ -147,11 +147,11 @@ pub(crate) mod items {
             self.flags = flags;
             self
         }
-        pub fn dfb(mut self, dfb: &'a mut vk::IDirectFB) -> Self {
+        pub fn dfb(mut self, dfb: *mut vk::IDirectFB) -> Self {
             self.dfb = dfb;
             self
         }
-        pub fn surface(mut self, surface: &'a mut vk::IDirectFBSurface) -> Self {
+        pub fn surface(mut self, surface: *mut vk::IDirectFBSurface) -> Self {
             self.surface = surface;
             self
         }

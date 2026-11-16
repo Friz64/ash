@@ -623,7 +623,7 @@ pub(crate) mod items {
             self.id = id;
             self
         }
-        pub fn constant_data(mut self, constant_data: &'a ffi::c_void) -> Self {
+        pub fn constant_data(mut self, constant_data: *const ffi::c_void) -> Self {
             self.p_constant_data = constant_data;
             self
         }
