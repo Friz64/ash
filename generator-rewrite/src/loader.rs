@@ -173,12 +173,12 @@ pub fn generate_code(ctx: &Context, codemap: &mut CodeMap) {
             let cstr = Literal::c_string(&CString::new(name.original()).unwrap());
 
             let params = command.params.values().map(|param| {
-                let ty = (param.decl.ty).to_rust().tokens(&octx, None);
+                let ty = (param.decl.ty).to_rust().tokens(&*octx, None);
                 quote! { _: #ty }
             });
 
             let ret = command.return_type.as_ref().map(|ty| {
-                let rust_ty = ty.to_rust().tokens(&octx, None);
+                let rust_ty = ty.to_rust().tokens(&*octx, None);
                 quote! { -> #rust_ty }
             });
 
@@ -577,7 +577,7 @@ impl WrapperCallArg {
 }
 
 fn wrapper(octx: &OutputContext, command: &Command, name: &Ident) -> Vec<Function> {
-    let wrapper_output = WrapperOutput::new(&octx.ctx(), command);
+    let wrapper_output = WrapperOutput::new(octx, command);
 
     let call_args: Vec<_> = command
         .params
@@ -588,7 +588,7 @@ fn wrapper(octx: &OutputContext, command: &Command, name: &Ident) -> Vec<Functio
     let param_code = call_args.iter().filter_map(|call_arg| {
         call_arg.param.as_ref().map(|wrapper_param| {
             let ident = param_ident(wrapper_param.name);
-            let ty = wrapper_param.ty.tokens(octx, None);
+            let ty = wrapper_param.ty.tokens(&**octx, None);
             quote! { #ident: #ty }
         })
     });
@@ -618,7 +618,7 @@ fn wrapper(octx: &OutputContext, command: &Command, name: &Ident) -> Vec<Functio
                 output: if wrapper_output.result {
                     quote! { -> VkResult<()> }
                 } else if let Some(return_ty) = &command.return_type {
-                    let return_ty = return_ty.to_rust().tokens(octx, None);
+                    let return_ty = return_ty.to_rust().tokens(&**octx, None);
                     quote! { -> #return_ty }
                 } else {
                     quote! {}
@@ -644,7 +644,7 @@ fn wrapper(octx: &OutputContext, command: &Command, name: &Ident) -> Vec<Functio
                 quote! { #call; #param.assume_init() }
             };
 
-            let inner_ty = output.inner_ty.to_rust().tokens(octx, None);
+            let inner_ty = output.inner_ty.to_rust().tokens(&**octx, None);
             vec![Function {
                 inputs,
                 output: if wrapper_output.result {

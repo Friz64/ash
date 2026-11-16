@@ -32,7 +32,7 @@ impl Code for Constant {
             ConstantType::String => quote! { &CStr },
         };
 
-        let value = CExprItem::tokens(self.value.iter(), &octx);
+        let value = CExprItem::tokens(self.value.iter(), &*octx);
 
         let code = quote! {
             pub const #name: #ty = #value;

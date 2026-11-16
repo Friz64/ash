@@ -55,7 +55,7 @@ impl Code for Struct {
             Member::Regular(RegularMember { decl, .. }) => {
                 contains_static_array |= matches!(decl.ty, Ty::Array(..));
 
-                let decl = decl.to_rust().tokens(&octx, Some(&lifetime));
+                let decl = decl.to_rust().tokens(&*octx, Some(&lifetime));
                 quote! { pub #decl }
             }
             Member::Bitfield(ranges) => {
@@ -321,7 +321,7 @@ fn regular_builder(
             if member.length_at_depth(0) == Some(Length::NullTerminated) =>
         {
             let ty = RustTy::Ref(Box::new(RustTy::Tokens(quote! { CStr })), mutability)
-                .tokens(octx, Some(lifetime));
+                .tokens(&**octx, Some(lifetime));
 
             vec![
                 Function {
@@ -374,7 +374,7 @@ fn regular_builder(
             let length_name = octx.variable_token(length_member);
             let slice_ty = array_element_ty(element_ty);
             let slice =
-                RustTy::ArrayRef(Box::new(slice_ty), Mutability::Not, None).tokens(octx, None);
+                RustTy::ArrayRef(Box::new(slice_ty), Mutability::Not, None).tokens(&**octx, None);
             vec![
                 Function {
                     inputs: quote! { mut self, #method_name: #slice },
@@ -415,8 +415,8 @@ fn regular_builder(
             };
 
             let len_name = octx.variable_token(length_member);
-            let slice =
-                RustTy::ArrayRef(Box::new(slice_ty), mutability, None).tokens(octx, Some(lifetime));
+            let slice = RustTy::ArrayRef(Box::new(slice_ty), mutability, None)
+                .tokens(&**octx, Some(lifetime));
             vec![Function {
                 inputs: quote! { mut self, #method_name: #slice },
                 output: quote! { -> Self },
@@ -434,7 +434,8 @@ fn regular_builder(
                     .length_at_depth(0)
                     .is_none_or(|l| l == Length::Count(1)) =>
         {
-            let ty = RustTy::Ref(Box::new(base.to_rust()), mutability).tokens(octx, Some(lifetime));
+            let ty =
+                RustTy::Ref(Box::new(base.to_rust()), mutability).tokens(&**octx, Some(lifetime));
             vec![Function {
                 inputs: quote! { mut self, #method_name: #ty },
                 output: quote! { -> Self },
@@ -443,7 +444,7 @@ fn regular_builder(
             }]
         }
         _ => {
-            let ty = member.decl.ty.to_rust().tokens(octx, Some(lifetime));
+            let ty = member.decl.ty.to_rust().tokens(&**octx, Some(lifetime));
             vec![Function {
                 inputs: quote! { mut self, #method_name: #ty },
                 output: quote! { -> Self },
@@ -510,7 +511,7 @@ impl Code for Union {
             .then(|| quote! { <#lifetime> });
         let name = octx.type_tokens(self.name, false, Some(&lifetime));
         let members =
-            (self.members.iter()).map(|decl| decl.to_rust().tokens(&octx, Some(&lifetime)));
+            (self.members.iter()).map(|decl| decl.to_rust().tokens(&*octx, Some(&lifetime)));
 
         let name_string = name.to_string();
         let code = quote! {

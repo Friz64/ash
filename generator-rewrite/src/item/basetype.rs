@@ -11,7 +11,7 @@ impl Code for BaseType {
         let output = OutputLocation::primary_of(self.required_by, GlobExport::Yes);
         let octx = codemap.octx(output, ctx);
         let name = octx.type_tokens(self.name, false, None);
-        let ty = self.ty.to_rust().tokens(&octx, None);
+        let ty = self.ty.to_rust().tokens(&*octx, None);
         let code = quote! {
             pub type #name = #ty;
         };

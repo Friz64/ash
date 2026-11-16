@@ -11,9 +11,10 @@ use itertools::Itertools;
 use proc_macro2::TokenStream;
 use quote::{format_ident, quote};
 use std::{
-    cell::{Ref, RefCell, RefMut},
+    cell::{RefCell, RefMut},
     hash::Hash,
     io, iter,
+    ops::Deref,
     path::{Path, PathBuf},
 };
 use syn::Ident;
@@ -139,11 +140,13 @@ impl CodeMap {
         output: OutputLocation,
         ctx: &'c Context<'c>,
     ) -> OutputContext<'c, 'm> {
-        OutputContext(Some(RefCell::new(OutputContextInner {
+        OutputContext {
             ctx,
-            codemap: self,
-            output,
-        })))
+            inner: RefCell::new(OutputContextInner {
+                codemap: self,
+                output,
+            }),
+        }
     }
 
     pub fn extend_mapped<'c, 'm, F>(&'m mut self, other: Self, ctx: &'c Context, mut map_fn: F)
@@ -160,38 +163,38 @@ impl CodeMap {
     }
 }
 
-struct OutputContextInner<'c, 'm> {
-    ctx: &'c Context<'c>,
+struct OutputContextInner<'m> {
     codemap: &'m mut CodeMap,
     output: OutputLocation,
 }
 
-pub struct OutputContext<'c, 'm>(Option<RefCell<OutputContextInner<'c, 'm>>>);
+pub struct OutputContext<'c, 'm> {
+    ctx: &'c Context<'c>,
+    inner: RefCell<OutputContextInner<'m>>,
+}
+
+impl<'c, 'm> Deref for OutputContext<'c, 'm> {
+    type Target = Context<'c>;
+
+    fn deref(&self) -> &Self::Target {
+        self.ctx
+    }
+}
 
 impl<'c, 'm> OutputContext<'c, 'm> {
-    pub fn dummy() -> Self {
-        OutputContext(None)
-    }
-
-    pub fn ctx(&self) -> Ref<'_, Context<'c>> {
-        let inner = self.0.as_ref().unwrap().borrow();
-        Ref::map(inner, |inner| inner.ctx)
-    }
-
     pub fn output(&self) -> RefMut<'_, OutputLocation> {
-        let inner = self.0.as_ref().unwrap().borrow_mut();
-        RefMut::map(inner, |inner| &mut inner.output)
+        RefMut::map(self.inner.borrow_mut(), |inner| &mut inner.output)
     }
 
     pub fn emit_tokens(&self, tokens: TokenStream) {
-        let mut inner = self.0.as_ref().unwrap().borrow_mut();
+        let mut inner = self.inner.borrow_mut();
         let output = inner.output;
         let entry = inner.codemap.0.entry(output).or_default();
         entry.tokens.extend(tokens);
     }
 
     pub fn emit_reexport(&self, original: Ident, alias: Ident) {
-        let mut inner = self.0.as_ref().unwrap().borrow_mut();
+        let mut inner = self.inner.borrow_mut();
         std::assert_matches!(inner.output.glob_export, GlobExport::No);
         let output = inner.output;
         let entry = inner.codemap.0.entry(output).or_default();
@@ -220,7 +223,10 @@ impl CodeMap {
                 pub use crate::Extends;
             },
         );
-        vfs.write("platform_types.rs", crate::platform_types::generate_code());
+        vfs.write(
+            "platform_types.rs",
+            crate::platform_types::generate_code(ctx),
+        );
 
         struct ModFile {
             doc_comment: Option<String>,

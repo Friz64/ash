@@ -18,9 +18,9 @@ impl Code for FuncPointer {
         let params = self
             .params
             .iter()
-            .map(|decl| decl.to_rust().tokens(&octx, None));
+            .map(|decl| decl.to_rust().tokens(&*octx, None));
         let ret = self.return_type.as_ref().map(|ty| {
-            let rust_ty = ty.to_rust().tokens(&octx, None);
+            let rust_ty = ty.to_rust().tokens(&*octx, None);
             quote! { -> #rust_ty }
         });
 
@@ -41,9 +41,9 @@ impl Code for Command {
         let params = self
             .params
             .values()
-            .map(|param| param.decl.to_rust().tokens(&octx, None));
+            .map(|param| param.decl.to_rust().tokens(&*octx, None));
         let ret = self.return_type.as_ref().map(|ty| {
-            let rust_ty = ty.to_rust().tokens(&octx, None);
+            let rust_ty = ty.to_rust().tokens(&*octx, None);
             quote! { -> #rust_ty }
         });
 

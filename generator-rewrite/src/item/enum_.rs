@@ -131,7 +131,7 @@ impl Code for Enum {
                     quote! { Self(#literal) }
                 }
                 Value::Expr(cexpr_items) => {
-                    let expr = CExprItem::tokens(cexpr_items.iter(), &octx);
+                    let expr = CExprItem::tokens(cexpr_items.iter(), &*octx);
                     quote! { Self(#expr) }
                 }
                 Value::Alias(enumerator_name) => {

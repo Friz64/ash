@@ -113,7 +113,7 @@ impl<'a> Deref for Context<'a> {
     }
 }
 
-impl OutputContext<'_, '_> {
+impl Context<'_> {
     fn constant_token_from_prefix_stripped(&self, prefix_stripped: &str) -> Ident {
         if let Some(without_extension) = prefix_stripped.strip_suffix("EXTENSION_NAME") {
             syn::parse_str(&format!("{without_extension}NAME")).unwrap()
@@ -123,14 +123,14 @@ impl OutputContext<'_, '_> {
     }
 
     fn constant_token(&self, name: ConstantName) -> Ident {
-        let constant_item = &self.ctx().items.constants[&name];
+        let constant_item = &self.items.constants[&name];
         self.constant_token_from_prefix_stripped(
             name.prefix_stripped(constant_item.required_by.library),
         )
     }
 }
 
-impl RustTokens for OutputContext<'_, '_> {
+impl RustTokens for Context<'_> {
     fn variable_token(&self, name: VariableName) -> Ident {
         let snek = name.original().to_snek_case();
         crate::escape_ident(&snek)
@@ -142,10 +142,10 @@ impl RustTokens for OutputContext<'_, '_> {
         qualified: bool,
         lifetime: Option<&Lifetime>,
     ) -> TokenStream {
-        let required_by = self.ctx().type_required_by(name);
+        let required_by = self.type_required_by(name);
         let ident: Ident = syn::parse_str(name.prefix_stripped(required_by.library)).unwrap();
         let path = qualified.then(|| quote! { vk:: });
-        let lifetime_tokens = self.ctx().type_has_lifetime(name).then(|| {
+        let lifetime_tokens = self.type_has_lifetime(name).then(|| {
             let placeholder_lifetime = Lifetime::placeholder();
             let lifetime = lifetime.unwrap_or(&placeholder_lifetime);
             quote! { <#lifetime> }
@@ -219,7 +219,7 @@ impl RustTokens for OutputContext<'_, '_> {
     }
 
     fn cmacro_tokens(&self, name: CMacroName, qualified: bool) -> TokenStream {
-        let ident: Ident = if self.ctx().items.cmacros[&name].has_args() {
+        let ident: Ident = if self.items.cmacros[&name].has_args() {
             syn::parse_str(&name.prefix_stripped().to_ascii_lowercase()).unwrap()
         } else {
             syn::parse_str(name.prefix_stripped()).unwrap()
