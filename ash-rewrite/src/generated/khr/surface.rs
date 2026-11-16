@@ -208,7 +208,7 @@ impl Instance {
         physical_device: vk::PhysicalDevice,
         queue_family_index: u32,
         surface: vk::SurfaceKHR,
-    ) -> VkResult<vk::Bool32> {
+    ) -> VkResult<bool> {
         let mut supported = MaybeUninit::uninit();
         (self
             .fp
@@ -218,7 +218,8 @@ impl Instance {
                 surface,
                 supported.as_mut_ptr(),
             )
-            .assume_init_on_success(supported)
+            .result()?;
+        Ok(supported.assume_init() > 0)
     }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkGetPhysicalDeviceSurfaceCapabilitiesKHR.html) · Instance Function
     pub unsafe fn get_physical_device_surface_capabilities(

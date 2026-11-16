@@ -385,15 +385,11 @@ struct WrapperOutputParam<'a> {
 
 #[derive(Debug)]
 struct WrapperOutput<'a> {
-    result: bool,
     params: Vec<WrapperOutputParam<'a>>,
 }
 
 impl<'a> WrapperOutput<'a> {
     fn new(ctx: &Context, command: &'a Command) -> WrapperOutput<'a> {
-        let result =
-            matches!(command.return_type, Some(Ty::ApiType(name)) if name == TypeName::VK_RESULT);
-
         let params: Vec<_> = command
             .params
             .values()
@@ -432,7 +428,7 @@ impl<'a> WrapperOutput<'a> {
             })
             .collect();
 
-        WrapperOutput { result, params }
+        WrapperOutput { params }
     }
 }
 
@@ -598,6 +594,8 @@ impl WrapperCallArg {
 }
 
 fn wrapper(octx: &OutputContext, command: &Command, name: &Ident) -> Vec<Function> {
+    let call_ret_result =
+        matches!(command.return_type, Some(Ty::ApiType(name)) if name == TypeName::VK_RESULT);
     let wrapper_output = WrapperOutput::new(octx, command);
 
     let call_args: Vec<_> = command
@@ -635,7 +633,7 @@ fn wrapper(octx: &OutputContext, command: &Command, name: &Ident) -> Vec<Functio
 
     match wrapper_output.params.as_slice() {
         [] => {
-            let call = if wrapper_output.result {
+            let call = if call_ret_result {
                 quote! { #call.result() }
             } else {
                 quote! { #call }
@@ -644,7 +642,7 @@ fn wrapper(octx: &OutputContext, command: &Command, name: &Ident) -> Vec<Functio
             vec![Function {
                 generic_params,
                 inputs,
-                output: if wrapper_output.result {
+                output: if call_ret_result {
                     quote! { -> VkResult<()> }
                 } else if let Some(return_ty) = &command.return_type {
                     let return_ty = return_ty.to_rust().tokens(&**octx, None);
@@ -667,21 +665,28 @@ fn wrapper(octx: &OutputContext, command: &Command, name: &Ident) -> Vec<Functio
             },
         ] => {
             let param = param_ident(output.param.decl.name);
-            let call = if wrapper_output.result {
-                quote! { #call.assume_init_on_success(#param) }
-            } else {
-                quote! { #call; #param.assume_init() }
+            let bool32 =
+                matches!(output.inner_ty, &Ty::ApiType(name) if name == TypeName::VK_BOOL32);
+
+            let call = match (call_ret_result, bool32) {
+                (false, false) => quote! { #call; #param.assume_init() },
+                (true, false) => quote! { #call.assume_init_on_success(#param) },
+                (false, true) => quote! { #call; #param.assume_init() > 0 },
+                (true, true) => quote! { #call.result()?; Ok(#param.assume_init() > 0) },
             };
 
             let inner_ty = output.inner_ty.to_rust().tokens(&**octx, None);
+            let output = match (call_ret_result, bool32) {
+                (false, false) => quote! { -> #inner_ty },
+                (true, false) => quote! { -> VkResult<#inner_ty> },
+                (false, true) => quote! { -> bool },
+                (true, true) => quote! { -> VkResult<bool> },
+            };
+
             vec![Function {
                 generic_params,
                 inputs,
-                output: if wrapper_output.result {
-                    quote! { -> VkResult<#inner_ty> }
-                } else {
-                    quote! { -> #inner_ty }
-                },
+                output,
                 content: quote! {
                     #(#length_eq_asserts)*
                     let mut #param = MaybeUninit::uninit();

@@ -175,10 +175,10 @@ impl Device {
         (self.fp.queue_notify_out_of_band_legacy)(queue, queue_type)
     }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkGetSleepStatusLegacyNV.html) · Device Function
-    pub unsafe fn get_sleep_status_legacy(&self) -> vk::Bool32 {
+    pub unsafe fn get_sleep_status_legacy(&self) -> bool {
         let mut low_latency_mode = MaybeUninit::uninit();
         (self.fp.get_sleep_status_legacy)(self.handle, low_latency_mode.as_mut_ptr());
-        low_latency_mode.assume_init()
+        low_latency_mode.assume_init() > 0
     }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkShutdownLatencyDeviceLegacyNV.html) · Device Function
     pub unsafe fn shutdown_latency_device_legacy(&self) {
