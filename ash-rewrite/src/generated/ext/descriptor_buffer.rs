@@ -376,21 +376,6 @@ impl Device {
         );
         offset.assume_init()
     }
-    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkGetDescriptorEXT.html) · Device Function
-    pub unsafe fn get_descriptor(
-        &self,
-        descriptor_info: &vk::DescriptorGetInfoEXT<'_>,
-        descriptor: &mut [u8],
-    ) {
-        (self
-            .fp
-            .get_descriptor)(
-            self.handle,
-            descriptor_info,
-            descriptor.len() as _,
-            descriptor.as_mut_ptr().cast(),
-        )
-    }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdBindDescriptorBuffersEXT.html) · Device Function
     pub unsafe fn cmd_bind_descriptor_buffers(
         &self,

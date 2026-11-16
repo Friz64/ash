@@ -43,6 +43,7 @@ pub enum CPrimaryType {
     Int64,
     UInt64,
     Size,
+    SSize,
 }
 
 impl CPrimaryType {
@@ -63,6 +64,7 @@ impl CPrimaryType {
             "int64_t" => Some(CPrimaryType::Int64),
             "uint64_t" => Some(CPrimaryType::UInt64),
             "size_t" => Some(CPrimaryType::Size),
+            "ssize_t" => Some(CPrimaryType::SSize),
             _ => None,
         }
     }

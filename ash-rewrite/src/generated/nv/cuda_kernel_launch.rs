@@ -153,22 +153,6 @@ impl Device {
             )
             .assume_init_on_success(module)
     }
-    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkGetCudaModuleCacheNV.html) · Device Function
-    pub unsafe fn get_cuda_module_cache(
-        &self,
-        module: vk::CudaModuleNV,
-        cache_data: &mut [u8],
-    ) -> VkResult<()> {
-        (self
-            .fp
-            .get_cuda_module_cache)(
-                self.handle,
-                module,
-                cache_data.len() as _,
-                cache_data.as_mut_ptr().cast(),
-            )
-            .result()
-    }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCreateCudaFunctionNV.html) · Device Function
     pub unsafe fn create_cuda_function(
         &self,

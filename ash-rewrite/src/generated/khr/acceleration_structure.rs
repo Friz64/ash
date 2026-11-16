@@ -620,27 +620,6 @@ impl Device {
             first_query,
         )
     }
-    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkWriteAccelerationStructuresPropertiesKHR.html) · Device Function
-    pub unsafe fn write_acceleration_structures_properties(
-        &self,
-        acceleration_structures: &[vk::AccelerationStructureKHR],
-        query_type: vk::QueryType,
-        data: &mut [u8],
-        stride: usize,
-    ) -> VkResult<()> {
-        (self
-            .fp
-            .write_acceleration_structures_properties)(
-                self.handle,
-                acceleration_structures.len() as _,
-                acceleration_structures.as_ptr(),
-                query_type,
-                data.len() as _,
-                data.as_mut_ptr().cast(),
-                stride,
-            )
-            .result()
-    }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkGetDeviceAccelerationStructureCompatibilityKHR.html) · Device Function
     pub unsafe fn get_device_acceleration_structure_compatibility(
         &self,

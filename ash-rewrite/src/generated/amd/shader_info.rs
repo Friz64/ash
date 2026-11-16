@@ -61,26 +61,6 @@ impl Device {
     pub fn device(&self) -> vk::Device {
         self.handle
     }
-    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkGetShaderInfoAMD.html) · Device Function
-    pub unsafe fn get_shader_info(
-        &self,
-        pipeline: vk::Pipeline,
-        shader_stage: vk::ShaderStageFlagBits,
-        info_type: vk::ShaderInfoTypeAMD,
-        info: &mut [u8],
-    ) -> VkResult<()> {
-        (self
-            .fp
-            .get_shader_info)(
-                self.handle,
-                pipeline,
-                shader_stage,
-                info_type,
-                info.len() as _,
-                info.as_mut_ptr().cast(),
-            )
-            .result()
-    }
 }
 pub(crate) mod items {
     use crate::internal_prelude::*;

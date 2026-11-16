@@ -1207,22 +1207,6 @@ impl Device {
             },
         )
     }
-    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkGetShaderBinaryDataEXT.html) · Device Function
-    pub unsafe fn get_shader_binary_data(
-        &self,
-        shader: vk::ShaderEXT,
-        data: &mut [u8],
-    ) -> VkResult<()> {
-        (self
-            .fp
-            .get_shader_binary_data)(
-                self.handle,
-                shader,
-                data.len() as _,
-                data.as_mut_ptr().cast(),
-            )
-            .result()
-    }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdBindShadersEXT.html) · Device Function
     pub unsafe fn cmd_bind_shaders(
         &self,

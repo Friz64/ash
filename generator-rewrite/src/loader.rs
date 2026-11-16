@@ -401,22 +401,17 @@ impl<'a> WrapperOutput<'a> {
                 param.length_of.is_empty() && matches!(&param.decl.ty, Ty::Ptr(_, Mutability::Mut))
             })
             .filter_map(|param| {
-                if let Ty::Ptr(Ty::CPrimary(CPrimaryType::Void), Mutability::Mut) = &param.decl.ty {
+                let array = matches!(param.length, Some(Length::DefinedByParam(..)));
+
+                if let Ty::Ptr(Ty::CPrimary(CPrimaryType::Void), Mutability::Mut) = &param.decl.ty
+                    && !array
+                {
                     return None;
                 }
 
                 if param.length_of.is_empty()
                     && let Ty::Ptr(to, Mutability::Mut) = &param.decl.ty
                 {
-                    let mut array = false;
-                    // if param.optional == [true]
-                    //     && let Some(Length::DefinedByParam(length_param)) = &param.length
-                    //     && command.params[length_param].optional == [false, true]
-
-                    if let Some(Length::DefinedByParam(_length_param)) = &param.length {
-                        array = true;
-                    }
-
                     let mut tagged = false;
                     if let Ty::ApiType(name) = to
                         && let TypeItem::Struct(struct_) = ctx.resolve_type(*name)

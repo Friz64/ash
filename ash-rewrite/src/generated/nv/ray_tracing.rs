@@ -598,42 +598,6 @@ impl Device {
             depth,
         )
     }
-    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkGetAccelerationStructureHandleNV.html) · Device Function
-    pub unsafe fn get_acceleration_structure_handle(
-        &self,
-        acceleration_structure: vk::AccelerationStructureNV,
-        data: &mut [u8],
-    ) -> VkResult<()> {
-        (self
-            .fp
-            .get_acceleration_structure_handle)(
-                self.handle,
-                acceleration_structure,
-                data.len() as _,
-                data.as_mut_ptr().cast(),
-            )
-            .result()
-    }
-    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkGetRayTracingShaderGroupHandlesKHR.html) · Device Function
-    pub unsafe fn get_ray_tracing_shader_group_handles(
-        &self,
-        pipeline: vk::Pipeline,
-        first_group: u32,
-        group_count: u32,
-        data: &mut [u8],
-    ) -> VkResult<()> {
-        (self
-            .fp
-            .get_ray_tracing_shader_group_handles)(
-                self.handle,
-                pipeline,
-                first_group,
-                group_count,
-                data.len() as _,
-                data.as_mut_ptr().cast(),
-            )
-            .result()
-    }
 }
 pub(crate) mod items {
     use crate::internal_prelude::*;

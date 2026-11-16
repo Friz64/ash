@@ -104,6 +104,7 @@ pub trait RustTokens {
             CPrimaryType::Int64 => quote! { i64 },
             CPrimaryType::UInt64 => quote! { u64 },
             CPrimaryType::Size => quote! { usize },
+            CPrimaryType::SSize => quote! { isize },
         }
     }
 }

@@ -141,22 +141,6 @@ impl Device {
             },
         )
     }
-    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkGetValidationCacheDataEXT.html) · Device Function
-    pub unsafe fn get_validation_cache_data(
-        &self,
-        validation_cache: vk::ValidationCacheEXT,
-        data: &mut [u8],
-    ) -> VkResult<()> {
-        (self
-            .fp
-            .get_validation_cache_data)(
-                self.handle,
-                validation_cache,
-                data.len() as _,
-                data.as_mut_ptr().cast(),
-            )
-            .result()
-    }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkMergeValidationCachesEXT.html) · Device Function
     pub unsafe fn merge_validation_caches(
         &self,

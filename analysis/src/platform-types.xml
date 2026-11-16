@@ -18,10 +18,10 @@
     <type>typedef <type>void</type> <name>MirSurface</name>;</type>
 
     <!-- BaseTsd.h -->
-    <type>typedef <type>void</type>* <name>HANDLE</name>;</type>
-    <type>typedef <type>void</type>* <name>HINSTANCE</name>;</type>
-    <type>typedef <type>void</type>* <name>HWND</name>;</type>
-    <type>typedef <type>void</type>* <name>HMONITOR</name>;</type>
+    <type>typedef <type>ssize_t</type> <name>HANDLE</name>;</type>
+    <type>typedef <type>ssize_t</type> <name>HINSTANCE</name>;</type>
+    <type>typedef <type>ssize_t</type> <name>HWND</name>;</type>
+    <type>typedef <type>ssize_t</type> <name>HMONITOR</name>;</type>
     <type>typedef <type>unsigned long</type> <name>DWORD</name>;</type>
     <type>typedef const <type>uint16_t</type>* <name>LPCWSTR</name>;</type>
     <!-- wtypesbase.h -->

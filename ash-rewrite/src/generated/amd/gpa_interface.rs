@@ -379,24 +379,6 @@ impl Device {
     ) -> VkResult<()> {
         (self.fp.get_gpa_session_status)(self.handle, gpa_session).result()
     }
-    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkGetGpaSessionResultsAMD.html) · Device Function
-    pub unsafe fn get_gpa_session_results(
-        &self,
-        gpa_session: vk::GpaSessionAMD,
-        sample_id: u32,
-        data: &mut [u8],
-    ) -> VkResult<()> {
-        (self
-            .fp
-            .get_gpa_session_results)(
-                self.handle,
-                gpa_session,
-                sample_id,
-                data.len() as _,
-                data.as_mut_ptr().cast(),
-            )
-            .result()
-    }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkResetGpaSessionAMD.html) · Device Function
     pub unsafe fn reset_gpa_session(
         &self,

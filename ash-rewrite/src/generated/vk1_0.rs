@@ -3644,30 +3644,6 @@ impl crate::Device {
             },
         )
     }
-    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkGetQueryPoolResults.html) · Device Function
-    pub unsafe fn get_query_pool_results(
-        &self,
-        query_pool: vk::QueryPool,
-        first_query: u32,
-        query_count: u32,
-        data: &mut [u8],
-        stride: vk::DeviceSize,
-        flags: vk::QueryResultFlags,
-    ) -> VkResult<()> {
-        (self
-            .device_fn_1_0
-            .get_query_pool_results)(
-                self.handle,
-                query_pool,
-                first_query,
-                query_count,
-                data.len() as _,
-                data.as_mut_ptr().cast(),
-                stride,
-                flags,
-            )
-            .result()
-    }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCreateBuffer.html) · Device Function
     pub unsafe fn create_buffer(
         &self,
@@ -3906,22 +3882,6 @@ impl crate::Device {
                 None => ptr::null_mut(),
             },
         )
-    }
-    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkGetPipelineCacheData.html) · Device Function
-    pub unsafe fn get_pipeline_cache_data(
-        &self,
-        pipeline_cache: vk::PipelineCache,
-        data: &mut [u8],
-    ) -> VkResult<()> {
-        (self
-            .device_fn_1_0
-            .get_pipeline_cache_data)(
-                self.handle,
-                pipeline_cache,
-                data.len() as _,
-                data.as_mut_ptr().cast(),
-            )
-            .result()
     }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkMergePipelineCaches.html) · Device Function
     pub unsafe fn merge_pipeline_caches(
