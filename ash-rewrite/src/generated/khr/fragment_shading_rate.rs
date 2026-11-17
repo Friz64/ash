@@ -212,6 +212,40 @@ impl Instance {
     pub fn instance(&self) -> vk::Instance {
         self.handle
     }
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkGetPhysicalDeviceFragmentShadingRatesKHR.html) · Instance Function
+    pub unsafe fn get_physical_device_fragment_shading_rates_len(
+        &self,
+        physical_device: vk::PhysicalDevice,
+    ) -> VkResult<usize> {
+        let mut fragment_shading_rate_count = MaybeUninit::uninit();
+        (self
+            .fp
+            .get_physical_device_fragment_shading_rates)(
+                physical_device,
+                fragment_shading_rate_count.as_mut_ptr(),
+                ptr::null_mut(),
+            )
+            .assume_init_on_success(fragment_shading_rate_count)
+            .map(|c| c as usize)
+    }
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkGetPhysicalDeviceFragmentShadingRatesKHR.html) · Instance Function
+    pub unsafe fn get_physical_device_fragment_shading_rates(
+        &self,
+        physical_device: vk::PhysicalDevice,
+        fragment_shading_rates: &mut [vk::PhysicalDeviceFragmentShadingRateKHR<'_>],
+    ) -> VkResult<()> {
+        let mut fragment_shading_rate_count = fragment_shading_rates.len() as u32;
+        (self
+            .fp
+            .get_physical_device_fragment_shading_rates)(
+                physical_device,
+                &mut fragment_shading_rate_count,
+                fragment_shading_rates.as_mut_ptr(),
+            )
+            .result()?;
+        assert_eq!(fragment_shading_rate_count as usize, fragment_shading_rates.len());
+        Ok(())
+    }
 }
 pub(crate) mod items {
     use crate::internal_prelude::*;

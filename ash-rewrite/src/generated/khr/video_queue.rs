@@ -211,6 +211,44 @@ impl Instance {
             )
             .result()
     }
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkGetPhysicalDeviceVideoFormatPropertiesKHR.html) · Instance Function
+    pub unsafe fn get_physical_device_video_format_properties_len(
+        &self,
+        physical_device: vk::PhysicalDevice,
+        video_format_info: &vk::PhysicalDeviceVideoFormatInfoKHR<'_>,
+    ) -> VkResult<usize> {
+        let mut video_format_property_count = MaybeUninit::uninit();
+        (self
+            .fp
+            .get_physical_device_video_format_properties)(
+                physical_device,
+                video_format_info,
+                video_format_property_count.as_mut_ptr(),
+                ptr::null_mut(),
+            )
+            .assume_init_on_success(video_format_property_count)
+            .map(|c| c as usize)
+    }
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkGetPhysicalDeviceVideoFormatPropertiesKHR.html) · Instance Function
+    pub unsafe fn get_physical_device_video_format_properties(
+        &self,
+        physical_device: vk::PhysicalDevice,
+        video_format_info: &vk::PhysicalDeviceVideoFormatInfoKHR<'_>,
+        video_format_properties: &mut [vk::VideoFormatPropertiesKHR<'_>],
+    ) -> VkResult<()> {
+        let mut video_format_property_count = video_format_properties.len() as u32;
+        (self
+            .fp
+            .get_physical_device_video_format_properties)(
+                physical_device,
+                video_format_info,
+                &mut video_format_property_count,
+                video_format_properties.as_mut_ptr(),
+            )
+            .result()?;
+        assert_eq!(video_format_property_count as usize, video_format_properties.len());
+        Ok(())
+    }
 }
 #[derive(Clone)]
 pub struct DeviceFn {
@@ -472,6 +510,42 @@ impl Device {
                 None => ptr::null_mut(),
             },
         )
+    }
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkGetVideoSessionMemoryRequirementsKHR.html) · Device Function
+    pub unsafe fn get_video_session_memory_requirements_len(
+        &self,
+        video_session: vk::VideoSessionKHR,
+    ) -> VkResult<usize> {
+        let mut memory_requirements_count = MaybeUninit::uninit();
+        (self
+            .fp
+            .get_video_session_memory_requirements)(
+                self.handle,
+                video_session,
+                memory_requirements_count.as_mut_ptr(),
+                ptr::null_mut(),
+            )
+            .assume_init_on_success(memory_requirements_count)
+            .map(|c| c as usize)
+    }
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkGetVideoSessionMemoryRequirementsKHR.html) · Device Function
+    pub unsafe fn get_video_session_memory_requirements(
+        &self,
+        video_session: vk::VideoSessionKHR,
+        memory_requirements: &mut [vk::VideoSessionMemoryRequirementsKHR<'_>],
+    ) -> VkResult<()> {
+        let mut memory_requirements_count = memory_requirements.len() as u32;
+        (self
+            .fp
+            .get_video_session_memory_requirements)(
+                self.handle,
+                video_session,
+                &mut memory_requirements_count,
+                memory_requirements.as_mut_ptr(),
+            )
+            .result()?;
+        assert_eq!(memory_requirements_count as usize, memory_requirements.len());
+        Ok(())
     }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkBindVideoSessionMemoryKHR.html) · Device Function
     pub unsafe fn bind_video_session_memory(

@@ -255,6 +255,54 @@ impl Instance {
             )
             .assume_init_on_success(properties)
     }
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkGetPhysicalDeviceQueueFamilyDataGraphOpticalFlowImageFormatsARM.html) · Instance Function
+    pub unsafe fn get_physical_device_queue_family_data_graph_optical_flow_image_formats_len(
+        &self,
+        physical_device: vk::PhysicalDevice,
+        queue_family_index: u32,
+        queue_family_data_graph_properties: &vk::QueueFamilyDataGraphPropertiesARM<'_>,
+        optical_flow_image_format_info: &vk::DataGraphOpticalFlowImageFormatInfoARM<'_>,
+    ) -> VkResult<usize> {
+        let mut format_count = MaybeUninit::uninit();
+        (self
+            .fp
+            .get_physical_device_queue_family_data_graph_optical_flow_image_formats)(
+                physical_device,
+                queue_family_index,
+                queue_family_data_graph_properties,
+                optical_flow_image_format_info,
+                format_count.as_mut_ptr(),
+                ptr::null_mut(),
+            )
+            .assume_init_on_success(format_count)
+            .map(|c| c as usize)
+    }
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkGetPhysicalDeviceQueueFamilyDataGraphOpticalFlowImageFormatsARM.html) · Instance Function
+    pub unsafe fn get_physical_device_queue_family_data_graph_optical_flow_image_formats(
+        &self,
+        physical_device: vk::PhysicalDevice,
+        queue_family_index: u32,
+        queue_family_data_graph_properties: &vk::QueueFamilyDataGraphPropertiesARM<'_>,
+        optical_flow_image_format_info: &vk::DataGraphOpticalFlowImageFormatInfoARM<'_>,
+        image_format_properties: &mut [vk::DataGraphOpticalFlowImageFormatPropertiesARM<
+            '_,
+        >],
+    ) -> VkResult<()> {
+        let mut format_count = image_format_properties.len() as u32;
+        (self
+            .fp
+            .get_physical_device_queue_family_data_graph_optical_flow_image_formats)(
+                physical_device,
+                queue_family_index,
+                queue_family_data_graph_properties,
+                optical_flow_image_format_info,
+                &mut format_count,
+                image_format_properties.as_mut_ptr(),
+            )
+            .result()?;
+        assert_eq!(format_count as usize, image_format_properties.len());
+        Ok(())
+    }
 }
 pub(crate) mod items {
     use crate::internal_prelude::*;

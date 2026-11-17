@@ -78,6 +78,42 @@ impl Device {
     pub fn device(&self) -> vk::Device {
         self.handle
     }
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkGetFramebufferTilePropertiesQCOM.html) · Device Function
+    pub unsafe fn get_framebuffer_tile_properties_len(
+        &self,
+        framebuffer: vk::Framebuffer,
+    ) -> VkResult<usize> {
+        let mut properties_count = MaybeUninit::uninit();
+        (self
+            .fp
+            .get_framebuffer_tile_properties)(
+                self.handle,
+                framebuffer,
+                properties_count.as_mut_ptr(),
+                ptr::null_mut(),
+            )
+            .assume_init_on_success(properties_count)
+            .map(|c| c as usize)
+    }
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkGetFramebufferTilePropertiesQCOM.html) · Device Function
+    pub unsafe fn get_framebuffer_tile_properties(
+        &self,
+        framebuffer: vk::Framebuffer,
+        properties: &mut [vk::TilePropertiesQCOM<'_>],
+    ) -> VkResult<()> {
+        let mut properties_count = properties.len() as u32;
+        (self
+            .fp
+            .get_framebuffer_tile_properties)(
+                self.handle,
+                framebuffer,
+                &mut properties_count,
+                properties.as_mut_ptr(),
+            )
+            .result()?;
+        assert_eq!(properties_count as usize, properties.len());
+        Ok(())
+    }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkGetDynamicRenderingTilePropertiesQCOM.html) · Device Function
     pub unsafe fn get_dynamic_rendering_tile_properties(
         &self,

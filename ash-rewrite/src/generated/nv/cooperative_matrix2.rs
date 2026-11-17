@@ -70,6 +70,40 @@ impl Instance {
     pub fn instance(&self) -> vk::Instance {
         self.handle
     }
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkGetPhysicalDeviceCooperativeMatrixFlexibleDimensionsPropertiesNV.html) · Instance Function
+    pub unsafe fn get_physical_device_cooperative_matrix_flexible_dimensions_properties_len(
+        &self,
+        physical_device: vk::PhysicalDevice,
+    ) -> VkResult<usize> {
+        let mut property_count = MaybeUninit::uninit();
+        (self
+            .fp
+            .get_physical_device_cooperative_matrix_flexible_dimensions_properties)(
+                physical_device,
+                property_count.as_mut_ptr(),
+                ptr::null_mut(),
+            )
+            .assume_init_on_success(property_count)
+            .map(|c| c as usize)
+    }
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkGetPhysicalDeviceCooperativeMatrixFlexibleDimensionsPropertiesNV.html) · Instance Function
+    pub unsafe fn get_physical_device_cooperative_matrix_flexible_dimensions_properties(
+        &self,
+        physical_device: vk::PhysicalDevice,
+        properties: &mut [vk::CooperativeMatrixFlexibleDimensionsPropertiesNV<'_>],
+    ) -> VkResult<()> {
+        let mut property_count = properties.len() as u32;
+        (self
+            .fp
+            .get_physical_device_cooperative_matrix_flexible_dimensions_properties)(
+                physical_device,
+                &mut property_count,
+                properties.as_mut_ptr(),
+            )
+            .result()?;
+        assert_eq!(property_count as usize, properties.len());
+        Ok(())
+    }
 }
 pub(crate) mod items {
     use crate::internal_prelude::*;

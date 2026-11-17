@@ -111,6 +111,112 @@ impl Instance {
     pub fn instance(&self) -> vk::Instance {
         self.handle
     }
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkGetPhysicalDeviceDisplayProperties2KHR.html) · Instance Function
+    pub unsafe fn get_physical_device_display_properties2_len(
+        &self,
+        physical_device: vk::PhysicalDevice,
+    ) -> VkResult<usize> {
+        let mut property_count = MaybeUninit::uninit();
+        (self
+            .fp
+            .get_physical_device_display_properties2)(
+                physical_device,
+                property_count.as_mut_ptr(),
+                ptr::null_mut(),
+            )
+            .assume_init_on_success(property_count)
+            .map(|c| c as usize)
+    }
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkGetPhysicalDeviceDisplayProperties2KHR.html) · Instance Function
+    pub unsafe fn get_physical_device_display_properties2(
+        &self,
+        physical_device: vk::PhysicalDevice,
+        properties: &mut [vk::DisplayProperties2KHR<'_>],
+    ) -> VkResult<()> {
+        let mut property_count = properties.len() as u32;
+        (self
+            .fp
+            .get_physical_device_display_properties2)(
+                physical_device,
+                &mut property_count,
+                properties.as_mut_ptr(),
+            )
+            .result()?;
+        assert_eq!(property_count as usize, properties.len());
+        Ok(())
+    }
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkGetPhysicalDeviceDisplayPlaneProperties2KHR.html) · Instance Function
+    pub unsafe fn get_physical_device_display_plane_properties2_len(
+        &self,
+        physical_device: vk::PhysicalDevice,
+    ) -> VkResult<usize> {
+        let mut property_count = MaybeUninit::uninit();
+        (self
+            .fp
+            .get_physical_device_display_plane_properties2)(
+                physical_device,
+                property_count.as_mut_ptr(),
+                ptr::null_mut(),
+            )
+            .assume_init_on_success(property_count)
+            .map(|c| c as usize)
+    }
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkGetPhysicalDeviceDisplayPlaneProperties2KHR.html) · Instance Function
+    pub unsafe fn get_physical_device_display_plane_properties2(
+        &self,
+        physical_device: vk::PhysicalDevice,
+        properties: &mut [vk::DisplayPlaneProperties2KHR<'_>],
+    ) -> VkResult<()> {
+        let mut property_count = properties.len() as u32;
+        (self
+            .fp
+            .get_physical_device_display_plane_properties2)(
+                physical_device,
+                &mut property_count,
+                properties.as_mut_ptr(),
+            )
+            .result()?;
+        assert_eq!(property_count as usize, properties.len());
+        Ok(())
+    }
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkGetDisplayModeProperties2KHR.html) · Instance Function
+    pub unsafe fn get_display_mode_properties2_len(
+        &self,
+        physical_device: vk::PhysicalDevice,
+        display: vk::DisplayKHR,
+    ) -> VkResult<usize> {
+        let mut property_count = MaybeUninit::uninit();
+        (self
+            .fp
+            .get_display_mode_properties2)(
+                physical_device,
+                display,
+                property_count.as_mut_ptr(),
+                ptr::null_mut(),
+            )
+            .assume_init_on_success(property_count)
+            .map(|c| c as usize)
+    }
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkGetDisplayModeProperties2KHR.html) · Instance Function
+    pub unsafe fn get_display_mode_properties2(
+        &self,
+        physical_device: vk::PhysicalDevice,
+        display: vk::DisplayKHR,
+        properties: &mut [vk::DisplayModeProperties2KHR<'_>],
+    ) -> VkResult<()> {
+        let mut property_count = properties.len() as u32;
+        (self
+            .fp
+            .get_display_mode_properties2)(
+                physical_device,
+                display,
+                &mut property_count,
+                properties.as_mut_ptr(),
+            )
+            .result()?;
+        assert_eq!(property_count as usize, properties.len());
+        Ok(())
+    }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkGetDisplayPlaneCapabilities2KHR.html) · Instance Function
     pub unsafe fn get_display_plane_capabilities2(
         &self,

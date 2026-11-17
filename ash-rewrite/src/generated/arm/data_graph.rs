@@ -373,6 +373,44 @@ impl Device {
             )
             .assume_init_on_success(session)
     }
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkGetDataGraphPipelineSessionBindPointRequirementsARM.html) · Device Function
+    pub unsafe fn get_data_graph_pipeline_session_bind_point_requirements_len(
+        &self,
+        info: &vk::DataGraphPipelineSessionBindPointRequirementsInfoARM<'_>,
+    ) -> VkResult<usize> {
+        let mut bind_point_requirement_count = MaybeUninit::uninit();
+        (self
+            .fp
+            .get_data_graph_pipeline_session_bind_point_requirements)(
+                self.handle,
+                info,
+                bind_point_requirement_count.as_mut_ptr(),
+                ptr::null_mut(),
+            )
+            .assume_init_on_success(bind_point_requirement_count)
+            .map(|c| c as usize)
+    }
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkGetDataGraphPipelineSessionBindPointRequirementsARM.html) · Device Function
+    pub unsafe fn get_data_graph_pipeline_session_bind_point_requirements(
+        &self,
+        info: &vk::DataGraphPipelineSessionBindPointRequirementsInfoARM<'_>,
+        bind_point_requirements: &mut [vk::DataGraphPipelineSessionBindPointRequirementARM<
+            '_,
+        >],
+    ) -> VkResult<()> {
+        let mut bind_point_requirement_count = bind_point_requirements.len() as u32;
+        (self
+            .fp
+            .get_data_graph_pipeline_session_bind_point_requirements)(
+                self.handle,
+                info,
+                &mut bind_point_requirement_count,
+                bind_point_requirements.as_mut_ptr(),
+            )
+            .result()?;
+        assert_eq!(bind_point_requirement_count as usize, bind_point_requirements.len());
+        Ok(())
+    }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkGetDataGraphPipelineSessionMemoryRequirementsARM.html) · Device Function
     pub unsafe fn get_data_graph_pipeline_session_memory_requirements(
         &self,
@@ -450,6 +488,22 @@ impl Device {
             properties,
         ))
     }
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkGetDataGraphPipelinePropertiesARM.html) · Device Function
+    pub unsafe fn get_data_graph_pipeline_properties(
+        &self,
+        pipeline_info: &vk::DataGraphPipelineInfoARM<'_>,
+        properties: &mut [vk::DataGraphPipelinePropertyQueryResultARM<'_>],
+    ) -> VkResult<()> {
+        (self
+            .fp
+            .get_data_graph_pipeline_properties)(
+                self.handle,
+                pipeline_info,
+                properties.len() as _,
+                properties.as_mut_ptr(),
+            )
+            .result()
+    }
 }
 #[derive(Clone)]
 pub struct InstanceFn {
@@ -526,6 +580,50 @@ impl Instance {
     #[inline]
     pub fn instance(&self) -> vk::Instance {
         self.handle
+    }
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkGetPhysicalDeviceQueueFamilyDataGraphPropertiesARM.html) · Instance Function
+    pub unsafe fn get_physical_device_queue_family_data_graph_properties_len(
+        &self,
+        physical_device: vk::PhysicalDevice,
+        queue_family_index: u32,
+    ) -> VkResult<usize> {
+        let mut queue_family_data_graph_property_count = MaybeUninit::uninit();
+        (self
+            .fp
+            .get_physical_device_queue_family_data_graph_properties)(
+                physical_device,
+                queue_family_index,
+                queue_family_data_graph_property_count.as_mut_ptr(),
+                ptr::null_mut(),
+            )
+            .assume_init_on_success(queue_family_data_graph_property_count)
+            .map(|c| c as usize)
+    }
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkGetPhysicalDeviceQueueFamilyDataGraphPropertiesARM.html) · Instance Function
+    pub unsafe fn get_physical_device_queue_family_data_graph_properties(
+        &self,
+        physical_device: vk::PhysicalDevice,
+        queue_family_index: u32,
+        queue_family_data_graph_properties: &mut [vk::QueueFamilyDataGraphPropertiesARM<
+            '_,
+        >],
+    ) -> VkResult<()> {
+        let mut queue_family_data_graph_property_count = queue_family_data_graph_properties
+            .len() as u32;
+        (self
+            .fp
+            .get_physical_device_queue_family_data_graph_properties)(
+                physical_device,
+                queue_family_index,
+                &mut queue_family_data_graph_property_count,
+                queue_family_data_graph_properties.as_mut_ptr(),
+            )
+            .result()?;
+        assert_eq!(
+            queue_family_data_graph_property_count as usize,
+            queue_family_data_graph_properties.len()
+        );
+        Ok(())
     }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkGetPhysicalDeviceQueueFamilyDataGraphProcessingEnginePropertiesARM.html) · Instance Function
     pub unsafe fn get_physical_device_queue_family_data_graph_processing_engine_properties(

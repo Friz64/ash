@@ -111,6 +111,39 @@ impl Device {
     pub fn device(&self) -> vk::Device {
         self.handle
     }
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkGetDeviceFaultReportsKHR.html) · Device Function
+    pub unsafe fn get_device_fault_reports_len(&self, timeout: u64) -> VkResult<usize> {
+        let mut fault_counts = MaybeUninit::uninit();
+        (self
+            .fp
+            .get_device_fault_reports)(
+                self.handle,
+                timeout,
+                fault_counts.as_mut_ptr(),
+                ptr::null_mut(),
+            )
+            .assume_init_on_success(fault_counts)
+            .map(|c| c as usize)
+    }
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkGetDeviceFaultReportsKHR.html) · Device Function
+    pub unsafe fn get_device_fault_reports(
+        &self,
+        timeout: u64,
+        fault_info: &mut [vk::DeviceFaultInfoKHR<'_>],
+    ) -> VkResult<()> {
+        let mut fault_counts = fault_info.len() as u32;
+        (self
+            .fp
+            .get_device_fault_reports)(
+                self.handle,
+                timeout,
+                &mut fault_counts,
+                fault_info.as_mut_ptr(),
+            )
+            .result()?;
+        assert_eq!(fault_counts as usize, fault_info.len());
+        Ok(())
+    }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkGetDeviceFaultDebugInfoKHR.html) · Device Function
     pub unsafe fn get_device_fault_debug_info(
         &self,

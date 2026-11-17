@@ -867,6 +867,39 @@ impl crate::Instance {
             external_fence_properties,
         )
     }
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkEnumeratePhysicalDeviceGroups.html) · Instance Function
+    pub unsafe fn enumerate_physical_device_groups_len(&self) -> VkResult<usize> {
+        let mut physical_device_group_count = MaybeUninit::uninit();
+        (self
+            .instance_fn_1_1
+            .enumerate_physical_device_groups)(
+                self.handle,
+                physical_device_group_count.as_mut_ptr(),
+                ptr::null_mut(),
+            )
+            .assume_init_on_success(physical_device_group_count)
+            .map(|c| c as usize)
+    }
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkEnumeratePhysicalDeviceGroups.html) · Instance Function
+    pub unsafe fn enumerate_physical_device_groups(
+        &self,
+        physical_device_group_properties: &mut [vk::PhysicalDeviceGroupProperties<'_>],
+    ) -> VkResult<()> {
+        let mut physical_device_group_count = physical_device_group_properties.len()
+            as u32;
+        (self
+            .instance_fn_1_1
+            .enumerate_physical_device_groups)(
+                self.handle,
+                &mut physical_device_group_count,
+                physical_device_group_properties.as_mut_ptr(),
+            )
+            .result()?;
+        assert_eq!(
+            physical_device_group_count as usize, physical_device_group_properties.len()
+        );
+        Ok(())
+    }
 }
 #[derive(Clone)]
 pub struct DeviceFnV1_1 {

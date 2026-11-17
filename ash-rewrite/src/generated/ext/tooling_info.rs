@@ -88,6 +88,40 @@ impl Instance {
     pub fn instance(&self) -> vk::Instance {
         self.handle
     }
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkGetPhysicalDeviceToolProperties.html) · Instance Function
+    pub unsafe fn get_physical_device_tool_properties_len(
+        &self,
+        physical_device: vk::PhysicalDevice,
+    ) -> VkResult<usize> {
+        let mut tool_count = MaybeUninit::uninit();
+        (self
+            .fp
+            .get_physical_device_tool_properties)(
+                physical_device,
+                tool_count.as_mut_ptr(),
+                ptr::null_mut(),
+            )
+            .assume_init_on_success(tool_count)
+            .map(|c| c as usize)
+    }
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkGetPhysicalDeviceToolProperties.html) · Instance Function
+    pub unsafe fn get_physical_device_tool_properties(
+        &self,
+        physical_device: vk::PhysicalDevice,
+        tool_properties: &mut [vk::PhysicalDeviceToolProperties<'_>],
+    ) -> VkResult<()> {
+        let mut tool_count = tool_properties.len() as u32;
+        (self
+            .fp
+            .get_physical_device_tool_properties)(
+                physical_device,
+                &mut tool_count,
+                tool_properties.as_mut_ptr(),
+            )
+            .result()?;
+        assert_eq!(tool_count as usize, tool_properties.len());
+        Ok(())
+    }
 }
 pub(crate) mod items {
     use crate::internal_prelude::*;

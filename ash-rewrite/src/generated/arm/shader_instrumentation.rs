@@ -75,6 +75,40 @@ impl Instance {
     pub fn instance(&self) -> vk::Instance {
         self.handle
     }
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkEnumeratePhysicalDeviceShaderInstrumentationMetricsARM.html) · Instance Function
+    pub unsafe fn enumerate_physical_device_shader_instrumentation_metrics_len(
+        &self,
+        physical_device: vk::PhysicalDevice,
+    ) -> VkResult<usize> {
+        let mut description_count = MaybeUninit::uninit();
+        (self
+            .fp
+            .enumerate_physical_device_shader_instrumentation_metrics)(
+                physical_device,
+                description_count.as_mut_ptr(),
+                ptr::null_mut(),
+            )
+            .assume_init_on_success(description_count)
+            .map(|c| c as usize)
+    }
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkEnumeratePhysicalDeviceShaderInstrumentationMetricsARM.html) · Instance Function
+    pub unsafe fn enumerate_physical_device_shader_instrumentation_metrics(
+        &self,
+        physical_device: vk::PhysicalDevice,
+        descriptions: &mut [vk::ShaderInstrumentationMetricDescriptionARM<'_>],
+    ) -> VkResult<()> {
+        let mut description_count = descriptions.len() as u32;
+        (self
+            .fp
+            .enumerate_physical_device_shader_instrumentation_metrics)(
+                physical_device,
+                &mut description_count,
+                descriptions.as_mut_ptr(),
+            )
+            .result()?;
+        assert_eq!(description_count as usize, descriptions.len());
+        Ok(())
+    }
 }
 #[derive(Clone)]
 pub struct DeviceFn {
