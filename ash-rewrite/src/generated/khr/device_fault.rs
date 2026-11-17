@@ -111,6 +111,13 @@ impl Device {
     pub fn device(&self) -> vk::Device {
         self.handle
     }
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkGetDeviceFaultDebugInfoKHR.html) · Device Function
+    pub unsafe fn get_device_fault_debug_info(
+        &self,
+        debug_info: &mut vk::DeviceFaultDebugInfoKHR<'_>,
+    ) -> VkResult<()> {
+        (self.fp.get_device_fault_debug_info)(self.handle, debug_info).result()
+    }
 }
 pub(crate) mod items {
     use crate::internal_prelude::*;

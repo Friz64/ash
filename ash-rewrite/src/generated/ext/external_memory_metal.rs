@@ -108,6 +108,23 @@ impl Device {
             )
             .assume_init_on_success(handle)
     }
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkGetMemoryMetalHandlePropertiesEXT.html) · Device Function
+    pub unsafe fn get_memory_metal_handle_properties(
+        &self,
+        handle_type: vk::ExternalMemoryHandleTypeFlagBits,
+        handle: *const ffi::c_void,
+        memory_metal_handle_properties: &mut vk::MemoryMetalHandlePropertiesEXT<'_>,
+    ) -> VkResult<()> {
+        (self
+            .fp
+            .get_memory_metal_handle_properties)(
+                self.handle,
+                handle_type,
+                handle,
+                memory_metal_handle_properties,
+            )
+            .result()
+    }
 }
 pub(crate) mod items {
     use crate::internal_prelude::*;

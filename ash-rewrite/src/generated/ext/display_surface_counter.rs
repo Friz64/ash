@@ -68,6 +68,22 @@ impl Instance {
     pub fn instance(&self) -> vk::Instance {
         self.handle
     }
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkGetPhysicalDeviceSurfaceCapabilities2EXT.html) · Instance Function
+    pub unsafe fn get_physical_device_surface_capabilities2(
+        &self,
+        physical_device: vk::PhysicalDevice,
+        surface: vk::SurfaceKHR,
+        surface_capabilities: &mut vk::SurfaceCapabilities2EXT<'_>,
+    ) -> VkResult<()> {
+        (self
+            .fp
+            .get_physical_device_surface_capabilities2)(
+                physical_device,
+                surface,
+                surface_capabilities,
+            )
+            .result()
+    }
 }
 pub(crate) mod items {
     use crate::internal_prelude::*;

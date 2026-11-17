@@ -80,6 +80,20 @@ impl Device {
     pub fn device(&self) -> vk::Device {
         self.handle
     }
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkGetDescriptorSetLayoutHostMappingInfoVALVE.html) · Device Function
+    pub unsafe fn get_descriptor_set_layout_host_mapping_info(
+        &self,
+        binding_reference: &vk::DescriptorSetBindingReferenceVALVE<'_>,
+        host_mapping: &mut vk::DescriptorSetLayoutHostMappingInfoVALVE<'_>,
+    ) {
+        (self
+            .fp
+            .get_descriptor_set_layout_host_mapping_info)(
+            self.handle,
+            binding_reference,
+            host_mapping,
+        )
+    }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkGetDescriptorSetHostMappingVALVE.html) · Device Function
     pub unsafe fn get_descriptor_set_host_mapping(
         &self,

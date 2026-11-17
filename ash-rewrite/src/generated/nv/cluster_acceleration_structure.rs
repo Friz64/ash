@@ -219,6 +219,20 @@ impl Device {
     pub fn device(&self) -> vk::Device {
         self.handle
     }
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkGetClusterAccelerationStructureBuildSizesNV.html) · Device Function
+    pub unsafe fn get_cluster_acceleration_structure_build_sizes(
+        &self,
+        info: &vk::ClusterAccelerationStructureInputInfoNV<'_>,
+        size_info: &mut vk::AccelerationStructureBuildSizesInfoKHR<'_>,
+    ) {
+        (self
+            .fp
+            .get_cluster_acceleration_structure_build_sizes)(
+            self.handle,
+            info,
+            size_info,
+        )
+    }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdBuildClusterAccelerationStructureIndirectNV.html) · Device Function
     pub unsafe fn cmd_build_cluster_acceleration_structure_indirect(
         &self,

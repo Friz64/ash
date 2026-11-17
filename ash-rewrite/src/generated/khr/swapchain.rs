@@ -288,6 +288,19 @@ impl Device {
             _ => Err(err_code),
         }
     }
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkGetDeviceGroupPresentCapabilitiesKHR.html) · Device Function
+    pub unsafe fn get_device_group_present_capabilities(
+        &self,
+        device_group_present_capabilities: &mut vk::DeviceGroupPresentCapabilitiesKHR<'_>,
+    ) -> VkResult<()> {
+        (self
+            .fp
+            .get_device_group_present_capabilities)(
+                self.handle,
+                device_group_present_capabilities,
+            )
+            .result()
+    }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkGetDeviceGroupSurfacePresentModesKHR.html) · Device Function
     pub unsafe fn get_device_group_surface_present_modes(
         &self,

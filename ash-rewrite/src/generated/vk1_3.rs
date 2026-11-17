@@ -970,6 +970,34 @@ impl crate::Device {
     pub fn fp_v1_3(&self) -> &crate::DeviceFnV1_3 {
         &self.device_fn_1_3
     }
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkGetDeviceBufferMemoryRequirements.html) · Device Function
+    pub unsafe fn get_device_buffer_memory_requirements(
+        &self,
+        info: &vk::DeviceBufferMemoryRequirements<'_>,
+        memory_requirements: &mut vk::MemoryRequirements2<'_>,
+    ) {
+        (self
+            .device_fn_1_3
+            .get_device_buffer_memory_requirements)(
+            self.handle,
+            info,
+            memory_requirements,
+        )
+    }
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkGetDeviceImageMemoryRequirements.html) · Device Function
+    pub unsafe fn get_device_image_memory_requirements(
+        &self,
+        info: &vk::DeviceImageMemoryRequirements<'_>,
+        memory_requirements: &mut vk::MemoryRequirements2<'_>,
+    ) {
+        (self
+            .device_fn_1_3
+            .get_device_image_memory_requirements)(
+            self.handle,
+            info,
+            memory_requirements,
+        )
+    }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdSetCullMode.html) · Device Function
     pub unsafe fn cmd_set_cull_mode(
         &self,

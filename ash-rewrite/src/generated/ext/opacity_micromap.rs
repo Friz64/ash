@@ -568,6 +568,17 @@ impl Device {
         );
         compatibility.assume_init()
     }
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkGetMicromapBuildSizesEXT.html) · Device Function
+    pub unsafe fn get_micromap_build_sizes(
+        &self,
+        build_type: vk::AccelerationStructureBuildTypeKHR,
+        build_info: &vk::MicromapBuildInfoEXT<'_>,
+        size_info: &mut vk::MicromapBuildSizesInfoEXT<'_>,
+    ) {
+        (self
+            .fp
+            .get_micromap_build_sizes)(self.handle, build_type, build_info, size_info)
+    }
 }
 pub(crate) mod items {
     use crate::internal_prelude::*;

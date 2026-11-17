@@ -191,6 +191,23 @@ impl Device {
         (self.fp.set_swapchain_present_timing_queue_size)(self.handle, swapchain, size)
             .result()
     }
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkGetPastPresentationTimingEXT.html) · Device Function
+    pub unsafe fn get_past_presentation_timing(
+        &self,
+        past_presentation_timing_info: &vk::PastPresentationTimingInfoEXT<'_>,
+        past_presentation_timing_properties: &mut vk::PastPresentationTimingPropertiesEXT<
+            '_,
+        >,
+    ) -> VkResult<()> {
+        (self
+            .fp
+            .get_past_presentation_timing)(
+                self.handle,
+                past_presentation_timing_info,
+                past_presentation_timing_properties,
+            )
+            .result()
+    }
 }
 pub(crate) mod items {
     use crate::internal_prelude::*;

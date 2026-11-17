@@ -195,6 +195,21 @@ impl Device {
     pub fn device(&self) -> vk::Device {
         self.handle
     }
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkGetExecutionGraphPipelineScratchSizeAMDX.html) · Device Function
+    pub unsafe fn get_execution_graph_pipeline_scratch_size(
+        &self,
+        execution_graph: vk::Pipeline,
+        size_info: &mut vk::ExecutionGraphPipelineScratchSizeAMDX<'_>,
+    ) -> VkResult<()> {
+        (self
+            .fp
+            .get_execution_graph_pipeline_scratch_size)(
+                self.handle,
+                execution_graph,
+                size_info,
+            )
+            .result()
+    }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkGetExecutionGraphPipelineNodeIndexAMDX.html) · Device Function
     pub unsafe fn get_execution_graph_pipeline_node_index(
         &self,

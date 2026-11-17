@@ -79,6 +79,23 @@ impl Device {
     pub fn device(&self) -> vk::Device {
         self.handle
     }
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkGetMemoryHostPointerPropertiesEXT.html) · Device Function
+    pub unsafe fn get_memory_host_pointer_properties(
+        &self,
+        handle_type: vk::ExternalMemoryHandleTypeFlagBits,
+        host_pointer: *const ffi::c_void,
+        memory_host_pointer_properties: &mut vk::MemoryHostPointerPropertiesEXT<'_>,
+    ) -> VkResult<()> {
+        (self
+            .fp
+            .get_memory_host_pointer_properties)(
+                self.handle,
+                handle_type,
+                host_pointer,
+                memory_host_pointer_properties,
+            )
+            .result()
+    }
 }
 pub(crate) mod items {
     use crate::internal_prelude::*;

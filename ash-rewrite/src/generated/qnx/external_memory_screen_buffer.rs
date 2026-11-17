@@ -72,6 +72,14 @@ impl Device {
     pub fn device(&self) -> vk::Device {
         self.handle
     }
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkGetScreenBufferPropertiesQNX.html) · Device Function
+    pub unsafe fn get_screen_buffer_properties(
+        &self,
+        buffer: *const vk::_screen_buffer,
+        properties: &mut vk::ScreenBufferPropertiesQNX<'_>,
+    ) -> VkResult<()> {
+        (self.fp.get_screen_buffer_properties)(self.handle, buffer, properties).result()
+    }
 }
 pub(crate) mod items {
     use crate::internal_prelude::*;

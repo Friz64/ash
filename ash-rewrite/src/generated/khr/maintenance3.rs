@@ -61,6 +61,14 @@ impl Device {
     pub fn device(&self) -> vk::Device {
         self.handle
     }
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkGetDescriptorSetLayoutSupport.html) · Device Function
+    pub unsafe fn get_descriptor_set_layout_support(
+        &self,
+        create_info: &vk::DescriptorSetLayoutCreateInfo<'_>,
+        support: &mut vk::DescriptorSetLayoutSupport<'_>,
+    ) {
+        (self.fp.get_descriptor_set_layout_support)(self.handle, create_info, support)
+    }
 }
 pub(crate) mod items {
     use crate::internal_prelude::*;

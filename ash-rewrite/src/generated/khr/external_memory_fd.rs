@@ -80,6 +80,23 @@ impl Device {
         (self.fp.get_memory_fd)(self.handle, get_fd_info, fd.as_mut_ptr())
             .assume_init_on_success(fd)
     }
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkGetMemoryFdPropertiesKHR.html) · Device Function
+    pub unsafe fn get_memory_fd_properties(
+        &self,
+        handle_type: vk::ExternalMemoryHandleTypeFlagBits,
+        fd: ffi::c_int,
+        memory_fd_properties: &mut vk::MemoryFdPropertiesKHR<'_>,
+    ) -> VkResult<()> {
+        (self
+            .fp
+            .get_memory_fd_properties)(
+                self.handle,
+                handle_type,
+                fd,
+                memory_fd_properties,
+            )
+            .result()
+    }
 }
 pub(crate) mod items {
     use crate::internal_prelude::*;

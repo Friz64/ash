@@ -292,6 +292,22 @@ impl Instance {
     pub fn instance(&self) -> vk::Instance {
         self.handle
     }
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkGetPhysicalDeviceVideoEncodeQualityLevelPropertiesKHR.html) · Instance Function
+    pub unsafe fn get_physical_device_video_encode_quality_level_properties(
+        &self,
+        physical_device: vk::PhysicalDevice,
+        quality_level_info: &vk::PhysicalDeviceVideoEncodeQualityLevelInfoKHR<'_>,
+        quality_level_properties: &mut vk::VideoEncodeQualityLevelPropertiesKHR<'_>,
+    ) -> VkResult<()> {
+        (self
+            .fp
+            .get_physical_device_video_encode_quality_level_properties)(
+                physical_device,
+                quality_level_info,
+                quality_level_properties,
+            )
+            .result()
+    }
 }
 #[derive(Clone)]
 pub struct DeviceFn {

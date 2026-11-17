@@ -329,6 +329,20 @@ impl Device {
             },
         )
     }
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkSetGpaDeviceClockModeAMD.html) · Device Function
+    pub unsafe fn set_gpa_device_clock_mode(
+        &self,
+        info: &mut vk::GpaDeviceClockModeInfoAMD<'_>,
+    ) -> VkResult<()> {
+        (self.fp.set_gpa_device_clock_mode)(self.handle, info).result()
+    }
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkGetGpaDeviceClockInfoAMD.html) · Device Function
+    pub unsafe fn get_gpa_device_clock_info(
+        &self,
+        info: &mut vk::GpaDeviceGetClockInfoAMD<'_>,
+    ) -> VkResult<()> {
+        (self.fp.get_gpa_device_clock_info)(self.handle, info).result()
+    }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdBeginGpaSessionAMD.html) · Device Function
     pub unsafe fn cmd_begin_gpa_session(
         &self,

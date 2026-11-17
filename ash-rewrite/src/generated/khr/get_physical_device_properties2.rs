@@ -164,6 +164,63 @@ impl Instance {
     pub fn instance(&self) -> vk::Instance {
         self.handle
     }
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkGetPhysicalDeviceFeatures2.html) · Instance Function
+    pub unsafe fn get_physical_device_features2(
+        &self,
+        physical_device: vk::PhysicalDevice,
+        features: &mut vk::PhysicalDeviceFeatures2<'_>,
+    ) {
+        (self.fp.get_physical_device_features2)(physical_device, features)
+    }
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkGetPhysicalDeviceProperties2.html) · Instance Function
+    pub unsafe fn get_physical_device_properties2(
+        &self,
+        physical_device: vk::PhysicalDevice,
+        properties: &mut vk::PhysicalDeviceProperties2<'_>,
+    ) {
+        (self.fp.get_physical_device_properties2)(physical_device, properties)
+    }
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkGetPhysicalDeviceFormatProperties2.html) · Instance Function
+    pub unsafe fn get_physical_device_format_properties2(
+        &self,
+        physical_device: vk::PhysicalDevice,
+        format: vk::Format,
+        format_properties: &mut vk::FormatProperties2<'_>,
+    ) {
+        (self
+            .fp
+            .get_physical_device_format_properties2)(
+            physical_device,
+            format,
+            format_properties,
+        )
+    }
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkGetPhysicalDeviceImageFormatProperties2.html) · Instance Function
+    pub unsafe fn get_physical_device_image_format_properties2(
+        &self,
+        physical_device: vk::PhysicalDevice,
+        image_format_info: &vk::PhysicalDeviceImageFormatInfo2<'_>,
+        image_format_properties: &mut vk::ImageFormatProperties2<'_>,
+    ) -> VkResult<()> {
+        (self
+            .fp
+            .get_physical_device_image_format_properties2)(
+                physical_device,
+                image_format_info,
+                image_format_properties,
+            )
+            .result()
+    }
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkGetPhysicalDeviceMemoryProperties2.html) · Instance Function
+    pub unsafe fn get_physical_device_memory_properties2(
+        &self,
+        physical_device: vk::PhysicalDevice,
+        memory_properties: &mut vk::PhysicalDeviceMemoryProperties2<'_>,
+    ) {
+        (self
+            .fp
+            .get_physical_device_memory_properties2)(physical_device, memory_properties)
+    }
 }
 pub(crate) mod items {
     use crate::internal_prelude::*;

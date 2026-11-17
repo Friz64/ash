@@ -109,6 +109,14 @@ impl Device {
     ) -> u64 {
         (self.fp.get_image_view_handle64)(self.handle, info)
     }
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkGetImageViewAddressNVX.html) · Device Function
+    pub unsafe fn get_image_view_address(
+        &self,
+        image_view: vk::ImageView,
+        properties: &mut vk::ImageViewAddressPropertiesNVX<'_>,
+    ) -> VkResult<()> {
+        (self.fp.get_image_view_address)(self.handle, image_view, properties).result()
+    }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkGetDeviceCombinedImageSamplerIndexNVX.html) · Device Function
     pub unsafe fn get_device_combined_image_sampler_index(
         &self,

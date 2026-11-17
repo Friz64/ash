@@ -111,6 +111,22 @@ impl Instance {
     pub fn instance(&self) -> vk::Instance {
         self.handle
     }
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkGetDisplayPlaneCapabilities2KHR.html) · Instance Function
+    pub unsafe fn get_display_plane_capabilities2(
+        &self,
+        physical_device: vk::PhysicalDevice,
+        display_plane_info: &vk::DisplayPlaneInfo2KHR<'_>,
+        capabilities: &mut vk::DisplayPlaneCapabilities2KHR<'_>,
+    ) -> VkResult<()> {
+        (self
+            .fp
+            .get_display_plane_capabilities2)(
+                physical_device,
+                display_plane_info,
+                capabilities,
+            )
+            .result()
+    }
 }
 pub(crate) mod items {
     use crate::internal_prelude::*;

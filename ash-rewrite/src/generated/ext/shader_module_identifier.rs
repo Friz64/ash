@@ -81,6 +81,28 @@ impl Device {
     pub fn device(&self) -> vk::Device {
         self.handle
     }
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkGetShaderModuleIdentifierEXT.html) · Device Function
+    pub unsafe fn get_shader_module_identifier(
+        &self,
+        shader_module: vk::ShaderModule,
+        identifier: &mut vk::ShaderModuleIdentifierEXT<'_>,
+    ) {
+        (self.fp.get_shader_module_identifier)(self.handle, shader_module, identifier)
+    }
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkGetShaderModuleCreateInfoIdentifierEXT.html) · Device Function
+    pub unsafe fn get_shader_module_create_info_identifier(
+        &self,
+        create_info: &vk::ShaderModuleCreateInfo<'_>,
+        identifier: &mut vk::ShaderModuleIdentifierEXT<'_>,
+    ) {
+        (self
+            .fp
+            .get_shader_module_create_info_identifier)(
+            self.handle,
+            create_info,
+            identifier,
+        )
+    }
 }
 pub(crate) mod items {
     use crate::internal_prelude::*;

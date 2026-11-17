@@ -133,6 +133,21 @@ impl Instance {
     pub fn instance(&self) -> vk::Instance {
         self.handle
     }
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkGetPhysicalDeviceMultisamplePropertiesEXT.html) · Instance Function
+    pub unsafe fn get_physical_device_multisample_properties(
+        &self,
+        physical_device: vk::PhysicalDevice,
+        samples: vk::SampleCountFlagBits,
+        multisample_properties: &mut vk::MultisamplePropertiesEXT<'_>,
+    ) {
+        (self
+            .fp
+            .get_physical_device_multisample_properties)(
+            physical_device,
+            samples,
+            multisample_properties,
+        )
+    }
 }
 pub(crate) mod items {
     use crate::internal_prelude::*;

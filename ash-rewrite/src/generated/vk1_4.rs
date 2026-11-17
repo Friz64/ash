@@ -645,6 +645,27 @@ impl crate::Device {
             )
             .result()
     }
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkGetImageSubresourceLayout2.html) · Device Function
+    pub unsafe fn get_image_subresource_layout2(
+        &self,
+        image: vk::Image,
+        subresource: &vk::ImageSubresource2<'_>,
+        layout: &mut vk::SubresourceLayout2<'_>,
+    ) {
+        (self
+            .device_fn_1_4
+            .get_image_subresource_layout2)(self.handle, image, subresource, layout)
+    }
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkGetDeviceImageSubresourceLayout.html) · Device Function
+    pub unsafe fn get_device_image_subresource_layout(
+        &self,
+        info: &vk::DeviceImageSubresourceInfo<'_>,
+        layout: &mut vk::SubresourceLayout2<'_>,
+    ) {
+        (self
+            .device_fn_1_4
+            .get_device_image_subresource_layout)(self.handle, info, layout)
+    }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkMapMemory2.html) · Device Function
     pub unsafe fn map_memory2(
         &self,

@@ -99,6 +99,21 @@ impl Instance {
     pub fn instance(&self) -> vk::Instance {
         self.handle
     }
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkGetPhysicalDeviceExternalFenceProperties.html) · Instance Function
+    pub unsafe fn get_physical_device_external_fence_properties(
+        &self,
+        physical_device: vk::PhysicalDevice,
+        external_fence_info: &vk::PhysicalDeviceExternalFenceInfo<'_>,
+        external_fence_properties: &mut vk::ExternalFenceProperties<'_>,
+    ) {
+        (self
+            .fp
+            .get_physical_device_external_fence_properties)(
+            physical_device,
+            external_fence_info,
+            external_fence_properties,
+        )
+    }
 }
 pub(crate) mod items {
     use crate::internal_prelude::*;

@@ -139,6 +139,26 @@ impl Device {
     pub fn device(&self) -> vk::Device {
         self.handle
     }
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCreatePipelineBinariesKHR.html) · Device Function
+    pub unsafe fn create_pipeline_binaries(
+        &self,
+        create_info: &vk::PipelineBinaryCreateInfoKHR<'_>,
+        allocator: Option<&vk::AllocationCallbacks<'_>>,
+        binaries: &mut vk::PipelineBinaryHandlesInfoKHR<'_>,
+    ) -> VkResult<()> {
+        (self
+            .fp
+            .create_pipeline_binaries)(
+                self.handle,
+                create_info,
+                match allocator {
+                    Some(r) => r,
+                    None => ptr::null_mut(),
+                },
+                binaries,
+            )
+            .result()
+    }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkDestroyPipelineBinaryKHR.html) · Device Function
     pub unsafe fn destroy_pipeline_binary(
         &self,
@@ -155,6 +175,24 @@ impl Device {
                 None => ptr::null_mut(),
             },
         )
+    }
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkGetPipelineKeyKHR.html) · Device Function
+    pub unsafe fn get_pipeline_key(
+        &self,
+        pipeline_create_info: Option<&vk::PipelineCreateInfoKHR<'_>>,
+        pipeline_key: &mut vk::PipelineBinaryKeyKHR<'_>,
+    ) -> VkResult<()> {
+        (self
+            .fp
+            .get_pipeline_key)(
+                self.handle,
+                match pipeline_create_info {
+                    Some(r) => r,
+                    None => ptr::null_mut(),
+                },
+                pipeline_key,
+            )
+            .result()
     }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkReleaseCapturedPipelineDataKHR.html) · Device Function
     pub unsafe fn release_captured_pipeline_data(

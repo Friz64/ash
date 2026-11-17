@@ -83,6 +83,14 @@ impl Device {
     pub fn device(&self) -> vk::Device {
         self.handle
     }
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkGetNativeBufferPropertiesOHOS.html) · Device Function
+    pub unsafe fn get_native_buffer_properties(
+        &self,
+        buffer: *const vk::OH_NativeBuffer,
+        properties: &mut vk::NativeBufferPropertiesOHOS<'_>,
+    ) -> VkResult<()> {
+        (self.fp.get_native_buffer_properties)(self.handle, buffer, properties).result()
+    }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkGetMemoryNativeBufferOHOS.html) · Device Function
     pub unsafe fn get_memory_native_buffer(
         &self,

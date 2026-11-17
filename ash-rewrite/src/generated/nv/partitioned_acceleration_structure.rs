@@ -130,6 +130,20 @@ impl Device {
     pub fn device(&self) -> vk::Device {
         self.handle
     }
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkGetPartitionedAccelerationStructuresBuildSizesNV.html) · Device Function
+    pub unsafe fn get_partitioned_acceleration_structures_build_sizes(
+        &self,
+        info: &vk::PartitionedAccelerationStructureInstancesInputNV<'_>,
+        size_info: &mut vk::AccelerationStructureBuildSizesInfoKHR<'_>,
+    ) {
+        (self
+            .fp
+            .get_partitioned_acceleration_structures_build_sizes)(
+            self.handle,
+            info,
+            size_info,
+        )
+    }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdBuildPartitionedAccelerationStructuresNV.html) · Device Function
     pub unsafe fn cmd_build_partitioned_acceleration_structures(
         &self,

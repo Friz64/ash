@@ -156,6 +156,14 @@ impl Device {
     ) {
         (self.fp.set_latency_marker)(self.handle, swapchain, latency_marker_info)
     }
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkGetLatencyTimingsNV.html) · Device Function
+    pub unsafe fn get_latency_timings(
+        &self,
+        swapchain: vk::SwapchainKHR,
+        latency_marker_info: &mut vk::GetLatencyMarkerInfoNV<'_>,
+    ) {
+        (self.fp.get_latency_timings)(self.handle, swapchain, latency_marker_info)
+    }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkQueueNotifyOutOfBandNV.html) · Device Function
     pub unsafe fn queue_notify_out_of_band(
         &self,

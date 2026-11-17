@@ -387,6 +387,23 @@ impl Device {
             .fp
             .cmd_bind_index_buffer2)(command_buffer, buffer, offset, size, index_type)
     }
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkGetImageSubresourceLayout2.html) · Device Function
+    pub unsafe fn get_image_subresource_layout2(
+        &self,
+        image: vk::Image,
+        subresource: &vk::ImageSubresource2<'_>,
+        layout: &mut vk::SubresourceLayout2<'_>,
+    ) {
+        (self.fp.get_image_subresource_layout2)(self.handle, image, subresource, layout)
+    }
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkGetDeviceImageSubresourceLayout.html) · Device Function
+    pub unsafe fn get_device_image_subresource_layout(
+        &self,
+        info: &vk::DeviceImageSubresourceInfo<'_>,
+        layout: &mut vk::SubresourceLayout2<'_>,
+    ) {
+        (self.fp.get_device_image_subresource_layout)(self.handle, info, layout)
+    }
 }
 pub(crate) mod items {
     use crate::internal_prelude::*;

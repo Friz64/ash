@@ -371,6 +371,14 @@ impl Device {
             },
         )
     }
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkGetTensorMemoryRequirementsARM.html) · Device Function
+    pub unsafe fn get_tensor_memory_requirements(
+        &self,
+        info: &vk::TensorMemoryRequirementsInfoARM<'_>,
+        memory_requirements: &mut vk::MemoryRequirements2<'_>,
+    ) {
+        (self.fp.get_tensor_memory_requirements)(self.handle, info, memory_requirements)
+    }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkBindTensorMemoryARM.html) · Device Function
     pub unsafe fn bind_tensor_memory(
         &self,
@@ -380,6 +388,20 @@ impl Device {
             .fp
             .bind_tensor_memory)(self.handle, bind_infos.len() as _, bind_infos.as_ptr())
             .result()
+    }
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkGetDeviceTensorMemoryRequirementsARM.html) · Device Function
+    pub unsafe fn get_device_tensor_memory_requirements(
+        &self,
+        info: &vk::DeviceTensorMemoryRequirementsARM<'_>,
+        memory_requirements: &mut vk::MemoryRequirements2<'_>,
+    ) {
+        (self
+            .fp
+            .get_device_tensor_memory_requirements)(
+            self.handle,
+            info,
+            memory_requirements,
+        )
     }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdCopyTensorARM.html) · Device Function
     pub unsafe fn cmd_copy_tensor(
@@ -460,6 +482,21 @@ impl Instance {
     #[inline]
     pub fn instance(&self) -> vk::Instance {
         self.handle
+    }
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkGetPhysicalDeviceExternalTensorPropertiesARM.html) · Instance Function
+    pub unsafe fn get_physical_device_external_tensor_properties(
+        &self,
+        physical_device: vk::PhysicalDevice,
+        external_tensor_info: &vk::PhysicalDeviceExternalTensorInfoARM<'_>,
+        external_tensor_properties: &mut vk::ExternalTensorPropertiesARM<'_>,
+    ) {
+        (self
+            .fp
+            .get_physical_device_external_tensor_properties)(
+            physical_device,
+            external_tensor_info,
+            external_tensor_properties,
+        )
     }
 }
 pub(crate) mod items {

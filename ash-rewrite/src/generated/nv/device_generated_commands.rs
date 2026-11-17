@@ -269,6 +269,20 @@ impl Device {
             group_index,
         )
     }
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkGetGeneratedCommandsMemoryRequirementsNV.html) · Device Function
+    pub unsafe fn get_generated_commands_memory_requirements(
+        &self,
+        info: &vk::GeneratedCommandsMemoryRequirementsInfoNV<'_>,
+        memory_requirements: &mut vk::MemoryRequirements2<'_>,
+    ) {
+        (self
+            .fp
+            .get_generated_commands_memory_requirements)(
+            self.handle,
+            info,
+            memory_requirements,
+        )
+    }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCreateIndirectCommandsLayoutNV.html) · Device Function
     pub unsafe fn create_indirect_commands_layout(
         &self,

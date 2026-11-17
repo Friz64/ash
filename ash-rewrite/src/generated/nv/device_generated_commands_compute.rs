@@ -125,6 +125,20 @@ impl Device {
             pipeline,
         )
     }
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkGetPipelineIndirectMemoryRequirementsNV.html) · Device Function
+    pub unsafe fn get_pipeline_indirect_memory_requirements(
+        &self,
+        create_info: &vk::ComputePipelineCreateInfo<'_>,
+        memory_requirements: &mut vk::MemoryRequirements2<'_>,
+    ) {
+        (self
+            .fp
+            .get_pipeline_indirect_memory_requirements)(
+            self.handle,
+            create_info,
+            memory_requirements,
+        )
+    }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkGetPipelineIndirectDeviceAddressNV.html) · Device Function
     pub unsafe fn get_pipeline_indirect_device_address(
         &self,

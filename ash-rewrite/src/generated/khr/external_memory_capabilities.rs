@@ -118,6 +118,21 @@ impl Instance {
     pub fn instance(&self) -> vk::Instance {
         self.handle
     }
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkGetPhysicalDeviceExternalBufferProperties.html) · Instance Function
+    pub unsafe fn get_physical_device_external_buffer_properties(
+        &self,
+        physical_device: vk::PhysicalDevice,
+        external_buffer_info: &vk::PhysicalDeviceExternalBufferInfo<'_>,
+        external_buffer_properties: &mut vk::ExternalBufferProperties<'_>,
+    ) {
+        (self
+            .fp
+            .get_physical_device_external_buffer_properties)(
+            physical_device,
+            external_buffer_info,
+            external_buffer_properties,
+        )
+    }
 }
 pub(crate) mod items {
     use crate::internal_prelude::*;

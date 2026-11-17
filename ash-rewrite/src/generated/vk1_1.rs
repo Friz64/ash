@@ -763,6 +763,110 @@ impl crate::Instance {
     pub fn fp_v1_1(&self) -> &crate::InstanceFnV1_1 {
         &self.instance_fn_1_1
     }
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkGetPhysicalDeviceFeatures2.html) · Instance Function
+    pub unsafe fn get_physical_device_features2(
+        &self,
+        physical_device: vk::PhysicalDevice,
+        features: &mut vk::PhysicalDeviceFeatures2<'_>,
+    ) {
+        (self.instance_fn_1_1.get_physical_device_features2)(physical_device, features)
+    }
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkGetPhysicalDeviceProperties2.html) · Instance Function
+    pub unsafe fn get_physical_device_properties2(
+        &self,
+        physical_device: vk::PhysicalDevice,
+        properties: &mut vk::PhysicalDeviceProperties2<'_>,
+    ) {
+        (self
+            .instance_fn_1_1
+            .get_physical_device_properties2)(physical_device, properties)
+    }
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkGetPhysicalDeviceFormatProperties2.html) · Instance Function
+    pub unsafe fn get_physical_device_format_properties2(
+        &self,
+        physical_device: vk::PhysicalDevice,
+        format: vk::Format,
+        format_properties: &mut vk::FormatProperties2<'_>,
+    ) {
+        (self
+            .instance_fn_1_1
+            .get_physical_device_format_properties2)(
+            physical_device,
+            format,
+            format_properties,
+        )
+    }
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkGetPhysicalDeviceImageFormatProperties2.html) · Instance Function
+    pub unsafe fn get_physical_device_image_format_properties2(
+        &self,
+        physical_device: vk::PhysicalDevice,
+        image_format_info: &vk::PhysicalDeviceImageFormatInfo2<'_>,
+        image_format_properties: &mut vk::ImageFormatProperties2<'_>,
+    ) -> VkResult<()> {
+        (self
+            .instance_fn_1_1
+            .get_physical_device_image_format_properties2)(
+                physical_device,
+                image_format_info,
+                image_format_properties,
+            )
+            .result()
+    }
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkGetPhysicalDeviceMemoryProperties2.html) · Instance Function
+    pub unsafe fn get_physical_device_memory_properties2(
+        &self,
+        physical_device: vk::PhysicalDevice,
+        memory_properties: &mut vk::PhysicalDeviceMemoryProperties2<'_>,
+    ) {
+        (self
+            .instance_fn_1_1
+            .get_physical_device_memory_properties2)(physical_device, memory_properties)
+    }
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkGetPhysicalDeviceExternalBufferProperties.html) · Instance Function
+    pub unsafe fn get_physical_device_external_buffer_properties(
+        &self,
+        physical_device: vk::PhysicalDevice,
+        external_buffer_info: &vk::PhysicalDeviceExternalBufferInfo<'_>,
+        external_buffer_properties: &mut vk::ExternalBufferProperties<'_>,
+    ) {
+        (self
+            .instance_fn_1_1
+            .get_physical_device_external_buffer_properties)(
+            physical_device,
+            external_buffer_info,
+            external_buffer_properties,
+        )
+    }
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkGetPhysicalDeviceExternalSemaphoreProperties.html) · Instance Function
+    pub unsafe fn get_physical_device_external_semaphore_properties(
+        &self,
+        physical_device: vk::PhysicalDevice,
+        external_semaphore_info: &vk::PhysicalDeviceExternalSemaphoreInfo<'_>,
+        external_semaphore_properties: &mut vk::ExternalSemaphoreProperties<'_>,
+    ) {
+        (self
+            .instance_fn_1_1
+            .get_physical_device_external_semaphore_properties)(
+            physical_device,
+            external_semaphore_info,
+            external_semaphore_properties,
+        )
+    }
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkGetPhysicalDeviceExternalFenceProperties.html) · Instance Function
+    pub unsafe fn get_physical_device_external_fence_properties(
+        &self,
+        physical_device: vk::PhysicalDevice,
+        external_fence_info: &vk::PhysicalDeviceExternalFenceInfo<'_>,
+        external_fence_properties: &mut vk::ExternalFenceProperties<'_>,
+    ) {
+        (self
+            .instance_fn_1_1
+            .get_physical_device_external_fence_properties)(
+            physical_device,
+            external_fence_info,
+            external_fence_properties,
+        )
+    }
 }
 #[derive(Clone)]
 pub struct DeviceFnV1_1 {
@@ -1160,6 +1264,26 @@ impl crate::Device {
             data,
         )
     }
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkGetBufferMemoryRequirements2.html) · Device Function
+    pub unsafe fn get_buffer_memory_requirements2(
+        &self,
+        info: &vk::BufferMemoryRequirementsInfo2<'_>,
+        memory_requirements: &mut vk::MemoryRequirements2<'_>,
+    ) {
+        (self
+            .device_fn_1_1
+            .get_buffer_memory_requirements2)(self.handle, info, memory_requirements)
+    }
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkGetImageMemoryRequirements2.html) · Device Function
+    pub unsafe fn get_image_memory_requirements2(
+        &self,
+        info: &vk::ImageMemoryRequirementsInfo2<'_>,
+        memory_requirements: &mut vk::MemoryRequirements2<'_>,
+    ) {
+        (self
+            .device_fn_1_1
+            .get_image_memory_requirements2)(self.handle, info, memory_requirements)
+    }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCreateSamplerYcbcrConversion.html) · Device Function
     pub unsafe fn create_sampler_ycbcr_conversion(
         &self,
@@ -1207,6 +1331,16 @@ impl crate::Device {
             .device_fn_1_1
             .get_device_queue2)(self.handle, queue_info, queue.as_mut_ptr());
         queue.assume_init()
+    }
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkGetDescriptorSetLayoutSupport.html) · Device Function
+    pub unsafe fn get_descriptor_set_layout_support(
+        &self,
+        create_info: &vk::DescriptorSetLayoutCreateInfo<'_>,
+        support: &mut vk::DescriptorSetLayoutSupport<'_>,
+    ) {
+        (self
+            .device_fn_1_1
+            .get_descriptor_set_layout_support)(self.handle, create_info, support)
     }
 }
 pub(crate) mod items {

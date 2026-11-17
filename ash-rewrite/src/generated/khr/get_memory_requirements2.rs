@@ -97,6 +97,22 @@ impl Device {
     pub fn device(&self) -> vk::Device {
         self.handle
     }
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkGetBufferMemoryRequirements2.html) · Device Function
+    pub unsafe fn get_buffer_memory_requirements2(
+        &self,
+        info: &vk::BufferMemoryRequirementsInfo2<'_>,
+        memory_requirements: &mut vk::MemoryRequirements2<'_>,
+    ) {
+        (self.fp.get_buffer_memory_requirements2)(self.handle, info, memory_requirements)
+    }
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkGetImageMemoryRequirements2.html) · Device Function
+    pub unsafe fn get_image_memory_requirements2(
+        &self,
+        info: &vk::ImageMemoryRequirementsInfo2<'_>,
+        memory_requirements: &mut vk::MemoryRequirements2<'_>,
+    ) {
+        (self.fp.get_image_memory_requirements2)(self.handle, info, memory_requirements)
+    }
 }
 pub(crate) mod items {
     use crate::internal_prelude::*;

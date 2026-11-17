@@ -681,15 +681,19 @@ impl Device {
         &self,
         command_buffer: vk::CommandBuffer,
         infos: &[vk::AccelerationStructureBuildGeometryInfoKHR<'_>],
-        build_range_infos: &[&[vk::AccelerationStructureBuildRangeInfoKHR]],
+        build_range_infos: &[Option<&[vk::AccelerationStructureBuildRangeInfoKHR]>],
     ) {
         assert_eq!(infos.len(), build_range_infos.len());
         let build_range_infos = build_range_infos
             .iter()
             .zip(infos.iter())
             .map(|(range_info, info)| {
-                assert_eq!(range_info.len(), info.geometry_count as usize);
-                range_info.as_ptr()
+                if let Some(range_info) = range_info {
+                    assert_eq!(range_info.len(), info.geometry_count as usize);
+                    range_info.as_ptr()
+                } else {
+                    ptr::null()
+                }
             })
             .collect::<Vec<_>>();
         (self
@@ -699,7 +703,7 @@ impl Device {
             infos.len() as _,
             infos.as_ptr(),
             build_range_infos.as_ptr(),
-        );
+        )
     }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdBuildAccelerationStructuresIndirectKHR.html) · Device Function
     pub unsafe fn cmd_build_acceleration_structures_indirect(
@@ -765,6 +769,30 @@ impl Device {
         info: &vk::AccelerationStructureDeviceAddressInfoKHR<'_>,
     ) -> vk::DeviceAddress {
         (self.fp.get_acceleration_structure_device_address)(self.handle, info)
+    }
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkGetAccelerationStructureBuildSizesKHR.html) · Device Function
+    pub unsafe fn get_acceleration_structure_build_sizes(
+        &self,
+        build_type: vk::AccelerationStructureBuildTypeKHR,
+        build_info: &vk::AccelerationStructureBuildGeometryInfoKHR<'_>,
+        max_primitive_counts: Option<&[u32]>,
+        size_info: &mut vk::AccelerationStructureBuildSizesInfoKHR<'_>,
+    ) {
+        let max_primitive_counts = if let Some(c) = max_primitive_counts {
+            assert_eq!(c.len(), build_info.geometry_count as usize);
+            c.as_ptr()
+        } else {
+            ptr::null()
+        };
+        (self
+            .fp
+            .get_acceleration_structure_build_sizes)(
+            self.handle,
+            build_type,
+            build_info,
+            max_primitive_counts,
+            size_info,
+        )
     }
 }
 pub(crate) mod items {

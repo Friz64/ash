@@ -141,7 +141,7 @@ fn vkCmdBuildAccelerationStructuresKHR(
     &self,
     command_buffer: vk::CommandBuffer,
     infos: &[vk::AccelerationStructureBuildGeometryInfoKHR<'_>],
-    build_range_infos: &[&[vk::AccelerationStructureBuildRangeInfoKHR]],
+    build_range_infos: &[Option<&[vk::AccelerationStructureBuildRangeInfoKHR]>],
 ) {
     assert_eq!(infos.len(), build_range_infos.len());
 
@@ -149,8 +149,13 @@ fn vkCmdBuildAccelerationStructuresKHR(
         .iter()
         .zip(infos.iter())
         .map(|(range_info, info)| {
-            assert_eq!(range_info.len(), info.geometry_count as usize);
-            range_info.as_ptr()
+            if let Some(range_info) = range_info {
+                assert_eq!(range_info.len(), info.geometry_count as usize);
+                range_info.as_ptr()
+            } else {
+                // Must be NULL for at least VUID-vkCmdBuildAccelerationStructuresKHR-ppBuildRangeInfos-11544
+                ptr::null()
+            }
         })
         .collect::<Vec<_>>();
 
@@ -159,7 +164,7 @@ fn vkCmdBuildAccelerationStructuresKHR(
         infos.len() as _,
         infos.as_ptr(),
         build_range_infos.as_ptr(),
-    );
+    )
 }
 
 fn vkCmdBuildAccelerationStructuresIndirectKHR(
@@ -316,4 +321,28 @@ fn vkGetQueryPoolResults<T>(
         flags,
     )
     .result()
+}
+
+fn vkGetAccelerationStructureBuildSizesKHR(
+    &self,
+    build_type: vk::AccelerationStructureBuildTypeKHR,
+    build_info: &vk::AccelerationStructureBuildGeometryInfoKHR<'_>,
+    max_primitive_counts: Option<&[u32]>,
+    size_info: &mut vk::AccelerationStructureBuildSizesInfoKHR<'_>,
+) {
+    let max_primitive_counts = if let Some(c) = max_primitive_counts {
+        assert_eq!(c.len(), build_info.geometry_count as usize);
+        c.as_ptr()
+    } else {
+        // Must be NULL for at least VUID-vkGetAccelerationStructureBuildSizesKHR-pMaxPrimitiveCounts-11613
+        ptr::null()
+    };
+
+    (self.__table.get_acceleration_structure_build_sizes)(
+        self.handle,
+        build_type,
+        build_info,
+        max_primitive_counts,
+        size_info,
+    )
 }

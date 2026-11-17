@@ -100,6 +100,23 @@ impl Device {
             )
             .assume_init_on_success(zircon_handle)
     }
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkGetMemoryZirconHandlePropertiesFUCHSIA.html) · Device Function
+    pub unsafe fn get_memory_zircon_handle_properties(
+        &self,
+        handle_type: vk::ExternalMemoryHandleTypeFlagBits,
+        zircon_handle: vk::zx_handle_t,
+        memory_zircon_handle_properties: &mut vk::MemoryZirconHandlePropertiesFUCHSIA<'_>,
+    ) -> VkResult<()> {
+        (self
+            .fp
+            .get_memory_zircon_handle_properties)(
+                self.handle,
+                handle_type,
+                zircon_handle,
+                memory_zircon_handle_properties,
+            )
+            .result()
+    }
 }
 pub(crate) mod items {
     use crate::internal_prelude::*;

@@ -229,6 +229,15 @@ impl Device {
             },
         )
     }
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkGetBufferCollectionPropertiesFUCHSIA.html) · Device Function
+    pub unsafe fn get_buffer_collection_properties(
+        &self,
+        collection: vk::BufferCollectionFUCHSIA,
+        properties: &mut vk::BufferCollectionPropertiesFUCHSIA<'_>,
+    ) -> VkResult<()> {
+        (self.fp.get_buffer_collection_properties)(self.handle, collection, properties)
+            .result()
+    }
 }
 pub(crate) mod items {
     use crate::internal_prelude::*;

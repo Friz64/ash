@@ -175,6 +175,15 @@ impl Device {
     pub fn device(&self) -> vk::Device {
         self.handle
     }
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkGetImageSubresourceLayout2.html) · Device Function
+    pub unsafe fn get_image_subresource_layout2(
+        &self,
+        image: vk::Image,
+        subresource: &vk::ImageSubresource2<'_>,
+        layout: &mut vk::SubresourceLayout2<'_>,
+    ) {
+        (self.fp.get_image_subresource_layout2)(self.handle, image, subresource, layout)
+    }
 }
 pub(crate) mod items {
     use crate::internal_prelude::*;

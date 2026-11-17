@@ -96,6 +96,13 @@ impl Device {
     pub fn device(&self) -> vk::Device {
         self.handle
     }
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkExportMetalObjectsEXT.html) · Device Function
+    pub unsafe fn export_metal_objects(
+        &self,
+        metal_objects_info: &mut vk::ExportMetalObjectsInfoEXT<'_>,
+    ) {
+        (self.fp.export_metal_objects)(self.handle, metal_objects_info)
+    }
 }
 pub(crate) mod items {
     use crate::internal_prelude::*;

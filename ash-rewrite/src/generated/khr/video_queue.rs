@@ -195,6 +195,22 @@ impl Instance {
     pub fn instance(&self) -> vk::Instance {
         self.handle
     }
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkGetPhysicalDeviceVideoCapabilitiesKHR.html) · Instance Function
+    pub unsafe fn get_physical_device_video_capabilities(
+        &self,
+        physical_device: vk::PhysicalDevice,
+        video_profile: &vk::VideoProfileInfoKHR<'_>,
+        capabilities: &mut vk::VideoCapabilitiesKHR<'_>,
+    ) -> VkResult<()> {
+        (self
+            .fp
+            .get_physical_device_video_capabilities)(
+                physical_device,
+                video_profile,
+                capabilities,
+            )
+            .result()
+    }
 }
 #[derive(Clone)]
 pub struct DeviceFn {

@@ -78,6 +78,21 @@ impl Device {
     pub fn device(&self) -> vk::Device {
         self.handle
     }
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkGetDynamicRenderingTilePropertiesQCOM.html) · Device Function
+    pub unsafe fn get_dynamic_rendering_tile_properties(
+        &self,
+        rendering_info: &vk::RenderingInfo<'_>,
+        properties: &mut vk::TilePropertiesQCOM<'_>,
+    ) -> VkResult<()> {
+        (self
+            .fp
+            .get_dynamic_rendering_tile_properties)(
+                self.handle,
+                rendering_info,
+                properties,
+            )
+            .result()
+    }
 }
 pub(crate) mod items {
     use crate::internal_prelude::*;

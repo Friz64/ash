@@ -515,8 +515,17 @@ impl WrapperCallArg {
                         ..Default::default()
                     };
                 }
+                WrapperOutputKind::TaggedSingle => {
+                    return WrapperCallArg {
+                        param: Some(WrapperParam {
+                            name,
+                            ty: RustTy::Ref(Box::new(output.inner_ty.to_rust()), Mutability::Mut),
+                        }),
+                        value: quote! { #ident },
+                        ..Default::default()
+                    };
+                }
                 // todo
-                WrapperOutputKind::TaggedSingle => (),
                 WrapperOutputKind::TaggedArray => (),
             }
         }
@@ -530,8 +539,10 @@ impl WrapperCallArg {
         if let Some(output) = length_of_output {
             let length_of = param_ident(output.param.decl.name);
             match output.kind {
-                WrapperOutputKind::UntaggedSingle
-                | WrapperOutputKind::UntaggedArrayWithInput { .. } => {
+                WrapperOutputKind::UntaggedSingle | WrapperOutputKind::TaggedSingle => {
+                    unreachable!()
+                }
+                WrapperOutputKind::UntaggedArrayWithInput { .. } => {
                     return WrapperCallArg {
                         value: quote! { #length_of.len() as _ },
                         ..Default::default()
@@ -544,7 +555,6 @@ impl WrapperCallArg {
                     };
                 }
                 // todo
-                WrapperOutputKind::TaggedSingle => (),
                 WrapperOutputKind::TaggedArray => (),
             }
         } else if let Some(length_of) = param.length_of.first() {
@@ -820,6 +830,33 @@ fn wrapper(octx: &OutputContext, command: &Command, name: &Ident) -> Vec<Functio
                         vk::Result::SUCCESS => Ok(#param),
                         _ => Err((#param, err_code)),
                     }
+                },
+                ..Default::default()
+            }]
+        }
+        [
+            WrapperOutput {
+                kind: WrapperOutputKind::TaggedSingle,
+                ..
+            },
+        ] => {
+            let return_value = if call_ret_result {
+                quote! { #call.result() }
+            } else {
+                call
+            };
+
+            vec![Function {
+                generic_params,
+                inputs,
+                output: if call_ret_result {
+                    quote! { -> VkResult<()> }
+                } else {
+                    quote! {}
+                },
+                content: quote! {
+                    #(#length_eq_asserts)*
+                    #return_value
                 },
                 ..Default::default()
             }]

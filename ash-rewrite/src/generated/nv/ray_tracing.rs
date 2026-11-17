@@ -488,6 +488,20 @@ impl Device {
             },
         )
     }
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkGetAccelerationStructureMemoryRequirementsNV.html) · Device Function
+    pub unsafe fn get_acceleration_structure_memory_requirements(
+        &self,
+        info: &vk::AccelerationStructureMemoryRequirementsInfoNV<'_>,
+        memory_requirements: &mut vk::MemoryRequirements2<'_>,
+    ) {
+        (self
+            .fp
+            .get_acceleration_structure_memory_requirements)(
+            self.handle,
+            info,
+            memory_requirements,
+        )
+    }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkBindAccelerationStructureMemoryNV.html) · Device Function
     pub unsafe fn bind_acceleration_structure_memory(
         &self,

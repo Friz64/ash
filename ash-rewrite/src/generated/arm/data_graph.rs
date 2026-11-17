@@ -373,6 +373,20 @@ impl Device {
             )
             .assume_init_on_success(session)
     }
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkGetDataGraphPipelineSessionMemoryRequirementsARM.html) · Device Function
+    pub unsafe fn get_data_graph_pipeline_session_memory_requirements(
+        &self,
+        info: &vk::DataGraphPipelineSessionMemoryRequirementsInfoARM<'_>,
+        memory_requirements: &mut vk::MemoryRequirements2<'_>,
+    ) {
+        (self
+            .fp
+            .get_data_graph_pipeline_session_memory_requirements)(
+            self.handle,
+            info,
+            memory_requirements,
+        )
+    }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkBindDataGraphPipelineSessionMemoryARM.html) · Device Function
     pub unsafe fn bind_data_graph_pipeline_session_memory(
         &self,
@@ -512,6 +526,25 @@ impl Instance {
     #[inline]
     pub fn instance(&self) -> vk::Instance {
         self.handle
+    }
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkGetPhysicalDeviceQueueFamilyDataGraphProcessingEnginePropertiesARM.html) · Instance Function
+    pub unsafe fn get_physical_device_queue_family_data_graph_processing_engine_properties(
+        &self,
+        physical_device: vk::PhysicalDevice,
+        queue_family_data_graph_processing_engine_info: &vk::PhysicalDeviceQueueFamilyDataGraphProcessingEngineInfoARM<
+            '_,
+        >,
+        queue_family_data_graph_processing_engine_properties: &mut vk::QueueFamilyDataGraphProcessingEnginePropertiesARM<
+            '_,
+        >,
+    ) {
+        (self
+            .fp
+            .get_physical_device_queue_family_data_graph_processing_engine_properties)(
+            physical_device,
+            queue_family_data_graph_processing_engine_info,
+            queue_family_data_graph_processing_engine_properties,
+        )
     }
 }
 pub(crate) mod items {
