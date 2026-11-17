@@ -947,13 +947,12 @@ fn wrapper(octx: &OutputContext, command: &Command, name: &Ident) -> Vec<Functio
                 ..Default::default()
             }]
         }
-        // TODO REMOVE `if call_ret_result`
         [
             output @ WrapperOutput {
                 kind: WrapperOutputKind::TaggedArrayWithUnknownLength,
                 ..
             },
-        ] if call_ret_result => {
+        ] => {
             let Some(Length::DefinedByParam(count)) = &output.param.length else {
                 unreachable!()
             };
@@ -969,27 +968,43 @@ fn wrapper(octx: &OutputContext, command: &Command, name: &Ident) -> Vec<Functio
             let len_wrapper = WrapperData::new(octx, command, name, &wrapper_outputs, true);
             let len_call = len_wrapper.call;
             let len_name = format_ident!("{name}_len");
+            let len_return_value = if call_ret_result {
+                quote! { #len_call.assume_init_on_success(#count).map(|c| c as usize) }
+            } else {
+                quote! { #len_call; #count.assume_init() as usize }
+            };
+
+            let call_bail = call_ret_result.then(|| quote! { .result()? });
+            let return_value = call_ret_result.then(|| quote! { Ok(()) });
             vec![
                 Function {
                     name_override: Some(len_name),
                     generic_params: len_wrapper.generic_params,
                     inputs: len_wrapper.inputs,
-                    output: quote! { -> VkResult<usize> },
+                    output: if call_ret_result {
+                        quote! { -> VkResult<usize> }
+                    } else {
+                        quote! { -> usize }
+                    },
                     content: quote! {
                         let mut #count = MaybeUninit::uninit();
-                        #len_call.assume_init_on_success(#count).map(|c| c as usize)
+                        #len_return_value
                     },
                     ..Default::default()
                 },
                 Function {
                     generic_params,
                     inputs,
-                    output: quote! { -> VkResult<()> },
+                    output: if call_ret_result {
+                        quote! { -> VkResult<()> }
+                    } else {
+                        quote! {}
+                    },
                     content: quote! {
                         let mut #count = #data.len() as #count_ty;
-                        #call.result()?;
+                        #call #call_bail;
                         assert_eq!(#count as usize, #data.len());
-                        Ok(())
+                        #return_value
                     },
                     ..Default::default()
                 },

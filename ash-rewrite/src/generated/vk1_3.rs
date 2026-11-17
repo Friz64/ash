@@ -998,6 +998,42 @@ impl crate::Device {
             memory_requirements,
         )
     }
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkGetDeviceImageSparseMemoryRequirements.html) · Device Function
+    pub unsafe fn get_device_image_sparse_memory_requirements_len(
+        &self,
+        info: &vk::DeviceImageMemoryRequirements<'_>,
+    ) -> usize {
+        let mut sparse_memory_requirement_count = MaybeUninit::uninit();
+        (self
+            .device_fn_1_3
+            .get_device_image_sparse_memory_requirements)(
+            self.handle,
+            info,
+            sparse_memory_requirement_count.as_mut_ptr(),
+            ptr::null_mut(),
+        );
+        sparse_memory_requirement_count.assume_init() as usize
+    }
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkGetDeviceImageSparseMemoryRequirements.html) · Device Function
+    pub unsafe fn get_device_image_sparse_memory_requirements(
+        &self,
+        info: &vk::DeviceImageMemoryRequirements<'_>,
+        sparse_memory_requirements: &mut [vk::SparseImageMemoryRequirements2<'_>],
+    ) {
+        let mut sparse_memory_requirement_count = sparse_memory_requirements.len()
+            as u32;
+        (self
+            .device_fn_1_3
+            .get_device_image_sparse_memory_requirements)(
+            self.handle,
+            info,
+            &mut sparse_memory_requirement_count,
+            sparse_memory_requirements.as_mut_ptr(),
+        );
+        assert_eq!(
+            sparse_memory_requirement_count as usize, sparse_memory_requirements.len()
+        );
+    }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdSetCullMode.html) · Device Function
     pub unsafe fn cmd_set_cull_mode(
         &self,

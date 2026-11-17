@@ -812,6 +812,37 @@ impl crate::Instance {
             )
             .result()
     }
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkGetPhysicalDeviceQueueFamilyProperties2.html) · Instance Function
+    pub unsafe fn get_physical_device_queue_family_properties2_len(
+        &self,
+        physical_device: vk::PhysicalDevice,
+    ) -> usize {
+        let mut queue_family_property_count = MaybeUninit::uninit();
+        (self
+            .instance_fn_1_1
+            .get_physical_device_queue_family_properties2)(
+            physical_device,
+            queue_family_property_count.as_mut_ptr(),
+            ptr::null_mut(),
+        );
+        queue_family_property_count.assume_init() as usize
+    }
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkGetPhysicalDeviceQueueFamilyProperties2.html) · Instance Function
+    pub unsafe fn get_physical_device_queue_family_properties2(
+        &self,
+        physical_device: vk::PhysicalDevice,
+        queue_family_properties: &mut [vk::QueueFamilyProperties2<'_>],
+    ) {
+        let mut queue_family_property_count = queue_family_properties.len() as u32;
+        (self
+            .instance_fn_1_1
+            .get_physical_device_queue_family_properties2)(
+            physical_device,
+            &mut queue_family_property_count,
+            queue_family_properties.as_mut_ptr(),
+        );
+        assert_eq!(queue_family_property_count as usize, queue_family_properties.len());
+    }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkGetPhysicalDeviceMemoryProperties2.html) · Instance Function
     pub unsafe fn get_physical_device_memory_properties2(
         &self,
@@ -821,6 +852,41 @@ impl crate::Instance {
         (self
             .instance_fn_1_1
             .get_physical_device_memory_properties2)(physical_device, memory_properties)
+    }
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkGetPhysicalDeviceSparseImageFormatProperties2.html) · Instance Function
+    pub unsafe fn get_physical_device_sparse_image_format_properties2_len(
+        &self,
+        physical_device: vk::PhysicalDevice,
+        format_info: &vk::PhysicalDeviceSparseImageFormatInfo2<'_>,
+    ) -> usize {
+        let mut property_count = MaybeUninit::uninit();
+        (self
+            .instance_fn_1_1
+            .get_physical_device_sparse_image_format_properties2)(
+            physical_device,
+            format_info,
+            property_count.as_mut_ptr(),
+            ptr::null_mut(),
+        );
+        property_count.assume_init() as usize
+    }
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkGetPhysicalDeviceSparseImageFormatProperties2.html) · Instance Function
+    pub unsafe fn get_physical_device_sparse_image_format_properties2(
+        &self,
+        physical_device: vk::PhysicalDevice,
+        format_info: &vk::PhysicalDeviceSparseImageFormatInfo2<'_>,
+        properties: &mut [vk::SparseImageFormatProperties2<'_>],
+    ) {
+        let mut property_count = properties.len() as u32;
+        (self
+            .instance_fn_1_1
+            .get_physical_device_sparse_image_format_properties2)(
+            physical_device,
+            format_info,
+            &mut property_count,
+            properties.as_mut_ptr(),
+        );
+        assert_eq!(property_count as usize, properties.len());
     }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkGetPhysicalDeviceExternalBufferProperties.html) · Instance Function
     pub unsafe fn get_physical_device_external_buffer_properties(
@@ -1316,6 +1382,42 @@ impl crate::Device {
         (self
             .device_fn_1_1
             .get_image_memory_requirements2)(self.handle, info, memory_requirements)
+    }
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkGetImageSparseMemoryRequirements2.html) · Device Function
+    pub unsafe fn get_image_sparse_memory_requirements2_len(
+        &self,
+        info: &vk::ImageSparseMemoryRequirementsInfo2<'_>,
+    ) -> usize {
+        let mut sparse_memory_requirement_count = MaybeUninit::uninit();
+        (self
+            .device_fn_1_1
+            .get_image_sparse_memory_requirements2)(
+            self.handle,
+            info,
+            sparse_memory_requirement_count.as_mut_ptr(),
+            ptr::null_mut(),
+        );
+        sparse_memory_requirement_count.assume_init() as usize
+    }
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkGetImageSparseMemoryRequirements2.html) · Device Function
+    pub unsafe fn get_image_sparse_memory_requirements2(
+        &self,
+        info: &vk::ImageSparseMemoryRequirementsInfo2<'_>,
+        sparse_memory_requirements: &mut [vk::SparseImageMemoryRequirements2<'_>],
+    ) {
+        let mut sparse_memory_requirement_count = sparse_memory_requirements.len()
+            as u32;
+        (self
+            .device_fn_1_1
+            .get_image_sparse_memory_requirements2)(
+            self.handle,
+            info,
+            &mut sparse_memory_requirement_count,
+            sparse_memory_requirements.as_mut_ptr(),
+        );
+        assert_eq!(
+            sparse_memory_requirement_count as usize, sparse_memory_requirements.len()
+        );
     }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCreateSamplerYcbcrConversion.html) · Device Function
     pub unsafe fn create_sampler_ycbcr_conversion(
