@@ -353,7 +353,7 @@ impl Device {
             self.handle,
             deferred_operation,
             pipeline_cache,
-            pipelines.len() as _,
+            create_infos.len() as _,
             create_infos.as_ptr(),
             match allocator {
                 Some(r) => r,

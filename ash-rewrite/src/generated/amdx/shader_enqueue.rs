@@ -240,7 +240,7 @@ impl Device {
             .create_execution_graph_pipelines)(
             self.handle,
             pipeline_cache,
-            pipelines.len() as _,
+            create_infos.len() as _,
             create_infos.as_ptr(),
             match allocator {
                 Some(r) => r,

@@ -416,7 +416,7 @@ impl Device {
             .fp
             .get_image_opaque_capture_data)(
             self.handle,
-            datas.len() as _,
+            images.len() as _,
             images.as_ptr(),
             datas.as_mut_ptr(),
         );
@@ -439,7 +439,7 @@ impl Device {
             .fp
             .get_tensor_opaque_capture_data)(
             self.handle,
-            datas.len() as _,
+            tensors.len() as _,
             tensors.as_ptr(),
             datas.as_mut_ptr(),
         );

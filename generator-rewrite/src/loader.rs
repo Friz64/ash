@@ -584,10 +584,16 @@ impl WrapperCallArg {
                 WrapperOutputKind::UntaggedSingle | WrapperOutputKind::TaggedSingle => {
                     unreachable!()
                 }
-                WrapperOutputKind::TaggedArray
-                | WrapperOutputKind::UntaggedArrayWithInput { .. } => {
+                WrapperOutputKind::TaggedArray => {
                     return WrapperCallArg {
                         value: quote! { #length_of.len() as _ },
+                        ..Default::default()
+                    };
+                }
+                WrapperOutputKind::UntaggedArrayWithInput { input } => {
+                    let input = param_ident(input);
+                    return WrapperCallArg {
+                        value: quote! { #input.len() as _ },
                         ..Default::default()
                     };
                 }

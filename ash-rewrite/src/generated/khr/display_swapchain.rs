@@ -76,7 +76,7 @@ impl Device {
             .fp
             .create_shared_swapchains)(
             self.handle,
-            swapchains.len() as _,
+            create_infos.len() as _,
             create_infos.as_ptr(),
             match allocator {
                 Some(r) => r,

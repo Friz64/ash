@@ -4078,7 +4078,7 @@ impl crate::Device {
             .create_graphics_pipelines)(
             self.handle,
             pipeline_cache,
-            pipelines.len() as _,
+            create_infos.len() as _,
             create_infos.as_ptr(),
             match allocator {
                 Some(r) => r,
@@ -4105,7 +4105,7 @@ impl crate::Device {
             .create_compute_pipelines)(
             self.handle,
             pipeline_cache,
-            pipelines.len() as _,
+            create_infos.len() as _,
             create_infos.as_ptr(),
             match allocator {
                 Some(r) => r,

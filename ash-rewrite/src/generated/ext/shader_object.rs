@@ -1201,7 +1201,7 @@ impl Device {
             .fp
             .create_shaders)(
             self.handle,
-            shaders.len() as _,
+            create_infos.len() as _,
             create_infos.as_ptr(),
             match allocator {
                 Some(r) => r,
