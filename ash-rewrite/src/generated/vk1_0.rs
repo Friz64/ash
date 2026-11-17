@@ -4039,17 +4039,15 @@ impl crate::Device {
     pub unsafe fn get_pipeline_cache_data(
         &self,
         pipeline_cache: vk::PipelineCache,
-        data: &mut [u8],
-    ) -> VkResult<()> {
-        (self
+    ) -> VkResult<Vec<u8>> {
+        read_into_uninitialized_vector(|data_size, data: *mut u8| (self
             .device_fn_1_0
             .get_pipeline_cache_data)(
-                self.handle,
-                pipeline_cache,
-                data.len() as _,
-                data.as_mut_ptr().cast(),
-            )
-            .result()
+            self.handle,
+            pipeline_cache,
+            data_size,
+            data.cast(),
+        ))
     }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkMergePipelineCaches.html) · Device Function
     pub unsafe fn merge_pipeline_caches(

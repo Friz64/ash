@@ -67,19 +67,17 @@ impl Device {
         pipeline: vk::Pipeline,
         shader_stage: vk::ShaderStageFlagBits,
         info_type: vk::ShaderInfoTypeAMD,
-        info: &mut [u8],
-    ) -> VkResult<()> {
-        (self
+    ) -> VkResult<Vec<u8>> {
+        read_into_uninitialized_vector(|info_size, info: *mut u8| (self
             .fp
             .get_shader_info)(
-                self.handle,
-                pipeline,
-                shader_stage,
-                info_type,
-                info.len() as _,
-                info.as_mut_ptr().cast(),
-            )
-            .result()
+            self.handle,
+            pipeline,
+            shader_stage,
+            info_type,
+            info_size,
+            info.cast(),
+        ))
     }
 }
 pub(crate) mod items {

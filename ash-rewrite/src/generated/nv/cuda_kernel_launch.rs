@@ -157,17 +157,10 @@ impl Device {
     pub unsafe fn get_cuda_module_cache(
         &self,
         module: vk::CudaModuleNV,
-        cache_data: &mut [u8],
-    ) -> VkResult<()> {
-        (self
+    ) -> VkResult<Vec<u8>> {
+        read_into_uninitialized_vector(|cache_size, cache_data: *mut u8| (self
             .fp
-            .get_cuda_module_cache)(
-                self.handle,
-                module,
-                cache_data.len() as _,
-                cache_data.as_mut_ptr().cast(),
-            )
-            .result()
+            .get_cuda_module_cache)(self.handle, module, cache_size, cache_data.cast()))
     }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCreateCudaFunctionNV.html) · Device Function
     pub unsafe fn create_cuda_function(

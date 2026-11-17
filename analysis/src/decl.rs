@@ -129,8 +129,12 @@ impl Ty {
         }
     }
 
+    pub fn is_void(&self) -> bool {
+        matches!(self, Ty::CPrimary(CPrimaryType::Void))
+    }
+
     pub fn is_opaque(&self) -> bool {
-        if let Ty::CPrimary(CPrimaryType::Void) = self {
+        if self.is_void() {
             return true;
         }
 

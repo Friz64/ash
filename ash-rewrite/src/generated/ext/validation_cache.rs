@@ -145,17 +145,15 @@ impl Device {
     pub unsafe fn get_validation_cache_data(
         &self,
         validation_cache: vk::ValidationCacheEXT,
-        data: &mut [u8],
-    ) -> VkResult<()> {
-        (self
+    ) -> VkResult<Vec<u8>> {
+        read_into_uninitialized_vector(|data_size, data: *mut u8| (self
             .fp
             .get_validation_cache_data)(
-                self.handle,
-                validation_cache,
-                data.len() as _,
-                data.as_mut_ptr().cast(),
-            )
-            .result()
+            self.handle,
+            validation_cache,
+            data_size,
+            data.cast(),
+        ))
     }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkMergeValidationCachesEXT.html) · Device Function
     pub unsafe fn merge_validation_caches(

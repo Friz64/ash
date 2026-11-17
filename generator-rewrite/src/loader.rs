@@ -386,20 +386,15 @@ enum WrapperOutputKind {
 }
 
 #[derive(Debug)]
-struct WrapperOutputParam<'a> {
+struct WrapperOutput<'a> {
     kind: WrapperOutputKind,
     param: &'a CommandParam,
     inner_ty: &'static Ty,
 }
 
-#[derive(Debug)]
-struct WrapperOutput<'a> {
-    params: Vec<WrapperOutputParam<'a>>,
-}
-
 impl<'a> WrapperOutput<'a> {
-    fn new(ctx: &Context, command: &'a Command) -> WrapperOutput<'a> {
-        let params: Vec<_> = command
+    fn list(ctx: &Context, command: &'a Command) -> Vec<WrapperOutput<'a>> {
+        command
             .params
             .values()
             .filter(|param| {
@@ -407,26 +402,29 @@ impl<'a> WrapperOutput<'a> {
             })
             .filter_map(|param| {
                 let mut array = false;
+                let mut output_array = false;
                 let mut array_input = None;
                 if let Some(Length::DefinedByParam(length_param)) = param.length {
                     array = true;
-                    array_input = command.params[&length_param]
-                        .length_of
-                        .iter()
-                        .filter(|&&array_param| array_param != param.decl.name)
-                        .find(|&array_param| {
-                            let array_param = &command.params[array_param];
-                            matches!(array_param.decl.ty, Ty::Ptr(.., Mutability::Not))
-                        });
+                    output_array = matches!(
+                        command.params[&length_param].decl.ty,
+                        Ty::Ptr(.., Mutability::Mut)
+                    );
+
+                    let all_array_params = &command.params[&length_param].length_of;
+                    array_input = all_array_params.iter().find(|&array_param| {
+                        let array_param = &command.params[array_param];
+                        matches!(array_param.decl.ty, Ty::Ptr(.., Mutability::Not))
+                    });
                 }
 
-                if let Ty::Ptr(Ty::CPrimary(CPrimaryType::Void), Mutability::Mut) = &param.decl.ty {
+                if let Ty::Ptr(Ty::CPrimary(CPrimaryType::Void), Mutability::Mut) = &param.decl.ty
+                    && !output_array
+                {
                     return None;
                 }
 
-                if param.length_of.is_empty()
-                    && let Ty::Ptr(to, Mutability::Mut) = &param.decl.ty
-                {
+                if let Ty::Ptr(to, Mutability::Mut) = &param.decl.ty {
                     let mut tagged = false;
                     if let Ty::ApiType(name) = to
                         && let TypeItem::Struct(struct_) = ctx.resolve_type(*name)
@@ -435,7 +433,7 @@ impl<'a> WrapperOutput<'a> {
                         tagged = true;
                     }
 
-                    return Some(WrapperOutputParam {
+                    return Some(WrapperOutput {
                         kind: match (array, tagged) {
                             (false, false) => WrapperOutputKind::UntaggedSingle,
                             (true, false) if let Some(&input) = array_input => {
@@ -452,9 +450,7 @@ impl<'a> WrapperOutput<'a> {
 
                 None
             })
-            .collect();
-
-        WrapperOutput { params }
+            .collect()
     }
 }
 
@@ -477,7 +473,7 @@ struct WrapperCallArg {
 }
 
 impl WrapperCallArg {
-    fn new(param: &CommandParam, wrapper_output: &WrapperOutput) -> WrapperCallArg {
+    fn new(param: &CommandParam, wrapper_outputs: &[WrapperOutput]) -> WrapperCallArg {
         let name = param.decl.name;
         let ident = param_ident(name);
 
@@ -497,12 +493,11 @@ impl WrapperCallArg {
             };
         }
 
-        let output_param = wrapper_output
-            .params
+        let output = wrapper_outputs
             .iter()
-            .find(|output_param| ptr::addr_eq(output_param.param, param));
-        if let Some(output_param) = output_param {
-            match output_param.kind {
+            .find(|output| ptr::addr_eq(output.param, param));
+        if let Some(output) = output {
+            match output.kind {
                 WrapperOutputKind::UntaggedSingle
                 | WrapperOutputKind::UntaggedArrayWithInput { .. } => {
                     return WrapperCallArg {
@@ -512,7 +507,11 @@ impl WrapperCallArg {
                 }
                 WrapperOutputKind::UntaggedArray => {
                     return WrapperCallArg {
-                        value: quote! { #ident },
+                        value: if output.inner_ty.is_void() {
+                            quote! { #ident.cast() }
+                        } else {
+                            quote! { #ident }
+                        },
                         ..Default::default()
                     };
                 }
@@ -522,15 +521,15 @@ impl WrapperCallArg {
             }
         }
 
-        let length_of_output_param = wrapper_output.params.iter().find(|output_param| {
+        let length_of_output = wrapper_outputs.iter().find(|output| {
             matches!(
-                output_param.param.length,
+                output.param.length,
                 Some(Length::DefinedByParam(len)) if param.decl.name == len
             )
         });
-        if let Some(output_param) = length_of_output_param {
-            let length_of = param_ident(output_param.param.decl.name);
-            match output_param.kind {
+        if let Some(output) = length_of_output {
+            let length_of = param_ident(output.param.decl.name);
+            match output.kind {
                 WrapperOutputKind::UntaggedSingle
                 | WrapperOutputKind::UntaggedArrayWithInput { .. } => {
                     return WrapperCallArg {
@@ -654,12 +653,12 @@ impl WrapperCallArg {
 fn wrapper(octx: &OutputContext, command: &Command, name: &Ident) -> Vec<Function> {
     let call_ret_result =
         matches!(command.return_type, Some(Ty::ApiType(name)) if name == TypeName::VK_RESULT);
-    let wrapper_output = WrapperOutput::new(octx, command);
+    let wrapper_outputs = WrapperOutput::list(octx, command);
 
     let call_args: Vec<_> = command
         .params
         .values()
-        .map(|param| WrapperCallArg::new(param, &wrapper_output))
+        .map(|param| WrapperCallArg::new(param, &wrapper_outputs))
         .collect();
 
     let mut generic_param_iter = call_args
@@ -689,9 +688,9 @@ fn wrapper(octx: &OutputContext, command: &Command, name: &Ident) -> Vec<Functio
     let arg_code = call_args.iter().map(|param| &param.value);
     let call = quote! { (self.__table.#name)( #( #arg_code ),* ) };
 
-    match wrapper_output.params.as_slice() {
+    match wrapper_outputs.as_slice() {
         [] => {
-            let call = if call_ret_result {
+            let return_value = if call_ret_result {
                 quote! { #call.result() }
             } else {
                 quote! { #call }
@@ -710,13 +709,13 @@ fn wrapper(octx: &OutputContext, command: &Command, name: &Ident) -> Vec<Functio
                 },
                 content: quote! {
                     #(#length_eq_asserts)*
-                    #call
+                    #return_value
                 },
                 ..Default::default()
             }]
         }
         [
-            output @ WrapperOutputParam {
+            output @ WrapperOutput {
                 kind: WrapperOutputKind::UntaggedSingle,
                 ..
             },
@@ -725,7 +724,7 @@ fn wrapper(octx: &OutputContext, command: &Command, name: &Ident) -> Vec<Functio
             let bool32 =
                 matches!(output.inner_ty, &Ty::ApiType(name) if name == TypeName::VK_BOOL32);
 
-            let call = match (call_ret_result, bool32) {
+            let return_value = match (call_ret_result, bool32) {
                 (false, false) => quote! { #call; #param.assume_init() },
                 (true, false) => quote! { #call.assume_init_on_success(#param) },
                 (false, true) => quote! { #call; #param.assume_init() > 0 },
@@ -747,13 +746,13 @@ fn wrapper(octx: &OutputContext, command: &Command, name: &Ident) -> Vec<Functio
                 content: quote! {
                     #(#length_eq_asserts)*
                     let mut #param = MaybeUninit::uninit();
-                    #call
+                    #return_value
                 },
                 ..Default::default()
             }]
         }
         [
-            output @ WrapperOutputParam {
+            output @ WrapperOutput {
                 kind: WrapperOutputKind::UntaggedArray,
                 ..
             },
@@ -764,12 +763,19 @@ fn wrapper(octx: &OutputContext, command: &Command, name: &Ident) -> Vec<Functio
             };
 
             let data = param_ident(output.param.decl.name);
-            let inner_ty = output.inner_ty.to_rust().tokens(&**octx, None);
-            let call = if call_ret_result {
-                quote! { read_into_uninitialized_vector(|#count, #data| #call) }
+            let explicit_data_ty = output.inner_ty.is_void().then(|| quote! { : *mut u8 });
+            let inner_ret_ty = if output.inner_ty.is_void() {
+                quote! { u8 }
+            } else {
+                output.inner_ty.to_rust().tokens(&**octx, None)
+            };
+
+            let closure_args = quote! { #count, #data #explicit_data_ty };
+            let return_value = if call_ret_result {
+                quote! { read_into_uninitialized_vector(|#closure_args| #call) }
             } else {
                 quote! {
-                    read_into_uninitialized_vector(|#count, #data| {
+                    read_into_uninitialized_vector(|#closure_args| {
                         #call;
                         vk::Result::SUCCESS
                     })
@@ -780,19 +786,19 @@ fn wrapper(octx: &OutputContext, command: &Command, name: &Ident) -> Vec<Functio
                 generic_params,
                 inputs,
                 output: if call_ret_result {
-                    quote! { -> VkResult<Vec<#inner_ty>> }
+                    quote! { -> VkResult<Vec<#inner_ret_ty>> }
                 } else {
-                    quote! { -> Vec<#inner_ty> }
+                    quote! { -> Vec<#inner_ret_ty> }
                 },
                 content: quote! {
                     #(#length_eq_asserts)*
-                    #call
+                    #return_value
                 },
                 ..Default::default()
             }]
         }
         [
-            output @ WrapperOutputParam {
+            output @ WrapperOutput {
                 kind: WrapperOutputKind::UntaggedArrayWithInput { input },
                 ..
             },

@@ -384,18 +384,16 @@ impl Device {
         &self,
         gpa_session: vk::GpaSessionAMD,
         sample_id: u32,
-        data: &mut [u8],
-    ) -> VkResult<()> {
-        (self
+    ) -> VkResult<Vec<u8>> {
+        read_into_uninitialized_vector(|size_in_bytes, data: *mut u8| (self
             .fp
             .get_gpa_session_results)(
-                self.handle,
-                gpa_session,
-                sample_id,
-                data.len() as _,
-                data.as_mut_ptr().cast(),
-            )
-            .result()
+            self.handle,
+            gpa_session,
+            sample_id,
+            size_in_bytes,
+            data.cast(),
+        ))
     }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkResetGpaSessionAMD.html) · Device Function
     pub unsafe fn reset_gpa_session(
