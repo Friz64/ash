@@ -381,9 +381,10 @@ enum WrapperOutputKind {
     UntaggedSingle,
     UntaggedArrayWithInput { input: VariableName },
     UntaggedArray,
+    UntaggedDynamicArray,
     TaggedSingle,
     TaggedArray,
-    TaggedArrayWithUnknownLength,
+    TaggedDynamicArray,
 }
 
 #[derive(Debug)]
@@ -420,39 +421,42 @@ impl<'a> WrapperOutput<'a> {
                 }
 
                 if let Ty::Ptr(Ty::CPrimary(CPrimaryType::Void), Mutability::Mut) = &param.decl.ty
-                    && !array_length_unknown
+                    && !array
                 {
                     return None;
                 }
 
-                if let Ty::Ptr(to, Mutability::Mut) = &param.decl.ty {
-                    let mut tagged = false;
-                    if let Ty::ApiType(name) = to
-                        && let TypeItem::Struct(struct_) = ctx.resolve_type(*name)
-                        && struct_.p_next.is_some()
-                    {
-                        tagged = true;
-                    }
+                let Ty::Ptr(to, Mutability::Mut) = &param.decl.ty else {
+                    unreachable!()
+                };
 
-                    return Some(WrapperOutput {
-                        kind: match (array, tagged) {
-                            (false, false) => WrapperOutputKind::UntaggedSingle,
-                            (true, false) if let Some(&input) = array_input => {
-                                WrapperOutputKind::UntaggedArrayWithInput { input }
-                            }
-                            (true, false) => WrapperOutputKind::UntaggedArray,
-                            (false, true) => WrapperOutputKind::TaggedSingle,
-                            (true, true) if array_length_unknown => {
-                                WrapperOutputKind::TaggedArrayWithUnknownLength
-                            }
-                            (true, true) => WrapperOutputKind::TaggedArray,
-                        },
-                        param,
-                        inner_ty: to,
-                    });
+                let mut tagged = false;
+                if let Ty::ApiType(name) = to
+                    && let TypeItem::Struct(struct_) = ctx.resolve_type(*name)
+                    && struct_.p_next.is_some()
+                {
+                    tagged = true;
                 }
 
-                None
+                Some(WrapperOutput {
+                    kind: match (array, tagged) {
+                        (false, false) => WrapperOutputKind::UntaggedSingle,
+                        (true, false) if let Some(&input) = array_input => {
+                            WrapperOutputKind::UntaggedArrayWithInput { input }
+                        }
+                        (true, false) if array_length_unknown => {
+                            WrapperOutputKind::UntaggedDynamicArray
+                        }
+                        (true, false) => WrapperOutputKind::UntaggedArray,
+                        (false, true) => WrapperOutputKind::TaggedSingle,
+                        (true, true) if array_length_unknown => {
+                            WrapperOutputKind::TaggedDynamicArray
+                        }
+                        (true, true) => WrapperOutputKind::TaggedArray,
+                    },
+                    param,
+                    inner_ty: to,
+                })
             })
             .collect()
     }
@@ -516,6 +520,16 @@ impl WrapperCallArg {
                 WrapperOutputKind::UntaggedArray => {
                     return WrapperCallArg {
                         value: if output.inner_ty.is_void() {
+                            quote! { #ident.as_mut_ptr().cast() }
+                        } else {
+                            quote! { #ident.as_mut_ptr() }
+                        },
+                        ..Default::default()
+                    };
+                }
+                WrapperOutputKind::UntaggedDynamicArray => {
+                    return WrapperCallArg {
+                        value: if output.inner_ty.is_void() {
                             quote! { #ident.cast() }
                         } else {
                             quote! { #ident }
@@ -547,7 +561,7 @@ impl WrapperCallArg {
                         ..Default::default()
                     };
                 }
-                WrapperOutputKind::TaggedArrayWithUnknownLength => {
+                WrapperOutputKind::TaggedDynamicArray => {
                     if separate_len_wrapper {
                         return WrapperCallArg {
                             param: None,
@@ -599,11 +613,21 @@ impl WrapperCallArg {
                 }
                 WrapperOutputKind::UntaggedArray => {
                     return WrapperCallArg {
+                        param: Some(WrapperParam {
+                            name,
+                            ty: param.decl.ty.to_rust(),
+                        }),
                         value: quote! { #ident },
                         ..Default::default()
                     };
                 }
-                WrapperOutputKind::TaggedArrayWithUnknownLength => {
+                WrapperOutputKind::UntaggedDynamicArray => {
+                    return WrapperCallArg {
+                        value: quote! { #ident },
+                        ..Default::default()
+                    };
+                }
+                WrapperOutputKind::TaggedDynamicArray => {
                     if separate_len_wrapper {
                         return WrapperCallArg {
                             value: quote! { #ident.as_mut_ptr() },
@@ -864,6 +888,45 @@ fn wrapper(octx: &OutputContext, command: &Command, name: &Ident) -> Vec<Functio
             };
 
             let data = param_ident(output.param.decl.name);
+            let inner_ret_ty = if output.inner_ty.is_void() {
+                quote! { u8 }
+            } else {
+                output.inner_ty.to_rust().tokens(&**octx, None)
+            };
+
+            let return_value = if call_ret_result {
+                quote! { #call.set_vec_len_on_success(#data, #count) }
+            } else {
+                quote! { #call; #data.set_len(#count); #data }
+            };
+            vec![Function {
+                generic_params,
+                inputs,
+                output: if call_ret_result {
+                    quote! { -> VkResult<Vec<#inner_ret_ty>> }
+                } else {
+                    quote! { -> Vec<#inner_ret_ty> }
+                },
+                content: quote! {
+                    #length_eq_asserts
+                    let mut #data = Vec::<#inner_ret_ty>::with_capacity(#count);
+                    #return_value
+                },
+                ..Default::default()
+            }]
+        }
+        [
+            output @ WrapperOutput {
+                kind: WrapperOutputKind::UntaggedDynamicArray,
+                ..
+            },
+        ] => {
+            let count = match &output.param.length {
+                Some(Length::DefinedByParam(count)) => param_ident(*count),
+                _ => unreachable!(),
+            };
+
+            let data = param_ident(output.param.decl.name);
             let explicit_data_ty = output.inner_ty.is_void().then(|| quote! { : *mut u8 });
             let inner_ret_ty = if output.inner_ty.is_void() {
                 quote! { u8 }
@@ -955,7 +1018,7 @@ fn wrapper(octx: &OutputContext, command: &Command, name: &Ident) -> Vec<Functio
         }
         [
             output @ WrapperOutput {
-                kind: WrapperOutputKind::TaggedArrayWithUnknownLength,
+                kind: WrapperOutputKind::TaggedDynamicArray,
                 ..
             },
         ] => {

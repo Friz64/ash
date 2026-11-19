@@ -380,16 +380,19 @@ impl Device {
     pub unsafe fn get_descriptor(
         &self,
         descriptor_info: &vk::DescriptorGetInfoEXT<'_>,
-        descriptor: &mut [u8],
-    ) {
+        data_size: usize,
+    ) -> Vec<u8> {
+        let mut descriptor = Vec::<u8>::with_capacity(data_size);
         (self
             .fp
             .get_descriptor)(
             self.handle,
             descriptor_info,
-            descriptor.len() as _,
+            data_size,
             descriptor.as_mut_ptr().cast(),
-        )
+        );
+        descriptor.set_len(data_size);
+        descriptor
     }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdBindDescriptorBuffersEXT.html) · Device Function
     pub unsafe fn cmd_bind_descriptor_buffers(

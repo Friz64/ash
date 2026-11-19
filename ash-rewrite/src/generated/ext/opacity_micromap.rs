@@ -537,9 +537,10 @@ impl Device {
         &self,
         micromaps: &[vk::MicromapEXT],
         query_type: vk::QueryType,
-        data: &mut [u8],
+        data_size: usize,
         stride: usize,
-    ) -> VkResult<()> {
+    ) -> VkResult<Vec<u8>> {
+        let mut data = Vec::<u8>::with_capacity(data_size);
         (self
             .fp
             .write_micromaps_properties)(
@@ -547,11 +548,11 @@ impl Device {
                 micromaps.len() as _,
                 micromaps.as_ptr(),
                 query_type,
-                data.len() as _,
+                data_size,
                 data.as_mut_ptr().cast(),
                 stride,
             )
-            .result()
+            .set_vec_len_on_success(data, data_size)
     }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkGetDeviceMicromapCompatibilityEXT.html) · Device Function
     pub unsafe fn get_device_micromap_compatibility(

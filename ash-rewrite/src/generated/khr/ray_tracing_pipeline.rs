@@ -304,8 +304,9 @@ impl Device {
         pipeline: vk::Pipeline,
         first_group: u32,
         group_count: u32,
-        data: &mut [u8],
-    ) -> VkResult<()> {
+        data_size: usize,
+    ) -> VkResult<Vec<u8>> {
+        let mut data = Vec::<u8>::with_capacity(data_size);
         (self
             .fp
             .get_ray_tracing_shader_group_handles)(
@@ -313,10 +314,10 @@ impl Device {
                 pipeline,
                 first_group,
                 group_count,
-                data.len() as _,
+                data_size,
                 data.as_mut_ptr().cast(),
             )
-            .result()
+            .set_vec_len_on_success(data, data_size)
     }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkGetRayTracingCaptureReplayShaderGroupHandlesKHR.html) · Device Function
     pub unsafe fn get_ray_tracing_capture_replay_shader_group_handles(
@@ -324,8 +325,9 @@ impl Device {
         pipeline: vk::Pipeline,
         first_group: u32,
         group_count: u32,
-        data: &mut [u8],
-    ) -> VkResult<()> {
+        data_size: usize,
+    ) -> VkResult<Vec<u8>> {
+        let mut data = Vec::<u8>::with_capacity(data_size);
         (self
             .fp
             .get_ray_tracing_capture_replay_shader_group_handles)(
@@ -333,10 +335,10 @@ impl Device {
                 pipeline,
                 first_group,
                 group_count,
-                data.len() as _,
+                data_size,
                 data.as_mut_ptr().cast(),
             )
-            .result()
+            .set_vec_len_on_success(data, data_size)
     }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCreateRayTracingPipelinesKHR.html) · Device Function
     pub unsafe fn create_ray_tracing_pipelines(
