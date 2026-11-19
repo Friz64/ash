@@ -100,16 +100,15 @@ impl Instance {
         &self,
         physical_device: vk::PhysicalDevice,
         queue_family_index: u32,
-    ) -> vk::IDirectFB {
-        let mut dfb = MaybeUninit::uninit();
+        dfb: *mut vk::IDirectFB,
+    ) -> vk::Bool32 {
         (self
             .fp
             .get_physical_device_direct_fb_presentation_support)(
             physical_device,
             queue_family_index,
-            dfb.as_mut_ptr(),
-        );
-        dfb.assume_init()
+            dfb,
+        )
     }
 }
 pub(crate) mod items {

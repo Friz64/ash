@@ -101,18 +101,17 @@ impl Instance {
         &self,
         physical_device: vk::PhysicalDevice,
         queue_family_index: u32,
+        dpy: *mut vk::Display,
         visual_id: vk::VisualID,
-    ) -> vk::Display {
-        let mut dpy = MaybeUninit::uninit();
+    ) -> vk::Bool32 {
         (self
             .fp
             .get_physical_device_xlib_presentation_support)(
             physical_device,
             queue_family_index,
-            dpy.as_mut_ptr(),
+            dpy,
             visual_id,
-        );
-        dpy.assume_init()
+        )
     }
 }
 pub(crate) mod items {

@@ -346,3 +346,19 @@ fn vkGetAccelerationStructureBuildSizesKHR(
         size_info,
     )
 }
+
+fn vkGetPipelineBinaryDataKHR(
+    &self,
+    info: &vk::PipelineBinaryDataInfoKHR,
+    pipeline_binary_key: &mut vk::PipelineBinaryKeyKHR,
+) -> VkResult<Vec<u8>> {
+    read_into_uninitialized_vector(move |count, data: *mut u8| {
+        (self.__table.get_pipeline_binary_data)(
+            self.handle,
+            info,
+            pipeline_binary_key,
+            count,
+            data.cast(),
+        )
+    })
+}

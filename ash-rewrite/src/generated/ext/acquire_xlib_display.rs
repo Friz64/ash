@@ -69,11 +69,28 @@ impl Instance {
     pub unsafe fn acquire_xlib_display(
         &self,
         physical_device: vk::PhysicalDevice,
+        dpy: *mut vk::Display,
         display: vk::DisplayKHR,
-    ) -> VkResult<vk::Display> {
-        let mut dpy = MaybeUninit::uninit();
-        (self.fp.acquire_xlib_display)(physical_device, dpy.as_mut_ptr(), display)
-            .assume_init_on_success(dpy)
+    ) -> VkResult<()> {
+        (self.fp.acquire_xlib_display)(physical_device, dpy, display).result()
+    }
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkGetRandROutputDisplayEXT.html) · Instance Function
+    pub unsafe fn get_rand_r_output_display(
+        &self,
+        physical_device: vk::PhysicalDevice,
+        dpy: *mut vk::Display,
+        rr_output: vk::RROutput,
+    ) -> VkResult<vk::DisplayKHR> {
+        let mut display = MaybeUninit::uninit();
+        (self
+            .fp
+            .get_rand_r_output_display)(
+                physical_device,
+                dpy,
+                rr_output,
+                display.as_mut_ptr(),
+            )
+            .assume_init_on_success(display)
     }
 }
 pub(crate) mod items {

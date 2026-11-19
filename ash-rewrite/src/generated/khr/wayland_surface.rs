@@ -100,16 +100,15 @@ impl Instance {
         &self,
         physical_device: vk::PhysicalDevice,
         queue_family_index: u32,
-    ) -> vk::wl_display {
-        let mut display = MaybeUninit::uninit();
+        display: *mut vk::wl_display,
+    ) -> vk::Bool32 {
         (self
             .fp
             .get_physical_device_wayland_presentation_support)(
             physical_device,
             queue_family_index,
-            display.as_mut_ptr(),
-        );
-        display.assume_init()
+            display,
+        )
     }
 }
 pub(crate) mod items {

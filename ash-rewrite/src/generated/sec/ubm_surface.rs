@@ -98,16 +98,15 @@ impl Instance {
         &self,
         physical_device: vk::PhysicalDevice,
         queue_family_index: u32,
-    ) -> vk::ubm_device {
-        let mut device = MaybeUninit::uninit();
+        device: *mut vk::ubm_device,
+    ) -> vk::Bool32 {
         (self
             .fp
             .get_physical_device_ubm_presentation_support)(
             physical_device,
             queue_family_index,
-            device.as_mut_ptr(),
-        );
-        device.assume_init()
+            device,
+        )
     }
 }
 pub(crate) mod items {

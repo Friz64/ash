@@ -146,7 +146,7 @@ pub(crate) fn debug_flags<V: Into<u64> + Copy>(
 ///
 /// [`vkEnumerateInstanceExtensionProperties`]: https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/vkEnumerateInstanceExtensionProperties.html
 pub(crate) unsafe fn read_into_uninitialized_vector<N: Copy + Default + TryInto<usize>, T>(
-    f: impl Fn(&mut N, *mut T) -> vk::Result,
+    mut f: impl FnMut(&mut N, *mut T) -> vk::Result,
 ) -> VkResult<Vec<T>>
 where
     <N as TryInto<usize>>::Error: core::fmt::Debug,
@@ -176,7 +176,11 @@ pub struct CStrTooLargeForStaticArray {
 impl core::error::Error for CStrTooLargeForStaticArray {}
 impl core::fmt::Display for CStrTooLargeForStaticArray {
     fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-        write!(f, "static `c_char` target array of length `{}` is too small to write a `CStr` (with `NUL`-terminator) of length `{}`", self.static_array_size, self.c_str_size)
+        write!(
+            f,
+            "static `c_char` target array of length `{}` is too small to write a `CStr` (with `NUL`-terminator) of length `{}`",
+            self.static_array_size, self.c_str_size
+        )
     }
 }
 

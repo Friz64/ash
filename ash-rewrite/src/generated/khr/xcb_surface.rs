@@ -99,18 +99,17 @@ impl Instance {
         &self,
         physical_device: vk::PhysicalDevice,
         queue_family_index: u32,
+        connection: *mut vk::xcb_connection_t,
         visual_id: vk::xcb_visualid_t,
-    ) -> vk::xcb_connection_t {
-        let mut connection = MaybeUninit::uninit();
+    ) -> vk::Bool32 {
         (self
             .fp
             .get_physical_device_xcb_presentation_support)(
             physical_device,
             queue_family_index,
-            connection.as_mut_ptr(),
+            connection,
             visual_id,
-        );
-        connection.assume_init()
+        )
     }
 }
 pub(crate) mod items {

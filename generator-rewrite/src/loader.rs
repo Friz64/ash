@@ -17,7 +17,7 @@ use proc_macro2::{Literal, TokenStream};
 use quote::{format_ident, quote};
 use std::{ffi::CString, ptr};
 use syn::Ident;
-use tracing::{debug, trace};
+use tracing::{debug, error, trace};
 
 #[derive(Debug, Clone, Copy, Hash, PartialEq, Eq)]
 pub enum FunctionType {
@@ -420,15 +420,13 @@ impl<'a> WrapperOutput<'a> {
                     });
                 }
 
-                if let Ty::Ptr(Ty::CPrimary(CPrimaryType::Void), Mutability::Mut) = &param.decl.ty
-                    && !array
-                {
-                    return None;
-                }
-
                 let Ty::Ptr(to, Mutability::Mut) = &param.decl.ty else {
                     unreachable!()
                 };
+
+                if to.is_opaque() && !array {
+                    return None;
+                }
 
                 let mut tagged = false;
                 if let Ty::ApiType(name) = to
@@ -1079,7 +1077,17 @@ fn wrapper(octx: &OutputContext, command: &Command, name: &Ident) -> Vec<Functio
                 },
             ]
         }
-        // todo: turn this into panic...
-        _ => vec![],
+        multiple => {
+            error!("Unhandled output for {}", command.name.original());
+            for output in multiple {
+                error!(
+                    "\t{} ({:?})",
+                    output.param.decl.name.original(),
+                    output.kind
+                );
+            }
+
+            vec![]
+        }
     }
 }
