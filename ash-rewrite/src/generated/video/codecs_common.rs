@@ -5,6 +5,7 @@
 use crate::internal_prelude::*;
 pub(crate) mod items {
     use crate::internal_prelude::*;
+    ///[Reference Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_MAKE_VIDEO_STD_VERSION.html) · C Macro
     pub const fn make_video_std_version(major: u32, minor: u32, patch: u32) -> u32 {
         ((((major)) << 22) | (((minor)) << 12) | ((patch)))
     }

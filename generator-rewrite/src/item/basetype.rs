@@ -10,12 +10,13 @@ impl Code for BaseType {
         trace!("generating");
         let output = OutputLocation::primary_of(self.required_by, GlobExport::Yes);
         let octx = codemap.octx(output, ctx);
+        let doc = crate::ref_page_doc_comment(self.name.original(), "Basetype");
         let name = octx.type_tokens(self.name, false, None);
         let ty = self.ty.to_rust().tokens(&*octx, None);
-        let code = quote! {
-            pub type #name = #ty;
-        };
 
-        octx.emit_tokens(code)
+        octx.emit_tokens(quote! {
+            #[doc = #doc]
+            pub type #name = #ty;
+        });
     }
 }

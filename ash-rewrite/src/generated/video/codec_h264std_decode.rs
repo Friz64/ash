@@ -9,12 +9,15 @@ impl DecodeH264FieldOrderCount {
     pub const BOTTOM: Self = Self(1);
     pub const INVALID: Self = Self(0x7FFFFFFF);
 }
+///<s>Vulkan Manual Page</s> · Constant
 pub const SPEC_VERSION: u32 = vk::STD_VULKAN_VIDEO_CODEC_H264_DECODE_API_VERSION_1_0_0;
+///<s>Vulkan Manual Page</s> · Constant
 pub const NAME: &CStr = c"VK_STD_vulkan_video_codec_h264_decode";
 pub(crate) mod items {
     use crate::internal_prelude::*;
     #[repr(C)]
     #[derive(Clone, Copy, Default)]
+    ///<s>Vulkan Manual Page</s> · Struct
     pub struct DecodeH264PictureInfoFlags {
         /**- `field_pic_flag` @ `0..1`
 - `is_intra` @ `1..2`
@@ -95,6 +98,7 @@ pub(crate) mod items {
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
+    ///<s>Vulkan Manual Page</s> · Struct
     pub struct DecodeH264PictureInfo {
         pub flags: vk::DecodeH264PictureInfoFlags,
         pub seq_parameter_set_id: u8,
@@ -160,6 +164,7 @@ pub(crate) mod items {
     }
     #[repr(C)]
     #[derive(Clone, Copy, Default)]
+    ///<s>Vulkan Manual Page</s> · Struct
     pub struct DecodeH264ReferenceInfoFlags {
         /**- `top_field_flag` @ `0..1`
 - `bottom_field_flag` @ `1..2`
@@ -224,6 +229,7 @@ pub(crate) mod items {
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
+    ///<s>Vulkan Manual Page</s> · Struct
     pub struct DecodeH264ReferenceInfo {
         pub flags: vk::DecodeH264ReferenceInfoFlags,
         pub frame_num: u16,
@@ -263,6 +269,7 @@ pub(crate) mod items {
             self
         }
     }
+    ///<s>Vulkan Manual Page</s> · Enum
     #[repr(transparent)]
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
     pub struct DecodeH264FieldOrderCount(pub(crate) i32);
@@ -291,7 +298,9 @@ pub(crate) mod items {
             self.0
         }
     }
+    ///<s>Vulkan Manual Page</s> · Constant
     pub const DECODE_H264_FIELD_ORDER_COUNT_LIST_SIZE: u32 = 2;
+    ///[Reference Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_STD_VULKAN_VIDEO_CODEC_H264_DECODE_API_VERSION_1_0_0.html) · C Macro
     pub const STD_VULKAN_VIDEO_CODEC_H264_DECODE_API_VERSION_1_0_0: u32 = vk::make_video_std_version(
         1,
         0,

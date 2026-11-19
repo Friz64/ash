@@ -21,13 +21,21 @@ impl Code for BitMask {
             BitWidth::Bits64 => quote! { u64 },
         };
 
+        let mut bits_doc_link = None;
         let mut bits_definition = TokenStream::default();
         let mut bitmask_impl_map = CodeMap::default();
         let mut bits_impl_map = CodeMap::default();
         let mut debug_items = Vec::new();
         if let Some(bits_name) = self.bits_name {
             let bits_name_tokens = octx.type_tokens(bits_name, false, None);
+            bits_doc_link = Some(format!("[`{bits_name_tokens}`]"));
+
+            let doc = crate::ref_page_doc_comment(
+                bits_name.original(),
+                format!("Bits enum of [`{name_tokens}`]"),
+            );
             bits_definition = quote! {
+                #[doc = #doc]
                 #[repr(transparent)]
                 #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
                 pub struct #bits_name_tokens(pub(crate) #base_ty);
@@ -119,7 +127,15 @@ impl Code for BitMask {
             debug_items => quote! { crate::debug_flags(f, &[ #( #debug_items, )* ], self.0) },
         };
 
+        let doc = crate::ref_page_doc_comment(
+            self.bitmask_name.original(),
+            match bits_doc_link {
+                Some(bits_doc_link) => format!("Bitmask of {bits_doc_link}",),
+                None => "Bitmask".into(),
+            },
+        );
         octx.emit_tokens(quote! {
+            #[doc = #doc]
             #[repr(transparent)]
             #[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
             pub struct #name_tokens(pub(crate) #base_ty);

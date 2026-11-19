@@ -98,7 +98,9 @@ impl Code for Enum {
             }
         });
 
+        let doc = crate::ref_page_doc_comment(self.name.original(), "Enum");
         octx.emit_tokens(quote! {
+            #[doc = #doc]
             #[repr(transparent)]
             #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
             pub struct #name(pub(crate) i32);

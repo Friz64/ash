@@ -17,14 +17,14 @@ impl Code for TypeAlias {
         let output = OutputLocation::primary_of(self.required_by, GlobExport::Yes);
         let octx = codemap.octx(output, ctx);
         let lifetime = Lifetime(format_ident!("a"));
+        let doc = crate::ref_page_doc_comment(self.name.original(), "Type alias");
         let name = octx.type_tokens(self.name, false, Some(&lifetime));
         let target = octx.type_tokens(self.target, true, Some(&lifetime));
 
-        let code = quote! {
+        octx.emit_tokens(quote! {
+            #[doc = #doc]
             pub type #name = #target;
-        };
-
-        octx.emit_tokens(code)
+        });
     }
 }
 
@@ -34,12 +34,13 @@ impl Code for CommandAlias {
         trace!("generating");
         let output = OutputLocation::primary_of(self.required_by, GlobExport::Yes);
         let octx = codemap.octx(output, ctx);
+        let doc = crate::ref_page_doc_comment(self.name.original(), "Command alias");
         let name = octx.command_tokens(self.name, false);
         let target = octx.command_tokens(self.target, true);
-        let code = quote! {
-            pub type #name = #target;
-        };
 
-        octx.emit_tokens(code)
+        octx.emit_tokens(quote! {
+            #[doc = #doc]
+            pub type #name = #target;
+        });
     }
 }

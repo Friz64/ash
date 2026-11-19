@@ -146,6 +146,7 @@ pub(crate) mod items {
     use crate::internal_prelude::*;
     #[repr(C)]
     #[derive(Clone, Copy, Default)]
+    ///<s>Vulkan Manual Page</s> · Struct
     pub struct H264SpsVuiFlags {
         /**- `aspect_ratio_info_present_flag` @ `0..1`
 - `overscan_info_present_flag` @ `1..2`
@@ -345,6 +346,7 @@ pub(crate) mod items {
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
+    ///<s>Vulkan Manual Page</s> · Struct
     pub struct H264HrdParameters {
         pub cpb_cnt_minus1: u8,
         pub bit_rate_scale: u8,
@@ -444,6 +446,7 @@ pub(crate) mod items {
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy, Default)]
+    ///<s>Vulkan Manual Page</s> · Struct
     pub struct H264SequenceParameterSetVui<'a> {
         pub flags: vk::H264SpsVuiFlags,
         pub aspect_ratio_idc: vk::H264AspectRatioIdc,
@@ -545,6 +548,7 @@ pub(crate) mod items {
     }
     #[repr(C)]
     #[derive(Clone, Copy, Default)]
+    ///<s>Vulkan Manual Page</s> · Struct
     pub struct H264SpsFlags {
         /**- `constraint_set0_flag` @ `0..1`
 - `constraint_set1_flag` @ `1..2`
@@ -776,6 +780,7 @@ pub(crate) mod items {
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
+    ///<s>Vulkan Manual Page</s> · Struct
     pub struct H264ScalingLists {
         pub scaling_list_present_mask: u16,
         pub use_default_scaling_matrix_mask: u16,
@@ -831,6 +836,7 @@ pub(crate) mod items {
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy, Default)]
+    ///<s>Vulkan Manual Page</s> · Struct
     pub struct H264SequenceParameterSet<'a> {
         pub flags: vk::H264SpsFlags,
         pub profile_idc: vk::H264ProfileIdc,
@@ -986,6 +992,7 @@ pub(crate) mod items {
     }
     #[repr(C)]
     #[derive(Clone, Copy, Default)]
+    ///<s>Vulkan Manual Page</s> · Struct
     pub struct H264PpsFlags {
         /**- `transform_8x8_mode_flag` @ `0..1`
 - `redundant_pic_cnt_present_flag` @ `1..2`
@@ -1120,6 +1127,7 @@ pub(crate) mod items {
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy, Default)]
+    ///<s>Vulkan Manual Page</s> · Struct
     pub struct H264PictureParameterSet<'a> {
         pub flags: vk::H264PpsFlags,
         pub seq_parameter_set_id: u8,
@@ -1194,6 +1202,7 @@ pub(crate) mod items {
             self
         }
     }
+    ///<s>Vulkan Manual Page</s> · Enum
     #[repr(transparent)]
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
     pub struct H264ChromaFormatIdc(pub(crate) i32);
@@ -1224,6 +1233,7 @@ pub(crate) mod items {
             self.0
         }
     }
+    ///<s>Vulkan Manual Page</s> · Enum
     #[repr(transparent)]
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
     pub struct H264ProfileIdc(pub(crate) i32);
@@ -1256,6 +1266,7 @@ pub(crate) mod items {
             self.0
         }
     }
+    ///<s>Vulkan Manual Page</s> · Enum
     #[repr(transparent)]
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
     pub struct H264LevelIdc(pub(crate) i32);
@@ -1301,6 +1312,7 @@ pub(crate) mod items {
             self.0
         }
     }
+    ///<s>Vulkan Manual Page</s> · Enum
     #[repr(transparent)]
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
     pub struct H264PocType(pub(crate) i32);
@@ -1330,6 +1342,7 @@ pub(crate) mod items {
             self.0
         }
     }
+    ///<s>Vulkan Manual Page</s> · Enum
     #[repr(transparent)]
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
     pub struct H264AspectRatioIdc(pub(crate) i32);
@@ -1374,6 +1387,7 @@ pub(crate) mod items {
             self.0
         }
     }
+    ///<s>Vulkan Manual Page</s> · Enum
     #[repr(transparent)]
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
     pub struct H264WeightedBipredIdc(pub(crate) i32);
@@ -1403,6 +1417,7 @@ pub(crate) mod items {
             self.0
         }
     }
+    ///<s>Vulkan Manual Page</s> · Enum
     #[repr(transparent)]
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
     pub struct H264ModificationOfPicNumsIdc(pub(crate) i32);
@@ -1433,6 +1448,7 @@ pub(crate) mod items {
             self.0
         }
     }
+    ///<s>Vulkan Manual Page</s> · Enum
     #[repr(transparent)]
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
     pub struct H264MemMgmtControlOp(pub(crate) i32);
@@ -1466,6 +1482,7 @@ pub(crate) mod items {
             self.0
         }
     }
+    ///<s>Vulkan Manual Page</s> · Enum
     #[repr(transparent)]
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
     pub struct H264CabacInitIdc(pub(crate) i32);
@@ -1495,6 +1512,7 @@ pub(crate) mod items {
             self.0
         }
     }
+    ///<s>Vulkan Manual Page</s> · Enum
     #[repr(transparent)]
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
     pub struct H264DisableDeblockingFilterIdc(pub(crate) i32);
@@ -1524,6 +1542,7 @@ pub(crate) mod items {
             self.0
         }
     }
+    ///<s>Vulkan Manual Page</s> · Enum
     #[repr(transparent)]
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
     pub struct H264SliceType(pub(crate) i32);
@@ -1553,6 +1572,7 @@ pub(crate) mod items {
             self.0
         }
     }
+    ///<s>Vulkan Manual Page</s> · Enum
     #[repr(transparent)]
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
     pub struct H264PictureType(pub(crate) i32);
@@ -1583,6 +1603,7 @@ pub(crate) mod items {
             self.0
         }
     }
+    ///<s>Vulkan Manual Page</s> · Enum
     #[repr(transparent)]
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
     pub struct H264NonVclNaluType(pub(crate) i32);
@@ -1616,13 +1637,21 @@ pub(crate) mod items {
             self.0
         }
     }
+    ///<s>Vulkan Manual Page</s> · Constant
     pub const H264_CPB_CNT_LIST_SIZE: u32 = 32;
+    ///<s>Vulkan Manual Page</s> · Constant
     pub const H264_SCALING_LIST_4X4_NUM_LISTS: u32 = 6;
+    ///<s>Vulkan Manual Page</s> · Constant
     pub const H264_SCALING_LIST_4X4_NUM_ELEMENTS: u32 = 16;
+    ///<s>Vulkan Manual Page</s> · Constant
     pub const H264_SCALING_LIST_8X8_NUM_LISTS: u32 = 6;
+    ///<s>Vulkan Manual Page</s> · Constant
     pub const H264_SCALING_LIST_8X8_NUM_ELEMENTS: u32 = 64;
+    ///<s>Vulkan Manual Page</s> · Constant
     pub const H264_MAX_NUM_LIST_REF: u32 = 32;
+    ///<s>Vulkan Manual Page</s> · Constant
     pub const H264_MAX_CHROMA_PLANES: u32 = 2;
+    ///<s>Vulkan Manual Page</s> · Constant
     pub const H264_NO_REFERENCE_PICTURE: u32 = 0xFF;
 }
 pub use items::*;

@@ -41,6 +41,7 @@ impl Code for Struct {
         let output = OutputLocation::primary_of(self.required_by, GlobExport::Yes);
         let octx = codemap.octx(output, ctx);
         let lifetime = Lifetime(format_ident!("a"));
+        let doc = crate::ref_page_doc_comment(self.name.original(), "Struct");
         let name = octx.type_tokens(self.name, false, Some(&lifetime));
         let anon_name = octx.type_tokens(self.name, false, None);
 
@@ -117,6 +118,7 @@ impl Code for Struct {
         };
 
         let code = quote! {
+            #[doc = #doc]
             pub struct #name {
                 #( #members, )*
                 #lifetime_marker
@@ -526,12 +528,14 @@ impl Code for Union {
         let lifetime_brackets = ctx
             .type_has_lifetime(self.name)
             .then(|| quote! { <#lifetime> });
+        let doc = crate::ref_page_doc_comment(self.name.original(), "Union");
         let name = octx.type_tokens(self.name, false, Some(&lifetime));
         let members =
             (self.members.iter()).map(|decl| decl.to_rust().tokens(&*octx, Some(&lifetime)));
 
         let name_string = name.to_string();
-        let code = quote! {
+        octx.emit_tokens(quote! {
+            #[doc = #doc]
             #[repr(C)]
             #[derive(Clone, Copy)]
             pub union #name {
@@ -550,8 +554,6 @@ impl Code for Union {
                     write!(f, #name_string)
                 }
             }
-        };
-
-        octx.emit_tokens(code)
+        });
     }
 }

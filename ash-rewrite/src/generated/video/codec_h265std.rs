@@ -78,6 +78,7 @@ pub(crate) mod items {
     use crate::internal_prelude::*;
     #[repr(C)]
     #[derive(Clone, Copy, Default)]
+    ///<s>Vulkan Manual Page</s> · Struct
     pub struct H265ProfileTierLevelFlags {
         /**- `general_tier_flag` @ `0..1`
 - `general_progressive_source_flag` @ `1..2`
@@ -173,6 +174,7 @@ pub(crate) mod items {
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy, Default)]
+    ///<s>Vulkan Manual Page</s> · Struct
     pub struct H265ProfileTierLevel {
         pub flags: vk::H265ProfileTierLevelFlags,
         pub general_profile_idc: vk::H265ProfileIdc,
@@ -200,6 +202,7 @@ pub(crate) mod items {
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
+    ///<s>Vulkan Manual Page</s> · Struct
     pub struct H265DecPicBufMgr {
         pub max_latency_increase_plus1: [u32; vk::H265_SUBLAYERS_LIST_SIZE as _],
         pub max_dec_pic_buffering_minus1: [u8; vk::H265_SUBLAYERS_LIST_SIZE as _],
@@ -242,6 +245,7 @@ pub(crate) mod items {
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
+    ///<s>Vulkan Manual Page</s> · Struct
     pub struct H265SubLayerHrdParameters {
         pub bit_rate_value_minus1: [u32; vk::H265_CPB_CNT_LIST_SIZE as _],
         pub cpb_size_value_minus1: [u32; vk::H265_CPB_CNT_LIST_SIZE as _],
@@ -298,6 +302,7 @@ pub(crate) mod items {
     }
     #[repr(C)]
     #[derive(Clone, Copy, Default)]
+    ///<s>Vulkan Manual Page</s> · Struct
     pub struct H265HrdFlags {
         /**- `nal_hrd_parameters_present_flag` @ `0..1`
 - `vcl_hrd_parameters_present_flag` @ `1..2`
@@ -425,6 +430,7 @@ pub(crate) mod items {
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
+    ///<s>Vulkan Manual Page</s> · Struct
     pub struct H265HrdParameters<'a> {
         pub flags: vk::H265HrdFlags,
         pub tick_divisor_minus2: u8,
@@ -558,6 +564,7 @@ pub(crate) mod items {
     }
     #[repr(C)]
     #[derive(Clone, Copy, Default)]
+    ///<s>Vulkan Manual Page</s> · Struct
     pub struct H265VpsFlags {
         /**- `vps_temporal_id_nesting_flag` @ `0..1`
 - `vps_sub_layer_ordering_info_present_flag` @ `1..2`
@@ -642,6 +649,7 @@ pub(crate) mod items {
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy, Default)]
+    ///<s>Vulkan Manual Page</s> · Struct
     pub struct H265VideoParameterSet<'a> {
         pub flags: vk::H265VpsFlags,
         pub vps_video_parameter_set_id: u8,
@@ -730,6 +738,7 @@ pub(crate) mod items {
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
+    ///<s>Vulkan Manual Page</s> · Struct
     pub struct H265ScalingLists {
         pub scaling_list4x4: [[u8; vk::H265_SCALING_LIST_4X4_NUM_ELEMENTS
             as _]; vk::H265_SCALING_LIST_4X4_NUM_LISTS as _],
@@ -806,6 +815,7 @@ pub(crate) mod items {
     }
     #[repr(C)]
     #[derive(Clone, Copy, Default)]
+    ///<s>Vulkan Manual Page</s> · Struct
     pub struct H265ShortTermRefPicSetFlags {
         /**- `inter_ref_pic_set_prediction_flag` @ `0..1`
 - `delta_rps_sign` @ `1..2`*/
@@ -849,6 +859,7 @@ pub(crate) mod items {
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
+    ///<s>Vulkan Manual Page</s> · Struct
     pub struct H265ShortTermRefPicSet {
         pub flags: vk::H265ShortTermRefPicSetFlags,
         pub delta_idx_minus1: u32,
@@ -960,6 +971,7 @@ pub(crate) mod items {
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
+    ///<s>Vulkan Manual Page</s> · Struct
     pub struct H265LongTermRefPicsSps {
         pub used_by_curr_pic_lt_sps_flag: u32,
         pub lt_ref_pic_poc_lsb_sps: [u32; vk::H265_MAX_LONG_TERM_REF_PICS_SPS as _],
@@ -992,6 +1004,7 @@ pub(crate) mod items {
     }
     #[repr(C)]
     #[derive(Clone, Copy, Default)]
+    ///<s>Vulkan Manual Page</s> · Struct
     pub struct H265SpsVuiFlags {
         /**- `aspect_ratio_info_present_flag` @ `0..1`
 - `overscan_info_present_flag` @ `1..2`
@@ -1296,6 +1309,7 @@ pub(crate) mod items {
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy, Default)]
+    ///<s>Vulkan Manual Page</s> · Struct
     pub struct H265SequenceParameterSetVui<'a> {
         pub flags: vk::H265SpsVuiFlags,
         pub aspect_ratio_idc: vk::H265AspectRatioIdc,
@@ -1472,6 +1486,7 @@ pub(crate) mod items {
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
+    ///<s>Vulkan Manual Page</s> · Struct
     pub struct H265PredictorPaletteEntries {
         pub predictor_palette_entries: [[u16; vk::H265_PREDICTOR_PALETTE_COMP_ENTRIES_LIST_SIZE
             as _]; vk::H265_PREDICTOR_PALETTE_COMPONENTS_LIST_SIZE as _],
@@ -1497,6 +1512,7 @@ pub(crate) mod items {
     }
     #[repr(C)]
     #[derive(Clone, Copy, Default)]
+    ///<s>Vulkan Manual Page</s> · Struct
     pub struct H265SpsFlags {
         /**- `sps_temporal_id_nesting_flag` @ `0..1`
 - `separate_colour_plane_flag` @ `1..2`
@@ -1987,6 +2003,7 @@ pub(crate) mod items {
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy, Default)]
+    ///<s>Vulkan Manual Page</s> · Struct
     pub struct H265SequenceParameterSet<'a> {
         pub flags: vk::H265SpsFlags,
         pub chroma_format_idc: vk::H265ChromaFormatIdc,
@@ -2266,6 +2283,7 @@ pub(crate) mod items {
     }
     #[repr(C)]
     #[derive(Clone, Copy, Default)]
+    ///<s>Vulkan Manual Page</s> · Struct
     pub struct H265PpsFlags {
         /**- `dependent_slice_segments_enabled_flag` @ `0..1`
 - `output_flag_present_flag` @ `1..2`
@@ -2752,6 +2770,7 @@ pub(crate) mod items {
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
+    ///<s>Vulkan Manual Page</s> · Struct
     pub struct H265PictureParameterSet<'a> {
         pub flags: vk::H265PpsFlags,
         pub pps_pic_parameter_set_id: u8,
@@ -3047,6 +3066,7 @@ pub(crate) mod items {
             self
         }
     }
+    ///<s>Vulkan Manual Page</s> · Enum
     #[repr(transparent)]
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
     pub struct H265ChromaFormatIdc(pub(crate) i32);
@@ -3077,6 +3097,7 @@ pub(crate) mod items {
             self.0
         }
     }
+    ///<s>Vulkan Manual Page</s> · Enum
     #[repr(transparent)]
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
     pub struct H265ProfileIdc(pub(crate) i32);
@@ -3108,6 +3129,7 @@ pub(crate) mod items {
             self.0
         }
     }
+    ///<s>Vulkan Manual Page</s> · Enum
     #[repr(transparent)]
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
     pub struct H265LevelIdc(pub(crate) i32);
@@ -3147,6 +3169,7 @@ pub(crate) mod items {
             self.0
         }
     }
+    ///<s>Vulkan Manual Page</s> · Enum
     #[repr(transparent)]
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
     pub struct H265SliceType(pub(crate) i32);
@@ -3176,6 +3199,7 @@ pub(crate) mod items {
             self.0
         }
     }
+    ///<s>Vulkan Manual Page</s> · Enum
     #[repr(transparent)]
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
     pub struct H265PictureType(pub(crate) i32);
@@ -3206,6 +3230,7 @@ pub(crate) mod items {
             self.0
         }
     }
+    ///<s>Vulkan Manual Page</s> · Enum
     #[repr(transparent)]
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
     pub struct H265AspectRatioIdc(pub(crate) i32);
@@ -3250,28 +3275,51 @@ pub(crate) mod items {
             self.0
         }
     }
+    ///<s>Vulkan Manual Page</s> · Constant
     pub const H265_CPB_CNT_LIST_SIZE: u32 = 32;
+    ///<s>Vulkan Manual Page</s> · Constant
     pub const H265_SUBLAYERS_LIST_SIZE: u32 = 7;
+    ///<s>Vulkan Manual Page</s> · Constant
     pub const H265_SCALING_LIST_4X4_NUM_LISTS: u32 = 6;
+    ///<s>Vulkan Manual Page</s> · Constant
     pub const H265_SCALING_LIST_4X4_NUM_ELEMENTS: u32 = 16;
+    ///<s>Vulkan Manual Page</s> · Constant
     pub const H265_SCALING_LIST_8X8_NUM_LISTS: u32 = 6;
+    ///<s>Vulkan Manual Page</s> · Constant
     pub const H265_SCALING_LIST_8X8_NUM_ELEMENTS: u32 = 64;
+    ///<s>Vulkan Manual Page</s> · Constant
     pub const H265_SCALING_LIST_16X16_NUM_LISTS: u32 = 6;
+    ///<s>Vulkan Manual Page</s> · Constant
     pub const H265_SCALING_LIST_16X16_NUM_ELEMENTS: u32 = 64;
+    ///<s>Vulkan Manual Page</s> · Constant
     pub const H265_SCALING_LIST_32X32_NUM_LISTS: u32 = 2;
+    ///<s>Vulkan Manual Page</s> · Constant
     pub const H265_SCALING_LIST_32X32_NUM_ELEMENTS: u32 = 64;
+    ///<s>Vulkan Manual Page</s> · Constant
     pub const H265_CHROMA_QP_OFFSET_LIST_SIZE: u32 = 6;
+    ///<s>Vulkan Manual Page</s> · Constant
     pub const H265_CHROMA_QP_OFFSET_TILE_COLS_LIST_SIZE: u32 = 19;
+    ///<s>Vulkan Manual Page</s> · Constant
     pub const H265_CHROMA_QP_OFFSET_TILE_ROWS_LIST_SIZE: u32 = 21;
+    ///<s>Vulkan Manual Page</s> · Constant
     pub const H265_PREDICTOR_PALETTE_COMPONENTS_LIST_SIZE: u32 = 3;
+    ///<s>Vulkan Manual Page</s> · Constant
     pub const H265_PREDICTOR_PALETTE_COMP_ENTRIES_LIST_SIZE: u32 = 128;
+    ///<s>Vulkan Manual Page</s> · Constant
     pub const H265_MAX_NUM_LIST_REF: u32 = 15;
+    ///<s>Vulkan Manual Page</s> · Constant
     pub const H265_MAX_CHROMA_PLANES: u32 = 2;
+    ///<s>Vulkan Manual Page</s> · Constant
     pub const H265_MAX_SHORT_TERM_REF_PIC_SETS: u32 = 64;
+    ///<s>Vulkan Manual Page</s> · Constant
     pub const H265_MAX_DPB_SIZE: u32 = 16;
+    ///<s>Vulkan Manual Page</s> · Constant
     pub const H265_MAX_LONG_TERM_REF_PICS_SPS: u32 = 32;
+    ///<s>Vulkan Manual Page</s> · Constant
     pub const H265_MAX_LONG_TERM_PICS: u32 = 16;
+    ///<s>Vulkan Manual Page</s> · Constant
     pub const H265_MAX_DELTA_POC: u32 = 48;
+    ///<s>Vulkan Manual Page</s> · Constant
     pub const H265_NO_REFERENCE_PICTURE: u32 = 0xFF;
 }
 pub use items::*;

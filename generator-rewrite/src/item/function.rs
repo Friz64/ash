@@ -14,6 +14,8 @@ impl Code for FuncPointer {
         let output = OutputLocation::primary_of(self.required_by, GlobExport::Yes);
         let octx = codemap.octx(output, ctx);
 
+        let doc = crate::ref_page_doc_comment(self.name.original(), "Function pointer type");
+
         let name = octx.func_pointer_tokens(self.name, false);
         let params = self
             .params
@@ -24,9 +26,10 @@ impl Code for FuncPointer {
             quote! { -> #rust_ty }
         });
 
-        octx.emit_tokens(
-            quote! { pub type #name = Option<unsafe extern "system" fn(#( #params ),*) #ret>; },
-        );
+        octx.emit_tokens(quote! {
+            #[doc = #doc]
+            pub type #name = Option<unsafe extern "system" fn(#( #params ),*) #ret>;
+        });
     }
 }
 
@@ -37,6 +40,7 @@ impl Code for Command {
         let output = OutputLocation::primary_of(self.required_by, GlobExport::Yes);
         let octx = codemap.octx(output, ctx);
 
+        let doc = crate::ref_page_doc_comment(self.name.original(), "Command type");
         let name = octx.command_tokens(self.name, false);
         let params = self
             .params
@@ -47,8 +51,9 @@ impl Code for Command {
             quote! { -> #rust_ty }
         });
 
-        octx.emit_tokens(
-            quote! { pub type #name = unsafe extern "system" fn(#( #params ),*) #ret; },
-        );
+        octx.emit_tokens(quote! {
+            #[doc = #doc]
+            pub type #name = unsafe extern "system" fn(#( #params ),*) #ret;
+        });
     }
 }

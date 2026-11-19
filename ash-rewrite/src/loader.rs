@@ -24,6 +24,7 @@ mod loaded {
     use super::*;
     use core::fmt;
 
+    /// An error indicating that function loading failed.
     #[derive(Debug)]
     #[cfg_attr(docsrs, doc(cfg(feature = "loaded")))]
     pub enum LoadingError {
@@ -60,7 +61,7 @@ mod loaded {
 use crate::vk;
 use core::{ffi, fmt, mem};
 
-/// Holds the Vulkan functions independent of a particular instance
+/// Holds the Vulkan functions independent of a particular instance.
 #[derive(Clone)]
 pub struct Entry {
     pub(crate) static_fn: crate::StaticFn,
@@ -269,6 +270,9 @@ impl crate::StaticFn {
     }
 }
 
+/// An error returned from [`StaticFn::load_checked`] on failure.
+///
+/// Concretely this means that the `vkGetInstanceProcAddr` symbol was not found.
 #[derive(Clone, Debug)]
 pub struct MissingEntryPoint;
 impl fmt::Display for MissingEntryPoint {
@@ -287,7 +291,7 @@ extern "system" {
     ) -> vk::PFN_vkVoidFunction;
 }
 
-/// <https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkInstance.html>
+/// Holds the Vulkan functions at [Instance](vk::Instance)-level.
 #[derive(Clone)]
 pub struct Instance {
     pub(crate) handle: vk::Instance,
@@ -339,7 +343,7 @@ impl Instance {
     }
 }
 
-/// <https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkDevice.html>
+/// Holds the Vulkan functions at [Device](vk::Device)-level.
 #[derive(Clone)]
 pub struct Device {
     pub(crate) handle: vk::Device,

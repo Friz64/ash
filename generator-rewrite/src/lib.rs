@@ -45,15 +45,16 @@ pub fn generate(
     codemap.write(&ctx, output_path)
 }
 
-fn manual_page_doc_comment(target: &str, description: impl Display) -> String {
-    let valid = matches!(
-        target.get(0..2).map(|ab| ab.eq_ignore_ascii_case("vk")),
-        Some(true)
-    );
+fn ref_page_doc_comment(target: &str, description: impl Display) -> String {
+    let valid = target.starts_with("PFN_")
+        || matches!(
+            target.get(0..2).map(|ab| ab.eq_ignore_ascii_case("vk")),
+            Some(true)
+        );
 
     let refpage = if valid {
         format!(
-            "[Vulkan Manual Page]\
+            "[Reference Page]\
             (https://docs.vulkan.org/refpages/latest/refpages/source/{target}.html)"
         )
     } else {

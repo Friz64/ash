@@ -3,12 +3,15 @@
 //!Items provided by `vulkan_video_codec_h265std_decode`
 #![doc(alias = "vulkan_video_codec_h265std_decode")]
 use crate::internal_prelude::*;
+///<s>Vulkan Manual Page</s> · Constant
 pub const SPEC_VERSION: u32 = vk::STD_VULKAN_VIDEO_CODEC_H265_DECODE_API_VERSION_1_0_0;
+///<s>Vulkan Manual Page</s> · Constant
 pub const NAME: &CStr = c"VK_STD_vulkan_video_codec_h265_decode";
 pub(crate) mod items {
     use crate::internal_prelude::*;
     #[repr(C)]
     #[derive(Clone, Copy, Default)]
+    ///<s>Vulkan Manual Page</s> · Struct
     pub struct DecodeH265PictureInfoFlags {
         /**- `IrapPicFlag` @ `0..1`
 - `IdrPicFlag` @ `1..2`
@@ -73,6 +76,7 @@ pub(crate) mod items {
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
+    ///<s>Vulkan Manual Page</s> · Struct
     pub struct DecodeH265PictureInfo {
         pub flags: vk::DecodeH265PictureInfoFlags,
         pub sps_video_parameter_set_id: u8,
@@ -171,6 +175,7 @@ pub(crate) mod items {
     }
     #[repr(C)]
     #[derive(Clone, Copy, Default)]
+    ///<s>Vulkan Manual Page</s> · Struct
     pub struct DecodeH265ReferenceInfoFlags {
         /**- `used_for_long_term_reference` @ `0..1`
 - `unused_for_reference` @ `1..2`*/
@@ -214,6 +219,7 @@ pub(crate) mod items {
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy, Default)]
+    ///<s>Vulkan Manual Page</s> · Struct
     pub struct DecodeH265ReferenceInfo {
         pub flags: vk::DecodeH265ReferenceInfoFlags,
         pub pic_order_cnt_val: i32,
@@ -230,7 +236,9 @@ pub(crate) mod items {
             self
         }
     }
+    ///<s>Vulkan Manual Page</s> · Constant
     pub const DECODE_H265_REF_PIC_SET_LIST_SIZE: u32 = 8;
+    ///[Reference Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_STD_VULKAN_VIDEO_CODEC_H265_DECODE_API_VERSION_1_0_0.html) · C Macro
     pub const STD_VULKAN_VIDEO_CODEC_H265_DECODE_API_VERSION_1_0_0: u32 = vk::make_video_std_version(
         1,
         0,

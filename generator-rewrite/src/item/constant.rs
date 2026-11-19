@@ -15,6 +15,7 @@ impl Code for Constant {
 
         let output = OutputLocation::primary_of(self.required_by, GlobExport::Yes);
         let octx = codemap.octx(output, ctx);
+        let mut doc = crate::ref_page_doc_comment(self.name.original(), "Constant");
         let mut name = octx.constant_token(self.name);
 
         for special in ["EXTENSION_NAME", "SPEC_VERSION"] {
@@ -22,6 +23,8 @@ impl Code for Constant {
                 let new_name = octx.constant_token_from_prefix_stripped(special);
                 octx.output().glob_export = GlobExport::No;
                 octx.emit_reexport(new_name.clone(), name);
+                // There's no docs for these
+                doc = crate::ref_page_doc_comment("", "Constant");
                 name = new_name;
                 break;
             }
@@ -33,11 +36,9 @@ impl Code for Constant {
         };
 
         let value = CExprItem::tokens(self.value.iter(), &*octx);
-
-        let code = quote! {
+        octx.emit_tokens(quote! {
+            #[doc = #doc]
             pub const #name: #ty = #value;
-        };
-
-        octx.emit_tokens(code)
+        });
     }
 }

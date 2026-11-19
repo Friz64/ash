@@ -14,7 +14,9 @@ impl Code for Handle {
         let ty = octx.enumerator_tokens(self.object_type, TypeName::VK_OBJECT_TYPE, true);
 
         let code = if self.dispatchable {
+            let doc = crate::ref_page_doc_comment(self.name.original(), "Dispatchable handle");
             quote! {
+                #[doc = #doc]
                 #[repr(transparent)]
                 #[derive(Eq, PartialEq, Ord, PartialOrd, Clone, Copy, Hash)]
                 pub struct #name(*mut u8);
@@ -60,7 +62,9 @@ impl Code for Handle {
                 }
             }
         } else {
+            let doc = crate::ref_page_doc_comment(self.name.original(), "Non-dispatchable handle");
             quote! {
+                #[doc = #doc]
                 #[repr(transparent)]
                 #[derive(Eq, PartialEq, Ord, PartialOrd, Clone, Copy, Hash, Default)]
                 pub struct #name(u64);

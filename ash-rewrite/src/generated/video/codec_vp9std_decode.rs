@@ -3,12 +3,15 @@
 //!Items provided by `vulkan_video_codec_vp9std_decode`
 #![doc(alias = "vulkan_video_codec_vp9std_decode")]
 use crate::internal_prelude::*;
+///<s>Vulkan Manual Page</s> · Constant
 pub const SPEC_VERSION: u32 = vk::STD_VULKAN_VIDEO_CODEC_VP9_DECODE_API_VERSION_1_0_0;
+///<s>Vulkan Manual Page</s> · Constant
 pub const NAME: &CStr = c"VK_STD_vulkan_video_codec_vp9_decode";
 pub(crate) mod items {
     use crate::internal_prelude::*;
     #[repr(C)]
     #[derive(Clone, Copy, Default)]
+    ///<s>Vulkan Manual Page</s> · Struct
     pub struct DecodeVP9PictureInfoFlags {
         /**- `error_resilient_mode` @ `0..1`
 - `intra_only` @ `1..2`
@@ -113,6 +116,7 @@ pub(crate) mod items {
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
+    ///<s>Vulkan Manual Page</s> · Struct
     pub struct DecodeVP9PictureInfo<'a> {
         pub flags: vk::DecodeVP9PictureInfoFlags,
         pub profile: vk::VP9Profile,
@@ -238,6 +242,7 @@ pub(crate) mod items {
             self
         }
     }
+    ///[Reference Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_STD_VULKAN_VIDEO_CODEC_VP9_DECODE_API_VERSION_1_0_0.html) · C Macro
     pub const STD_VULKAN_VIDEO_CODEC_VP9_DECODE_API_VERSION_1_0_0: u32 = vk::make_video_std_version(
         1,
         0,

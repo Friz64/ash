@@ -152,6 +152,7 @@ pub(crate) mod items {
     use crate::internal_prelude::*;
     #[repr(C)]
     #[derive(Clone, Copy, Default)]
+    ///<s>Vulkan Manual Page</s> · Struct
     pub struct AV1ColorConfigFlags {
         /**- `mono_chrome` @ `0..1`
 - `color_range` @ `1..2`
@@ -216,6 +217,7 @@ pub(crate) mod items {
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy, Default)]
+    ///<s>Vulkan Manual Page</s> · Struct
     pub struct AV1ColorConfig {
         pub flags: vk::AV1ColorConfigFlags,
         pub bit_depth: u8,
@@ -281,6 +283,7 @@ pub(crate) mod items {
     }
     #[repr(C)]
     #[derive(Clone, Copy, Default)]
+    ///<s>Vulkan Manual Page</s> · Struct
     pub struct AV1TimingInfoFlags {
         ///- `equal_picture_interval` @ `0..1`
         pub bitfield0: u32,
@@ -308,6 +311,7 @@ pub(crate) mod items {
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy, Default)]
+    ///<s>Vulkan Manual Page</s> · Struct
     pub struct AV1TimingInfo {
         pub flags: vk::AV1TimingInfoFlags,
         pub num_units_in_display_tick: u32,
@@ -342,6 +346,7 @@ pub(crate) mod items {
     }
     #[repr(C)]
     #[derive(Clone, Copy, Default)]
+    ///<s>Vulkan Manual Page</s> · Struct
     pub struct AV1SequenceHeaderFlags {
         /**- `still_picture` @ `0..1`
 - `reduced_still_picture_header` @ `1..2`
@@ -588,6 +593,7 @@ pub(crate) mod items {
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
+    ///<s>Vulkan Manual Page</s> · Struct
     pub struct AV1SequenceHeader<'a> {
         pub flags: vk::AV1SequenceHeaderFlags,
         pub seq_profile: vk::AV1Profile,
@@ -703,6 +709,7 @@ pub(crate) mod items {
     }
     #[repr(C)]
     #[derive(Clone, Copy, Default)]
+    ///<s>Vulkan Manual Page</s> · Struct
     pub struct AV1LoopFilterFlags {
         /**- `loop_filter_delta_enabled` @ `0..1`
 - `loop_filter_delta_update` @ `1..2`*/
@@ -749,6 +756,7 @@ pub(crate) mod items {
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
+    ///<s>Vulkan Manual Page</s> · Struct
     pub struct AV1LoopFilter {
         pub flags: vk::AV1LoopFilterFlags,
         pub loop_filter_level: [u8; vk::AV1_MAX_LOOP_FILTER_STRENGTHS as _],
@@ -814,6 +822,7 @@ pub(crate) mod items {
     }
     #[repr(C)]
     #[derive(Clone, Copy, Default)]
+    ///<s>Vulkan Manual Page</s> · Struct
     pub struct AV1QuantizationFlags {
         /**- `using_qmatrix` @ `0..1`
 - `diff_uv_delta` @ `1..2`*/
@@ -851,6 +860,7 @@ pub(crate) mod items {
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy, Default)]
+    ///<s>Vulkan Manual Page</s> · Struct
     pub struct AV1Quantization {
         pub flags: vk::AV1QuantizationFlags,
         pub base_q_idx: u8,
@@ -910,6 +920,7 @@ pub(crate) mod items {
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
+    ///<s>Vulkan Manual Page</s> · Struct
     pub struct AV1Segmentation {
         pub feature_enabled: [u8; vk::AV1_MAX_SEGMENTS as _],
         pub feature_data: [[i16; vk::AV1_SEG_LVL_MAX as _]; vk::AV1_MAX_SEGMENTS as _],
@@ -942,6 +953,7 @@ pub(crate) mod items {
     }
     #[repr(C)]
     #[derive(Clone, Copy, Default)]
+    ///<s>Vulkan Manual Page</s> · Struct
     pub struct AV1TileInfoFlags {
         ///- `uniform_tile_spacing_flag` @ `0..1`
         pub bitfield0: u32,
@@ -975,6 +987,7 @@ pub(crate) mod items {
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
+    ///<s>Vulkan Manual Page</s> · Struct
     pub struct AV1TileInfo<'a> {
         pub flags: vk::AV1TileInfoFlags,
         pub tile_cols: u8,
@@ -1048,6 +1061,7 @@ pub(crate) mod items {
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
+    ///<s>Vulkan Manual Page</s> · Struct
     pub struct AV1CDEF {
         pub cdef_damping_minus_3: u8,
         pub cdef_bits: u8,
@@ -1111,6 +1125,7 @@ pub(crate) mod items {
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
+    ///<s>Vulkan Manual Page</s> · Struct
     pub struct AV1LoopRestoration {
         pub frame_restoration_type: [vk::AV1FrameRestorationType; vk::AV1_MAX_NUM_PLANES
             as _],
@@ -1146,6 +1161,7 @@ pub(crate) mod items {
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
+    ///<s>Vulkan Manual Page</s> · Struct
     pub struct AV1GlobalMotion {
         pub gm_type: [u8; vk::AV1_NUM_REF_FRAMES as _],
         pub gm_params: [[i32; vk::AV1_GLOBAL_MOTION_PARAMS
@@ -1177,6 +1193,7 @@ pub(crate) mod items {
     }
     #[repr(C)]
     #[derive(Clone, Copy, Default)]
+    ///<s>Vulkan Manual Page</s> · Struct
     pub struct AV1FilmGrainFlags {
         /**- `chroma_scaling_from_luma` @ `0..1`
 - `overlap_flag` @ `1..2`
@@ -1240,6 +1257,7 @@ pub(crate) mod items {
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
+    ///<s>Vulkan Manual Page</s> · Struct
     pub struct AV1FilmGrain {
         pub flags: vk::AV1FilmGrainFlags,
         pub grain_scaling_minus_8: u8,
@@ -1432,6 +1450,7 @@ pub(crate) mod items {
             self
         }
     }
+    ///<s>Vulkan Manual Page</s> · Enum
     #[repr(transparent)]
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
     pub struct AV1Profile(pub(crate) i32);
@@ -1461,6 +1480,7 @@ pub(crate) mod items {
             self.0
         }
     }
+    ///<s>Vulkan Manual Page</s> · Enum
     #[repr(transparent)]
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
     pub struct AV1Level(pub(crate) i32);
@@ -1511,6 +1531,7 @@ pub(crate) mod items {
             self.0
         }
     }
+    ///<s>Vulkan Manual Page</s> · Enum
     #[repr(transparent)]
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
     pub struct AV1FrameType(pub(crate) i32);
@@ -1541,6 +1562,7 @@ pub(crate) mod items {
             self.0
         }
     }
+    ///<s>Vulkan Manual Page</s> · Enum
     #[repr(transparent)]
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
     pub struct AV1ReferenceName(pub(crate) i32);
@@ -1575,6 +1597,7 @@ pub(crate) mod items {
             self.0
         }
     }
+    ///<s>Vulkan Manual Page</s> · Enum
     #[repr(transparent)]
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
     pub struct AV1InterpolationFilter(pub(crate) i32);
@@ -1606,6 +1629,7 @@ pub(crate) mod items {
             self.0
         }
     }
+    ///<s>Vulkan Manual Page</s> · Enum
     #[repr(transparent)]
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
     pub struct AV1TxMode(pub(crate) i32);
@@ -1635,6 +1659,7 @@ pub(crate) mod items {
             self.0
         }
     }
+    ///<s>Vulkan Manual Page</s> · Enum
     #[repr(transparent)]
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
     pub struct AV1FrameRestorationType(pub(crate) i32);
@@ -1665,6 +1690,7 @@ pub(crate) mod items {
             self.0
         }
     }
+    ///<s>Vulkan Manual Page</s> · Enum
     #[repr(transparent)]
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
     pub struct AV1ColorPrimaries(pub(crate) i32);
@@ -1703,6 +1729,7 @@ pub(crate) mod items {
             self.0
         }
     }
+    ///<s>Vulkan Manual Page</s> · Enum
     #[repr(transparent)]
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
     pub struct AV1TransferCharacteristics(pub(crate) i32);
@@ -1748,6 +1775,7 @@ pub(crate) mod items {
             self.0
         }
     }
+    ///<s>Vulkan Manual Page</s> · Enum
     #[repr(transparent)]
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
     pub struct AV1MatrixCoefficients(pub(crate) i32);
@@ -1789,6 +1817,7 @@ pub(crate) mod items {
             self.0
         }
     }
+    ///<s>Vulkan Manual Page</s> · Enum
     #[repr(transparent)]
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
     pub struct AV1ChromaSamplePosition(pub(crate) i32);
@@ -1819,26 +1848,47 @@ pub(crate) mod items {
             self.0
         }
     }
+    ///<s>Vulkan Manual Page</s> · Constant
     pub const AV1_NUM_REF_FRAMES: u32 = 8;
+    ///<s>Vulkan Manual Page</s> · Constant
     pub const AV1_REFS_PER_FRAME: u32 = 7;
+    ///<s>Vulkan Manual Page</s> · Constant
     pub const AV1_TOTAL_REFS_PER_FRAME: u32 = 8;
+    ///<s>Vulkan Manual Page</s> · Constant
     pub const AV1_MAX_TILE_COLS: u32 = 64;
+    ///<s>Vulkan Manual Page</s> · Constant
     pub const AV1_MAX_TILE_ROWS: u32 = 64;
+    ///<s>Vulkan Manual Page</s> · Constant
     pub const AV1_MAX_SEGMENTS: u32 = 8;
+    ///<s>Vulkan Manual Page</s> · Constant
     pub const AV1_SEG_LVL_MAX: u32 = 8;
+    ///<s>Vulkan Manual Page</s> · Constant
     pub const AV1_PRIMARY_REF_NONE: u32 = 7;
+    ///<s>Vulkan Manual Page</s> · Constant
     pub const AV1_SELECT_INTEGER_MV: u32 = 2;
+    ///<s>Vulkan Manual Page</s> · Constant
     pub const AV1_SELECT_SCREEN_CONTENT_TOOLS: u32 = 2;
+    ///<s>Vulkan Manual Page</s> · Constant
     pub const AV1_SKIP_MODE_FRAMES: u32 = 2;
+    ///<s>Vulkan Manual Page</s> · Constant
     pub const AV1_MAX_LOOP_FILTER_STRENGTHS: u32 = 4;
+    ///<s>Vulkan Manual Page</s> · Constant
     pub const AV1_LOOP_FILTER_ADJUSTMENTS: u32 = 2;
+    ///<s>Vulkan Manual Page</s> · Constant
     pub const AV1_MAX_CDEF_FILTER_STRENGTHS: u32 = 8;
+    ///<s>Vulkan Manual Page</s> · Constant
     pub const AV1_MAX_NUM_PLANES: u32 = 3;
+    ///<s>Vulkan Manual Page</s> · Constant
     pub const AV1_GLOBAL_MOTION_PARAMS: u32 = 6;
+    ///<s>Vulkan Manual Page</s> · Constant
     pub const AV1_MAX_NUM_Y_POINTS: u32 = 14;
+    ///<s>Vulkan Manual Page</s> · Constant
     pub const AV1_MAX_NUM_CB_POINTS: u32 = 10;
+    ///<s>Vulkan Manual Page</s> · Constant
     pub const AV1_MAX_NUM_CR_POINTS: u32 = 10;
+    ///<s>Vulkan Manual Page</s> · Constant
     pub const AV1_MAX_NUM_POS_LUMA: u32 = 24;
+    ///<s>Vulkan Manual Page</s> · Constant
     pub const AV1_MAX_NUM_POS_CHROMA: u32 = 25;
 }
 pub use items::*;

@@ -42,35 +42,10 @@ pub trait Handle: Sized {
     }
 }
 
-pub trait RawPtr<T> {
-    fn to_raw_ptr(self) -> *const T;
-}
-
-impl<T> RawPtr<T> for Option<&T> {
-    fn to_raw_ptr(self) -> *const T {
-        match self {
-            Some(inner) => inner,
-            None => ptr::null(),
-        }
-    }
-}
-
-pub trait RawMutPtr<T> {
-    fn to_raw_mut_ptr(self) -> *mut T;
-}
-
-impl<T> RawMutPtr<T> for Option<&mut T> {
-    fn to_raw_mut_ptr(self) -> *mut T {
-        match self {
-            Some(inner) => inner,
-            None => ptr::null_mut(),
-        }
-    }
-}
-
 #[cfg(feature = "std")]
 impl std::error::Error for vk::Result {}
 
+/// Result type returned from fallible wrapper functions.
 pub type VkResult<T> = Result<T, vk::Result>;
 
 impl vk::Result {
@@ -167,6 +142,7 @@ where
     }
 }
 
+/// An error returned from setters that write strings into static arrays.
 #[derive(Debug)]
 pub struct CStrTooLargeForStaticArray {
     pub static_array_size: usize,

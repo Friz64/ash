@@ -68,6 +68,7 @@ pub(crate) mod items {
     use crate::internal_prelude::*;
     #[repr(C)]
     #[derive(Clone, Copy, Default)]
+    ///<s>Vulkan Manual Page</s> · Struct
     pub struct VP9ColorConfigFlags {
         ///- `color_range` @ `0..1`
         pub bitfield0: u32,
@@ -95,6 +96,7 @@ pub(crate) mod items {
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy, Default)]
+    ///<s>Vulkan Manual Page</s> · Struct
     pub struct VP9ColorConfig {
         pub flags: vk::VP9ColorConfigFlags,
         pub bit_depth: u8,
@@ -133,6 +135,7 @@ pub(crate) mod items {
     }
     #[repr(C)]
     #[derive(Clone, Copy, Default)]
+    ///<s>Vulkan Manual Page</s> · Struct
     pub struct VP9LoopFilterFlags {
         /**- `loop_filter_delta_enabled` @ `0..1`
 - `loop_filter_delta_update` @ `1..2`*/
@@ -179,6 +182,7 @@ pub(crate) mod items {
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
+    ///<s>Vulkan Manual Page</s> · Struct
     pub struct VP9LoopFilter {
         pub flags: vk::VP9LoopFilterFlags,
         pub loop_filter_level: u8,
@@ -241,6 +245,7 @@ pub(crate) mod items {
     }
     #[repr(C)]
     #[derive(Clone, Copy, Default)]
+    ///<s>Vulkan Manual Page</s> · Struct
     pub struct VP9SegmentationFlags {
         /**- `segmentation_update_map` @ `0..1`
 - `segmentation_temporal_update` @ `1..2`
@@ -315,6 +320,7 @@ pub(crate) mod items {
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
+    ///<s>Vulkan Manual Page</s> · Struct
     pub struct VP9Segmentation {
         pub flags: vk::VP9SegmentationFlags,
         pub segmentation_tree_probs: [u8; vk::VP9_MAX_SEGMENTATION_TREE_PROBS as _],
@@ -369,6 +375,7 @@ pub(crate) mod items {
             self
         }
     }
+    ///<s>Vulkan Manual Page</s> · Enum
     #[repr(transparent)]
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
     pub struct VP9Profile(pub(crate) i32);
@@ -399,6 +406,7 @@ pub(crate) mod items {
             self.0
         }
     }
+    ///<s>Vulkan Manual Page</s> · Enum
     #[repr(transparent)]
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
     pub struct VP9Level(pub(crate) i32);
@@ -439,6 +447,7 @@ pub(crate) mod items {
             self.0
         }
     }
+    ///<s>Vulkan Manual Page</s> · Enum
     #[repr(transparent)]
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
     pub struct VP9FrameType(pub(crate) i32);
@@ -467,6 +476,7 @@ pub(crate) mod items {
             self.0
         }
     }
+    ///<s>Vulkan Manual Page</s> · Enum
     #[repr(transparent)]
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
     pub struct VP9ReferenceName(pub(crate) i32);
@@ -497,6 +507,7 @@ pub(crate) mod items {
             self.0
         }
     }
+    ///<s>Vulkan Manual Page</s> · Enum
     #[repr(transparent)]
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
     pub struct VP9InterpolationFilter(pub(crate) i32);
@@ -528,6 +539,7 @@ pub(crate) mod items {
             self.0
         }
     }
+    ///<s>Vulkan Manual Page</s> · Enum
     #[repr(transparent)]
     #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
     pub struct VP9ColorSpace(pub(crate) i32);
@@ -562,13 +574,21 @@ pub(crate) mod items {
             self.0
         }
     }
+    ///<s>Vulkan Manual Page</s> · Constant
     pub const VP9_NUM_REF_FRAMES: u32 = 8;
+    ///<s>Vulkan Manual Page</s> · Constant
     pub const VP9_REFS_PER_FRAME: u32 = 3;
+    ///<s>Vulkan Manual Page</s> · Constant
     pub const VP9_MAX_REF_FRAMES: u32 = 4;
+    ///<s>Vulkan Manual Page</s> · Constant
     pub const VP9_LOOP_FILTER_ADJUSTMENTS: u32 = 2;
+    ///<s>Vulkan Manual Page</s> · Constant
     pub const VP9_MAX_SEGMENTS: u32 = 8;
+    ///<s>Vulkan Manual Page</s> · Constant
     pub const VP9_SEG_LVL_MAX: u32 = 4;
+    ///<s>Vulkan Manual Page</s> · Constant
     pub const VP9_MAX_SEGMENTATION_TREE_PROBS: u32 = 7;
+    ///<s>Vulkan Manual Page</s> · Constant
     pub const VP9_MAX_SEGMENTATION_PRED_PROB: u32 = 3;
 }
 pub use items::*;

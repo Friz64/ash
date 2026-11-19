@@ -11,15 +11,18 @@ impl Code for CMacro {
 
         let output = OutputLocation::primary_of(self.required_by, GlobExport::Yes);
         let octx = codemap.octx(output, ctx);
+        let doc = crate::ref_page_doc_comment(self.name.original(), "C Macro");
         let name = octx.cmacro_tokens(self.name, false);
         let expr = CExprItem::tokens(self.cexpr.iter(), &*octx);
         let code = if self.has_args() {
             let args = self.args.iter().map(|arg| format_ident!("{arg}"));
             quote! {
+                #[doc = #doc]
                 pub const fn #name(#(#args: u32),*) -> u32 { #expr }
             }
         } else {
             quote! {
+                #[doc = #doc]
                 pub const #name: u32 = #expr;
             }
         };

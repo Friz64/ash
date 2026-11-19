@@ -3,13 +3,16 @@
 //!Items provided by `vulkan_video_codec_h265std_encode`
 #![doc(alias = "vulkan_video_codec_h265std_encode")]
 use crate::internal_prelude::*;
+///<s>Vulkan Manual Page</s> · Constant
 pub const SPEC_VERSION: u32 = vk::STD_VULKAN_VIDEO_CODEC_H265_ENCODE_API_VERSION_1_0_0;
+///<s>Vulkan Manual Page</s> · Constant
 pub const NAME: &CStr = c"VK_STD_vulkan_video_codec_h265_encode";
 pub(crate) mod items {
     use crate::internal_prelude::*;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy, Default)]
+    ///<s>Vulkan Manual Page</s> · Struct
     pub struct EncodeH265WeightTableFlags {
         pub luma_weight_l0_flag: u16,
         pub chroma_weight_l0_flag: u16,
@@ -39,6 +42,7 @@ pub(crate) mod items {
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
+    ///<s>Vulkan Manual Page</s> · Struct
     pub struct EncodeH265WeightTable {
         pub flags: vk::EncodeH265WeightTableFlags,
         pub luma_log2_weight_denom: u8,
@@ -155,6 +159,7 @@ pub(crate) mod items {
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
+    ///<s>Vulkan Manual Page</s> · Struct
     pub struct EncodeH265LongTermRefPics {
         pub num_long_term_sps: u8,
         pub num_long_term_pics: u8,
@@ -226,6 +231,7 @@ pub(crate) mod items {
     }
     #[repr(C)]
     #[derive(Clone, Copy, Default)]
+    ///<s>Vulkan Manual Page</s> · Struct
     pub struct EncodeH265SliceSegmentHeaderFlags {
         /**- `first_slice_segment_in_pic_flag` @ `0..1`
 - `dependent_slice_segment_flag` @ `1..2`
@@ -411,6 +417,7 @@ pub(crate) mod items {
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy, Default)]
+    ///<s>Vulkan Manual Page</s> · Struct
     pub struct EncodeH265SliceSegmentHeader<'a> {
         pub flags: vk::EncodeH265SliceSegmentHeaderFlags,
         pub slice_type: vk::H265SliceType,
@@ -498,6 +505,7 @@ pub(crate) mod items {
     }
     #[repr(C)]
     #[derive(Clone, Copy, Default)]
+    ///<s>Vulkan Manual Page</s> · Struct
     pub struct EncodeH265ReferenceListsInfoFlags {
         /**- `ref_pic_list_modification_flag_l0` @ `0..1`
 - `ref_pic_list_modification_flag_l1` @ `1..2`*/
@@ -548,6 +556,7 @@ pub(crate) mod items {
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
+    ///<s>Vulkan Manual Page</s> · Struct
     pub struct EncodeH265ReferenceListsInfo {
         pub flags: vk::EncodeH265ReferenceListsInfoFlags,
         pub num_ref_idx_l0_active_minus1: u8,
@@ -622,6 +631,7 @@ pub(crate) mod items {
     }
     #[repr(C)]
     #[derive(Clone, Copy, Default)]
+    ///<s>Vulkan Manual Page</s> · Struct
     pub struct EncodeH265PictureInfoFlags {
         /**- `is_reference` @ `0..1`
 - `IrapPicFlag` @ `1..2`
@@ -757,6 +767,7 @@ pub(crate) mod items {
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
+    ///<s>Vulkan Manual Page</s> · Struct
     pub struct EncodeH265PictureInfo<'a> {
         pub flags: vk::EncodeH265PictureInfoFlags,
         pub pic_type: vk::H265PictureType,
@@ -860,6 +871,7 @@ pub(crate) mod items {
     }
     #[repr(C)]
     #[derive(Clone, Copy, Default)]
+    ///<s>Vulkan Manual Page</s> · Struct
     pub struct EncodeH265ReferenceInfoFlags {
         /**- `used_for_long_term_reference` @ `0..1`
 - `unused_for_reference` @ `1..2`*/
@@ -903,6 +915,7 @@ pub(crate) mod items {
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy, Default)]
+    ///<s>Vulkan Manual Page</s> · Struct
     pub struct EncodeH265ReferenceInfo {
         pub flags: vk::EncodeH265ReferenceInfoFlags,
         pub pic_type: vk::H265PictureType,
@@ -929,6 +942,7 @@ pub(crate) mod items {
             self
         }
     }
+    ///[Reference Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_STD_VULKAN_VIDEO_CODEC_H265_ENCODE_API_VERSION_1_0_0.html) · C Macro
     pub const STD_VULKAN_VIDEO_CODEC_H265_ENCODE_API_VERSION_1_0_0: u32 = vk::make_video_std_version(
         1,
         0,

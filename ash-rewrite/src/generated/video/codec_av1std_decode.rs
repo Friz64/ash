@@ -3,12 +3,15 @@
 //!Items provided by `vulkan_video_codec_av1std_decode`
 #![doc(alias = "vulkan_video_codec_av1std_decode")]
 use crate::internal_prelude::*;
+///<s>Vulkan Manual Page</s> · Constant
 pub const SPEC_VERSION: u32 = vk::STD_VULKAN_VIDEO_CODEC_AV1_DECODE_API_VERSION_1_0_0;
+///<s>Vulkan Manual Page</s> · Constant
 pub const NAME: &CStr = c"VK_STD_vulkan_video_codec_av1_decode";
 pub(crate) mod items {
     use crate::internal_prelude::*;
     #[repr(C)]
     #[derive(Clone, Copy, Default)]
+    ///<s>Vulkan Manual Page</s> · Struct
     pub struct DecodeAV1PictureInfoFlags {
         /**- `error_resilient_mode` @ `0..1`
 - `disable_cdf_update` @ `1..2`
@@ -368,6 +371,7 @@ pub(crate) mod items {
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
+    ///<s>Vulkan Manual Page</s> · Struct
     pub struct DecodeAV1PictureInfo<'a> {
         pub flags: vk::DecodeAV1PictureInfoFlags,
         pub frame_type: vk::AV1FrameType,
@@ -543,6 +547,7 @@ pub(crate) mod items {
     }
     #[repr(C)]
     #[derive(Clone, Copy, Default)]
+    ///<s>Vulkan Manual Page</s> · Struct
     pub struct DecodeAV1ReferenceInfoFlags {
         /**- `disable_frame_end_update_cdf` @ `0..1`
 - `segmentation_enabled` @ `1..2`*/
@@ -586,6 +591,7 @@ pub(crate) mod items {
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
+    ///<s>Vulkan Manual Page</s> · Struct
     pub struct DecodeAV1ReferenceInfo {
         pub flags: vk::DecodeAV1ReferenceInfoFlags,
         pub frame_type: u8,
@@ -631,6 +637,7 @@ pub(crate) mod items {
             self
         }
     }
+    ///[Reference Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_STD_VULKAN_VIDEO_CODEC_AV1_DECODE_API_VERSION_1_0_0.html) · C Macro
     pub const STD_VULKAN_VIDEO_CODEC_AV1_DECODE_API_VERSION_1_0_0: u32 = vk::make_video_std_version(
         1,
         0,

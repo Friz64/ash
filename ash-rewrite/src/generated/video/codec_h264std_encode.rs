@@ -3,13 +3,16 @@
 //!Items provided by `vulkan_video_codec_h264std_encode`
 #![doc(alias = "vulkan_video_codec_h264std_encode")]
 use crate::internal_prelude::*;
+///<s>Vulkan Manual Page</s> · Constant
 pub const SPEC_VERSION: u32 = vk::STD_VULKAN_VIDEO_CODEC_H264_ENCODE_API_VERSION_1_0_0;
+///<s>Vulkan Manual Page</s> · Constant
 pub const NAME: &CStr = c"VK_STD_vulkan_video_codec_h264_encode";
 pub(crate) mod items {
     use crate::internal_prelude::*;
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy, Default)]
+    ///<s>Vulkan Manual Page</s> · Struct
     pub struct EncodeH264WeightTableFlags {
         pub luma_weight_l0_flag: u32,
         pub chroma_weight_l0_flag: u32,
@@ -39,6 +42,7 @@ pub(crate) mod items {
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
+    ///<s>Vulkan Manual Page</s> · Struct
     pub struct EncodeH264WeightTable {
         pub flags: vk::EncodeH264WeightTableFlags,
         pub luma_log2_weight_denom: u8,
@@ -151,6 +155,7 @@ pub(crate) mod items {
     }
     #[repr(C)]
     #[derive(Clone, Copy, Default)]
+    ///<s>Vulkan Manual Page</s> · Struct
     pub struct EncodeH264SliceHeaderFlags {
         /**- `direct_spatial_mv_pred_flag` @ `0..1`
 - `num_ref_idx_active_override_flag` @ `1..2`*/
@@ -200,6 +205,7 @@ pub(crate) mod items {
     }
     #[repr(C)]
     #[derive(Clone, Copy, Default)]
+    ///<s>Vulkan Manual Page</s> · Struct
     pub struct EncodeH264PictureInfoFlags {
         /**- `IdrPicFlag` @ `0..1`
 - `is_reference` @ `1..2`
@@ -283,6 +289,7 @@ pub(crate) mod items {
     }
     #[repr(C)]
     #[derive(Clone, Copy, Default)]
+    ///<s>Vulkan Manual Page</s> · Struct
     pub struct EncodeH264ReferenceInfoFlags {
         ///- `used_for_long_term_reference` @ `0..1`
         pub bitfield0: u32,
@@ -315,6 +322,7 @@ pub(crate) mod items {
     }
     #[repr(C)]
     #[derive(Clone, Copy, Default)]
+    ///<s>Vulkan Manual Page</s> · Struct
     pub struct EncodeH264ReferenceListsInfoFlags {
         /**- `ref_pic_list_modification_flag_l0` @ `0..1`
 - `ref_pic_list_modification_flag_l1` @ `1..2`*/
@@ -365,6 +373,7 @@ pub(crate) mod items {
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy, Default)]
+    ///<s>Vulkan Manual Page</s> · Struct
     pub struct EncodeH264RefListModEntry {
         pub modification_of_pic_nums_idc: vk::H264ModificationOfPicNumsIdc,
         pub abs_diff_pic_num_minus1: u16,
@@ -392,6 +401,7 @@ pub(crate) mod items {
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy, Default)]
+    ///<s>Vulkan Manual Page</s> · Struct
     pub struct EncodeH264RefPicMarkingEntry {
         pub memory_management_control_operation: vk::H264MemMgmtControlOp,
         pub difference_of_pic_nums_minus1: u16,
@@ -435,6 +445,7 @@ pub(crate) mod items {
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
+    ///<s>Vulkan Manual Page</s> · Struct
     pub struct EncodeH264ReferenceListsInfo<'a> {
         pub flags: vk::EncodeH264ReferenceListsInfoFlags,
         pub num_ref_idx_l0_active_minus1: u8,
@@ -536,6 +547,7 @@ pub(crate) mod items {
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
+    ///<s>Vulkan Manual Page</s> · Struct
     pub struct EncodeH264PictureInfo<'a> {
         pub flags: vk::EncodeH264PictureInfoFlags,
         pub seq_parameter_set_id: u8,
@@ -619,6 +631,7 @@ pub(crate) mod items {
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy, Default)]
+    ///<s>Vulkan Manual Page</s> · Struct
     pub struct EncodeH264ReferenceInfo {
         pub flags: vk::EncodeH264ReferenceInfoFlags,
         pub primary_pic_type: vk::H264PictureType,
@@ -666,6 +679,7 @@ pub(crate) mod items {
     #[repr(C)]
     #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy, Default)]
+    ///<s>Vulkan Manual Page</s> · Struct
     pub struct EncodeH264SliceHeader<'a> {
         pub flags: vk::EncodeH264SliceHeaderFlags,
         pub first_mb_in_slice: u32,
@@ -732,6 +746,7 @@ pub(crate) mod items {
             self
         }
     }
+    ///[Reference Page](https://docs.vulkan.org/refpages/latest/refpages/source/VK_STD_VULKAN_VIDEO_CODEC_H264_ENCODE_API_VERSION_1_0_0.html) · C Macro
     pub const STD_VULKAN_VIDEO_CODEC_H264_ENCODE_API_VERSION_1_0_0: u32 = vk::make_video_std_version(
         1,
         0,

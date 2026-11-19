@@ -80,7 +80,7 @@ impl PathComponent {
         match require_location {
             RequireLocation::Core { major, minor } => vec![PathComponent {
                 module_name: format_ident!("vk{major}_{minor}"),
-                doc_comment: crate::manual_page_doc_comment(
+                doc_comment: crate::ref_page_doc_comment(
                     &original_name,
                     format!("Vulkan version {major}.{minor}"),
                 ),
@@ -95,7 +95,7 @@ impl PathComponent {
                         },
                         PathComponent {
                             module_name: crate::escape_ident(&ext_name.to_snek_case()),
-                            doc_comment: crate::manual_page_doc_comment(
+                            doc_comment: crate::ref_page_doc_comment(
                                 &original_name,
                                 format!("Extension `{}`", original_name),
                             ),
