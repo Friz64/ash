@@ -76,6 +76,49 @@ impl Instance {
     pub fn instance(&self) -> vk::Instance {
         self.handle
     }
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkEnumeratePhysicalDeviceQueueFamilyPerformanceCountersByRegionARM.html) · Instance Function
+    pub unsafe fn enumerate_physical_device_queue_family_performance_counters_by_region(
+        &self,
+        physical_device: vk::PhysicalDevice,
+        queue_family_index: u32,
+    ) -> VkResult<
+        (
+            Vec<vk::PerformanceCounterARM<'_>>,
+            Vec<vk::PerformanceCounterDescriptionARM<'_>>,
+        ),
+    > {
+        loop {
+            let mut count = 0;
+            (self
+                .fp
+                .enumerate_physical_device_queue_family_performance_counters_by_region)(
+                    physical_device,
+                    queue_family_index,
+                    &mut count,
+                    ptr::null_mut(),
+                    ptr::null_mut(),
+                )
+                .result()?;
+            let mut counters = Vec::with_capacity(count as usize);
+            let mut counter_descriptions = Vec::with_capacity(count as usize);
+            let err_code = (self
+                .fp
+                .enumerate_physical_device_queue_family_performance_counters_by_region)(
+                physical_device,
+                queue_family_index,
+                &mut count,
+                counters.as_mut_ptr(),
+                counter_descriptions.as_mut_ptr(),
+            );
+            if err_code != vk::Result::INCOMPLETE {
+                let counters = err_code
+                    .set_vec_len_on_success(counters, count as usize)?;
+                let counter_descriptions = err_code
+                    .set_vec_len_on_success(counter_descriptions, count as usize)?;
+                return Ok((counters, counter_descriptions));
+            }
+        }
+    }
 }
 pub(crate) mod items {
     use crate::internal_prelude::*;

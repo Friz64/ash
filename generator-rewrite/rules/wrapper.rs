@@ -487,3 +487,81 @@ fn vkGetDeviceFaultInfoEXT(
     )
     .result()
 }
+
+fn vkGetSwapchainTimingPropertiesEXT(
+    &self,
+    swapchain: vk::SwapchainKHR,
+    swapchain_timing_properties: &mut vk::SwapchainTimingPropertiesEXT,
+    swapchain_timing_properties_counter: Option<&mut u64>,
+) -> VkResult<()> {
+    (self.__table.get_swapchain_timing_properties)(
+        self.handle,
+        swapchain,
+        swapchain_timing_properties,
+        match swapchain_timing_properties_counter {
+            Some(p) => p,
+            None => ptr::null_mut(),
+        },
+    )
+    .result()
+}
+
+fn vkGetSwapchainTimeDomainPropertiesEXT(
+    &self,
+    swapchain: vk::SwapchainKHR,
+    swapchain_time_domain_properties: &mut vk::SwapchainTimeDomainPropertiesEXT,
+    swapchain_time_domain_properties_counter: Option<&mut u64>,
+) -> VkResult<()> {
+    (self.__table.get_swapchain_time_domain_properties)(
+        self.handle,
+        swapchain,
+        swapchain_time_domain_properties,
+        match swapchain_time_domain_properties_counter {
+            Some(p) => p,
+            None => ptr::null_mut(),
+        },
+    )
+    .result()
+}
+
+fn vkEnumeratePhysicalDeviceQueueFamilyPerformanceCountersByRegionARM(
+    &self,
+    physical_device: vk::PhysicalDevice,
+    queue_family_index: u32,
+) -> VkResult<(
+    Vec<vk::PerformanceCounterARM<'_>>,
+    Vec<vk::PerformanceCounterDescriptionARM<'_>>,
+)> {
+    loop {
+        let mut count = 0;
+        (self
+            .__table
+            .enumerate_physical_device_queue_family_performance_counters_by_region)(
+            physical_device,
+            queue_family_index,
+            &mut count,
+            ptr::null_mut(),
+            ptr::null_mut(),
+        )
+        .result()?;
+        let mut counters = Vec::with_capacity(count as usize);
+        let mut counter_descriptions = Vec::with_capacity(count as usize);
+
+        let err_code = (self
+            .__table
+            .enumerate_physical_device_queue_family_performance_counters_by_region)(
+            physical_device,
+            queue_family_index,
+            &mut count,
+            counters.as_mut_ptr(),
+            counter_descriptions.as_mut_ptr(),
+        );
+
+        if err_code != vk::Result::INCOMPLETE {
+            let counters = err_code.set_vec_len_on_success(counters, count as usize)?;
+            let counter_descriptions =
+                err_code.set_vec_len_on_success(counter_descriptions, count as usize)?;
+            return Ok((counters, counter_descriptions));
+        }
+    }
+}

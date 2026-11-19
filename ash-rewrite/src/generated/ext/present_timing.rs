@@ -191,6 +191,46 @@ impl Device {
         (self.fp.set_swapchain_present_timing_queue_size)(self.handle, swapchain, size)
             .result()
     }
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkGetSwapchainTimingPropertiesEXT.html) · Device Function
+    pub unsafe fn get_swapchain_timing_properties(
+        &self,
+        swapchain: vk::SwapchainKHR,
+        swapchain_timing_properties: &mut vk::SwapchainTimingPropertiesEXT,
+        swapchain_timing_properties_counter: Option<&mut u64>,
+    ) -> VkResult<()> {
+        (self
+            .fp
+            .get_swapchain_timing_properties)(
+                self.handle,
+                swapchain,
+                swapchain_timing_properties,
+                match swapchain_timing_properties_counter {
+                    Some(p) => p,
+                    None => ptr::null_mut(),
+                },
+            )
+            .result()
+    }
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkGetSwapchainTimeDomainPropertiesEXT.html) · Device Function
+    pub unsafe fn get_swapchain_time_domain_properties(
+        &self,
+        swapchain: vk::SwapchainKHR,
+        swapchain_time_domain_properties: &mut vk::SwapchainTimeDomainPropertiesEXT,
+        swapchain_time_domain_properties_counter: Option<&mut u64>,
+    ) -> VkResult<()> {
+        (self
+            .fp
+            .get_swapchain_time_domain_properties)(
+                self.handle,
+                swapchain,
+                swapchain_time_domain_properties,
+                match swapchain_time_domain_properties_counter {
+                    Some(p) => p,
+                    None => ptr::null_mut(),
+                },
+            )
+            .result()
+    }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkGetPastPresentationTimingEXT.html) · Device Function
     pub unsafe fn get_past_presentation_timing(
         &self,
