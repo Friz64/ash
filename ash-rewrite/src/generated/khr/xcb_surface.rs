@@ -101,7 +101,7 @@ impl Instance {
         queue_family_index: u32,
         connection: *mut vk::xcb_connection_t,
         visual_id: vk::xcb_visualid_t,
-    ) -> vk::Bool32 {
+    ) -> bool {
         (self
             .fp
             .get_physical_device_xcb_presentation_support)(
@@ -109,7 +109,7 @@ impl Instance {
             queue_family_index,
             connection,
             visual_id,
-        )
+        ) > 0
     }
 }
 pub(crate) mod items {

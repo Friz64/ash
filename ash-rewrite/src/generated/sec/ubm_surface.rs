@@ -99,14 +99,14 @@ impl Instance {
         physical_device: vk::PhysicalDevice,
         queue_family_index: u32,
         device: *mut vk::ubm_device,
-    ) -> vk::Bool32 {
+    ) -> bool {
         (self
             .fp
             .get_physical_device_ubm_presentation_support)(
             physical_device,
             queue_family_index,
             device,
-        )
+        ) > 0
     }
 }
 pub(crate) mod items {

@@ -103,7 +103,7 @@ impl Instance {
         queue_family_index: u32,
         dpy: *mut vk::Display,
         visual_id: vk::VisualID,
-    ) -> vk::Bool32 {
+    ) -> bool {
         (self
             .fp
             .get_physical_device_xlib_presentation_support)(
@@ -111,7 +111,7 @@ impl Instance {
             queue_family_index,
             dpy,
             visual_id,
-        )
+        ) > 0
     }
 }
 pub(crate) mod items {

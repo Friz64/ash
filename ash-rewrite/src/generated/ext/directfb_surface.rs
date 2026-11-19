@@ -101,14 +101,14 @@ impl Instance {
         physical_device: vk::PhysicalDevice,
         queue_family_index: u32,
         dfb: *mut vk::IDirectFB,
-    ) -> vk::Bool32 {
+    ) -> bool {
         (self
             .fp
             .get_physical_device_direct_fb_presentation_support)(
             physical_device,
             queue_family_index,
             dfb,
-        )
+        ) > 0
     }
 }
 pub(crate) mod items {

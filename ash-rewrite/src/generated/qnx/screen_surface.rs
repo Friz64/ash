@@ -101,14 +101,14 @@ impl Instance {
         physical_device: vk::PhysicalDevice,
         queue_family_index: u32,
         window: *mut vk::_screen_window,
-    ) -> vk::Bool32 {
+    ) -> bool {
         (self
             .fp
             .get_physical_device_screen_presentation_support)(
             physical_device,
             queue_family_index,
             window,
-        )
+        ) > 0
     }
 }
 pub(crate) mod items {

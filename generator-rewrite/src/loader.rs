@@ -813,23 +813,25 @@ fn wrapper(octx: &OutputContext, command: &Command, name: &Ident) -> Vec<Functio
 
     match wrapper_outputs.as_slice() {
         [] => {
-            let return_value = if call_ret_result {
-                quote! { #call.result() }
-            } else {
-                quote! { #call }
+            let mut return_value = call;
+            let mut output = TokenStream::new();
+            if call_ret_result {
+                return_value.extend(quote! { .result() });
+                output = quote! { -> VkResult<()> };
+            } else if let Some(Ty::ApiType(name)) = command.return_type
+                && name == TypeName::VK_BOOL32
+            {
+                return_value.extend(quote! { > 0 });
+                output = quote! { -> bool };
+            } else if let Some(return_ty) = &command.return_type {
+                let return_ty = return_ty.to_rust().tokens(&**octx, None);
+                output = quote! { -> #return_ty };
             };
 
             vec![Function {
                 generic_params,
                 inputs,
-                output: if call_ret_result {
-                    quote! { -> VkResult<()> }
-                } else if let Some(return_ty) = &command.return_type {
-                    let return_ty = return_ty.to_rust().tokens(&**octx, None);
-                    quote! { -> #return_ty }
-                } else {
-                    quote! {}
-                },
+                output,
                 content: quote! {
                     #length_eq_asserts
                     #return_value

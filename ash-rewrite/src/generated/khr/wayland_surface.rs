@@ -101,14 +101,14 @@ impl Instance {
         physical_device: vk::PhysicalDevice,
         queue_family_index: u32,
         display: *mut vk::wl_display,
-    ) -> vk::Bool32 {
+    ) -> bool {
         (self
             .fp
             .get_physical_device_wayland_presentation_support)(
             physical_device,
             queue_family_index,
             display,
-        )
+        ) > 0
     }
 }
 pub(crate) mod items {
