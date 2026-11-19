@@ -5,8 +5,9 @@ pub mod depends;
 use crate::LibraryName;
 use crate::name::{
     CMacroName, CommandName, ConstantName, EnumeratorName, ExtensionName, FuncPointerName,
-    TypeName, VariableName,
+    PlatformTypeName, TypeName, VariableName,
 };
+use crate::platform_types::PLATFORM_TYPES;
 use cdecl::{CDecl, CDeclMode, CTok, CType};
 use cexpr::{CExprItem, CExprItems};
 use depends::Depends;
@@ -130,7 +131,7 @@ impl CDecl<'static> {
                     }
 
                     // HACK(eddyb) work around `vk.xml` spec bug (missing `<type>`).
-                    "VkBool32" | "PFN_vkVoidFunction" => {
+                    "VkBool32" | "PFN_vkVoidFunction" | "VkInternalObjectNV" => {
                         *tok = CTok::TypeName(name);
                     }
 
@@ -412,8 +413,7 @@ pub struct BaseType {
 
 impl BaseType {
     fn from_node(node: Node) -> Option<BaseType> {
-        // these won't parse as CDecl and are irrelevant anyways as they're platform types
-        if !node.children().any(|node| node.has_tag_name("type")) {
+        if PLATFORM_TYPES.contains_key(&PlatformTypeName::new(child_text(node, "name").unwrap())) {
             return None;
         }
 

@@ -610,6 +610,8 @@ impl VendorId {
     pub const MOBILEYE: Self = Self(0x10007);
     ///Ape vendor ID
     pub const APE: Self = Self(0x10008);
+    ///Apex Compute vendor ID
+    pub const APEX: Self = Self(0x10009);
 }
 ///Provided by [Vulkan 1.0](crate::vk1_0)
 impl QueueFlags {
@@ -7833,6 +7835,8 @@ pub(crate) mod items {
     unsafe impl<'a> TaggedStructure<'a> for ComputePipelineCreateInfo<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::COMPUTE_PIPELINE_CREATE_INFO;
     }
+    unsafe impl<'a> Extends<vk::PipelineCreateInfoKHR<'_>>
+    for ComputePipelineCreateInfo<'a> {}
     impl<'a> Default for ComputePipelineCreateInfo<'a> {
         fn default() -> Self {
             Self {
@@ -8630,6 +8634,8 @@ pub(crate) mod items {
     unsafe impl<'a> TaggedStructure<'a> for GraphicsPipelineCreateInfo<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::GRAPHICS_PIPELINE_CREATE_INFO;
     }
+    unsafe impl<'a> Extends<vk::PipelineCreateInfoKHR<'_>>
+    for GraphicsPipelineCreateInfo<'a> {}
     impl<'a> Default for GraphicsPipelineCreateInfo<'a> {
         fn default() -> Self {
             Self {
@@ -16097,6 +16103,9 @@ pub(crate) mod items {
                 Self::SHARED_PRESENT_SURFACE_CAPABILITIES_2_KHR => {
                     Some("SHARED_PRESENT_SURFACE_CAPABILITIES_2_KHR")
                 }
+                Self::PHYSICAL_DEVICE_COOPERATIVE_MATRIX_LAYOUTS_FEATURES_ARM => {
+                    Some("PHYSICAL_DEVICE_COOPERATIVE_MATRIX_LAYOUTS_FEATURES_ARM")
+                }
                 Self::PHYSICAL_DEVICE_SHADER_OCP_MICROSCALING_TYPES_FEATURES_EXT => {
                     Some("PHYSICAL_DEVICE_SHADER_OCP_MICROSCALING_TYPES_FEATURES_EXT")
                 }
@@ -16123,6 +16132,17 @@ pub(crate) mod items {
                 Self::PHYSICAL_DEVICE_PRIMITIVE_RESTART_INDEX_FEATURES_EXT => {
                     Some("PHYSICAL_DEVICE_PRIMITIVE_RESTART_INDEX_FEATURES_EXT")
                 }
+                Self::PHYSICAL_DEVICE_VERTEX_ADDRESS_BINDING_UNRESTRICTED_FEATURES_EXT => {
+                    Some(
+                        "PHYSICAL_DEVICE_VERTEX_ADDRESS_BINDING_UNRESTRICTED_FEATURES_EXT",
+                    )
+                }
+                Self::PHYSICAL_DEVICE_MAINTENANCE_12_FEATURES_KHR => {
+                    Some("PHYSICAL_DEVICE_MAINTENANCE_12_FEATURES_KHR")
+                }
+                Self::PHYSICAL_DEVICE_MAINTENANCE_12_PROPERTIES_KHR => {
+                    Some("PHYSICAL_DEVICE_MAINTENANCE_12_PROPERTIES_KHR")
+                }
                 Self::PHYSICAL_DEVICE_IMAGE_TILING_CONTROL_FEATURES_EXT => {
                     Some("PHYSICAL_DEVICE_IMAGE_TILING_CONTROL_FEATURES_EXT")
                 }
@@ -16134,6 +16154,9 @@ pub(crate) mod items {
                 }
                 Self::PHYSICAL_DEVICE_PRIVATE_DATA_BASE_HANDLE_FEATURES_NV => {
                     Some("PHYSICAL_DEVICE_PRIVATE_DATA_BASE_HANDLE_FEATURES_NV")
+                }
+                Self::PHYSICAL_DEVICE_INFO_PROPERTIES_INTEL => {
+                    Some("PHYSICAL_DEVICE_INFO_PROPERTIES_INTEL")
                 }
                 Self::PHYSICAL_DEVICE_BUFFER_DEVICE_ADDRESS_ALLOCATION_ALIGNMENT_FEATURES_VALVE => {
                     Some(
@@ -16147,6 +16170,13 @@ pub(crate) mod items {
                 }
                 Self::BUFFER_DEVICE_ADDRESS_ALIGNMENT_ALLOCATE_INFO_VALVE => {
                     Some("BUFFER_DEVICE_ADDRESS_ALIGNMENT_ALLOCATE_INFO_VALVE")
+                }
+                Self::PHYSICAL_DEVICE_HDR_SMPTE_ST_209450_FEATURES_GOOGLE => {
+                    Some("PHYSICAL_DEVICE_HDR_SMPTE_ST_209450_FEATURES_GOOGLE")
+                }
+                Self::HDR_SMPTE_ST_209450_GOOGLE => Some("HDR_SMPTE_ST_209450_GOOGLE"),
+                Self::SURFACE_CAPABILITIES_HDR_SMPTE_ST_209450_GOOGLE => {
+                    Some("SURFACE_CAPABILITIES_HDR_SMPTE_ST_209450_GOOGLE")
                 }
                 _ => None,
             } {
@@ -16602,6 +16632,7 @@ pub(crate) mod items {
                 Self::POCL => Some("POCL"),
                 Self::MOBILEYE => Some("MOBILEYE"),
                 Self::APE => Some("APE"),
+                Self::APEX => Some("APEX"),
                 _ => None,
             } {
                 f.write_str(x)
@@ -24089,7 +24120,7 @@ pub(crate) mod items {
         ((version) & 0xFFF)
     }
     pub const API_VERSION_1_0: u32 = vk::make_api_version(0, 1, 0, 0);
-    pub const HEADER_VERSION: u32 = 362;
+    pub const HEADER_VERSION: u32 = 368;
     pub const HEADER_VERSION_COMPLETE: u32 = vk::make_api_version(
         0,
         1,

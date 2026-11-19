@@ -64,10 +64,14 @@
     <type>typedef <type>void</type> <name>IDirectFBSurface</name>;</type>
 
     <!-- OpenHarmonyOS native_buffer/native_buffer.h -->
+    <type>typedef <type>void</type> <name>OHBufferHandle</name>;</type>
     <type>typedef <type>void</type> <name>OH_NativeBuffer</name>;</type>
     <type>typedef <type>void</type> <name>OHNativeWindow</name>;</type>
 
     <!-- Samsung ??? -->
     <type>typedef <type>void</type> <name>ubm_device</name>;</type>
     <type>typedef <type>void</type> <name>ubm_surface</name>;</type>
+
+    <!-- This type is not required in any extension, so it's functionally a platform type -->
+    <type>typedef <type>void</type> <name>VkInternalObjectNV</name>;</type>
 </types>

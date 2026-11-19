@@ -3,6 +3,7 @@
 //!Extensions tagged GOOGLE
 pub mod decorate_string;
 pub mod display_timing;
+pub mod hdr_smpte_st_209450_metadata;
 pub mod hlsl_functionality1;
 pub mod surfaceless_query;
 pub mod user_type;

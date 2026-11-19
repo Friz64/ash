@@ -87,7 +87,7 @@ pub(crate) mod items {
         pub s_type: vk::StructureType,
         pub p_next: *const ffi::c_void,
         pub flags: vk::MetalSurfaceCreateFlagsEXT,
-        pub p_layer: *const vk::CAMetalLayer,
+        pub p_layer: *mut vk::CAMetalLayer,
         pub _marker: PhantomData<&'a ()>,
     }
     unsafe impl Send for MetalSurfaceCreateInfoEXT<'_> {}
@@ -111,7 +111,7 @@ pub(crate) mod items {
             self.flags = flags;
             self
         }
-        pub fn layer(mut self, layer: *const vk::CAMetalLayer) -> Self {
+        pub fn layer(mut self, layer: *mut vk::CAMetalLayer) -> Self {
             self.p_layer = layer;
             self
         }

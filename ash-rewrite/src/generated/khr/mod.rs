@@ -59,6 +59,7 @@ pub mod load_store_op_none;
 pub mod maintenance1;
 pub mod maintenance10;
 pub mod maintenance11;
+pub mod maintenance12;
 pub mod maintenance2;
 pub mod maintenance3;
 pub mod maintenance4;

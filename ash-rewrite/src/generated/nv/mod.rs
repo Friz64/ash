@@ -38,6 +38,7 @@ pub mod framebuffer_mixed_samples;
 pub mod geometry_shader_passthrough;
 pub mod glsl_shader;
 pub mod inherited_viewport_scissor;
+pub mod internal_handle;
 pub mod linear_color_attachment;
 pub mod low_latency;
 pub mod low_latency2;

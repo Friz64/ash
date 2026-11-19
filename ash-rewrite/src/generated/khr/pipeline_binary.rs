@@ -390,16 +390,13 @@ pub(crate) mod items {
         }
     }
     impl<'a> PipelineBinaryKeyKHR<'a> {
-        pub fn key_size(mut self, key_size: u32) -> Self {
-            self.key_size = key_size;
+        pub fn key(mut self, key: &[u8]) -> Self {
+            self.key_size = key.len() as _;
+            self.key[..key.len()].copy_from_slice(key);
             self
         }
-        pub fn key(
-            mut self,
-            key: [u8; vk::MAX_PIPELINE_BINARY_KEY_SIZE_KHR as _],
-        ) -> Self {
-            self.key = key;
-            self
+        pub fn key_as_slice(&self) -> &[u8] {
+            &self.key[..self.key_size as _]
         }
     }
     #[repr(C)]

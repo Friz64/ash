@@ -147,6 +147,7 @@ pub mod transform_feedback;
 pub mod validation_cache;
 pub mod validation_features;
 pub mod validation_flags;
+pub mod vertex_address_binding_unrestricted;
 pub mod vertex_attribute_divisor;
 pub mod vertex_attribute_robustness;
 pub mod vertex_input_dynamic_state;

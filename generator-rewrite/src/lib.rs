@@ -191,6 +191,11 @@ impl RustTokens for Context<'_> {
 
         let prefix = if type_name == TypeName::VK_RESULT {
             String::from("VK_")
+        } else if type_name == TypeName::new("VkHdrSmpteSt209450PowerPreferenceGOOGLE") {
+            // Inconsistent prefix.
+            // And no, I tried, we can't simply prepend _ to every number,
+            // because then VK_VIDEO_ENCODE_AV1_PREDICTION_MODE_INTRA_ONLY breaks :(
+            String::from("VK_HDR_SMPTE_ST_209450_POWER_PREFERENCE_")
         } else {
             let mut prefix = type_name_untagged
                 .replace("FlagBits", "")
@@ -204,7 +209,12 @@ impl RustTokens for Context<'_> {
             prefix + "_"
         };
 
-        let prefix_stripped = maybe_tag_stripped.strip_prefix(&prefix).unwrap();
+        let Some(prefix_stripped) = maybe_tag_stripped.strip_prefix(&prefix) else {
+            panic!(
+                "Unable to strip {:?} prefix from {:?}",
+                prefix, maybe_tag_stripped
+            );
+        };
         let bit_stripped = prefix_stripped.replace("_BIT", "");
 
         let shouty = bit_stripped.TO_SHOUTY_SNEK_CASE();

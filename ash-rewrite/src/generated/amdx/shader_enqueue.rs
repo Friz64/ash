@@ -468,6 +468,8 @@ pub(crate) mod items {
     unsafe impl<'a> TaggedStructure<'a> for ExecutionGraphPipelineCreateInfoAMDX<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::EXECUTION_GRAPH_PIPELINE_CREATE_INFO_AMDX;
     }
+    unsafe impl<'a> Extends<vk::PipelineCreateInfoKHR<'_>>
+    for ExecutionGraphPipelineCreateInfoAMDX<'a> {}
     impl<'a> Default for ExecutionGraphPipelineCreateInfoAMDX<'a> {
         fn default() -> Self {
             Self {

@@ -510,6 +510,8 @@ pub(crate) mod items {
     unsafe impl<'a> TaggedStructure<'a> for RayTracingPipelineCreateInfoKHR<'a> {
         const STRUCTURE_TYPE: vk::StructureType = vk::StructureType::RAY_TRACING_PIPELINE_CREATE_INFO_KHR;
     }
+    unsafe impl<'a> Extends<vk::PipelineCreateInfoKHR<'_>>
+    for RayTracingPipelineCreateInfoKHR<'a> {}
     impl<'a> Default for RayTracingPipelineCreateInfoKHR<'a> {
         fn default() -> Self {
             Self {

@@ -157,6 +157,14 @@ impl DriverId {
     pub const APE_SOFT: Self = Self(30);
     ///Reserved for undisclosed driver project
     pub const RESERVED_31: Self = Self(31);
+    ///Apex Compute
+    pub const APEX: Self = Self(32);
+    ///nikki Vulkan-on-WebGPU implementation
+    pub const NIKKI: Self = Self(33);
+    ///momoten Vulkan-on-OpenCL implementation
+    pub const MOMOTEN: Self = Self(34);
+    ///Aurora Silicon
+    pub const AURORA_BOREALIS: Self = Self(35);
 }
 ///Provided by [Vulkan 1.2](crate::vk1_2)
 impl ShaderFloatControlsIndependence {
@@ -4752,6 +4760,10 @@ pub(crate) mod items {
                 Self::MESA_GFXSTREAM => Some("MESA_GFXSTREAM"),
                 Self::APE_SOFT => Some("APE_SOFT"),
                 Self::RESERVED_31 => Some("RESERVED_31"),
+                Self::APEX => Some("APEX"),
+                Self::NIKKI => Some("NIKKI"),
+                Self::MOMOTEN => Some("MOMOTEN"),
+                Self::AURORA_BOREALIS => Some("AURORA_BOREALIS"),
                 _ => None,
             } {
                 f.write_str(x)

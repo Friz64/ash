@@ -211,7 +211,6 @@ pub(crate) mod items {
         }
     }
     #[repr(C)]
-    #[cfg_attr(feature = "debug", derive(Debug))]
     #[derive(Clone, Copy)]
     pub struct PhysicalDeviceLayeredApiPropertiesKHR<'a> {
         pub s_type: vk::StructureType,
@@ -240,6 +239,19 @@ pub(crate) mod items {
             }
         }
     }
+    #[cfg(feature = "debug")]
+    impl<'a> fmtd::Debug for PhysicalDeviceLayeredApiPropertiesKHR<'a> {
+        fn fmt(&self, f: &mut fmtd::Formatter) -> fmtd::Result {
+            f.debug_struct("PhysicalDeviceLayeredApiPropertiesKHR < 'a >")
+                .field("s_type", &self.s_type)
+                .field("p_next", &self.p_next)
+                .field("vendor_id", &self.vendor_id)
+                .field("device_id", &self.device_id)
+                .field("layered_api", &self.layered_api)
+                .field("device_name", &self.device_name_as_c_str())
+                .finish()
+        }
+    }
     impl<'a> PhysicalDeviceLayeredApiPropertiesKHR<'a> {
         pub fn vendor_id(mut self, vendor_id: u32) -> Self {
             self.vendor_id = vendor_id;
@@ -258,10 +270,15 @@ pub(crate) mod items {
         }
         pub fn device_name(
             mut self,
-            device_name: [ffi::c_char; vk::MAX_PHYSICAL_DEVICE_NAME_SIZE as _],
-        ) -> Self {
-            self.device_name = device_name;
-            self
+            device_name: &CStr,
+        ) -> CoreResult<Self, crate::CStrTooLargeForStaticArray> {
+            crate::write_c_str_slice_with_nul(&mut self.device_name, device_name)
+                .map(|_| self)
+        }
+        pub fn device_name_as_c_str(
+            &self,
+        ) -> CoreResult<&CStr, ffi::FromBytesUntilNulError> {
+            crate::wrap_c_str_slice_until_nul(&self.device_name)
         }
     }
     #[repr(C)]

@@ -95,7 +95,9 @@ pub(crate) mod items {
     for MemoryBarrierAccessFlags3KHR<'a> {}
     unsafe impl<'a> Extends<vk::ImageMemoryBarrier2<'_>>
     for MemoryBarrierAccessFlags3KHR<'a> {}
-    unsafe impl<'a> Extends<vk::MemoryRangeBarriersInfoKHR<'_>>
+    unsafe impl<'a> Extends<vk::MemoryBarrier2<'_>>
+    for MemoryBarrierAccessFlags3KHR<'a> {}
+    unsafe impl<'a> Extends<vk::MemoryRangeBarrierKHR<'_>>
     for MemoryBarrierAccessFlags3KHR<'a> {}
     impl<'a> Default for MemoryBarrierAccessFlags3KHR<'a> {
         fn default() -> Self {
