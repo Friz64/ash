@@ -132,6 +132,27 @@ impl Device {
     pub fn device(&self) -> vk::Device {
         self.handle
     }
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkGetCalibratedTimestampsKHR.html) · Device Function
+    /// Returns a tuple containing `(timestamps, max_deviation)`
+    pub unsafe fn get_calibrated_timestamps(
+        &self,
+        info: &[vk::CalibratedTimestampInfoEXT<'_>],
+    ) -> VkResult<(Vec<u64>, u64)> {
+        let mut timestamps = Vec::with_capacity(info.len());
+        let mut max_deviation = MaybeUninit::uninit();
+        let max_deviation = (self
+            .fp
+            .get_calibrated_timestamps)(
+                self.handle,
+                info.len() as u32,
+                info.as_ptr(),
+                timestamps.as_mut_ptr(),
+                max_deviation.as_mut_ptr(),
+            )
+            .assume_init_on_success(max_deviation)?;
+        timestamps.set_len(info.len());
+        Ok((timestamps, max_deviation))
+    }
 }
 pub(crate) mod items {
     use crate::internal_prelude::*;

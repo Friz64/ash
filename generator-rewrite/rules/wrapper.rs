@@ -362,3 +362,128 @@ fn vkGetPipelineBinaryDataKHR(
         )
     })
 }
+/// Returns a tuple containing `(timestamps, max_deviation)`
+fn vkGetCalibratedTimestampsKHR(
+    &self,
+    info: &[vk::CalibratedTimestampInfoEXT<'_>],
+) -> VkResult<(Vec<u64>, u64)> {
+    let mut timestamps = Vec::with_capacity(info.len());
+    let mut max_deviation = MaybeUninit::uninit();
+    let max_deviation = (self.__table.get_calibrated_timestamps)(
+        self.handle,
+        info.len() as u32,
+        info.as_ptr(),
+        timestamps.as_mut_ptr(),
+        max_deviation.as_mut_ptr(),
+    )
+    .assume_init_on_success(max_deviation)?;
+    timestamps.set_len(info.len());
+    Ok((timestamps, max_deviation))
+}
+
+/// Retrieve the number of elements to pass to [`enumerate_physical_device_queue_family_performance_query_counters()`][Self::enumerate_physical_device_queue_family_performance_query_counters()]
+#[name(enumerate_physical_device_queue_family_performance_query_counters_len)]
+fn vkEnumeratePhysicalDeviceQueueFamilyPerformanceQueryCountersKHR(
+    &self,
+    physical_device: vk::PhysicalDevice,
+    queue_family_index: u32,
+) -> VkResult<usize> {
+    let mut count = mem::MaybeUninit::uninit();
+    (self
+        .__table
+        .enumerate_physical_device_queue_family_performance_query_counters)(
+        physical_device,
+        queue_family_index,
+        count.as_mut_ptr(),
+        ptr::null_mut(),
+        ptr::null_mut(),
+    )
+    .assume_init_on_success(count)
+    .map(|c| c as usize)
+}
+
+/// Call [`enumerate_physical_device_queue_family_performance_query_counters_len()`][Self::enumerate_physical_device_queue_family_performance_query_counters_len()] to query the number of elements to pass to `out_counters` and `out_counter_descriptions`.
+/// Be sure to [`Default::default()`]-initialize these elements and optionally set their `p_next` pointer.
+fn vkEnumeratePhysicalDeviceQueueFamilyPerformanceQueryCountersKHR(
+    &self,
+    physical_device: vk::PhysicalDevice,
+    queue_family_index: u32,
+    out_counters: &mut [vk::PerformanceCounterKHR<'_>],
+    out_counter_descriptions: &mut [vk::PerformanceCounterDescriptionKHR<'_>],
+) -> VkResult<()> {
+    assert_eq!(out_counters.len(), out_counter_descriptions.len());
+    let mut count = out_counters.len() as u32;
+    (self
+        .__table
+        .enumerate_physical_device_queue_family_performance_query_counters)(
+        physical_device,
+        queue_family_index,
+        &mut count,
+        out_counters.as_mut_ptr(),
+        out_counter_descriptions.as_mut_ptr(),
+    )
+    .result()?;
+    assert_eq!(count as usize, out_counters.len());
+    assert_eq!(count as usize, out_counter_descriptions.len());
+    Ok(())
+}
+
+/// Retrieve the length of the byte slice to pass to [`get_encoded_video_session_parameters()`][Self::get_encoded_video_session_parameters()].
+#[name(get_encoded_video_session_parameters_len)]
+fn vkGetEncodedVideoSessionParametersKHR(
+    &self,
+    session_parameters_info: &vk::VideoEncodeSessionParametersGetInfoKHR<'_>,
+    feedback_info: Option<&mut vk::VideoEncodeSessionParametersFeedbackInfoKHR<'_>>,
+) -> VkResult<usize> {
+    let mut size = mem::MaybeUninit::uninit();
+    (self.__table.get_encoded_video_session_parameters)(
+        self.handle,
+        session_parameters_info,
+        match feedback_info {
+            Some(p) => p,
+            None => ptr::null_mut(),
+        },
+        size.as_mut_ptr(),
+        ptr::null_mut(),
+    )
+    .assume_init_on_success(size)
+}
+
+/// Call [`get_encoded_video_session_parameters_len()`][Self::get_encoded_video_session_parameters_len()] to query the length of the byte slice to pass to `out`.
+fn vkGetEncodedVideoSessionParametersKHR(
+    &self,
+    session_parameters_info: &vk::VideoEncodeSessionParametersGetInfoKHR<'_>,
+    feedback_info: Option<&mut vk::VideoEncodeSessionParametersFeedbackInfoKHR<'_>>,
+    out: &mut [mem::MaybeUninit<u8>],
+) -> VkResult<()> {
+    let mut size = out.len();
+    (self.__table.get_encoded_video_session_parameters)(
+        self.handle,
+        session_parameters_info,
+        match feedback_info {
+            Some(p) => p,
+            None => ptr::null_mut(),
+        },
+        &mut size,
+        out.as_mut_ptr() as _,
+    )
+    .result()?;
+    assert_eq!(size, out.len());
+    Ok(())
+}
+
+fn vkGetDeviceFaultInfoEXT(
+    &self,
+    fault_counts: &mut vk::DeviceFaultCountsEXT,
+    fault_info: Option<&mut vk::DeviceFaultInfoEXT>,
+) -> VkResult<()> {
+    (self.__table.get_device_fault_info)(
+        self.handle,
+        fault_counts,
+        match fault_info {
+            Some(p) => p,
+            None => ptr::null_mut(),
+        },
+    )
+    .result()
+}

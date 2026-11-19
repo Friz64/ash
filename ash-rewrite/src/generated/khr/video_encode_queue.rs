@@ -373,6 +373,53 @@ impl Device {
     pub fn device(&self) -> vk::Device {
         self.handle
     }
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkGetEncodedVideoSessionParametersKHR.html) · Device Function
+    /// Retrieve the length of the byte slice to pass to [`get_encoded_video_session_parameters()`][Self::get_encoded_video_session_parameters()].
+    pub unsafe fn get_encoded_video_session_parameters_len(
+        &self,
+        session_parameters_info: &vk::VideoEncodeSessionParametersGetInfoKHR<'_>,
+        feedback_info: Option<&mut vk::VideoEncodeSessionParametersFeedbackInfoKHR<'_>>,
+    ) -> VkResult<usize> {
+        let mut size = mem::MaybeUninit::uninit();
+        (self
+            .fp
+            .get_encoded_video_session_parameters)(
+                self.handle,
+                session_parameters_info,
+                match feedback_info {
+                    Some(p) => p,
+                    None => ptr::null_mut(),
+                },
+                size.as_mut_ptr(),
+                ptr::null_mut(),
+            )
+            .assume_init_on_success(size)
+    }
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkGetEncodedVideoSessionParametersKHR.html) · Device Function
+    /// Call [`get_encoded_video_session_parameters_len()`][Self::get_encoded_video_session_parameters_len()] to query the length of the byte slice to pass to `out`.
+    pub unsafe fn get_encoded_video_session_parameters(
+        &self,
+        session_parameters_info: &vk::VideoEncodeSessionParametersGetInfoKHR<'_>,
+        feedback_info: Option<&mut vk::VideoEncodeSessionParametersFeedbackInfoKHR<'_>>,
+        out: &mut [mem::MaybeUninit<u8>],
+    ) -> VkResult<()> {
+        let mut size = out.len();
+        (self
+            .fp
+            .get_encoded_video_session_parameters)(
+                self.handle,
+                session_parameters_info,
+                match feedback_info {
+                    Some(p) => p,
+                    None => ptr::null_mut(),
+                },
+                &mut size,
+                out.as_mut_ptr() as _,
+            )
+            .result()?;
+        assert_eq!(size, out.len());
+        Ok(())
+    }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdEncodeVideoKHR.html) · Device Function
     pub unsafe fn cmd_encode_video(
         &self,

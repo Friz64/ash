@@ -137,6 +137,52 @@ impl Instance {
     pub fn instance(&self) -> vk::Instance {
         self.handle
     }
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkEnumeratePhysicalDeviceQueueFamilyPerformanceQueryCountersKHR.html) · Instance Function
+    /// Retrieve the number of elements to pass to [`enumerate_physical_device_queue_family_performance_query_counters()`][Self::enumerate_physical_device_queue_family_performance_query_counters()]
+    pub unsafe fn enumerate_physical_device_queue_family_performance_query_counters_len(
+        &self,
+        physical_device: vk::PhysicalDevice,
+        queue_family_index: u32,
+    ) -> VkResult<usize> {
+        let mut count = mem::MaybeUninit::uninit();
+        (self
+            .fp
+            .enumerate_physical_device_queue_family_performance_query_counters)(
+                physical_device,
+                queue_family_index,
+                count.as_mut_ptr(),
+                ptr::null_mut(),
+                ptr::null_mut(),
+            )
+            .assume_init_on_success(count)
+            .map(|c| c as usize)
+    }
+    ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkEnumeratePhysicalDeviceQueueFamilyPerformanceQueryCountersKHR.html) · Instance Function
+    /// Call [`enumerate_physical_device_queue_family_performance_query_counters_len()`][Self::enumerate_physical_device_queue_family_performance_query_counters_len()] to query the number of elements to pass to `out_counters` and `out_counter_descriptions`.
+    /// Be sure to [`Default::default()`]-initialize these elements and optionally set their `p_next` pointer.
+    pub unsafe fn enumerate_physical_device_queue_family_performance_query_counters(
+        &self,
+        physical_device: vk::PhysicalDevice,
+        queue_family_index: u32,
+        out_counters: &mut [vk::PerformanceCounterKHR<'_>],
+        out_counter_descriptions: &mut [vk::PerformanceCounterDescriptionKHR<'_>],
+    ) -> VkResult<()> {
+        assert_eq!(out_counters.len(), out_counter_descriptions.len());
+        let mut count = out_counters.len() as u32;
+        (self
+            .fp
+            .enumerate_physical_device_queue_family_performance_query_counters)(
+                physical_device,
+                queue_family_index,
+                &mut count,
+                out_counters.as_mut_ptr(),
+                out_counter_descriptions.as_mut_ptr(),
+            )
+            .result()?;
+        assert_eq!(count as usize, out_counters.len());
+        assert_eq!(count as usize, out_counter_descriptions.len());
+        Ok(())
+    }
     ///[Vulkan Manual Page](https://docs.vulkan.org/refpages/latest/refpages/source/vkGetPhysicalDeviceQueueFamilyPerformanceQueryPassesKHR.html) · Instance Function
     pub unsafe fn get_physical_device_queue_family_performance_query_passes(
         &self,
